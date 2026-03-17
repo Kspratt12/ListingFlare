@@ -611,7 +611,7 @@ export default function LandingPage() {
               </Link>
               <Link
                 href="/demo"
-                className="group flex items-center gap-2 rounded-full border-2 border-gray-200 bg-white px-8 py-4 text-base font-medium text-gray-900 transition-all hover:border-gray-300 hover:shadow-lg hover:shadow-gray-200/50"
+                className="group flex items-center gap-2 rounded-full border-2 border-brand-300 bg-brand-50 px-8 py-4 text-base font-medium text-brand-700 transition-all hover:bg-brand-100 hover:border-brand-400 hover:shadow-lg hover:shadow-brand-200/50"
               >
                 See a Live Example
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -714,54 +714,6 @@ export default function LandingPage() {
                 <p className="mt-1 text-sm text-gray-500">To start your trial</p>
               </div>
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="bg-white py-20 md:py-28">
-        <div className="mx-auto max-w-6xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
-              Everything You Need
-            </p>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
-              Win more listings.
-              <br />
-              Close more deals.
-            </h2>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="mt-16 grid gap-8 md:grid-cols-2"
-          >
-            {features.map((feature, i) => (
-              <motion.div
-                key={feature.title}
-                custom={i}
-                variants={fadeUp}
-                className="rounded-2xl border border-gray-100 bg-gray-50/50 p-8 transition-shadow hover:shadow-lg hover:shadow-gray-100"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-brand-600">
-                  <feature.icon className="h-6 w-6" />
-                </div>
-                <h3 className="mt-5 font-serif text-xl font-semibold text-gray-900">
-                  {feature.title}
-                </h3>
-                <p className="mt-3 leading-relaxed text-gray-500">
-                  {feature.description}
-                </p>
-              </motion.div>
-            ))}
           </motion.div>
         </div>
       </section>
@@ -972,6 +924,54 @@ export default function LandingPage() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="bg-white py-20 md:py-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+              Everything You Need
+            </p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
+              Win more listings.
+              <br />
+              Close more deals.
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="mt-16 grid gap-8 md:grid-cols-2"
+          >
+            {features.map((feature, i) => (
+              <motion.div
+                key={feature.title}
+                custom={i}
+                variants={fadeUp}
+                className="rounded-2xl border border-gray-100 bg-gray-50/50 p-8 transition-shadow hover:shadow-lg hover:shadow-gray-100"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-brand-600">
+                  <feature.icon className="h-6 w-6" />
+                </div>
+                <h3 className="mt-5 font-serif text-xl font-semibold text-gray-900">
+                  {feature.title}
+                </h3>
+                <p className="mt-3 leading-relaxed text-gray-500">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
