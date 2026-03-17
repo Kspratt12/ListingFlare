@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import type { ListingPhoto, ListingVideo } from "@/lib/types";
 import AddressAutocomplete from "@/components/AddressAutocomplete";
+import { formatNumber, parseNumber } from "@/lib/formatters";
 
 const US_STATES = [
   "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA",
@@ -311,11 +312,11 @@ export default function CreateListingPage() {
                 Price ($)
               </label>
               <input
-                type="number"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                type="text"
+                value={formatNumber(price)}
+                onChange={(e) => setPrice(parseNumber(e.target.value))}
                 className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-                placeholder="4750000"
+                placeholder="4,750,000"
               />
             </div>
             <div>
@@ -348,11 +349,11 @@ export default function CreateListingPage() {
                 Square Feet
               </label>
               <input
-                type="number"
-                value={sqft}
-                onChange={(e) => setSqft(e.target.value)}
+                type="text"
+                value={formatNumber(sqft)}
+                onChange={(e) => setSqft(parseNumber(e.target.value))}
                 className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-                placeholder="4820"
+                placeholder="4,820"
               />
             </div>
             <div>
