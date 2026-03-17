@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Listing } from "@/lib/types";
 import Link from "next/link";
-import { PlusCircle, Eye, ExternalLink, MoreVertical, Share2, Loader2 } from "lucide-react";
+import { PlusCircle, Eye, Pencil, MoreVertical, Share2, Loader2 } from "lucide-react";
 
 export default function MyListingsPage() {
   const [listings, setListings] = useState<Listing[]>([]);
@@ -165,18 +165,21 @@ export default function MyListingsPage() {
       ) : (
         <div className="mt-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {listings.map((listing) => (
-            <Link
+            <div
               key={listing.id}
-              href={`/dashboard/edit/${listing.id}`}
-              className="group block overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow hover:shadow-lg"
+              className="group overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow hover:shadow-lg"
             >
-              {/* Thumbnail */}
-              <div className="relative h-44 overflow-hidden bg-gray-100">
+              {/* Thumbnail — clicks through to live listing page */}
+              <Link
+                href={`/listing/${listing.id}`}
+                className="relative block h-44 overflow-hidden bg-gray-100"
+              >
                 {listing.photos.length > 0 ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={listing.photos[0].src}
                     alt={listing.street}
+                    loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 ) : (
@@ -189,7 +192,7 @@ export default function MyListingsPage() {
                 >
                   {listing.status}
                 </span>
-              </div>
+              </Link>
 
               {/* Info */}
               <div className="p-5">
@@ -225,30 +228,24 @@ export default function MyListingsPage() {
                         <span className="text-xs font-medium">Social</span>
                       </span>
                     )}
-                    {listing.status === "published" && (
-                      <span
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          window.open(`/listing/${listing.id}`, "_blank");
-                        }}
-                        className="flex items-center gap-1 rounded-lg px-2 py-1.5 text-brand-500 transition-colors hover:bg-brand-50 hover:text-brand-600 cursor-pointer"
-                        title="View live page"
-                      >
-                        <ExternalLink className="h-3.5 w-3.5" />
-                        <span className="text-xs font-medium">View</span>
-                      </span>
-                    )}
+                    <Link
+                      href={`/dashboard/edit/${listing.id}`}
+                      className="flex items-center gap-1 rounded-lg px-2 py-1.5 text-brand-500 transition-colors hover:bg-brand-50 hover:text-brand-600"
+                      title="Edit listing"
+                    >
+                      <Pencil className="h-3.5 w-3.5" />
+                      <span className="text-xs font-medium">Edit</span>
+                    </Link>
                     <span
                       className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600"
-                      title="Edit"
+                      title="More options"
                     >
                       <MoreVertical className="h-4 w-4" />
                     </span>
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       )}

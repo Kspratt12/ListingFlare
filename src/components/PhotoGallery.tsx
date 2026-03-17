@@ -59,6 +59,7 @@ export default function PhotoGallery({ photos, videos = [] }: Props) {
                   <img
                     src={photo.src}
                     alt={photo.alt}
+                    loading="lazy"
                     className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     style={{
                       aspectRatio: i % 3 === 0 ? "3/4" : i % 3 === 1 ? "4/3" : "1/1",

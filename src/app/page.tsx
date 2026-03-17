@@ -133,8 +133,8 @@ export default function LandingPage() {
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-gray-500 md:text-xl">
               Create stunning single-property listing sites in minutes.
-              Impress sellers, attract buyers, and capture leads &mdash;
-              all from one beautiful dashboard.
+              Impress sellers, attract buyers, and capture leads.
+              All from one beautiful dashboard.
             </p>
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link
@@ -181,6 +181,8 @@ export default function LandingPage() {
                   <img
                     src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=3840&h=2160&fit=crop&q=90&auto=format"
                     alt="ListingFlare property page preview"
+                    loading="eager"
+                    fetchPriority="high"
                     className="h-full w-full object-cover opacity-80"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
