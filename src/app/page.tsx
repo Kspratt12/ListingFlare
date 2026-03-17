@@ -118,6 +118,30 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
 
       {/* Dashboard content */}
       <div className="relative bg-gray-50 p-6" style={{ minHeight: 340 }}>
+        {/* Animated cursor */}
+        <motion.div
+          className="pointer-events-none absolute z-30 hidden md:block"
+          animate={
+            activeStep === "create"
+              ? { left: "55%", top: "38%", rotate: -5 }
+              : activeStep === "photos"
+              ? { left: "45%", top: "32%", rotate: 0 }
+              : activeStep === "published"
+              ? { left: "70%", top: "75%", rotate: -10 }
+              : { left: "60%", top: "55%", rotate: 5 }
+          }
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+        >
+          <svg width="20" height="24" viewBox="0 0 20 24" fill="none">
+            <path d="M1 1L1 17.5L5.5 13.5L9.5 22L13 20.5L9 12L15 11.5L1 1Z" fill="white" stroke="#111827" strokeWidth="1.5" strokeLinejoin="round"/>
+          </svg>
+          <motion.div
+            animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="absolute -left-1.5 -top-1.5 h-5 w-5 rounded-full bg-brand-400/30"
+          />
+        </motion.div>
+
         <AnimatePresence mode="wait">
           {activeStep === "create" && (
             <motion.div
@@ -208,7 +232,7 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
                         className="relative aspect-square overflow-hidden rounded-lg"
                       >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={`https://images.unsplash.com/${id}?w=200&h=200&fit=crop&q=80`} alt="" className="h-full w-full object-cover" />
+                        <img src={`https://images.unsplash.com/${id}?w=200&h=200&fit=crop&q=80`} alt="" loading="lazy" className="h-full w-full object-cover" />
                         <span className="rounded-full bg-green-500 p-0.5 text-white absolute top-1 right-1">
                           <Check className="h-2.5 w-2.5" />
                         </span>
@@ -222,7 +246,7 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
                       className="relative aspect-square overflow-hidden rounded-lg bg-gray-900"
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=200&fit=crop&q=80" alt="" className="h-full w-full object-cover opacity-70" />
+                      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=200&fit=crop&q=80" alt="" loading="lazy" className="h-full w-full object-cover opacity-70" />
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="rounded-full bg-white/90 p-1.5">
                           <svg className="h-3 w-3 text-gray-900 ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -272,7 +296,7 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
                   <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
                     <div className="relative h-36 overflow-hidden">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=300&fit=crop&q=80" alt="" className="h-full w-full object-cover" />
+                      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=300&fit=crop&q=80" alt="" loading="lazy" className="h-full w-full object-cover" />
                       <motion.span
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
