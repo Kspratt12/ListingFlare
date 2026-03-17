@@ -894,7 +894,7 @@ export default function LandingPage() {
                       className="h-full w-full object-cover"
                       poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=150&fit=crop&q=80"
                     >
-                      <source src="https://assets.mixkit.co/videos/4636/4636-720.mp4" type="video/mp4" />
+                      <source src="https://assets.mixkit.co/videos/4064/4064-720.mp4" type="video/mp4" />
                     </video>
                     <span className="absolute top-1 left-1 rounded bg-black/70 px-1.5 py-0.5 text-[7px] font-bold text-white flex items-center gap-0.5">
                       <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
@@ -911,6 +911,12 @@ export default function LandingPage() {
                     ))}
                     <span className="rounded-full bg-purple-50 border border-purple-200 px-2 py-0.5 text-[9px] font-medium text-purple-700 flex items-center gap-0.5">
                       <Sparkles className="h-2.5 w-2.5" /> AI Descriptions
+                    </span>
+                    <span className="rounded-full bg-blue-50 border border-blue-200 px-2 py-0.5 text-[9px] font-medium text-blue-700 flex items-center gap-0.5">
+                      <Send className="h-2.5 w-2.5" /> Share to Social
+                    </span>
+                    <span className="rounded-full bg-green-50 border border-green-200 px-2 py-0.5 text-[9px] font-medium text-green-700 flex items-center gap-0.5">
+                      <Bell className="h-2.5 w-2.5" /> Instant Lead Alerts
                     </span>
                   </div>
                   {/* Agent branding */}
