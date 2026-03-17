@@ -91,9 +91,10 @@ export default function MyListingsPage() {
       ) : (
         <div className="mt-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {listings.map((listing) => (
-            <div
+            <Link
               key={listing.id}
-              className="group overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow hover:shadow-lg"
+              href={`/dashboard/edit/${listing.id}`}
+              className="group block overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow hover:shadow-lg"
             >
               {/* Thumbnail */}
               <div className="relative h-44 overflow-hidden bg-gray-100">
@@ -137,26 +138,28 @@ export default function MyListingsPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     {listing.status === "published" && (
-                      <Link
-                        href={`/listing/${listing.id}`}
-                        target="_blank"
-                        className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600"
+                      <span
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          window.open(`/listing/${listing.id}`, "_blank");
+                        }}
+                        className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600 cursor-pointer"
                         title="View live page"
                       >
                         <ExternalLink className="h-4 w-4" />
-                      </Link>
+                      </span>
                     )}
-                    <Link
-                      href={`/dashboard/edit/${listing.id}`}
+                    <span
                       className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600"
                       title="Edit"
                     >
                       <MoreVertical className="h-4 w-4" />
-                    </Link>
+                    </span>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       )}

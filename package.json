@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.79.0",
     "@headlessui/react": "^2.2.9",
     "@supabase/ssr": "^0.9.0",
     "@supabase/supabase-js": "^2.99.2",
@@ -20,6 +21,7 @@
     "stripe": "^20.4.1"
   },
   "devDependencies": {
+    "@types/google.maps": "^3.58.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

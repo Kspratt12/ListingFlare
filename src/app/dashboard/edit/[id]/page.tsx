@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import {
   Upload,
   X,
@@ -10,9 +10,13 @@ import {
   Loader2,
   Save,
   Globe,
+  Trash2,
+  ArrowLeft,
+  Archive,
   Sparkles,
 } from "lucide-react";
 import type { ListingPhoto } from "@/lib/types";
+import Link from "next/link";
 import AddressAutocomplete from "@/components/AddressAutocomplete";
 
 const US_STATES = [
@@ -22,15 +26,21 @@ const US_STATES = [
   "VA","WA","WV","WI","WY",
 ];
 
-export default function CreateListingPage() {
+export default function EditListingPage() {
   const router = useRouter();
+  const params = useParams();
+  const listingId = params.id as string;
   const supabase = createClient();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [publishing, setPublishing] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState("");
   const [uploadingPhotos, setUploadingPhotos] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [currentStatus, setCurrentStatus] = useState("draft");
 
   // Form state
   const [street, setStreet] = useState("");
@@ -80,6 +90,40 @@ export default function CreateListingPage() {
     }
   };
 
+  useEffect(() => {
+    async function fetchListing() {
+      const { data, error: fetchError } = await supabase
+        .from("listings")
+        .select("*")
+        .eq("id", listingId)
+        .single();
+
+      if (fetchError || !data) {
+        setError("Listing not found");
+        setLoading(false);
+        return;
+      }
+
+      setStreet(data.street || "");
+      setCity(data.city || "");
+      setState(data.state || "CA");
+      setZip(data.zip || "");
+      setPrice(data.price ? String(data.price) : "");
+      setBeds(data.beds ? String(data.beds) : "");
+      setBaths(data.baths ? String(data.baths) : "");
+      setSqft(data.sqft ? String(data.sqft) : "");
+      setYearBuilt(data.year_built ? String(data.year_built) : "");
+      setLotSize(data.lot_size || "");
+      setDescription(data.description || "");
+      setFeaturesText((data.features || []).join("\n"));
+      setPhotos(data.photos || []);
+      setCurrentStatus(data.status || "draft");
+      setLoading(false);
+    }
+    fetchListing();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [listingId]);
+
   const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
@@ -128,8 +172,8 @@ export default function CreateListingPage() {
     setPhotos((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const handleSave = async (publish: boolean) => {
-    if (publish) {
+  const handleSave = async (status: string) => {
+    if (status === "published") {
       setPublishing(true);
     } else {
       setSaving(true);
@@ -137,36 +181,35 @@ export default function CreateListingPage() {
     setError("");
 
     try {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) throw new Error("Not authenticated");
-
       const features = featuresText
         .split("\n")
         .map((f) => f.trim())
         .filter(Boolean);
 
-      const { error: insertError } = await supabase.from("listings").insert({
-        agent_id: user.id,
-        status: publish ? "published" : "draft",
-        street,
-        city,
-        state,
-        zip,
-        price: parseInt(price) || 0,
-        beds: parseInt(beds) || 0,
-        baths: parseFloat(baths) || 0,
-        sqft: parseInt(sqft) || 0,
-        year_built: yearBuilt ? parseInt(yearBuilt) : null,
-        lot_size: lotSize,
-        description,
-        features,
-        photos,
-      });
+      const { error: updateError } = await supabase
+        .from("listings")
+        .update({
+          status,
+          street,
+          city,
+          state,
+          zip,
+          price: parseInt(price) || 0,
+          beds: parseInt(beds) || 0,
+          baths: parseFloat(baths) || 0,
+          sqft: parseInt(sqft) || 0,
+          year_built: yearBuilt ? parseInt(yearBuilt) : null,
+          lot_size: lotSize,
+          description,
+          features,
+          photos,
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", listingId);
 
-      if (insertError) throw insertError;
+      if (updateError) throw updateError;
 
+      setCurrentStatus(status);
       router.push("/dashboard");
       router.refresh();
     } catch (err) {
@@ -177,15 +220,66 @@ export default function CreateListingPage() {
     }
   };
 
+  const handleDelete = async () => {
+    setDeleting(true);
+    setError("");
+
+    try {
+      const { error: deleteError } = await supabase
+        .from("listings")
+        .delete()
+        .eq("id", listingId);
+
+      if (deleteError) throw deleteError;
+
+      router.push("/dashboard");
+      router.refresh();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to delete");
+      setDeleting(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="mx-auto max-w-3xl">
+        <div className="h-8 w-48 animate-pulse rounded bg-gray-200" />
+        <div className="mt-8 space-y-8">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="h-48 animate-pulse rounded-xl border border-gray-200 bg-white" />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="mx-auto max-w-3xl">
-      <div>
-        <h1 className="font-serif text-2xl font-bold text-gray-900 md:text-3xl">
-          Create New Listing
-        </h1>
-        <p className="mt-1 text-gray-500">
-          Fill in the property details to generate a beautiful listing page.
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to listings
+          </Link>
+          <h1 className="mt-2 font-serif text-2xl font-bold text-gray-900 md:text-3xl">
+            Edit Listing
+          </h1>
+          <p className="mt-1 text-gray-500">
+            {street || "Untitled"} &middot;{" "}
+            <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium capitalize ${
+              currentStatus === "published"
+                ? "bg-green-50 text-green-700"
+                : currentStatus === "archived"
+                ? "bg-amber-50 text-amber-700"
+                : "bg-gray-100 text-gray-600"
+            }`}>
+              {currentStatus}
+            </span>
+          </p>
+        </div>
       </div>
 
       {error && (
@@ -197,14 +291,10 @@ export default function CreateListingPage() {
       <div className="mt-8 space-y-8">
         {/* Address */}
         <section className="rounded-xl border border-gray-200 bg-white p-6">
-          <h2 className="font-serif text-lg font-semibold text-gray-900">
-            Address
-          </h2>
+          <h2 className="font-serif text-lg font-semibold text-gray-900">Address</h2>
           <div className="mt-4 space-y-4">
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
-                Street Address
-              </label>
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">Street Address</label>
               <AddressAutocomplete
                 value={street}
                 onChange={setStreet}
@@ -220,9 +310,7 @@ export default function CreateListingPage() {
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">
-                  City
-                </label>
+                <label className="mb-1.5 block text-sm font-medium text-gray-700">City</label>
                 <input
                   type="text"
                   value={city}
@@ -232,25 +320,19 @@ export default function CreateListingPage() {
                 />
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">
-                  State
-                </label>
+                <label className="mb-1.5 block text-sm font-medium text-gray-700">State</label>
                 <select
                   value={state}
                   onChange={(e) => setState(e.target.value)}
                   className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 >
                   {US_STATES.map((s) => (
-                    <option key={s} value={s}>
-                      {s}
-                    </option>
+                    <option key={s} value={s}>{s}</option>
                   ))}
                 </select>
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">
-                  ZIP Code
-                </label>
+                <label className="mb-1.5 block text-sm font-medium text-gray-700">ZIP Code</label>
                 <input
                   type="text"
                   value={zip}
@@ -265,82 +347,43 @@ export default function CreateListingPage() {
 
         {/* Property Details */}
         <section className="rounded-xl border border-gray-200 bg-white p-6">
-          <h2 className="font-serif text-lg font-semibold text-gray-900">
-            Property Details
-          </h2>
+          <h2 className="font-serif text-lg font-semibold text-gray-900">Property Details</h2>
           <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
-                Price ($)
-              </label>
-              <input
-                type="number"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">Price ($)</label>
+              <input type="number" value={price} onChange={(e) => setPrice(e.target.value)}
                 className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-                placeholder="4750000"
-              />
+                placeholder="4750000" />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
-                Bedrooms
-              </label>
-              <input
-                type="number"
-                value={beds}
-                onChange={(e) => setBeds(e.target.value)}
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">Bedrooms</label>
+              <input type="number" value={beds} onChange={(e) => setBeds(e.target.value)}
                 className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-                placeholder="5"
-              />
+                placeholder="5" />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
-                Bathrooms
-              </label>
-              <input
-                type="number"
-                step="0.5"
-                value={baths}
-                onChange={(e) => setBaths(e.target.value)}
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">Bathrooms</label>
+              <input type="number" step="0.5" value={baths} onChange={(e) => setBaths(e.target.value)}
                 className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-                placeholder="4.5"
-              />
+                placeholder="4.5" />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
-                Square Feet
-              </label>
-              <input
-                type="number"
-                value={sqft}
-                onChange={(e) => setSqft(e.target.value)}
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">Square Feet</label>
+              <input type="number" value={sqft} onChange={(e) => setSqft(e.target.value)}
                 className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-                placeholder="4820"
-              />
+                placeholder="4820" />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
-                Year Built
-              </label>
-              <input
-                type="number"
-                value={yearBuilt}
-                onChange={(e) => setYearBuilt(e.target.value)}
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">Year Built</label>
+              <input type="number" value={yearBuilt} onChange={(e) => setYearBuilt(e.target.value)}
                 className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-                placeholder="2019"
-              />
+                placeholder="2019" />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
-                Lot Size
-              </label>
-              <input
-                type="text"
-                value={lotSize}
-                onChange={(e) => setLotSize(e.target.value)}
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">Lot Size</label>
+              <input type="text" value={lotSize} onChange={(e) => setLotSize(e.target.value)}
                 className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-                placeholder="0.38 acres"
-              />
+                placeholder="0.38 acres" />
             </div>
           </div>
         </section>
@@ -348,20 +391,14 @@ export default function CreateListingPage() {
         {/* Description */}
         <section className="rounded-xl border border-gray-200 bg-white p-6">
           <div className="flex items-center justify-between">
-            <h2 className="font-serif text-lg font-semibold text-gray-900">
-              Description
-            </h2>
+            <h2 className="font-serif text-lg font-semibold text-gray-900">Description</h2>
             <button
               type="button"
               onClick={() => handleAIGenerate("description")}
               disabled={generatingDesc}
               className="flex items-center gap-1.5 rounded-lg border border-brand-200 bg-brand-50/50 px-3 py-1.5 text-xs font-medium text-brand-700 transition-colors hover:bg-brand-100 disabled:opacity-50"
             >
-              {generatingDesc ? (
-                <Loader2 className="h-3.5 w-3.5 animate-spin" />
-              ) : (
-                <Sparkles className="h-3.5 w-3.5" />
-              )}
+              {generatingDesc ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Sparkles className="h-3.5 w-3.5" />}
               {generatingDesc ? "Generating..." : "AI Generate"}
             </button>
           </div>
@@ -371,7 +408,7 @@ export default function CreateListingPage() {
               onChange={(e) => setDescription(e.target.value)}
               rows={8}
               className="w-full resize-none rounded-lg border border-gray-200 px-4 py-3 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-              placeholder="Describe the property in detail. Use blank lines between paragraphs for best formatting on the listing page."
+              placeholder="Describe the property in detail."
             />
           </div>
         </section>
@@ -380,12 +417,8 @@ export default function CreateListingPage() {
         <section className="rounded-xl border border-gray-200 bg-white p-6">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="font-serif text-lg font-semibold text-gray-900">
-                Property Highlights
-              </h2>
-              <p className="mt-1 text-sm text-gray-500">
-                One feature per line. These appear as bullet points on the listing.
-              </p>
+              <h2 className="font-serif text-lg font-semibold text-gray-900">Property Highlights</h2>
+              <p className="mt-1 text-sm text-gray-500">One feature per line.</p>
             </div>
             <button
               type="button"
@@ -393,11 +426,7 @@ export default function CreateListingPage() {
               disabled={generatingFeatures}
               className="flex items-center gap-1.5 rounded-lg border border-brand-200 bg-brand-50/50 px-3 py-1.5 text-xs font-medium text-brand-700 transition-colors hover:bg-brand-100 disabled:opacity-50"
             >
-              {generatingFeatures ? (
-                <Loader2 className="h-3.5 w-3.5 animate-spin" />
-              ) : (
-                <Sparkles className="h-3.5 w-3.5" />
-              )}
+              {generatingFeatures ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Sparkles className="h-3.5 w-3.5" />}
               {generatingFeatures ? "Generating..." : "AI Generate"}
             </button>
           </div>
@@ -414,14 +443,9 @@ export default function CreateListingPage() {
 
         {/* Photos */}
         <section className="rounded-xl border border-gray-200 bg-white p-6">
-          <h2 className="font-serif text-lg font-semibold text-gray-900">
-            Photos
-          </h2>
-          <p className="mt-1 text-sm text-gray-500">
-            Upload high-quality photos. The first photo becomes the hero image.
-          </p>
+          <h2 className="font-serif text-lg font-semibold text-gray-900">Photos</h2>
+          <p className="mt-1 text-sm text-gray-500">The first photo becomes the hero image.</p>
 
-          {/* Upload area */}
           <div className="mt-4">
             <label className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50 px-6 py-10 transition-colors hover:border-brand-300 hover:bg-brand-50/30">
               {uploadingPhotos ? (
@@ -430,13 +454,9 @@ export default function CreateListingPage() {
                 <Upload className="h-8 w-8 text-gray-400" />
               )}
               <span className="mt-2 text-sm font-medium text-gray-600">
-                {uploadingPhotos
-                  ? "Uploading..."
-                  : "Click to upload or drag & drop"}
+                {uploadingPhotos ? "Uploading..." : "Click to upload or drag & drop"}
               </span>
-              <span className="mt-1 text-xs text-gray-400">
-                JPG, PNG, WebP up to 10MB each
-              </span>
+              <span className="mt-1 text-xs text-gray-400">JPG, PNG, WebP up to 10MB each</span>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -449,24 +469,14 @@ export default function CreateListingPage() {
             </label>
           </div>
 
-          {/* Photo grid */}
           {photos.length > 0 && (
             <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
               {photos.map((photo, i) => (
-                <div
-                  key={i}
-                  className="group relative aspect-square overflow-hidden rounded-lg border border-gray-200"
-                >
+                <div key={i} className="group relative aspect-square overflow-hidden rounded-lg border border-gray-200">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    className="h-full w-full object-cover"
-                  />
+                  <img src={photo.src} alt={photo.alt} className="h-full w-full object-cover" />
                   {i === 0 && (
-                    <span className="absolute left-2 top-2 rounded bg-gray-900/80 px-2 py-0.5 text-xs font-medium text-white">
-                      Hero
-                    </span>
+                    <span className="absolute left-2 top-2 rounded bg-gray-900/80 px-2 py-0.5 text-xs font-medium text-white">Hero</span>
                   )}
                   <button
                     onClick={() => removePhoto(i)}
@@ -484,31 +494,65 @@ export default function CreateListingPage() {
         </section>
 
         {/* Actions */}
-        <div className="flex flex-col gap-3 pb-10 sm:flex-row sm:justify-end">
-          <button
-            onClick={() => handleSave(false)}
-            disabled={saving || publishing}
-            className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-6 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:opacity-50"
-          >
-            {saving ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
+        <div className="flex flex-col gap-3 border-t border-gray-200 pb-10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex gap-3">
+            {!showDeleteConfirm ? (
+              <button
+                onClick={() => setShowDeleteConfirm(true)}
+                className="flex items-center gap-2 rounded-lg border border-red-200 px-4 py-2.5 text-sm font-medium text-red-600 transition-colors hover:bg-red-50"
+              >
+                <Trash2 className="h-4 w-4" />
+                Delete
+              </button>
             ) : (
-              <Save className="h-4 w-4" />
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleDelete}
+                  disabled={deleting}
+                  className="flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-red-700 disabled:opacity-50"
+                >
+                  {deleting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Trash2 className="h-4 w-4" />}
+                  Confirm Delete
+                </button>
+                <button
+                  onClick={() => setShowDeleteConfirm(false)}
+                  className="rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50"
+                >
+                  Cancel
+                </button>
+              </div>
             )}
-            Save as Draft
-          </button>
-          <button
-            onClick={() => handleSave(true)}
-            disabled={saving || publishing}
-            className="flex items-center justify-center gap-2 rounded-lg bg-gray-950 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-gray-800 disabled:opacity-50"
-          >
-            {publishing ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
-            ) : (
-              <Globe className="h-4 w-4" />
+            {currentStatus === "published" && (
+              <button
+                onClick={() => handleSave("archived")}
+                className="flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
+              >
+                <Archive className="h-4 w-4" />
+                Archive
+              </button>
             )}
-            Publish Listing
-          </button>
+          </div>
+
+          <div className="flex gap-3">
+            <button
+              onClick={() => handleSave(currentStatus === "published" ? "published" : "draft")}
+              disabled={saving || publishing}
+              className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-6 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:opacity-50"
+            >
+              {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
+              Save Changes
+            </button>
+            {currentStatus !== "published" && (
+              <button
+                onClick={() => handleSave("published")}
+                disabled={saving || publishing}
+                className="flex items-center justify-center gap-2 rounded-lg bg-gray-950 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800 disabled:opacity-50"
+              >
+                {publishing ? <Loader2 className="h-4 w-4 animate-spin" /> : <Globe className="h-4 w-4" />}
+                Publish
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
