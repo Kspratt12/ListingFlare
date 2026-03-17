@@ -222,8 +222,8 @@ export default function EditListingPage() {
       const newVideos: ListingVideo[] = [];
 
       for (const file of Array.from(files)) {
-        if (file.size > 100 * 1024 * 1024) {
-          throw new Error(`${file.name} exceeds 100MB limit`);
+        if (file.size > 500 * 1024 * 1024) {
+          throw new Error(`${file.name} exceeds 500MB limit`);
         }
 
         const ext = file.name.split(".").pop();
@@ -581,7 +581,7 @@ export default function EditListingPage() {
         {/* Videos */}
         <section className="rounded-xl border border-gray-200 bg-white p-6">
           <h2 className="font-serif text-lg font-semibold text-gray-900">Videos</h2>
-          <p className="mt-1 text-sm text-gray-500">Upload up to 10 property videos. MP4, MOV, or WebM up to 100MB each.</p>
+          <p className="mt-1 text-sm text-gray-500">Upload up to 10 property videos. MP4, MOV, or WebM up to 500MB each for crystal clear quality.</p>
 
           <div className="mt-4">
             <label className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50 px-6 py-8 transition-colors hover:border-brand-300 hover:bg-brand-50/30">

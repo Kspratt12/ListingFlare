@@ -95,9 +95,10 @@ export default function PhotoGallery({ photos, videos = [] }: Props) {
                     <video
                       src={video.src}
                       controls
-                      preload="metadata"
+                      preload="auto"
                       className="aspect-video w-full object-contain"
                       playsInline
+                      controlsList="nodownload"
                     />
                   </motion.div>
                 ))}
