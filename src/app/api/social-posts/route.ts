@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { formatPhone } from "@/lib/formatters";
 
 export const dynamic = "force-dynamic";
 
@@ -43,7 +44,7 @@ export async function POST(req: NextRequest) {
       cityState: `${listing.city}, ${listing.state} ${listing.zip}`,
       details: `${listing.beds} Bed | ${listing.baths} Bath | ${Number(listing.sqft).toLocaleString()} Sq Ft`,
       agentName: agent?.name || "",
-      agentPhone: agent?.phone || "",
+      agentPhone: agent?.phone ? formatPhone(agent.phone) : "",
       brokerage: agent?.brokerage || "",
     });
   } catch (err) {

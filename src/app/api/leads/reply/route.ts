@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { Resend } from "resend";
+import { formatPhone } from "@/lib/formatters";
 
 export const dynamic = "force-dynamic";
 
@@ -68,7 +69,7 @@ export async function POST(req: NextRequest) {
           <div style="color: #111827; font-size: 15px; line-height: 1.7; white-space: pre-wrap;">${message}</div>
           <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e5e7eb;">
             <p style="margin: 0; font-weight: 600; color: #111827;">${agent.name}</p>
-            ${agent.phone ? `<p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${agent.phone}</p>` : ""}
+            ${agent.phone ? `<p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${formatPhone(agent.phone)}</p>` : ""}
             <p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${agent.email}</p>
           </div>
         </div>

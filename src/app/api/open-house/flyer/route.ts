@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import QRCode from "qrcode";
+import { formatPhone } from "@/lib/formatters";
 
 export const dynamic = "force-dynamic";
 
@@ -100,7 +101,7 @@ export async function POST(req: NextRequest) {
       </div>
       <div class="agent-info">
         <div class="agent-name">${agent?.name || ""}</div>
-        ${agent?.phone ? `<div class="agent-detail">${agent.phone}</div>` : ""}
+        ${agent?.phone ? `<div class="agent-detail">${formatPhone(agent.phone)}</div>` : ""}
         ${agent?.brokerage ? `<div class="agent-detail">${agent.brokerage}</div>` : ""}
       </div>
     </div>
