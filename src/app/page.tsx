@@ -70,8 +70,8 @@ const walkthrough = [
   },
   {
     step: "02",
-    title: "Upload stunning photos",
-    description: "Drag and drop your property photos. They display in a full-screen hero slideshow and masonry gallery.",
+    title: "Upload photos & 4K video",
+    description: "Drag and drop photos and ultra-high quality videos up to 8K. Full-screen hero slideshow, masonry gallery, and cinematic video playback.",
     icon: Upload,
     mockup: "photos",
   },
@@ -188,18 +188,17 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
                   <div className="rounded-lg px-3 py-2 text-xs text-gray-500">Settings</div>
                 </div>
                 <div className="flex-1 space-y-3">
-                  <p className="font-serif text-lg font-bold text-gray-900">Photos & Media</p>
-                  <div className="rounded-lg border-2 border-dashed border-brand-300 bg-brand-50/30 p-6 text-center">
-                    <Upload className="mx-auto h-8 w-8 text-brand-400" />
-                    <p className="mt-2 text-sm font-medium text-gray-600">Drag & drop your photos here</p>
-                    <p className="mt-1 text-xs text-gray-400">PNG, JPG up to 20MB each</p>
+                  <p className="font-serif text-lg font-bold text-gray-900">Photos & Videos</p>
+                  <div className="rounded-lg border-2 border-dashed border-brand-300 bg-brand-50/30 p-5 text-center">
+                    <Upload className="mx-auto h-7 w-7 text-brand-400" />
+                    <p className="mt-1.5 text-sm font-medium text-gray-600">Drag & drop photos and videos</p>
+                    <p className="mt-0.5 text-xs text-gray-400">Photos up to 20MB &middot; Videos up to 500MB &middot; Supports 4K/8K</p>
                   </div>
                   <div className="grid grid-cols-4 gap-2">
                     {[
                       "photo-1600596542815-ffad4c1539a9",
                       "photo-1600607687939-ce8a6c25118c",
                       "photo-1600566753086-00f18fb6b3ea",
-                      "photo-1600585154340-be6161a56a0c",
                     ].map((id, i) => (
                       <motion.div
                         key={id}
@@ -210,20 +209,43 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
                       >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={`https://images.unsplash.com/${id}?w=200&h=200&fit=crop&q=80`} alt="" className="h-full w-full object-cover" />
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all hover:bg-black/20">
-                          <span className="rounded-full bg-green-500 p-0.5 text-white absolute top-1 right-1">
-                            <Check className="h-2.5 w-2.5" />
-                          </span>
-                        </div>
+                        <span className="rounded-full bg-green-500 p-0.5 text-white absolute top-1 right-1">
+                          <Check className="h-2.5 w-2.5" />
+                        </span>
                       </motion.div>
                     ))}
+                    {/* Video thumbnail */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.45 }}
+                      className="relative aspect-square overflow-hidden rounded-lg bg-gray-900"
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=200&fit=crop&q=80" alt="" className="h-full w-full object-cover opacity-70" />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="rounded-full bg-white/90 p-1.5">
+                          <svg className="h-3 w-3 text-gray-900 ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                      </div>
+                      <span className="absolute bottom-1 right-1 rounded bg-black/70 px-1 py-0.5 text-[9px] font-medium text-white">4K</span>
+                      <span className="rounded-full bg-green-500 p-0.5 text-white absolute top-1 right-1">
+                        <Check className="h-2.5 w-2.5" />
+                      </span>
+                    </motion.div>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-gray-500">
                     <ImageIcon className="h-3.5 w-3.5" />
-                    <span>4 of 12 photos uploaded</span>
+                    <span>3 photos &middot; 1 video uploaded</span>
                     <div className="flex-1 rounded-full bg-gray-200 h-1.5">
-                      <div className="rounded-full bg-brand-500 h-1.5 w-1/3 transition-all" />
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: "100%" }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                        className="rounded-full bg-green-500 h-1.5"
+                      />
                     </div>
+                    <span className="text-green-600 font-medium">Done</span>
                   </div>
                 </div>
               </div>
