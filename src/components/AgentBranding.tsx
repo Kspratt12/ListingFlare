@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, Globe } from "lucide-react";
 import type { PropertyListing } from "@/lib/demo-data";
+import { formatPhone } from "@/lib/formatters";
 
 interface Props {
   agent: PropertyListing["agent"];
@@ -30,6 +31,7 @@ export default function AgentBranding({ agent }: Props) {
                 <img
                   src={agent.headshotUrl}
                   alt={agent.name}
+                  loading="lazy"
                   className="h-full w-full object-cover"
                 />
               </div>
@@ -48,7 +50,7 @@ export default function AgentBranding({ agent }: Props) {
                   className="flex items-center justify-center gap-2 text-gray-700 transition-colors hover:text-brand-600 md:justify-start"
                 >
                   <Phone className="h-4 w-4" />
-                  {agent.phone}
+                  {formatPhone(agent.phone)}
                 </a>
                 <a
                   href={`mailto:${agent.email}`}

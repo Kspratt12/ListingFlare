@@ -118,30 +118,6 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
 
       {/* Dashboard content */}
       <div className="relative bg-gray-50 p-6" style={{ minHeight: 340 }}>
-        {/* Animated cursor */}
-        <motion.div
-          className="pointer-events-none absolute z-30 hidden md:block"
-          animate={
-            activeStep === "create"
-              ? { left: "55%", top: "38%", rotate: -5 }
-              : activeStep === "photos"
-              ? { left: "45%", top: "32%", rotate: 0 }
-              : activeStep === "published"
-              ? { left: "70%", top: "75%", rotate: -10 }
-              : { left: "60%", top: "55%", rotate: 5 }
-          }
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-        >
-          <svg width="20" height="24" viewBox="0 0 20 24" fill="none">
-            <path d="M1 1L1 17.5L5.5 13.5L9.5 22L13 20.5L9 12L15 11.5L1 1Z" fill="white" stroke="#111827" strokeWidth="1.5" strokeLinejoin="round"/>
-          </svg>
-          <motion.div
-            animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="absolute -left-1.5 -top-1.5 h-5 w-5 rounded-full bg-brand-400/30"
-          />
-        </motion.div>
-
         <AnimatePresence mode="wait">
           {activeStep === "create" && (
             <motion.div
