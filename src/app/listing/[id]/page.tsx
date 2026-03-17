@@ -4,6 +4,8 @@ import type { Listing, AgentProfile } from "@/lib/types";
 import type { Metadata } from "next";
 import ListingPageClient from "./ListingPageClient";
 
+export const dynamic = "force-dynamic";
+
 interface Props {
   params: { id: string };
 }
