@@ -811,7 +811,7 @@ export default function LandingPage() {
                 </div>
               </div>
               <div className="mt-4 text-center">
-                <p className="text-sm font-medium text-gray-400">Your listing on Zillow</p>
+                <p className="text-sm font-medium text-[#006AFF]">Your listing on Zillow</p>
                 <p className="mt-1 text-xs text-gray-400">Competing listings everywhere. Zillow&apos;s brand, not yours. They keep the leads.</p>
               </div>
             </motion.div>
@@ -823,7 +823,7 @@ export default function LandingPage() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: 0.15 }}
             >
-              <div className="overflow-hidden rounded-xl border-2 border-brand-300 bg-white shadow-lg shadow-brand-100/50">
+              <div className="overflow-hidden rounded-xl border-2 border-brand-300 bg-white shadow-xl shadow-brand-100/50">
                 <div className="border-b border-gray-100 bg-gray-50 px-4 py-2.5">
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1.5">
@@ -836,45 +836,97 @@ export default function LandingPage() {
                     </div>
                   </div>
                 </div>
+                {/* Full-bleed hero */}
                 <div className="relative">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=400&fit=crop&q=80"
-                    alt="ListingFlare property page"
+                    src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=450&fit=crop&q=90"
+                    alt="Luxury home with pool"
                     loading="lazy"
-                    className="h-44 w-full object-cover"
+                    className="h-48 w-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
-                  <div className="absolute bottom-3 left-4 text-white">
-                    <p className="text-[10px] font-medium uppercase tracking-widest text-white/60">Exclusive Listing</p>
-                    <p className="mt-0.5 font-serif text-lg font-bold">1847 Grandview Terrace</p>
-                    <div className="mt-0.5 flex items-center gap-2 text-xs text-white/80">
-                      <span className="font-serif text-sm font-semibold">$4,750,000</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/20" />
+                  {/* Slide indicators */}
+                  <div className="absolute bottom-16 left-1/2 flex -translate-x-1/2 gap-1.5">
+                    <div className="h-1 w-8 rounded-full bg-white" />
+                    <div className="h-1 w-3 rounded-full bg-white/40" />
+                    <div className="h-1 w-3 rounded-full bg-white/40" />
+                    <div className="h-1 w-3 rounded-full bg-white/40" />
+                    <div className="h-1 w-3 rounded-full bg-white/40" />
+                  </div>
+                  <div className="absolute bottom-3 left-4 right-4 text-white">
+                    <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-white/50">Exclusive Listing</p>
+                    <p className="mt-0.5 font-serif text-xl font-bold leading-tight">1847 Grandview Terrace</p>
+                    <p className="text-[11px] text-white/70">Pacific Palisades, CA 90272</p>
+                    <div className="mt-1 flex items-center gap-3 text-xs text-white/90">
+                      <span className="font-serif text-base font-semibold">$4,750,000</span>
                       <span className="h-3 w-px bg-white/30" />
                       <span>5 Beds</span>
                       <span>4.5 Baths</span>
+                      <span>4,820 Sq Ft</span>
                     </div>
                   </div>
                 </div>
+                {/* Gallery strip */}
+                <div className="flex gap-1 p-1 bg-gray-50">
+                  {[
+                    "photo-1600607687939-ce8a6c25118c",
+                    "photo-1600566753086-00f18fb6b3ea",
+                    "photo-1616594039964-ae9021a400a0",
+                  ].map((id) => (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      key={id}
+                      src={`https://images.unsplash.com/${id}?w=150&h=80&fit=crop&q=80`}
+                      alt=""
+                      loading="lazy"
+                      className="h-12 flex-1 rounded object-cover"
+                    />
+                  ))}
+                  {/* Video thumbnail */}
+                  <div className="relative h-12 flex-1 overflow-hidden rounded">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=150&h=80&fit=crop&q=80"
+                      alt=""
+                      loading="lazy"
+                      className="h-full w-full object-cover brightness-75"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="rounded-full bg-white/90 p-1">
+                        <svg className="h-2.5 w-2.5 text-gray-900 ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                      </div>
+                    </div>
+                    <span className="absolute bottom-0.5 right-0.5 rounded bg-black/70 px-1 text-[7px] font-bold text-white">4K</span>
+                  </div>
+                </div>
+                {/* Agent + features */}
                 <div className="p-4 space-y-3">
-                  <div className="flex items-center gap-3">
+                  {/* Features row */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {["Ocean Views", "Infinity Pool", "Chef\u2019s Kitchen", "Smart Home"].map((f) => (
+                      <span key={f} className="rounded-full bg-brand-50 border border-brand-100 px-2 py-0.5 text-[9px] font-medium text-brand-700">{f}</span>
+                    ))}
+                  </div>
+                  {/* Agent branding */}
+                  <div className="flex items-center gap-3 border-t border-gray-100 pt-3">
                     <div className="h-10 w-10 overflow-hidden rounded-full border-2 border-brand-100">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&q=80" alt="" loading="lazy" className="h-full w-full object-cover" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <p className="text-sm font-semibold text-gray-900">Victoria Ashworth</p>
-                      <p className="text-xs text-brand-500">Luxury Property Specialist</p>
+                      <p className="text-[10px] text-brand-500">Luxury Property Specialist &middot; Westside Luxury Realty</p>
                     </div>
                   </div>
                   <div className="rounded-lg bg-gray-950 px-4 py-2.5 text-center text-xs font-medium text-white">
-                    Schedule a Showing
+                    Schedule a Private Showing
                   </div>
                 </div>
               </div>
               <div className="mt-4 text-center">
                 <p className="text-sm font-medium text-gray-900">Your listing on ListingFlare</p>
-                <p className="mt-1 text-xs text-gray-500">Your brand. Your photos. Your leads. Looks like a $5,000 custom website.</p>
+                <p className="mt-1 text-xs text-gray-500">Your brand. Your photos. Your leads. Zero distractions. Looks like a $5,000 custom site.</p>
               </div>
             </motion.div>
           </div>
