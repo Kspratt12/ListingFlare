@@ -9,6 +9,7 @@ import {
   PlusCircle,
   MessageSquare,
   Settings,
+  CreditCard,
   LogOut,
   Menu,
   X,
@@ -18,6 +19,7 @@ const navItems = [
   { href: "/dashboard", label: "My Listings", icon: LayoutGrid },
   { href: "/dashboard/create", label: "New Listing", icon: PlusCircle },
   { href: "/dashboard/leads", label: "Leads", icon: MessageSquare },
+  { href: "/dashboard/billing", label: "Billing", icon: CreditCard },
   { href: "/dashboard/settings", label: "Settings", icon: Settings },
 ];
 

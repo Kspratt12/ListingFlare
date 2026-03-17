@@ -6,6 +6,11 @@ export interface AgentProfile {
   phone: string;
   email: string;
   headshot_url: string | null;
+  stripe_customer_id: string | null;
+  stripe_subscription_id: string | null;
+  subscription_status: "trialing" | "active" | "past_due" | "canceled" | "unpaid";
+  trial_ends_at: string;
+  setup_fee_paid: boolean;
   created_at: string;
   updated_at: string;
 }
