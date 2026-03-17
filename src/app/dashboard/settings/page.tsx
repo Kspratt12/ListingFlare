@@ -21,6 +21,12 @@ export default function SettingsPage() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [headshotUrl, setHeadshotUrl] = useState<string | null>(null);
+  const [instagram, setInstagram] = useState("");
+  const [linkedin, setLinkedin] = useState("");
+  const [zillow, setZillow] = useState("");
+  const [realtorCom, setRealtorCom] = useState("");
+  const [facebook, setFacebook] = useState("");
+  const [website, setWebsite] = useState("");
 
   useEffect(() => {
     async function fetchProfile() {
@@ -43,6 +49,12 @@ export default function SettingsPage() {
         setPhone(profile.phone);
         setEmail(profile.email);
         setHeadshotUrl(profile.headshot_url);
+        setInstagram(profile.instagram || "");
+        setLinkedin(profile.linkedin || "");
+        setZillow(profile.zillow || "");
+        setRealtorCom(profile.realtor_com || "");
+        setFacebook(profile.facebook || "");
+        setWebsite(profile.website || "");
       }
       setLoading(false);
     }
@@ -108,6 +120,12 @@ export default function SettingsPage() {
           phone,
           email,
           headshot_url: headshotUrl?.split("?")[0] || null,
+          instagram,
+          linkedin,
+          zillow,
+          realtor_com: realtorCom,
+          facebook,
+          website,
           updated_at: new Date().toISOString(),
         })
         .eq("id", user.id);
@@ -260,6 +278,96 @@ export default function SettingsPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                   placeholder="victoria@westsideluxury.com"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Social & Web Links */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <h2 className="font-serif text-lg font-semibold text-gray-900">
+            Social & Web Links
+          </h2>
+          <p className="mt-1 text-sm text-gray-500">
+            These appear on your listing pages so buyers can connect with you.
+          </p>
+          <div className="mt-4 space-y-4">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                  Instagram
+                </label>
+                <input
+                  type="url"
+                  value={instagram}
+                  onChange={(e) => setInstagram(e.target.value)}
+                  className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                  placeholder="https://instagram.com/yourhandle"
+                />
+              </div>
+              <div>
+                <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                  LinkedIn
+                </label>
+                <input
+                  type="url"
+                  value={linkedin}
+                  onChange={(e) => setLinkedin(e.target.value)}
+                  className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                  placeholder="https://linkedin.com/in/yourprofile"
+                />
+              </div>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                  Zillow Profile
+                </label>
+                <input
+                  type="url"
+                  value={zillow}
+                  onChange={(e) => setZillow(e.target.value)}
+                  className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                  placeholder="https://zillow.com/profile/yourname"
+                />
+              </div>
+              <div>
+                <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                  Realtor.com Profile
+                </label>
+                <input
+                  type="url"
+                  value={realtorCom}
+                  onChange={(e) => setRealtorCom(e.target.value)}
+                  className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                  placeholder="https://realtor.com/realestateagents/yourname"
+                />
+              </div>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                  Facebook
+                </label>
+                <input
+                  type="url"
+                  value={facebook}
+                  onChange={(e) => setFacebook(e.target.value)}
+                  className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                  placeholder="https://facebook.com/yourpage"
+                />
+              </div>
+              <div>
+                <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                  Website
+                </label>
+                <input
+                  type="url"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                  className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                  placeholder="https://yourwebsite.com"
                 />
               </div>
             </div>

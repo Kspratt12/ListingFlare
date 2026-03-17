@@ -14,6 +14,7 @@ export interface PropertyListing {
   description: string;
   features: string[];
   photos: { src: string; alt: string }[];
+  videos?: { src: string; thumbnail?: string; alt: string }[];
   agent: {
     name: string;
     title: string;
@@ -22,6 +23,12 @@ export interface PropertyListing {
     email: string;
     headshotUrl: string;
     logoUrl?: string;
+    instagram?: string;
+    linkedin?: string;
+    zillow?: string;
+    realtor_com?: string;
+    facebook?: string;
+    website?: string;
   };
 }
 

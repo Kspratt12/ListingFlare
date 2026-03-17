@@ -6,9 +6,10 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Props {
   photos: { src: string; alt: string }[];
+  videos?: { src: string; thumbnail?: string; alt: string }[];
 }
 
-export default function PhotoGallery({ photos }: Props) {
+export default function PhotoGallery({ photos, videos = [] }: Props) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const openLightbox = (i: number) => setLightboxIndex(i);
@@ -35,7 +36,7 @@ export default function PhotoGallery({ photos }: Props) {
               Gallery
             </h2>
             <p className="mt-3 text-lg text-gray-500">
-              {photos.length} photos showcasing every detail
+              {photos.length} photo{photos.length !== 1 ? "s" : ""}{videos.length > 0 ? ` & ${videos.length} video${videos.length !== 1 ? "s" : ""}` : ""} showcasing every detail
             </p>
           </motion.div>
 
@@ -73,6 +74,35 @@ export default function PhotoGallery({ photos }: Props) {
               </motion.div>
             ))}
           </div>
+
+          {/* Videos */}
+          {videos.length > 0 && (
+            <div className="mt-14">
+              <h3 className="mb-8 text-center font-serif text-2xl font-bold text-gray-900">
+                Property Videos
+              </h3>
+              <div className="grid gap-6 sm:grid-cols-2">
+                {videos.map((video, i) => (
+                  <motion.div
+                    key={`video-${i}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    className="overflow-hidden rounded-xl bg-black shadow-lg"
+                  >
+                    <video
+                      src={video.src}
+                      controls
+                      preload="metadata"
+                      className="aspect-video w-full object-contain"
+                      playsInline
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

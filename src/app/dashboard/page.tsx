@@ -144,10 +144,11 @@ export default function MyListingsPage() {
                           e.stopPropagation();
                           window.open(`/listing/${listing.id}`, "_blank");
                         }}
-                        className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600 cursor-pointer"
+                        className="flex items-center gap-1 rounded-lg px-2 py-1.5 text-brand-500 transition-colors hover:bg-brand-50 hover:text-brand-600 cursor-pointer"
                         title="View live page"
                       >
-                        <ExternalLink className="h-4 w-4" />
+                        <ExternalLink className="h-3.5 w-3.5" />
+                        <span className="text-xs font-medium">View</span>
                       </span>
                     )}
                     <span

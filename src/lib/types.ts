@@ -6,6 +6,12 @@ export interface AgentProfile {
   phone: string;
   email: string;
   headshot_url: string | null;
+  instagram: string;
+  linkedin: string;
+  zillow: string;
+  realtor_com: string;
+  facebook: string;
+  website: string;
   stripe_customer_id: string | null;
   stripe_subscription_id: string | null;
   subscription_status: "trialing" | "active" | "past_due" | "canceled" | "unpaid";
@@ -37,9 +43,16 @@ export interface Listing {
   description: string;
   features: string[];
   photos: ListingPhoto[];
+  videos: ListingVideo[];
   view_count: number;
   created_at: string;
   updated_at: string;
+}
+
+export interface ListingVideo {
+  src: string;
+  thumbnail?: string;
+  alt: string;
 }
 
 export interface Lead {
@@ -51,6 +64,7 @@ export interface Lead {
   phone: string;
   message: string;
   is_read: boolean;
+  status: "new" | "contacted" | "showing_scheduled" | "offer_made" | "under_contract" | "closed" | "lost";
   created_at: string;
   // joined fields
   listing?: Pick<Listing, "street" | "city" | "state">;

@@ -11,8 +11,9 @@ import {
   Save,
   Globe,
   Sparkles,
+  Video,
 } from "lucide-react";
-import type { ListingPhoto } from "@/lib/types";
+import type { ListingPhoto, ListingVideo } from "@/lib/types";
 import AddressAutocomplete from "@/components/AddressAutocomplete";
 
 const US_STATES = [
@@ -46,6 +47,9 @@ export default function CreateListingPage() {
   const [description, setDescription] = useState("");
   const [featuresText, setFeaturesText] = useState("");
   const [photos, setPhotos] = useState<ListingPhoto[]>([]);
+  const [videos, setVideos] = useState<ListingVideo[]>([]);
+  const [uploadingVideos, setUploadingVideos] = useState(false);
+  const videoInputRef = useRef<HTMLInputElement>(null);
   const [generatingDesc, setGeneratingDesc] = useState(false);
   const [generatingFeatures, setGeneratingFeatures] = useState(false);
 
@@ -128,6 +132,38 @@ export default function CreateListingPage() {
     setPhotos((prev) => prev.filter((_, i) => i !== index));
   };
 
+  const handleVideoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+    if (videos.length + files.length > 10) { setError("Maximum 10 videos allowed"); return; }
+    setUploadingVideos(true);
+    setError("");
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error("Not authenticated");
+      const newVideos: ListingVideo[] = [];
+      for (const file of Array.from(files)) {
+        if (file.size > 100 * 1024 * 1024) throw new Error(`${file.name} exceeds 100MB limit`);
+        const ext = file.name.split(".").pop();
+        const fileName = `${user.id}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+        const { error: uploadError } = await supabase.storage.from("listing-photos").upload(fileName, file);
+        if (uploadError) throw uploadError;
+        const { data: { publicUrl } } = supabase.storage.from("listing-photos").getPublicUrl(fileName);
+        newVideos.push({ src: publicUrl, alt: file.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ") });
+      }
+      setVideos((prev) => [...prev, ...newVideos]);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Video upload failed");
+    } finally {
+      setUploadingVideos(false);
+      if (videoInputRef.current) videoInputRef.current.value = "";
+    }
+  };
+
+  const removeVideo = (index: number) => {
+    setVideos((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const handleSave = async (publish: boolean) => {
     if (publish) {
       setPublishing(true);
@@ -163,6 +199,7 @@ export default function CreateListingPage() {
         description,
         features,
         photos,
+        videos,
       });
 
       if (insertError) throw insertError;
@@ -477,6 +514,30 @@ export default function CreateListingPage() {
                   <div className="absolute bottom-2 left-2 opacity-0 transition-opacity group-hover:opacity-100">
                     <GripVertical className="h-4 w-4 text-white drop-shadow" />
                   </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+
+        {/* Videos */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <h2 className="font-serif text-lg font-semibold text-gray-900">Videos</h2>
+          <p className="mt-1 text-sm text-gray-500">Upload up to 10 property videos. MP4, MOV, or WebM up to 100MB each.</p>
+          <div className="mt-4">
+            <label className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50 px-6 py-8 transition-colors hover:border-brand-300 hover:bg-brand-50/30">
+              {uploadingVideos ? <Loader2 className="h-8 w-8 animate-spin text-brand-400" /> : <Video className="h-8 w-8 text-gray-400" />}
+              <span className="mt-2 text-sm font-medium text-gray-600">{uploadingVideos ? "Uploading..." : "Click to upload videos"}</span>
+              <span className="mt-1 text-xs text-gray-400">{videos.length}/10 videos</span>
+              <input ref={videoInputRef} type="file" accept="video/mp4,video/quicktime,video/webm" multiple onChange={handleVideoUpload} className="hidden" disabled={uploadingVideos || videos.length >= 10} />
+            </label>
+          </div>
+          {videos.length > 0 && (
+            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {videos.map((video, i) => (
+                <div key={i} className="group relative overflow-hidden rounded-lg border border-gray-200 bg-black">
+                  <video src={video.src} className="aspect-video w-full object-contain" controls preload="metadata" />
+                  <button onClick={() => removeVideo(i)} className="absolute right-2 top-2 rounded-full bg-red-500 p-1 text-white opacity-0 transition-opacity group-hover:opacity-100"><X className="h-3 w-3" /></button>
                 </div>
               ))}
             </div>

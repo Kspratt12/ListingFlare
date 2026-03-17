@@ -23,20 +23,28 @@ export default function LiveLeadForm({ listingId, agentId }: Props) {
 
     const formData = new FormData(e.currentTarget);
 
-    const { error: insertError } = await supabase.from("leads").insert({
+    const { data: leadData, error: insertError } = await supabase.from("leads").insert({
       listing_id: listingId,
       agent_id: agentId,
       name: formData.get("name") as string,
       email: formData.get("email") as string,
       phone: formData.get("phone") as string,
       message: formData.get("message") as string,
-    });
+    }).select("id").single();
 
     if (insertError) {
       setError("Something went wrong. Please try again.");
       setSubmitting(false);
     } else {
       setSubmitted(true);
+      // Fire-and-forget email notification
+      if (leadData?.id) {
+        fetch("/api/leads/notify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ leadId: leadData.id, listingId, agentId }),
+        }).catch(() => {});
+      }
     }
   };
 

@@ -59,10 +59,16 @@ export default async function ListingPage({ params }: Props) {
 
   const typedAgent = agent as AgentProfile;
 
-  // Increment view count (fire-and-forget)
-  supabase.rpc("increment_view_count", { listing_uuid: params.id });
+  // Check if the current user is the listing owner
+  const { data: { user } } = await supabase.auth.getUser();
+  const isOwner = user?.id === typedListing.agent_id;
+
+  // Increment view count (fire-and-forget) — only for non-owners
+  if (!isOwner) {
+    supabase.rpc("increment_view_count", { listing_uuid: params.id });
+  }
 
   return (
-    <ListingPageClient listing={typedListing} agent={typedAgent} />
+    <ListingPageClient listing={typedListing} agent={typedAgent} isOwner={isOwner} />
   );
 }
