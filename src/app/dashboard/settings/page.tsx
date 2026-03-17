@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { AgentProfile } from "@/lib/types";
 import { Loader2, Upload, CheckCircle } from "lucide-react";
+import { formatPhone } from "@/lib/formatters";
 
 export default function SettingsPage() {
   const supabase = createClient();
@@ -27,6 +28,7 @@ export default function SettingsPage() {
   const [realtorCom, setRealtorCom] = useState("");
   const [facebook, setFacebook] = useState("");
   const [website, setWebsite] = useState("");
+  const [weeklyEmails, setWeeklyEmails] = useState(true);
 
   useEffect(() => {
     async function fetchProfile() {
@@ -55,6 +57,7 @@ export default function SettingsPage() {
         setRealtorCom(profile.realtor_com || "");
         setFacebook(profile.facebook || "");
         setWebsite(profile.website || "");
+        setWeeklyEmails(profile.weekly_emails !== false);
       }
       setLoading(false);
     }
@@ -126,6 +129,7 @@ export default function SettingsPage() {
           realtor_com: realtorCom,
           facebook,
           website,
+          weekly_emails: weeklyEmails,
           updated_at: new Date().toISOString(),
         })
         .eq("id", user.id);
@@ -262,10 +266,10 @@ export default function SettingsPage() {
                 </label>
                 <input
                   type="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  value={formatPhone(phone)}
+                  onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
                   className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-                  placeholder="(310) 555-0192"
+                  placeholder="310-555-0192"
                 />
               </div>
               <div>
@@ -371,6 +375,31 @@ export default function SettingsPage() {
                 />
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Email Preferences */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <h2 className="font-serif text-lg font-semibold text-gray-900">Email Preferences</h2>
+          <div className="mt-4">
+            <label className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-200 p-4 transition-colors hover:bg-gray-50">
+              <div>
+                <p className="font-medium text-gray-900">Weekly Performance Report</p>
+                <p className="mt-0.5 text-sm text-gray-500">
+                  Receive a summary every Monday with views, leads, and top-performing listings.
+                </p>
+              </div>
+              <div className="relative ml-4 flex-shrink-0">
+                <input
+                  type="checkbox"
+                  checked={weeklyEmails}
+                  onChange={(e) => setWeeklyEmails(e.target.checked)}
+                  className="peer sr-only"
+                />
+                <div className="h-6 w-11 rounded-full bg-gray-200 transition-colors peer-checked:bg-brand-500" />
+                <div className="absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform peer-checked:translate-x-5" />
+              </div>
+            </label>
           </div>
         </section>
 

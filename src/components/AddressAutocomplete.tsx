@@ -82,7 +82,7 @@ export default function AddressAutocomplete({
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const fetchSuggestions = useCallback(async (query: string) => {
-    if (query.length < 4) {
+    if (query.length < 3) {
       setSuggestions([]);
       return;
     }
@@ -91,11 +91,11 @@ export default function AddressAutocomplete({
       const res = await fetch(
         `https://nominatim.openstreetmap.org/search?` +
           new URLSearchParams({
-            q: query,
+            q: query + ", USA",
             format: "json",
             addressdetails: "1",
             countrycodes: "us",
-            limit: "5",
+            limit: "6",
           }),
         {
           headers: {
@@ -109,7 +109,7 @@ export default function AddressAutocomplete({
       const data = await res.json();
       const parsed: Suggestion[] = data
         .map(parseNominatimResult)
-        .filter((s: Suggestion) => s.street);
+        .filter((s: Suggestion) => s.display);
 
       setSuggestions(parsed);
       setShowDropdown(parsed.length > 0);
@@ -124,7 +124,7 @@ export default function AddressAutocomplete({
     onChange(val);
 
     if (debounceRef.current) clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => fetchSuggestions(val), 300);
+    debounceRef.current = setTimeout(() => fetchSuggestions(val), 500);
   };
 
   const handleSelect = (suggestion: Suggestion) => {

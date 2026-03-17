@@ -17,6 +17,7 @@ export interface AgentProfile {
   subscription_status: "trialing" | "active" | "past_due" | "canceled" | "unpaid";
   trial_ends_at: string;
   setup_fee_paid: boolean;
+  weekly_emails: boolean;
   created_at: string;
   updated_at: string;
 }

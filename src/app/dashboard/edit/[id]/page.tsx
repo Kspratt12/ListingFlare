@@ -16,10 +16,12 @@ import {
   Sparkles,
   ExternalLink,
   Video,
+  QrCode,
 } from "lucide-react";
 import type { ListingPhoto, ListingVideo } from "@/lib/types";
 import Link from "next/link";
 import AddressAutocomplete from "@/components/AddressAutocomplete";
+import { formatNumber, parseNumber } from "@/lib/formatters";
 
 const US_STATES = [
   "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA",
@@ -63,6 +65,30 @@ export default function EditListingPage() {
   const videoInputRef = useRef<HTMLInputElement>(null);
   const [generatingDesc, setGeneratingDesc] = useState(false);
   const [generatingFeatures, setGeneratingFeatures] = useState(false);
+  const [generatingFlyer, setGeneratingFlyer] = useState(false);
+
+  const handleGenerateFlyer = async () => {
+    setGeneratingFlyer(true);
+    try {
+      const res = await fetch("/api/open-house/flyer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ listingId }),
+      });
+      if (!res.ok) throw new Error("Failed to generate flyer");
+      const html = await res.text();
+      const win = window.open("", "_blank");
+      if (win) {
+        win.document.write(html);
+        win.document.close();
+        setTimeout(() => win.print(), 500);
+      }
+    } catch {
+      setError("Failed to generate open house flyer");
+    } finally {
+      setGeneratingFlyer(false);
+    }
+  };
 
   const getPropertyContext = () => ({
     street, city, state, zip, price, beds, baths, sqft, yearBuilt, lotSize,
@@ -410,9 +436,9 @@ export default function EditListingPage() {
           <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <div>
               <label className="mb-1.5 block text-sm font-medium text-gray-700">Price ($)</label>
-              <input type="number" value={price} onChange={(e) => setPrice(e.target.value)}
+              <input type="text" value={formatNumber(price)} onChange={(e) => setPrice(parseNumber(e.target.value))}
                 className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-                placeholder="4750000" />
+                placeholder="4,750,000" />
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium text-gray-700">Bedrooms</label>
@@ -428,9 +454,9 @@ export default function EditListingPage() {
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium text-gray-700">Square Feet</label>
-              <input type="number" value={sqft} onChange={(e) => setSqft(e.target.value)}
+              <input type="text" value={formatNumber(sqft)} onChange={(e) => setSqft(parseNumber(e.target.value))}
                 className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-                placeholder="4820" />
+                placeholder="4,820" />
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium text-gray-700">Year Built</label>
@@ -458,7 +484,7 @@ export default function EditListingPage() {
               className="flex items-center gap-1.5 rounded-lg border border-brand-200 bg-brand-50/50 px-3 py-1.5 text-xs font-medium text-brand-700 transition-colors hover:bg-brand-100 disabled:opacity-50"
             >
               {generatingDesc ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Sparkles className="h-3.5 w-3.5" />}
-              {generatingDesc ? "Generating..." : "AI Generate"}
+              {generatingDesc ? "Generating..." : description.trim() ? "Regenerate" : "AI Generate"}
             </button>
           </div>
           <div className="mt-4">
@@ -486,7 +512,7 @@ export default function EditListingPage() {
               className="flex items-center gap-1.5 rounded-lg border border-brand-200 bg-brand-50/50 px-3 py-1.5 text-xs font-medium text-brand-700 transition-colors hover:bg-brand-100 disabled:opacity-50"
             >
               {generatingFeatures ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Sparkles className="h-3.5 w-3.5" />}
-              {generatingFeatures ? "Generating..." : "AI Generate"}
+              {generatingFeatures ? "Generating..." : featuresText.trim() ? "Regenerate" : "AI Generate"}
             </button>
           </div>
           <div className="mt-4">
@@ -642,7 +668,17 @@ export default function EditListingPage() {
             )}
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-3">
+            {currentStatus === "published" && (
+              <button
+                onClick={handleGenerateFlyer}
+                disabled={generatingFlyer}
+                className="flex items-center justify-center gap-2 rounded-lg border border-purple-200 bg-purple-50/50 px-4 py-2.5 text-sm font-medium text-purple-700 transition-colors hover:bg-purple-100 disabled:opacity-50"
+              >
+                {generatingFlyer ? <Loader2 className="h-4 w-4 animate-spin" /> : <QrCode className="h-4 w-4" />}
+                Open House Flyer
+              </button>
+            )}
             {currentStatus === "published" && (
               <Link
                 href={`/listing/${listingId}`}
@@ -656,7 +692,7 @@ export default function EditListingPage() {
             <button
               onClick={() => handleSave(currentStatus === "published" ? "published" : "draft")}
               disabled={saving || publishing}
-              className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-6 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:opacity-50"
+              className="flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-emerald-700 disabled:opacity-50"
             >
               {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
               Save Changes

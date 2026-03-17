@@ -4,12 +4,86 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Listing } from "@/lib/types";
 import Link from "next/link";
-import { PlusCircle, Eye, ExternalLink, MoreVertical } from "lucide-react";
+import { PlusCircle, Eye, ExternalLink, MoreVertical, Share2, Loader2 } from "lucide-react";
 
 export default function MyListingsPage() {
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
+  const [generatingPosts, setGeneratingPosts] = useState<string | null>(null);
   const supabase = createClient();
+
+  const handleGenerateSocialPosts = async (e: React.MouseEvent, listingId: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setGeneratingPosts(listingId);
+    try {
+      const res = await fetch("/api/social-posts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ listingId }),
+      });
+      if (!res.ok) throw new Error("Failed to get listing data");
+      const data = await res.json();
+
+      const html2canvas = (await import("html2canvas-pro")).default;
+      const JSZip = (await import("jszip")).default;
+
+      const sizes = [
+        { name: "instagram_post", w: 1080, h: 1080 },
+        { name: "facebook_post", w: 1200, h: 630 },
+        { name: "instagram_story", w: 1080, h: 1920 },
+      ];
+
+      const zip = new JSZip();
+
+      for (const size of sizes) {
+        const container = document.createElement("div");
+        container.style.cssText = `position:fixed;left:-9999px;top:0;width:${size.w}px;height:${size.h}px;overflow:hidden;`;
+        container.innerHTML = `
+          <div style="width:${size.w}px;height:${size.h}px;position:relative;background:#000;">
+            <img src="${data.heroUrl}" crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />
+            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.7) 70%,rgba(0,0,0,0.9) 100%);"></div>
+            <div style="position:absolute;top:20px;left:30px;font-family:serif;font-size:${Math.round(24 * size.w / 1080)}px;font-weight:bold;color:#b8965a;">ListingFlare</div>
+            <div style="position:absolute;bottom:${Math.round(40 * size.h / 1080)}px;left:30px;right:30px;color:white;">
+              <div style="font-size:${Math.round(56 * size.w / 1080)}px;font-weight:bold;font-family:sans-serif;">${data.price}</div>
+              <div style="font-size:${Math.round(26 * size.w / 1080)}px;margin-top:8px;">${data.street}</div>
+              <div style="font-size:${Math.round(20 * size.w / 1080)}px;opacity:0.8;margin-top:4px;">${data.cityState}</div>
+              <div style="font-size:${Math.round(20 * size.w / 1080)}px;color:#b8965a;font-weight:bold;margin-top:16px;">${data.details}</div>
+              <div style="border-top:1px solid rgba(184,150,90,0.4);margin-top:16px;padding-top:12px;">
+                <div style="font-size:${Math.round(18 * size.w / 1080)}px;">${data.agentName}</div>
+                <div style="font-size:${Math.round(16 * size.w / 1080)}px;opacity:0.7;margin-top:2px;">${[data.agentPhone, data.brokerage].filter(Boolean).join("  |  ")}</div>
+              </div>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(container);
+
+        // Wait for image to load
+        const img = container.querySelector("img");
+        if (img && !img.complete) {
+          await new Promise((resolve) => { img.onload = resolve; img.onerror = resolve; });
+        }
+
+        const canvas = await html2canvas(container, { width: size.w, height: size.h, scale: 1, useCORS: true });
+        document.body.removeChild(container);
+
+        const blob = await new Promise<Blob>((resolve) => canvas.toBlob((b) => resolve(b!), "image/png"));
+        zip.file(`${size.name}.png`, blob);
+      }
+
+      const zipBlob = await zip.generateAsync({ type: "blob" });
+      const url = URL.createObjectURL(zipBlob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "social_posts.zip";
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Failed to generate social posts");
+    } finally {
+      setGeneratingPosts(null);
+    }
+  };
 
   useEffect(() => {
     async function fetchListings() {
@@ -136,7 +210,21 @@ export default function MyListingsPage() {
                     <Eye className="h-4 w-4" />
                     {listing.view_count} views
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1">
+                    {listing.status === "published" && listing.photos.length > 0 && (
+                      <span
+                        onClick={(e) => handleGenerateSocialPosts(e, listing.id)}
+                        className="flex items-center gap-1 rounded-lg px-2 py-1.5 text-gray-400 transition-colors hover:bg-purple-50 hover:text-purple-600 cursor-pointer"
+                        title="Generate Social Posts"
+                      >
+                        {generatingPosts === listing.id ? (
+                          <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                        ) : (
+                          <Share2 className="h-3.5 w-3.5" />
+                        )}
+                        <span className="text-xs font-medium">Social</span>
+                      </span>
+                    )}
                     {listing.status === "published" && (
                       <span
                         onClick={(e) => {

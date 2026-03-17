@@ -4,6 +4,7 @@ import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { motion } from "framer-motion";
 import { Send, CheckCircle, Loader2 } from "lucide-react";
+import { formatPhone } from "@/lib/formatters";
 
 interface Props {
   listingId: string;
@@ -134,8 +135,9 @@ export default function LiveLeadForm({ listingId, agentId }: Props) {
                     id="lead-phone"
                     name="phone"
                     required
+                    onChange={(e) => { e.target.value = formatPhone(e.target.value); }}
                     className="w-full rounded-lg border border-gray-800 bg-gray-900 px-4 py-3 text-white placeholder-gray-600 transition-colors focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-                    placeholder="(555) 000-0000"
+                    placeholder="555-000-0000"
                   />
                 </div>
               </div>
