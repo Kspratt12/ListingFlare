@@ -366,6 +366,66 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
   );
 }
 
+const comparisonHeroPhotos = [
+  "photo-1613490493576-7fde63acd811",  // Pool with landscape
+  "photo-1600596542815-ffad4c1539a9",  // Modern exterior at dusk
+  "photo-1600607687939-ce8a6c25118c",  // Living room windows
+  "photo-1600585154340-be6161a56a0c",  // Modern exterior with pool twilight
+  "photo-1616594039964-ae9021a400a0",  // Spa bathroom
+];
+
+function ComparisonHeroSlideshow() {
+  const [heroIdx, setHeroIdx] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroIdx((i) => (i + 1) % comparisonHeroPhotos.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="relative h-48 overflow-hidden">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={heroIdx}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`https://images.unsplash.com/${comparisonHeroPhotos[heroIdx]}?w=800&h=450&fit=crop&q=90`}
+            alt="Luxury home"
+            className="h-full w-full object-cover"
+          />
+        </motion.div>
+      </AnimatePresence>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/20" />
+      {/* Slide indicators */}
+      <div className="absolute top-3 left-1/2 flex -translate-x-1/2 gap-1.5">
+        {comparisonHeroPhotos.map((_, i) => (
+          <div key={i} className={`h-1 rounded-full transition-all duration-500 ${i === heroIdx ? "w-8 bg-white" : "w-3 bg-white/40"}`} />
+        ))}
+      </div>
+      <div className="absolute bottom-3 left-4 right-4 text-white">
+        <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-white/50">Exclusive Listing</p>
+        <p className="mt-0.5 font-serif text-xl font-bold leading-tight">1847 Grandview Terrace</p>
+        <p className="text-[11px] text-white/70">Pacific Palisades, CA 90272</p>
+        <div className="mt-1 flex items-center gap-3 text-xs text-white/90">
+          <span className="font-serif text-base font-semibold">$4,750,000</span>
+          <span className="h-3 w-px bg-white/30" />
+          <span>5 Beds</span>
+          <span>4.5 Baths</span>
+          <span>4,820 Sq Ft</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function HowItWorks() {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -836,37 +896,8 @@ export default function LandingPage() {
                     </div>
                   </div>
                 </div>
-                {/* Full-bleed hero */}
-                <div className="relative">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=450&fit=crop&q=90"
-                    alt="Luxury home with pool"
-                    loading="lazy"
-                    className="h-48 w-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/20" />
-                  {/* Slide indicators */}
-                  <div className="absolute top-3 left-1/2 flex -translate-x-1/2 gap-1.5">
-                    <div className="h-1 w-8 rounded-full bg-white" />
-                    <div className="h-1 w-3 rounded-full bg-white/40" />
-                    <div className="h-1 w-3 rounded-full bg-white/40" />
-                    <div className="h-1 w-3 rounded-full bg-white/40" />
-                    <div className="h-1 w-3 rounded-full bg-white/40" />
-                  </div>
-                  <div className="absolute bottom-3 left-4 right-4 text-white">
-                    <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-white/50">Exclusive Listing</p>
-                    <p className="mt-0.5 font-serif text-xl font-bold leading-tight">1847 Grandview Terrace</p>
-                    <p className="text-[11px] text-white/70">Pacific Palisades, CA 90272</p>
-                    <div className="mt-1 flex items-center gap-3 text-xs text-white/90">
-                      <span className="font-serif text-base font-semibold">$4,750,000</span>
-                      <span className="h-3 w-px bg-white/30" />
-                      <span>5 Beds</span>
-                      <span>4.5 Baths</span>
-                      <span>4,820 Sq Ft</span>
-                    </div>
-                  </div>
-                </div>
+                {/* Full-bleed hero with cycling photos */}
+                <ComparisonHeroSlideshow />
                 {/* Gallery grid with live video */}
                 <div className="grid grid-cols-4 gap-1 p-1.5 bg-gray-50">
                   {/* Photo thumbnails */}
@@ -884,7 +915,7 @@ export default function LandingPage() {
                       className="aspect-[4/3] w-full rounded object-cover"
                     />
                   ))}
-                  {/* Live auto-playing video */}
+                  {/* Live auto-playing luxury home video */}
                   <div className="relative aspect-[4/3] w-full overflow-hidden rounded">
                     <video
                       autoPlay
@@ -894,7 +925,7 @@ export default function LandingPage() {
                       className="h-full w-full object-cover"
                       poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=150&fit=crop&q=80"
                     >
-                      <source src="https://assets.mixkit.co/videos/4064/4064-720.mp4" type="video/mp4" />
+                      <source src="https://videos.pexels.com/video-files/7578552/7578552-sd_640_360_30fps.mp4" type="video/mp4" />
                     </video>
                     <span className="absolute top-1 left-1 rounded bg-black/70 px-1.5 py-0.5 text-[7px] font-bold text-white flex items-center gap-0.5">
                       <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
