@@ -25,9 +25,9 @@ export interface PropertyListing {
   };
 }
 
-// Placeholder images from picsum.photos (reliable, no API key needed)
-const photo = (id: number, w = 1200, h = 800) =>
-  `https://picsum.photos/id/${id}/${w}/${h}`;
+// High-quality Unsplash images for the demo listing
+const unsplash = (id: string, w = 1200, h = 800) =>
+  `https://images.unsplash.com/${id}?w=${w}&h=${h}&fit=crop&q=80`;
 
 export const demoListing: PropertyListing = {
   address: {
@@ -51,25 +51,25 @@ Outside, the zero-edge infinity pool appears to merge with the ocean horizon. Ma
     "Panoramic Ocean Views",
     "Infinity Edge Pool & Spa",
     "Chef's Kitchen with Wine Room",
-    "Smart Home Automation",
-    "Three-Car Garage",
+    "Smart Home Throughout",
+    "Private Guest Suite",
     "Outdoor Kitchen & Pizza Oven",
     "Primary Suite with Ocean Terrace",
     "White Oak Hardwood Floors",
   ],
   photos: [
-    { src: photo(164), alt: "Grand living room with ocean views" },
-    { src: photo(188), alt: "Modern exterior at dusk" },
-    { src: photo(165), alt: "Chef's kitchen with waterfall island" },
-    { src: photo(177), alt: "Primary bedroom suite" },
-    { src: photo(169), alt: "Spa-inspired master bathroom" },
-    { src: photo(180), alt: "Infinity pool overlooking the Pacific" },
-    { src: photo(189), alt: "Landscaped backyard with fire pit" },
-    { src: photo(193), alt: "Dining room with chandelier" },
-    { src: photo(199), alt: "Home office with built-in shelving" },
-    { src: photo(200), alt: "Wine room and tasting area" },
-    { src: photo(204), alt: "Outdoor entertaining area" },
-    { src: photo(209), alt: "Three-car garage" },
+    { src: unsplash("photo-1600596542815-ffad4c1539a9"), alt: "Luxury modern home exterior at dusk" },
+    { src: unsplash("photo-1600607687939-ce8a6c25118c"), alt: "Grand living room with floor-to-ceiling windows" },
+    { src: unsplash("photo-1600566753086-00f18fb6b3ea"), alt: "Chef's kitchen with waterfall island" },
+    { src: unsplash("photo-1600585154340-be6161a56a0c"), alt: "Modern exterior with pool at twilight" },
+    { src: unsplash("photo-1616594039964-ae9021a400a0"), alt: "Spa-inspired primary bathroom" },
+    { src: unsplash("photo-1613490493576-7fde63acd811"), alt: "Infinity pool overlooking the landscape" },
+    { src: unsplash("photo-1600566753190-17f0baa2a6c3"), alt: "Elegant dining room" },
+    { src: unsplash("photo-1616137466211-f939a420be84"), alt: "Luxurious primary bedroom suite" },
+    { src: unsplash("photo-1600573472592-401b489a3cdc"), alt: "Modern home office" },
+    { src: unsplash("photo-1600585154526-990dced4db0d"), alt: "Outdoor entertaining area" },
+    { src: unsplash("photo-1583608205776-bfd35f0d9f83"), alt: "Home exterior front view" },
+    { src: unsplash("photo-1600566752355-35792bedcfea"), alt: "Wine room and tasting area" },
   ],
   agent: {
     name: "Victoria Ashworth",
@@ -77,7 +77,7 @@ Outside, the zero-edge infinity pool appears to merge with the ocean horizon. Ma
     brokerage: "Westside Luxury Realty",
     phone: "(310) 555-0192",
     email: "victoria@westsideluxury.com",
-    headshotUrl: photo(64, 400, 400),
+    headshotUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=80",
   },
 };
 

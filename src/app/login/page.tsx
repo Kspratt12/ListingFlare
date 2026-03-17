@@ -4,6 +4,7 @@ import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -36,11 +37,11 @@ export default function LoginPage() {
     <div className="flex min-h-screen">
       {/* Left — branding panel */}
       <div className="hidden w-1/2 bg-gray-950 lg:flex lg:flex-col lg:justify-between lg:p-12">
-        <div>
+        <Link href="/">
           <h1 className="font-serif text-2xl font-bold text-white">
             Listing<span className="text-brand-400">Flare</span>
           </h1>
-        </div>
+        </Link>
         <div>
           <p className="font-serif text-display-sm font-bold leading-tight text-white">
             Beautiful listing
@@ -61,10 +62,18 @@ export default function LoginPage() {
       <div className="flex w-full items-center justify-center px-6 lg:w-1/2">
         <div className="w-full max-w-sm">
           <div className="mb-8 lg:hidden">
-            <h1 className="font-serif text-2xl font-bold text-gray-900">
+            <Link href="/" className="font-serif text-2xl font-bold text-gray-900">
               Listing<span className="text-brand-400">Flare</span>
-            </h1>
+            </Link>
           </div>
+
+          <Link
+            href="/"
+            className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-gray-400 transition-colors hover:text-gray-600"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" />
+            Back to home
+          </Link>
 
           <h2 className="font-serif text-3xl font-bold text-gray-900">
             Welcome back

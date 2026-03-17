@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 const links = [
   { href: "#details", label: "Details" },
@@ -11,7 +12,11 @@ const links = [
   { href: "#contact", label: "Contact" },
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+  topOffset?: boolean;
+}
+
+export default function Navbar({ topOffset = false }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -26,17 +31,19 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
-      className={`fixed left-0 right-0 top-0 z-40 transition-all duration-500 ${
+      className={`fixed left-0 right-0 z-40 transition-all duration-500 ${
+        topOffset ? "top-[40px]" : "top-0"
+      } ${
         scrolled
           ? "bg-gray-950/95 shadow-lg backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
-        {/* Logo */}
-        <a href="#" className="font-serif text-xl font-bold text-white">
+        {/* Logo — always links home */}
+        <Link href="/" className="font-serif text-xl font-bold text-white">
           Listing<span className="text-brand-400">Flare</span>
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <div className="hidden items-center gap-8 md:flex">

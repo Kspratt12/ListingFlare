@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { createClient } from "@/lib/supabase/client";
 import {
   Sparkles,
   Globe,
@@ -10,6 +12,7 @@ import {
   Check,
   ArrowRight,
   ChevronRight,
+  LayoutGrid,
 } from "lucide-react";
 
 const features = [
@@ -60,27 +63,48 @@ const fadeUp = {
 };
 
 export default function LandingPage() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setIsLoggedIn(!!user);
+    });
+  }, []);
+
   return (
     <div className="bg-white">
       {/* Nav */}
       <nav className="fixed left-0 right-0 top-0 z-40 border-b border-gray-100 bg-white/80 backdrop-blur-lg">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <span className="font-serif text-xl font-bold text-gray-900">
+          <Link href="/" className="font-serif text-xl font-bold text-gray-900">
             Listing<span className="text-brand-500">Flare</span>
-          </span>
+          </Link>
           <div className="flex items-center gap-4">
-            <Link
-              href="/login"
-              className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/signup"
-              className="rounded-full bg-gray-950 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800"
-            >
-              Start Free Trial
-            </Link>
+            {isLoggedIn ? (
+              <Link
+                href="/dashboard"
+                className="flex items-center gap-2 rounded-full bg-gray-950 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+              >
+                <LayoutGrid className="h-4 w-4" />
+                My Dashboard
+              </Link>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/signup"
+                  className="rounded-full bg-gray-950 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+                >
+                  Start Free Trial
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </nav>
@@ -120,13 +144,13 @@ export default function LandingPage() {
                 Start Free Trial
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
-              <a
-                href="#preview"
+              <Link
+                href="/demo"
                 className="flex items-center gap-1 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900"
               >
                 See it in action
                 <ChevronRight className="h-4 w-4" />
-              </a>
+              </Link>
             </div>
           </motion.div>
 
@@ -155,7 +179,7 @@ export default function LandingPage() {
                 <div className="relative aspect-[16/9] overflow-hidden bg-gray-900">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="https://picsum.photos/id/164/1200/675"
+                    src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=675&fit=crop&q=80"
                     alt="ListingFlare property page preview"
                     className="h-full w-full object-cover opacity-80"
                   />

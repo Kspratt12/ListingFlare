@@ -48,7 +48,7 @@ export default function DashboardLayout({
     <>
       {/* Logo */}
       <div className="px-6 py-6">
-        <Link href="/dashboard" className="font-serif text-xl font-bold text-white">
+        <Link href="/" className="font-serif text-xl font-bold text-white">
           Listing<span className="text-brand-400">Flare</span>
         </Link>
       </div>
