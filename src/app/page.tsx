@@ -747,44 +747,72 @@ export default function LandingPage() {
                     </div>
                   </div>
                 </div>
-                <div className="p-5 space-y-3">
-                  {/* Fake Zillow layout */}
-                  <div className="flex gap-2">
-                    <div className="h-40 flex-1 rounded bg-gray-200" />
-                    <div className="hidden sm:flex flex-col gap-2 w-24">
-                      <div className="h-[76px] rounded bg-gray-200" />
-                      <div className="h-[76px] rounded bg-gray-200" />
+                <div className="text-left">
+                  {/* Zillow nav bar */}
+                  <div className="flex items-center gap-4 border-b border-gray-100 px-4 py-2 text-[10px] font-medium text-blue-600">
+                    <span>Buy</span><span>Rent</span><span>Sell</span><span className="text-gray-400">Get a mortgage</span>
+                    <span className="ml-auto text-gray-400">Sign in</span>
+                  </div>
+                  {/* Photo */}
+                  <div className="relative">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=280&fit=crop&q=80"
+                      alt=""
+                      loading="lazy"
+                      className="h-36 w-full object-cover"
+                    />
+                    <div className="absolute right-2 top-2 flex gap-1.5">
+                      <span className="rounded bg-white/90 px-1.5 py-0.5 text-[9px] text-gray-600">Save</span>
+                      <span className="rounded bg-white/90 px-1.5 py-0.5 text-[9px] text-gray-600">Share</span>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="h-5 w-28 rounded bg-gray-200" />
-                      <div className="mt-1.5 h-3 w-44 rounded bg-gray-100" />
+                  {/* Listing info */}
+                  <div className="px-4 py-3 space-y-2.5">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <p className="text-lg font-bold text-gray-900">$400,000</p>
+                        <p className="text-[11px] text-gray-500">4423 Austin Dekota Dr, Charlotte, NC</p>
+                      </div>
+                      <div className="text-right">
+                        <div className="flex gap-3 text-[11px] text-gray-700">
+                          <span><strong>4</strong> beds</span>
+                          <span><strong>3</strong> baths</span>
+                          <span><strong>2,864</strong> sqft</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="h-8 w-20 rounded bg-blue-100" />
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="h-3 w-12 rounded bg-gray-100" />
-                    <div className="h-3 w-12 rounded bg-gray-100" />
-                    <div className="h-3 w-16 rounded bg-gray-100" />
-                  </div>
-                  <div className="border-t border-gray-100 pt-3 space-y-2">
-                    <div className="h-3 w-full rounded bg-gray-100" />
-                    <div className="h-3 w-4/5 rounded bg-gray-100" />
-                    <div className="h-3 w-3/5 rounded bg-gray-100" />
-                  </div>
-                  <div className="flex items-center gap-2 border-t border-gray-100 pt-3">
-                    <div className="h-8 w-8 rounded-full bg-gray-200" />
-                    <div>
-                      <div className="h-3 w-24 rounded bg-gray-200" />
-                      <div className="mt-1 h-2 w-32 rounded bg-gray-100" />
+                    {/* Zillow CTA */}
+                    <div className="rounded-md bg-[#006AFF] px-3 py-2 text-center text-[11px] font-semibold text-white">
+                      Request a tour
+                    </div>
+                    {/* Competing listings sidebar hint */}
+                    <div className="border-t border-gray-100 pt-2.5">
+                      <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Homes For You</p>
+                      <div className="mt-1.5 flex gap-2">
+                        <div className="flex-1 rounded border border-gray-100 p-1.5">
+                          <div className="h-10 rounded bg-gray-100" />
+                          <p className="mt-1 text-[9px] font-semibold text-gray-700">$410,000</p>
+                          <p className="text-[8px] text-gray-400">1418 Summerville Rd</p>
+                        </div>
+                        <div className="flex-1 rounded border border-gray-100 p-1.5">
+                          <div className="h-10 rounded bg-gray-100" />
+                          <p className="mt-1 text-[9px] font-semibold text-gray-700">$389,000</p>
+                          <p className="text-[8px] text-gray-400">2431 Brathay Ct</p>
+                        </div>
+                        <div className="hidden sm:block flex-1 rounded border border-gray-100 p-1.5">
+                          <div className="h-10 rounded bg-gray-100" />
+                          <p className="mt-1 text-[9px] font-semibold text-gray-700">$425,000</p>
+                          <p className="text-[8px] text-gray-400">901 Kensington Dr</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="mt-4 text-center">
                 <p className="text-sm font-medium text-gray-400">Your listing on Zillow</p>
-                <p className="mt-1 text-xs text-gray-400">Same template as every other agent. No branding. Zillow keeps the leads.</p>
+                <p className="mt-1 text-xs text-gray-400">Competing listings everywhere. Zillow&apos;s brand, not yours. They keep the leads.</p>
               </div>
             </motion.div>
 
