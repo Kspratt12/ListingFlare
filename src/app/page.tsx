@@ -847,7 +847,7 @@ export default function LandingPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/20" />
                   {/* Slide indicators */}
-                  <div className="absolute bottom-16 left-1/2 flex -translate-x-1/2 gap-1.5">
+                  <div className="absolute top-3 left-1/2 flex -translate-x-1/2 gap-1.5">
                     <div className="h-1 w-8 rounded-full bg-white" />
                     <div className="h-1 w-3 rounded-full bg-white/40" />
                     <div className="h-1 w-3 rounded-full bg-white/40" />
@@ -894,7 +894,7 @@ export default function LandingPage() {
                       className="h-full w-full object-cover"
                       poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=150&fit=crop&q=80"
                     >
-                      <source src="https://assets.mixkit.co/videos/1222/1222-720.mp4" type="video/mp4" />
+                      <source src="https://assets.mixkit.co/videos/4636/4636-720.mp4" type="video/mp4" />
                     </video>
                     <span className="absolute top-1 left-1 rounded bg-black/70 px-1.5 py-0.5 text-[7px] font-bold text-white flex items-center gap-0.5">
                       <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
@@ -909,6 +909,9 @@ export default function LandingPage() {
                     {["Ocean Views", "Infinity Pool", "Chef\u2019s Kitchen", "Smart Home"].map((f) => (
                       <span key={f} className="rounded-full bg-brand-50 border border-brand-100 px-2 py-0.5 text-[9px] font-medium text-brand-700">{f}</span>
                     ))}
+                    <span className="rounded-full bg-purple-50 border border-purple-200 px-2 py-0.5 text-[9px] font-medium text-purple-700 flex items-center gap-0.5">
+                      <Sparkles className="h-2.5 w-2.5" /> AI Descriptions
+                    </span>
                   </div>
                   {/* Agent branding */}
                   <div className="flex items-center gap-3 border-t border-gray-100 pt-3">
