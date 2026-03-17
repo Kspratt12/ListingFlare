@@ -11,7 +11,6 @@ import {
   Zap,
   Check,
   ArrowRight,
-  ChevronRight,
   LayoutGrid,
   Upload,
   Eye,
@@ -552,10 +551,10 @@ export default function LandingPage() {
               </Link>
               <Link
                 href="/demo"
-                className="flex items-center gap-1 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900"
+                className="group flex items-center gap-2 rounded-full border-2 border-gray-200 bg-white px-8 py-4 text-base font-medium text-gray-900 transition-all hover:border-gray-300 hover:shadow-lg hover:shadow-gray-200/50"
               >
-                See it in action
-                <ChevronRight className="h-4 w-4" />
+                See a Live Example
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
           </motion.div>
@@ -621,6 +620,44 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Social Proof */}
+      <section className="border-y border-gray-100 bg-white py-12">
+        <div className="mx-auto max-w-6xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <p className="text-sm font-medium text-gray-400">
+              Built for agents who sell $300K+ homes in the Triangle
+            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-8 md:gap-14">
+              <div className="text-center">
+                <p className="font-serif text-3xl font-bold text-gray-900">5 min</p>
+                <p className="mt-1 text-sm text-gray-500">Average setup time</p>
+              </div>
+              <div className="h-10 w-px bg-gray-200 hidden sm:block" />
+              <div className="text-center">
+                <p className="font-serif text-3xl font-bold text-gray-900">4K</p>
+                <p className="mt-1 text-sm text-gray-500">Photo & video quality</p>
+              </div>
+              <div className="h-10 w-px bg-gray-200 hidden sm:block" />
+              <div className="text-center">
+                <p className="font-serif text-3xl font-bold text-gray-900">24hr</p>
+                <p className="mt-1 text-sm text-gray-500">Lead response time</p>
+              </div>
+              <div className="h-10 w-px bg-gray-200 hidden sm:block" />
+              <div className="text-center">
+                <p className="font-serif text-3xl font-bold text-gray-900">$0</p>
+                <p className="mt-1 text-sm text-gray-500">To start your trial</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Features */}
       <section className="bg-white py-20 md:py-28">
         <div className="mx-auto max-w-6xl px-6">
@@ -666,6 +703,153 @@ export default function LandingPage() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* Before / After — Zillow vs ListingFlare */}
+      <section className="bg-white py-20 md:py-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+              See The Difference
+            </p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
+              Your listing on Zillow
+              <br />
+              vs. on ListingFlare.
+            </h2>
+          </motion.div>
+
+          <div className="mt-16 grid gap-8 md:grid-cols-2">
+            {/* Zillow - Before */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="overflow-hidden rounded-xl border-2 border-gray-200 bg-white">
+                <div className="border-b border-gray-100 bg-gray-50 px-4 py-2.5">
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-1.5">
+                      <div className="h-2.5 w-2.5 rounded-full bg-gray-200" />
+                      <div className="h-2.5 w-2.5 rounded-full bg-gray-200" />
+                      <div className="h-2.5 w-2.5 rounded-full bg-gray-200" />
+                    </div>
+                    <div className="mx-auto rounded-md bg-white px-8 py-1 text-xs text-gray-400 border border-gray-100">
+                      zillow.com/homedetails/...
+                    </div>
+                  </div>
+                </div>
+                <div className="p-5 space-y-3">
+                  {/* Fake Zillow layout */}
+                  <div className="flex gap-2">
+                    <div className="h-40 flex-1 rounded bg-gray-200" />
+                    <div className="hidden sm:flex flex-col gap-2 w-24">
+                      <div className="h-[76px] rounded bg-gray-200" />
+                      <div className="h-[76px] rounded bg-gray-200" />
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="h-5 w-28 rounded bg-gray-200" />
+                      <div className="mt-1.5 h-3 w-44 rounded bg-gray-100" />
+                    </div>
+                    <div className="h-8 w-20 rounded bg-blue-100" />
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="h-3 w-12 rounded bg-gray-100" />
+                    <div className="h-3 w-12 rounded bg-gray-100" />
+                    <div className="h-3 w-16 rounded bg-gray-100" />
+                  </div>
+                  <div className="border-t border-gray-100 pt-3 space-y-2">
+                    <div className="h-3 w-full rounded bg-gray-100" />
+                    <div className="h-3 w-4/5 rounded bg-gray-100" />
+                    <div className="h-3 w-3/5 rounded bg-gray-100" />
+                  </div>
+                  <div className="flex items-center gap-2 border-t border-gray-100 pt-3">
+                    <div className="h-8 w-8 rounded-full bg-gray-200" />
+                    <div>
+                      <div className="h-3 w-24 rounded bg-gray-200" />
+                      <div className="mt-1 h-2 w-32 rounded bg-gray-100" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 text-center">
+                <p className="text-sm font-medium text-gray-400">Your listing on Zillow</p>
+                <p className="mt-1 text-xs text-gray-400">Same template as every other agent. No branding. Zillow keeps the leads.</p>
+              </div>
+            </motion.div>
+
+            {/* ListingFlare - After */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+            >
+              <div className="overflow-hidden rounded-xl border-2 border-brand-300 bg-white shadow-lg shadow-brand-100/50">
+                <div className="border-b border-gray-100 bg-gray-50 px-4 py-2.5">
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-1.5">
+                      <div className="h-2.5 w-2.5 rounded-full bg-red-300" />
+                      <div className="h-2.5 w-2.5 rounded-full bg-yellow-300" />
+                      <div className="h-2.5 w-2.5 rounded-full bg-green-300" />
+                    </div>
+                    <div className="mx-auto rounded-md bg-white px-8 py-1 text-xs text-gray-400 border border-gray-100">
+                      listingflare.com/listing/your-property
+                    </div>
+                  </div>
+                </div>
+                <div className="relative">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=400&fit=crop&q=80"
+                    alt="ListingFlare property page"
+                    loading="lazy"
+                    className="h-44 w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+                  <div className="absolute bottom-3 left-4 text-white">
+                    <p className="text-[10px] font-medium uppercase tracking-widest text-white/60">Exclusive Listing</p>
+                    <p className="mt-0.5 font-serif text-lg font-bold">1847 Grandview Terrace</p>
+                    <div className="mt-0.5 flex items-center gap-2 text-xs text-white/80">
+                      <span className="font-serif text-sm font-semibold">$4,750,000</span>
+                      <span className="h-3 w-px bg-white/30" />
+                      <span>5 Beds</span>
+                      <span>4.5 Baths</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-4 space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 overflow-hidden rounded-full border-2 border-brand-100">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&q=80" alt="" loading="lazy" className="h-full w-full object-cover" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">Victoria Ashworth</p>
+                      <p className="text-xs text-brand-500">Luxury Property Specialist</p>
+                    </div>
+                  </div>
+                  <div className="rounded-lg bg-gray-950 px-4 py-2.5 text-center text-xs font-medium text-white">
+                    Schedule a Showing
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 text-center">
+                <p className="text-sm font-medium text-gray-900">Your listing on ListingFlare</p>
+                <p className="mt-1 text-xs text-gray-500">Your brand. Your photos. Your leads. Looks like a $5,000 custom website.</p>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
