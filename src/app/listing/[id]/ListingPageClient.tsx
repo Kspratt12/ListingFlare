@@ -9,6 +9,7 @@ import AgentBranding from "@/components/AgentBranding";
 import LiveLeadForm from "@/components/LiveLeadForm";
 import Footer from "@/components/Footer";
 import type { PropertyListing } from "@/lib/demo-data";
+import { formatPhone } from "@/lib/formatters";
 import Link from "next/link";
 import { ArrowLeft, Pencil } from "lucide-react";
 
@@ -39,7 +40,7 @@ function toPropertyListing(listing: Listing, agent: AgentProfile): PropertyListi
       name: agent.name,
       title: agent.title,
       brokerage: agent.brokerage,
-      phone: agent.phone,
+      phone: formatPhone(agent.phone),
       email: agent.email,
       headshotUrl: agent.headshot_url || "",
       instagram: agent.instagram,
