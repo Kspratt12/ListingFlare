@@ -6,12 +6,12 @@ import type { Lead } from "@/lib/types";
 import { MessageSquare, Mail, Phone, Calendar, Home, ChevronDown } from "lucide-react";
 
 const LEAD_STATUSES = [
-  { value: "new", label: "New", color: "bg-blue-50 text-blue-700 border-blue-200" },
-  { value: "contacted", label: "Contacted", color: "bg-yellow-50 text-yellow-700 border-yellow-200" },
-  { value: "showing_scheduled", label: "Showing Scheduled", color: "bg-purple-50 text-purple-700 border-purple-200" },
-  { value: "offer_made", label: "Offer Made", color: "bg-orange-50 text-orange-700 border-orange-200" },
-  { value: "under_contract", label: "Under Contract", color: "bg-indigo-50 text-indigo-700 border-indigo-200" },
-  { value: "closed", label: "Closed", color: "bg-green-50 text-green-700 border-green-200" },
+  { value: "new", label: "New", color: "bg-amber-50 text-amber-800 border-amber-300" },
+  { value: "contacted", label: "Contacted", color: "bg-yellow-50 text-yellow-800 border-yellow-300" },
+  { value: "showing_scheduled", label: "Showing Scheduled", color: "bg-orange-50 text-orange-800 border-orange-300" },
+  { value: "offer_made", label: "Offer Made", color: "bg-amber-100 text-amber-900 border-amber-400" },
+  { value: "under_contract", label: "Under Contract", color: "bg-emerald-50 text-emerald-800 border-emerald-300" },
+  { value: "closed", label: "Closed", color: "bg-emerald-100 text-emerald-900 border-emerald-400" },
   { value: "lost", label: "Lost", color: "bg-gray-50 text-gray-500 border-gray-200" },
 ] as const;
 
