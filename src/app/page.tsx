@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import {
@@ -13,6 +13,13 @@ import {
   ArrowRight,
   ChevronRight,
   LayoutGrid,
+  Upload,
+  Eye,
+  Bell,
+  MousePointerClick,
+  Send,
+  PlusCircle,
+  Image as ImageIcon,
 } from "lucide-react";
 
 const features = [
@@ -50,7 +57,38 @@ const included = [
   "View count analytics per listing",
   "Mobile-responsive luxury design",
   "Unique shareable URL per listing",
-  "Supabase-powered dashboard",
+  "SSL-secured & lightning fast",
+];
+
+const walkthrough = [
+  {
+    step: "01",
+    title: "Add your property details",
+    description: "Enter the address, price, beds, baths, and description. Our AI can even write the listing description for you.",
+    icon: PlusCircle,
+    mockup: "create",
+  },
+  {
+    step: "02",
+    title: "Upload stunning photos",
+    description: "Drag and drop your property photos. They display in a full-screen hero slideshow and masonry gallery.",
+    icon: Upload,
+    mockup: "photos",
+  },
+  {
+    step: "03",
+    title: "Publish & share your link",
+    description: "Hit publish and your listing gets a unique URL. Share it on social media, in emails, or on your business card.",
+    icon: Globe,
+    mockup: "published",
+  },
+  {
+    step: "04",
+    title: "Leads come straight to you",
+    description: "Buyers fill out the contact form on your listing. You get an instant email notification and can reply from your dashboard.",
+    icon: Bell,
+    mockup: "leads",
+  },
 ];
 
 const fadeUp = {
@@ -61,6 +99,352 @@ const fadeUp = {
     transition: { duration: 0.6, delay: i * 0.1 },
   }),
 };
+
+/* ── Animated Dashboard Mockups ── */
+function DashboardMockup({ activeStep }: { activeStep: string }) {
+  return (
+    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-2xl shadow-gray-200/50">
+      {/* Browser chrome */}
+      <div className="flex items-center gap-2 border-b border-gray-100 bg-gray-50 px-4 py-2.5">
+        <div className="flex gap-1.5">
+          <div className="h-2.5 w-2.5 rounded-full bg-red-300" />
+          <div className="h-2.5 w-2.5 rounded-full bg-yellow-300" />
+          <div className="h-2.5 w-2.5 rounded-full bg-green-300" />
+        </div>
+        <div className="mx-auto rounded-md bg-white px-12 py-1 text-xs text-gray-400 border border-gray-100">
+          listingflare.com/dashboard
+        </div>
+      </div>
+
+      {/* Dashboard content */}
+      <div className="relative bg-gray-50 p-6" style={{ minHeight: 340 }}>
+        <AnimatePresence mode="wait">
+          {activeStep === "create" && (
+            <motion.div
+              key="create"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.4 }}
+              className="space-y-4"
+            >
+              {/* Sidebar hint */}
+              <div className="flex gap-4">
+                <div className="hidden w-44 flex-shrink-0 space-y-2 md:block">
+                  <div className="rounded-lg bg-gray-900 px-3 py-2 text-xs font-medium text-white">My Listings</div>
+                  <div className="rounded-lg px-3 py-2 text-xs text-gray-500">Leads</div>
+                  <div className="rounded-lg px-3 py-2 text-xs text-gray-500">Settings</div>
+                </div>
+                <div className="flex-1 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <p className="font-serif text-lg font-bold text-gray-900">Create Listing</p>
+                    <div className="rounded-lg bg-gray-900 px-3 py-1.5 text-xs font-medium text-white">Save & Publish</div>
+                  </div>
+                  <div className="rounded-lg border border-gray-200 bg-white p-4 space-y-3">
+                    <div>
+                      <p className="text-xs font-medium text-gray-500 mb-1">Street Address</p>
+                      <div className="rounded-md border border-brand-400 bg-white px-3 py-2 text-sm text-gray-900 ring-2 ring-brand-100">1847 Grandview Terrace</div>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      <div>
+                        <p className="text-xs font-medium text-gray-500 mb-1">Price</p>
+                        <div className="rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-900">$4,750,000</div>
+                      </div>
+                      <div>
+                        <p className="text-xs font-medium text-gray-500 mb-1">Beds</p>
+                        <div className="rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-900">5</div>
+                      </div>
+                      <div>
+                        <p className="text-xs font-medium text-gray-500 mb-1">Baths</p>
+                        <div className="rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-900">4.5</div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex items-center justify-between mb-1">
+                        <p className="text-xs font-medium text-gray-500">Description</p>
+                        <span className="flex items-center gap-1 text-xs text-brand-600 font-medium"><Sparkles className="h-3 w-3" /> AI Generate</span>
+                      </div>
+                      <div className="rounded-md border border-gray-200 px-3 py-2 text-xs text-gray-400 h-16">Perched above the coastline with panoramic ocean views...</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {activeStep === "photos" && (
+            <motion.div
+              key="photos"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.4 }}
+              className="space-y-4"
+            >
+              <div className="flex gap-4">
+                <div className="hidden w-44 flex-shrink-0 space-y-2 md:block">
+                  <div className="rounded-lg bg-gray-900 px-3 py-2 text-xs font-medium text-white">My Listings</div>
+                  <div className="rounded-lg px-3 py-2 text-xs text-gray-500">Leads</div>
+                  <div className="rounded-lg px-3 py-2 text-xs text-gray-500">Settings</div>
+                </div>
+                <div className="flex-1 space-y-3">
+                  <p className="font-serif text-lg font-bold text-gray-900">Photos & Media</p>
+                  <div className="rounded-lg border-2 border-dashed border-brand-300 bg-brand-50/30 p-6 text-center">
+                    <Upload className="mx-auto h-8 w-8 text-brand-400" />
+                    <p className="mt-2 text-sm font-medium text-gray-600">Drag & drop your photos here</p>
+                    <p className="mt-1 text-xs text-gray-400">PNG, JPG up to 20MB each</p>
+                  </div>
+                  <div className="grid grid-cols-4 gap-2">
+                    {[
+                      "photo-1600596542815-ffad4c1539a9",
+                      "photo-1600607687939-ce8a6c25118c",
+                      "photo-1600566753086-00f18fb6b3ea",
+                      "photo-1600585154340-be6161a56a0c",
+                    ].map((id, i) => (
+                      <motion.div
+                        key={id}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: i * 0.15 }}
+                        className="relative aspect-square overflow-hidden rounded-lg"
+                      >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={`https://images.unsplash.com/${id}?w=200&h=200&fit=crop&q=80`} alt="" className="h-full w-full object-cover" />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all hover:bg-black/20">
+                          <span className="rounded-full bg-green-500 p-0.5 text-white absolute top-1 right-1">
+                            <Check className="h-2.5 w-2.5" />
+                          </span>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-gray-500">
+                    <ImageIcon className="h-3.5 w-3.5" />
+                    <span>4 of 12 photos uploaded</span>
+                    <div className="flex-1 rounded-full bg-gray-200 h-1.5">
+                      <div className="rounded-full bg-brand-500 h-1.5 w-1/3 transition-all" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {activeStep === "published" && (
+            <motion.div
+              key="published"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.4 }}
+              className="space-y-4"
+            >
+              <div className="flex gap-4">
+                <div className="hidden w-44 flex-shrink-0 space-y-2 md:block">
+                  <div className="rounded-lg bg-gray-900 px-3 py-2 text-xs font-medium text-white">My Listings</div>
+                  <div className="rounded-lg px-3 py-2 text-xs text-gray-500">Leads</div>
+                  <div className="rounded-lg px-3 py-2 text-xs text-gray-500">Settings</div>
+                </div>
+                <div className="flex-1 space-y-3">
+                  <p className="font-serif text-lg font-bold text-gray-900">My Listings</p>
+                  <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
+                    <div className="relative h-36 overflow-hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=300&fit=crop&q=80" alt="" className="h-full w-full object-cover" />
+                      <motion.span
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.3, type: "spring" }}
+                        className="absolute right-2 top-2 rounded-full bg-green-50 border border-green-200 px-2.5 py-0.5 text-xs font-medium text-green-700"
+                      >
+                        Published
+                      </motion.span>
+                    </div>
+                    <div className="p-4">
+                      <p className="font-serif font-semibold text-gray-900">1847 Grandview Terrace</p>
+                      <p className="text-xs text-gray-500">Pacific Palisades, CA 90272</p>
+                      <p className="mt-1 font-serif text-lg font-bold text-gray-900">$4,750,000</p>
+                      <div className="mt-3 flex items-center justify-between border-t border-gray-100 pt-3">
+                        <span className="flex items-center gap-1 text-xs text-gray-400"><Eye className="h-3 w-3" /> 0 views</span>
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.5 }}
+                          className="flex items-center gap-1 rounded-md bg-brand-50 px-2 py-1 text-xs font-medium text-brand-600"
+                        >
+                          <MousePointerClick className="h-3 w-3" />
+                          Share Link
+                        </motion.div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {activeStep === "leads" && (
+            <motion.div
+              key="leads"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.4 }}
+              className="space-y-4"
+            >
+              <div className="flex gap-4">
+                <div className="hidden w-44 flex-shrink-0 space-y-2 md:block">
+                  <div className="rounded-lg px-3 py-2 text-xs text-gray-500">My Listings</div>
+                  <div className="rounded-lg bg-gray-900 px-3 py-2 text-xs font-medium text-white flex items-center justify-between">
+                    Leads
+                    <span className="rounded-full bg-red-500 px-1.5 py-0.5 text-[10px] text-white font-bold">3</span>
+                  </div>
+                  <div className="rounded-lg px-3 py-2 text-xs text-gray-500">Settings</div>
+                </div>
+                <div className="flex-1 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <p className="font-serif text-lg font-bold text-gray-900">Leads</p>
+                    <div className="flex gap-1.5">
+                      <span className="rounded-full bg-gray-900 px-2.5 py-1 text-[10px] font-medium text-white">All (3)</span>
+                      <span className="rounded-full border border-blue-200 bg-blue-50 px-2.5 py-1 text-[10px] font-medium text-blue-700">New (3)</span>
+                    </div>
+                  </div>
+                  {[
+                    { name: "Sarah Mitchell", msg: "I'd love to schedule a showing this weekend!", time: "2 min ago", new: true },
+                    { name: "James Rodriguez", msg: "Is the property still available?", time: "1 hour ago", new: true },
+                    { name: "Emily Chen", msg: "Beautiful home! Can I get more details?", time: "3 hours ago", new: true },
+                  ].map((lead, i) => (
+                    <motion.div
+                      key={lead.name}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.2 }}
+                      className="flex items-start gap-3 rounded-lg border border-gray-200 bg-white p-3 transition-shadow hover:shadow-md"
+                    >
+                      {lead.new && <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-brand-500" />}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between">
+                          <p className="text-sm font-semibold text-gray-900">{lead.name}</p>
+                          <span className="text-[10px] text-gray-400">{lead.time}</span>
+                        </div>
+                        <p className="mt-0.5 text-xs text-gray-500 truncate">{lead.msg}</p>
+                        <div className="mt-2 flex items-center gap-2">
+                          <span className="rounded-full border border-blue-200 bg-blue-50 px-2 py-0.5 text-[10px] font-medium text-blue-700">New</span>
+                          <span className="flex items-center gap-1 text-[10px] text-brand-600 font-medium cursor-pointer hover:underline"><Send className="h-2.5 w-2.5" /> Reply</span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+function HowItWorks() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const nextStep = useCallback(() => {
+    setActiveIndex((i) => (i + 1) % walkthrough.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(nextStep, 4000);
+    return () => clearInterval(timer);
+  }, [nextStep]);
+
+  return (
+    <section className="bg-gray-50 py-20 md:py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+            How It Works
+          </p>
+          <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
+            From photos to published
+            <br />
+            in under 5 minutes.
+          </h2>
+        </motion.div>
+
+        <div className="mt-16 grid gap-12 lg:grid-cols-[340px_1fr] lg:gap-8">
+          {/* Steps */}
+          <div className="space-y-2">
+            {walkthrough.map((step, i) => (
+              <button
+                key={step.step}
+                onClick={() => setActiveIndex(i)}
+                className={`group flex w-full items-start gap-4 rounded-xl p-4 text-left transition-all ${
+                  i === activeIndex
+                    ? "bg-white shadow-lg shadow-gray-200/50 border border-gray-200"
+                    : "hover:bg-white/60"
+                }`}
+              >
+                <div
+                  className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg transition-colors ${
+                    i === activeIndex
+                      ? "bg-brand-500 text-white"
+                      : "bg-gray-200 text-gray-500 group-hover:bg-gray-300"
+                  }`}
+                >
+                  <step.icon className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className={`text-sm font-semibold transition-colors ${
+                    i === activeIndex ? "text-gray-900" : "text-gray-500"
+                  }`}>
+                    {step.title}
+                  </p>
+                  {i === activeIndex && (
+                    <motion.p
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      className="mt-1 text-sm leading-relaxed text-gray-500"
+                    >
+                      {step.description}
+                    </motion.p>
+                  )}
+                  {/* Progress bar */}
+                  {i === activeIndex && (
+                    <div className="mt-3 h-1 w-full rounded-full bg-gray-100">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: "100%" }}
+                        transition={{ duration: 4, ease: "linear" }}
+                        key={activeIndex}
+                        className="h-1 rounded-full bg-brand-500"
+                      />
+                    </div>
+                  )}
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {/* Mockup */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+          >
+            <DashboardMockup activeStep={walkthrough[activeIndex].mockup} />
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function LandingPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -262,6 +646,9 @@ export default function LandingPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* How It Works — Animated Walkthrough */}
+      <HowItWorks />
 
       {/* Pricing */}
       <section className="bg-gray-950 py-20 md:py-28">
