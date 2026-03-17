@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { formatPhone } from "@/lib/formatters";
 
 export const dynamic = "force-dynamic";
 
@@ -70,7 +71,7 @@ export async function POST(req: NextRequest) {
               </tr>
               ${lead.phone ? `<tr>
                 <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Phone</td>
-                <td style="padding: 8px 0;"><a href="tel:${lead.phone}" style="color: #b8965a;">${lead.phone}</a></td>
+                <td style="padding: 8px 0;"><a href="tel:${lead.phone}" style="color: #b8965a;">${formatPhone(lead.phone)}</a></td>
               </tr>` : ""}
               ${lead.message ? `<tr>
                 <td style="padding: 8px 0; color: #6b7280; font-size: 14px; vertical-align: top;">Message</td>

@@ -114,27 +114,29 @@ export default function SettingsPage() {
       } = await supabase.auth.getUser();
       if (!user) throw new Error("Not authenticated");
 
-      const { error: updateError } = await supabase
-        .from("agent_profiles")
-        .update({
-          name,
-          title,
-          brokerage,
-          phone,
-          email,
-          headshot_url: headshotUrl?.split("?")[0] || null,
-          instagram,
-          linkedin,
-          zillow,
-          realtor_com: realtorCom,
-          facebook,
-          website,
-          weekly_emails: weeklyEmails,
-          updated_at: new Date().toISOString(),
-        })
-        .eq("id", user.id);
+      const profileData = {
+        name,
+        title,
+        brokerage,
+        phone,
+        email,
+        headshot_url: headshotUrl?.split("?")[0] || null,
+        instagram,
+        linkedin,
+        zillow,
+        realtor_com: realtorCom,
+        facebook,
+        website,
+        weekly_emails: weeklyEmails,
+        updated_at: new Date().toISOString(),
+      };
 
-      if (updateError) throw updateError;
+      // Use upsert to guarantee the save works whether the row exists or not
+      const { error: upsertError } = await supabase
+        .from("agent_profiles")
+        .upsert({ id: user.id, ...profileData });
+
+      if (upsertError) throw upsertError;
 
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
