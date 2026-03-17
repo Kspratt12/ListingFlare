@@ -867,8 +867,9 @@ export default function LandingPage() {
                     </div>
                   </div>
                 </div>
-                {/* Gallery strip */}
-                <div className="flex gap-1 p-1 bg-gray-50">
+                {/* Gallery grid with live video */}
+                <div className="grid grid-cols-4 gap-1 p-1.5 bg-gray-50">
+                  {/* Photo thumbnails */}
                   {[
                     "photo-1600607687939-ce8a6c25118c",
                     "photo-1600566753086-00f18fb6b3ea",
@@ -877,30 +878,31 @@ export default function LandingPage() {
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       key={id}
-                      src={`https://images.unsplash.com/${id}?w=150&h=80&fit=crop&q=80`}
+                      src={`https://images.unsplash.com/${id}?w=200&h=150&fit=crop&q=80`}
                       alt=""
                       loading="lazy"
-                      className="h-12 flex-1 rounded object-cover"
+                      className="aspect-[4/3] w-full rounded object-cover"
                     />
                   ))}
-                  {/* Video thumbnail */}
-                  <div className="relative h-12 flex-1 overflow-hidden rounded">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=150&h=80&fit=crop&q=80"
-                      alt=""
-                      loading="lazy"
-                      className="h-full w-full object-cover brightness-75"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="rounded-full bg-white/90 p-1">
-                        <svg className="h-2.5 w-2.5 text-gray-900 ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                      </div>
-                    </div>
-                    <span className="absolute bottom-0.5 right-0.5 rounded bg-black/70 px-1 text-[7px] font-bold text-white">4K</span>
+                  {/* Live auto-playing video */}
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded">
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="h-full w-full object-cover"
+                      poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=150&fit=crop&q=80"
+                    >
+                      <source src="https://assets.mixkit.co/videos/1222/1222-720.mp4" type="video/mp4" />
+                    </video>
+                    <span className="absolute top-1 left-1 rounded bg-black/70 px-1.5 py-0.5 text-[7px] font-bold text-white flex items-center gap-0.5">
+                      <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
+                      8K VIDEO
+                    </span>
                   </div>
                 </div>
-                {/* Agent + features */}
+                {/* Features + Agent + CTA */}
                 <div className="p-4 space-y-3">
                   {/* Features row */}
                   <div className="flex flex-wrap gap-1.5">
