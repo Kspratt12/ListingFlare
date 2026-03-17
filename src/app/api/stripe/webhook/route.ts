@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { createClient } from "@supabase/supabase-js";
 import Stripe from "stripe";
 
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
   let event: Stripe.Event;
 
   try {
-    event = stripe.webhooks.constructEvent(
+    event = getStripe().webhooks.constructEvent(
       body,
       signature,
       process.env.STRIPE_WEBHOOK_SECRET!
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
         const session = event.data.object as Stripe.Checkout.Session;
         const userId = session.metadata?.supabase_user_id
           || session.subscription
-            ? (await stripe.subscriptions.retrieve(session.subscription as string)).metadata.supabase_user_id
+            ? (await getStripe().subscriptions.retrieve(session.subscription as string)).metadata.supabase_user_id
             : null;
 
         if (userId) {
@@ -99,7 +99,7 @@ export async function POST(request: NextRequest) {
             ? invoice.parent.subscription_details.subscription
             : null;
         if (subId) {
-          const subscription = await stripe.subscriptions.retrieve(subId);
+          const subscription = await getStripe().subscriptions.retrieve(subId);
           const userId = subscription.metadata.supabase_user_id;
 
           if (userId) {
