@@ -8,10 +8,10 @@ export default function Footer() {
           <p className="font-serif text-lg font-bold text-gray-900">
             Listing<span className="text-brand-400">Flare</span>
           </p>
-          <div className="flex items-center gap-4 text-sm text-gray-400">
-            <Link href="/privacy" className="hover:text-gray-600 transition-colors">Privacy</Link>
+          <div className="flex items-center gap-5 text-sm text-gray-500">
+            <Link href="/privacy" className="underline underline-offset-2 transition-colors hover:text-gray-900">Privacy Policy</Link>
             <span>&middot;</span>
-            <Link href="/terms" className="hover:text-gray-600 transition-colors">Terms</Link>
+            <Link href="/terms" className="underline underline-offset-2 transition-colors hover:text-gray-900">Terms of Service</Link>
             <span>&middot;</span>
             <span>&copy; {new Date().getFullYear()} ListingFlare</span>
           </div>

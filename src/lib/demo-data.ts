@@ -33,8 +33,8 @@ export interface PropertyListing {
 }
 
 // High-quality Unsplash images for the demo listing
-const unsplash = (id: string, w = 1200, h = 800) =>
-  `https://images.unsplash.com/${id}?w=${w}&h=${h}&fit=crop&q=80`;
+const unsplash = (id: string, w = 3840, h = 2560) =>
+  `https://images.unsplash.com/${id}?w=${w}&h=${h}&fit=crop&q=90&auto=format`;
 
 export const demoListing: PropertyListing = {
   address: {
@@ -84,7 +84,7 @@ Outside, the zero-edge infinity pool appears to merge with the ocean horizon. Ma
     brokerage: "Westside Luxury Realty",
     phone: "(310) 555-0192",
     email: "victoria@westsideluxury.com",
-    headshotUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=80",
+    headshotUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=800&fit=crop&q=90&auto=format",
   },
 };
 

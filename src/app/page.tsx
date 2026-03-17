@@ -179,7 +179,7 @@ export default function LandingPage() {
                 <div className="relative aspect-[16/9] overflow-hidden bg-gray-900">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=675&fit=crop&q=80"
+                    src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=3840&h=2160&fit=crop&q=90&auto=format"
                     alt="ListingFlare property page preview"
                     className="h-full w-full object-cover opacity-80"
                   />
@@ -363,9 +363,13 @@ export default function LandingPage() {
           <span className="font-serif text-lg font-bold text-gray-900">
             Listing<span className="text-brand-500">Flare</span>
           </span>
-          <p className="text-sm text-gray-400">
-            &copy; {new Date().getFullYear()} ListingFlare. All rights reserved.
-          </p>
+          <div className="flex items-center gap-5 text-sm text-gray-500">
+            <Link href="/privacy" className="underline underline-offset-2 transition-colors hover:text-gray-900">Privacy Policy</Link>
+            <span>&middot;</span>
+            <Link href="/terms" className="underline underline-offset-2 transition-colors hover:text-gray-900">Terms of Service</Link>
+            <span>&middot;</span>
+            <span>&copy; {new Date().getFullYear()} ListingFlare</span>
+          </div>
         </div>
       </footer>
     </div>
