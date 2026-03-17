@@ -901,6 +901,12 @@ export default function LandingPage() {
                     <span className="rounded-full bg-green-50 border border-green-200 px-2 py-0.5 text-[9px] font-medium text-green-700 flex items-center gap-0.5">
                       <Bell className="h-2.5 w-2.5" /> Instant Lead Alerts
                     </span>
+                    <span className="rounded-full bg-orange-50 border border-orange-200 px-2 py-0.5 text-[9px] font-medium text-orange-700 flex items-center gap-0.5">
+                      <Eye className="h-2.5 w-2.5" /> Open House Flyers
+                    </span>
+                    <span className="rounded-full bg-rose-50 border border-rose-200 px-2 py-0.5 text-[9px] font-medium text-rose-700 flex items-center gap-0.5">
+                      <Upload className="h-2.5 w-2.5" /> 8K Video Upload
+                    </span>
                   </div>
                   {/* Agent branding */}
                   <div className="flex items-center gap-3 border-t border-gray-100 pt-3">
