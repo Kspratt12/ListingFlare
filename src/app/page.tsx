@@ -631,7 +631,7 @@ export default function LandingPage() {
             className="text-center"
           >
             <p className="text-sm font-medium text-gray-400">
-              Built for agents who sell $300K+ homes in the Triangle
+              Stop sending buyers to Zillow. Give every listing its own website.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-8 md:gap-14">
               <div className="text-center">
