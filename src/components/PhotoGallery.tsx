@@ -75,10 +75,6 @@ function VideoCard({ video, index }: { video: { src: string; thumbnail?: string;
                   <Play className="h-7 w-7 text-white ml-1" fill="white" />
                 </div>
               </div>
-              {/* Caption */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 pt-10 rounded-b-xl">
-                <p className="text-sm font-medium text-white">{video.alt}</p>
-              </div>
             </div>
           )}
           {/* Paused indicator */}
