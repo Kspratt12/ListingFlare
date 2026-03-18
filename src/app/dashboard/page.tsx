@@ -169,7 +169,7 @@ export default function MyListingsPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          {!loading && listings.length > 1 && (
+          {!loading && listings.length > 0 && (
             <div className="flex items-center gap-1 mr-2">
               <ArrowUpDown className="h-3.5 w-3.5 text-gray-400" />
               {(["newest", "city", "state", "price"] as const).map((s) => (

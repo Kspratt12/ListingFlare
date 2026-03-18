@@ -11,9 +11,8 @@ interface Props {
 
 function VideoCard({ video, index }: { video: { src: string; thumbnail?: string; alt: string }; index: number }) {
   const [started, setStarted] = useState(false);
-  const [showControls, setShowControls] = useState(false);
+  const [paused, setPaused] = useState(false);
   const videoRef = React.useRef<HTMLVideoElement>(null);
-  const controlsTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleStart = () => {
     setStarted(true);
@@ -24,18 +23,13 @@ function VideoCard({ video, index }: { video: { src: string; thumbnail?: string;
 
   const handleVideoTap = () => {
     if (!videoRef.current) return;
-    if (showControls) {
-      // If controls visible, toggle play/pause
-      if (videoRef.current.paused) {
-        videoRef.current.play();
-      } else {
-        videoRef.current.pause();
-      }
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setPaused(false);
+    } else {
+      videoRef.current.pause();
+      setPaused(true);
     }
-    // Show controls briefly
-    setShowControls(true);
-    if (controlsTimer.current) clearTimeout(controlsTimer.current);
-    controlsTimer.current = setTimeout(() => setShowControls(false), 3000);
   };
 
   return (
@@ -78,7 +72,7 @@ function VideoCard({ video, index }: { video: { src: string; thumbnail?: string;
             </div>
           </div>
         ) : (
-          /* Clean video player — no controls until tap */
+          /* Clean video player — tap to play/pause, no controls ever */
           <div
             className="relative bg-black rounded-xl cursor-pointer"
             style={{ aspectRatio: index % 2 === 0 ? "3/4" : "4/5" }}
@@ -89,11 +83,20 @@ function VideoCard({ video, index }: { video: { src: string; thumbnail?: string;
               src={video.src}
               poster={video.thumbnail}
               playsInline
+              muted
+              loop
               preload="auto"
-              controls={showControls}
-              className={`absolute inset-0 h-full w-full rounded-xl object-cover ${showControls ? "" : "[&::-webkit-media-controls]:hidden"}`}
-              controlsList="nodownload"
+              className="absolute inset-0 h-full w-full rounded-xl object-cover"
+              onEnded={() => setPaused(true)}
             />
+            {/* Pause indicator — shows briefly when paused */}
+            {paused && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-xl">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-500/90 shadow-xl shadow-brand-500/30">
+                  <Play className="h-6 w-6 text-white ml-0.5" fill="white" />
+                </div>
+              </div>
+            )}
             {/* 8K badge */}
             <div className="absolute top-3 left-3 z-10 pointer-events-none">
               <span className="rounded-full bg-black/60 px-2.5 py-1 text-[10px] font-bold text-white backdrop-blur-sm flex items-center gap-1">
