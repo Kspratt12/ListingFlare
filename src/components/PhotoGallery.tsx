@@ -18,7 +18,7 @@ function VideoCard({ video, index }: { video: { src: string; thumbnail?: string;
     setStarted(true);
     setTimeout(() => {
       videoRef.current?.play().catch(() => {});
-    }, 100);
+    }, 200);
   };
 
   const handleVideoTap = () => {
@@ -47,17 +47,19 @@ function VideoCard({ video, index }: { video: { src: string; thumbnail?: string;
           style={{ aspectRatio: index % 2 === 0 ? "3/4" : "4/5" }}
           onClick={started ? handleVideoTap : handleStart}
         >
-          {/* Video — hidden until started, preloads in background */}
-          <video
-            ref={videoRef}
-            src={video.src}
-            playsInline
-            muted
-            loop
-            preload="auto"
-            title=""
-            className={`absolute inset-0 h-full w-full rounded-xl object-cover ${started ? "z-10 opacity-100" : "z-0 opacity-0"}`}
-          />
+          {/* Video — only renders after started */}
+          {started && (
+            <video
+              ref={videoRef}
+              src={video.src}
+              playsInline
+              muted
+              loop
+              preload="auto"
+              title=""
+              className="absolute inset-0 z-10 h-full w-full rounded-xl object-cover"
+            />
+          )}
           {/* Thumbnail overlay — hides once started */}
           {!started && (
             <div className="absolute inset-0 z-20">
