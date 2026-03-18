@@ -16,6 +16,7 @@ export default function MyListingsPage() {
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
   const [hasEverCreated, setHasEverCreated] = useState(false);
   const [sortBy, setSortBy] = useState<"newest" | "city" | "state" | "price">("newest");
+  const [priceDir, setPriceDir] = useState<"desc" | "asc">("desc");
   const supabase = createClient();
   const limits = getSubscriptionLimits(profile);
 
@@ -141,7 +142,7 @@ export default function MyListingsPage() {
   const sortedListings = [...listings].sort((a, b) => {
     if (sortBy === "city") return (a.city || "").localeCompare(b.city || "");
     if (sortBy === "state") return (a.state || "").localeCompare(b.state || "");
-    if (sortBy === "price") return (b.price || 0) - (a.price || 0);
+    if (sortBy === "price") return priceDir === "desc" ? (b.price || 0) - (a.price || 0) : (a.price || 0) - (b.price || 0);
     return 0; // newest — already sorted by created_at desc from DB
   });
 
@@ -171,20 +172,36 @@ export default function MyListingsPage() {
         <div className="flex items-center gap-2">
           {!loading && listings.length > 0 && (
             <div className="flex items-center gap-1 mr-2">
-              <ArrowUpDown className="h-3.5 w-3.5 text-gray-400" />
-              {(["newest", "city", "state", "price"] as const).map((s) => (
+              <ArrowUpDown className="h-3.5 w-3.5 text-brand-400" />
+              {(["newest", "city", "state"] as const).map((s) => (
                 <button
                   key={s}
                   onClick={() => setSortBy(s)}
                   className={`rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors ${
                     sortBy === s
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-400 hover:bg-gray-100 hover:text-gray-600"
+                      ? "bg-brand-500 text-white"
+                      : "text-brand-400 hover:bg-brand-50 hover:text-brand-600 border border-brand-200"
                   }`}
                 >
                   {s.charAt(0).toUpperCase() + s.slice(1)}
                 </button>
               ))}
+              <button
+                onClick={() => {
+                  if (sortBy === "price") {
+                    setPriceDir((d) => d === "desc" ? "asc" : "desc");
+                  } else {
+                    setSortBy("price");
+                  }
+                }}
+                className={`rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors ${
+                  sortBy === "price"
+                    ? "bg-brand-500 text-white"
+                    : "text-brand-400 hover:bg-brand-50 hover:text-brand-600 border border-brand-200"
+                }`}
+              >
+                Price {sortBy === "price" ? (priceDir === "desc" ? "↓" : "↑") : ""}
+              </button>
             </div>
           )}
           {loading ? (
