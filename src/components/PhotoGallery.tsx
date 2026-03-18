@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, Play } from "lucide-react";
 
@@ -11,6 +11,32 @@ interface Props {
 
 function VideoCard({ video, index }: { video: { src: string; thumbnail?: string; alt: string }; index: number }) {
   const [started, setStarted] = useState(false);
+  const [showControls, setShowControls] = useState(false);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const controlsTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleStart = () => {
+    setStarted(true);
+    setTimeout(() => {
+      videoRef.current?.play().catch(() => {});
+    }, 100);
+  };
+
+  const handleVideoTap = () => {
+    if (!videoRef.current) return;
+    if (showControls) {
+      // If controls visible, toggle play/pause
+      if (videoRef.current.paused) {
+        videoRef.current.play();
+      } else {
+        videoRef.current.pause();
+      }
+    }
+    // Show controls briefly
+    setShowControls(true);
+    if (controlsTimer.current) clearTimeout(controlsTimer.current);
+    controlsTimer.current = setTimeout(() => setShowControls(false), 3000);
+  };
 
   return (
     <motion.div
@@ -23,7 +49,7 @@ function VideoCard({ video, index }: { video: { src: string; thumbnail?: string;
       <div className="group relative overflow-hidden rounded-xl">
         {!started ? (
           /* Thumbnail with gold play button */
-          <div className="relative cursor-pointer" onClick={() => setStarted(true)}>
+          <div className="relative cursor-pointer" onClick={handleStart}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={video.thumbnail || ""}
@@ -52,19 +78,23 @@ function VideoCard({ video, index }: { video: { src: string; thumbnail?: string;
             </div>
           </div>
         ) : (
-          /* Video player — uses native controls for reliable playback */
-          <div className="relative bg-black rounded-xl" style={{ aspectRatio: index % 2 === 0 ? "3/4" : "4/5" }}>
+          /* Clean video player — no controls until tap */
+          <div
+            className="relative bg-black rounded-xl cursor-pointer"
+            style={{ aspectRatio: index % 2 === 0 ? "3/4" : "4/5" }}
+            onClick={handleVideoTap}
+          >
             <video
+              ref={videoRef}
               src={video.src}
               poster={video.thumbnail}
-              controls
               playsInline
-              autoPlay
               preload="auto"
-              className="absolute inset-0 h-full w-full rounded-xl object-cover"
+              controls={showControls}
+              className={`absolute inset-0 h-full w-full rounded-xl object-cover ${showControls ? "" : "[&::-webkit-media-controls]:hidden"}`}
               controlsList="nodownload"
             />
-            {/* 8K badge stays visible */}
+            {/* 8K badge */}
             <div className="absolute top-3 left-3 z-10 pointer-events-none">
               <span className="rounded-full bg-black/60 px-2.5 py-1 text-[10px] font-bold text-white backdrop-blur-sm flex items-center gap-1">
                 <span className="h-1.5 w-1.5 rounded-full bg-brand-400" />

@@ -12,7 +12,6 @@ import {
   Globe,
   Trash2,
   ArrowLeft,
-  Archive,
   Sparkles,
   ExternalLink,
   Video,
@@ -705,13 +704,18 @@ export default function EditListingPage() {
               </div>
             )}
             {currentStatus === "published" && (
-              <button
-                onClick={() => handleSave("archived")}
-                className="flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
-              >
-                <Archive className="h-4 w-4" />
-                Archive
-              </button>
+              <div className="flex items-center gap-2">
+                <select
+                  value={currentStatus}
+                  onChange={(e) => handleSave(e.target.value)}
+                  className="rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 cursor-pointer"
+                >
+                  <option value="published">Published</option>
+                  <option value="pending">Pending</option>
+                  <option value="closed">Closed</option>
+                  <option value="archived">Archived</option>
+                </select>
+              </div>
             )}
           </div>
 

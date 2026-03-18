@@ -6,7 +6,7 @@ import type { Listing, AgentProfile } from "@/lib/types";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import UpgradePrompt from "@/components/UpgradePrompt";
 import Link from "next/link";
-import { PlusCircle, Eye, Pencil, Share2, Loader2, Trash2, Lock } from "lucide-react";
+import { PlusCircle, Eye, Pencil, Share2, Loader2, Trash2, Lock, ArrowUpDown } from "lucide-react";
 
 export default function MyListingsPage() {
   const [listings, setListings] = useState<Listing[]>([]);
@@ -15,6 +15,7 @@ export default function MyListingsPage() {
   const [profile, setProfile] = useState<AgentProfile | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
   const [hasEverCreated, setHasEverCreated] = useState(false);
+  const [sortBy, setSortBy] = useState<"newest" | "city" | "state" | "price">("newest");
   const supabase = createClient();
   const limits = getSubscriptionLimits(profile);
 
@@ -130,10 +131,19 @@ export default function MyListingsPage() {
     const styles: Record<string, string> = {
       published: "bg-green-50 text-green-700 border-green-200",
       draft: "bg-gray-50 text-gray-600 border-gray-200",
+      pending: "bg-blue-50 text-blue-700 border-blue-200",
+      closed: "bg-brand-50 text-brand-700 border-brand-300 font-semibold",
       archived: "bg-amber-50 text-amber-700 border-amber-200",
     };
     return styles[status] || styles.draft;
   };
+
+  const sortedListings = [...listings].sort((a, b) => {
+    if (sortBy === "city") return (a.city || "").localeCompare(b.city || "");
+    if (sortBy === "state") return (a.state || "").localeCompare(b.state || "");
+    if (sortBy === "price") return (b.price || 0) - (a.price || 0);
+    return 0; // newest — already sorted by created_at desc from DB
+  });
 
   return (
     <div>
@@ -149,7 +159,7 @@ export default function MyListingsPage() {
           </Link>
         </div>
       )}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="font-serif text-2xl font-bold text-gray-900 md:text-3xl">
             My Listings
@@ -158,25 +168,45 @@ export default function MyListingsPage() {
             Manage your property listing websites.
           </p>
         </div>
-        {loading ? (
-          <div className="h-10 w-36 animate-pulse rounded-lg bg-gray-200" />
-        ) : !limits.isPaid && profile && listings.length >= limits.maxListings ? (
-          <Link
-            href="/dashboard/billing"
-            className="flex items-center gap-2 rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-600"
-          >
-            <Lock className="h-4 w-4" />
-            Upgrade to Add More
-          </Link>
-        ) : (
-          <Link
-            href="/dashboard/create"
-            className="flex items-center gap-2 rounded-lg bg-gray-950 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
-          >
-            <PlusCircle className="h-4 w-4" />
-            New Listing
-          </Link>
-        )}
+        <div className="flex items-center gap-2">
+          {!loading && listings.length > 1 && (
+            <div className="flex items-center gap-1 mr-2">
+              <ArrowUpDown className="h-3.5 w-3.5 text-gray-400" />
+              {(["newest", "city", "state", "price"] as const).map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setSortBy(s)}
+                  className={`rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors ${
+                    sortBy === s
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-400 hover:bg-gray-100 hover:text-gray-600"
+                  }`}
+                >
+                  {s.charAt(0).toUpperCase() + s.slice(1)}
+                </button>
+              ))}
+            </div>
+          )}
+          {loading ? (
+            <div className="h-10 w-36 animate-pulse rounded-lg bg-gray-200" />
+          ) : !limits.isPaid && profile && listings.length >= limits.maxListings ? (
+            <Link
+              href="/dashboard/billing"
+              className="flex items-center gap-2 rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-600"
+            >
+              <Lock className="h-4 w-4" />
+              Upgrade to Add More
+            </Link>
+          ) : (
+            <Link
+              href="/dashboard/create"
+              className="flex items-center gap-2 rounded-lg bg-gray-950 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+            >
+              <PlusCircle className="h-4 w-4" />
+              New Listing
+            </Link>
+          )}
+        </div>
       </div>
 
       {loading ? (
@@ -220,7 +250,7 @@ export default function MyListingsPage() {
         </div>
       ) : (
         <div className="mt-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-          {listings.map((listing) => (
+          {sortedListings.map((listing) => (
             <div
               key={listing.id}
               className="group overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow hover:shadow-lg"
