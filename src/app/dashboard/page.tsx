@@ -295,9 +295,27 @@ export default function MyListingsPage() {
                 </p>
 
                 <div className="mt-4 flex items-center justify-between border-t border-gray-100 pt-4">
-                  <div className="flex items-center gap-1.5 text-sm text-gray-400">
-                    <Eye className="h-4 w-4" />
-                    {listing.view_count} views
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-1.5 text-sm text-gray-400">
+                      <Eye className="h-4 w-4" />
+                      {listing.view_count} views
+                    </div>
+                    <select
+                      value={listing.status}
+                      onChange={async (e) => {
+                        const newStatus = e.target.value;
+                        await supabase.from("listings").update({ status: newStatus }).eq("id", listing.id);
+                        setListings((prev) => prev.map((l) => l.id === listing.id ? { ...l, status: newStatus as Listing["status"] } : l));
+                      }}
+                      onClick={(e) => e.stopPropagation()}
+                      className={`appearance-none rounded-full border py-0.5 pl-2.5 pr-6 text-[11px] font-medium capitalize cursor-pointer ${statusBadge(listing.status)}`}
+                    >
+                      <option value="published">Published</option>
+                      <option value="pending">Pending</option>
+                      <option value="closed">Closed</option>
+                      <option value="draft">Draft</option>
+                      <option value="archived">Archived</option>
+                    </select>
                   </div>
                   <div className="flex items-center gap-1">
                     {listing.status === "published" && listing.photos.length > 0 && limits.canGenerateSocialPosts && (

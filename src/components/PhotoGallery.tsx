@@ -41,71 +41,62 @@ function VideoCard({ video, index }: { video: { src: string; thumbnail?: string;
       className="mb-4 break-inside-avoid"
     >
       <div className="group relative overflow-hidden rounded-xl">
-        {!started ? (
-          /* Thumbnail with gold play button */
-          <div className="relative cursor-pointer" onClick={handleStart}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={video.thumbnail || ""}
-              alt={video.alt}
-              loading="lazy"
-              className="w-full object-cover"
-              style={{ aspectRatio: index % 2 === 0 ? "3/4" : "4/5" }}
-            />
-            <div className="absolute inset-0 bg-black/20" />
-            {/* Gold play button */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-500/90 shadow-xl shadow-brand-500/30 transition-transform hover:scale-110">
-                <Play className="h-7 w-7 text-white ml-1" fill="white" />
-              </div>
-            </div>
-            {/* 8K badge */}
-            <div className="absolute top-3 left-3">
-              <span className="rounded-full bg-black/60 px-2.5 py-1 text-[10px] font-bold text-white backdrop-blur-sm flex items-center gap-1">
-                <span className="h-1.5 w-1.5 rounded-full bg-brand-400 animate-pulse" />
-                8K VIDEO
-              </span>
-            </div>
-            {/* Caption */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 pt-10">
-              <p className="text-sm font-medium text-white">{video.alt}</p>
-            </div>
-          </div>
-        ) : (
-          /* Clean video player — tap to play/pause, no controls ever */
-          <div
-            className="relative bg-black rounded-xl cursor-pointer"
-            style={{ aspectRatio: index % 2 === 0 ? "3/4" : "4/5" }}
-            onClick={handleVideoTap}
-          >
-            <video
-              ref={videoRef}
-              src={video.src}
-              poster={video.thumbnail}
-              playsInline
-              muted
-              loop
-              preload="auto"
-              className="absolute inset-0 h-full w-full rounded-xl object-cover"
-              onEnded={() => setPaused(true)}
-            />
-            {/* Pause indicator — shows briefly when paused */}
-            {paused && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-xl">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-500/90 shadow-xl shadow-brand-500/30">
-                  <Play className="h-6 w-6 text-white ml-0.5" fill="white" />
+        {/* Video preloads hidden behind the thumbnail for instant playback */}
+        <div
+          className="relative cursor-pointer"
+          style={{ aspectRatio: index % 2 === 0 ? "3/4" : "4/5" }}
+          onClick={started ? handleVideoTap : handleStart}
+        >
+          {/* Hidden preloading video */}
+          <video
+            ref={videoRef}
+            src={video.src}
+            poster={video.thumbnail}
+            playsInline
+            muted
+            loop
+            preload="auto"
+            className={`absolute inset-0 h-full w-full rounded-xl object-cover ${started ? "z-10" : "z-0"}`}
+          />
+          {/* Thumbnail overlay — hides once started */}
+          {!started && (
+            <div className="absolute inset-0 z-20">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={video.thumbnail || ""}
+                alt={video.alt}
+                loading="lazy"
+                className="h-full w-full rounded-xl object-cover"
+              />
+              <div className="absolute inset-0 bg-black/20 rounded-xl" />
+              {/* Gold play button */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-500/90 shadow-xl shadow-brand-500/30 transition-transform hover:scale-110">
+                  <Play className="h-7 w-7 text-white ml-1" fill="white" />
                 </div>
               </div>
-            )}
-            {/* 8K badge */}
-            <div className="absolute top-3 left-3 z-10 pointer-events-none">
-              <span className="rounded-full bg-black/60 px-2.5 py-1 text-[10px] font-bold text-white backdrop-blur-sm flex items-center gap-1">
-                <span className="h-1.5 w-1.5 rounded-full bg-brand-400" />
-                8K VIDEO
-              </span>
+              {/* Caption */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 pt-10 rounded-b-xl">
+                <p className="text-sm font-medium text-white">{video.alt}</p>
+              </div>
             </div>
+          )}
+          {/* Paused indicator */}
+          {started && paused && (
+            <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/20 rounded-xl">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-500/90 shadow-xl shadow-brand-500/30">
+                <Play className="h-6 w-6 text-white ml-0.5" fill="white" />
+              </div>
+            </div>
+          )}
+          {/* 8K badge — always visible */}
+          <div className="absolute top-3 left-3 z-30 pointer-events-none">
+            <span className="rounded-full bg-black/60 px-2.5 py-1 text-[10px] font-bold text-white backdrop-blur-sm flex items-center gap-1">
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-400" />
+              8K VIDEO
+            </span>
           </div>
-        )}
+        </div>
       </div>
     </motion.div>
   );
