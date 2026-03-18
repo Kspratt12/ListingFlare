@@ -4,7 +4,7 @@ import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, CheckCircle } from "lucide-react";
 
 export default function SignupPage() {
   const [name, setName] = useState("");
@@ -12,6 +12,7 @@ export default function SignupPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
   const router = useRouter();
   const supabase = createClient();
 
@@ -23,6 +24,10 @@ export default function SignupPage() {
     const { data, error: signUpError } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        data: { name },
+        emailRedirectTo: `${window.location.origin}/auth/callback`,
+      },
     });
 
     if (signUpError) {
@@ -31,16 +36,30 @@ export default function SignupPage() {
       return;
     }
 
-    // Update agent profile with name
+    // If email confirmation is required, show confirmation message
+    if (data.user?.identities?.length === 0) {
+      setError("An account with this email already exists. Please sign in.");
+      setLoading(false);
+      return;
+    }
+
+    // Try to update profile with name (may not exist yet if email confirm is on)
     if (data.user) {
       await supabase
         .from("agent_profiles")
-        .update({ name, email })
-        .eq("id", data.user.id);
+        .upsert({ id: data.user.id, name, email })
+        .select();
     }
 
-    router.push("/dashboard");
-    router.refresh();
+    // Check if session exists (no email confirmation required)
+    if (data.session) {
+      router.push("/dashboard");
+      router.refresh();
+    } else {
+      // Email confirmation required
+      setEmailSent(true);
+      setLoading(false);
+    }
   };
 
   return (
@@ -85,6 +104,22 @@ export default function SignupPage() {
             Back to home
           </Link>
 
+          {emailSent ? (
+            <div className="text-center">
+              <CheckCircle className="mx-auto h-12 w-12 text-green-500" />
+              <h2 className="mt-4 font-serif text-2xl font-bold text-gray-900">Check your email</h2>
+              <p className="mt-2 text-gray-500">
+                We sent a confirmation link to <strong>{email}</strong>. Click the link to activate your account and start your free trial.
+              </p>
+              <Link
+                href="/login"
+                className="mt-8 inline-flex items-center rounded-lg bg-gray-950 px-6 py-3 text-sm font-medium text-white hover:bg-gray-800"
+              >
+                Go to Sign In
+              </Link>
+            </div>
+          ) : (
+          <>
           <h2 className="font-serif text-3xl font-bold text-gray-900">
             Start your free trial
           </h2>
@@ -169,6 +204,8 @@ export default function SignupPage() {
               Sign in
             </Link>
           </p>
+          </>
+          )}
         </div>
       </div>
     </div>
