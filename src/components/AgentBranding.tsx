@@ -12,7 +12,8 @@ interface Props {
 }
 
 export default function AgentBranding({ agent, agentId }: Props) {
-  const profileLink = agentId ? `/agent/${agentId}` : null;
+  const isDemo = agentId === "demo";
+  const profileLink = agentId ? (isDemo ? "/signup" : `/agent/${agentId}`) : null;
   return (
     <section id="agent" className="bg-white py-20 md:py-28">
       <div className="mx-auto max-w-4xl px-6 md:px-12">
@@ -120,7 +121,7 @@ export default function AgentBranding({ agent, agentId }: Props) {
                   href={profileLink}
                   className="mt-6 inline-flex items-center gap-2 rounded-full border-2 border-brand-300 bg-brand-50 px-5 py-2.5 text-sm font-medium text-brand-700 transition-colors hover:bg-brand-100"
                 >
-                  View All Listings
+                  {isDemo ? "Get This For Your Listings" : "View All Listings"}
                 </Link>
               )}
             </div>

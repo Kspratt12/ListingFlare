@@ -62,7 +62,7 @@ export default function DemoPage() {
       <HeroSlideshow listing={demoListing} />
       <PropertyDetails listing={demoListing} />
       <PhotoGallery photos={demoListing.photos} videos={demoListing.videos} />
-      <AgentBranding agent={demoListing.agent} />
+      <AgentBranding agent={demoListing.agent} agentId="demo" />
       <DemoLeadForm />
       <Footer />
     </main>
