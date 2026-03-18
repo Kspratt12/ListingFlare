@@ -250,7 +250,7 @@ export default function LeadsPage() {
                   <tr
                     key={lead.id}
                     onClick={() => openLead(lead)}
-                    className={`cursor-pointer transition-colors hover:bg-gray-50 ${!lead.is_read ? "bg-brand-50/30" : ""}`}
+                    className={`group cursor-pointer transition-colors hover:bg-gray-50 ${!lead.is_read ? "bg-brand-50/30" : ""}`}
                   >
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-3">
@@ -288,9 +288,29 @@ export default function LeadsPage() {
                       </div>
                     </td>
                     <td className="whitespace-nowrap px-5 py-4">
-                      <span className="flex items-center gap-1.5 text-sm text-gray-500">
-                        <Calendar className="h-3.5 w-3.5" />{formatDate(lead.created_at)}
-                      </span>
+                      <div className="flex items-center gap-3">
+                        <span className="flex items-center gap-1.5 text-sm text-gray-500">
+                          <Calendar className="h-3.5 w-3.5" />{formatDate(lead.created_at)}
+                        </span>
+                        {limits.isPaid && (
+                          <div className="flex items-center gap-0.5 opacity-0 transition-opacity group-hover:opacity-100" onClick={(e) => e.stopPropagation()}>
+                            <button
+                              onClick={() => openLead(lead)}
+                              className="rounded p-1 text-gray-300 hover:bg-gray-100 hover:text-gray-600"
+                              title="Edit lead"
+                            >
+                              <Pencil className="h-3.5 w-3.5" />
+                            </button>
+                            <button
+                              onClick={() => { openLead(lead); setTimeout(() => setDeleteConfirm(true), 100); }}
+                              className="rounded p-1 text-gray-300 hover:bg-red-50 hover:text-red-500"
+                              title="Delete lead"
+                            >
+                              <Trash2 className="h-3.5 w-3.5" />
+                            </button>
+                          </div>
+                        )}
+                      </div>
                     </td>
                   </tr>
                 ))}
