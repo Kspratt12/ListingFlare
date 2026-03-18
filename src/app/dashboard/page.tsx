@@ -136,6 +136,18 @@ export default function MyListingsPage() {
 
   return (
     <div>
+      {limits.isExpired && listings.length > 0 && (
+        <div className="mb-6 flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 p-4">
+          <Lock className="h-5 w-5 flex-shrink-0 text-red-500" />
+          <div className="flex-1">
+            <p className="text-sm font-medium text-red-800">Your trial has expired</p>
+            <p className="mt-0.5 text-xs text-red-600">Your listing is locked and hidden from visitors. Upgrade to reactivate it and unlock all features.</p>
+          </div>
+          <Link href="/dashboard/billing" className="flex-shrink-0 rounded-full bg-red-600 px-4 py-2 text-xs font-semibold text-white hover:bg-red-700">
+            Upgrade Now
+          </Link>
+        </div>
+      )}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="font-serif text-2xl font-bold text-gray-900 md:text-3xl">
