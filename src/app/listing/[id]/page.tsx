@@ -13,16 +13,19 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const supabase = createServerSupabaseClient();
+  const adminClient = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
   const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(params.id);
 
   let data;
   if (isUUID) {
-    const res = await supabase.from("listings").select("street, city, state, price").eq("id", params.id).eq("status", "published").single();
+    const res = await adminClient.from("listings").select("street, city, state, price").eq("id", params.id).single();
     data = res.data;
   }
   if (!data) {
-    const res = await supabase.from("listings").select("street, city, state, price").eq("slug", params.id).eq("status", "published").single();
+    const res = await adminClient.from("listings").select("street, city, state, price").eq("slug", params.id).single();
     data = res.data;
   }
 
@@ -72,28 +75,35 @@ export default async function ListingPage({ params }: Props) {
   // Fetch listing — try UUID first, then slug
   const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(params.id);
 
+  // Use admin client for listing lookups to avoid RLS issues with anonymous visitors
+  const adminClient = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+
   let listing;
   if (isUUID) {
-    const { data } = await supabase
+    const { data } = await adminClient
       .from("listings")
       .select("*")
       .eq("id", params.id)
-      .eq("status", "published")
       .single();
     listing = data;
   }
 
   if (!listing) {
-    const { data } = await supabase
+    const { data } = await adminClient
       .from("listings")
       .select("*")
       .eq("slug", params.id)
-      .eq("status", "published")
       .single();
     listing = data;
   }
 
   if (!listing) notFound();
+
+  // Check if listing is published (or pending/closed which are still viewable)
+  if (listing.status === "draft" || listing.status === "archived") notFound();
 
   const typedListing = listing as Listing;
 
