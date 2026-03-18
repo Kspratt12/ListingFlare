@@ -116,7 +116,7 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
       </div>
 
       {/* Dashboard content */}
-      <div className="relative bg-gray-50 p-6" style={{ minHeight: 340 }}>
+      <div className="relative overflow-hidden bg-gray-50 p-6" style={{ height: 380 }}>
         <AnimatePresence mode="wait">
           {activeStep === "create" && (
             <motion.div
@@ -486,15 +486,11 @@ function HowItWorks() {
                   }`}>
                     {step.title}
                   </p>
-                  {i === activeIndex && (
-                    <motion.p
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      className="mt-1 text-sm leading-relaxed text-gray-500"
-                    >
-                      {step.description}
-                    </motion.p>
-                  )}
+                  <p className={`mt-1 text-sm leading-relaxed text-gray-500 transition-all duration-300 ${
+                    i === activeIndex ? "max-h-20 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+                  }`}>
+                    {step.description}
+                  </p>
                   {/* Progress bar */}
                   {i === activeIndex && (
                     <div className="mt-3 h-1 w-full rounded-full bg-gray-100">
