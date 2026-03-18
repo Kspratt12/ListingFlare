@@ -459,53 +459,86 @@ function HowItWorks() {
         </motion.div>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-[340px_1fr] lg:gap-8">
-          {/* Steps */}
-          <div className="space-y-2" style={{ minHeight: 320 }}>
-            {walkthrough.map((step, i) => (
-              <button
-                key={step.step}
-                onClick={() => setActiveIndex(i)}
-                className={`group flex w-full items-start gap-4 rounded-xl p-4 text-left transition-all ${
-                  i === activeIndex
-                    ? "bg-white shadow-lg shadow-gray-200/50 border border-gray-200"
-                    : "hover:bg-white/60 border border-transparent"
-                }`}
-                style={{ minHeight: i === activeIndex ? 100 : 52 }}
-              >
-                <div
-                  className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg transition-colors ${
-                    i === activeIndex
-                      ? "bg-brand-500 text-white"
-                      : "bg-gray-200 text-gray-500 group-hover:bg-gray-300"
-                  }`}
-                >
-                  <step.icon className="h-5 w-5" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className={`text-sm font-semibold transition-colors ${
-                    i === activeIndex ? "text-gray-900" : "text-gray-500"
-                  }`}>
-                    {step.title}
-                  </p>
-                  <div className={`overflow-hidden transition-all duration-300 ${
-                    i === activeIndex ? "max-h-24 opacity-100 mt-1" : "max-h-0 opacity-0"
-                  }`}>
-                    <p className="text-sm leading-relaxed text-gray-500">
-                      {step.description}
-                    </p>
+          {/* Steps — only show active step on mobile, all on desktop */}
+          <div>
+            {/* Mobile: show only active step */}
+            <div className="lg:hidden">
+              <div className="flex items-center justify-center gap-2 mb-4">
+                {walkthrough.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveIndex(i)}
+                    className={`h-2 rounded-full transition-all ${i === activeIndex ? "w-8 bg-brand-500" : "w-2 bg-gray-300"}`}
+                  />
+                ))}
+              </div>
+              <div className="rounded-xl bg-white shadow-lg shadow-gray-200/50 border border-gray-200 p-4">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-brand-500 text-white">
+                    {(() => { const Icon = walkthrough[activeIndex].icon; return <Icon className="h-5 w-5" />; })()}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">{walkthrough[activeIndex].title}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-gray-500">{walkthrough[activeIndex].description}</p>
                     <div className="mt-3 h-1 w-full rounded-full bg-gray-100">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: "100%" }}
                         transition={{ duration: 4, ease: "linear" }}
-                        key={`progress-${activeIndex}-${i}`}
+                        key={`mobile-progress-${activeIndex}`}
                         className="h-1 rounded-full bg-brand-500"
                       />
                     </div>
                   </div>
                 </div>
-              </button>
-            ))}
+              </div>
+            </div>
+
+            {/* Desktop: show all steps with fixed heights */}
+            <div className="hidden lg:block space-y-2">
+              {walkthrough.map((step, i) => (
+                <button
+                  key={step.step}
+                  onClick={() => setActiveIndex(i)}
+                  className={`group flex w-full items-start gap-4 rounded-xl p-4 text-left transition-all ${
+                    i === activeIndex
+                      ? "bg-white shadow-lg shadow-gray-200/50 border border-gray-200"
+                      : "hover:bg-white/60 border border-transparent"
+                  }`}
+                >
+                  <div
+                    className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg transition-colors ${
+                      i === activeIndex
+                        ? "bg-brand-500 text-white"
+                        : "bg-gray-200 text-gray-500 group-hover:bg-gray-300"
+                    }`}
+                  >
+                    <step.icon className="h-5 w-5" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className={`text-sm font-semibold transition-colors ${
+                      i === activeIndex ? "text-gray-900" : "text-gray-500"
+                    }`}>
+                      {step.title}
+                    </p>
+                    {i === activeIndex && (
+                      <>
+                        <p className="mt-1 text-sm leading-relaxed text-gray-500">{step.description}</p>
+                        <div className="mt-3 h-1 w-full rounded-full bg-gray-100">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: "100%" }}
+                            transition={{ duration: 4, ease: "linear" }}
+                            key={`progress-${activeIndex}`}
+                            className="h-1 rounded-full bg-brand-500"
+                          />
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Mockup */}

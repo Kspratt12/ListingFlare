@@ -108,7 +108,11 @@ export default function EditListingPage() {
       const res = await fetch("/api/ai/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type, property: getPropertyContext() }),
+        body: JSON.stringify({
+          type,
+          property: getPropertyContext(),
+          existing: type === "description" ? description : featuresText,
+        }),
       });
 
       if (!res.ok) throw new Error("Failed to generate");

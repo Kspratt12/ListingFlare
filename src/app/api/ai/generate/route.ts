@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { type, property } = body;
+    const { type, property, existing } = body;
 
     if (!type || !property) {
       return NextResponse.json(
@@ -46,7 +46,8 @@ export async function POST(req: NextRequest) {
       prompt = `You are a luxury real estate copywriter. Write a compelling, professional property listing description for this home.
 
 Property Details:
-${propertyContext}
+${propertyContext || "No specific details provided — write a general luxury property description."}
+${existing ? `\nThe agent has started writing this:\n"${existing}"\n\nBuild on their text and expand it into a full description.` : ""}
 
 Write 2-3 paragraphs that:
 - Paint a vivid picture of the home and lifestyle it offers
@@ -62,7 +63,8 @@ Return ONLY the description text, no headers or labels.`;
       prompt = `You are a luxury real estate copywriter. Generate 6-8 property highlight bullet points for this home.
 
 Property Details:
-${propertyContext}
+${propertyContext || "No specific details provided — write general luxury home features."}
+${existing ? `\nThe agent has started writing these features:\n"${existing}"\n\nBuild on their text and add more relevant features.` : ""}
 
 Generate features that:
 - Are specific and relevant to a home with these specs

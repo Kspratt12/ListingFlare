@@ -75,8 +75,10 @@ Outside, the zero-edge infinity pool appears to merge with the ocean horizon. Ma
     { src: unsplash("photo-1616137466211-f939a420be84"), alt: "Luxurious primary bedroom suite" },
     { src: unsplash("photo-1600573472592-401b489a3cdc"), alt: "Modern home office" },
     { src: unsplash("photo-1600585154526-990dced4db0d"), alt: "Outdoor entertaining area" },
-    { src: unsplash("photo-1583608205776-bfd35f0d9f83"), alt: "Home exterior front view" },
-    { src: unsplash("photo-1600566752355-35792bedcfea"), alt: "Wine room and tasting area" },
+  ],
+  videos: [
+    { src: "https://videos.pexels.com/video-files/27066154/12067928_1440_2560_30fps.mp4", alt: "Luxury pool and exterior walkthrough" },
+    { src: "https://videos.pexels.com/video-files/7578550/7578550-hd_1080_1920_30fps.mp4", alt: "Luxurious bedroom and bathroom tour" },
   ],
   agent: {
     name: "Victoria Ashworth",
