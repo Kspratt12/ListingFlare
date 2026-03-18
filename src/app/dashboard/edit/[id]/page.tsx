@@ -563,7 +563,7 @@ export default function EditListingPage() {
           <div className="flex items-center justify-between">
             <div>
               <h2 className="font-serif text-lg font-semibold text-gray-900">Photos</h2>
-              <p className="mt-1 text-sm text-gray-500">Upload high-quality photos. The first photo becomes the hero image.</p>
+              <p className="mt-1 text-sm text-gray-500">Upload high-quality photos (2000px+ wide recommended). The first photo becomes the full-screen hero image.</p>
             </div>
             {!limits.isPaid && (
               <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-medium text-amber-700">

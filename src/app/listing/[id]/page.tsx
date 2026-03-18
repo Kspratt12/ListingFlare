@@ -145,7 +145,7 @@ export default async function ListingPage({ params }: Props) {
 
   // Increment view count (fire-and-forget) — only for non-owners
   if (!isOwner) {
-    supabase.rpc("increment_view_count", { listing_uuid: params.id });
+    supabase.rpc("increment_view_count", { listing_uuid: typedListing.id });
   }
 
   return (

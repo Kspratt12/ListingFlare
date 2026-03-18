@@ -48,7 +48,9 @@ export default function HeroSlideshow({ listing }: Props) {
           <img
             src={photos[current].src}
             alt={photos[current].alt}
+            fetchPriority="high"
             className="h-full w-full object-cover"
+            style={{ imageRendering: "auto", WebkitBackfaceVisibility: "hidden", backfaceVisibility: "hidden" }}
           />
         </motion.div>
       </AnimatePresence>
