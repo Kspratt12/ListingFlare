@@ -194,7 +194,7 @@ export default function CreateListingPage() {
         const { error: uploadError } = await supabase.storage.from("listing-photos").upload(fileName, file);
         if (uploadError) throw uploadError;
         const { data: { publicUrl } } = supabase.storage.from("listing-photos").getPublicUrl(fileName);
-        newVideos.push({ src: publicUrl, alt: file.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ") });
+        newVideos.push({ src: publicUrl, alt: "" });
       }
       setVideos((prev) => [...prev, ...newVideos]);
     } catch (err) {

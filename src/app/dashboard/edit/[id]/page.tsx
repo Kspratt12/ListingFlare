@@ -263,7 +263,7 @@ export default function EditListingPage() {
 
         newVideos.push({
           src: publicUrl,
-          alt: file.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " "),
+          alt: "",
         });
       }
 

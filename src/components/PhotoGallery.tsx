@@ -56,6 +56,7 @@ function VideoCard({ video, index }: { video: { src: string; thumbnail?: string;
             muted
             loop
             preload="auto"
+            title=""
             className={`absolute inset-0 h-full w-full rounded-xl object-cover ${started ? "z-10" : "z-0"}`}
           />
           {/* Thumbnail overlay — hides once started */}
