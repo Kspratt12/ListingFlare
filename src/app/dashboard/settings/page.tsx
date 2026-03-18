@@ -80,7 +80,8 @@ export default function SettingsPage() {
       if (!user) throw new Error("Not authenticated");
 
       const ext = file.name.split(".").pop();
-      const fileName = `${user.id}/headshot.${ext}`;
+      const timestamp = Date.now();
+      const fileName = `${user.id}/headshot-${timestamp}.${ext}`;
 
       const { error: uploadError } = await supabase.storage
         .from("headshots")
@@ -92,8 +93,7 @@ export default function SettingsPage() {
         data: { publicUrl },
       } = supabase.storage.from("headshots").getPublicUrl(fileName);
 
-      // Bust cache with timestamp
-      setHeadshotUrl(`${publicUrl}?t=${Date.now()}`);
+      setHeadshotUrl(publicUrl);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Upload failed");
     } finally {
@@ -120,7 +120,7 @@ export default function SettingsPage() {
         brokerage,
         phone,
         email,
-        headshot_url: headshotUrl?.split("?")[0] || null,
+        headshot_url: headshotUrl || null,
         instagram,
         linkedin,
         zillow,
