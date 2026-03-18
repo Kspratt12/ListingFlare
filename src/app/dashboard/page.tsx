@@ -6,7 +6,7 @@ import type { Listing, AgentProfile } from "@/lib/types";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import UpgradePrompt from "@/components/UpgradePrompt";
 import Link from "next/link";
-import { PlusCircle, Eye, Pencil, Share2, Loader2, Trash2, Lock, ArrowUpDown } from "lucide-react";
+import { PlusCircle, Eye, Pencil, Share2, Loader2, Trash2, Lock, ArrowUpDown, Archive } from "lucide-react";
 
 export default function MyListingsPage() {
   const [listings, setListings] = useState<Listing[]>([]);
@@ -17,6 +17,7 @@ export default function MyListingsPage() {
   const [hasEverCreated, setHasEverCreated] = useState(false);
   const [sortBy, setSortBy] = useState<"newest" | "city" | "state" | "price">("newest");
   const [priceDir, setPriceDir] = useState<"desc" | "asc">("desc");
+  const [showArchived, setShowArchived] = useState(false);
   const supabase = createClient();
   const limits = getSubscriptionLimits(profile);
 
@@ -139,7 +140,10 @@ export default function MyListingsPage() {
     return styles[status] || styles.draft;
   };
 
-  const sortedListings = [...listings].sort((a, b) => {
+  const filteredListings = showArchived ? listings : listings.filter((l) => l.status !== "archived");
+  const archivedCount = listings.filter((l) => l.status === "archived").length;
+
+  const sortedListings = [...filteredListings].sort((a, b) => {
     if (sortBy === "city") return (a.city || "").localeCompare(b.city || "");
     if (sortBy === "state") return (a.state || "").localeCompare(b.state || "");
     if (sortBy === "price") return priceDir === "desc" ? (b.price || 0) - (a.price || 0) : (a.price || 0) - (b.price || 0);
@@ -203,6 +207,19 @@ export default function MyListingsPage() {
                 Price {sortBy === "price" ? (priceDir === "desc" ? "↓" : "↑") : ""}
               </button>
             </div>
+          )}
+          {!loading && archivedCount > 0 && (
+            <button
+              onClick={() => setShowArchived(!showArchived)}
+              className={`flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors ${
+                showArchived
+                  ? "bg-gray-900 text-white"
+                  : "text-gray-400 hover:bg-gray-100 hover:text-gray-600 border border-gray-200"
+              }`}
+            >
+              <Archive className="h-3 w-3" />
+              Archived ({archivedCount})
+            </button>
           )}
           {loading ? (
             <div className="h-10 w-36 animate-pulse rounded-lg bg-gray-200" />
@@ -371,6 +388,19 @@ export default function MyListingsPage() {
                       <Pencil className="h-3.5 w-3.5" />
                       <span className="text-xs font-medium">Edit</span>
                     </Link>
+                    {listing.status !== "archived" && (
+                      <span
+                        onClick={async (e) => {
+                          e.stopPropagation();
+                          await supabase.from("listings").update({ status: "archived" }).eq("id", listing.id);
+                          setListings((prev) => prev.map((l) => l.id === listing.id ? { ...l, status: "archived" as Listing["status"] } : l));
+                        }}
+                        className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-amber-50 hover:text-amber-600 cursor-pointer"
+                        title="Archive listing"
+                      >
+                        <Archive className="h-4 w-4" />
+                      </span>
+                    )}
                     <span
                       onClick={(e) => { e.stopPropagation(); setDeleteConfirm(listing.id); }}
                       className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-red-50 hover:text-red-500 cursor-pointer"
