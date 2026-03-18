@@ -12,20 +12,26 @@ interface Props {
   params: { id: string };
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const adminClient = createClient(
+function getAdminClient() {
+  return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!
   );
-  const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(params.id);
+}
+
+const isUUIDFormat = (s: string) =>
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(s);
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const db = getAdminClient();
 
   let data;
-  if (isUUID) {
-    const res = await adminClient.from("listings").select("street, city, state, price").eq("id", params.id).single();
+  if (isUUIDFormat(params.id)) {
+    const res = await db.from("listings").select("street, city, state, price").eq("id", params.id).single();
     data = res.data;
   }
   if (!data) {
-    const res = await adminClient.from("listings").select("street, city, state, price").eq("slug", params.id).single();
+    const res = await db.from("listings").select("street, city, state, price").eq("slug", params.id).single();
     data = res.data;
   }
 
@@ -70,45 +76,30 @@ function InactiveListingPage() {
 }
 
 export default async function ListingPage({ params }: Props) {
+  // Admin client for ALL database queries — bypasses RLS for anonymous visitors
+  const db = getAdminClient();
+
+  // Auth client only for checking if current user is the owner
   const supabase = createServerSupabaseClient();
 
   // Fetch listing — try UUID first, then slug
-  const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(params.id);
-
-  // Use admin client for listing lookups to avoid RLS issues with anonymous visitors
-  const adminClient = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  );
-
   let listing;
-  if (isUUID) {
-    const { data } = await adminClient
-      .from("listings")
-      .select("*")
-      .eq("id", params.id)
-      .single();
+  if (isUUIDFormat(params.id)) {
+    const { data } = await db.from("listings").select("*").eq("id", params.id).single();
     listing = data;
   }
-
   if (!listing) {
-    const { data } = await adminClient
-      .from("listings")
-      .select("*")
-      .eq("slug", params.id)
-      .single();
+    const { data } = await db.from("listings").select("*").eq("slug", params.id).single();
     listing = data;
   }
 
   if (!listing) notFound();
-
-  // Check if listing is published (or pending/closed which are still viewable)
   if (listing.status === "draft" || listing.status === "archived") notFound();
 
   const typedListing = listing as Listing;
 
-  // Fetch agent profile
-  const { data: agent } = await supabase
+  // Fetch agent profile — also using admin client
+  const { data: agent } = await db
     .from("agent_profiles")
     .select("*")
     .eq("id", typedListing.agent_id)
@@ -118,7 +109,7 @@ export default async function ListingPage({ params }: Props) {
 
   const typedAgent = agent as AgentProfile;
 
-  // Check subscription status — lock listing if trial expired and not paid
+  // Check subscription status
   const isTrialing = typedAgent.subscription_status === "trialing";
   const isPaid = typedAgent.subscription_status === "active";
   const trialEnd = new Date(typedAgent.trial_ends_at);
@@ -128,10 +119,9 @@ export default async function ListingPage({ params }: Props) {
   const { data: { user } } = await supabase.auth.getUser();
   const isOwner = user?.id === typedListing.agent_id;
 
-  // If expired and not paid, show inactive page (owners see it too with a message)
+  // If expired and not paid, show inactive page
   if (isExpired && !isPaid) {
     if (isOwner) {
-      // Owner sees the listing but with a banner to upgrade
       return (
         <div>
           <div className="fixed left-0 right-0 top-0 z-50 bg-red-600 text-white">
@@ -154,14 +144,9 @@ export default async function ListingPage({ params }: Props) {
     return <InactiveListingPage />;
   }
 
-  // Increment view count (fire-and-forget) — only for non-owners
-  // Uses service role to bypass RLS so anonymous visitors count
+  // Increment view count — only for non-owners
   if (!isOwner) {
-    const adminClient = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
-    );
-    adminClient.rpc("increment_view_count", { listing_uuid: typedListing.id });
+    db.rpc("increment_view_count", { listing_uuid: typedListing.id });
   }
 
   return (
