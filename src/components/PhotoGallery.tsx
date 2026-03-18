@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, Play, Maximize2, Minimize2 } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Play } from "lucide-react";
 
 interface Props {
   photos: { src: string; alt: string }[];
@@ -10,19 +10,7 @@ interface Props {
 }
 
 function VideoCard({ video, index }: { video: { src: string; thumbnail?: string; alt: string }; index: number }) {
-  const [playing, setPlaying] = useState(false);
-  const [expanded, setExpanded] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const togglePlay = () => {
-    if (!videoRef.current) return;
-    if (playing) {
-      videoRef.current.pause();
-    } else {
-      videoRef.current.play();
-    }
-    setPlaying(!playing);
-  };
+  const [started, setStarted] = useState(false);
 
   return (
     <motion.div
@@ -30,49 +18,59 @@ function VideoCard({ video, index }: { video: { src: string; thumbnail?: string;
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
-      className={`mb-4 break-inside-avoid ${expanded ? "fixed inset-4 z-50 flex items-center justify-center" : ""}`}
+      className="mb-4 break-inside-avoid"
     >
-      {expanded && <div className="absolute inset-0 bg-black/90 -z-10" onClick={() => { setExpanded(false); if (videoRef.current) { videoRef.current.pause(); setPlaying(false); } }} />}
-      <div className={`group relative overflow-hidden rounded-xl ${expanded ? "max-w-4xl w-full" : ""}`}>
-        <video
-          ref={videoRef}
-          src={video.src}
-          poster={video.thumbnail}
-          preload="metadata"
-          playsInline
-          className={`w-full object-cover ${expanded ? "max-h-[80vh] object-contain" : ""}`}
-          style={!expanded ? { aspectRatio: index % 2 === 0 ? "3/4" : "4/5" } : undefined}
-          onEnded={() => setPlaying(false)}
-          onClick={togglePlay}
-        />
-        {/* Gold play button overlay */}
-        {!playing && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/20 cursor-pointer" onClick={togglePlay}>
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-500/90 shadow-xl shadow-brand-500/30 transition-transform hover:scale-110">
-              <Play className="h-7 w-7 text-white ml-1" fill="white" />
+      <div className="group relative overflow-hidden rounded-xl">
+        {!started ? (
+          /* Thumbnail with gold play button */
+          <div className="relative cursor-pointer" onClick={() => setStarted(true)}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={video.thumbnail || ""}
+              alt={video.alt}
+              loading="lazy"
+              className="w-full object-cover"
+              style={{ aspectRatio: index % 2 === 0 ? "3/4" : "4/5" }}
+            />
+            <div className="absolute inset-0 bg-black/20" />
+            {/* Gold play button */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-500/90 shadow-xl shadow-brand-500/30 transition-transform hover:scale-110">
+                <Play className="h-7 w-7 text-white ml-1" fill="white" />
+              </div>
+            </div>
+            {/* 8K badge */}
+            <div className="absolute top-3 left-3">
+              <span className="rounded-full bg-black/60 px-2.5 py-1 text-[10px] font-bold text-white backdrop-blur-sm flex items-center gap-1">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-400 animate-pulse" />
+                8K VIDEO
+              </span>
+            </div>
+            {/* Caption */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 pt-10">
+              <p className="text-sm font-medium text-white">{video.alt}</p>
             </div>
           </div>
-        )}
-        {/* Controls */}
-        <div className={`absolute bottom-3 right-3 flex gap-2 ${playing ? "opacity-100" : "opacity-0 group-hover:opacity-100"} transition-opacity`}>
-          <button
-            onClick={(e) => { e.stopPropagation(); setExpanded(!expanded); }}
-            className="rounded-full bg-black/50 p-2 text-white backdrop-blur-sm hover:bg-black/70"
-          >
-            {expanded ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
-          </button>
-        </div>
-        {/* 8K badge */}
-        <div className="absolute top-3 left-3">
-          <span className="rounded-full bg-black/60 px-2.5 py-1 text-[10px] font-bold text-white backdrop-blur-sm flex items-center gap-1">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-400" />
-            8K VIDEO
-          </span>
-        </div>
-        {/* Caption */}
-        {!expanded && (
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 pt-10">
-            <p className="text-sm font-medium text-white">{video.alt}</p>
+        ) : (
+          /* Video player — uses native controls for reliable playback */
+          <div className="relative bg-black rounded-xl" style={{ aspectRatio: index % 2 === 0 ? "3/4" : "4/5" }}>
+            <video
+              src={video.src}
+              poster={video.thumbnail}
+              controls
+              playsInline
+              autoPlay
+              preload="auto"
+              className="absolute inset-0 h-full w-full rounded-xl object-cover"
+              controlsList="nodownload"
+            />
+            {/* 8K badge stays visible */}
+            <div className="absolute top-3 left-3 z-10 pointer-events-none">
+              <span className="rounded-full bg-black/60 px-2.5 py-1 text-[10px] font-bold text-white backdrop-blur-sm flex items-center gap-1">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-400" />
+                8K VIDEO
+              </span>
+            </div>
           </div>
         )}
       </div>

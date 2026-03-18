@@ -77,8 +77,8 @@ Outside, the zero-edge infinity pool appears to merge with the ocean horizon. Ma
     { src: unsplash("photo-1600585154526-990dced4db0d"), alt: "Outdoor entertaining area" },
   ],
   videos: [
-    { src: "https://videos.pexels.com/video-files/27066154/12067928_1440_2560_30fps.mp4", thumbnail: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&h=800&fit=crop&q=80", alt: "Luxury pool and exterior walkthrough" },
-    { src: "https://videos.pexels.com/video-files/7578550/7578550-hd_1080_1920_30fps.mp4", thumbnail: "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=600&h=800&fit=crop&q=80", alt: "Luxurious bedroom and bathroom tour" },
+    { src: "/demo-pool.mp4", thumbnail: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&h=800&fit=crop&q=80", alt: "Luxury pool and exterior walkthrough" },
+    { src: "/demo-bedroom.mp4", thumbnail: "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=600&h=800&fit=crop&q=80", alt: "Luxurious bedroom and bathroom tour" },
   ],
   agent: {
     name: "Victoria Ashworth",
