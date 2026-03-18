@@ -566,7 +566,7 @@ export default function LandingPage() {
                   Start Free Trial
                 </Link>
                 <Link
-                  href="/signup?plan=pro"
+                  href="/dashboard/billing"
                   className="rounded-full border-2 border-brand-400 bg-brand-50 px-4 py-2 text-xs font-medium text-brand-700 transition-colors hover:bg-brand-100 sm:px-5 sm:text-sm"
                 >
                   Buy Now
@@ -1057,7 +1057,7 @@ export default function LandingPage() {
                 <div className="h-px flex-1 bg-white/10" />
               </div>
               <Link
-                href="/signup?plan=pro"
+                href="/dashboard/billing"
                 className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-6 py-4 font-medium text-white transition-all hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-500/20"
               >
                 Buy Now &mdash; $150/mo

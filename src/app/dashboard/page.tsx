@@ -137,7 +137,7 @@ export default function MyListingsPage() {
 
   return (
     <div>
-      {limits.isExpired && listings.length > 0 && (
+      {!loading && limits.isExpired && listings.length > 0 && (
         <div className="mb-6 flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 p-4">
           <Lock className="h-5 w-5 flex-shrink-0 text-red-500" />
           <div className="flex-1">
@@ -158,7 +158,9 @@ export default function MyListingsPage() {
             Manage your property listing websites.
           </p>
         </div>
-        {!limits.isPaid && listings.length >= limits.maxListings ? (
+        {loading ? (
+          <div className="h-10 w-36 animate-pulse rounded-lg bg-gray-200" />
+        ) : !limits.isPaid && profile && listings.length >= limits.maxListings ? (
           <Link
             href="/dashboard/billing"
             className="flex items-center gap-2 rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-600"
