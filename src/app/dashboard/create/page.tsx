@@ -56,6 +56,8 @@ export default function CreateListingPage() {
   const [photos, setPhotos] = useState<ListingPhoto[]>([]);
   const [videos, setVideos] = useState<ListingVideo[]>([]);
   const [uploadingVideos, setUploadingVideos] = useState(false);
+  const [dragIdx, setDragIdx] = useState<number | null>(null);
+  const [dragOverIdx, setDragOverIdx] = useState<number | null>(null);
   const videoInputRef = useRef<HTMLInputElement>(null);
   const [generatingDesc, setGeneratingDesc] = useState(false);
   const [generatingFeatures, setGeneratingFeatures] = useState(false);
@@ -546,10 +548,27 @@ export default function CreateListingPage() {
           {photos.length > 0 && (
             <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
               {photos.map((photo, i) => (
-                <div key={i} className="group">
+                <div
+                  key={`photo-${i}-${photo.src.slice(-20)}`}
+                  className={`group cursor-grab active:cursor-grabbing ${dragOverIdx === i ? "ring-2 ring-brand-400 rounded-lg" : ""} ${dragIdx === i ? "opacity-40" : ""}`}
+                  draggable
+                  onDragStart={() => setDragIdx(i)}
+                  onDragOver={(e) => { e.preventDefault(); setDragOverIdx(i); }}
+                  onDragLeave={() => setDragOverIdx(null)}
+                  onDrop={() => {
+                    if (dragIdx === null || dragIdx === i) return;
+                    const updated = [...photos];
+                    const [moved] = updated.splice(dragIdx, 1);
+                    updated.splice(i, 0, moved);
+                    setPhotos(updated);
+                    setDragIdx(null);
+                    setDragOverIdx(null);
+                  }}
+                  onDragEnd={() => { setDragIdx(null); setDragOverIdx(null); }}
+                >
                   <div className="relative aspect-square overflow-hidden rounded-lg border border-gray-200">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={photo.src} alt={photo.alt} className="h-full w-full object-cover" />
+                    <img src={photo.src} alt={photo.alt} className="h-full w-full object-cover pointer-events-none" />
                     {i === 0 && (
                       <span className="absolute left-2 top-2 rounded bg-gray-900/80 px-2 py-0.5 text-xs font-medium text-white">Hero</span>
                     )}
@@ -559,45 +578,19 @@ export default function CreateListingPage() {
                     >
                       <X className="h-3 w-3" />
                     </button>
-                    <div className="absolute bottom-2 left-2 flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
-                      {i > 0 && (
-                        <button
-                          onClick={() => {
-                            const updated = [...photos];
-                            [updated[i - 1], updated[i]] = [updated[i], updated[i - 1]];
-                            setPhotos(updated);
-                          }}
-                          className="rounded bg-black/60 p-1 text-white hover:bg-black/80"
-                        >
-                          <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
-                        </button>
-                      )}
-                      {i < photos.length - 1 && (
-                        <button
-                          onClick={() => {
-                            const updated = [...photos];
-                            [updated[i], updated[i + 1]] = [updated[i + 1], updated[i]];
-                            setPhotos(updated);
-                          }}
-                          className="rounded bg-black/60 p-1 text-white hover:bg-black/80"
-                        >
-                          <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
-                        </button>
-                      )}
-                      {i !== 0 && (
-                        <button
-                          onClick={() => {
-                            const updated = [...photos];
-                            const [moved] = updated.splice(i, 1);
-                            updated.unshift(moved);
-                            setPhotos(updated);
-                          }}
-                          className="rounded bg-brand-500/80 px-1.5 py-1 text-[9px] font-bold text-white hover:bg-brand-600"
-                        >
-                          HERO
-                        </button>
-                      )}
-                    </div>
+                    {i !== 0 && (
+                      <button
+                        onClick={() => {
+                          const updated = [...photos];
+                          const [moved] = updated.splice(i, 1);
+                          updated.unshift(moved);
+                          setPhotos(updated);
+                        }}
+                        className="absolute bottom-2 left-2 rounded bg-brand-500/80 px-1.5 py-1 text-[9px] font-bold text-white opacity-0 transition-opacity hover:bg-brand-600 group-hover:opacity-100"
+                      >
+                        HERO
+                      </button>
+                    )}
                   </div>
                   <input
                     type="text"
