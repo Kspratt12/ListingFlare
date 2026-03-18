@@ -270,7 +270,11 @@ export default function MyListingsPage() {
           {sortedListings.map((listing) => (
             <div
               key={listing.id}
-              className="group overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow hover:shadow-lg"
+              className={`group overflow-hidden rounded-xl border transition-shadow hover:shadow-lg ${
+                listing.status === "closed"
+                  ? "border-brand-300 bg-gradient-to-br from-brand-50 via-white to-brand-50 ring-1 ring-brand-200"
+                  : "border-gray-200 bg-white"
+              }`}
             >
               {/* Thumbnail — clicks through to live listing page */}
               <Link

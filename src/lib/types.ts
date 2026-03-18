@@ -30,7 +30,7 @@ export interface ListingPhoto {
 export interface Listing {
   id: string;
   agent_id: string;
-  status: "draft" | "published" | "archived";
+  status: "draft" | "published" | "pending" | "closed" | "archived";
   street: string;
   city: string;
   state: string;
