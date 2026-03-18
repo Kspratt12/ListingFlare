@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { getSubscriptionLimits } from "@/lib/subscription";
+import type { AgentProfile } from "@/lib/types";
 import {
   LayoutGrid,
   PlusCircle,
@@ -13,6 +15,8 @@ import {
   LogOut,
   Menu,
   X,
+  Sparkles,
+  ArrowRight,
 } from "lucide-react";
 
 const navItems = [
@@ -31,6 +35,19 @@ export default function DashboardLayout({
   const pathname = usePathname();
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [profile, setProfile] = useState<AgentProfile | null>(null);
+  const [bannerDismissed, setBannerDismissed] = useState(false);
+  const limits = getSubscriptionLimits(profile);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        supabase.from("agent_profiles").select("*").eq("id", user.id).single()
+          .then(({ data }) => { if (data) setProfile(data as AgentProfile); });
+      }
+    });
+  }, []);
 
   const handleLogout = async () => {
     const supabase = createClient();
@@ -129,6 +146,33 @@ export default function DashboardLayout({
             Listing<span className="text-brand-400">Flare</span>
           </span>
         </header>
+
+        {/* Trial banner */}
+        {profile && limits.isTrialing && !bannerDismissed && (
+          <div className="flex items-center justify-between gap-3 border-b border-brand-200 bg-gradient-to-r from-brand-50 to-brand-100/50 px-4 py-2.5 sm:px-6">
+            <div className="flex items-center gap-2">
+              <Sparkles className="h-4 w-4 flex-shrink-0 text-brand-500" />
+              <p className="text-sm text-brand-800">
+                <span className="font-semibold">Free trial</span> — {limits.trialDaysLeft} day{limits.trialDaysLeft !== 1 ? "s" : ""} left.
+                Upgrade for unlimited listings, videos, lead replies & more.
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <Link
+                href="/dashboard/billing"
+                className="flex items-center gap-1 rounded-full bg-brand-500 px-4 py-1.5 text-xs font-semibold text-white hover:bg-brand-600 whitespace-nowrap"
+              >
+                Upgrade Now <ArrowRight className="h-3 w-3" />
+              </Link>
+              <button
+                onClick={() => setBannerDismissed(true)}
+                className="rounded p-0.5 text-brand-400 hover:text-brand-600"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Page content */}
         <main className="flex-1 overflow-y-auto p-6 md:p-8">{children}</main>

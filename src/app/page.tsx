@@ -537,7 +537,7 @@ export default function LandingPage() {
 
   const handleBuyNow = async () => {
     if (!isLoggedIn) {
-      window.location.href = "/signup";
+      window.location.href = "/signup?plan=pro";
       return;
     }
     setBuyLoading(true);

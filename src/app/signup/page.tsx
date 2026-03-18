@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 
@@ -14,6 +14,8 @@ export default function SignupPage() {
   const [loading, setLoading] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const wantsPro = searchParams.get("plan") === "pro";
   const supabase = createClient();
 
   const handleSignup = async (e: React.FormEvent) => {
@@ -57,6 +59,19 @@ export default function SignupPage() {
 
     // Check if session exists (no email confirmation required)
     if (data.session) {
+      if (wantsPro) {
+        // Auto-redirect to Stripe checkout
+        try {
+          const res = await fetch("/api/stripe/checkout", { method: "POST" });
+          const checkoutData = await res.json();
+          if (checkoutData.url) {
+            window.location.href = checkoutData.url;
+            return;
+          }
+        } catch {
+          // Fall through to dashboard if checkout fails
+        }
+      }
       router.push("/dashboard");
       router.refresh();
     } else {
