@@ -526,12 +526,33 @@ function HowItWorks() {
 export default function LandingPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const [buyLoading, setBuyLoading] = useState(false);
+
   useEffect(() => {
     const supabase = createClient();
     supabase.auth.getUser().then(({ data: { user } }) => {
       setIsLoggedIn(!!user);
     });
   }, []);
+
+  const handleBuyNow = async () => {
+    if (!isLoggedIn) {
+      window.location.href = "/signup";
+      return;
+    }
+    setBuyLoading(true);
+    try {
+      const res = await fetch("/api/stripe/checkout", { method: "POST" });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        window.location.href = "/dashboard/billing";
+      }
+    } catch {
+      window.location.href = "/dashboard/billing";
+    }
+  };
 
   return (
     <div className="bg-white">
@@ -565,12 +586,13 @@ export default function LandingPage() {
                 >
                   Start Free Trial
                 </Link>
-                <Link
-                  href="/dashboard/billing"
-                  className="rounded-full border-2 border-brand-400 bg-brand-50 px-4 py-2 text-xs font-medium text-brand-700 transition-colors hover:bg-brand-100 sm:px-5 sm:text-sm"
+                <button
+                  onClick={handleBuyNow}
+                  disabled={buyLoading}
+                  className="rounded-full border-2 border-brand-400 bg-brand-50 px-4 py-2 text-xs font-medium text-brand-700 transition-colors hover:bg-brand-100 disabled:opacity-50 sm:px-5 sm:text-sm"
                 >
-                  Buy Now
-                </Link>
+                  {buyLoading ? "Loading..." : "Buy Now"}
+                </button>
               </>
             )}
           </div>
@@ -1056,13 +1078,14 @@ export default function LandingPage() {
                 <span className="text-xs text-gray-500">or</span>
                 <div className="h-px flex-1 bg-white/10" />
               </div>
-              <Link
-                href="/dashboard/billing"
-                className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-6 py-4 font-medium text-white transition-all hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-500/20"
+              <button
+                onClick={handleBuyNow}
+                disabled={buyLoading}
+                className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-6 py-4 font-medium text-white transition-all hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-500/20 disabled:opacity-50"
               >
-                Buy Now &mdash; $150/mo
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+                {buyLoading ? "Loading..." : "Buy Now — $150/mo"}
+                {!buyLoading && <ArrowRight className="h-4 w-4" />}
+              </button>
             </div>
           </motion.div>
         </div>
