@@ -907,6 +907,9 @@ export default function LandingPage() {
                     <span className="rounded-full bg-rose-50 border border-rose-200 px-2 py-0.5 text-[9px] font-medium text-rose-700 flex items-center gap-0.5">
                       <Upload className="h-2.5 w-2.5" /> 8K Video Upload
                     </span>
+                    <span className="rounded-full bg-cyan-50 border border-cyan-200 px-2 py-0.5 text-[9px] font-medium text-cyan-700 flex items-center gap-0.5">
+                      <BarChart3 className="h-2.5 w-2.5" /> Weekly Reports
+                    </span>
                   </div>
                   {/* Agent branding */}
                   <div className="flex items-center gap-3 border-t border-gray-100 pt-3">

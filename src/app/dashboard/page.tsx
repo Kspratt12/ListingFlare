@@ -2,15 +2,21 @@
 
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
-import type { Listing } from "@/lib/types";
+import type { Listing, AgentProfile } from "@/lib/types";
+import { getSubscriptionLimits } from "@/lib/subscription";
+import UpgradePrompt from "@/components/UpgradePrompt";
 import Link from "next/link";
-import { PlusCircle, Eye, Pencil, MoreVertical, Share2, Loader2 } from "lucide-react";
+import { PlusCircle, Eye, Pencil, Share2, Loader2, Trash2, Lock } from "lucide-react";
 
 export default function MyListingsPage() {
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
   const [generatingPosts, setGeneratingPosts] = useState<string | null>(null);
+  const [profile, setProfile] = useState<AgentProfile | null>(null);
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  const [hasEverCreated, setHasEverCreated] = useState(false);
   const supabase = createClient();
+  const limits = getSubscriptionLimits(profile);
 
   const handleGenerateSocialPosts = async (e: React.MouseEvent, listingId: string) => {
     e.preventDefault();
@@ -86,17 +92,31 @@ export default function MyListingsPage() {
   };
 
   useEffect(() => {
-    async function fetchListings() {
-      const { data } = await supabase
-        .from("listings")
+    async function fetchData() {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      // Fetch profile for subscription status
+      const { data: profileData } = await supabase
+        .from("agent_profiles")
         .select("*")
+        .eq("id", user.id)
+        .single();
+      if (profileData) setProfile(profileData as AgentProfile);
+
+      // Fetch listings
+      const { data, count } = await supabase
+        .from("listings")
+        .select("*", { count: "exact" })
         .order("created_at", { ascending: false });
 
       setListings((data as Listing[]) || []);
+      setHasEverCreated((count || 0) > 0 || (data || []).length > 0);
       setLoading(false);
     }
-    fetchListings();
-  }, [supabase]);
+    fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const formatPrice = (price: number) =>
     new Intl.NumberFormat("en-US", {
@@ -125,13 +145,23 @@ export default function MyListingsPage() {
             Manage your property listing websites.
           </p>
         </div>
-        <Link
-          href="/dashboard/create"
-          className="flex items-center gap-2 rounded-lg bg-gray-950 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
-        >
-          <PlusCircle className="h-4 w-4" />
-          New Listing
-        </Link>
+        {!limits.isPaid && listings.length >= limits.maxListings ? (
+          <Link
+            href="/dashboard/billing"
+            className="flex items-center gap-2 rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-600"
+          >
+            <Lock className="h-4 w-4" />
+            Upgrade to Add More
+          </Link>
+        ) : (
+          <Link
+            href="/dashboard/create"
+            className="flex items-center gap-2 rounded-lg bg-gray-950 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+          >
+            <PlusCircle className="h-4 w-4" />
+            New Listing
+          </Link>
+        )}
       </div>
 
       {loading ? (
@@ -145,22 +175,33 @@ export default function MyListingsPage() {
         </div>
       ) : listings.length === 0 ? (
         <div className="mt-16 text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
-            <PlusCircle className="h-8 w-8 text-gray-400" />
-          </div>
-          <h3 className="mt-4 font-serif text-xl font-semibold text-gray-900">
-            No listings yet
-          </h3>
-          <p className="mt-2 text-gray-500">
-            Create your first property listing website to get started.
-          </p>
-          <Link
-            href="/dashboard/create"
-            className="mt-6 inline-flex items-center gap-2 rounded-lg bg-gray-950 px-5 py-3 text-sm font-medium text-white hover:bg-gray-800"
-          >
-            <PlusCircle className="h-4 w-4" />
-            Create Listing
-          </Link>
+          {!limits.isPaid && hasEverCreated ? (
+            <>
+              <UpgradePrompt
+                title="Listing Limit Reached"
+                message="You've used your free trial listing. Upgrade to create unlimited listings with full photo galleries, 8K video, lead replies, and more."
+              />
+            </>
+          ) : (
+            <>
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
+                <PlusCircle className="h-8 w-8 text-gray-400" />
+              </div>
+              <h3 className="mt-4 font-serif text-xl font-semibold text-gray-900">
+                No listings yet
+              </h3>
+              <p className="mt-2 text-gray-500">
+                Create your first property listing website to get started.
+              </p>
+              <Link
+                href="/dashboard/create"
+                className="mt-6 inline-flex items-center gap-2 rounded-lg bg-gray-950 px-5 py-3 text-sm font-medium text-white hover:bg-gray-800"
+              >
+                <PlusCircle className="h-4 w-4" />
+                Create Listing
+              </Link>
+            </>
+          )}
         </div>
       ) : (
         <div className="mt-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
@@ -214,7 +255,7 @@ export default function MyListingsPage() {
                     {listing.view_count} views
                   </div>
                   <div className="flex items-center gap-1">
-                    {listing.status === "published" && listing.photos.length > 0 && (
+                    {listing.status === "published" && listing.photos.length > 0 && limits.canGenerateSocialPosts && (
                       <span
                         onClick={(e) => handleGenerateSocialPosts(e, listing.id)}
                         className="flex items-center gap-1 rounded-lg px-2 py-1.5 text-gray-400 transition-colors hover:bg-purple-50 hover:text-purple-600 cursor-pointer"
@@ -228,6 +269,16 @@ export default function MyListingsPage() {
                         <span className="text-xs font-medium">Social</span>
                       </span>
                     )}
+                    {listing.status === "published" && listing.photos.length > 0 && !limits.canGenerateSocialPosts && (
+                      <Link
+                        href="/dashboard/billing"
+                        className="flex items-center gap-1 rounded-lg px-2 py-1.5 text-gray-300 transition-colors hover:bg-gray-50 cursor-pointer"
+                        title="Upgrade to generate social posts"
+                      >
+                        <Lock className="h-3.5 w-3.5" />
+                        <span className="text-xs font-medium">Social</span>
+                      </Link>
+                    )}
                     <Link
                       href={`/dashboard/edit/${listing.id}`}
                       className="flex items-center gap-1 rounded-lg px-2 py-1.5 text-brand-500 transition-colors hover:bg-brand-50 hover:text-brand-600"
@@ -237,16 +288,51 @@ export default function MyListingsPage() {
                       <span className="text-xs font-medium">Edit</span>
                     </Link>
                     <span
-                      className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600"
-                      title="More options"
+                      onClick={(e) => { e.stopPropagation(); setDeleteConfirm(listing.id); }}
+                      className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-red-50 hover:text-red-500 cursor-pointer"
+                      title="Delete listing"
                     >
-                      <MoreVertical className="h-4 w-4" />
+                      <Trash2 className="h-4 w-4" />
                     </span>
                   </div>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+      )}
+      {/* Delete confirmation modal */}
+      {deleteConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" onClick={() => setDeleteConfirm(null)}>
+          <div onClick={(e) => e.stopPropagation()} className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+            <h3 className="font-serif text-lg font-bold text-gray-900">Delete this listing?</h3>
+            {!limits.isPaid && (
+              <div className="mt-3 rounded-lg border border-red-200 bg-red-50 px-4 py-3">
+                <p className="text-sm font-medium text-red-800">Warning: Free trial allows only 1 listing</p>
+                <p className="mt-1 text-xs text-red-600">If you delete this listing, you will not be able to create a new one. You&apos;ll need to upgrade to create more listings.</p>
+              </div>
+            )}
+            <p className="mt-3 text-sm text-gray-500">This will permanently remove the listing page, all photos, and lead data. This action cannot be undone.</p>
+            <div className="mt-5 flex gap-3 justify-end">
+              <button
+                onClick={() => setDeleteConfirm(null)}
+                className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={async () => {
+                  await supabase.from("listings").delete().eq("id", deleteConfirm);
+                  setListings((prev) => prev.filter((l) => l.id !== deleteConfirm));
+                  setHasEverCreated(true);
+                  setDeleteConfirm(null);
+                }}
+                className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+              >
+                Delete Permanently
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

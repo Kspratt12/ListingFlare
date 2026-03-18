@@ -18,10 +18,12 @@ import {
   Video,
   QrCode,
 } from "lucide-react";
-import type { ListingPhoto, ListingVideo } from "@/lib/types";
+import type { ListingPhoto, ListingVideo, AgentProfile } from "@/lib/types";
 import Link from "next/link";
 import AddressAutocomplete from "@/components/AddressAutocomplete";
 import { formatNumber, parseNumber } from "@/lib/formatters";
+import { getSubscriptionLimits } from "@/lib/subscription";
+// UpgradePrompt available if needed for future gating
 
 const US_STATES = [
   "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA",
@@ -43,6 +45,8 @@ export default function EditListingPage() {
   const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState("");
   const [uploadingPhotos, setUploadingPhotos] = useState(false);
+  const [profile, setProfile] = useState<AgentProfile | null>(null);
+  const limits = getSubscriptionLimits(profile);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [currentStatus, setCurrentStatus] = useState("draft");
 
@@ -123,6 +127,13 @@ export default function EditListingPage() {
 
   useEffect(() => {
     async function fetchListing() {
+      // Fetch profile for subscription limits
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const { data: p } = await supabase.from("agent_profiles").select("*").eq("id", user.id).single();
+        if (p) setProfile(p as AgentProfile);
+      }
+
       const { data, error: fetchError } = await supabase
         .from("listings")
         .select("*")
@@ -159,6 +170,11 @@ export default function EditListingPage() {
   const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
+
+    if (!limits.isPaid && photos.length + files.length > limits.maxPhotos) {
+      setError(`Free trial allows up to ${limits.maxPhotos} photos. Upgrade for unlimited.`);
+      return;
+    }
 
     setUploadingPhotos(true);
     setError("");
@@ -207,8 +223,12 @@ export default function EditListingPage() {
   const handleVideoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
-    if (videos.length + files.length > 10) {
-      setError("Maximum 10 videos allowed");
+    if (limits.maxVideos === 0) {
+      setError("Video uploads are available on the paid plan. Upgrade to upload 8K videos.");
+      return;
+    }
+    if (videos.length + files.length > limits.maxVideos) {
+      setError(`Maximum ${limits.maxVideos} videos allowed`);
       return;
     }
 

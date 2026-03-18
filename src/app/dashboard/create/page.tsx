@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import {
@@ -13,9 +13,11 @@ import {
   Sparkles,
   Video,
 } from "lucide-react";
-import type { ListingPhoto, ListingVideo } from "@/lib/types";
+import type { ListingPhoto, ListingVideo, AgentProfile } from "@/lib/types";
 import AddressAutocomplete from "@/components/AddressAutocomplete";
 import { formatNumber, parseNumber } from "@/lib/formatters";
+import { getSubscriptionLimits } from "@/lib/subscription";
+import UpgradePrompt from "@/components/UpgradePrompt";
 
 const US_STATES = [
   "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA",
@@ -33,8 +35,11 @@ export default function CreateListingPage() {
   const [publishing, setPublishing] = useState(false);
   const [error, setError] = useState("");
   const [uploadingPhotos, setUploadingPhotos] = useState(false);
+  const [profile, setProfile] = useState<AgentProfile | null>(null);
+  const [listingCount, setListingCount] = useState(0);
+  const [checkingAccess, setCheckingAccess] = useState(true);
 
-  // Form state
+  // Form state — all hooks must be declared before any early return
   const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("CA");
@@ -53,6 +58,33 @@ export default function CreateListingPage() {
   const videoInputRef = useRef<HTMLInputElement>(null);
   const [generatingDesc, setGeneratingDesc] = useState(false);
   const [generatingFeatures, setGeneratingFeatures] = useState(false);
+
+  const limits = getSubscriptionLimits(profile);
+
+  useEffect(() => {
+    async function checkAccess() {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+      const { data: p } = await supabase.from("agent_profiles").select("*").eq("id", user.id).single();
+      if (p) setProfile(p as AgentProfile);
+      const { count } = await supabase.from("listings").select("*", { count: "exact", head: true });
+      setListingCount(count || 0);
+      setCheckingAccess(false);
+    }
+    checkAccess();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (!checkingAccess && !limits.isPaid && listingCount >= limits.maxListings) {
+    return (
+      <div className="mx-auto max-w-lg pt-12">
+        <UpgradePrompt
+          title="Listing Limit Reached"
+          message="Your free trial allows 1 listing. Upgrade to create unlimited listings with full photo galleries, 8K video uploads, lead replies, social posts, and more."
+        />
+      </div>
+    );
+  }
 
   const getPropertyContext = () => ({
     street, city, state, zip, price, beds, baths, sqft, yearBuilt, lotSize,
@@ -88,6 +120,11 @@ export default function CreateListingPage() {
   const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
+
+    if (photos.length + files.length > limits.maxPhotos) {
+      setError(`Free trial allows up to ${limits.maxPhotos} photos. Upgrade for unlimited.`);
+      return;
+    }
 
     setUploadingPhotos(true);
     setError("");
@@ -136,7 +173,8 @@ export default function CreateListingPage() {
   const handleVideoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
-    if (videos.length + files.length > 10) { setError("Maximum 10 videos allowed"); return; }
+    if (limits.maxVideos === 0) { setError("Video uploads are available on the paid plan. Upgrade to upload 8K videos."); return; }
+    if (videos.length + files.length > limits.maxVideos) { setError(`Maximum ${limits.maxVideos} videos allowed`); return; }
     setUploadingVideos(true);
     setError("");
     try {

@@ -2,12 +2,14 @@
 
 import { useEffect, useState, useRef } from "react";
 import { createClient } from "@/lib/supabase/client";
-import type { Lead } from "@/lib/types";
+import type { Lead, AgentProfile } from "@/lib/types";
 import {
   MessageSquare, Mail, Phone, Calendar, Home, ChevronDown,
-  X, Send, Loader2, ArrowUpDown, Paperclip, Image as ImageIcon,
+  X, Send, Loader2, ArrowUpDown, Paperclip, Image as ImageIcon, Lock,
 } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
+import { getSubscriptionLimits } from "@/lib/subscription";
+import Link from "next/link";
 
 const LEAD_STATUSES = [
   { value: "new", label: "New", color: "bg-blue-50 text-blue-700 border-blue-300" },
@@ -38,10 +40,17 @@ export default function LeadsPage() {
   const [replySent, setReplySent] = useState(false);
   const [attachments, setAttachments] = useState<File[]>([]);
   const attachRef = useRef<HTMLInputElement>(null);
+  const [profile, setProfile] = useState<AgentProfile | null>(null);
+  const limits = getSubscriptionLimits(profile);
   const supabase = createClient();
 
   useEffect(() => {
     async function fetchLeads() {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const { data: p } = await supabase.from("agent_profiles").select("*").eq("id", user.id).single();
+        if (p) setProfile(p as AgentProfile);
+      }
       const { data } = await supabase
         .from("leads")
         .select(`*, listing:listings(street, city, state)`)
@@ -350,6 +359,19 @@ export default function LeadsPage() {
 
             {/* Reply */}
             <div className="border-t border-gray-100 px-6 py-4">
+              {!limits.canReplyToLeads ? (
+                <div className="flex items-center gap-3 rounded-lg border border-brand-200 bg-brand-50 p-4">
+                  <Lock className="h-5 w-5 flex-shrink-0 text-brand-500" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-gray-900">Upgrade to reply to leads</p>
+                    <p className="mt-0.5 text-xs text-gray-500">Reply directly from your dashboard with the paid plan.</p>
+                  </div>
+                  <Link href="/dashboard/billing" className="flex-shrink-0 rounded-full bg-brand-500 px-4 py-1.5 text-xs font-semibold text-white hover:bg-brand-600">
+                    Upgrade
+                  </Link>
+                </div>
+              ) : (
+              <>
               <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Reply via Email</p>
               {replySent && (
                 <div className="mt-2 rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-700">
@@ -406,6 +428,8 @@ export default function LeadsPage() {
                   {replySending ? "Sending..." : "Send Reply"}
                 </button>
               </div>
+              </>
+              )}
             </div>
           </div>
         </div>
