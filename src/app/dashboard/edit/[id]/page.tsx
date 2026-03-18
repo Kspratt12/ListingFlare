@@ -17,6 +17,7 @@ import {
   ExternalLink,
   Video,
   QrCode,
+  Lock,
 } from "lucide-react";
 import type { ListingPhoto, ListingVideo, AgentProfile } from "@/lib/types";
 import Link from "next/link";
@@ -548,8 +549,17 @@ export default function EditListingPage() {
 
         {/* Photos */}
         <section className="rounded-xl border border-gray-200 bg-white p-6">
-          <h2 className="font-serif text-lg font-semibold text-gray-900">Photos</h2>
-          <p className="mt-1 text-sm text-gray-500">The first photo becomes the hero image.</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="font-serif text-lg font-semibold text-gray-900">Photos</h2>
+              <p className="mt-1 text-sm text-gray-500">Upload high-quality photos. The first photo becomes the hero image.</p>
+            </div>
+            {!limits.isPaid && (
+              <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-medium text-amber-700">
+                {photos.length}/{limits.maxPhotos} on free trial
+              </span>
+            )}
+          </div>
 
           <div className="mt-4">
             <label className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50 px-6 py-10 transition-colors hover:border-brand-300 hover:bg-brand-50/30">
@@ -603,6 +613,18 @@ export default function EditListingPage() {
           <h2 className="font-serif text-lg font-semibold text-gray-900">Videos</h2>
           <p className="mt-1 text-sm text-gray-500">Upload up to 10 property videos. MP4, MOV, or WebM up to 500MB each for crystal clear quality.</p>
 
+          {limits.maxVideos === 0 ? (
+            <div className="mt-4">
+              <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50 px-6 py-8 opacity-60">
+                <Lock className="h-8 w-8 text-gray-300" />
+                <span className="mt-2 text-sm font-medium text-gray-400">Video uploads are a Pro feature</span>
+                <span className="mt-1 text-xs text-gray-400">Upgrade to upload up to 10 videos in 8K quality</span>
+                <Link href="/dashboard/billing" className="mt-3 rounded-full bg-brand-500 px-4 py-1.5 text-xs font-semibold text-white hover:bg-brand-600">
+                  Upgrade to Pro
+                </Link>
+              </div>
+            </div>
+          ) : (
           <div className="mt-4">
             <label className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50 px-6 py-8 transition-colors hover:border-brand-300 hover:bg-brand-50/30">
               {uploadingVideos ? (
@@ -613,7 +635,7 @@ export default function EditListingPage() {
               <span className="mt-2 text-sm font-medium text-gray-600">
                 {uploadingVideos ? "Uploading..." : "Click to upload videos"}
               </span>
-              <span className="mt-1 text-xs text-gray-400">{videos.length}/10 videos</span>
+              <span className="mt-1 text-xs text-gray-400">{videos.length}/{limits.maxVideos} videos</span>
               <input
                 ref={videoInputRef}
                 type="file"
@@ -621,10 +643,11 @@ export default function EditListingPage() {
                 multiple
                 onChange={handleVideoUpload}
                 className="hidden"
-                disabled={uploadingVideos || videos.length >= 10}
+                disabled={uploadingVideos || videos.length >= limits.maxVideos}
               />
             </label>
           </div>
+          )}
 
           {videos.length > 0 && (
             <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
