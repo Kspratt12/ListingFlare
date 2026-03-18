@@ -104,10 +104,11 @@ export default function MyListingsPage() {
         .single();
       if (profileData) setProfile(profileData as AgentProfile);
 
-      // Fetch listings
+      // Fetch only this agent's listings
       const { data, count } = await supabase
         .from("listings")
         .select("*", { count: "exact" })
+        .eq("agent_id", user.id)
         .order("created_at", { ascending: false });
 
       setListings((data as Listing[]) || []);

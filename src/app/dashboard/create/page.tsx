@@ -67,7 +67,7 @@ export default function CreateListingPage() {
       if (!user) return;
       const { data: p } = await supabase.from("agent_profiles").select("*").eq("id", user.id).single();
       if (p) setProfile(p as AgentProfile);
-      const { count } = await supabase.from("listings").select("*", { count: "exact", head: true });
+      const { count } = await supabase.from("listings").select("*", { count: "exact", head: true }).eq("agent_id", user.id);
       setListingCount(count || 0);
       setCheckingAccess(false);
     }
