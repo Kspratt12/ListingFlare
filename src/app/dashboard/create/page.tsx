@@ -540,30 +540,34 @@ export default function CreateListingPage() {
           {photos.length > 0 && (
             <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
               {photos.map((photo, i) => (
-                <div
-                  key={i}
-                  className="group relative aspect-square overflow-hidden rounded-lg border border-gray-200"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    className="h-full w-full object-cover"
-                  />
-                  {i === 0 && (
-                    <span className="absolute left-2 top-2 rounded bg-gray-900/80 px-2 py-0.5 text-xs font-medium text-white">
-                      Hero
-                    </span>
-                  )}
-                  <button
-                    onClick={() => removePhoto(i)}
-                    className="absolute right-2 top-2 rounded-full bg-red-500 p-1 text-white opacity-0 transition-opacity group-hover:opacity-100"
-                  >
-                    <X className="h-3 w-3" />
-                  </button>
-                  <div className="absolute bottom-2 left-2 opacity-0 transition-opacity group-hover:opacity-100">
-                    <GripVertical className="h-4 w-4 text-white drop-shadow" />
+                <div key={i} className="group">
+                  <div className="relative aspect-square overflow-hidden rounded-lg border border-gray-200">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={photo.src} alt={photo.alt} className="h-full w-full object-cover" />
+                    {i === 0 && (
+                      <span className="absolute left-2 top-2 rounded bg-gray-900/80 px-2 py-0.5 text-xs font-medium text-white">Hero</span>
+                    )}
+                    <button
+                      onClick={() => removePhoto(i)}
+                      className="absolute right-2 top-2 rounded-full bg-red-500 p-1 text-white opacity-0 transition-opacity group-hover:opacity-100"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                    <div className="absolute bottom-2 left-2 opacity-0 transition-opacity group-hover:opacity-100">
+                      <GripVertical className="h-4 w-4 text-white drop-shadow" />
+                    </div>
                   </div>
+                  <input
+                    type="text"
+                    value={photo.alt}
+                    onChange={(e) => {
+                      const updated = [...photos];
+                      updated[i] = { ...updated[i], alt: e.target.value };
+                      setPhotos(updated);
+                    }}
+                    placeholder="Add a caption..."
+                    className="mt-1.5 w-full rounded border-0 bg-transparent px-1 py-0.5 text-xs text-gray-500 placeholder-gray-300 focus:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-brand-300"
+                  />
                 </div>
               ))}
             </div>
