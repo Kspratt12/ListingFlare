@@ -140,10 +140,10 @@ export default function SignupPage() {
           ) : (
           <>
           <h2 className="font-serif text-3xl font-bold text-gray-900">
-            Start your free trial
+            {wantsPro ? "Create your account" : "Start your free trial"}
           </h2>
           <p className="mt-2 text-gray-500">
-            14 days free. No credit card required.
+            {wantsPro ? "You'll be taken to checkout after signup." : "14 days free. No credit card required."}
           </p>
 
           {error && (
@@ -210,7 +210,7 @@ export default function SignupPage() {
               disabled={loading}
               className="w-full rounded-lg bg-gray-950 px-4 py-3 font-medium text-white transition-colors hover:bg-gray-800 disabled:opacity-50"
             >
-              {loading ? "Creating account..." : "Start Free Trial"}
+              {loading ? "Creating account..." : wantsPro ? "Create Account & Pay" : "Start Free Trial"}
             </button>
           </form>
 
