@@ -79,9 +79,6 @@ export default async function ListingPage({ params }: Props) {
   // Admin client for ALL database queries — bypasses RLS for anonymous visitors
   const db = getAdminClient();
 
-  // Auth client only for checking if current user is the owner
-  const supabase = createServerSupabaseClient();
-
   // Fetch listing — try UUID first, then slug
   let listing;
   if (isUUIDFormat(params.id)) {
@@ -109,20 +106,29 @@ export default async function ListingPage({ params }: Props) {
 
   const typedAgent = agent as AgentProfile;
 
+  // Check if the current user is the listing owner
+  let isOwner = false;
+  try {
+    const authClient = createServerSupabaseClient();
+    const { data: { user } } = await authClient.auth.getUser();
+    isOwner = !!user && user.id === typedListing.agent_id;
+  } catch {
+    // Not logged in or auth error — treat as non-owner
+  }
+
+  // Increment view count FIRST — before any other checks
+  if (!isOwner) {
+    await db
+      .from("listings")
+      .update({ view_count: (typedListing.view_count || 0) + 1 })
+      .eq("id", typedListing.id);
+  }
+
   // Check subscription status
   const isTrialing = typedAgent.subscription_status === "trialing";
   const isPaid = typedAgent.subscription_status === "active";
   const trialEnd = new Date(typedAgent.trial_ends_at);
   const isExpired = isTrialing && trialEnd < new Date();
-
-  // Check if the current user is the listing owner
-  let isOwner = false;
-  try {
-    const { data: { user } } = await supabase.auth.getUser();
-    isOwner = !!user && user.id === typedListing.agent_id;
-  } catch {
-    isOwner = false;
-  }
 
   // If expired and not paid, show inactive page
   if (isExpired && !isPaid) {
@@ -147,14 +153,6 @@ export default async function ListingPage({ params }: Props) {
       );
     }
     return <InactiveListingPage />;
-  }
-
-  // Increment view count — only for non-owners
-  if (!isOwner) {
-    await db
-      .from("listings")
-      .update({ view_count: (typedListing.view_count || 0) + 1 })
-      .eq("id", typedListing.id);
   }
 
   return (
