@@ -1051,9 +1051,21 @@ export default function LandingPage() {
                 Start Your 14-Day Free Trial
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <p className="mt-4 text-center text-sm text-gray-500">
+              <p className="mt-3 text-center text-sm text-gray-500">
                 No credit card required to start.
               </p>
+              <div className="mt-3 flex items-center gap-3">
+                <div className="h-px flex-1 bg-white/10" />
+                <span className="text-xs text-gray-500">or</span>
+                <div className="h-px flex-1 bg-white/10" />
+              </div>
+              <Link
+                href="/signup?plan=pro"
+                className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-6 py-4 font-medium text-white transition-all hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-500/20"
+              >
+                Buy Now &mdash; $150/mo
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
           </motion.div>
         </div>
