@@ -5,7 +5,7 @@ import { createClient } from "@/lib/supabase/client";
 import type { Lead, AgentProfile } from "@/lib/types";
 import {
   MessageSquare, Mail, Phone, Calendar, Home, ChevronDown,
-  X, Send, Loader2, ArrowUpDown, Paperclip, Image as ImageIcon, Lock,
+  X, Send, Loader2, ArrowUpDown, Paperclip, Image as ImageIcon, Lock, Trash2, Pencil,
 } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
 import { getSubscriptionLimits } from "@/lib/subscription";
@@ -41,6 +41,11 @@ export default function LeadsPage() {
   const [attachments, setAttachments] = useState<File[]>([]);
   const attachRef = useRef<HTMLInputElement>(null);
   const [profile, setProfile] = useState<AgentProfile | null>(null);
+  const [editingLead, setEditingLead] = useState(false);
+  const [editName, setEditName] = useState("");
+  const [editEmail, setEditEmail] = useState("");
+  const [editPhone, setEditPhone] = useState("");
+  const [deleteConfirm, setDeleteConfirm] = useState(false);
   const limits = getSubscriptionLimits(profile);
   const supabase = createClient();
 
@@ -103,11 +108,35 @@ export default function LeadsPage() {
     }
   };
 
+  const deleteLead = async (id: string) => {
+    await supabase.from("leads").delete().eq("id", id);
+    setLeads((prev) => prev.filter((l) => l.id !== id));
+    setSelectedLead(null);
+    setDeleteConfirm(false);
+  };
+
+  const saveLeadEdit = async () => {
+    if (!selectedLead) return;
+    await supabase.from("leads").update({
+      name: editName,
+      email: editEmail,
+      phone: editPhone,
+    }).eq("id", selectedLead.id);
+    setLeads((prev) => prev.map((l) => l.id === selectedLead.id ? { ...l, name: editName, email: editEmail, phone: editPhone } : l));
+    setSelectedLead((prev) => prev ? { ...prev, name: editName, email: editEmail, phone: editPhone } : null);
+    setEditingLead(false);
+  };
+
   const openLead = (lead: Lead) => {
     setSelectedLead(lead);
     setReplyMessage("");
     setReplySent(false);
     setAttachments([]);
+    setEditingLead(false);
+    setDeleteConfirm(false);
+    setEditName(lead.name);
+    setEditEmail(lead.email);
+    setEditPhone(lead.phone);
     if (!lead.is_read) {
       supabase.from("leads").update({ is_read: true }).eq("id", lead.id);
       setLeads((prev) => prev.map((l) => (l.id === lead.id ? { ...l, is_read: true } : l)));
@@ -319,13 +348,75 @@ export default function LeadsPage() {
                   <p className="text-sm text-gray-500">{selectedLead.listing.street}, {selectedLead.listing.city}</p>
                 )}
               </div>
-              <button onClick={() => setSelectedLead(null)} className="rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600">
-                <X className="h-5 w-5" />
-              </button>
+              <div className="flex items-center gap-1">
+                {limits.isPaid && (
+                  <>
+                    <button
+                      onClick={() => setEditingLead(!editingLead)}
+                      className={`rounded-lg p-1.5 transition-colors ${editingLead ? "bg-brand-50 text-brand-600" : "text-gray-400 hover:bg-gray-100 hover:text-gray-600"}`}
+                      title="Edit lead"
+                    >
+                      <Pencil className="h-4 w-4" />
+                    </button>
+                    <button
+                      onClick={() => setDeleteConfirm(true)}
+                      className="rounded-lg p-1.5 text-gray-400 hover:bg-red-50 hover:text-red-500"
+                      title="Delete lead"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  </>
+                )}
+                <button onClick={() => setSelectedLead(null)} className="rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600">
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
             </div>
+
+            {/* Delete confirmation */}
+            {deleteConfirm && (
+              <div className="border-b border-red-100 bg-red-50 px-6 py-4">
+                <p className="text-sm font-medium text-red-800">Are you sure you want to delete this lead?</p>
+                <p className="mt-1 text-xs text-red-600">This will permanently remove the lead and all associated data. This cannot be undone.</p>
+                <div className="mt-3 flex gap-2">
+                  <button
+                    onClick={() => setDeleteConfirm(false)}
+                    className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={() => deleteLead(selectedLead.id)}
+                    className="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-red-700"
+                  >
+                    Delete Permanently
+                  </button>
+                </div>
+              </div>
+            )}
 
             {/* Contact Info */}
             <div className="border-b border-gray-100 px-6 py-4">
+              {editingLead ? (
+                <div className="space-y-3">
+                  <div>
+                    <label className="mb-1 block text-xs font-medium text-gray-500">Name</label>
+                    <input value={editName} onChange={(e) => setEditName(e.target.value)} className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-xs font-medium text-gray-500">Email</label>
+                    <input value={editEmail} onChange={(e) => setEditEmail(e.target.value)} className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-xs font-medium text-gray-500">Phone</label>
+                    <input value={formatPhone(editPhone)} onChange={(e) => setEditPhone(e.target.value.replace(/\D/g, "").slice(0, 10))} className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                  <div className="flex gap-2">
+                    <button onClick={saveLeadEdit} className="rounded-lg bg-gray-950 px-4 py-2 text-xs font-medium text-white hover:bg-gray-800">Save Changes</button>
+                    <button onClick={() => setEditingLead(false)} className="rounded-lg border border-gray-200 px-4 py-2 text-xs font-medium text-gray-700 hover:bg-gray-50">Cancel</button>
+                  </div>
+                </div>
+              ) : (
               <div className="flex flex-wrap gap-4 text-sm">
                 <a href={`mailto:${selectedLead.email}`} className="flex items-center gap-1.5 text-brand-600 hover:underline">
                   <Mail className="h-4 w-4" />{selectedLead.email}
@@ -336,6 +427,7 @@ export default function LeadsPage() {
                   </a>
                 )}
               </div>
+              )}
               <div className="mt-3 flex items-center gap-3">
                 <span className="text-xs text-gray-400">{formatDate(selectedLead.created_at)}</span>
                 <div className="relative">
