@@ -13,12 +13,17 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const supabase = createServerSupabaseClient();
-  const { data } = await supabase
-    .from("listings")
-    .select("street, city, state, price")
-    .eq("id", params.id)
-    .eq("status", "published")
-    .single();
+  const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(params.id);
+
+  let data;
+  if (isUUID) {
+    const res = await supabase.from("listings").select("street, city, state, price").eq("id", params.id).eq("status", "published").single();
+    data = res.data;
+  }
+  if (!data) {
+    const res = await supabase.from("listings").select("street, city, state, price").eq("slug", params.id).eq("status", "published").single();
+    data = res.data;
+  }
 
   if (!data) return { title: "Listing Not Found" };
 
@@ -63,13 +68,29 @@ function InactiveListingPage() {
 export default async function ListingPage({ params }: Props) {
   const supabase = createServerSupabaseClient();
 
-  // Fetch listing
-  const { data: listing } = await supabase
-    .from("listings")
-    .select("*")
-    .eq("id", params.id)
-    .eq("status", "published")
-    .single();
+  // Fetch listing — try UUID first, then slug
+  const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(params.id);
+
+  let listing;
+  if (isUUID) {
+    const { data } = await supabase
+      .from("listings")
+      .select("*")
+      .eq("id", params.id)
+      .eq("status", "published")
+      .single();
+    listing = data;
+  }
+
+  if (!listing) {
+    const { data } = await supabase
+      .from("listings")
+      .select("*")
+      .eq("slug", params.id)
+      .eq("status", "published")
+      .single();
+    listing = data;
+  }
 
   if (!listing) notFound();
 

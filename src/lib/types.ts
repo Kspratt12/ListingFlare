@@ -31,6 +31,7 @@ export interface Listing {
   id: string;
   agent_id: string;
   status: "draft" | "published" | "pending" | "closed" | "archived";
+  slug: string;
   street: string;
   city: string;
   state: string;

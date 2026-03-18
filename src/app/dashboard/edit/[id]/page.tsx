@@ -294,6 +294,10 @@ export default function EditListingPage() {
         .map((f) => f.trim())
         .filter(Boolean);
 
+      // Generate clean URL slug from address
+      const { generateSlug } = await import("@/lib/slug");
+      const slug = generateSlug(street, city, listingId);
+
       const { error: updateError } = await supabase
         .from("listings")
         .update({
@@ -312,6 +316,7 @@ export default function EditListingPage() {
           features,
           photos,
           videos,
+          slug,
           updated_at: new Date().toISOString(),
         })
         .eq("id", listingId);

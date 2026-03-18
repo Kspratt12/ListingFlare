@@ -228,7 +228,7 @@ export default function CreateListingPage() {
         .map((f) => f.trim())
         .filter(Boolean);
 
-      const { error: insertError } = await supabase.from("listings").insert({
+      const { data: newListing, error: insertError } = await supabase.from("listings").insert({
         agent_id: user.id,
         status: publish ? "published" : "draft",
         street,
@@ -245,9 +245,16 @@ export default function CreateListingPage() {
         features,
         photos,
         videos,
-      });
+      }).select("id").single();
 
       if (insertError) throw insertError;
+
+      // Generate clean URL slug
+      if (newListing?.id && street) {
+        const { generateSlug } = await import("@/lib/slug");
+        const slug = generateSlug(street, city, newListing.id);
+        await supabase.from("listings").update({ slug }).eq("id", newListing.id);
+      }
 
       router.push("/dashboard");
       router.refresh();
