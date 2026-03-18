@@ -116,16 +116,16 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
       </div>
 
       {/* Dashboard content */}
-      <div className="relative overflow-hidden bg-gray-50 p-6" style={{ height: 380 }}>
-        <AnimatePresence mode="wait">
+      <div className="relative overflow-hidden bg-gray-50 p-4 md:p-6" style={{ height: 380 }}>
+        <AnimatePresence initial={false}>
           {activeStep === "create" && (
             <motion.div
               key="create"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.4 }}
-              className="space-y-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0 p-4 md:p-6 space-y-4"
             >
               {/* Sidebar hint */}
               <div className="flex gap-4">
@@ -174,11 +174,11 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
           {activeStep === "photos" && (
             <motion.div
               key="photos"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.4 }}
-              className="space-y-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0 p-4 md:p-6 space-y-4"
             >
               <div className="flex gap-4">
                 <div className="hidden w-44 flex-shrink-0 space-y-2 md:block">
@@ -254,11 +254,11 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
           {activeStep === "published" && (
             <motion.div
               key="published"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.4 }}
-              className="space-y-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0 p-4 md:p-6 space-y-4"
             >
               <div className="flex gap-4">
                 <div className="hidden w-44 flex-shrink-0 space-y-2 md:block">
@@ -307,11 +307,11 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
           {activeStep === "leads" && (
             <motion.div
               key="leads"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.4 }}
-              className="space-y-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0 p-4 md:p-6 space-y-4"
             >
               <div className="flex gap-4">
                 <div className="hidden w-44 flex-shrink-0 space-y-2 md:block">
@@ -386,7 +386,7 @@ function ComparisonHeroSlideshow() {
 
   return (
     <div className="relative h-48 overflow-hidden">
-      <AnimatePresence mode="wait">
+      <AnimatePresence initial={false}>
         <motion.div
           key={heroIdx}
           initial={{ opacity: 0 }}
