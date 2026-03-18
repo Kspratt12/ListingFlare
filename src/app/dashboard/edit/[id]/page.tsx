@@ -49,6 +49,7 @@ export default function EditListingPage() {
   const limits = getSubscriptionLimits(profile);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [currentStatus, setCurrentStatus] = useState("draft");
+  const [currentSlug, setCurrentSlug] = useState("");
 
   // Form state
   const [street, setStreet] = useState("");
@@ -165,6 +166,7 @@ export default function EditListingPage() {
       setPhotos(data.photos || []);
       setVideos(data.videos || []);
       setCurrentStatus(data.status || "draft");
+      setCurrentSlug(data.slug || "");
       setLoading(false);
     }
     fetchListing();
@@ -324,6 +326,7 @@ export default function EditListingPage() {
       if (updateError) throw updateError;
 
       setCurrentStatus(status);
+      setCurrentSlug(slug);
       router.push("/dashboard");
       router.refresh();
     } catch (err) {
@@ -750,7 +753,7 @@ export default function EditListingPage() {
             )}
             {currentStatus === "published" && (
               <Link
-                href={`/listing/${listingId}`}
+                href={`/listing/${currentSlug || listingId}`}
                 target="_blank"
                 className="flex items-center justify-center gap-2 rounded-lg border border-brand-200 bg-brand-50/50 px-5 py-2.5 text-sm font-medium text-brand-700 transition-colors hover:bg-brand-100"
               >

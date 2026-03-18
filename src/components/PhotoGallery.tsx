@@ -47,30 +47,34 @@ function VideoCard({ video, index }: { video: { src: string; thumbnail?: string;
           style={{ aspectRatio: index % 2 === 0 ? "3/4" : "4/5" }}
           onClick={started ? handleVideoTap : handleStart}
         >
-          {/* Video — only renders after started */}
-          {started && (
-            <video
-              ref={videoRef}
-              src={video.src}
-              playsInline
-              muted
-              loop
-              preload="auto"
-              title=""
-              className="absolute inset-0 z-10 h-full w-full rounded-xl object-cover"
-            />
-          )}
+          {/* Video element — always mounted for preview, plays when started */}
+          <video
+            ref={videoRef}
+            src={video.src}
+            playsInline
+            muted
+            loop
+            preload="metadata"
+            title=""
+            className={`absolute inset-0 h-full w-full rounded-xl object-cover ${started ? "z-10" : "z-0"}`}
+          />
           {/* Thumbnail overlay — hides once started */}
           {!started && (
             <div className="absolute inset-0 z-20">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={video.thumbnail || ""}
-                alt={video.alt}
-                loading="lazy"
-                className="h-full w-full rounded-xl object-cover"
-              />
-              <div className="absolute inset-0 bg-black/20 rounded-xl" />
+              {video.thumbnail ? (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={video.thumbnail}
+                    alt=""
+                    loading="lazy"
+                    className="h-full w-full rounded-xl object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/20 rounded-xl" />
+                </>
+              ) : (
+                <div className="absolute inset-0 bg-gray-900/40 rounded-xl" />
+              )}
               {/* Gold play button */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-500/90 shadow-xl shadow-brand-500/30 transition-transform hover:scale-110">

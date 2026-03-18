@@ -295,7 +295,7 @@ export default function MyListingsPage() {
             >
               {/* Thumbnail — clicks through to live listing page */}
               <Link
-                href={`/listing/${listing.id}`}
+                href={`/listing/${listing.slug || listing.id}`}
                 className="relative block h-44 overflow-hidden bg-gray-100"
               >
                 {listing.photos.length > 0 ? (

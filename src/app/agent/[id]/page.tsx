@@ -120,7 +120,7 @@ export default async function AgentProfilePage({ params }: Props) {
               {typedListings.map((listing) => (
                 <Link
                   key={listing.id}
-                  href={`/listing/${listing.id}`}
+                  href={`/listing/${listing.slug || listing.id}`}
                   className="group overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow hover:shadow-lg"
                 >
                   <div className="relative h-48 overflow-hidden bg-gray-100">
