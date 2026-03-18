@@ -47,17 +47,16 @@ function VideoCard({ video, index }: { video: { src: string; thumbnail?: string;
           style={{ aspectRatio: index % 2 === 0 ? "3/4" : "4/5" }}
           onClick={started ? handleVideoTap : handleStart}
         >
-          {/* Hidden preloading video */}
+          {/* Video — hidden until started, preloads in background */}
           <video
             ref={videoRef}
             src={video.src}
-            poster={video.thumbnail}
             playsInline
             muted
             loop
             preload="auto"
             title=""
-            className={`absolute inset-0 h-full w-full rounded-xl object-cover ${started ? "z-10" : "z-0"}`}
+            className={`absolute inset-0 h-full w-full rounded-xl object-cover ${started ? "z-10 opacity-100" : "z-0 opacity-0"}`}
           />
           {/* Thumbnail overlay — hides once started */}
           {!started && (
