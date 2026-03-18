@@ -146,7 +146,10 @@ export default async function ListingPage({ params }: Props) {
 
   // Increment view count — only for non-owners
   if (!isOwner) {
-    await db.rpc("increment_view_count", { listing_uuid: typedListing.id });
+    await db
+      .from("listings")
+      .update({ view_count: (typedListing.view_count || 0) + 1 })
+      .eq("id", typedListing.id);
   }
 
   return (
