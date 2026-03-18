@@ -4,12 +4,15 @@ import { motion } from "framer-motion";
 import { Phone, Mail, Globe } from "lucide-react";
 import type { PropertyListing } from "@/lib/demo-data";
 import { formatPhone } from "@/lib/formatters";
+import Link from "next/link";
 
 interface Props {
   agent: PropertyListing["agent"];
+  agentId?: string;
 }
 
-export default function AgentBranding({ agent }: Props) {
+export default function AgentBranding({ agent, agentId }: Props) {
+  const profileLink = agentId ? `/agent/${agentId}` : null;
   return (
     <section id="agent" className="bg-white py-20 md:py-28">
       <div className="mx-auto max-w-4xl px-6 md:px-12">
@@ -26,21 +29,25 @@ export default function AgentBranding({ agent }: Props) {
           <div className="mt-10 flex flex-col items-center gap-8 md:flex-row md:gap-12">
             {/* Headshot */}
             <div className="relative">
-              <div className="h-40 w-40 overflow-hidden rounded-full border-4 border-brand-100 shadow-lg">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={agent.headshotUrl}
-                  alt={agent.name}
-                  loading="lazy"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+              {profileLink ? (
+                <Link href={profileLink} className="block h-40 w-40 overflow-hidden rounded-full border-4 border-brand-100 shadow-lg transition-transform hover:scale-105">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={agent.headshotUrl} alt={agent.name} loading="lazy" className="h-full w-full object-cover" />
+                </Link>
+              ) : (
+                <div className="h-40 w-40 overflow-hidden rounded-full border-4 border-brand-100 shadow-lg">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={agent.headshotUrl} alt={agent.name} loading="lazy" className="h-full w-full object-cover" />
+                </div>
+              )}
             </div>
 
             {/* Info */}
             <div className="text-center md:text-left">
               <h3 className="font-serif text-3xl font-bold text-gray-900">
-                {agent.name}
+                {profileLink ? (
+                  <Link href={profileLink} className="hover:text-brand-600 transition-colors">{agent.name}</Link>
+                ) : agent.name}
               </h3>
               <p className="mt-1 text-lg text-brand-500">{agent.title}</p>
               <p className="mt-1 text-gray-500">{agent.brokerage}</p>
@@ -107,6 +114,14 @@ export default function AgentBranding({ agent }: Props) {
                     </a>
                   )}
                 </div>
+              )}
+              {profileLink && (
+                <Link
+                  href={profileLink}
+                  className="mt-6 inline-flex items-center gap-2 rounded-full border-2 border-brand-300 bg-brand-50 px-5 py-2.5 text-sm font-medium text-brand-700 transition-colors hover:bg-brand-100"
+                >
+                  View All Listings
+                </Link>
               )}
             </div>
           </div>

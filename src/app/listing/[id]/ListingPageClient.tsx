@@ -83,7 +83,7 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
       <HeroSlideshow listing={propertyData} />
       <PropertyDetails listing={propertyData} />
       <PhotoGallery photos={propertyData.photos} videos={listing.videos} />
-      <AgentBranding agent={propertyData.agent} />
+      <AgentBranding agent={propertyData.agent} agentId={listing.agent_id} />
       <LiveLeadForm listingId={listing.id} agentId={listing.agent_id} />
       <Footer />
     </main>
