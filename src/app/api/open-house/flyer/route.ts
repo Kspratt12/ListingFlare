@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
       .eq("id", user.id)
       .single();
 
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://listing-flare.vercel.app";
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
     const signInUrl = `${appUrl}/open-house/${listingId}`;
 
     // Generate QR code as data URL

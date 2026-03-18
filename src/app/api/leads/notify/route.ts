@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
               </tr>` : ""}
             </table>
             <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #e5e7eb;">
-              <a href="${process.env.NEXT_PUBLIC_APP_URL || "https://listing-flare.vercel.app"}/dashboard/leads"
+              <a href="${process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com"}/dashboard/leads"
                 style="display: inline-block; background: #0f172a; color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-size: 14px;">
                 View in Dashboard
               </a>

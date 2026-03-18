@@ -125,7 +125,7 @@ export async function GET(req: NextRequest) {
           </table>
 
           <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #e5e7eb; text-align: center;">
-            <a href="${process.env.NEXT_PUBLIC_APP_URL || "https://listing-flare.vercel.app"}/dashboard"
+            <a href="${process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com"}/dashboard"
               style="display: inline-block; background: #0f172a; color: #fff; padding: 12px 32px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 500;">
               View Dashboard
             </a>
@@ -134,7 +134,7 @@ export async function GET(req: NextRequest) {
         <div style="padding: 16px 32px; text-align: center; border: 1px solid #e5e7eb; border-top: 0; border-radius: 0 0 12px 12px; background: #f9fafb;">
           <p style="margin: 0; font-size: 12px; color: #9ca3af;">
             You're receiving this because you have weekly emails enabled.
-            <a href="${process.env.NEXT_PUBLIC_APP_URL || "https://listing-flare.vercel.app"}/dashboard/settings" style="color: #b8965a;">Manage preferences</a>
+            <a href="${process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com"}/dashboard/settings" style="color: #b8965a;">Manage preferences</a>
           </p>
         </div>
       </div>

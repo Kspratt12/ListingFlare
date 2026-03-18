@@ -545,32 +545,33 @@ export default function LandingPage() {
           <Link href="/" className="font-serif text-xl font-bold text-gray-900">
             Listing<span className="text-brand-500">Flare</span>
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             {isLoggedIn ? (
               <Link
                 href="/dashboard"
-                className="flex items-center gap-2 rounded-full bg-gray-950 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+                className="flex items-center gap-2 rounded-full bg-gray-950 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800"
               >
                 <LayoutGrid className="h-4 w-4" />
-                My Dashboard
+                <span className="hidden sm:inline">My Dashboard</span>
+                <span className="sm:hidden">Dashboard</span>
               </Link>
             ) : (
               <>
                 <Link
                   href="/login"
-                  className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
+                  className="hidden text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 sm:block"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/signup"
-                  className="rounded-full bg-gray-950 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+                  className="rounded-full bg-gray-950 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-gray-800 sm:px-5 sm:text-sm"
                 >
                   Start Free Trial
                 </Link>
                 <Link
                   href="/signup?plan=pro"
-                  className="rounded-full border-2 border-brand-400 bg-brand-50 px-5 py-2 text-sm font-medium text-brand-700 transition-colors hover:bg-brand-100"
+                  className="rounded-full border-2 border-brand-400 bg-brand-50 px-4 py-2 text-xs font-medium text-brand-700 transition-colors hover:bg-brand-100 sm:px-5 sm:text-sm"
                 >
                   Buy Now
                 </Link>
