@@ -116,8 +116,13 @@ export default async function ListingPage({ params }: Props) {
   const isExpired = isTrialing && trialEnd < new Date();
 
   // Check if the current user is the listing owner
-  const { data: { user } } = await supabase.auth.getUser();
-  const isOwner = user?.id === typedListing.agent_id;
+  let isOwner = false;
+  try {
+    const { data: { user } } = await supabase.auth.getUser();
+    isOwner = !!user && user.id === typedListing.agent_id;
+  } catch {
+    isOwner = false;
+  }
 
   // If expired and not paid, show inactive page
   if (isExpired && !isPaid) {
