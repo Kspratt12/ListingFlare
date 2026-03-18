@@ -1,4 +1,5 @@
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
 import type { Listing, AgentProfile } from "@/lib/types";
 import type { Metadata } from "next";
@@ -144,8 +145,13 @@ export default async function ListingPage({ params }: Props) {
   }
 
   // Increment view count (fire-and-forget) — only for non-owners
+  // Uses service role to bypass RLS so anonymous visitors count
   if (!isOwner) {
-    supabase.rpc("increment_view_count", { listing_uuid: typedListing.id });
+    const adminClient = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
+    adminClient.rpc("increment_view_count", { listing_uuid: typedListing.id });
   }
 
   return (
