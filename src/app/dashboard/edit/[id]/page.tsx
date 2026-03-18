@@ -6,7 +6,6 @@ import { useRouter, useParams } from "next/navigation";
 import {
   Upload,
   X,
-  GripVertical,
   Loader2,
   Save,
   Globe,
@@ -611,8 +610,47 @@ export default function EditListingPage() {
                     >
                       <X className="h-3 w-3" />
                     </button>
-                    <div className="absolute bottom-2 left-2 opacity-0 transition-opacity group-hover:opacity-100">
-                      <GripVertical className="h-4 w-4 text-white drop-shadow" />
+                    <div className="absolute bottom-2 left-2 flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+                      {i > 0 && (
+                        <button
+                          onClick={() => {
+                            const updated = [...photos];
+                            [updated[i - 1], updated[i]] = [updated[i], updated[i - 1]];
+                            setPhotos(updated);
+                          }}
+                          className="rounded bg-black/60 p-1 text-white hover:bg-black/80"
+                          title="Move left"
+                        >
+                          <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+                        </button>
+                      )}
+                      {i < photos.length - 1 && (
+                        <button
+                          onClick={() => {
+                            const updated = [...photos];
+                            [updated[i], updated[i + 1]] = [updated[i + 1], updated[i]];
+                            setPhotos(updated);
+                          }}
+                          className="rounded bg-black/60 p-1 text-white hover:bg-black/80"
+                          title="Move right"
+                        >
+                          <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                        </button>
+                      )}
+                      {i !== 0 && (
+                        <button
+                          onClick={() => {
+                            const updated = [...photos];
+                            const [moved] = updated.splice(i, 1);
+                            updated.unshift(moved);
+                            setPhotos(updated);
+                          }}
+                          className="rounded bg-brand-500/80 px-1.5 py-1 text-[9px] font-bold text-white hover:bg-brand-600"
+                          title="Make hero"
+                        >
+                          HERO
+                        </button>
+                      )}
                     </div>
                   </div>
                   <input
