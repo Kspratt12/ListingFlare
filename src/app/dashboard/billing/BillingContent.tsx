@@ -185,18 +185,9 @@ export default function BillingContent() {
             </p>
           </div>
           <div className="rounded-lg bg-gray-50 p-4">
-            <p className="text-sm text-gray-500">Setup fee</p>
-            <p className="mt-1 font-serif text-2xl font-bold text-gray-900">
-              {billing?.setup_fee_paid ? (
-                <span className="flex items-center gap-2">
-                  $500{" "}
-                  <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700">
-                    Paid
-                  </span>
-                </span>
-              ) : (
-                "$500"
-              )}
+            <p className="text-sm text-gray-500">Billing</p>
+            <p className="mt-1 text-sm font-medium text-gray-700">
+              Cancel anytime. No contracts.
             </p>
           </div>
         </div>

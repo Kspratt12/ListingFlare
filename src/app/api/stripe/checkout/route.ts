@@ -41,17 +41,11 @@ export async function POST() {
         .eq("id", user.id);
     }
 
-    // Create checkout session with setup fee + recurring subscription
+    // Create checkout session with monthly subscription
     const session = await getStripe().checkout.sessions.create({
       customer: customerId,
       mode: "subscription",
       line_items: [
-        // One-time setup fee
-        {
-          price: process.env.STRIPE_SETUP_PRICE_ID!,
-          quantity: 1,
-        },
-        // Monthly recurring
         {
           price: process.env.STRIPE_MONTHLY_PRICE_ID!,
           quantity: 1,

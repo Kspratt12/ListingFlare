@@ -41,11 +41,10 @@ export default function TermsPage() {
           <section>
             <h2 className="font-serif text-xl font-semibold text-gray-900">4. Pricing and Payment</h2>
             <ul className="mt-3 list-disc space-y-1 pl-6">
-              <li><strong>Setup Fee:</strong> A one-time $500 setup fee is charged when you subscribe.</li>
-              <li><strong>Monthly Subscription:</strong> $150/month, billed monthly after the setup fee.</li>
+              <li><strong>Monthly Subscription:</strong> $150/month, billed monthly.</li>
               <li><strong>Free Trial:</strong> New accounts receive a 14-day free trial. No credit card required during the trial period.</li>
               <li><strong>Cancellation:</strong> You may cancel your subscription at any time. Your listings will remain active until the end of the current billing period.</li>
-              <li><strong>Refunds:</strong> The setup fee is non-refundable. Monthly subscription fees are non-refundable for partial months.</li>
+              <li><strong>Refunds:</strong> Monthly subscription fees are non-refundable for partial months.</li>
             </ul>
           </section>
 

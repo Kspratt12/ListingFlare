@@ -1026,7 +1026,7 @@ export default function LandingPage() {
                 <span className="text-lg text-gray-400">/month</span>
               </div>
               <p className="mt-2 text-gray-400">
-                + $500 one-time setup fee
+                Cancel anytime. No contracts.
               </p>
               <div className="mt-1 inline-flex items-center rounded-full bg-brand-500/10 px-3 py-1 text-sm font-medium text-brand-400">
                 14-day free trial included
