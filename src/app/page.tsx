@@ -460,7 +460,7 @@ function HowItWorks() {
 
         <div className="mt-16 grid gap-12 lg:grid-cols-[340px_1fr] lg:gap-8">
           {/* Steps */}
-          <div className="space-y-2">
+          <div className="space-y-2" style={{ minHeight: 320 }}>
             {walkthrough.map((step, i) => (
               <button
                 key={step.step}
@@ -468,8 +468,9 @@ function HowItWorks() {
                 className={`group flex w-full items-start gap-4 rounded-xl p-4 text-left transition-all ${
                   i === activeIndex
                     ? "bg-white shadow-lg shadow-gray-200/50 border border-gray-200"
-                    : "hover:bg-white/60"
+                    : "hover:bg-white/60 border border-transparent"
                 }`}
+                style={{ minHeight: i === activeIndex ? 100 : 52 }}
               >
                 <div
                   className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg transition-colors ${
@@ -480,29 +481,28 @@ function HowItWorks() {
                 >
                   <step.icon className="h-5 w-5" />
                 </div>
-                <div>
+                <div className="flex-1 min-w-0">
                   <p className={`text-sm font-semibold transition-colors ${
                     i === activeIndex ? "text-gray-900" : "text-gray-500"
                   }`}>
                     {step.title}
                   </p>
-                  <p className={`mt-1 text-sm leading-relaxed text-gray-500 transition-all duration-300 ${
-                    i === activeIndex ? "max-h-20 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+                  <div className={`overflow-hidden transition-all duration-300 ${
+                    i === activeIndex ? "max-h-24 opacity-100 mt-1" : "max-h-0 opacity-0"
                   }`}>
-                    {step.description}
-                  </p>
-                  {/* Progress bar */}
-                  {i === activeIndex && (
+                    <p className="text-sm leading-relaxed text-gray-500">
+                      {step.description}
+                    </p>
                     <div className="mt-3 h-1 w-full rounded-full bg-gray-100">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: "100%" }}
                         transition={{ duration: 4, ease: "linear" }}
-                        key={activeIndex}
+                        key={`progress-${activeIndex}-${i}`}
                         className="h-1 rounded-full bg-brand-500"
                       />
                     </div>
-                  )}
+                  </div>
                 </div>
               </button>
             ))}
