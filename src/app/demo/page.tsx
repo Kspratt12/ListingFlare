@@ -78,7 +78,7 @@ export default function DemoPage() {
           <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-lg">
             <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
               <iframe
-                src="https://my.matterport.com/show/?m=iJwae4NQXVE"
+                src="https://my.matterport.com/show/?m=SxQL3iGyoDo"
                 title="Virtual Tour"
                 className="absolute inset-0 h-full w-full"
                 allowFullScreen
