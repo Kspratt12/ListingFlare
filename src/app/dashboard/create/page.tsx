@@ -53,6 +53,7 @@ export default function CreateListingPage() {
   const [lotSize, setLotSize] = useState("");
   const [description, setDescription] = useState("");
   const [featuresText, setFeaturesText] = useState("");
+  const [virtualTourUrl, setVirtualTourUrl] = useState("");
   const [photos, setPhotos] = useState<ListingPhoto[]>([]);
   const [videos, setVideos] = useState<ListingVideo[]>([]);
   const [uploadingVideos, setUploadingVideos] = useState(false);
@@ -299,6 +300,7 @@ export default function CreateListingPage() {
         features,
         photos,
         videos,
+        virtual_tour_url: virtualTourUrl,
       }).select("id").single();
 
       if (insertError) throw insertError;
@@ -719,6 +721,19 @@ export default function CreateListingPage() {
               ))}
             </div>
           )}
+        </section>
+
+        {/* Virtual Tour */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <h2 className="font-serif text-lg font-semibold text-gray-900">Virtual Tour</h2>
+          <p className="mt-1 text-sm text-gray-500">Paste a link from Matterport, Kuula, CloudPano, or any 360° tour provider. The tour will be embedded directly on your listing page.</p>
+          <input
+            type="url"
+            value={virtualTourUrl}
+            onChange={(e) => setVirtualTourUrl(e.target.value)}
+            className="mt-4 w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+            placeholder="https://my.matterport.com/show/?m=..."
+          />
         </section>
 
         {/* Actions */}

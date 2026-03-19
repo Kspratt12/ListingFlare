@@ -65,6 +65,7 @@ export default function EditListingPage() {
   const [lotSize, setLotSize] = useState("");
   const [description, setDescription] = useState("");
   const [featuresText, setFeaturesText] = useState("");
+  const [virtualTourUrl, setVirtualTourUrl] = useState("");
   const [photos, setPhotos] = useState<ListingPhoto[]>([]);
   const [videos, setVideos] = useState<ListingVideo[]>([]);
   const [uploadingVideos, setUploadingVideos] = useState(false);
@@ -218,6 +219,7 @@ export default function EditListingPage() {
       setFeaturesText((data.features || []).join("\n"));
       setPhotos(data.photos || []);
       setVideos(data.videos || []);
+      setVirtualTourUrl(data.virtual_tour_url || "");
       setCurrentStatus(data.status || "draft");
       setCurrentSlug(data.slug || "");
       setLoading(false);
@@ -372,6 +374,7 @@ export default function EditListingPage() {
           features,
           photos,
           videos,
+          virtual_tour_url: virtualTourUrl,
           slug,
           updated_at: new Date().toISOString(),
         })
@@ -794,6 +797,32 @@ export default function EditListingPage() {
                   </button>
                 </div>
               ))}
+            </div>
+          )}
+        </section>
+
+        {/* Virtual Tour */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <h2 className="font-serif text-lg font-semibold text-gray-900">Virtual Tour</h2>
+          <p className="mt-1 text-sm text-gray-500">Paste a link from Matterport, Kuula, CloudPano, or any 360° tour provider. The tour will be embedded directly on your listing page.</p>
+          <input
+            type="url"
+            value={virtualTourUrl}
+            onChange={(e) => setVirtualTourUrl(e.target.value)}
+            className="mt-4 w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+            placeholder="https://my.matterport.com/show/?m=..."
+          />
+          {virtualTourUrl && (
+            <div className="mt-4 overflow-hidden rounded-lg border border-gray-200">
+              <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+                <iframe
+                  src={virtualTourUrl}
+                  title="Virtual Tour Preview"
+                  className="absolute inset-0 h-full w-full"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
             </div>
           )}
         </section>

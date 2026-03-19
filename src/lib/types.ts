@@ -46,6 +46,7 @@ export interface Listing {
   features: string[];
   photos: ListingPhoto[];
   videos: ListingVideo[];
+  virtual_tour_url: string;
   view_count: number;
   created_at: string;
   updated_at: string;
