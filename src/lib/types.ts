@@ -67,6 +67,7 @@ export interface Lead {
   message: string;
   is_read: boolean;
   status: "new" | "contacted" | "showing_scheduled" | "offer_made" | "under_contract" | "closed" | "lost";
+  auto_reply_draft: string | null;
   created_at: string;
   // joined fields
   listing?: Pick<Listing, "street" | "city" | "state">;

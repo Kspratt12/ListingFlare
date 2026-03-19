@@ -5,7 +5,7 @@ import { createClient } from "@/lib/supabase/client";
 import type { Lead, AgentProfile } from "@/lib/types";
 import {
   MessageSquare, Mail, Phone, Calendar, Home, ChevronDown,
-  X, Send, Loader2, ArrowUpDown, Paperclip, Image as ImageIcon, Lock, Trash2, Pencil,
+  X, Send, Loader2, ArrowUpDown, Paperclip, Image as ImageIcon, Lock, Trash2, Pencil, Sparkles,
 } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
 import { getSubscriptionLimits } from "@/lib/subscription";
@@ -46,6 +46,7 @@ export default function LeadsPage() {
   const [editEmail, setEditEmail] = useState("");
   const [editPhone, setEditPhone] = useState("");
   const [deleteConfirm, setDeleteConfirm] = useState(false);
+  const [generatingDraft, setGeneratingDraft] = useState(false);
   const limits = getSubscriptionLimits(profile);
   const supabase = createClient();
 
@@ -59,7 +60,7 @@ export default function LeadsPage() {
       const { data } = await supabase
         .from("leads")
         .select(`*, listing:listings(street, city, state)`)
-        .order("created_at", { ascending: false });
+        .order("created_at", { ascending: false }) as { data: Lead[] | null };
       setLeads((data as Lead[]) || []);
       setLoading(false);
     }
@@ -140,6 +141,28 @@ export default function LeadsPage() {
     if (!lead.is_read) {
       supabase.from("leads").update({ is_read: true }).eq("id", lead.id);
       setLeads((prev) => prev.map((l) => (l.id === lead.id ? { ...l, is_read: true } : l)));
+    }
+  };
+
+  const generateDraft = async (lead: Lead) => {
+    setGeneratingDraft(true);
+    try {
+      const res = await fetch("/api/leads/auto-reply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ leadId: lead.id }),
+      });
+      if (!res.ok) throw new Error("Failed");
+      const { draft } = await res.json();
+      if (draft) {
+        setLeads((prev) => prev.map((l) => l.id === lead.id ? { ...l, auto_reply_draft: draft } : l));
+        setSelectedLead((prev) => prev?.id === lead.id ? { ...prev, auto_reply_draft: draft } : prev);
+        setReplyMessage(draft);
+      }
+    } catch {
+      // Silently fail
+    } finally {
+      setGeneratingDraft(false);
     }
   };
 
@@ -256,7 +279,14 @@ export default function LeadsPage() {
                       <div className="flex items-center gap-3">
                         {!lead.is_read && <span className="h-2 w-2 flex-shrink-0 rounded-full bg-brand-500" />}
                         <div>
-                          <p className="font-medium text-gray-900">{lead.name}</p>
+                          <div className="flex items-center gap-2">
+                            <p className="font-medium text-gray-900">{lead.name}</p>
+                            {lead.auto_reply_draft && (
+                              <span className="flex items-center gap-0.5 rounded-full bg-brand-50 border border-brand-200 px-1.5 py-0.5 text-[10px] font-medium text-brand-600">
+                                <Sparkles className="h-2.5 w-2.5" /> AI Draft
+                              </span>
+                            )}
+                          </div>
                           <div className="mt-0.5 flex items-center gap-3 text-sm text-gray-500">
                             <span className="flex items-center gap-1"><Mail className="h-3 w-3" />{lead.email}</span>
                             {lead.phone && <span className="flex items-center gap-1"><Phone className="h-3 w-3" />{formatPhone(lead.phone)}</span>}
@@ -328,7 +358,14 @@ export default function LeadsPage() {
               >
                 <div className="flex items-start justify-between">
                   <div>
-                    <p className="font-medium text-gray-900">{lead.name}</p>
+                    <div className="flex items-center gap-2">
+                      <p className="font-medium text-gray-900">{lead.name}</p>
+                      {lead.auto_reply_draft && (
+                        <span className="flex items-center gap-0.5 rounded-full bg-brand-50 border border-brand-200 px-1.5 py-0.5 text-[10px] font-medium text-brand-600">
+                          <Sparkles className="h-2.5 w-2.5" /> AI Draft
+                        </span>
+                      )}
+                    </div>
                     {lead.listing && <p className="mt-0.5 text-sm text-gray-500">{lead.listing.street}</p>}
                   </div>
                   <span className="text-xs text-gray-400">{formatDate(lead.created_at)}</span>
@@ -468,6 +505,44 @@ export default function LeadsPage() {
               <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Their Message</p>
               <p className="mt-2 text-gray-700">{selectedLead.message || "No message provided."}</p>
             </div>
+
+            {/* AI Draft */}
+            {limits.canReplyToLeads && (
+              <div className="border-t border-gray-100 px-6 py-4">
+                <div className="flex items-center justify-between">
+                  <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-brand-500">
+                    <Sparkles className="h-3.5 w-3.5" />
+                    AI-Drafted Reply
+                  </p>
+                  {selectedLead.auto_reply_draft && !replyMessage && (
+                    <button
+                      onClick={() => setReplyMessage(selectedLead.auto_reply_draft || "")}
+                      className="rounded-lg bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700 hover:bg-brand-100 transition-colors"
+                    >
+                      Use This Draft
+                    </button>
+                  )}
+                </div>
+                {selectedLead.auto_reply_draft ? (
+                  <p className="mt-2 rounded-lg bg-brand-50/50 border border-brand-100 px-4 py-3 text-sm leading-relaxed text-gray-700 italic">
+                    {selectedLead.auto_reply_draft}
+                  </p>
+                ) : (
+                  <button
+                    onClick={() => generateDraft(selectedLead)}
+                    disabled={generatingDraft}
+                    className="mt-2 flex items-center gap-1.5 rounded-lg border border-brand-200 bg-brand-50/50 px-3 py-2 text-xs font-medium text-brand-700 transition-colors hover:bg-brand-100 disabled:opacity-50"
+                  >
+                    {generatingDraft ? (
+                      <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                    ) : (
+                      <Sparkles className="h-3.5 w-3.5" />
+                    )}
+                    {generatingDraft ? "Generating..." : "Generate AI Reply"}
+                  </button>
+                )}
+              </div>
+            )}
 
             {/* Reply */}
             <div className="border-t border-gray-100 px-6 py-4">

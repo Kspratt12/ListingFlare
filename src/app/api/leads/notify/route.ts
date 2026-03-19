@@ -102,8 +102,24 @@ export async function POST(req: NextRequest) {
         }),
       });
 
+      // Trigger AI auto-reply draft generation (non-blocking)
+      const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
+      fetch(`${appUrl}/api/leads/auto-reply`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ leadId }),
+      }).catch(() => {});
+
       return NextResponse.json({ ok: true, emailed: true });
     }
+
+    // Even without email, still generate auto-reply draft
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
+    fetch(`${appUrl}/api/leads/auto-reply`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ leadId }),
+    }).catch(() => {});
 
     return NextResponse.json({ ok: true, emailed: false });
   } catch (err) {

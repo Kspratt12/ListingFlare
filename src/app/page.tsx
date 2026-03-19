@@ -30,9 +30,9 @@ const features = [
   },
   {
     icon: BarChart3,
-    title: "Lead Capture & Analytics",
+    title: "Lead Capture & AI Follow-Up",
     description:
-      "Built-in contact forms send leads straight to your dashboard. Track page views and know which listings get the most interest.",
+      "Built-in contact forms send leads straight to your dashboard. Our AI instantly drafts a personalized reply so you respond in seconds, not hours.",
   },
   {
     icon: Zap,
@@ -52,11 +52,11 @@ const included = [
   "Unlimited listing websites",
   "Custom agent branding on every page",
   "Photo gallery with lightbox viewer",
-  "Lead capture forms with email alerts",
+  "Lead capture with AI-drafted replies",
   "View count analytics per listing",
+  "AI-powered descriptions & photo captions",
+  "Social media posts & open house flyers",
   "Mobile-responsive luxury design",
-  "Unique shareable URL per listing",
-  "SSL-secured & lightning fast",
 ];
 
 const walkthrough = [
@@ -958,6 +958,9 @@ export default function LandingPage() {
                     </span>
                     <span className="rounded-full bg-green-50 border border-green-200 px-2 py-0.5 text-[9px] font-medium text-green-700 flex items-center gap-0.5">
                       <Bell className="h-2.5 w-2.5" /> Instant Lead Alerts
+                    </span>
+                    <span className="rounded-full bg-amber-50 border border-amber-200 px-2 py-0.5 text-[9px] font-medium text-amber-700 flex items-center gap-0.5">
+                      <Sparkles className="h-2.5 w-2.5" /> AI Follow-Up
                     </span>
                     <span className="rounded-full bg-orange-50 border border-orange-200 px-2 py-0.5 text-[9px] font-medium text-orange-700 flex items-center gap-0.5">
                       <Eye className="h-2.5 w-2.5" /> Open House Flyers
