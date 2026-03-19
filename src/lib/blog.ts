@@ -19,6 +19,16 @@ import { article as bestLeadGenTools } from "@/content/articles/best-lead-genera
 import { article as leadsForNewAgents } from "@/content/articles/real-estate-leads-new-agents";
 import { article as leadScoringCriteria } from "@/content/articles/lead-scoring-criteria-real-estate-agents";
 import { article as firstTimeSellerGuide } from "@/content/articles/first-time-home-sellers-guide";
+import { article as raleighHousingMarket } from "@/content/articles/raleigh-nc-housing-market-2026";
+import { article as sellHouseFastRaleigh } from "@/content/articles/how-to-sell-your-house-fast-raleigh-nc";
+import { article as movingToRaleigh } from "@/content/articles/moving-to-raleigh-nc-guide";
+import { article as singlePropertyWebsite } from "@/content/articles/how-to-create-single-property-website";
+import { article as marketListing } from "@/content/articles/how-to-market-real-estate-listing";
+import { article as listingDescriptions } from "@/content/articles/real-estate-listing-description-examples";
+import { article as openHouseIdeas } from "@/content/articles/open-house-ideas-attract-buyers";
+import { article as winMoreListings } from "@/content/articles/how-to-win-more-listings-real-estate-agent";
+import { article as socialMediaPosts } from "@/content/articles/real-estate-social-media-post-ideas";
+import { article as raleighMarketing } from "@/content/articles/best-real-estate-marketing-ideas-raleigh-nc";
 
 const allPosts: BlogPost[] = [
   howToGetLeads,
@@ -26,6 +36,16 @@ const allPosts: BlogPost[] = [
   leadsForNewAgents,
   leadScoringCriteria,
   firstTimeSellerGuide,
+  raleighHousingMarket,
+  sellHouseFastRaleigh,
+  movingToRaleigh,
+  singlePropertyWebsite,
+  marketListing,
+  listingDescriptions,
+  openHouseIdeas,
+  winMoreListings,
+  socialMediaPosts,
+  raleighMarketing,
 ];
 
 // Sort by date descending
