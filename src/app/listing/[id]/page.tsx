@@ -7,6 +7,8 @@ import ListingPageClient from "./ListingPageClient";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
+export const revalidate = 0;
 
 interface Props {
   params: { id: string };
@@ -15,7 +17,13 @@ interface Props {
 function getAdminClient() {
   return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    {
+      global: {
+        fetch: (url: string | URL | Request, init?: RequestInit) =>
+          fetch(url, { ...init, cache: "no-store" }),
+      },
+    }
   );
 }
 
