@@ -134,12 +134,23 @@ export default function SettingsPage() {
         updated_at: new Date().toISOString(),
       };
 
-      // Use upsert to guarantee the save works whether the row exists or not
-      const { error: upsertError } = await supabase
+      // Save profile — try with all fields, retry without new fields if it fails
+      const { error: updateError } = await supabase
         .from("agent_profiles")
-        .upsert({ id: user.id, ...profileData });
+        .update(profileData)
+        .eq("id", user.id);
 
-      if (upsertError) throw upsertError;
+      if (updateError) {
+        console.error("Settings save error:", updateError);
+        // Retry without calendly_url in case column doesn't exist yet
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { calendly_url: _cal, ...safeData } = profileData;
+        const { error: retryError } = await supabase
+          .from("agent_profiles")
+          .update(safeData)
+          .eq("id", user.id);
+        if (retryError) throw retryError;
+      }
 
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
