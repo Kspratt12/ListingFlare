@@ -610,6 +610,12 @@ export default function LandingPage() {
             Listing<span className="text-brand-500">Flare</span>
           </Link>
           <div className="flex items-center gap-2 sm:gap-4">
+            <Link
+              href="/blog"
+              className="hidden text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 md:block"
+            >
+              Blog
+            </Link>
             {isLoggedIn ? (
               <Link
                 href="/dashboard"
@@ -1184,6 +1190,8 @@ export default function LandingPage() {
             Listing<span className="text-brand-500">Flare</span>
           </span>
           <div className="flex items-center gap-5 text-sm text-gray-500">
+            <Link href="/blog" className="underline underline-offset-2 transition-colors hover:text-gray-900">Blog</Link>
+            <span>&middot;</span>
             <Link href="/privacy" className="underline underline-offset-2 transition-colors hover:text-gray-900">Privacy Policy</Link>
             <span>&middot;</span>
             <Link href="/terms" className="underline underline-offset-2 transition-colors hover:text-gray-900">Terms of Service</Link>

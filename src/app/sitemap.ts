@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { createClient } from "@supabase/supabase-js";
+import { getAllPosts } from "@/lib/blog";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.listingflare.com";
@@ -23,7 +24,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.6,
     },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
   ];
+
+  // Add all blog posts to sitemap
+  const posts = getAllPosts();
+  for (const post of posts) {
+    staticPages.push({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: new Date(post.updated || post.date),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    });
+  }
 
   // Add all published listings to sitemap so Google indexes them
   try {
