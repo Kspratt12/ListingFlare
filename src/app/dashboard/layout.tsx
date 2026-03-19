@@ -17,12 +17,14 @@ import {
   X,
   Sparkles,
   ArrowRight,
+  BarChart3,
 } from "lucide-react";
 
 const navItems = [
   { href: "/dashboard", label: "My Listings", icon: LayoutGrid },
   { href: "/dashboard/create", label: "New Listing", icon: PlusCircle },
   { href: "/dashboard/leads", label: "Leads", icon: MessageSquare },
+  { href: "/dashboard/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/dashboard/billing", label: "Billing", icon: CreditCard },
   { href: "/dashboard/settings", label: "Settings", icon: Settings },
 ];

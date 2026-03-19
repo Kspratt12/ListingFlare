@@ -149,7 +149,7 @@ export default function PhotoGallery({ photos, videos = [] }: Props) {
               >
                 <button
                   onClick={() => openLightbox(i)}
-                  className="group relative block w-full overflow-hidden rounded-lg"
+                  className="group relative block w-full overflow-hidden rounded-xl"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -159,10 +159,12 @@ export default function PhotoGallery({ photos, videos = [] }: Props) {
                     className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     style={{ aspectRatio: i % 3 === 0 ? "3/4" : i % 3 === 1 ? "4/3" : "1/1" }}
                   />
-                  <div className="absolute inset-0 bg-black/0 transition-all duration-300 group-hover:bg-black/20" />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <span className="rounded-full bg-white/90 px-5 py-2 text-sm font-medium text-gray-900">View</span>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  {photo.alt && photo.alt !== "Generating caption..." && (
+                    <div className="absolute inset-x-0 bottom-0 px-4 py-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <p className="text-sm font-medium text-white drop-shadow-lg">{photo.alt}</p>
+                    </div>
+                  )}
                 </button>
               </motion.div>
             ))}
@@ -184,7 +186,7 @@ export default function PhotoGallery({ photos, videos = [] }: Props) {
               >
                 <button
                   onClick={() => openLightbox(i + 3)}
-                  className="group relative block w-full overflow-hidden rounded-lg"
+                  className="group relative block w-full overflow-hidden rounded-xl"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -194,10 +196,12 @@ export default function PhotoGallery({ photos, videos = [] }: Props) {
                     className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     style={{ aspectRatio: (i + 3) % 3 === 0 ? "3/4" : (i + 3) % 3 === 1 ? "4/3" : "1/1" }}
                   />
-                  <div className="absolute inset-0 bg-black/0 transition-all duration-300 group-hover:bg-black/20" />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <span className="rounded-full bg-white/90 px-5 py-2 text-sm font-medium text-gray-900">View</span>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  {photo.alt && photo.alt !== "Generating caption..." && (
+                    <div className="absolute inset-x-0 bottom-0 px-4 py-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <p className="text-sm font-medium text-white drop-shadow-lg">{photo.alt}</p>
+                    </div>
+                  )}
                 </button>
               </motion.div>
             ))}
