@@ -34,7 +34,8 @@ export default function LiveLeadForm({ listingId, agentId }: Props) {
     }).select("id").single();
 
     if (insertError) {
-      setError("Something went wrong. Please try again.");
+      console.error("Lead insert error:", insertError);
+      setError(`Something went wrong: ${insertError.message}`);
       setSubmitting(false);
     } else {
       setSubmitted(true);
