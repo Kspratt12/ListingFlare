@@ -91,11 +91,12 @@ export default function AddressAutocomplete({
       const res = await fetch(
         `https://nominatim.openstreetmap.org/search?` +
           new URLSearchParams({
-            q: query + ", USA",
+            q: query,
             format: "json",
             addressdetails: "1",
             countrycodes: "us",
-            limit: "6",
+            limit: "8",
+            dedupe: "1",
           }),
         {
           headers: {
@@ -109,10 +110,19 @@ export default function AddressAutocomplete({
       const data = await res.json();
       const parsed: Suggestion[] = data
         .map(parseNominatimResult)
-        .filter((s: Suggestion) => s.display);
+        .filter((s: Suggestion) => s.street && s.city);
 
-      setSuggestions(parsed);
-      setShowDropdown(parsed.length > 0);
+      // Deduplicate by street + city + state
+      const seen = new Set<string>();
+      const unique = parsed.filter((s) => {
+        const key = `${s.street}|${s.city}|${s.state}`.toLowerCase();
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+
+      setSuggestions(unique.slice(0, 6));
+      setShowDropdown(unique.length > 0);
       setActiveIndex(-1);
     } catch {
       // Silently fail — user can still type manually
@@ -124,7 +134,7 @@ export default function AddressAutocomplete({
     onChange(val);
 
     if (debounceRef.current) clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => fetchSuggestions(val), 500);
+    debounceRef.current = setTimeout(() => fetchSuggestions(val), 250);
   };
 
   const handleSelect = (suggestion: Suggestion) => {

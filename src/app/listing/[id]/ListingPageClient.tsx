@@ -9,7 +9,7 @@ import AgentBranding from "@/components/AgentBranding";
 import LiveLeadForm from "@/components/LiveLeadForm";
 import Footer from "@/components/Footer";
 import type { PropertyListing } from "@/lib/demo-data";
-import { formatPhone } from "@/lib/formatters";
+import { formatPhone, formatLotSize } from "@/lib/formatters";
 import Link from "next/link";
 import { ArrowLeft, Pencil } from "lucide-react";
 
@@ -32,7 +32,7 @@ function toPropertyListing(listing: Listing, agent: AgentProfile): PropertyListi
     baths: listing.baths,
     sqft: listing.sqft,
     yearBuilt: listing.year_built || 0,
-    lotSize: listing.lot_size,
+    lotSize: formatLotSize(listing.lot_size),
     description: listing.description,
     features: listing.features,
     photos: listing.photos,

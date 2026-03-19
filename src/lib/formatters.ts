@@ -18,3 +18,22 @@ export function formatNumber(value: string): string {
 export function parseNumber(value: string): string {
   return value.replace(/\D/g, "");
 }
+
+// Lot size: format numeric portion with commas, preserve text like "sqft" or "acres"
+export function formatLotSize(value: string): string {
+  if (!value) return "";
+  // If it's purely numeric (with optional commas), format with commas
+  const stripped = value.replace(/,/g, "");
+  if (/^\d+$/.test(stripped)) {
+    return parseInt(stripped, 10).toLocaleString("en-US");
+  }
+  // If it starts with digits followed by text (e.g. "10000 sqft"), format the number part
+  const match = stripped.match(/^(\d+)(\.?\d*)\s*(.*)$/);
+  if (match) {
+    const intPart = parseInt(match[1], 10).toLocaleString("en-US");
+    const decimal = match[2] || "";
+    const suffix = match[3] || "";
+    return `${intPart}${decimal}${suffix ? " " + suffix : ""}`;
+  }
+  return value;
+}

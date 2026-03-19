@@ -16,7 +16,7 @@ import {
 import type { ListingPhoto, ListingVideo, AgentProfile } from "@/lib/types";
 import Link from "next/link";
 import AddressAutocomplete from "@/components/AddressAutocomplete";
-import { formatNumber, parseNumber } from "@/lib/formatters";
+import { formatNumber, parseNumber, formatLotSize } from "@/lib/formatters";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import UpgradePrompt from "@/components/UpgradePrompt";
 
@@ -480,9 +480,9 @@ export default function CreateListingPage() {
               <input
                 type="text"
                 value={lotSize}
-                onChange={(e) => setLotSize(e.target.value)}
+                onChange={(e) => setLotSize(formatLotSize(e.target.value))}
                 className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-                placeholder="0.38 acres"
+                placeholder="10,000 sqft or 0.38 acres"
               />
             </div>
           </div>
