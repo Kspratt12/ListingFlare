@@ -19,9 +19,42 @@ const playfair = Playfair_Display({
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "ListingFlare — Stunning Property Websites",
+  metadataBase: new URL("https://www.listingflare.com"),
+  title: {
+    default: "ListingFlare — Single Property Websites for Real Estate Agents",
+    template: "%s | ListingFlare",
+  },
   description:
-    "Beautiful single-property listing websites for luxury real estate agents.",
+    "Create stunning single-property listing websites with AI chatbot, instant lead capture, and auto follow-up. Built for real estate agents selling $300K+ homes.",
+  keywords: [
+    "single property website",
+    "real estate listing page",
+    "real estate lead capture",
+    "AI chatbot for real estate",
+    "luxury listing marketing",
+    "real estate listing website builder",
+    "single property listing website",
+    "property marketing tool",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "ListingFlare",
+    title: "ListingFlare — Single Property Websites for Real Estate Agents",
+    description:
+      "Create stunning listing pages with AI chatbot, instant lead capture, and auto follow-up. Your buyers get answers 24/7.",
+    url: "https://www.listingflare.com",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ListingFlare — Single Property Websites for Real Estate Agents",
+    description:
+      "AI-powered listing pages that capture leads and answer buyer questions 24/7.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

@@ -34,12 +34,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const db = getAdminClient();
 
   let data;
+  let slug = params.id;
   if (isUUIDFormat(params.id)) {
-    const res = await db.from("listings").select("street, city, state, price").eq("id", params.id).single();
+    const res = await db.from("listings").select("street, city, state, price, slug, photos, beds, baths, sqft").eq("id", params.id).single();
     data = res.data;
+    if (data?.slug) slug = data.slug;
   }
   if (!data) {
-    const res = await db.from("listings").select("street, city, state, price").eq("slug", params.id).single();
+    const res = await db.from("listings").select("street, city, state, price, slug, photos, beds, baths, sqft").eq("slug", params.id).single();
     data = res.data;
   }
 
@@ -51,9 +53,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     maximumFractionDigits: 0,
   }).format(data.price);
 
+  const title = `${data.street} — ${price}`;
+  const description = `${data.street}, ${data.city}, ${data.state}. ${data.beds} bed, ${data.baths} bath, ${data.sqft?.toLocaleString() || ""} sqft. Listed at ${price}.`;
+  const heroImage = data.photos?.[0]?.src || undefined;
+  const url = `https://www.listingflare.com/listing/${slug}`;
+
   return {
-    title: `${data.street} — ${price} | ListingFlare`,
-    description: `${data.street}, ${data.city}, ${data.state}. Listed at ${price}.`,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "website",
+      ...(heroImage ? { images: [{ url: heroImage, width: 1200, height: 630, alt: data.street }] } : {}),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      ...(heroImage ? { images: [heroImage] } : {}),
+    },
   };
 }
 

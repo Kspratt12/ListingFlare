@@ -85,8 +85,39 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
     }
   }, [listing.id, listing.agent_id, isOwner]);
 
+  // Structured data for Google rich results
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "RealEstateListing",
+    name: `${listing.street}, ${listing.city}, ${listing.state}`,
+    description: listing.description,
+    url: `https://www.listingflare.com/listing/${listing.slug || listing.id}`,
+    datePosted: listing.created_at,
+    ...(listing.photos?.[0]?.src ? { image: listing.photos[0].src } : {}),
+    offers: {
+      "@type": "Offer",
+      price: listing.price,
+      priceCurrency: "USD",
+    },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: listing.street,
+      addressLocality: listing.city,
+      addressRegion: listing.state,
+      postalCode: listing.zip,
+      addressCountry: "US",
+    },
+    numberOfRooms: listing.beds,
+    numberOfBathroomsTotal: listing.baths,
+    floorSize: listing.sqft ? { "@type": "QuantitativeValue", value: listing.sqft, unitCode: "FTK" } : undefined,
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {isOwner && (
         <div className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2">
           <div className="flex items-center gap-3 rounded-full border border-gray-200 bg-white/95 px-5 py-2.5 shadow-lg backdrop-blur-sm">
