@@ -7,6 +7,7 @@ import PropertyDetails from "@/components/PropertyDetails";
 import PhotoGallery from "@/components/PhotoGallery";
 import AgentBranding from "@/components/AgentBranding";
 import DemoLeadForm from "@/components/DemoLeadForm";
+import ListingChat from "@/components/ListingChat";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { ArrowRight, X } from "lucide-react";
@@ -62,8 +63,55 @@ export default function DemoPage() {
       <HeroSlideshow listing={demoListing} />
       <PropertyDetails listing={demoListing} />
       <PhotoGallery photos={demoListing.photos} videos={demoListing.videos} />
+
+      {/* Virtual Tour Demo */}
+      <section className="bg-white py-20 md:py-28">
+        <div className="mx-auto max-w-6xl px-6 md:px-12">
+          <div className="mb-10 text-center">
+            <h2 className="font-serif text-display-sm font-bold text-gray-900 md:text-display">
+              Virtual Tour
+            </h2>
+            <p className="mt-3 text-lg text-gray-500">
+              Explore every room from the comfort of your screen
+            </p>
+          </div>
+          <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-lg">
+            <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+              <iframe
+                src="https://my.matterport.com/show/?m=iJwae4NQXVE"
+                title="Virtual Tour"
+                className="absolute inset-0 h-full w-full"
+                allowFullScreen
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <AgentBranding agent={demoListing.agent} agentId="demo" />
       <DemoLeadForm />
+      <ListingChat
+        listing={{
+          street: demoListing.address.street,
+          city: demoListing.address.city,
+          state: demoListing.address.state,
+          zip: demoListing.address.zip,
+          price: demoListing.price,
+          beds: demoListing.beds,
+          baths: demoListing.baths,
+          sqft: demoListing.sqft,
+          yearBuilt: demoListing.yearBuilt,
+          lotSize: demoListing.lotSize,
+          description: demoListing.description,
+          features: demoListing.features,
+          agentName: demoListing.agent.name,
+          agentPhone: demoListing.agent.phone,
+        }}
+        listingId="demo"
+        agentId="demo"
+        isDemo
+      />
       <Footer />
     </main>
   );

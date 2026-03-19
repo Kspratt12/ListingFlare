@@ -10,6 +10,7 @@ import LiveLeadForm from "@/components/LiveLeadForm";
 import Footer from "@/components/Footer";
 import type { PropertyListing } from "@/lib/demo-data";
 import { formatPhone, formatLotSize } from "@/lib/formatters";
+import ListingChat from "@/components/ListingChat";
 import Link from "next/link";
 import { ArrowLeft, Pencil } from "lucide-react";
 
@@ -113,6 +114,26 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
 
       <AgentBranding agent={propertyData.agent} agentId={listing.agent_id} />
       <LiveLeadForm listingId={listing.id} agentId={listing.agent_id} />
+      <ListingChat
+        listing={{
+          street: listing.street,
+          city: listing.city,
+          state: listing.state,
+          zip: listing.zip,
+          price: listing.price,
+          beds: listing.beds,
+          baths: listing.baths,
+          sqft: listing.sqft,
+          yearBuilt: listing.year_built || 0,
+          lotSize: listing.lot_size,
+          description: listing.description,
+          features: listing.features,
+          agentName: agent.name,
+          agentPhone: agent.phone,
+        }}
+        listingId={listing.id}
+        agentId={listing.agent_id}
+      />
       <Footer />
     </main>
   );
