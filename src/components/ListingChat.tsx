@@ -56,7 +56,7 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
     if (open && messages.length === 0) {
       setMessages([{
         role: "assistant",
-        text: `Hi! I'm here to help you learn about ${listing.street}. What would you like to know?`,
+        text: `Hey! Have any questions about ${listing.street}? I know the property well — ask me anything.`,
       }]);
     }
   }, [open, messages.length, listing.street]);
@@ -94,7 +94,7 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
     } catch {
       setMessages((prev) => [...prev, {
         role: "assistant",
-        text: "Sorry, I had trouble responding. Please try again or contact the agent directly.",
+        text: "My bad, something glitched. Try asking again?",
       }]);
     } finally {
       setSending(false);
@@ -149,7 +149,7 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
     } catch {
       setMessages((prev) => [...prev, {
         role: "assistant",
-        text: "I had trouble saving your info. You can reach the agent directly — their contact info is on this page.",
+        text: "Something went wrong on my end. You can reach the agent directly — their info is on the page.",
       }]);
     }
   };
@@ -250,8 +250,8 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
                   animate={{ opacity: 1, y: 0 }}
                   className="rounded-xl border border-brand-200 bg-brand-50 p-3.5"
                 >
-                  <p className="text-xs font-semibold text-brand-800">Want the agent to reach out to you?</p>
-                  <p className="mt-0.5 text-[11px] text-brand-600">Share your info and they&apos;ll get back to you right away.</p>
+                  <p className="text-xs font-semibold text-brand-800">Want to hear more from the agent?</p>
+                  <p className="mt-0.5 text-[11px] text-brand-600">Drop your info and they&apos;ll reach out directly.</p>
                   <div className="mt-2.5 space-y-2">
                     <input
                       value={leadName}
