@@ -64,28 +64,28 @@ export default function DemoPage() {
       <PropertyDetails listing={demoListing} />
       <PhotoGallery photos={demoListing.photos} videos={demoListing.videos} />
 
-      {/* Virtual Tour Demo */}
-      <section className="bg-white py-20 md:py-28">
-        <div className="mx-auto max-w-6xl px-6 md:px-12">
+      {/* Virtual Tour Demo — Full-bleed hero style */}
+      <section className="relative bg-gray-950">
+        <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-20">
           <div className="mb-10 text-center">
-            <h2 className="font-serif text-display-sm font-bold text-gray-900 md:text-display">
-              Virtual Tour
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-400">
+              Interactive Experience
+            </p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-white md:text-display-sm">
+              Walk Through the Home
             </h2>
-            <p className="mt-3 text-lg text-gray-500">
-              Explore every room from the comfort of your screen
+            <p className="mt-3 text-lg text-gray-400">
+              Explore every room in immersive 3D
             </p>
           </div>
-          <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-lg">
-            <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-              <iframe
-                src="https://my.matterport.com/show?play=1&lang=en-US&m=d7Kai9ZKt4D"
-                title="Virtual Tour"
-                className="absolute inset-0 h-full w-full"
-                allowFullScreen
-                loading="lazy"
-              />
-            </div>
-          </div>
+        </div>
+        <div className="relative w-full" style={{ height: "80vh", minHeight: "500px", maxHeight: "800px" }}>
+          <iframe
+            src="https://my.matterport.com/show?play=1&lang=en-US&m=d7Kai9ZKt4D&hl=0&ts=0&brand=0"
+            title="Virtual Tour"
+            className="absolute inset-0 h-full w-full"
+            allowFullScreen
+          />
         </div>
       </section>
 

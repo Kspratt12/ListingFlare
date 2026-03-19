@@ -85,29 +85,29 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
       <PropertyDetails listing={propertyData} />
       <PhotoGallery photos={propertyData.photos} videos={listing.videos} />
 
-      {/* Virtual Tour Embed */}
+      {/* Virtual Tour Embed — Full-bleed hero style */}
       {listing.virtual_tour_url && (
-        <section className="bg-white py-20 md:py-28">
-          <div className="mx-auto max-w-6xl px-6 md:px-12">
+        <section className="relative bg-gray-950">
+          <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-20">
             <div className="mb-10 text-center">
-              <h2 className="font-serif text-display-sm font-bold text-gray-900 md:text-display">
-                Virtual Tour
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-400">
+                Interactive Experience
+              </p>
+              <h2 className="mt-3 font-serif text-3xl font-bold text-white md:text-display-sm">
+                Walk Through the Home
               </h2>
-              <p className="mt-3 text-lg text-gray-500">
-                Explore every room from the comfort of your screen
+              <p className="mt-3 text-lg text-gray-400">
+                Explore every room in immersive 3D
               </p>
             </div>
-            <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-lg">
-              <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-                <iframe
-                  src={listing.virtual_tour_url}
-                  title="Virtual Tour"
-                  className="absolute inset-0 h-full w-full"
-                  allowFullScreen
-                  loading="lazy"
-                />
-              </div>
-            </div>
+          </div>
+          <div className="relative w-full" style={{ height: "80vh", minHeight: "500px", maxHeight: "800px" }}>
+            <iframe
+              src={listing.virtual_tour_url}
+              title="Virtual Tour"
+              className="absolute inset-0 h-full w-full"
+              allowFullScreen
+            />
           </div>
         </section>
       )}
