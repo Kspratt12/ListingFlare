@@ -128,6 +128,13 @@ input[type="number"]::-webkit-inner-spin-button {
   border: 1px solid #e5e3de;
 }
 
+.blog-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+}
+
 .blog-content .faq-section {
   margin-top: 2.5rem;
   padding-top: 2rem;

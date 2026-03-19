@@ -19,7 +19,7 @@ export const article: BlogPost = {
   coverImage:
     "https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=1200&h=630&fit=crop&q=80",
   coverImageAlt:
-    "Confident real estate agent presenting a marketing plan to win a listing appointment",
+    "Real estate agent presenting a marketing plan to win more listings at a client meeting",
   content: `
 <p>Listings are the lifeblood of every real estate business. The agent who controls the inventory controls the market. Yet most agents spend the majority of their time chasing buyers while a small percentage of top producers quietly dominate the listing side of the business year after year. What do those agents know that the rest do not? It comes down to three things: a reliable prospecting system, a listing presentation that inspires confidence, and a marketing plan so compelling that sellers feel they would be making a mistake to hire anyone else.</p>
 
@@ -76,6 +76,8 @@ export const article: BlogPost = {
 <p>Pull up a live example of a single-property website you have created for a past listing. Show them how the page highlights the home with full-screen photography, detailed descriptions, a floor plan, and neighborhood information, all on a distraction-free page without competing listings pulling the buyer's attention away. Then show them the AI chatbot that sits on the page, answering buyer questions 24/7 and capturing lead information even when you are asleep. When a seller sees that kind of technology, they immediately understand that you are operating at a different level. Tools like <a href="/signup">ListingFlare</a> let you create these property websites in minutes, and <a href="/demo">seeing a demo listing</a> in your presentation is often the moment a seller decides you are the right agent.</p>
 
 <h3>Show Examples of Past Results</h3>
+
+<img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=800&h=450&fit=crop&q=80" alt="Confident real estate agent preparing to win more listings with a professional marketing plan" loading="lazy" />
 
 <p>Nothing builds confidence like proof. Prepare a portfolio of three to five recent listings that includes the original list price, sale price, days on market, and a brief summary of the marketing strategy you used. If you have testimonials from those sellers, include them. Video testimonials are even more powerful if you have them available on your phone or tablet.</p>
 
@@ -169,7 +171,7 @@ export const article: BlogPost = {
 
 <h3>Not Having a Marketing Plan Ready</h3>
 
-<p>Showing up with a CMA and a verbal promise to "market it aggressively" is not a plan. Sellers are comparing you to agents who walk in with visual timelines, sample property websites, and specific deliverables for each week on market. Strong <a href="/blog/real-estate-listing-description-examples">listing descriptions</a> are part of that plan — show sellers sample copy that demonstrates how you will position their home to stand out. If you do not have a documented marketing plan, you are bringing a knife to a gunfight.</p>
+<p>Showing up with a CMA and a verbal promise to "market it aggressively" is not a plan. Sellers are comparing you to agents who walk in with visual timelines, sample property websites, and specific deliverables for each week on market. Strong <a href="/blog/real-estate-listing-description-examples">listing descriptions</a> are part of that plan, so show sellers sample copy that demonstrates how you will position their home to stand out. If you do not have a documented marketing plan, you are bringing a knife to a gunfight.</p>
 
 <h3>Overpricing to Win the Listing</h3>
 

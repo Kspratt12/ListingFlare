@@ -20,11 +20,11 @@ export const article: BlogPost = {
   coverImage:
     "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&h=630&fit=crop&q=80",
   coverImageAlt:
-    "Person writing a compelling real estate listing description at a desk with property photos",
+    "Agent writing real estate listing description examples at a desk with property photos",
   content: `
-<p>You've staged the home, hired a photographer, and the listing photos look stunning. But there's one element that can make or break a buyer's decision to schedule a showing: your <strong>real estate listing description</strong>. It's the narrative that transforms a grid of photos into an emotional experience — the words that help a buyer picture themselves living in the home before they've ever stepped inside.</p>
+<p>You've staged the home, hired a photographer, and the listing photos look stunning. But there's one element that can make or break a buyer's decision to schedule a showing: your <strong>real estate listing description</strong>. It's the narrative that transforms a grid of photos into an emotional experience, the words that help a buyer picture themselves living in the home before they've ever stepped inside.</p>
 
-<p>The problem? Most agents treat listing descriptions as an afterthought. They rattle off specs — "3 bed, 2 bath, 1,800 sqft" — and call it a day. That's a missed opportunity. A well-crafted <strong>property listing description</strong> highlights lifestyle, creates urgency, and speaks directly to the buyer most likely to fall in love with the home. It is just one piece of a comprehensive <a href="/blog/how-to-market-a-real-estate-listing">listing marketing strategy</a>, but it is one of the most important.</p>
+<p>The problem? Most agents treat listing descriptions as an afterthought. They rattle off specs ("3 bed, 2 bath, 1,800 sqft") and call it a day. That's a missed opportunity. A well-crafted <strong>property listing description</strong> highlights lifestyle, creates urgency, and speaks directly to the buyer most likely to fall in love with the home. It is just one piece of a comprehensive <a href="/blog/how-to-market-a-real-estate-listing">listing marketing strategy</a>, but it is one of the most important.</p>
 
 <p>In this guide, you'll find <strong>20 ready-to-use listing description examples</strong> organized by property type, a breakdown of the formula behind great descriptions, power words that boost engagement, and practical tips you can apply to your very next listing.</p>
 
@@ -33,19 +33,19 @@ export const article: BlogPost = {
 <p>Before we dive into examples, let's look at the structure that top-producing agents use to write descriptions that drive showings. Every great <strong>real estate listing description</strong> follows a simple five-part formula:</p>
 
 <h3>1. The Opening Hook</h3>
-<p>Your first sentence needs to stop the scroll. Lead with an emotional, lifestyle-focused statement — not square footage. Think about what it <em>feels</em> like to live in this home. "Wake up to panoramic mountain views" is far more compelling than "This 2,400 sqft home features…"</p>
+<p>Your first sentence needs to stop the scroll. Lead with an emotional, lifestyle-focused statement, not square footage. Think about what it <em>feels</em> like to live in this home. "Wake up to panoramic mountain views" is far more compelling than "This 2,400 sqft home features…"</p>
 
 <h3>2. Key Features Woven Into Narrative</h3>
-<p>Buyers need the basics — bedrooms, bathrooms, and square footage — but those facts should be woven into a story rather than listed as bullet points. Instead of "3 bedrooms, 2.5 bathrooms," try "Three spacious bedrooms and a sun-drenched primary suite with spa-inspired en suite bath."</p>
+<p>Buyers need the basics (bedrooms, bathrooms, and square footage), but those facts should be woven into a story rather than listed as bullet points. Instead of "3 bedrooms, 2.5 bathrooms," try "Three spacious bedrooms and a sun-drenched primary suite with spa-inspired en suite bath."</p>
 
 <h3>3. Unique Selling Points</h3>
 <p>What makes <em>this</em> home different from the other listings on the same street? Maybe it's a chef's kitchen with a 48-inch range, a backyard with a mature pecan tree, or a recently finished basement with a home theater. Identify two or three standout features and give them room to shine.</p>
 
 <h3>4. Neighborhood and Location Highlights</h3>
-<p>Buyers aren't just purchasing a house — they're buying into a lifestyle and a community. Mention walkability, top-rated schools, nearby parks, dining, or commute times. Location context helps out-of-town buyers and strengthens your description for local buyers who already love the area.</p>
+<p>Buyers aren't just purchasing a house. They're buying into a lifestyle and a community. Mention walkability, top-rated schools, nearby parks, dining, or commute times. Location context helps out-of-town buyers and strengthens your description for local buyers who already love the area.</p>
 
 <h3>5. Call to Action</h3>
-<p>End with a clear next step. "Schedule your private showing today," "This one won't last — book your tour now," or "Contact us for a private walkthrough" all work. A call to action creates gentle urgency and tells the buyer exactly what to do next.</p>
+<p>End with a clear next step. "Schedule your private showing today," "This one won't last, book your tour now," or "Contact us for a private walkthrough" all work. A call to action creates gentle urgency and tells the buyer exactly what to do next.</p>
 
 <h2>20 Listing Description Examples by Property Type</h2>
 
@@ -194,13 +194,13 @@ Your own private retreat on 8 scenic acres. This custom-built 4-bedroom, 3-bathr
 <p>Great descriptions engage more than just the eyes. Mention the warmth of a crackling fireplace, the scent of a blooming garden, or the sound of waves from the back deck. Sensory details make buyers feel as though they've already visited the home, which increases the likelihood they'll book a showing.</p>
 
 <h3>Mention the Neighborhood</h3>
-<p>Your listing lives in a broader context, and savvy buyers care deeply about location. Include walking distance to schools, parks, restaurants, or transit. Reference the neighborhood by name if it carries positive recognition. For relocation buyers, neighborhood details are often the deciding factor between scheduling a tour and scrolling past. This is also where a <a href="/blog/how-to-create-a-single-property-website">single property website</a> shines — you have unlimited space to tell the neighborhood story, unlike a character-limited MLS field.</p>
+<p>Your listing lives in a broader context, and savvy buyers care deeply about location. Include walking distance to schools, parks, restaurants, or transit. Reference the neighborhood by name if it carries positive recognition. For relocation buyers, neighborhood details are often the deciding factor between scheduling a tour and scrolling past. This is also where a <a href="/blog/how-to-create-a-single-property-website">single property website</a> shines. You have unlimited space to tell the neighborhood story, unlike a character-limited MLS field.</p>
 
 <h3>Include a Call to Action</h3>
-<p>Don't let your description trail off. End with a direct, clear invitation: "Schedule your private showing today," "This one won't last — book your tour," or "Contact us for a walkthrough this weekend." A strong call to action converts passive interest into active leads. A polished listing description is also one of the most persuasive assets you can bring to a seller meeting — learn how to leverage it in our guide on <a href="/blog/how-to-win-more-listings-as-a-real-estate-agent">how to win more listings</a>.</p>
+<p>Don't let your description trail off. End with a direct, clear invitation: "Schedule your private showing today," "This one won't last, book your tour," or "Contact us for a walkthrough this weekend." A strong call to action converts passive interest into active leads. A polished listing description is also one of the most persuasive assets you can bring to a seller meeting. Learn how to leverage it in our guide on <a href="/blog/how-to-win-more-listings-as-a-real-estate-agent">how to win more listings</a>.</p>
 
 <h3>Let AI Do the Heavy Lifting</h3>
-<p>Writing compelling descriptions for every listing takes time — especially when you're managing multiple properties. AI-powered tools can draft polished, professional descriptions in seconds. <a href="/signup">ListingFlare can generate AI-powered listing descriptions for you</a>, along with single-property websites complete with lead capture and automated follow-up, so you spend less time writing and more time closing.</p>
+<p>Writing compelling descriptions for every listing takes time, especially when you're managing multiple properties. AI-powered tools can draft polished, professional descriptions in seconds. <a href="/signup">ListingFlare can generate AI-powered listing descriptions for you</a>, along with single-property websites complete with lead capture and automated follow-up, so you spend less time writing and more time closing.</p>
 
 <h2>How to Customize These Templates</h2>
 
@@ -214,26 +214,26 @@ Your own private retreat on 8 scenic acres. This custom-built 4-bedroom, 3-bathr
   <li><strong>Keep it within MLS character limits</strong> — most MLS platforms cap descriptions at 500 to 1,000 characters. Edit ruthlessly. Every word should earn its spot.</li>
 </ol>
 
-<p>If you'd rather skip the editing process entirely, <a href="/signup">try ListingFlare's AI descriptions</a> — paste in your listing details and get a polished, ready-to-publish description in seconds.</p>
+<p>If you'd rather skip the editing process entirely, <a href="/signup">try ListingFlare's AI descriptions</a>. Paste in your listing details and get a polished, ready-to-publish description in seconds.</p>
 
 <div class="faq-section">
 
 <h2>Frequently Asked Questions</h2>
 
 <h3>How long should a real estate listing description be?</h3>
-<p>Most effective listing descriptions fall between 150 and 250 words. MLS platforms typically impose character limits (often 500 to 1,000 characters), so aim for concise language that covers your opening hook, key features, unique selling points, neighborhood highlights, and a call to action. Quality always beats quantity — every sentence should serve a purpose.</p>
+<p>Most effective listing descriptions fall between 150 and 250 words. MLS platforms typically impose character limits (often 500 to 1,000 characters), so aim for concise language that covers your opening hook, key features, unique selling points, neighborhood highlights, and a call to action. Quality always beats quantity, and every sentence should serve a purpose.</p>
 
 <h3>What should I include in a listing description?</h3>
 <p>Start with a lifestyle-focused opening hook, then weave in the essential details: bedrooms, bathrooms, square footage, and standout features like a renovated kitchen or finished basement. Highlight what makes the home unique, mention the neighborhood and nearby amenities, and close with a clear call to action that tells buyers how to schedule a showing.</p>
 
 <h3>Can I use AI to write listing descriptions?</h3>
-<p>Yes — and many top agents already do. AI tools can generate professional, engaging descriptions in seconds, which saves significant time when you're managing multiple listings. The key is to review and customize the output so it accurately reflects the property. Platforms like ListingFlare include AI description generation as part of their single-property website builder, making it easy to go from listing details to polished marketing copy.</p>
+<p>Yes, and many top agents already do. AI tools can generate professional, engaging descriptions in seconds, which saves significant time when you're managing multiple listings. The key is to review and customize the output so it accurately reflects the property. Platforms like ListingFlare include AI description generation as part of their single-property website builder, making it easy to go from listing details to polished marketing copy.</p>
 
 <h3>What words sell houses faster?</h3>
 <p>Research suggests that words like "luxurious," "captivating," "impeccable," "stunning," and "move-in ready" correlate with higher buyer interest and, in some cases, higher sale prices. Sensory words and lifestyle language tend to outperform dry, factual descriptions. Avoid negative-signal words like "TLC needed," "as-is," or "motivated seller," which can lower perceived value and invite lowball offers.</p>
 
 <h3>Should I mention the price in the listing description?</h3>
-<p>Generally, no. The price is displayed separately on MLS and listing portals, so repeating it in the description uses up valuable character space. Instead, use your description to justify the price by emphasizing value, quality, and lifestyle. The exception is if the price is a significant selling point — for example, "Priced below recent comps" for a competitively priced home in a hot market.</p>
+<p>Generally, no. The price is displayed separately on MLS and listing portals, so repeating it in the description uses up valuable character space. Instead, use your description to justify the price by emphasizing value, quality, and lifestyle. The exception is if the price is a significant selling point, for example, "Priced below recent comps" for a competitively priced home in a hot market.</p>
 
 </div>
 `};

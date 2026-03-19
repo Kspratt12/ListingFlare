@@ -20,11 +20,11 @@ export const article: BlogPost = {
   coverImage:
     "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=630&fit=crop&q=80",
   coverImageAlt:
-    "Laptop showing a beautiful real estate listing website with property details and photos",
+    "Modern property listing showcasing how to create a single property website for real estate",
   content: `
-<p>A single property website is a dedicated, standalone web page built for one listing and one listing only. No sidebar ads. No competing properties. No brokerage logo pushing yours to the corner. Just your listing, your brand, and a clear path for buyers to reach you. Top-producing agents have been using them for years&mdash;and in 2026, the tools have finally caught up to make them accessible to every agent, not just teams with big marketing budgets.</p>
+<p>A single property website is a dedicated, standalone web page built for one listing and one listing only. No sidebar ads. No competing properties. No brokerage logo pushing yours to the corner. Just your listing, your brand, and a clear path for buyers to reach you. Top-producing agents have been using them for years, and in 2026, the tools have finally caught up to make them accessible to every agent, not just teams with big marketing budgets.</p>
 
-<p>If you have ever sent a buyer to your MLS page only to watch them click away to Zillow&mdash;where three other agents are advertising on your own listing&mdash;you already understand the problem. A single property website solves it by giving you complete control over the buyer experience. This guide will walk you through exactly how to create one, what features matter most, and how to use single property websites to win more listings and capture more leads.</p>
+<p>If you have ever sent a buyer to your MLS page only to watch them click away to Zillow, where three other agents are advertising on your own listing, you already understand the problem. A single property website solves it by giving you complete control over the buyer experience. This guide will walk you through exactly how to create one, what features matter most, and how to use single property websites to win more listings and capture more leads.</p>
 
 <h2>Why Single Property Websites Work</h2>
 
@@ -58,6 +58,8 @@ export const article: BlogPost = {
   <li><strong>Social sharing buttons.</strong> Make it effortless for visitors to share the listing on Facebook, Instagram, or via text. Every share expands your reach without any ad spend.</li>
 </ul>
 
+<img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&h=450&fit=crop&q=80" alt="Luxury property showcased on a single property website with professional photography" loading="lazy" />
+
 <h2>How to Create a Single Property Website: Your Options</h2>
 
 <p>There are three main paths to creating a single property website. Each comes with trade-offs in cost, time, and functionality.</p>
@@ -76,7 +78,7 @@ export const article: BlogPost = {
 
 <h3>Option 3: Use a Dedicated Platform Like ListingFlare</h3>
 
-<p>Purpose-built single property website platforms solve the problems of both approaches above. <a href="/signup">ListingFlare</a>, for example, lets you create a professional, fully branded property website in minutes&mdash;not hours or days. You enter your property details, upload photos, and publish.</p>
+<p>Purpose-built single property website platforms solve the problems of both approaches above. <a href="/signup">ListingFlare</a>, for example, lets you create a professional, fully branded property website in minutes, not hours or days. You enter your property details, upload photos, and publish.</p>
 
 <p>What makes a dedicated platform different from a generic website builder is everything that comes built in: an AI chatbot that answers buyer questions using your listing details, automatic lead capture on every interaction, instant follow-up emails so no lead goes cold, virtual tour embeds, agent branding, and a lead management dashboard. You do not need to install plugins, hire a developer, or configure anything. <a href="/demo">See a demo listing</a> to understand the difference.</p>
 
@@ -106,6 +108,8 @@ export const article: BlogPost = {
 
 <p>This is especially powerful with sellers who have interviewed multiple agents. When every other agent shows the same CMA and promises the same MLS exposure, you walk in with a live demo of a dedicated property website with AI-powered buyer engagement. That is how you win the listing.</p>
 
+<img src="https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=800&h=450&fit=crop&q=80" alt="Real estate agent creating a single property website on their laptop" loading="lazy" />
+
 <h2>Real Results: What Agents See with Single Property Websites</h2>
 
 <p>Agents who consistently use single property websites report measurable improvements across their business.</p>
@@ -121,7 +125,7 @@ export const article: BlogPost = {
 <h2>Frequently Asked Questions</h2>
 
 <h3>How much does a single property website cost?</h3>
-<p>Costs vary widely depending on your approach. Building one yourself with WordPress or Squarespace can cost \$10 to \$50 per month in hosting and plugins, but requires significant time. Hiring a designer runs \$500 to \$2,000 or more per listing. Dedicated platforms like <a href="/signup">ListingFlare</a> offer plans designed for agents who need to create multiple property websites affordably, with AI chatbot and lead capture included&mdash;no extra plugins or add-ons required.</p>
+<p>Costs vary widely depending on your approach. Building one yourself with WordPress or Squarespace can cost \$10 to \$50 per month in hosting and plugins, but requires significant time. Hiring a designer runs \$500 to \$2,000 or more per listing. Dedicated platforms like <a href="/signup">ListingFlare</a> offer plans designed for agents who need to create multiple property websites affordably, with AI chatbot and lead capture included, with no extra plugins or add-ons required.</p>
 
 <h3>Do I need a single property website for every listing?</h3>
 <p>Ideally, yes. Creating a dedicated website for every listing signals professionalism and gives you a consistent lead capture system across your entire portfolio. With a platform that lets you create pages in minutes, there is no reason not to. That said, if you are just getting started, begin with your most important listings and expand from there.</p>
@@ -138,7 +142,7 @@ export const article: BlogPost = {
 
 <h2>Start Creating Single Property Websites Today</h2>
 
-<p>Single property websites are no longer a luxury reserved for agents with big marketing budgets and tech teams. They are an essential part of a modern listing marketing strategy. Pair them with a compelling <a href="/blog/real-estate-listing-description-examples">listing description</a> that tells a story, and you give buyers an experience that MLS syndication alone cannot match&mdash;and the agents who adopt them are winning more listings, capturing more leads, and closing faster than those who rely on MLS syndication alone.</p>
+<p>Single property websites are no longer a luxury reserved for agents with big marketing budgets and tech teams. They are an essential part of a modern listing marketing strategy. Pair them with a compelling <a href="/blog/real-estate-listing-description-examples">listing description</a> that tells a story, and you give buyers an experience that MLS syndication alone cannot match, and the agents who adopt them are winning more listings, capturing more leads, and closing faster than those who rely on MLS syndication alone.</p>
 
 <p>If you are ready to create your first single property website, <a href="/signup">try ListingFlare free</a> and see how fast you can go from listing photos to a live, AI-powered property page with built-in lead capture and automated follow-up. Your next listing deserves more than a MLS page.</p>
 `,

@@ -17,7 +17,7 @@ export const article: BlogPost = {
   ],
   readingTime: 7,
   coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop&q=80",
-  coverImageAlt: "Data analytics charts and graphs on a screen showing lead scoring metrics for real estate agents",
+  coverImageAlt: "Lead scoring criteria dashboard with charts showing how real estate agents prioritize prospects",
   content: `
 <p>Every real estate agent has been there: you spend an hour on the phone with a prospect who turns out to be "just browsing," while a pre-approved buyer who was ready to make an offer slipped through the cracks. If you don't have a system for <strong>lead scoring criteria real estate agents</strong> can rely on, you're leaving deals on the table every single week. The good news? A practical lead scoring system is easier to set up than you think, and it can transform the way you spend your time.</p>
 
@@ -25,11 +25,13 @@ export const article: BlogPost = {
 
 <h2>What Is Lead Scoring?</h2>
 
-<p>Lead scoring is the practice of assigning a numerical value to each prospect based on how likely they are to close a deal. Instead of treating every inquiry the same, you rank leads from hottest to coldest so you know exactly where to focus your energy. Of course, scoring only matters if you have a steady flow of leads coming in — if you need to build that pipeline first, start with our guide on <a href="/blog/how-to-get-leads-as-a-real-estate-agent">how to get leads as a real estate agent</a>.</p>
+<p>Lead scoring is the practice of assigning a numerical value to each prospect based on how likely they are to close a deal. Instead of treating every inquiry the same, you rank leads from hottest to coldest so you know exactly where to focus your energy. Of course, scoring only matters if you have a steady flow of leads coming in. If you need to build that pipeline first, start with our guide on <a href="/blog/how-to-get-leads-as-a-real-estate-agent">how to get leads as a real estate agent</a>.</p>
 
 <p>Think of it like triage in an emergency room. The most critical patients get seen first. In real estate, the most motivated and qualified prospects should get your attention first. Without a scoring system, you're essentially treating a stubbed toe and a heart attack with the same urgency.</p>
 
 <p>For most agents, a simple point-based system works best. Each lead earns points across several categories, and the total score tells you whether to drop everything and call, add them to a nurture sequence, or file them away for later follow-up.</p>
+
+<img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=450&fit=crop&q=80" alt="Lead scoring analytics showing how real estate agents prioritize their best prospects" loading="lazy" />
 
 <h2>The Essential Lead Scoring Criteria for Real Estate Agents</h2>
 

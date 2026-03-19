@@ -18,19 +18,19 @@ export const article: BlogPost = {
   ],
   readingTime: 11,
   coverImage: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1200&h=630&fit=crop&q=80",
-  coverImageAlt: "Beautiful suburban home with manicured lawn ready for sale representing the home selling process",
+  coverImageAlt: "Beautiful home ready for sale representing the first time home sellers guide process",
   content: `
-<p>Congratulations — you're about to sell your first home! Whether you've outgrown your starter house, you're relocating for work, or you're simply ready for a change, selling a home for the first time can feel equal parts exciting and overwhelming. There are contracts, timelines, inspections, pricing decisions, and an avalanche of paperwork standing between you and a successful sale.</p>
+<p>Congratulations, you're about to sell your first home! Whether you've outgrown your starter house, you're relocating for work, or you're simply ready for a change, selling a home for the first time can feel equal parts exciting and overwhelming. There are contracts, timelines, inspections, pricing decisions, and an avalanche of paperwork standing between you and a successful sale.</p>
 
-<p>But here's the good news: the <strong>home selling process</strong> follows a predictable set of steps, and once you understand them, the entire journey becomes far less intimidating. This <strong>first time home seller's guide</strong> walks you through every stage — from deciding whether you're truly ready to sell, all the way to handing over the keys at closing. Let's get started.</p>
+<p>But here's the good news: the <strong>home selling process</strong> follows a predictable set of steps, and once you understand them, the entire journey becomes far less intimidating. This <strong>first time home seller's guide</strong> walks you through every stage, from deciding whether you're truly ready to sell all the way to handing over the keys at closing. Let's get started.</p>
 
 <h2>Step 1: Decide If You're Ready to Sell</h2>
 
-<p>Before you plant a "For Sale" sign in your yard, take a step back and make sure selling is the right move — both financially and emotionally.</p>
+<p>Before you plant a "For Sale" sign in your yard, take a step back and make sure selling is the right move, both financially and emotionally.</p>
 
 <h3>Financial Considerations</h3>
 
-<p>Start by understanding your <strong>equity position</strong>. Check your most recent mortgage statement for your remaining balance, then estimate your home's current market value using sites like Zillow or Redfin (keep in mind these are rough estimates). The difference between what your home is worth and what you owe is your equity — and it needs to cover your selling costs with enough left over for your next move.</p>
+<p>Start by understanding your <strong>equity position</strong>. Check your most recent mortgage statement for your remaining balance, then estimate your home's current market value using sites like Zillow or Redfin (keep in mind these are rough estimates). The difference between what your home is worth and what you owe is your equity, and it needs to cover your selling costs with enough left over for your next move.</p>
 
 <p>Typical selling costs include:</p>
 <ul>
@@ -46,11 +46,11 @@ export const article: BlogPost = {
 
 <h3>Emotional Readiness</h3>
 
-<p>Selling the place where you've built memories is emotional — and that's completely normal. Just be honest with yourself about whether you're ready. Buyers will critique your home during showings, inspectors will point out every flaw, and negotiations can feel personal. Knowing this upfront helps you stay level-headed when it counts.</p>
+<p>Selling the place where you've built memories is emotional, and that's completely normal. Just be honest with yourself about whether you're ready. Buyers will critique your home during showings, inspectors will point out every flaw, and negotiations can feel personal. Knowing this upfront helps you stay level-headed when it counts.</p>
 
 <h2>Step 2: Find the Right Real Estate Agent</h2>
 
-<p>As a first-time seller, having an experienced agent in your corner isn't a luxury — it's practically a necessity. A great listing agent handles pricing strategy, marketing, showing coordination, negotiations, and the mountain of paperwork that comes with a real estate transaction.</p>
+<p>As a first-time seller, having an experienced agent in your corner isn't a luxury. It's practically a necessity. A great listing agent handles pricing strategy, marketing, showing coordination, negotiations, and the mountain of paperwork that comes with a real estate transaction.</p>
 
 <h3>What to Look for in a Listing Agent</h3>
 <ul>
@@ -71,7 +71,7 @@ export const article: BlogPost = {
 
 <h3>How Modern Agents Use Technology</h3>
 
-<p>The best agents in 2026 go beyond a basic MLS listing. They leverage technology to give your property maximum exposure — think single-property websites with AI-powered chatbots that answer buyer questions 24/7, professional virtual tours, and automated follow-up with every lead. When you're interviewing agents, ask whether they use tools like <a href="/demo">ListingFlare</a> to create dedicated listing pages for their properties. These platforms give serious buyers a rich, immersive experience and capture leads around the clock, even when your agent is asleep.</p>
+<p>The best agents in 2026 go beyond a basic MLS listing. They leverage technology to give your property maximum exposure: single-property websites with AI-powered chatbots that answer buyer questions 24/7, professional virtual tours, and automated follow-up with every lead. When you're interviewing agents, ask whether they use tools like <a href="/demo">ListingFlare</a> to create dedicated listing pages for their properties. These platforms give serious buyers a rich, immersive experience and capture leads around the clock, even when your agent is asleep.</p>
 
 <h2>Step 3: Price Your Home Right</h2>
 
@@ -79,7 +79,7 @@ export const article: BlogPost = {
 
 <h3>The Comparative Market Analysis (CMA)</h3>
 
-<p>Your agent will prepare a <strong>Comparative Market Analysis</strong> — a report that examines recently sold homes similar to yours in size, condition, location, and features. The CMA is the foundation of your pricing strategy and is far more accurate than any online estimate because it accounts for hyperlocal factors automated tools miss.</p>
+<p>Your agent will prepare a <strong>Comparative Market Analysis</strong>, a report that examines recently sold homes similar to yours in size, condition, location, and features. The CMA is the foundation of your pricing strategy and is far more accurate than any online estimate because it accounts for hyperlocal factors automated tools miss.</p>
 
 <h3>Pricing Strategies That Work</h3>
 <ul>
@@ -97,7 +97,7 @@ export const article: BlogPost = {
 
 <h2>Step 4: Get Your House Ready to Sell</h2>
 
-<p>Wondering <strong>how to get your house ready to sell</strong>? This step can make or break your final sale price. Buyers make judgments within seconds of walking through the door — and often before they even step inside. Here's how to make your home irresistible.</p>
+<p>Wondering <strong>how to get your house ready to sell</strong>? This step can make or break your final sale price. Buyers make judgments within seconds of walking through the door, and often before they even step inside. Here's how to make your home irresistible.</p>
 
 <h3>Declutter and Depersonalize</h3>
 
@@ -143,25 +143,27 @@ export const article: BlogPost = {
   <li>Make sure exterior lights work and are clean.</li>
 </ol>
 
+<img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=800&h=450&fit=crop&q=80" alt="Home staged and ready for sale with professional curb appeal for first time sellers" loading="lazy" />
+
 <h2>Step 5: List and Market Your Home</h2>
 
-<p>Your home is prepped, priced, and ready to shine. Now it's time to get it in front of as many qualified buyers as possible. A strong marketing plan is a critical part of the <strong>home selling process steps guide</strong> — and it's one area where agent quality really shows.</p>
+<p>Your home is prepped, priced, and ready to shine. Now it's time to get it in front of as many qualified buyers as possible. A strong marketing plan is a critical part of the <strong>home selling process steps guide</strong>, and it's one area where agent quality really shows.</p>
 
 <h3>Professional Photography</h3>
 
-<p>This is non-negotiable. Over 95% of buyers start their home search online, and photos are the first thing they see. Listings with professional photos sell 32% faster on average. Dark, blurry smartphone photos tell buyers that neither you nor your agent are taking the sale seriously. Your agent should hire a professional photographer — and ideally offer a virtual tour or 3D walkthrough as well.</p>
+<p>This is non-negotiable. Over 95% of buyers start their home search online, and photos are the first thing they see. Listings with professional photos sell 32% faster on average. Dark, blurry smartphone photos tell buyers that neither you nor your agent are taking the sale seriously. Your agent should hire a professional photographer, and ideally offer a virtual tour or 3D walkthrough as well.</p>
 
 <h3>MLS Listing and Syndication</h3>
 
-<p>Your agent will list your home on the <strong>Multiple Listing Service (MLS)</strong>, which automatically syndicates your listing to major real estate sites like Zillow, Realtor.com, Redfin, and Homes.com. This gives you massive exposure from day one. A compelling <a href="/blog/real-estate-listing-description-examples">listing description</a> is critical at this stage — the words in your MLS entry are what convince buyers to schedule a showing after the photos catch their eye.</p>
+<p>Your agent will list your home on the <strong>Multiple Listing Service (MLS)</strong>, which automatically syndicates your listing to major real estate sites like Zillow, Realtor.com, Redfin, and Homes.com. This gives you massive exposure from day one. A compelling <a href="/blog/real-estate-listing-description-examples">listing description</a> is critical at this stage. The words in your MLS entry are what convince buyers to schedule a showing after the photos catch their eye.</p>
 
 <h3>Single-Property Websites for Premium Marketing</h3>
 
-<p>A growing number of top agents create <strong>dedicated single-property websites</strong> for each listing. Instead of a buyer seeing your home as one of thousands on Zillow, they get an immersive, distraction-free experience focused entirely on your property. These sites typically feature full photo galleries, property details, neighborhood info, and — in the case of platforms like <a href="/demo">ListingFlare</a> — an AI-powered chat that can answer buyer questions instantly at any hour. Ask your agent if they offer this level of marketing; it signals they're investing real effort into selling your home.</p>
+<p>A growing number of top agents create <strong>dedicated single-property websites</strong> for each listing. Instead of a buyer seeing your home as one of thousands on Zillow, they get an immersive, distraction-free experience focused entirely on your property. These sites typically feature full photo galleries, property details, neighborhood info, and, in the case of platforms like <a href="/demo">ListingFlare</a>, an AI-powered chat that can answer buyer questions instantly at any hour. Ask your agent if they offer this level of marketing; it signals they're investing real effort into selling your home.</p>
 
 <h3>Social Media and Open Houses</h3>
 
-<p>Your agent should promote your listing across social media platforms — Facebook, Instagram, and even TikTok for video tours. Open houses remain an effective strategy, especially during the first two weekends after listing. They create a sense of urgency and allow buyers to experience the home in person without scheduling a private showing.</p>
+<p>Your agent should promote your listing across social media platforms: Facebook, Instagram, and even TikTok for video tours. Open houses remain an effective strategy, especially during the first two weekends after listing. They create a sense of urgency and allow buyers to experience the home in person without scheduling a private showing.</p>
 
 <h2>Step 6: Review Offers and Negotiate</h2>
 
@@ -182,7 +184,9 @@ export const article: BlogPost = {
 
 <h3>Multiple Offer Situations</h3>
 
-<p>If you receive multiple offers (congratulations!), your agent will help you compare them side by side. The highest price isn't always the best offer — an all-cash offer at \$5,000 less than a financed offer might actually net you more money and close with fewer headaches. Your agent may also advise you to ask all buyers for their "highest and best" offers by a specific deadline.</p>
+<p>If you receive multiple offers (congratulations!), your agent will help you compare them side by side. The highest price isn't always the best offer. An all-cash offer at \$5,000 less than a financed offer might actually net you more money and close with fewer headaches. Your agent may also advise you to ask all buyers for their "highest and best" offers by a specific deadline.</p>
+
+<img src="https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?w=800&h=450&fit=crop&q=80" alt="Home seller reviewing real estate offers and paperwork at a desk" loading="lazy" />
 
 <h2>Step 7: Navigate Inspections and Appraisal</h2>
 
@@ -190,15 +194,15 @@ export const article: BlogPost = {
 
 <h3>The Home Inspection</h3>
 
-<p>The buyer will hire a licensed home inspector to evaluate your property's condition — roof, foundation, plumbing, electrical, HVAC, and more. The inspection typically takes 2–4 hours and costs the buyer \$300–\$600. Expect the report to find issues; no home is perfect. Common findings include minor electrical issues, aging water heaters, roof wear, and drainage concerns.</p>
+<p>The buyer will hire a licensed home inspector to evaluate your property's condition: roof, foundation, plumbing, electrical, HVAC, and more. The inspection typically takes 2–4 hours and costs the buyer \$300–\$600. Expect the report to find issues; no home is perfect. Common findings include minor electrical issues, aging water heaters, roof wear, and drainage concerns.</p>
 
 <h3>Negotiating Repairs</h3>
 
-<p>After the inspection, the buyer may request repairs or a price reduction. You can agree, counter, or refuse. Many sellers offer a <strong>repair credit</strong> — a dollar amount taken off the sale price — instead of doing the work themselves. Your agent will help you decide which requests are reasonable and which are overreaches. In general, safety issues and major structural or mechanical problems are fair requests; cosmetic items are typically not.</p>
+<p>After the inspection, the buyer may request repairs or a price reduction. You can agree, counter, or refuse. Many sellers offer a <strong>repair credit</strong> (a dollar amount taken off the sale price) instead of doing the work themselves. Your agent will help you decide which requests are reasonable and which are overreaches. In general, safety issues and major structural or mechanical problems are fair requests; cosmetic items are typically not.</p>
 
 <h3>The Appraisal Process</h3>
 
-<p>If the buyer is using a mortgage, the lender will order an independent appraisal to confirm the home is worth the agreed-upon price. The appraiser visits the property, reviews comparable sales, and delivers a value opinion. If the appraisal comes in at or above the contract price, you're in the clear. If it comes in <em>below</em>, you'll need to negotiate — options include lowering the price, the buyer paying the difference in cash, or meeting somewhere in the middle.</p>
+<p>If the buyer is using a mortgage, the lender will order an independent appraisal to confirm the home is worth the agreed-upon price. The appraiser visits the property, reviews comparable sales, and delivers a value opinion. If the appraisal comes in at or above the contract price, you're in the clear. If it comes in <em>below</em>, you'll need to negotiate. Options include lowering the price, the buyer paying the difference in cash, or meeting somewhere in the middle.</p>
 
 <h2>Step 8: Close the Deal</h2>
 
@@ -206,7 +210,7 @@ export const article: BlogPost = {
 
 <h3>What Happens at Closing</h3>
 
-<p>You'll sign a stack of legal documents, including the deed, closing disclosure, and settlement statement. If you can't attend in person, many title companies now offer remote or mobile closings. The buyer's lender wires the funds to the title company, who distributes them according to the settlement statement — paying off your mortgage, the agents' commissions, and other closing costs, with the remainder going to you.</p>
+<p>You'll sign a stack of legal documents, including the deed, closing disclosure, and settlement statement. If you can't attend in person, many title companies now offer remote or mobile closings. The buyer's lender wires the funds to the title company, who distributes them according to the settlement statement, paying off your mortgage, the agents' commissions, and other closing costs, with the remainder going to you.</p>
 
 <h3>Seller Closing Costs to Expect</h3>
 <ul>
@@ -232,24 +236,24 @@ export const article: BlogPost = {
 <p>Plan for total selling costs of approximately <strong>8–10% of your sale price</strong>. This includes agent commissions (5–6%), closing costs (1–3%), and home preparation expenses. On a \$400,000 sale, you might pay \$32,000–\$40,000 in total costs.</p>
 
 <h3>Should I sell my house without a realtor?</h3>
-<p>Selling "For Sale By Owner" (FSBO) can save you the listing agent's commission (typically 2.5–3%), but NAR data shows that FSBO homes sell for a median of 23% less than agent-assisted homes. Unless you have real estate experience, the net savings often don't materialize — and you'll take on significant legal and financial risk. For first-time sellers especially, working with a qualified agent is strongly recommended.</p>
+<p>Selling "For Sale By Owner" (FSBO) can save you the listing agent's commission (typically 2.5–3%), but NAR data shows that FSBO homes sell for a median of 23% less than agent-assisted homes. Unless you have real estate experience, the net savings often don't materialize, and you'll take on significant legal and financial risk. For first-time sellers especially, working with a qualified agent is strongly recommended.</p>
 
 <h3>What's the best month to sell a house?</h3>
 <p>Historically, homes listed in <strong>late April through June</strong> tend to sell faster and for higher prices. Spring brings more buyers into the market, days are longer for showings, and families want to move during summer break. That said, selling in fall or winter means less competition from other listings, so the "best" time depends on your local market and personal circumstances.</p>
 
 <h3>Do I need to make repairs before selling?</h3>
-<p>You don't <em>have</em> to, but addressing obvious issues pays off. Focus on repairs that affect safety, functionality, and first impressions. Fixing a leaky roof, a broken HVAC system, or a cracked foundation is almost always worth it — these are deal-breakers for most buyers. Cosmetic updates like fresh paint and new hardware offer excellent return on investment. Major remodels right before selling, however, rarely pay for themselves.</p>
+<p>You don't <em>have</em> to, but addressing obvious issues pays off. Focus on repairs that affect safety, functionality, and first impressions. Fixing a leaky roof, a broken HVAC system, or a cracked foundation is almost always worth it. These are deal-breakers for most buyers. Cosmetic updates like fresh paint and new hardware offer excellent return on investment. Major remodels right before selling, however, rarely pay for themselves.</p>
 
 <h3>What if my home doesn't sell?</h3>
-<p>If your home hasn't received offers within 2–3 weeks, the most common culprit is pricing. For Raleigh-area sellers, our article on <a href="/blog/how-to-sell-your-house-fast-in-raleigh-nc">how to sell your house fast in Raleigh NC</a> covers market-specific tactics that can help. Talk to your agent about a price adjustment. Other factors to evaluate include your home's online photos, showing availability, and overall condition. Sometimes small changes — better photos, a price reduction of 2–3%, or improved staging — can make a dramatic difference.</p>
+<p>If your home hasn't received offers within 2–3 weeks, the most common culprit is pricing. For Raleigh-area sellers, our article on <a href="/blog/how-to-sell-your-house-fast-in-raleigh-nc">how to sell your house fast in Raleigh NC</a> covers market-specific tactics that can help. Talk to your agent about a price adjustment. Other factors to evaluate include your home's online photos, showing availability, and overall condition. Sometimes small changes (better photos, a price reduction of 2–3%, or improved staging) can make a dramatic difference.</p>
 </div>
 
 <h2>Your First Home Sale, Made Simple</h2>
 
-<p>Selling your first home doesn't have to be a stressful, confusing experience. By following this <strong>home selling process steps guide</strong> — preparing financially, choosing the right agent, pricing strategically, presenting your home at its best, and understanding what to expect through inspections and closing — you're setting yourself up for a smooth, profitable sale.</p>
+<p>Selling your first home doesn't have to be a stressful, confusing experience. By following this <strong>home selling process steps guide</strong>, preparing financially, choosing the right agent, pricing strategically, presenting your home at its best, and understanding what to expect through inspections and closing, you're setting yourself up for a smooth, profitable sale.</p>
 
 <p>The sellers who achieve the best results are the ones who prepare thoroughly and partner with agents who leverage every tool available. From professional photography to <a href="/demo">dedicated listing websites</a> that showcase your home around the clock, today's marketing technology means your property can reach more qualified buyers than ever before.</p>
 
-<p>Take it one step at a time, lean on your agent's expertise, and remember — thousands of first-time sellers successfully navigate this process every single day. You've got this.</p>
+<p>Take it one step at a time, lean on your agent's expertise, and remember, thousands of first-time sellers successfully navigate this process every single day. You've got this.</p>
 `,
 };
