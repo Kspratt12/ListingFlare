@@ -32,6 +32,11 @@ import { article as raleighMarketing } from "@/content/articles/best-real-estate
 import { article as charlotteMarket } from "@/content/articles/charlotte-nc-housing-market-2026";
 import { article as durhamMarket } from "@/content/articles/durham-nc-housing-market-2026";
 import { article as austinMarket } from "@/content/articles/austin-tx-housing-market-2026";
+import { article as whatNotToFix } from "@/content/articles/what-not-to-fix-when-selling-a-house";
+import { article as homeStagingTips } from "@/content/articles/home-staging-tips-sell-faster";
+import { article as chooseAgent } from "@/content/articles/how-to-choose-a-real-estate-agent";
+import { article as buyingVsRenting } from "@/content/articles/buying-vs-renting-a-home";
+import { article as costToSell } from "@/content/articles/how-much-does-it-cost-to-sell-a-house";
 
 const allPosts: BlogPost[] = [
   howToGetLeads,
@@ -52,6 +57,11 @@ const allPosts: BlogPost[] = [
   charlotteMarket,
   durhamMarket,
   austinMarket,
+  whatNotToFix,
+  homeStagingTips,
+  chooseAgent,
+  buyingVsRenting,
+  costToSell,
 ];
 
 // Sort by date descending
