@@ -111,77 +111,32 @@ export default function SettingsPage() {
     setError("");
 
     try {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) throw new Error("Not authenticated");
+      // Save via server-side API to ensure proper auth handling
+      const res = await fetch("/api/settings", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          title,
+          brokerage,
+          phone,
+          email,
+          headshot_url: headshotUrl || null,
+          instagram,
+          linkedin,
+          zillow,
+          realtor_com: realtorCom,
+          facebook,
+          website,
+          weekly_emails: weeklyEmails,
+          calendly_url: calendlyUrl,
+        }),
+      });
 
-      const profileData = {
-        name,
-        title,
-        brokerage,
-        phone,
-        email,
-        headshot_url: headshotUrl || null,
-        instagram,
-        linkedin,
-        zillow,
-        realtor_com: realtorCom,
-        facebook,
-        website,
-        weekly_emails: weeklyEmails,
-        calendly_url: calendlyUrl,
-        updated_at: new Date().toISOString(),
-      };
+      const result = await res.json();
 
-      // Save profile — try with all fields, retry without new fields if it fails
-      const { error: updateError, count } = await supabase
-        .from("agent_profiles")
-        .update(profileData)
-        .eq("id", user.id);
-
-      if (updateError) {
-        console.error("Settings save error:", updateError);
-        // Retry without calendly_url in case column doesn't exist yet
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { calendly_url: _cal, ...safeData } = profileData;
-        const { error: retryError, count: retryCount } = await supabase
-          .from("agent_profiles")
-          .update(safeData)
-          .eq("id", user.id);
-        if (retryError) throw retryError;
-        if (retryCount === 0) {
-          // No rows updated — profile row may not exist yet, insert it
-          const { error: insertError } = await supabase
-            .from("agent_profiles")
-            .insert({ id: user.id, ...safeData });
-          if (insertError) throw insertError;
-        }
-      } else if (count === 0) {
-        // No rows updated — profile row may not exist yet, insert it
-        const { error: insertError } = await supabase
-          .from("agent_profiles")
-          .insert({ id: user.id, ...profileData });
-        if (insertError) {
-          // Retry insert without calendly_url
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const { calendly_url: _cal, ...safeData } = profileData;
-          const { error: retryInsertError } = await supabase
-            .from("agent_profiles")
-            .insert({ id: user.id, ...safeData });
-          if (retryInsertError) throw retryInsertError;
-        }
-      }
-
-      // Verify the save actually took effect
-      const { data: verify } = await supabase
-        .from("agent_profiles")
-        .select("email")
-        .eq("id", user.id)
-        .single();
-
-      if (verify && verify.email !== email) {
-        throw new Error("Save appeared to succeed but changes were not applied. Check your database permissions.");
+      if (!res.ok) {
+        throw new Error(result.error || "Failed to save settings");
       }
 
       setSaved(true);
