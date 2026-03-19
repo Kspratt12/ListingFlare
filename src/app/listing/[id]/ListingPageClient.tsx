@@ -111,6 +111,7 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
         }}
         listingId={listing.id}
         agentId={listing.agent_id}
+        calendlyUrl={agent.calendly_url || undefined}
       />
       <Footer />
     </main>

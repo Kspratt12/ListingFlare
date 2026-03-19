@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import Anthropic from "@anthropic-ai/sdk";
+import { formatPhone } from "@/lib/formatters";
 
 export const dynamic = "force-dynamic";
 
@@ -92,6 +93,57 @@ Write a brief, personalized follow-up email (3-4 sentences max). Guidelines:
         .from("leads")
         .update({ auto_reply_draft: draft })
         .eq("id", leadId);
+
+      // Auto-send the reply to the buyer via Resend
+      const resendKey = process.env.RESEND_API_KEY;
+      if (resendKey && lead.email) {
+        const listingAddress = listing
+          ? `${listing.street}, ${listing.city}, ${listing.state}`
+          : "your inquiry";
+
+        const emailHtml = `
+          <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto;">
+            <div style="background: #0f172a; padding: 24px 32px; border-radius: 12px 12px 0 0;">
+              <h1 style="color: #b8965a; margin: 0; font-size: 20px;">ListingFlare</h1>
+            </div>
+            <div style="background: #ffffff; padding: 32px; border: 1px solid #e5e7eb; border-top: 0; border-radius: 0 0 12px 12px;">
+              <p style="color: #6b7280; margin: 0 0 8px; font-size: 14px;">
+                Re: ${listingAddress}
+              </p>
+              <p style="color: #111827; margin: 0 0 24px; font-size: 14px;">
+                Hi ${lead.name.split(" ")[0]},
+              </p>
+              <div style="color: #111827; font-size: 15px; line-height: 1.7; white-space: pre-wrap;">${draft}</div>
+              <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e5e7eb;">
+                <p style="margin: 0; font-weight: 600; color: #111827;">${agent.name}</p>
+                ${agent.phone ? `<p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${formatPhone(agent.phone)}</p>` : ""}
+                <p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${agent.email}</p>
+              </div>
+            </div>
+          </div>
+        `;
+
+        fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${resendKey}`,
+          },
+          body: JSON.stringify({
+            from: `${agent.name} via ListingFlare <leads@listingflare.com>`,
+            to: lead.email,
+            replyTo: agent.email,
+            subject: `Re: ${listingAddress} — ${agent.name}`,
+            html: emailHtml,
+          }),
+        }).catch(() => {});
+
+        // Update lead status to contacted
+        await supabase
+          .from("leads")
+          .update({ status: "contacted" })
+          .eq("id", leadId);
+      }
     }
 
     return NextResponse.json({ draft });

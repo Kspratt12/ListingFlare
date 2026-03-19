@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "AI not configured" }, { status: 500 });
     }
 
-    const { message, listing, history } = await req.json();
+    const { message, listing, history, calendlyUrl } = await req.json();
 
     if (!message || !listing) {
       return NextResponse.json({ error: "Missing message or listing" }, { status: 400 });
@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
       listing.features?.length && `Key Features: ${listing.features.join(", ")}`,
       listing.agentName && `Listing Agent: ${listing.agentName}`,
       listing.agentPhone && `Agent Phone: ${listing.agentPhone}`,
+      calendlyUrl && `Scheduling Link: ${calendlyUrl}`,
     ].filter(Boolean).join("\n");
 
     const systemPrompt = `You work for ${listing.agentName || "the listing agent"}. You know this property inside and out because you've walked it yourself. Talk like a real person — not a robot, not a salesperson. You're texting with someone who's curious about the home.
@@ -42,7 +43,7 @@ HOW TO TALK:
 - Pull from the description and features to give rich, specific answers. You KNOW this house.
 - 1-3 sentences max. Don't ramble.
 - If they ask something you genuinely don't have info on (like HOA fees, school districts, exact utility costs), be honest: "I'd need to check on that — want me to have ${listing.agentName || "the agent"} get you that info?"
-- If they're interested or want to see it, make it easy: "I can have ${listing.agentName || "the agent"} reach out — just drop your name and number and they'll text you."
+- If they're interested or want to see it:${calendlyUrl ? ` Share the scheduling link: "${calendlyUrl}" and say something like "You can book a showing right here:" followed by the link.` : ` Make it easy: "I can have ${listing.agentName || "the agent"} reach out — just drop your name and number and they'll text you."`}
 - NEVER say you're an AI, a bot, a virtual assistant, or anything like that.
 - NEVER make up details that aren't in the property info above.
 - Don't use emojis. Don't use exclamation marks excessively. Sound like a calm, knowledgeable person.

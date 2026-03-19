@@ -32,10 +32,12 @@ interface Props {
   listingId: string;
   agentId: string;
   isDemo?: boolean;
+  calendlyUrl?: string;
 }
 
-export default function ListingChat({ listing, listingId, agentId, isDemo = false }: Props) {
+export default function ListingChat({ listing, listingId, agentId, isDemo = false, calendlyUrl }: Props) {
   const [open, setOpen] = useState(false);
+  const [showHint, setShowHint] = useState(true);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
@@ -52,8 +54,15 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Hide hint after 6 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => setShowHint(false), 6000);
+    return () => clearTimeout(timer);
+  }, []);
+
   useEffect(() => {
     if (open && messages.length === 0) {
+      setShowHint(false);
       setMessages([{
         role: "assistant",
         text: `Hey! Have any questions about ${listing.street}? I know the property well — ask me anything.`,
@@ -85,6 +94,7 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
           message: userMessage,
           listing,
           history: messages,
+          calendlyUrl,
         }),
       });
 
@@ -159,20 +169,40 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
       {/* Chat Bubble */}
       <AnimatePresence>
         {!open && (
-          <motion.button
+          <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            onClick={() => setOpen(true)}
-            className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-brand-500 text-white shadow-lg shadow-brand-500/30 transition-transform hover:scale-110 hover:bg-brand-600 md:h-16 md:w-16"
-            aria-label="Chat about this property"
+            className="fixed bottom-6 right-6 z-40 flex items-center gap-3"
           >
-            <MessageCircle className="h-6 w-6 md:h-7 md:w-7" />
-            <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-green-500 text-[10px] font-bold text-white ring-2 ring-white">
-              AI
-            </span>
-          </motion.button>
+            {/* Hint label — fades after 6s */}
+            <AnimatePresence>
+              {showHint && (
+                <motion.div
+                  initial={{ opacity: 0, x: 10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 10 }}
+                  transition={{ duration: 0.3 }}
+                  className="rounded-full bg-gray-950 px-4 py-2 text-sm font-medium text-white shadow-lg"
+                >
+                  Ask me about this home
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <button
+              onClick={() => setOpen(true)}
+              className="relative flex h-14 w-14 items-center justify-center rounded-full bg-brand-500 text-white shadow-lg shadow-brand-500/30 transition-transform hover:scale-110 hover:bg-brand-600 md:h-16 md:w-16"
+              aria-label="Chat about this property"
+            >
+              {/* Pulse ring */}
+              <span className="absolute inset-0 animate-ping rounded-full bg-brand-400 opacity-20" />
+              <MessageCircle className="relative h-6 w-6 md:h-7 md:w-7" />
+              <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-green-500 text-[10px] font-bold text-white ring-2 ring-white">
+                AI
+              </span>
+            </button>
+          </motion.div>
         )}
       </AnimatePresence>
 
