@@ -139,6 +139,35 @@ export default function SettingsPage() {
         throw new Error(result.error || "Failed to save settings");
       }
 
+      // Re-fetch profile from DB to confirm changes persisted
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
+        const { data: refreshed } = await supabase
+          .from("agent_profiles")
+          .select("*")
+          .eq("id", user.id)
+          .single();
+        if (refreshed) {
+          const p = refreshed as AgentProfile;
+          setName(p.name);
+          setTitle(p.title);
+          setBrokerage(p.brokerage);
+          setPhone(p.phone);
+          setEmail(p.email);
+          setHeadshotUrl(p.headshot_url);
+          setInstagram(p.instagram || "");
+          setLinkedin(p.linkedin || "");
+          setZillow(p.zillow || "");
+          setRealtorCom(p.realtor_com || "");
+          setFacebook(p.facebook || "");
+          setWebsite(p.website || "");
+          setWeeklyEmails(p.weekly_emails !== false);
+          setCalendlyUrl(p.calendly_url || "");
+        }
+      }
+
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
     } catch (err) {
