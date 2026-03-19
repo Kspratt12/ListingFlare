@@ -24,14 +24,33 @@ export default function LiveLeadForm({ listingId, agentId }: Props) {
 
     const formData = new FormData(e.currentTarget);
 
-    const { data: leadData, error: insertError } = await supabase.from("leads").insert({
+    const leadName = formData.get("name") as string;
+    const leadEmail = formData.get("email") as string;
+    const leadPhone = formData.get("phone") as string;
+    const leadMessage = formData.get("message") as string;
+
+    const { error: insertError } = await supabase.from("leads").insert({
       listing_id: listingId,
       agent_id: agentId,
-      name: formData.get("name") as string,
-      email: formData.get("email") as string,
-      phone: formData.get("phone") as string,
-      message: formData.get("message") as string,
-    }).select("id").single();
+      name: leadName,
+      email: leadEmail,
+      phone: leadPhone,
+      message: leadMessage,
+    });
+
+    // Fetch the lead ID separately (RLS can block .select() after insert)
+    let leadId: string | null = null;
+    if (!insertError) {
+      const { data: found } = await supabase
+        .from("leads")
+        .select("id")
+        .eq("listing_id", listingId)
+        .eq("email", leadEmail)
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .single();
+      leadId = found?.id || null;
+    }
 
     if (insertError) {
       console.error("Lead insert error:", insertError);
@@ -39,12 +58,12 @@ export default function LiveLeadForm({ listingId, agentId }: Props) {
       setSubmitting(false);
     } else {
       setSubmitted(true);
-      // Fire-and-forget email notification
-      if (leadData?.id) {
+      // Fire email notification
+      if (leadId) {
         fetch("/api/leads/notify", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ leadId: leadData.id, listingId, agentId }),
+          body: JSON.stringify({ leadId, listingId, agentId }),
         }).catch(() => {});
       }
     }
