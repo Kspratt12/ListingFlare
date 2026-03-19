@@ -19,6 +19,8 @@ import {
   Send,
   PlusCircle,
   Image as ImageIcon,
+  MessageCircle,
+  View,
 } from "lucide-react";
 
 const features = [
@@ -29,10 +31,22 @@ const features = [
       "Full-screen hero slideshows, photo galleries with lightbox, and elegant typography. Every listing looks like a $5,000 custom website.",
   },
   {
+    icon: MessageCircle,
+    title: "24/7 AI Chat Assistant",
+    description:
+      "Every listing gets an AI assistant that answers buyer questions instantly — bedrooms, features, neighborhood. It captures leads while you sleep.",
+  },
+  {
     icon: BarChart3,
     title: "Lead Capture & AI Follow-Up",
     description:
       "Built-in contact forms send leads straight to your dashboard. Our AI instantly drafts a personalized reply so you respond in seconds, not hours.",
+  },
+  {
+    icon: View,
+    title: "Virtual Tour Integration",
+    description:
+      "Embed Matterport, Kuula, or any 360° tour directly on your listing page. Buyers explore the home in immersive 3D without leaving your site.",
   },
   {
     icon: Zap,
@@ -50,13 +64,13 @@ const features = [
 
 const included = [
   "Unlimited listing websites",
-  "Custom agent branding on every page",
-  "Photo gallery with lightbox viewer",
+  "24/7 AI chat assistant on every listing",
   "Lead capture with AI-drafted replies",
-  "View count analytics per listing",
+  "Virtual tour embeds (Matterport, Kuula)",
   "AI-powered descriptions & photo captions",
+  "Analytics dashboard & weekly reports",
   "Social media posts & open house flyers",
-  "Mobile-responsive luxury design",
+  "Custom agent branding on every page",
 ];
 
 const walkthrough = [
@@ -971,6 +985,12 @@ export default function LandingPage() {
                     <span className="rounded-full bg-cyan-50 border border-cyan-200 px-2 py-0.5 text-[9px] font-medium text-cyan-700 flex items-center gap-0.5">
                       <BarChart3 className="h-2.5 w-2.5" /> Weekly Reports
                     </span>
+                    <span className="rounded-full bg-indigo-50 border border-indigo-200 px-2 py-0.5 text-[9px] font-medium text-indigo-700 flex items-center gap-0.5">
+                      <MessageCircle className="h-2.5 w-2.5" /> 24/7 AI Chat
+                    </span>
+                    <span className="rounded-full bg-teal-50 border border-teal-200 px-2 py-0.5 text-[9px] font-medium text-teal-700 flex items-center gap-0.5">
+                      <View className="h-2.5 w-2.5" /> Virtual Tours
+                    </span>
                   </div>
                   {/* Agent branding */}
                   <div className="flex items-center gap-3 border-t border-gray-100 pt-3">
@@ -1021,7 +1041,7 @@ export default function LandingPage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="mt-16 grid gap-8 md:grid-cols-2"
+            className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3"
           >
             {features.map((feature, i) => (
               <motion.div
