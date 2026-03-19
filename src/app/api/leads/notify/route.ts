@@ -10,13 +10,27 @@ export const dynamic = "force-dynamic";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { leadId, listingId, agentId, leadName, leadEmail, leadPhone, leadMessage } = body;
+    let { leadId } = body;
+    const { listingId, agentId, leadName, leadEmail, leadPhone, leadMessage } = body;
 
     if (!listingId || !agentId) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
     const supabase = createServerSupabaseClient();
+
+    // If we don't have a leadId, look it up server-side (more reliable than client-side)
+    if (!leadId && leadEmail) {
+      const { data: found } = await supabase
+        .from("leads")
+        .select("id")
+        .eq("listing_id", listingId)
+        .eq("email", leadEmail)
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .single();
+      if (found) leadId = found.id;
+    }
 
     // Fetch agent email
     const { data: agent } = await supabase
