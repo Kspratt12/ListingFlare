@@ -66,6 +66,59 @@ export default function CreateListingPage() {
 
   const limits = getSubscriptionLimits(profile);
 
+  // Unsaved changes warning
+  const hasContent = street || city || price || beds || baths || sqft || description || featuresText || photos.length > 0;
+  useEffect(() => {
+    if (!hasContent) return;
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [hasContent]);
+
+  // Auto-save draft to localStorage
+  useEffect(() => {
+    if (!hasContent) return;
+    const timer = setTimeout(() => {
+      localStorage.setItem("listingflare_draft", JSON.stringify({
+        street, city, state, zip, price, beds, baths, sqft, yearBuilt, lotSize,
+        description, featuresText, virtualTourUrl, savedAt: Date.now(),
+      }));
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [street, city, state, zip, price, beds, baths, sqft, yearBuilt, lotSize, description, featuresText, virtualTourUrl, hasContent]);
+
+  // Restore draft on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("listingflare_draft");
+      if (!saved) return;
+      const draft = JSON.parse(saved);
+      // Only restore if saved within 24 hours
+      if (Date.now() - draft.savedAt > 24 * 60 * 60 * 1000) {
+        localStorage.removeItem("listingflare_draft");
+        return;
+      }
+      if (draft.street) setStreet(draft.street);
+      if (draft.city) setCity(draft.city);
+      if (draft.state) setState(draft.state);
+      if (draft.zip) setZip(draft.zip);
+      if (draft.price) setPrice(draft.price);
+      if (draft.beds) setBeds(draft.beds);
+      if (draft.baths) setBaths(draft.baths);
+      if (draft.sqft) setSqft(draft.sqft);
+      if (draft.yearBuilt) setYearBuilt(draft.yearBuilt);
+      if (draft.lotSize) setLotSize(draft.lotSize);
+      if (draft.description) setDescription(draft.description);
+      if (draft.featuresText) setFeaturesText(draft.featuresText);
+      if (draft.virtualTourUrl) setVirtualTourUrl(draft.virtualTourUrl);
+    } catch {
+      // Silently fail
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const generateCaptions = async (newPhotos: ListingPhoto[]) => {
     if (newPhotos.length === 0) return;
     setGeneratingCaptions(true);
@@ -265,6 +318,18 @@ export default function CreateListingPage() {
   };
 
   const handleSave = async (publish: boolean) => {
+    if (publish && !street.trim()) {
+      setError("Street address is required to publish.");
+      return;
+    }
+    if (publish && !city.trim()) {
+      setError("City is required to publish.");
+      return;
+    }
+    if (publish && !price) {
+      setError("Price is required to publish.");
+      return;
+    }
     if (publish) {
       setPublishing(true);
     } else {
@@ -312,6 +377,7 @@ export default function CreateListingPage() {
         await supabase.from("listings").update({ slug }).eq("id", newListing.id);
       }
 
+      localStorage.removeItem("listingflare_draft");
       router.push("/dashboard");
       router.refresh();
     } catch (err) {

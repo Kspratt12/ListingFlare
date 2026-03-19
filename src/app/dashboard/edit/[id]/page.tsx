@@ -49,6 +49,17 @@ export default function EditListingPage() {
   const [dragOverIdx, setDragOverIdx] = useState<number | null>(null);
   const limits = getSubscriptionLimits(profile);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+
+  // Unsaved changes warning
+  useEffect(() => {
+    if (!hasUnsavedChanges) return;
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [hasUnsavedChanges]);
   const [currentStatus, setCurrentStatus] = useState("draft");
   const [currentSlug, setCurrentSlug] = useState("");
 
@@ -221,6 +232,7 @@ export default function EditListingPage() {
       setVirtualTourUrl(data.virtual_tour_url || "");
       setCurrentStatus(data.status || "draft");
       setCurrentSlug(data.slug || "");
+      setHasUnsavedChanges(false);
       setLoading(false);
     }
     fetchListing();
@@ -338,6 +350,18 @@ export default function EditListingPage() {
   };
 
   const handleSave = async (status: string) => {
+    if (status === "published" && !street.trim()) {
+      setError("Street address is required to publish.");
+      return;
+    }
+    if (status === "published" && !city.trim()) {
+      setError("City is required to publish.");
+      return;
+    }
+    if (status === "published" && !price) {
+      setError("Price is required to publish.");
+      return;
+    }
     if (status === "published") {
       setPublishing(true);
     } else {
@@ -383,6 +407,7 @@ export default function EditListingPage() {
 
       setCurrentStatus(status);
       setCurrentSlug(slug);
+      setHasUnsavedChanges(false);
       router.push("/dashboard");
       router.refresh();
     } catch (err) {
@@ -461,7 +486,8 @@ export default function EditListingPage() {
         </div>
       )}
 
-      <div className="mt-8 space-y-8">
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+      <div className="mt-8 space-y-8" onChange={() => setHasUnsavedChanges(true)}>
         {/* Address */}
         <section className="rounded-xl border border-gray-200 bg-white p-6">
           <h2 className="font-serif text-lg font-semibold text-gray-900">Address</h2>

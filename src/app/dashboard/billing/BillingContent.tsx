@@ -11,6 +11,8 @@ import {
   XCircle,
   Loader2,
   ExternalLink,
+  Check,
+  X,
 } from "lucide-react";
 
 interface BillingInfo {
@@ -201,6 +203,51 @@ export default function BillingContent() {
             . Subscribe now to keep your listings live.
           </div>
         )}
+
+        {/* Plan Features */}
+        <div className="mt-8 border-t border-gray-100 pt-6">
+          <p className="text-sm font-semibold uppercase tracking-wider text-gray-400">What&apos;s Included</p>
+          <div className="mt-4 grid gap-2">
+            {[
+              { feature: "Listing websites", free: "1", pro: "Unlimited" },
+              { feature: "Photos per listing", free: "5", pro: "Unlimited" },
+              { feature: "Videos per listing", free: "None", pro: "10 (up to 8K)" },
+              { feature: "Lead capture", free: "5 leads", pro: "Unlimited" },
+              { feature: "AI chat assistant", free: "Included", pro: "Included" },
+              { feature: "AI descriptions & captions", free: "1 generation", pro: "Unlimited" },
+              { feature: "Reply to leads", free: false, pro: true },
+              { feature: "Social media posts", free: false, pro: true },
+              { feature: "Open house flyers", free: false, pro: true },
+              { feature: "Virtual tour embeds", free: "Included", pro: "Included" },
+              { feature: "Analytics dashboard", free: "Included", pro: "Included" },
+              { feature: "Weekly email reports", free: "Included", pro: "Included" },
+            ].map((row) => (
+              <div key={row.feature} className="flex items-center justify-between rounded-lg px-3 py-2 text-sm odd:bg-gray-50">
+                <span className="text-gray-700">{row.feature}</span>
+                <div className="flex items-center gap-4">
+                  {!isActive && (
+                    <span className="w-20 text-center text-xs text-gray-400">
+                      {typeof row.free === "boolean" ? (
+                        row.free ? <Check className="mx-auto h-4 w-4 text-green-500" /> : <X className="mx-auto h-4 w-4 text-gray-300" />
+                      ) : row.free}
+                    </span>
+                  )}
+                  <span className="w-20 text-center text-xs font-medium text-gray-900">
+                    {typeof row.pro === "boolean" ? (
+                      row.pro ? <Check className="mx-auto h-4 w-4 text-green-500" /> : <X className="mx-auto h-4 w-4 text-gray-300" />
+                    ) : row.pro}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+          {!isActive && (
+            <div className="mt-3 flex justify-end gap-4 text-[10px] font-semibold uppercase tracking-wider text-gray-400">
+              <span className="w-20 text-center">Free Trial</span>
+              <span className="w-20 text-center">Pro</span>
+            </div>
+          )}
+        </div>
 
         <div className="mt-8 flex flex-col gap-3 border-t border-gray-100 pt-6 sm:flex-row">
           {needsSubscription && (
