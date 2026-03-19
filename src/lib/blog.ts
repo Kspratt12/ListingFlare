@@ -29,6 +29,9 @@ import { article as openHouseIdeas } from "@/content/articles/open-house-ideas-a
 import { article as winMoreListings } from "@/content/articles/how-to-win-more-listings-real-estate-agent";
 import { article as socialMediaPosts } from "@/content/articles/real-estate-social-media-post-ideas";
 import { article as raleighMarketing } from "@/content/articles/best-real-estate-marketing-ideas-raleigh-nc";
+import { article as charlotteMarket } from "@/content/articles/charlotte-nc-housing-market-2026";
+import { article as durhamMarket } from "@/content/articles/durham-nc-housing-market-2026";
+import { article as austinMarket } from "@/content/articles/austin-tx-housing-market-2026";
 
 const allPosts: BlogPost[] = [
   howToGetLeads,
@@ -46,6 +49,9 @@ const allPosts: BlogPost[] = [
   winMoreListings,
   socialMediaPosts,
   raleighMarketing,
+  charlotteMarket,
+  durhamMarket,
+  austinMarket,
 ];
 
 // Sort by date descending

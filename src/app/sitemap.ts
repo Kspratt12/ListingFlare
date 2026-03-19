@@ -51,16 +51,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     );
     const { data: listings } = await db
       .from("listings")
-      .select("slug, id, updated_at")
+      .select("slug, id, updated_at, city, state")
       .eq("status", "published");
 
     if (listings) {
+      // Add individual listing pages
       for (const listing of listings) {
         staticPages.push({
           url: `${baseUrl}/listing/${listing.slug || listing.id}`,
           lastModified: new Date(listing.updated_at || Date.now()),
           changeFrequency: "weekly",
           priority: 0.8,
+        });
+      }
+
+      // Add programmatic city pages (unique city/state combos)
+      const cities = new Set<string>();
+      for (const listing of listings) {
+        if (listing.city && listing.state) {
+          const slug = `${listing.city.toLowerCase().replace(/\s+/g, "-")}-${listing.state.toLowerCase()}`;
+          cities.add(slug);
+        }
+      }
+      for (const citySlug of Array.from(cities)) {
+        staticPages.push({
+          url: `${baseUrl}/homes/${citySlug}`,
+          lastModified: new Date(),
+          changeFrequency: "weekly",
+          priority: 0.7,
         });
       }
     }

@@ -15,8 +15,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogIndexPage() {
-  const posts = getAllPosts();
+interface Props {
+  searchParams: Promise<{ category?: string }>;
+}
+
+export default async function BlogIndexPage({ searchParams }: Props) {
+  const { category } = await searchParams;
+  const allPosts = getAllPosts();
+
+  // Get unique categories
+  const categories = Array.from(new Set(allPosts.map((p) => p.category))).sort();
+
+  // Filter posts by category if selected
+  const posts = category
+    ? allPosts.filter((p) => p.category === category)
+    : allPosts;
 
   const collectionJsonLd = {
     "@context": "https://schema.org",
@@ -64,7 +77,7 @@ export default function BlogIndexPage() {
       </nav>
 
       {/* Header */}
-      <header className="mx-auto max-w-5xl px-6 pt-16 pb-12">
+      <header className="mx-auto max-w-5xl px-6 pt-16 pb-10">
         <h1 className="font-serif text-4xl font-bold text-gray-900 md:text-5xl">
           The ListingFlare Blog
         </h1>
@@ -73,6 +86,35 @@ export default function BlogIndexPage() {
           listings, and faster closings.
         </p>
       </header>
+
+      {/* Category Filters */}
+      <div className="mx-auto max-w-5xl px-6 pb-8">
+        <div className="flex flex-wrap gap-2">
+          <Link
+            href="/blog"
+            className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+              !category
+                ? "bg-brand-500 text-white"
+                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+            }`}
+          >
+            All
+          </Link>
+          {categories.map((cat) => (
+            <Link
+              key={cat}
+              href={`/blog?category=${encodeURIComponent(cat)}`}
+              className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+                category === cat
+                  ? "bg-brand-500 text-white"
+                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              }`}
+            >
+              {cat}
+            </Link>
+          ))}
+        </div>
+      </div>
 
       {/* Posts Grid */}
       <main className="mx-auto max-w-5xl px-6 pb-24">
@@ -118,6 +160,41 @@ export default function BlogIndexPage() {
           ))}
         </div>
       </main>
+
+      {/* Lead Magnet CTA */}
+      <section className="border-t border-gray-100 bg-brand-50 py-14">
+        <div className="mx-auto max-w-2xl px-6 text-center">
+          <h2 className="font-serif text-2xl font-bold text-gray-900">
+            Free: Real Estate Listing Marketing Checklist
+          </h2>
+          <p className="mt-3 text-gray-600">
+            The exact 23-step checklist top agents use to market every listing.
+            From photography to closing — never miss a step.
+          </p>
+          <form
+            action="https://www.listingflare.com/signup"
+            method="GET"
+            className="mt-6 flex flex-col gap-2 sm:flex-row sm:gap-3 sm:justify-center"
+          >
+            <input
+              type="email"
+              name="email"
+              placeholder="you@brokerage.com"
+              required
+              className="flex-1 max-w-sm rounded-lg border border-gray-300 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+            />
+            <button
+              type="submit"
+              className="rounded-lg bg-brand-500 px-6 py-2.5 text-sm font-medium text-white hover:bg-brand-600 transition-colors"
+            >
+              Get the Checklist
+            </button>
+          </form>
+          <p className="mt-2 text-xs text-gray-400">
+            No spam. Unsubscribe anytime.
+          </p>
+        </div>
+      </section>
 
       {/* Footer CTA */}
       <section className="border-t border-gray-100 bg-gray-50 py-16">
