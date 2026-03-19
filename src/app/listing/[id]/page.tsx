@@ -116,12 +116,16 @@ export default async function ListingPage({ params }: Props) {
     // Not logged in or auth error — treat as non-owner
   }
 
-  // Increment view count FIRST — before any other checks
+  // Increment view count atomically using SQL to prevent race conditions
   if (!isOwner) {
-    await db
-      .from("listings")
-      .update({ view_count: (typedListing.view_count || 0) + 1 })
-      .eq("id", typedListing.id);
+    const { error: rpcError } = await db.rpc("increment_view_count", { listing_id: typedListing.id });
+    if (rpcError) {
+      // Fallback if RPC doesn't exist yet
+      await db
+        .from("listings")
+        .update({ view_count: (typedListing.view_count || 0) + 1 })
+        .eq("id", typedListing.id);
+    }
   }
 
   // Check subscription status

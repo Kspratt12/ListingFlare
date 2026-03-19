@@ -10,9 +10,9 @@ export const dynamic = "force-dynamic";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { leadId, listingId, agentId } = body;
+    const { leadId, listingId, agentId, leadName, leadEmail, leadPhone, leadMessage } = body;
 
-    if (!leadId || !listingId || !agentId) {
+    if (!listingId || !agentId) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
@@ -29,15 +29,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: true, emailed: false });
     }
 
-    // Fetch lead details
-    const { data: lead } = await supabase
-      .from("leads")
-      .select("name, email, phone, message")
-      .eq("id", leadId)
-      .single();
-
+    // Fetch lead details from DB if we have an ID, otherwise use form data
+    let lead: { name: string; email: string; phone: string; message: string } | null = null;
+    if (leadId) {
+      const { data: foundLead } = await supabase
+        .from("leads")
+        .select("name, email, phone, message")
+        .eq("id", leadId)
+        .single();
+      lead = foundLead;
+    }
+    // Fallback to the lead details sent directly from the form
     if (!lead) {
-      return NextResponse.json({ ok: true, emailed: false });
+      if (!leadName || !leadEmail) {
+        return NextResponse.json({ ok: true, emailed: false });
+      }
+      lead = { name: leadName, email: leadEmail, phone: leadPhone || "", message: leadMessage || "" };
     }
 
     // Fetch listing address
@@ -102,24 +109,28 @@ export async function POST(req: NextRequest) {
         }),
       });
 
-      // Trigger AI auto-reply draft generation (non-blocking)
+      // Trigger AI auto-reply draft generation (non-blocking, only if we have a lead ID)
+      if (leadId) {
+        const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
+        fetch(`${appUrl}/api/leads/auto-reply`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ leadId }),
+        }).catch((err) => console.error("Auto-reply trigger error:", err));
+      }
+
+      return NextResponse.json({ ok: true, emailed: true });
+    }
+
+    // Even without email, still generate auto-reply draft if we have a lead ID
+    if (leadId) {
       const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
       fetch(`${appUrl}/api/leads/auto-reply`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ leadId }),
-      }).catch(() => {});
-
-      return NextResponse.json({ ok: true, emailed: true });
+      }).catch((err) => console.error("Auto-reply trigger error:", err));
     }
-
-    // Even without email, still generate auto-reply draft
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
-    fetch(`${appUrl}/api/leads/auto-reply`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ leadId }),
-    }).catch(() => {});
 
     return NextResponse.json({ ok: true, emailed: false });
   } catch (err) {

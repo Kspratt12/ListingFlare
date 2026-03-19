@@ -135,7 +135,7 @@ export default function SettingsPage() {
       };
 
       // Save profile — try with all fields, retry without new fields if it fails
-      const { error: updateError } = await supabase
+      const { error: updateError, count } = await supabase
         .from("agent_profiles")
         .update(profileData)
         .eq("id", user.id);
@@ -145,11 +145,43 @@ export default function SettingsPage() {
         // Retry without calendly_url in case column doesn't exist yet
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { calendly_url: _cal, ...safeData } = profileData;
-        const { error: retryError } = await supabase
+        const { error: retryError, count: retryCount } = await supabase
           .from("agent_profiles")
           .update(safeData)
           .eq("id", user.id);
         if (retryError) throw retryError;
+        if (retryCount === 0) {
+          // No rows updated — profile row may not exist yet, insert it
+          const { error: insertError } = await supabase
+            .from("agent_profiles")
+            .insert({ id: user.id, ...safeData });
+          if (insertError) throw insertError;
+        }
+      } else if (count === 0) {
+        // No rows updated — profile row may not exist yet, insert it
+        const { error: insertError } = await supabase
+          .from("agent_profiles")
+          .insert({ id: user.id, ...profileData });
+        if (insertError) {
+          // Retry insert without calendly_url
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { calendly_url: _cal, ...safeData } = profileData;
+          const { error: retryInsertError } = await supabase
+            .from("agent_profiles")
+            .insert({ id: user.id, ...safeData });
+          if (retryInsertError) throw retryInsertError;
+        }
+      }
+
+      // Verify the save actually took effect
+      const { data: verify } = await supabase
+        .from("agent_profiles")
+        .select("email")
+        .eq("id", user.id)
+        .single();
+
+      if (verify && verify.email !== email) {
+        throw new Error("Save appeared to succeed but changes were not applied. Check your database permissions.");
       }
 
       setSaved(true);

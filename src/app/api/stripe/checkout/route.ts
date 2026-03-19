@@ -42,12 +42,17 @@ export async function POST() {
     }
 
     // Create checkout session with monthly subscription
+    const priceId = process.env.STRIPE_MONTHLY_PRICE_ID;
+    if (!priceId) {
+      return NextResponse.json({ error: "Stripe pricing not configured" }, { status: 500 });
+    }
+
     const session = await getStripe().checkout.sessions.create({
       customer: customerId,
       mode: "subscription",
       line_items: [
         {
-          price: process.env.STRIPE_MONTHLY_PRICE_ID!,
+          price: priceId,
           quantity: 1,
         },
       ],

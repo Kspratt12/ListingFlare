@@ -132,14 +132,30 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
         .map((m) => m.text)
         .join(" | ");
 
-      const { data: leadData } = await supabase.from("leads").insert({
+      const chatMessage = `[Chat] ${chatSummary}`;
+
+      const { error: insertError } = await supabase.from("leads").insert({
         listing_id: listingId,
         agent_id: agentId,
         name: leadName,
         email: leadEmail,
         phone: leadPhone,
-        message: `[Chat] ${chatSummary}`,
-      }).select("id").single();
+        message: chatMessage,
+      });
+
+      if (insertError) throw insertError;
+
+      // Fetch lead ID separately (RLS can block .select() after insert)
+      let leadId: string | null = null;
+      const { data: found } = await supabase
+        .from("leads")
+        .select("id")
+        .eq("listing_id", listingId)
+        .eq("email", leadEmail)
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .single();
+      leadId = found?.id || null;
 
       setLeadCaptured(true);
       setShowLeadCapture(false);
@@ -148,14 +164,20 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
         text: `Thanks ${leadName.split(" ")[0]}! I've let ${listing.agentName} know you're interested. They'll reach out to you shortly!`,
       }]);
 
-      // Trigger notification + auto-reply
-      if (leadData?.id) {
-        fetch("/api/leads/notify", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ leadId: leadData.id, listingId, agentId }),
-        }).catch(() => {});
-      }
+      // Trigger notification + auto-reply — always send, with fallback lead details
+      fetch("/api/leads/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          leadId: leadId || null,
+          listingId,
+          agentId,
+          leadName,
+          leadEmail,
+          leadPhone,
+          leadMessage: chatMessage,
+        }),
+      }).catch((err) => console.error("Notify error:", err));
     } catch {
       setMessages((prev) => [...prev, {
         role: "assistant",

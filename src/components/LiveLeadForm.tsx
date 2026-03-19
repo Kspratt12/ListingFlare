@@ -59,13 +59,19 @@ export default function LiveLeadForm({ listingId, agentId }: Props) {
     } else {
       setSubmitted(true);
       // Fire email notification
-      if (leadId) {
-        fetch("/api/leads/notify", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ leadId, listingId, agentId }),
-        }).catch(() => {});
-      }
+      fetch("/api/leads/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          leadId: leadId || null,
+          listingId,
+          agentId,
+          leadName,
+          leadEmail,
+          leadPhone,
+          leadMessage,
+        }),
+      }).catch((err) => console.error("Notify error:", err));
     }
   };
 

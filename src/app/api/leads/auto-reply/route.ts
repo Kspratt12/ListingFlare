@@ -123,7 +123,7 @@ Write a brief, personalized follow-up email (3-4 sentences max). Guidelines:
           </div>
         `;
 
-        fetch("https://api.resend.com/emails", {
+        const emailRes = await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -136,13 +136,17 @@ Write a brief, personalized follow-up email (3-4 sentences max). Guidelines:
             subject: `Re: ${listingAddress} — ${agent.name}`,
             html: emailHtml,
           }),
-        }).catch(() => {});
+        });
 
-        // Update lead status to contacted
-        await supabase
-          .from("leads")
-          .update({ status: "contacted" })
-          .eq("id", leadId);
+        // Only mark as contacted if email actually sent
+        if (emailRes.ok) {
+          await supabase
+            .from("leads")
+            .update({ status: "contacted" })
+            .eq("id", leadId);
+        } else {
+          console.error("Auto-reply email failed:", await emailRes.text().catch(() => "unknown"));
+        }
       }
     }
 
