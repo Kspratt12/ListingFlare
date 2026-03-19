@@ -24,7 +24,7 @@ export const article: BlogPost = {
   content: `
 <p>You put in the work to get the listing. You prepped the home, scheduled the date, and posted it on the MLS. But when open house day comes, you hear crickets. A couple of nosy neighbors wander through. One semi-interested buyer grabs a flyer and disappears. Sound familiar?</p>
 
-<p>The truth is, a forgettable open house is a wasted opportunity. But a <strong>creative open house</strong> — one that feels like an event, not an obligation — can flood your pipeline with qualified leads, generate neighborhood buzz, and even spark a bidding war. Below are <strong>15 open house ideas for realtors</strong> that actually work in 2026. Pick a few, mix and match, and watch the difference.</p>
+<p>The truth is, a forgettable open house is a wasted opportunity. Open houses are just one part of a broader <a href="/blog/how-to-market-a-real-estate-listing">listing marketing plan</a>, but they are one of the most powerful. A <strong>creative open house</strong> — one that feels like an event, not an obligation — can flood your pipeline with qualified leads, generate neighborhood buzz, and even spark a bidding war. Below are <strong>15 open house ideas for realtors</strong> that actually work in 2026. Pick a few, mix and match, and watch the difference.</p>
 
 <h2>1. Host a Themed Open House</h2>
 
@@ -105,7 +105,7 @@ export const article: BlogPost = {
 
 <p>This is where most agents fumble the bag. You hosted a great open house, collected 20 sign-ins, and then... waited until Tuesday to follow up. By then, your visitors have been to three other open houses and forgotten which house had the amazing kitchen.</p>
 
-<p><strong>Follow up within 24 hours.</strong> A personal text or email that references something specific — "Hey Sarah, great meeting you! I know you loved the backyard — did you have any questions about the lot size?" — beats a generic "Thanks for coming!" every time. Speed and personalization win the follow-up game.</p>
+<p><strong>Follow up within 24 hours.</strong> A personal text or email that references something specific — "Hey Sarah, great meeting you! I know you loved the backyard — did you have any questions about the lot size?" — beats a generic "Thanks for coming!" every time. Speed and personalization win the follow-up game. For more strategies to turn every interaction into a prospect, read our guide on <a href="/blog/how-to-get-leads-as-a-real-estate-agent">how to get leads as a real estate agent</a>.</p>
 
 <h2>13. Use Music and Lighting to Set the Mood</h2>
 
@@ -129,7 +129,7 @@ export const article: BlogPost = {
 
 <p>You don't need to implement all 15 ideas at once. Start with three or four that fit your style and your listing. A themed open house with a local business partnership, digital sign-in, and same-day follow-up is a recipe that will outperform 90% of the open houses in your market.</p>
 
-<p>The agents who consistently attract more buyers to their open houses aren't doing anything magical — they're just more intentional. They treat every open house like a marketing event, not a box to check. Do the same, and you'll build a reputation as the agent whose open houses are actually worth attending.</p>
+<p>The agents who consistently attract more buyers to their open houses aren't doing anything magical — they're just more intentional. They treat every open house like a marketing event, not a box to check. Pairing a well-run open house with a <a href="/blog/how-to-create-a-single-property-website">single property website</a> ensures that every visitor can revisit the listing details on their own time — and that you capture leads long after the event ends. Do the same, and you'll build a reputation as the agent whose open houses are actually worth attending.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

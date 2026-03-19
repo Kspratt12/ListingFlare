@@ -24,7 +24,7 @@ export const article: BlogPost = {
   content: `
 <p>You've staged the home, hired a photographer, and the listing photos look stunning. But there's one element that can make or break a buyer's decision to schedule a showing: your <strong>real estate listing description</strong>. It's the narrative that transforms a grid of photos into an emotional experience — the words that help a buyer picture themselves living in the home before they've ever stepped inside.</p>
 
-<p>The problem? Most agents treat listing descriptions as an afterthought. They rattle off specs — "3 bed, 2 bath, 1,800 sqft" — and call it a day. That's a missed opportunity. A well-crafted <strong>property listing description</strong> highlights lifestyle, creates urgency, and speaks directly to the buyer most likely to fall in love with the home.</p>
+<p>The problem? Most agents treat listing descriptions as an afterthought. They rattle off specs — "3 bed, 2 bath, 1,800 sqft" — and call it a day. That's a missed opportunity. A well-crafted <strong>property listing description</strong> highlights lifestyle, creates urgency, and speaks directly to the buyer most likely to fall in love with the home. It is just one piece of a comprehensive <a href="/blog/how-to-market-a-real-estate-listing">listing marketing strategy</a>, but it is one of the most important.</p>
 
 <p>In this guide, you'll find <strong>20 ready-to-use listing description examples</strong> organized by property type, a breakdown of the formula behind great descriptions, power words that boost engagement, and practical tips you can apply to your very next listing.</p>
 
@@ -194,10 +194,10 @@ Your own private retreat on 8 scenic acres. This custom-built 4-bedroom, 3-bathr
 <p>Great descriptions engage more than just the eyes. Mention the warmth of a crackling fireplace, the scent of a blooming garden, or the sound of waves from the back deck. Sensory details make buyers feel as though they've already visited the home, which increases the likelihood they'll book a showing.</p>
 
 <h3>Mention the Neighborhood</h3>
-<p>Your listing lives in a broader context, and savvy buyers care deeply about location. Include walking distance to schools, parks, restaurants, or transit. Reference the neighborhood by name if it carries positive recognition. For relocation buyers, neighborhood details are often the deciding factor between scheduling a tour and scrolling past.</p>
+<p>Your listing lives in a broader context, and savvy buyers care deeply about location. Include walking distance to schools, parks, restaurants, or transit. Reference the neighborhood by name if it carries positive recognition. For relocation buyers, neighborhood details are often the deciding factor between scheduling a tour and scrolling past. This is also where a <a href="/blog/how-to-create-a-single-property-website">single property website</a> shines — you have unlimited space to tell the neighborhood story, unlike a character-limited MLS field.</p>
 
 <h3>Include a Call to Action</h3>
-<p>Don't let your description trail off. End with a direct, clear invitation: "Schedule your private showing today," "This one won't last — book your tour," or "Contact us for a walkthrough this weekend." A strong call to action converts passive interest into active leads.</p>
+<p>Don't let your description trail off. End with a direct, clear invitation: "Schedule your private showing today," "This one won't last — book your tour," or "Contact us for a walkthrough this weekend." A strong call to action converts passive interest into active leads. A polished listing description is also one of the most persuasive assets you can bring to a seller meeting — learn how to leverage it in our guide on <a href="/blog/how-to-win-more-listings-as-a-real-estate-agent">how to win more listings</a>.</p>
 
 <h3>Let AI Do the Heavy Lifting</h3>
 <p>Writing compelling descriptions for every listing takes time — especially when you're managing multiple properties. AI-powered tools can draft polished, professional descriptions in seconds. <a href="/signup">ListingFlare can generate AI-powered listing descriptions for you</a>, along with single-property websites complete with lead capture and automated follow-up, so you spend less time writing and more time closing.</p>

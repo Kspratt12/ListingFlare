@@ -17,9 +17,9 @@ export const article: BlogPost = {
   ],
   readingTime: 9,
   coverImage:
-    "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&h=630&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&h=630&fit=crop&q=80",
   coverImageAlt:
-    "Aerial view of suburban neighborhood homes representing the Raleigh NC housing market",
+    "Modern home exterior representing the Raleigh NC housing market in 2026",
   content: `
 <p>If you're buying, selling, or investing in the Triangle, the <strong>Raleigh NC housing market</strong> in 2026 looks meaningfully different from what we saw just twelve months ago. Inventory is climbing, bidding wars are cooling, and buyers finally have some breathing room — but prices haven't cratered. In fact, they're still inching upward.</p>
 

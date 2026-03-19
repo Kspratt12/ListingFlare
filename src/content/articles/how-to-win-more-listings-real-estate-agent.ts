@@ -67,7 +67,7 @@ export const article: BlogPost = {
 
 <p>Every agent who walks into that living room will have a comparative market analysis. The CMA is table stakes. What separates the winner from the runner-up is the marketing plan. Sellers want to see exactly how you are going to expose their home to the largest possible pool of qualified buyers.</p>
 
-<p>Present your marketing plan as a visual timeline. Week one: professional photography and staging consultation. Week two: listing goes live on MLS, single-property website launches, social media campaign begins. Week three: broker open house, email blast to your buyer database. Week four: targeted digital ads, open house for the public. When a seller can see the plan laid out on a timeline with specific deliverables, they feel confident that you have a system and that their home will not just sit there waiting for something to happen.</p>
+<p>Present your marketing plan as a visual timeline. Week one: professional photography and staging consultation. Week two: listing goes live on MLS, single-property website launches, social media campaign begins. Week three: broker open house, email blast to your buyer database. Week four: targeted digital ads, open house for the public. For a detailed breakdown of every tactic to include in this plan, see our guide on <a href="/blog/how-to-market-a-real-estate-listing">how to market a real estate listing</a>. When a seller can see the plan laid out on a timeline with specific deliverables, they feel confident that you have a system and that their home will not just sit there waiting for something to happen.</p>
 
 <h3>Demonstrate Your Tech Stack</h3>
 
@@ -103,7 +103,7 @@ export const article: BlogPost = {
 
 <h3>Social Media Campaign</h3>
 
-<p>Outline a specific social media plan: a "coming soon" teaser post, a launch-day carousel with professional photos, a video walkthrough Reel, a neighborhood spotlight Story, and targeted ads to buyers searching in their area and price range. Give them real numbers: "My listing posts average X views and X saves. Here is an example from a recent listing that generated 15 showing requests from a single Instagram Reel."</p>
+<p>Outline a specific social media plan: a "coming soon" teaser post, a launch-day carousel with professional photos, a video walkthrough Reel, a neighborhood spotlight Story, and targeted ads to buyers searching in their area and price range. Need content ideas beyond listing posts? Our list of <a href="/blog/real-estate-social-media-post-ideas">30 real estate social media post ideas</a> covers everything from market updates to engagement polls. Give them real numbers: "My listing posts average X views and X saves. Here is an example from a recent listing that generated 15 showing requests from a single Instagram Reel."</p>
 
 <h3>Email Blast to Your Buyer Database</h3>
 
@@ -169,7 +169,7 @@ export const article: BlogPost = {
 
 <h3>Not Having a Marketing Plan Ready</h3>
 
-<p>Showing up with a CMA and a verbal promise to "market it aggressively" is not a plan. Sellers are comparing you to agents who walk in with visual timelines, sample property websites, and specific deliverables for each week on market. If you do not have a documented marketing plan, you are bringing a knife to a gunfight.</p>
+<p>Showing up with a CMA and a verbal promise to "market it aggressively" is not a plan. Sellers are comparing you to agents who walk in with visual timelines, sample property websites, and specific deliverables for each week on market. Strong <a href="/blog/real-estate-listing-description-examples">listing descriptions</a> are part of that plan — show sellers sample copy that demonstrates how you will position their home to stand out. If you do not have a documented marketing plan, you are bringing a knife to a gunfight.</p>
 
 <h3>Overpricing to Win the Listing</h3>
 

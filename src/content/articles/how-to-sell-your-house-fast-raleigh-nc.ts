@@ -22,7 +22,7 @@ export const article: BlogPost = {
   content: `
 <p>If you're trying to <strong>sell your house fast in Raleigh NC</strong>, you're entering a market that looks very different from the pandemic-era frenzy. Gone are the days when you could stick a sign in the yard and field five offers by the weekend. In 2026, Raleigh's housing market is balanced — not bad, just more strategic. The median home price sits around <strong>\$430K to \$436K</strong>, active inventory is up <strong>24% year-over-year</strong>, and homes are spending an average of <strong>40+ days on market</strong> before going under contract.</p>
 
-<p>That doesn't mean a quick sale is impossible. It means you need a plan. Raleigh is still one of the most desirable metros in the Southeast — the Research Triangle's job market keeps attracting buyers from across the country, NC State continues to fuel demand near campus, and the ongoing growth around downtown and the Beltline corridor has buyers paying attention. You just need to meet them where they are.</p>
+<p>That doesn't mean a quick sale is impossible. It means you need a plan. For a full breakdown of current prices, inventory, and mortgage rate forecasts, see our <a href="/blog/raleigh-nc-housing-market-2026">Raleigh NC housing market 2026</a> report. Raleigh is still one of the most desirable metros in the Southeast — the Research Triangle's job market keeps attracting buyers from across the country, NC State continues to fuel demand near campus, and the ongoing growth around downtown and the Beltline corridor has buyers paying attention. You just need to meet them where they are.</p>
 
 <p>Here are 10 proven tips to help you sell your Raleigh home faster and for the best possible price in today's market.</p>
 
@@ -71,7 +71,7 @@ export const article: BlogPost = {
 
 <h2>4. Go Beyond the MLS</h2>
 
-<p>The MLS is essential, but it's not enough on its own — especially when inventory is up 24% and buyers have more choices than they've had in years. Standing out means meeting buyers in more places and giving them a richer experience than a standard listing.</p>
+<p>The MLS is essential, but it's not enough on its own — especially when inventory is up 24% and buyers have more choices than they've had in years. Standing out means meeting buyers in more places and giving them a richer experience than a standard listing. Our guide on <a href="/blog/how-to-market-a-real-estate-listing">how to market a real estate listing</a> covers 15 strategies agents use to maximize exposure.</p>
 
 <p><strong>Social media campaigns</strong> on Instagram and Facebook can target buyers by location, age, income, and interests. A well-produced video walkthrough shared on social can generate thousands of views within your target market.</p>
 
@@ -189,7 +189,7 @@ export const article: BlogPost = {
 
 <p>The sellers who struggle are the ones still operating like it's 2021 — overpricing, skipping staging, and relying on a single MLS listing to do all the work. The sellers who succeed are pricing based on real data, investing in professional marketing, and making their homes accessible to every serious buyer.</p>
 
-<p>Whether you're in <strong>Cameron Village</strong>, <strong>Apex</strong>, <strong>Cary</strong>, or anywhere else in the Triangle, these 10 strategies give you a real, actionable path to a faster sale. Raleigh is still a great market — you just need to approach it like the informed, prepared seller that today's market rewards.</p>
+<p>If you are selling for the first time and want a step-by-step walkthrough of the entire process, our <a href="/blog/first-time-home-sellers-guide">first-time home seller's guide</a> covers everything from pricing to closing day. Whether you're in <strong>Cameron Village</strong>, <strong>Apex</strong>, <strong>Cary</strong>, or anywhere else in the Triangle, these 10 strategies give you a real, actionable path to a faster sale. Raleigh is still a great market — you just need to approach it like the informed, prepared seller that today's market rewards.</p>
 
 <p>Want to see how a dedicated listing website can help your home stand out? <a href="/demo">See what a modern listing page looks like</a> and give your property the online presence it deserves.</p>
 `,

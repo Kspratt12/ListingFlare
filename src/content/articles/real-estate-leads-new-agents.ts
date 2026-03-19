@@ -72,7 +72,7 @@ export const article: BlogPost = {
   <li>You get content for social media (tour videos, neighborhood info, etc.).</li>
 </ul>
 
-<p>Approach experienced agents in your brokerage and volunteer to hold their listings open every weekend. Most will say yes — it saves them time, and they keep the listing. You get every unrepresented buyer who walks through the door.</p>
+<p>Approach experienced agents in your brokerage and volunteer to hold their listings open every weekend. Most will say yes — it saves them time, and they keep the listing. You get every unrepresented buyer who walks through the door. For ways to make each open house more effective, check out these <a href="/blog/open-house-ideas-to-attract-more-buyers">creative open house ideas</a> that top agents use to maximize attendance and lead capture.</p>
 
 <p><strong>Pro tip:</strong> Set up a sign-in sheet (digital is better — use a tablet) and follow up with every single visitor within 24 hours. Not 48 hours. Not "next week." Twenty-four hours.</p>
 
@@ -146,13 +146,13 @@ export const article: BlogPost = {
 
 <h3>Spending Too Much on Paid Leads Too Early</h3>
 
-<p>It is tempting to throw money at Zillow, Realtor.com, or Facebook ads when you are desperate for leads. Resist the urge — at least for your first 90 days. Paid leads require skill to convert (most have a three to six month conversion timeline), and if you do not have the follow-up systems in place, you are literally burning money. Master the free strategies first, then layer in paid channels once you have consistent income.</p>
+<p>It is tempting to throw money at Zillow, Realtor.com, or Facebook ads when you are desperate for leads. Resist the urge — at least for your first 90 days. Paid leads require skill to convert (most have a three to six month conversion timeline), and if you do not have the follow-up systems in place, you are literally burning money. Master the free strategies first, then layer in paid channels once you have consistent income. When you are ready to invest, our comparison of the <a href="/blog/best-lead-generation-tools-for-real-estate-agents">best lead generation tools for real estate agents</a> will help you choose wisely.</p>
 
 <h3>Not Following Up (The 80% Rule)</h3>
 
 <p>This is the single biggest mistake in real estate, and new agents are the worst offenders. Research consistently shows that <strong>80% of sales happen after the fifth follow-up</strong>, but most agents give up after one or two attempts. Every lead you do not follow up with is a commission check you are handing to another agent.</p>
 
-<p>Build a follow-up system from day one. Use a CRM, set reminders, and create a sequence: call on day one, text on day three, email on day seven, call again on day fourteen. Repeat until they buy, sell, or tell you to stop. Automated follow-up tools — like the ones built into platforms such as ListingFlare — can handle the initial outreach so you never let a lead slip through the cracks.</p>
+<p>Build a follow-up system from day one. Use a CRM, set reminders, and create a sequence: call on day one, text on day three, email on day seven, call again on day fourteen. Repeat until they buy, sell, or tell you to stop. Automated follow-up tools — like the ones built into platforms such as ListingFlare — can handle the initial outreach so you never let a lead slip through the cracks. As your pipeline grows, implementing <a href="/blog/lead-scoring-criteria-real-estate-agents">lead scoring criteria</a> will help you prioritize which prospects deserve your immediate attention.</p>
 
 <h3>Trying to Be Everything to Everyone</h3>
 

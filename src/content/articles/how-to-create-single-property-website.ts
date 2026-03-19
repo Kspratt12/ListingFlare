@@ -18,7 +18,7 @@ export const article: BlogPost = {
   ],
   readingTime: 9,
   coverImage:
-    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=630&fit=crop&q=80",
   coverImageAlt:
     "Laptop showing a beautiful real estate listing website with property details and photos",
   content: `
@@ -93,7 +93,7 @@ export const article: BlogPost = {
   <li><strong>Customize with your branding.</strong> Add your headshot, name, phone number, email, and brokerage details. Choose colors and styling that match your personal brand. Consistency across all your listings builds recognition.</li>
   <li><strong>Enable AI chatbot and lead capture.</strong> If your platform supports it, turn on the AI chatbot and verify that it has been trained on your listing details. Test it yourself by asking common buyer questions. Make sure the contact form is working and notifications are going to your email or phone.</li>
   <li><strong>Publish and share the unique URL.</strong> Hit publish. Your listing now has its own dedicated address on the web. Copy the URL and test it on both desktop and mobile to make sure everything looks right.</li>
-  <li><strong>Promote across every channel.</strong> This is where the real value of a single property website kicks in. Share the link on Facebook, Instagram, and LinkedIn. Include it in your email blasts and drip campaigns. Add a QR code to your print flyers and open house materials. Put the URL on the yard sign rider. Every touchpoint should drive buyers to your single property website, not a generic MLS page.</li>
+  <li><strong>Promote across every channel.</strong> This is where the real value of a single property website kicks in. Share the link on Facebook, Instagram, and LinkedIn. Include it in your email blasts and drip campaigns. Add a QR code to your print flyers and open house materials. Put the URL on the yard sign rider. Every touchpoint should drive buyers to your single property website, not a generic MLS page. For a complete checklist of promotional tactics, see our guide on <a href="/blog/how-to-market-a-real-estate-listing">how to market a real estate listing</a>.</li>
 </ol>
 
 <h2>How to Use Single Property Websites to Win Listings</h2>
@@ -111,7 +111,7 @@ export const article: BlogPost = {
 <p>Agents who consistently use single property websites report measurable improvements across their business.</p>
 
 <ul>
-  <li><strong>More qualified leads.</strong> Buyers who arrive through a single property website have already spent time exploring the listing in detail. They have scrolled through every photo, read the description, and often interacted with the AI chatbot. By the time they fill out a contact form or call you, they are significantly more informed and more serious than a typical MLS inquiry.</li>
+  <li><strong>More qualified leads.</strong> Single property websites are a proven <a href="/blog/how-to-get-leads-as-a-real-estate-agent">lead generation strategy for real estate agents</a>. Buyers who arrive through a single property website have already spent time exploring the listing in detail. They have scrolled through every photo, read the description, and often interacted with the AI chatbot. By the time they fill out a contact form or call you, they are significantly more informed and more serious than a typical MLS inquiry.</li>
   <li><strong>Higher engagement through AI chat.</strong> An AI chatbot captures intent data that a static contact form never could. You can see what questions buyers asked, what features they cared about, and how long they spent on the page. This gives you valuable context before you ever pick up the phone.</li>
   <li><strong>Faster response times with automated follow-up.</strong> The number one complaint from buyers about real estate agents is slow response times. Auto follow-up emails solve this instantly. The moment a buyer submits a form or chats with the AI, they receive a professional response. You buy yourself time to respond personally without the buyer feeling ignored.</li>
   <li><strong>Sellers become your biggest promoters.</strong> Sellers love sharing their single property website. They send the link to friends, family, and coworkers. They post it on their own social media. They show it off at work. Every share is free marketing for you&mdash;and every visitor who sees your branding on that page is a potential future client.</li>
@@ -138,7 +138,7 @@ export const article: BlogPost = {
 
 <h2>Start Creating Single Property Websites Today</h2>
 
-<p>Single property websites are no longer a luxury reserved for agents with big marketing budgets and tech teams. They are an essential part of a modern listing marketing strategy&mdash;and the agents who adopt them are winning more listings, capturing more leads, and closing faster than those who rely on MLS syndication alone.</p>
+<p>Single property websites are no longer a luxury reserved for agents with big marketing budgets and tech teams. They are an essential part of a modern listing marketing strategy. Pair them with a compelling <a href="/blog/real-estate-listing-description-examples">listing description</a> that tells a story, and you give buyers an experience that MLS syndication alone cannot match&mdash;and the agents who adopt them are winning more listings, capturing more leads, and closing faster than those who rely on MLS syndication alone.</p>
 
 <p>If you are ready to create your first single property website, <a href="/signup">try ListingFlare free</a> and see how fast you can go from listing photos to a live, AI-powered property page with built-in lead capture and automated follow-up. Your next listing deserves more than a MLS page.</p>
 `,

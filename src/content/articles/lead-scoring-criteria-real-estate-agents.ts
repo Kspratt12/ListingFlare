@@ -25,7 +25,7 @@ export const article: BlogPost = {
 
 <h2>What Is Lead Scoring?</h2>
 
-<p>Lead scoring is the practice of assigning a numerical value to each prospect based on how likely they are to close a deal. Instead of treating every inquiry the same, you rank leads from hottest to coldest so you know exactly where to focus your energy.</p>
+<p>Lead scoring is the practice of assigning a numerical value to each prospect based on how likely they are to close a deal. Instead of treating every inquiry the same, you rank leads from hottest to coldest so you know exactly where to focus your energy. Of course, scoring only matters if you have a steady flow of leads coming in — if you need to build that pipeline first, start with our guide on <a href="/blog/how-to-get-leads-as-a-real-estate-agent">how to get leads as a real estate agent</a>.</p>
 
 <p>Think of it like triage in an emergency room. The most critical patients get seen first. In real estate, the most motivated and qualified prospects should get your attention first. Without a scoring system, you're essentially treating a stubbed toe and a heart attack with the same urgency.</p>
 
@@ -173,13 +173,13 @@ export const article: BlogPost = {
 
 <p>Manually scoring every lead works when you're getting five inquiries a week. But when your marketing is working and leads are flowing in, you need technology to handle the scoring for you. Here's how modern tools help with <strong>real estate lead scoring</strong>:</p>
 
-<p><strong>CRM auto-scoring:</strong> Most real estate CRMs (Follow Up Boss, kvCORE, LionDesk) let you set up rules that automatically assign scores based on lead activity. When a lead opens an email, views a listing, or responds to a text, their score updates in real time.</p>
+<p><strong>CRM auto-scoring:</strong> Most real estate CRMs (Follow Up Boss, kvCORE, LionDesk) let you set up rules that automatically assign scores based on lead activity. For a detailed comparison of these platforms and other options, see our roundup of the <a href="/blog/best-lead-generation-tools-for-real-estate-agents">best lead generation tools for real estate agents</a>. When a lead opens an email, views a listing, or responds to a text, their score updates in real time.</p>
 
 <p><strong>AI chatbots that qualify leads before you even see them:</strong> This is where the biggest time savings happen. An AI chatbot on your property website can ask the right qualifying questions during a natural conversation: "What's your timeline for buying?" "Have you been pre-approved?" "What's prompting your move?" By the time you get the lead notification, the chatbot has already gathered the information you need to score that lead accurately.</p>
 
 <p><a href="/demo">ListingFlare's AI chatbot</a> does exactly this. When a prospect visits one of your single-property websites and starts a conversation, the chatbot engages them with intelligent questions about their timeline, budget, and what they're looking for. The lead notification you receive includes all of that qualifying information, so you can instantly assess whether this is a hot prospect who deserves an immediate call or a long-term nurture candidate. You spend less time asking preliminary questions and more time closing deals.</p>
 
-<p><strong>Behavioral tracking:</strong> Tools that track how many times a lead visits your website, which properties they view, and how long they spend on each page give you engagement data that would be impossible to gather manually. This data feeds directly into your scoring model.</p>
+<p><strong>Behavioral tracking:</strong> Tools that track how many times a lead visits your website, which properties they view, and how long they spend on each page give you engagement data that would be impossible to gather manually. This data feeds directly into your scoring model. A <a href="/blog/how-to-create-a-single-property-website">single property website</a> is especially effective here because every visitor interaction is tracked on a page you fully control.</p>
 
 <h2>Acting on Your Lead Scores</h2>
 

@@ -16,9 +16,9 @@ export const article: BlogPost = {
   ],
   readingTime: 8,
   coverImage:
-    "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&h=630&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=630&fit=crop&q=80",
   coverImageAlt:
-    "Raleigh North Carolina cityscape representing the local real estate market for agents",
+    "Modern city buildings representing the Raleigh NC real estate market for agents",
   content: `
 <p>Raleigh isn't just growing — it's one of the <strong>fastest-growing real estate markets in the entire country</strong>. The Triangle added over 60,000 new residents last year alone, fueled by tech expansion, quality of life, and a cost of living that still looks like a bargain compared to the Bay Area or the Northeast. For real estate agents, that growth means massive opportunity — but also fierce competition.</p>
 

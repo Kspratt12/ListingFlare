@@ -36,7 +36,7 @@ export const article: BlogPost = {
 
 <p><strong>Instagram</strong> is ideal for showcasing listings with carousel posts, Reels, and Stories. Use Reels to give 60-second property walk-throughs and include a call to action directing viewers to your listing page or bio link. <strong>Facebook</strong> remains the strongest platform for local community engagement. Join neighborhood groups, share market updates, and run targeted ads to homeowners in specific zip codes. <strong>TikTok</strong> rewards personality and education: agents who post quick tips on the buying or selling process regularly attract thousands of views and direct messages from prospects.</p>
 
-<p>The key to social media success is consistency. Commit to posting three to five times per week, mix educational content with property showcases, and always include a clear next step for viewers. Track which post types generate the most saves and direct messages, then double down on what works.</p>
+<p>The key to social media success is consistency. Commit to posting three to five times per week, mix educational content with property showcases, and always include a clear next step for viewers. Track which post types generate the most saves and direct messages, then double down on what works. If you need inspiration, check out these <a href="/blog/real-estate-social-media-post-ideas">30 real estate social media post ideas</a> that are proven to generate engagement and leads.</p>
 
 <h2>3. Google Business Profile Optimization</h2>
 
@@ -52,7 +52,7 @@ export const article: BlogPost = {
 
 <p>Take your open house strategy further with QR codes. Place a QR code on the yard sign, flyers, and even the kitchen counter that links directly to the property's dedicated website. Visitors who scan the code can browse listing details, photos, and neighborhood information on their own phone while they tour the home. You capture their information whether they sign in at the door or scan the code later from their car.</p>
 
-<p>Follow up within one hour of the open house ending. Send a personalized text or email referencing something specific about the property or their search criteria. Speed matters: the National Association of Realtors found that agents who respond within five minutes are 21 times more likely to qualify a lead than those who wait 30 minutes or more.</p>
+<p>Follow up within one hour of the open house ending. Send a personalized text or email referencing something specific about the property or their search criteria. For more ways to make your events stand out, explore these <a href="/blog/open-house-ideas-to-attract-more-buyers">creative open house ideas that attract more buyers</a>. Speed matters: the National Association of Realtors found that agents who respond within five minutes are 21 times more likely to qualify a lead than those who wait 30 minutes or more.</p>
 
 <h2>5. Sphere of Influence and Referrals</h2>
 
@@ -76,7 +76,7 @@ export const article: BlogPost = {
 
 <p>Build your email list from every lead source: open house sign-ins, website form submissions, social media followers, and past client databases. Segment your list by buyer versus seller and by timeline. Someone planning to move in six months needs different content than someone browsing casually.</p>
 
-<p>A strong nurture sequence includes a welcome email, a market update series, new listing alerts, and occasional personal stories that build trust. Keep subject lines short, write in a conversational tone, and always include one clear call to action per email. Agents who send a consistent monthly newsletter see open rates between 25 and 35 percent and regularly receive replies from subscribers who are ready to start the conversation. Use an email platform that tracks opens and clicks so you can identify your hottest leads and prioritize follow-up accordingly.</p>
+<p>A strong nurture sequence includes a welcome email, a market update series, new listing alerts, and occasional personal stories that build trust. Keep subject lines short, write in a conversational tone, and always include one clear call to action per email. Agents who send a consistent monthly newsletter see open rates between 25 and 35 percent and regularly receive replies from subscribers who are ready to start the conversation. Use an email platform that tracks opens and clicks so you can identify your hottest leads and prioritize follow-up accordingly. Pairing your email tracking with a <a href="/blog/lead-scoring-criteria-real-estate-agents">lead scoring system</a> helps you focus your time on the prospects most likely to convert.</p>
 
 <h2>8. Paid Advertising: Google Ads and Facebook Ads</h2>
 
@@ -122,7 +122,7 @@ export const article: BlogPost = {
 <h2>Frequently Asked Questions</h2>
 
 <h3>How long does it take to start getting leads as a new real estate agent?</h3>
-<p>Most new agents can generate their first leads within 30 to 60 days by focusing on high-speed strategies like social media outreach, open houses, and sphere of influence marketing. Longer-term strategies like SEO and content marketing typically take three to six months to produce consistent results. The key is to work multiple channels simultaneously so you build both short-term flow and long-term pipeline.</p>
+<p>Most new agents can generate their first leads within 30 to 60 days by focusing on high-speed strategies like social media outreach, open houses, and sphere of influence marketing. For a detailed week-by-week plan, see our guide on <a href="/blog/real-estate-leads-for-new-agents">real estate leads for new agents</a>. Longer-term strategies like SEO and content marketing typically take three to six months to produce consistent results. The key is to work multiple channels simultaneously so you build both short-term flow and long-term pipeline.</p>
 
 <h3>What is the most cost-effective way to generate real estate leads?</h3>
 <p>Referrals from your sphere of influence consistently rank as the most cost-effective lead source because they are essentially free and convert at the highest rate. Beyond referrals, optimizing your Google Business Profile and creating single-property websites are both low-cost strategies with strong returns. Tools like <a href="/signup">ListingFlare</a> let you create professional listing pages with built-in lead capture for a fraction of what traditional marketing costs.</p>

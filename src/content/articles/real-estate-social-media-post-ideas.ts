@@ -32,7 +32,7 @@ export const article: BlogPost = {
 
 <h3>1. Just Listed Announcement with Carousel Photos</h3>
 
-<p>The classic — but done right. Create an Instagram carousel with 5-8 of the best photos: the hero exterior shot first, then kitchen, primary bedroom, backyard, and a lifestyle shot. Write a caption that tells a mini-story about the home, not just a list of specs. End with a clear call to action: "DM me for a private showing" or "Link in bio for the full tour."</p>
+<p>The classic — but done right. Create an Instagram carousel with 5-8 of the best photos: the hero exterior shot first, then kitchen, primary bedroom, backyard, and a lifestyle shot. Write a caption that tells a mini-story about the home, not just a list of specs. Need help crafting the right words? Our <a href="/blog/real-estate-listing-description-examples">listing description examples</a> give you templates you can adapt for social captions too. End with a clear call to action: "DM me for a private showing" or "Link in bio for the full tour."</p>
 
 <h3>2. Before &amp; After Staging Transformation</h3>
 
@@ -60,7 +60,7 @@ export const article: BlogPost = {
 
 <h3>8. Just Sold Celebration Post</h3>
 
-<p>Just Sold posts serve a dual purpose: they celebrate your buyer or seller, and they prove to your audience that you close deals. Include key stats — "Sold in 6 days, \$15K over asking" — without being obnoxious about it. Tag the neighborhood. Sellers in the area will notice an agent who's moving homes fast and above list price. That's how you win your next listing appointment.</p>
+<p>Just Sold posts serve a dual purpose: they celebrate your buyer or seller, and they prove to your audience that you close deals. Include key stats — "Sold in 6 days, \$15K over asking" — without being obnoxious about it. Tag the neighborhood. Sellers in the area will notice an agent who's moving homes fast and above list price. That's how you <a href="/blog/how-to-win-more-listings-as-a-real-estate-agent">win your next listing appointment</a>.</p>
 
 <h2>Educational Posts (Ideas 9–16)</h2>
 
@@ -206,7 +206,7 @@ export const article: BlogPost = {
 <p>Yes — video is no longer optional. Reels and TikTok videos receive significantly more reach than static photo posts on every major platform. The good news is that your videos don't need to be professionally produced. A 30-second walkthrough filmed on your phone with natural light and trending audio will outperform a \$2,000 production most of the time.</p>
 
 <h3>How do I turn social media followers into actual leads?</h3>
-<p>The key is having a clear path from content to conversation. Include calls to action in every post ("DM me," "click the link in bio," "comment DETAILS below"). Use lead capture tools on your listing pages so that when people click through, their information is collected automatically. Follow up with every DM and comment within a few hours — speed matters.</p>
+<p>The key is having a clear path from content to conversation. Include calls to action in every post ("DM me," "click the link in bio," "comment DETAILS below"). Use lead capture tools on your listing pages so that when people click through, their information is collected automatically. Follow up with every DM and comment within a few hours — speed matters. For a complete system that goes beyond social media, see our full guide on <a href="/blog/how-to-get-leads-as-a-real-estate-agent">how to get leads as a real estate agent</a>.</p>
 
 <h3>What hashtags should real estate agents use?</h3>
 <p>Use 3-5 targeted hashtags per post. Always include one location-based hashtag (#DenverRealEstate, #AustinHomes), one niche hashtag relevant to the post (#FirstTimeHomeBuyer, #HomeSellingTips), and one broader industry hashtag (#RealEstateAgent, #Realtor). Avoid generic tags like #Love or #PhotoOfTheDay — they attract the wrong audience and dilute your reach.</p>

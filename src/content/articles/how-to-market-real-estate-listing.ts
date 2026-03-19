@@ -18,7 +18,7 @@ export const article: BlogPost = {
   ],
   readingTime: 10,
   coverImage:
-    "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&h=630&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=630&fit=crop&q=80",
   coverImageAlt:
     "Real estate marketing team planning a listing promotion strategy at a modern office",
   content: `
@@ -36,7 +36,7 @@ export const article: BlogPost = {
 
 <h2>2. Single-Property Websites</h2>
 
-<p>A <strong>single-property website</strong> gives your listing its own dedicated URL, brand-free landing page, and full-screen media experience — something an MLS listing or Zillow page can never replicate. It signals to your seller (and to prospective buyers) that this property deserves premium treatment.</p>
+<p>A <strong>single-property website</strong> gives your listing its own dedicated URL, brand-free landing page, and full-screen media experience — something an MLS listing or Zillow page can never replicate. If you have not used this approach before, our complete guide on <a href="/blog/how-to-create-a-single-property-website">how to create a single property website</a> walks you through every step. It signals to your seller (and to prospective buyers) that this property deserves premium treatment.</p>
 
 <p>The best single-property websites go beyond a photo gallery. They include lead capture forms, instant notifications, and even AI-powered chatbots that answer buyer questions 24/7. <a href="/signup">ListingFlare</a> lets you spin up a professional property website in under two minutes — complete with AI chat, automatic lead capture, and follow-up sequences — so you can focus on selling instead of building web pages.</p>
 
@@ -84,7 +84,7 @@ export const article: BlogPost = {
 
 <h2>8. Open Houses (In-Person and Virtual)</h2>
 
-<p>Open houses remain one of the most effective ways to generate foot traffic, create urgency, and capture leads from unrepresented buyers. They also give your seller visible proof that you're actively marketing their property.</p>
+<p>Open houses remain one of the most effective ways to generate foot traffic, create urgency, and capture leads from unrepresented buyers. They also give your seller visible proof that you're actively marketing their property. For 15 creative ways to boost attendance and make your open houses memorable, see our guide on <a href="/blog/open-house-ideas-to-attract-more-buyers">open house ideas to attract more buyers</a>.</p>
 
 <p>Promote your open house across social media, your MLS listing, Zillow, Realtor.com, and through targeted ads. Set out professional signage, prepare printed flyers, and use a digital sign-in tool to capture every visitor's contact information. For a wider reach, host a simultaneous virtual open house via Facebook Live or Instagram Live — this opens the door to remote buyers and curious neighbors who may refer friends.</p>
 
@@ -132,7 +132,7 @@ export const article: BlogPost = {
 
 <h2>14. AI-Powered Listing Descriptions</h2>
 
-<p>Writing compelling MLS descriptions is an art — and in 2026, AI tools can help you do it faster and better. AI copywriting assistants can generate multiple versions of a listing description tailored to different platforms (MLS, social media, email) in seconds, freeing you to focus on strategy and client communication.</p>
+<p>Writing compelling MLS descriptions is an art — and in 2026, AI tools can help you do it faster and better. AI copywriting assistants can generate multiple versions of a listing description tailored to different platforms (MLS, social media, email) in seconds, freeing you to focus on strategy and client communication. For ready-to-use templates you can customize right away, browse our collection of <a href="/blog/real-estate-listing-description-examples">real estate listing description examples</a>.</p>
 
 <p>Feed the AI your property's key features, neighborhood highlights, and any unique selling points. Review and edit the output to add your personal voice and local expertise. Use different description lengths for different channels: a punchy 50-word version for social media, a detailed 250-word version for the MLS, and a storytelling version for your property website.</p>
 

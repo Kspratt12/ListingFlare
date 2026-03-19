@@ -18,8 +18,36 @@ export const metadata: Metadata = {
 export default function BlogIndexPage() {
   const posts = getAllPosts();
 
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "The ListingFlare Blog",
+    description:
+      "Expert articles on real estate lead generation, listing marketing, and home selling strategies.",
+    url: "https://www.listingflare.com/blog",
+    publisher: {
+      "@type": "Organization",
+      name: "ListingFlare",
+      url: "https://www.listingflare.com",
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: posts.map((post, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `https://www.listingflare.com/blog/${post.slug}`,
+        name: post.title,
+      })),
+    },
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
+
       {/* Nav */}
       <nav className="border-b border-gray-100 px-6 py-4">
         <div className="mx-auto flex max-w-5xl items-center justify-between">

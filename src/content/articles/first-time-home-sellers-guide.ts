@@ -42,7 +42,7 @@ export const article: BlogPost = {
 
 <h3>Market Conditions in 2026</h3>
 
-<p>Inventory levels, interest rates, and buyer demand all affect how quickly your home will sell and at what price. In many markets heading into 2026, inventory remains relatively tight, which favors sellers. However, conditions vary dramatically by region. Your real estate agent (more on finding one in Step 2) will give you a hyperlocal read on what's happening in your neighborhood.</p>
+<p>Inventory levels, interest rates, and buyer demand all affect how quickly your home will sell and at what price. In many markets heading into 2026, inventory remains relatively tight, which favors sellers. However, conditions vary dramatically by region. If you are in the Triangle area, our <a href="/blog/raleigh-nc-housing-market-2026">Raleigh NC housing market report</a> breaks down exactly what is happening with prices, inventory, and buyer demand right now. Your real estate agent (more on finding one in Step 2) will give you a hyperlocal read on what's happening in your neighborhood.</p>
 
 <h3>Emotional Readiness</h3>
 
@@ -153,7 +153,7 @@ export const article: BlogPost = {
 
 <h3>MLS Listing and Syndication</h3>
 
-<p>Your agent will list your home on the <strong>Multiple Listing Service (MLS)</strong>, which automatically syndicates your listing to major real estate sites like Zillow, Realtor.com, Redfin, and Homes.com. This gives you massive exposure from day one.</p>
+<p>Your agent will list your home on the <strong>Multiple Listing Service (MLS)</strong>, which automatically syndicates your listing to major real estate sites like Zillow, Realtor.com, Redfin, and Homes.com. This gives you massive exposure from day one. A compelling <a href="/blog/real-estate-listing-description-examples">listing description</a> is critical at this stage — the words in your MLS entry are what convince buyers to schedule a showing after the photos catch their eye.</p>
 
 <h3>Single-Property Websites for Premium Marketing</h3>
 
@@ -241,7 +241,7 @@ export const article: BlogPost = {
 <p>You don't <em>have</em> to, but addressing obvious issues pays off. Focus on repairs that affect safety, functionality, and first impressions. Fixing a leaky roof, a broken HVAC system, or a cracked foundation is almost always worth it — these are deal-breakers for most buyers. Cosmetic updates like fresh paint and new hardware offer excellent return on investment. Major remodels right before selling, however, rarely pay for themselves.</p>
 
 <h3>What if my home doesn't sell?</h3>
-<p>If your home hasn't received offers within 2–3 weeks, the most common culprit is pricing. Talk to your agent about a price adjustment. Other factors to evaluate include your home's online photos, showing availability, and overall condition. Sometimes small changes — better photos, a price reduction of 2–3%, or improved staging — can make a dramatic difference.</p>
+<p>If your home hasn't received offers within 2–3 weeks, the most common culprit is pricing. For Raleigh-area sellers, our article on <a href="/blog/how-to-sell-your-house-fast-in-raleigh-nc">how to sell your house fast in Raleigh NC</a> covers market-specific tactics that can help. Talk to your agent about a price adjustment. Other factors to evaluate include your home's online photos, showing availability, and overall condition. Sometimes small changes — better photos, a price reduction of 2–3%, or improved staging — can make a dramatic difference.</p>
 </div>
 
 <h2>Your First Home Sale, Made Simple</h2>
