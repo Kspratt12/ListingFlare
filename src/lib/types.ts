@@ -18,6 +18,7 @@ export interface AgentProfile {
   trial_ends_at: string;
   setup_fee_paid: boolean;
   weekly_emails: boolean;
+  calendly_url: string;
   created_at: string;
   updated_at: string;
 }

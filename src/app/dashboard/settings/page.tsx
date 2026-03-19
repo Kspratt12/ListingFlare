@@ -29,6 +29,7 @@ export default function SettingsPage() {
   const [facebook, setFacebook] = useState("");
   const [website, setWebsite] = useState("");
   const [weeklyEmails, setWeeklyEmails] = useState(true);
+  const [calendlyUrl, setCalendlyUrl] = useState("");
 
   useEffect(() => {
     async function fetchProfile() {
@@ -58,6 +59,7 @@ export default function SettingsPage() {
         setFacebook(profile.facebook || "");
         setWebsite(profile.website || "");
         setWeeklyEmails(profile.weekly_emails !== false);
+        setCalendlyUrl(profile.calendly_url || "");
       }
       setLoading(false);
     }
@@ -128,6 +130,7 @@ export default function SettingsPage() {
         facebook,
         website,
         weekly_emails: weeklyEmails,
+        calendly_url: calendlyUrl,
         updated_at: new Date().toISOString(),
       };
 
@@ -377,6 +380,29 @@ export default function SettingsPage() {
                 />
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Scheduling */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <h2 className="font-serif text-lg font-semibold text-gray-900">Showing Scheduler</h2>
+          <p className="mt-1 text-sm text-gray-500">
+            Add your Calendly link so buyers can book showings directly from the AI chat on your listings.
+          </p>
+          <div className="mt-4">
+            <label className="mb-1.5 block text-sm font-medium text-gray-700">
+              Calendly URL
+            </label>
+            <input
+              type="url"
+              value={calendlyUrl}
+              onChange={(e) => setCalendlyUrl(e.target.value)}
+              className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+              placeholder="https://calendly.com/your-name"
+            />
+            <p className="mt-1.5 text-xs text-gray-400">
+              Don&apos;t have Calendly? <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">Sign up free</a> — it takes 2 minutes.
+            </p>
           </div>
         </section>
 

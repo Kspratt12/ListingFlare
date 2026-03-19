@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import type { PropertyListing } from "@/lib/demo-data";
 import { formatPhone, formatLotSize } from "@/lib/formatters";
 import ListingChat from "@/components/ListingChat";
+import VirtualTourEmbed from "@/components/VirtualTourEmbed";
 import Link from "next/link";
 import { ArrowLeft, Pencil } from "lucide-react";
 
@@ -85,31 +86,8 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
       <PropertyDetails listing={propertyData} />
       <PhotoGallery photos={propertyData.photos} videos={listing.videos} />
 
-      {/* Virtual Tour Embed — Full-bleed hero style */}
       {listing.virtual_tour_url && (
-        <section className="relative bg-gray-950">
-          <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-20">
-            <div className="mb-10 text-center">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-400">
-                Interactive Experience
-              </p>
-              <h2 className="mt-3 font-serif text-3xl font-bold text-white md:text-display-sm">
-                Walk Through the Home
-              </h2>
-              <p className="mt-3 text-lg text-gray-400">
-                Explore every room in immersive 3D
-              </p>
-            </div>
-          </div>
-          <div className="relative w-full" style={{ height: "80vh", minHeight: "500px", maxHeight: "800px" }}>
-            <iframe
-              src={listing.virtual_tour_url}
-              title="Virtual Tour"
-              className="absolute inset-0 h-full w-full"
-              allowFullScreen
-            />
-          </div>
-        </section>
+        <VirtualTourEmbed src={listing.virtual_tour_url} />
       )}
 
       <AgentBranding agent={propertyData.agent} agentId={listing.agent_id} />
