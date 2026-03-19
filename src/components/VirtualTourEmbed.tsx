@@ -50,14 +50,14 @@ export default function VirtualTourEmbed({ src }: Props) {
           </div>
         )}
 
-        {/* Exit button — lets user deactivate and scroll past */}
+        {/* Pause button — centered bottom, lets user deactivate and scroll past */}
         {active && (
           <button
             onClick={() => setActive(false)}
-            className="absolute right-4 top-4 z-20 flex items-center gap-1.5 rounded-full bg-black/70 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm transition-colors hover:bg-black/90"
+            className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 flex items-center gap-2 rounded-full bg-black/70 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-all hover:bg-black/90 hover:scale-105"
           >
-            <X className="h-3.5 w-3.5" />
-            Exit Tour
+            <X className="h-4 w-4" />
+            Pause Tour
           </button>
         )}
       </div>
