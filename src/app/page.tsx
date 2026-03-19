@@ -601,8 +601,76 @@ export default function LandingPage() {
     }
   };
 
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "ListingFlare",
+    url: "https://www.listingflare.com",
+    logo: "https://www.listingflare.com/icon.svg",
+    description:
+      "Single-property listing websites with AI chatbot, lead capture, and auto follow-up for real estate agents.",
+    sameAs: [],
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "support@listingflare.com",
+      contactType: "customer support",
+    },
+  };
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "ListingFlare",
+    url: "https://www.listingflare.com",
+    description:
+      "Create stunning single-property listing websites with AI chatbot, instant lead capture, and auto follow-up.",
+    publisher: {
+      "@type": "Organization",
+      name: "ListingFlare",
+    },
+  };
+
+  const softwareJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "ListingFlare",
+    url: "https://www.listingflare.com",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    description:
+      "Create stunning single-property listing websites with AI chatbot, instant lead capture, and auto follow-up. Built for real estate agents.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      description: "Free trial available",
+    },
+    featureList: [
+      "Single-property listing websites",
+      "AI chatbot for buyer questions",
+      "Automatic lead capture",
+      "AI-drafted follow-up emails",
+      "Virtual tour integration",
+      "Analytics dashboard",
+    ],
+  };
+
   return (
     <div className="bg-white">
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
+      />
+
       {/* Nav */}
       <nav className="fixed left-0 right-0 top-0 z-40 border-b border-gray-100 bg-white/80 backdrop-blur-lg">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">

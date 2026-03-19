@@ -35,7 +35,12 @@ export const metadata: Metadata = {
     "real estate listing website builder",
     "single property listing website",
     "property marketing tool",
+    "real estate lead generation",
+    "listing marketing for agents",
   ],
+  alternates: {
+    canonical: "https://www.listingflare.com",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
