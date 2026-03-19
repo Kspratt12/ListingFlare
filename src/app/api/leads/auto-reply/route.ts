@@ -1,9 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { createClient } from "@supabase/supabase-js";
 import Anthropic from "@anthropic-ai/sdk";
 import { formatPhone } from "@/lib/formatters";
 
 export const dynamic = "force-dynamic";
+
+// Admin client — this endpoint is called server-to-server (no cookies)
+function getAdminClient() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,10 +25,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing leadId" }, { status: 400 });
     }
 
-    const supabase = createServerSupabaseClient();
+    const db = getAdminClient();
 
     // Fetch lead with listing details
-    const { data: lead } = await supabase
+    const { data: lead } = await db
       .from("leads")
       .select("id, name, email, message, listing_id, agent_id")
       .eq("id", leadId)
@@ -31,14 +39,14 @@ export async function POST(req: NextRequest) {
     }
 
     // Fetch listing details
-    const { data: listing } = await supabase
+    const { data: listing } = await db
       .from("listings")
       .select("street, city, state, price, beds, baths, sqft, description, features")
       .eq("id", lead.listing_id)
       .single();
 
     // Fetch agent info
-    const { data: agent } = await supabase
+    const { data: agent } = await db
       .from("agent_profiles")
       .select("name, phone, email, brokerage")
       .eq("id", lead.agent_id)
@@ -89,7 +97,7 @@ Write a brief, personalized follow-up email (3-4 sentences max). Guidelines:
     const draft = textBlock && textBlock.type === "text" ? textBlock.text.trim() : "";
 
     if (draft) {
-      await supabase
+      await db
         .from("leads")
         .update({ auto_reply_draft: draft })
         .eq("id", leadId);
@@ -140,7 +148,7 @@ Write a brief, personalized follow-up email (3-4 sentences max). Guidelines:
 
         // Only mark as contacted if email actually sent
         if (emailRes.ok) {
-          await supabase
+          await db
             .from("leads")
             .update({ status: "contacted" })
             .eq("id", leadId);

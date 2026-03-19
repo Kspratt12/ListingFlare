@@ -1,8 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { createClient } from "@supabase/supabase-js";
 import { formatPhone } from "@/lib/formatters";
 
 export const dynamic = "force-dynamic";
+
+// Admin client — called from anonymous visitors, bypasses RLS
+function getAdminClient() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+}
 
 // This endpoint is called after a lead is submitted to send an email notification
 // Uses a simple fetch to a free email API (Resend) if configured
@@ -17,7 +25,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
-    const supabase = createServerSupabaseClient();
+    const supabase = getAdminClient();
 
     // If we don't have a leadId, look it up server-side (more reliable than client-side)
     if (!leadId && leadEmail) {
