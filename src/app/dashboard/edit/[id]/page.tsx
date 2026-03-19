@@ -637,6 +637,10 @@ export default function EditListingPage() {
                 {uploadingPhotos ? "Uploading..." : "Click to upload or drag & drop"}
               </span>
               <span className="mt-1 text-xs text-gray-400">JPG, PNG, WebP up to 10MB each</span>
+              <span className="mt-2 text-xs text-gray-500">
+                <span className="hidden sm:inline"><strong>Hold Ctrl</strong> (or <strong>Cmd</strong> on Mac) and click to select multiple photos</span>
+                <span className="sm:hidden"><strong>Tap to select multiple photos</strong> from your gallery</span>
+              </span>
               <input
                 ref={fileInputRef}
                 type="file"
