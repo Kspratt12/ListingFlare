@@ -17,7 +17,7 @@ export const article: BlogPost = {
   ],
   readingTime: 9,
   coverImage:
-    "https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=1200&h=630&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1200&h=630&fit=crop&q=80",
   coverImageAlt:
     "Professionally staged living room with modern furniture showing home staging tips",
   content: `
@@ -77,7 +77,7 @@ export const article: BlogPost = {
 
 <p>Inside the cabinets, organize everything neatly. Stack plates and bowls uniformly, line up glasses, and remove anything that looks cluttered or overstuffed. If your cabinet hardware is dated, swapping out knobs and pulls is a quick and affordable upgrade. For a full breakdown of what upgrades are worth your money before listing, check out our guide on <a href="/blog/what-not-to-fix-when-selling-a-house">what not to fix when selling a house</a>.</p>
 
-<img src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800&h=450&fit=crop&q=80" alt="Clean modern kitchen staged for home sale with clear countertops" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=450&fit=crop&q=80" alt="Clean modern kitchen staged for home sale with clear countertops" loading="lazy" />
 
 <h2>7. Make Bathrooms Feel Spa-Like</h2>
 
@@ -113,7 +113,7 @@ export const article: BlogPost = {
 
 <p>These improvements cost a few hundred dollars at most, but the impact on first impressions is enormous. A home with strong curb appeal tells buyers, "This property has been cared for," before they even reach the front door.</p>
 
-<img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=800&h=450&fit=crop&q=80" alt="Home with excellent curb appeal ready for buyers" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800&h=450&fit=crop&q=80" alt="Home with excellent curb appeal ready for buyers" loading="lazy" />
 
 <h2>10. Add Strategic Mirrors</h2>
 

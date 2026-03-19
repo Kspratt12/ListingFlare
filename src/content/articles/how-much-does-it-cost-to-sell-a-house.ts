@@ -18,7 +18,7 @@ export const article: BlogPost = {
   ],
   readingTime: 9,
   coverImage:
-    "https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?w=1200&h=630&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1560185008-b033106af5c3?w=1200&h=630&fit=crop&q=80",
   coverImageAlt:
     "Home seller calculating how much it costs to sell a house with financial paperwork",
   content: `
@@ -151,7 +151,7 @@ export const article: BlogPost = {
   </tbody>
 </table>
 
-<img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=800&h=450&fit=crop&q=80" alt="Home for sale with costs calculated for the selling process" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=450&fit=crop&q=80" alt="Home for sale with costs calculated for the selling process" loading="lazy" />
 
 <p>Keep in mind that the totals above don't include potential capital gains tax, mortgage prepayment penalties, or moving costs. Those vary widely based on your individual situation, so be sure to factor them into your personal budget.</p>
 

@@ -17,7 +17,7 @@ export const article: BlogPost = {
   ],
   readingTime: 10,
   coverImage:
-    "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1200&h=630&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1560184897-502a475f7a0d?w=1200&h=630&fit=crop&q=80",
   coverImageAlt:
     "Beautiful home representing the decision between buying vs renting in 2026",
   content: `
@@ -161,7 +161,7 @@ export const article: BlogPost = {
   </tbody>
 </table>
 
-<img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=450&fit=crop&q=80" alt="Financial charts comparing the costs of buying vs renting a home" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=450&fit=crop&q=80" alt="Financial charts comparing the costs of buying vs renting a home" loading="lazy" />
 
 <h2>When Buying Makes Sense</h2>
 

@@ -53,7 +53,7 @@ export const article: BlogPost = {
 
 <p>This doesn't mean the market is weak. It means the market is <em>normal</em>. Buyers have time to think, get inspections, and negotiate. Sellers still get strong prices, but they need to earn them with proper preparation and marketing.</p>
 
-<img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=450&fit=crop&q=80" alt="Modern home in Raleigh NC ready for the 2026 housing market" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=450&fit=crop&q=80" alt="Modern home in Raleigh NC ready for the 2026 housing market" loading="lazy" />
 
 <h2>Mortgage Rate Outlook for 2026</h2>
 
