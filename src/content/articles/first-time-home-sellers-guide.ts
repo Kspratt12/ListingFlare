@@ -17,6 +17,8 @@ export const article: BlogPost = {
     "how to get my house ready to sell",
   ],
   readingTime: 11,
+  coverImage: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1200&h=630&fit=crop&q=80",
+  coverImageAlt: "Beautiful suburban home with manicured lawn ready for sale representing the home selling process",
   content: `
 <p>Congratulations — you're about to sell your first home! Whether you've outgrown your starter house, you're relocating for work, or you're simply ready for a change, selling a home for the first time can feel equal parts exciting and overwhelming. There are contracts, timelines, inspections, pricing decisions, and an avalanche of paperwork standing between you and a successful sale.</p>
 

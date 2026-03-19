@@ -15,6 +15,8 @@ export const article: BlogPost = {
     "real estate lead generation tools",
   ],
   readingTime: 9,
+  coverImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=630&fit=crop&q=80",
+  coverImageAlt: "Performance analytics dashboard on a laptop screen showing lead generation metrics and data",
   content: `
 <p>Every successful real estate agent knows that a consistent pipeline is everything. But finding the best lead generation tools for real estate agents can feel overwhelming when dozens of platforms are competing for your attention and your budget. Between CRMs, paid lead sources, social media schedulers, and email drip systems, it is easy to spend thousands per month and still wonder where your next closing is coming from.</p>
 

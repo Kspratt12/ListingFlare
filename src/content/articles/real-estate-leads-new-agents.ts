@@ -16,6 +16,8 @@ export const article: BlogPost = {
     "how to get leads as a new real estate agent",
   ],
   readingTime: 8,
+  coverImage: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=630&fit=crop&q=80",
+  coverImageAlt: "House keys and small model home on a wooden desk representing a new real estate agent getting started",
   content: `
 <p>Getting your first <strong>real estate leads for new agents</strong> might feel like the hardest thing you have ever done. You have no listings, no track record, no sphere of influence worth mentioning, and a marketing budget that is basically whatever is left over after your licensing fees. Sound familiar? You are not alone — every single top producer in your market started in exactly the same place.</p>
 

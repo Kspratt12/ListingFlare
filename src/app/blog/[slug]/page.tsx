@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getPostBySlug, getAllPosts, getRelatedPosts } from "@/lib/blog";
 import type { Metadata } from "next";
@@ -24,11 +25,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       modifiedTime: post.updated || post.date,
       authors: [post.author],
       url: `https://www.listingflare.com/blog/${post.slug}`,
+      images: [
+        {
+          url: post.coverImage,
+          width: 1200,
+          height: 630,
+          alt: post.coverImageAlt,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
+      images: [post.coverImage],
     },
     alternates: {
       canonical: `https://www.listingflare.com/blog/${post.slug}`,
@@ -64,6 +74,12 @@ export default async function BlogPostPage({ params }: Props) {
       "@type": "Organization",
       name: "ListingFlare",
       url: "https://www.listingflare.com",
+    },
+    image: {
+      "@type": "ImageObject",
+      url: post.coverImage,
+      width: 1200,
+      height: 630,
     },
     mainEntityOfPage: {
       "@type": "WebPage",
@@ -157,6 +173,18 @@ export default async function BlogPostPage({ params }: Props) {
             <span>{post.readingTime} min read</span>
           </div>
         </header>
+
+        {/* Hero Image */}
+        <div className="relative mt-8 aspect-[1200/630] w-full overflow-hidden rounded-xl bg-gray-100">
+          <Image
+            src={post.coverImage}
+            alt={post.coverImageAlt}
+            fill
+            priority
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 768px"
+          />
+        </div>
 
         {/* Content */}
         <div

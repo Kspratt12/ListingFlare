@@ -8,6 +8,8 @@ export interface BlogPost {
   category: string;
   keywords: string[];
   readingTime: number;
+  coverImage: string;
+  coverImageAlt: string;
   content: string;
 }
 

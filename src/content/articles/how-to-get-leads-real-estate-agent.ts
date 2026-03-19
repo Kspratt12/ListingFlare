@@ -15,6 +15,8 @@ export const article: BlogPost = {
     "lead generation real estate agents",
   ],
   readingTime: 10,
+  coverImage: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&h=630&fit=crop&q=80",
+  coverImageAlt: "Real estate professionals networking and discussing lead generation strategies at a modern office",
   content: `
 <p>If you have ever wondered <strong>how to get leads as a real estate agent</strong>, you are not alone. According to the National Association of Realtors, lead generation remains the single biggest challenge facing agents at every experience level. The market in 2026 is more competitive than ever: buyers start their search online, attention spans are shorter, and the agents who win are the ones with a repeatable system for attracting and capturing new prospects. The good news? There are more channels available to you today than at any point in the industry's history.</p>
 

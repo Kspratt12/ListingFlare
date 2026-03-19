@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getAllPosts } from "@/lib/blog";
 import type { Metadata } from "next";
 
@@ -52,27 +53,38 @@ export default function BlogIndexPage() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group rounded-xl border border-gray-200 p-6 transition-all hover:border-brand-300 hover:shadow-md"
+              className="group overflow-hidden rounded-xl border border-gray-200 transition-all hover:border-brand-300 hover:shadow-md"
             >
-              <span className="text-xs font-semibold uppercase tracking-wider text-brand-500">
-                {post.category}
-              </span>
-              <h2 className="mt-2 font-serif text-xl font-bold text-gray-900 group-hover:text-brand-600 transition-colors">
-                {post.title}
-              </h2>
-              <p className="mt-2 text-sm text-gray-600 line-clamp-3">
-                {post.description}
-              </p>
-              <div className="mt-4 flex items-center gap-3 text-xs text-gray-400">
-                <time dateTime={post.date}>
-                  {new Date(post.date).toLocaleDateString("en-US", {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
-                </time>
-                <span>&middot;</span>
-                <span>{post.readingTime} min read</span>
+              <div className="relative h-44 w-full overflow-hidden bg-gray-100">
+                <Image
+                  src={post.coverImage}
+                  alt={post.coverImageAlt}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+              </div>
+              <div className="p-5">
+                <span className="text-xs font-semibold uppercase tracking-wider text-brand-500">
+                  {post.category}
+                </span>
+                <h2 className="mt-2 font-serif text-lg font-bold text-gray-900 group-hover:text-brand-600 transition-colors">
+                  {post.title}
+                </h2>
+                <p className="mt-2 text-sm text-gray-600 line-clamp-2">
+                  {post.description}
+                </p>
+                <div className="mt-3 flex items-center gap-3 text-xs text-gray-400">
+                  <time dateTime={post.date}>
+                    {new Date(post.date).toLocaleDateString("en-US", {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </time>
+                  <span>&middot;</span>
+                  <span>{post.readingTime} min read</span>
+                </div>
               </div>
             </Link>
           ))}

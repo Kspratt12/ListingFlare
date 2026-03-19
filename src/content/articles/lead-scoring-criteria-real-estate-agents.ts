@@ -16,6 +16,8 @@ export const article: BlogPost = {
     "lead prioritization real estate",
   ],
   readingTime: 7,
+  coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop&q=80",
+  coverImageAlt: "Data analytics charts and graphs on a screen showing lead scoring metrics for real estate agents",
   content: `
 <p>Every real estate agent has been there: you spend an hour on the phone with a prospect who turns out to be "just browsing," while a pre-approved buyer who was ready to make an offer slipped through the cracks. If you don't have a system for <strong>lead scoring criteria real estate agents</strong> can rely on, you're leaving deals on the table every single week. The good news? A practical lead scoring system is easier to set up than you think, and it can transform the way you spend your time.</p>
 
