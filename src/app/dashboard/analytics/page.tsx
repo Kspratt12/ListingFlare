@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Listing, Lead } from "@/lib/types";
 import { Eye, Users, TrendingUp, Home, BarChart3 } from "lucide-react";
+import Link from "next/link";
 
 export default function AnalyticsPage() {
   const [listings, setListings] = useState<Listing[]>([]);
@@ -86,7 +87,7 @@ export default function AnalyticsPage() {
               </div>
             </div>
 
-            <div className="rounded-xl border border-gray-200 bg-white p-6">
+            <Link href="/dashboard/leads" className="rounded-xl border border-gray-200 bg-white p-6 transition-shadow hover:shadow-md hover:border-green-200 block">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-50">
                   <Users className="h-5 w-5 text-green-600" />
@@ -99,7 +100,7 @@ export default function AnalyticsPage() {
                   )}
                 </div>
               </div>
-            </div>
+            </Link>
 
             <div className="rounded-xl border border-gray-200 bg-white p-6">
               <div className="flex items-center gap-3">
@@ -114,7 +115,7 @@ export default function AnalyticsPage() {
               </div>
             </div>
 
-            <div className="rounded-xl border border-gray-200 bg-white p-6">
+            <Link href="/dashboard" className="rounded-xl border border-gray-200 bg-white p-6 transition-shadow hover:shadow-md hover:border-purple-200 block">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-50">
                   <Home className="h-5 w-5 text-purple-600" />
@@ -124,7 +125,7 @@ export default function AnalyticsPage() {
                   <p className="font-serif text-2xl font-bold text-gray-900">{activeListings}</p>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
 
           {/* Lead Pipeline */}
@@ -146,13 +147,13 @@ export default function AnalyticsPage() {
                   if (count === 0) return null;
                   const pct = ((count / totalLeads) * 100).toFixed(0);
                   return (
-                    <div key={s.key} className="flex items-center gap-2 rounded-lg border border-gray-100 bg-gray-50 px-4 py-3">
+                    <Link key={s.key} href="/dashboard/leads" className="flex items-center gap-2 rounded-lg border border-gray-100 bg-gray-50 px-4 py-3 transition-all hover:shadow-sm hover:border-gray-200 hover:bg-white">
                       <span className={`h-2.5 w-2.5 rounded-full ${s.color}`} />
                       <div>
                         <p className="text-sm font-medium text-gray-900">{count} {s.label}</p>
                         <p className="text-xs text-gray-400">{pct}%</p>
                       </div>
-                    </div>
+                    </Link>
                   );
                 })}
               </div>
@@ -178,7 +179,7 @@ export default function AnalyticsPage() {
                   const leadCount = leadsPerListing[listing.id] || 0;
                   const listingConversion = listing.view_count > 0 ? ((leadCount / listing.view_count) * 100).toFixed(1) : "0";
                   return (
-                    <div key={listing.id} className="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors">
+                    <Link key={listing.id} href={`/dashboard/edit/${listing.id}`} className="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors cursor-pointer">
                       {/* Thumbnail */}
                       <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-lg bg-gray-100">
                         {listing.photos?.length > 0 ? (
@@ -231,7 +232,7 @@ export default function AnalyticsPage() {
                       }`}>
                         {listing.status}
                       </span>
-                    </div>
+                    </Link>
                   );
                 })}
               </div>

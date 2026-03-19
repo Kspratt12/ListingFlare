@@ -200,8 +200,7 @@ export default function EditListingPage() {
         .single();
 
       if (fetchError || !data) {
-        setError("Listing not found");
-        setLoading(false);
+        router.push("/dashboard");
         return;
       }
 
