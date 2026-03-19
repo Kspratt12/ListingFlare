@@ -18,6 +18,7 @@ import {
   Sparkles,
   ArrowRight,
   BarChart3,
+  Bot,
 } from "lucide-react";
 
 const navItems = [
@@ -25,6 +26,7 @@ const navItems = [
   { href: "/dashboard/create", label: "New Listing", icon: PlusCircle },
   { href: "/dashboard/leads", label: "Leads", icon: MessageSquare },
   { href: "/dashboard/analytics", label: "Analytics", icon: BarChart3 },
+  { href: "/dashboard/assistant", label: "AI Assistant", icon: Bot },
   { href: "/dashboard/billing", label: "Billing", icon: CreditCard },
   { href: "/dashboard/settings", label: "Settings", icon: Settings },
 ];

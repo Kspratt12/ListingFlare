@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import type { Listing, AgentProfile } from "@/lib/types";
 import Navbar from "@/components/Navbar";
 import HeroSlideshow from "@/components/HeroSlideshow";
@@ -57,6 +58,32 @@ function toPropertyListing(listing: Listing, agent: AgentProfile): PropertyListi
 
 export default function ListingPageClient({ listing, agent, isOwner }: Props) {
   const propertyData = toPropertyListing(listing, agent);
+
+  // Track repeat visits — alert agent when someone views 3+ times
+  useEffect(() => {
+    if (isOwner) return;
+    try {
+      const key = `lf_views_${listing.id}`;
+      const prev = parseInt(localStorage.getItem(key) || "0", 10);
+      const count = prev + 1;
+      localStorage.setItem(key, String(count));
+
+      // Alert on 3rd and 6th visit (not every time)
+      if (count === 3 || count === 6) {
+        fetch("/api/leads/hot-visitor", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            listingId: listing.id,
+            agentId: listing.agent_id,
+            viewCount: count,
+          }),
+        }).catch(() => {});
+      }
+    } catch {
+      // localStorage not available
+    }
+  }, [listing.id, listing.agent_id, isOwner]);
 
   return (
     <main>
