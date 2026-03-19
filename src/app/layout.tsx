@@ -25,18 +25,18 @@ export const metadata: Metadata = {
     template: "%s | ListingFlare",
   },
   description:
-    "Create stunning single-property listing websites with AI chatbot, instant lead capture, and auto follow-up. Built for real estate agents selling $300K+ homes.",
+    "Create stunning single-property listing websites in minutes. AI chatbot answers buyer questions 24/7, captures leads instantly, and auto-follows up so you never miss a deal.",
   keywords: [
     "single property website",
-    "real estate listing page",
-    "real estate lead capture",
-    "AI chatbot for real estate",
-    "luxury listing marketing",
     "real estate listing website builder",
     "single property listing website",
+    "real estate lead capture",
+    "AI chatbot for real estate",
     "property marketing tool",
     "real estate lead generation",
     "listing marketing for agents",
+    "real estate listing page",
+    "property website for realtors",
   ],
   alternates: {
     canonical: "https://www.listingflare.com",
@@ -49,6 +49,14 @@ export const metadata: Metadata = {
     description:
       "Create stunning listing pages with AI chatbot, instant lead capture, and auto follow-up. Your buyers get answers 24/7.",
     url: "https://www.listingflare.com",
+    images: [
+      {
+        url: "https://www.listingflare.com/icon.svg",
+        width: 512,
+        height: 512,
+        alt: "ListingFlare - Single Property Websites for Real Estate Agents",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",

@@ -76,6 +76,8 @@ export const article: BlogPost = {
 
 <p><strong>Pro tip:</strong> Set up a sign-in sheet (digital is better; use a tablet) and follow up with every single visitor within 24 hours. Not 48 hours. Not "next week." Twenty-four hours.</p>
 
+<img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=450&fit=crop&q=80" alt="New real estate agent working on lead generation strategies at a modern office" loading="lazy" />
+
 <h3>Door Knocking and Farming a Neighborhood</h3>
 
 <p>Door knocking sounds old school, but it works, especially in neighborhoods with high turnover. Pick a farm area of 200 to 500 homes and commit to visiting every door once a month. Bring something of value: a local market report, a "just listed" or "just sold" flyer, or even a simple neighborhood newsletter you put together.</p>

@@ -98,6 +98,8 @@ export const article: BlogPost = {
 
 <p>Share the most common issues home inspectors flag: aging roof, outdated electrical panels, water heater nearing end of life, grading and drainage problems. Explain which ones are deal-breakers and which are easy fixes. Buyers appreciate the education, and sellers who follow you will prep their homes better before listing, making your job easier.</p>
 
+<img src="https://images.unsplash.com/photo-1560184897-502a475f7a0d?w=800&h=450&fit=crop&q=80" alt="Real estate social media content displayed on multiple devices for agent marketing" loading="lazy" />
+
 <h2>Personal Brand Posts (Ideas 17–22)</h2>
 
 <p>People don't hire logos. They hire people they like and trust. Personal brand content is how you build that trust at scale, letting your audience feel like they know you before they ever meet you.</p>

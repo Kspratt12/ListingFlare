@@ -90,6 +90,8 @@ export const article: BlogPost = {
 <h3>Southern Suburbs: Dripping Springs, Buda, Kyle, and Lakeway</h3>
 <p><strong>Dripping Springs</strong> and <strong>Lakeway</strong> cater to buyers seeking Hill Country living with larger lots and a more rural feel while staying within commuting distance of Austin. <strong>Buda and Kyle</strong>, located along the I-35 corridor south of Austin, have seen explosive new-construction activity and offer some of the most affordable options in the metro. Starter homes here can still be found in the low \$300Ks.</p>
 
+<img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=450&fit=crop&q=80" alt="Austin Texas home in a popular neighborhood representing the 2026 housing market" loading="lazy" />
+
 <h2>What This Means for Sellers</h2>
 
 <p>If you're selling a home in Austin in 2026, you need to recalibrate your expectations. This is not the market where you could list \$30,000 above comps and still get five offers in a weekend. Today's Austin market demands that sellers do the work.</p>

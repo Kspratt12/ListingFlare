@@ -183,6 +183,8 @@ Your own private retreat on 8 scenic acres. This custom-built 4-bedroom, 3-bathr
   <li><strong>"Won't last long"</strong> — overused and reads as pressure rather than genuine urgency</li>
 </ul>
 
+<img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&h=450&fit=crop&q=80" alt="Real estate professional crafting compelling listing description examples" loading="lazy" />
+
 <h2>Tips for Writing Better Listing Descriptions</h2>
 
 <p>Now that you have examples and a vocabulary list, here are the principles that tie it all together. Apply these tips to every <strong>property listing description</strong> you write:</p>

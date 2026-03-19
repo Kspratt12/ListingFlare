@@ -119,6 +119,8 @@ export const article: BlogPost = {
 <h3>The I-485/I-77 Growth Corridor</h3>
 <p>The stretch along <strong>I-485 and I-77</strong> is seeing some of the most aggressive development in the metro. New construction is booming in <strong>Fort Mill and Indian Land</strong> on the South Carolina side (where buyers get North Carolina-adjacent living with lower taxes) as well as <strong>Mooresville and Harrisburg</strong> on the north and east sides. If you're looking for new builds under \$400K, these corridors are where to focus.</p>
 
+<img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=450&fit=crop&q=80" alt="Charlotte NC home in a desirable neighborhood representing the 2026 market" loading="lazy" />
+
 <h2>Expert Predictions: Where Is Charlotte Headed?</h2>
 
 <p>The consensus among Charlotte real estate analysts and economists is cautiously optimistic. Here's the prevailing outlook:</p>

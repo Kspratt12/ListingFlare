@@ -87,6 +87,8 @@ export const article: BlogPost = {
 
 <p>Avoid listing right before Thanksgiving through the end of December unless you have to. The holiday season in Raleigh tends to slow things down, and homes listed during this window often sit into January.</p>
 
+<img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=800&h=450&fit=crop&q=80" alt="Raleigh NC home staged and ready to sell fast in a competitive market" loading="lazy" />
+
 <h2>6. Make Pre-Listing Repairs That Matter</h2>
 
 <p>You don't need to renovate your entire home before selling, but you do need to address the issues that Raleigh home inspectors flag most often, because buyers will use inspection findings to negotiate your price down or walk away entirely.</p>

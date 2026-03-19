@@ -86,6 +86,8 @@ export const article: BlogPost = {
 <p><strong>Pros:</strong> Extremely feature-rich, smart campaigns driven by lead behavior, built-in IDX site.</p>
 <p><strong>Cons:</strong> Steep learning curve, expensive for solo agents, and the bundled website can feel generic if you do not invest time customizing it.</p>
 
+<img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=450&fit=crop&q=80" alt="Real estate agent using lead generation tools and CRM on a laptop" loading="lazy" />
+
 <h2>3. Lead Generation Platforms</h2>
 
 <p>Paid lead platforms remain one of the most direct ways to get leads for real estate agents, but the cost and quality vary significantly. Understanding the difference between shared and exclusive leads is critical before you commit your budget.</p>

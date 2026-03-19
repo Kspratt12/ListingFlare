@@ -75,6 +75,8 @@ export const article: BlogPost = {
 <h3>Holly Springs &amp; Fuquay-Varina</h3>
 <p>These southern Wake County towns have exploded in growth. Holly Springs is home to a massive Novartis pharmaceutical campus, and Fuquay-Varina's charming downtown has a growing brewery scene (check out Aviator Brewing). Homes start in the \$350,000s, making them attractive entry points for first-time buyers. The trade-off is a longer commute to RTP or downtown Raleigh, but the 540 toll extension has helped considerably.</p>
 
+<img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=450&fit=crop&q=80" alt="Beautiful Raleigh NC neighborhood perfect for families moving to the area" loading="lazy" />
+
 <h2>Job Market &amp; Economy</h2>
 
 <p>Raleigh's economy is the engine behind its growth, and it's remarkably diversified. At the center of it all is <strong>Research Triangle Park (RTP)</strong>, the largest research park in the United States, sitting between Raleigh, Durham, and Chapel Hill. RTP is home to major operations from IBM, Cisco, Red Hat (now part of IBM but with a massive Raleigh HQ), Fidelity Investments, and dozens of biotech firms.</p>

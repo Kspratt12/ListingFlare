@@ -84,6 +84,8 @@ export const article: BlogPost = {
 <h3>Southpoint Area</h3>
 <p>The corridors around Streets at Southpoint mall offer newer construction, townhomes, and suburban-style living with easy access to I-40 and RTP. Prices range from the low \$300Ks for townhomes to \$500K+ for single-family homes. This area appeals to commuters and families who prioritize convenience and modern finishes over historic charm.</p>
 
+<img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800&h=450&fit=crop&q=80" alt="Durham NC home with curb appeal in the Bull City 2026 housing market" loading="lazy" />
+
 <h2>Durham's Job Market and Economic Drivers</h2>
 
 <p>You can't understand the Durham housing market without understanding what drives the local economy, and the answer is a powerful combination of healthcare, education, technology, and research.</p>
