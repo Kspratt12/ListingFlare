@@ -71,7 +71,59 @@ export default function EditListingPage() {
   const videoInputRef = useRef<HTMLInputElement>(null);
   const [generatingDesc, setGeneratingDesc] = useState(false);
   const [generatingFeatures, setGeneratingFeatures] = useState(false);
+  const [generatingCaptions, setGeneratingCaptions] = useState(false);
   const [generatingFlyer, setGeneratingFlyer] = useState(false);
+
+  const generateCaptions = async (newPhotos: ListingPhoto[]) => {
+    if (newPhotos.length === 0) return;
+    setGeneratingCaptions(true);
+    try {
+      const urls = newPhotos.map((p) => p.src);
+      const res = await fetch("/api/ai/caption", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          photoUrls: urls,
+          property: { street, city, beds, baths, sqft },
+        }),
+      });
+      if (!res.ok) throw new Error("Caption API failed");
+      const { captions } = await res.json();
+      const urlToCaption = new Map<string, string>();
+      urls.forEach((url, i) => { if (captions[i]) urlToCaption.set(url, captions[i]); });
+      setPhotos((prev) =>
+        prev.map((photo) => urlToCaption.has(photo.src) ? { ...photo, alt: urlToCaption.get(photo.src)! } : photo)
+      );
+    } catch {
+      // Silently fail
+    } finally {
+      setGeneratingCaptions(false);
+    }
+  };
+
+  const regenerateAllCaptions = async () => {
+    if (photos.length === 0) return;
+    setGeneratingCaptions(true);
+    try {
+      const res = await fetch("/api/ai/caption", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          photoUrls: photos.map((p) => p.src),
+          property: { street, city, beds, baths, sqft },
+        }),
+      });
+      if (!res.ok) throw new Error("Caption API failed");
+      const { captions } = await res.json();
+      setPhotos((prev) =>
+        prev.map((photo, i) => (captions[i] ? { ...photo, alt: captions[i] } : photo))
+      );
+    } catch {
+      setError("Failed to generate captions");
+    } finally {
+      setGeneratingCaptions(false);
+    }
+  };
 
   const handleGenerateFlyer = async () => {
     setGeneratingFlyer(true);
@@ -210,11 +262,12 @@ export default function EditListingPage() {
 
         newPhotos.push({
           src: publicUrl,
-          alt: file.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " "),
+          alt: "Generating caption...",
         });
       }
 
       setPhotos((prev) => [...prev, ...newPhotos]);
+      generateCaptions(newPhotos);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Upload failed");
     } finally {
@@ -597,7 +650,24 @@ export default function EditListingPage() {
           </div>
 
           {photos.length > 0 && (
-            <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            <>
+            <div className="mt-4 flex items-center justify-between">
+              <p className="text-xs text-gray-400">{photos.length} photo{photos.length !== 1 ? "s" : ""} uploaded</p>
+              <button
+                type="button"
+                onClick={regenerateAllCaptions}
+                disabled={generatingCaptions}
+                className="flex items-center gap-1.5 rounded-lg border border-brand-200 bg-brand-50/50 px-3 py-1.5 text-xs font-medium text-brand-700 transition-colors hover:bg-brand-100 disabled:opacity-50"
+              >
+                {generatingCaptions ? (
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                ) : (
+                  <Sparkles className="h-3.5 w-3.5" />
+                )}
+                {generatingCaptions ? "Generating..." : "AI Captions"}
+              </button>
+            </div>
+            <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
               {photos.map((photo, i) => (
                 <div
                   key={`photo-${i}-${photo.src.slice(-20)}`}
@@ -657,6 +727,7 @@ export default function EditListingPage() {
                 </div>
               ))}
             </div>
+            </>
           )}
         </section>
 
