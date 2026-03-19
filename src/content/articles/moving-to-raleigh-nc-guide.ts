@@ -156,7 +156,7 @@ export const article: BlogPost = {
 
 <h2>How to Find a Home in Raleigh</h2>
 
-<p>The Raleigh housing market in 2026 is more balanced than the frenzy of 2021–2022. Inventory has improved, bidding wars are less common (though still happen for well-priced homes in hot neighborhoods), and buyers generally have time to do inspections and negotiate. That said, desirable homes in Five Points, Cary, and Apex still move quickly.</p>
+<p>The Raleigh housing market in 2026 is more balanced than the frenzy of 2021–2022. For a detailed look at current prices, inventory levels, and where the market is heading, see our <a href="/blog/raleigh-nc-housing-market-2026">Raleigh NC housing market 2026</a> report. Inventory has improved, bidding wars are less common (though still happen for well-priced homes in hot neighborhoods), and buyers generally have time to do inspections and negotiate. That said, desirable homes in Five Points, Cary, and Apex still move quickly.</p>
 
 <p>Here's how to approach your home search:</p>
 
@@ -206,7 +206,7 @@ export const article: BlogPost = {
 
 <p>Moving to a new city is a big decision, and Raleigh rewards people who make the leap. It's a city with real momentum — not just in population growth, but in the quality of life it offers. The job market is deep and diverse, the neighborhoods have genuine personality, the schools are strong, and the community is welcoming in a way that's hard to fake.</p>
 
-<p>Is it perfect? No. You'll sit in traffic on I-40, you'll curse the pollen in April, and you'll wonder why everything closes by 10 PM. But you'll also discover your favorite greenway trail, find a neighborhood that feels like it was designed for your family, and wonder why you didn't move here sooner.</p>
+<p>Is it perfect? No. You'll sit in traffic on I-40, you'll curse the pollen in April, and you'll wonder why everything closes by 10 PM. But you'll also discover your favorite greenway trail, find a neighborhood that feels like it was designed for your family, and wonder why you didn't move here sooner. And if your move means selling a home somewhere else first, our <a href="/blog/first-time-home-sellers-guide">first-time home seller's guide</a> walks you through the entire process step by step.</p>
 
 <p>Welcome to Raleigh. You're going to love it here.</p>
 `,

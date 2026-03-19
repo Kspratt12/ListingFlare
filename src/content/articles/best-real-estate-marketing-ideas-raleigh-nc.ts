@@ -32,7 +32,7 @@ export const article: BlogPost = {
 
 <p>This is arguably the single biggest opportunity for Raleigh agents in 2026. Thousands of tech workers are relocating from California and New York to the Triangle every year for jobs at <strong>Apple, Google, Epic Games, Red Hat, Cisco, and MetLife</strong>. These are high-income buyers who often need to purchase quickly, and they're searching for agents online weeks before they ever land at RDU.</p>
 
-<p>Position yourself as the relocation expert. Create content that answers the questions these buyers are actually asking: "Best neighborhoods near RTP for tech workers," "Raleigh vs. Durham vs. Cary — where should I live?" and "What \$500K buys you in Raleigh compared to San Jose." Build landing pages targeting these long-tail searches, and you'll capture leads before competing agents even know those buyers exist.</p>
+<p>Position yourself as the relocation expert. Create content that answers the questions these buyers are actually asking: "Best neighborhoods near RTP for tech workers," "Raleigh vs. Durham vs. Cary — where should I live?" and "What \$500K buys you in Raleigh compared to San Jose." Our <a href="/blog/moving-to-raleigh-nc-guide">moving to Raleigh NC guide</a> is a great example of the kind of content that ranks for these searches. Build landing pages targeting these long-tail searches, and you'll capture leads before competing agents even know those buyers exist.</p>
 
 <h3>Partner with Relocation Companies and Corporate HR</h3>
 
@@ -52,7 +52,7 @@ export const article: BlogPost = {
 
 <h2>Digital Marketing for Raleigh Agents</h2>
 
-<p>Your online presence is your storefront in 2026. Here's how to build one that actually generates leads in the Raleigh market.</p>
+<p>Your online presence is your storefront in 2026. For a broader look at lead generation beyond just marketing, our guide on <a href="/blog/how-to-get-leads-as-a-real-estate-agent">how to get leads as a real estate agent</a> covers 12 proven channels you can layer alongside these Raleigh-specific tactics. Here's how to build an online presence that actually generates leads in the Raleigh market.</p>
 
 <h3>Google Business Profile Optimization</h3>
 
@@ -155,7 +155,7 @@ export const article: BlogPost = {
 
 <h2>Putting It All Together</h2>
 
-<p>Raleigh's real estate market rewards agents who think locally and execute consistently. The strategies in this guide aren't theoretical — they're what the Triangle's top producers are actually doing in 2026 to win listings, generate buyer leads, and build referral-driven businesses.</p>
+<p>Raleigh's real estate market rewards agents who think locally and execute consistently. To stay ahead of shifting conditions, keep an eye on our <a href="/blog/raleigh-nc-housing-market-2026">Raleigh NC housing market 2026</a> report for the latest data on prices, inventory, and trends. The strategies in this guide aren't theoretical — they're what the Triangle's top producers are actually doing in 2026 to win listings, generate buyer leads, and build referral-driven businesses.</p>
 
 <p>Start with the strategies that match your current budget and bandwidth. If you're new, focus on Google Business Profile, one social media channel, and neighborhood-specific content. If you're established, layer in community sponsorships, geographic farming, and technology tools that automate your lead capture and follow-up. The agents who dominate Raleigh's market aren't doing one thing brilliantly — they're doing ten things consistently.</p>
 

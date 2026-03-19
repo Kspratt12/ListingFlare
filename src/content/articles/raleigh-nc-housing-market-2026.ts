@@ -69,7 +69,7 @@ export const article: BlogPost = {
 
 <h3>Pricing Strategy Is Everything</h3>
 
-<p>With homes selling at 98% of asking price and days on market exceeding 40, <strong>your initial list price matters more than ever</strong>. Overpricing by even 3–5% can cause your listing to sit, accumulate days on market, and ultimately sell for less than it would have at the right price from day one. Work with your agent to analyze recent comps carefully — not what your neighbor's home sold for 18 months ago, but what's closing right now.</p>
+<p>With homes selling at 98% of asking price and days on market exceeding 40, <strong>your initial list price matters more than ever</strong>. Overpricing by even 3–5% can cause your listing to sit, accumulate days on market, and ultimately sell for less than it would have at the right price from day one. Work with your agent to analyze recent comps carefully — not what your neighbor's home sold for 18 months ago, but what's closing right now. For 10 specific tactics tailored to the Triangle, read our guide on <a href="/blog/how-to-sell-your-house-fast-in-raleigh-nc">how to sell your house fast in Raleigh NC</a>.</p>
 
 <h3>Marketing That Stands Out</h3>
 
@@ -115,7 +115,7 @@ export const article: BlogPost = {
 <p>Here's why:</p>
 
 <ol>
-  <li><strong>Population growth isn't slowing down.</strong> The Triangle continues to rank among the top metros nationally for inbound migration. People are moving here for jobs, affordability relative to the Northeast and West Coast, and quality of life. That demand puts a floor under home prices.</li>
+  <li><strong>Population growth isn't slowing down.</strong> The Triangle continues to rank among the top metros nationally for inbound migration. People are moving here for jobs, affordability relative to the Northeast and West Coast, and quality of life. Our <a href="/blog/moving-to-raleigh-nc-guide">moving to Raleigh NC guide</a> covers exactly what is drawing newcomers to the area. That demand puts a floor under home prices.</li>
   <li><strong>The job market is diversified and strong.</strong> Unlike markets dependent on a single industry, Raleigh–Durham benefits from tech, biotech, healthcare, education, and government employment. This insulates the housing market from sector-specific downturns.</li>
   <li><strong>New construction is ramping up but not flooding.</strong> Builders are adding supply, particularly in the outer suburbs and along the I-540 corridor, but not at a pace that would overwhelm demand. This helps keep appreciation positive without reigniting the frenzy.</li>
   <li><strong>National tailwinds favor sales volume.</strong> The National Association of Realtors (NAR) projects a <strong>14% surge in national existing-home sales</strong> in 2026, driven by pent-up demand from buyers who sat on the sidelines during the rate spike. Raleigh — as one of the most in-demand metros — stands to benefit disproportionately.</li>
@@ -125,7 +125,7 @@ export const article: BlogPost = {
 
 <h2>For Agents: Standing Out in a Balanced Market</h2>
 
-<p>If you're a listing agent in the Triangle, the shift to a balanced market means your marketing game has to level up. Buyers have more options, which means your listings need to make a stronger first impression. Beyond professional photography and staging, agents who invest in <a href="/signup">dedicated property websites</a> for their listings are winning more business — both from sellers who want maximum exposure and from buyers who appreciate the elevated experience. In a market where every edge counts, that differentiation matters.</p>
+<p>If you're a listing agent in the Triangle, the shift to a balanced market means your marketing game has to level up. Buyers have more options, which means your listings need to make a stronger first impression. For a comprehensive playbook, see our guide on the <a href="/blog/best-real-estate-marketing-ideas-raleigh-nc">best real estate marketing ideas for Raleigh agents</a>. Beyond professional photography and staging, agents who invest in <a href="/signup">dedicated property websites</a> for their listings are winning more business — both from sellers who want maximum exposure and from buyers who appreciate the elevated experience. In a market where every edge counts, that differentiation matters.</p>
 
 <div class="faq-section">
 
