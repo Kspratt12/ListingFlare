@@ -5,6 +5,9 @@
 -- ============================================================
 
 -- 1. Atomic view count increment (prevents race conditions)
+-- Drop existing function first (parameter name changed from listing_uuid to listing_id)
+drop function if exists public.increment_view_count(uuid);
+
 create or replace function public.increment_view_count(listing_id uuid)
 returns void as $$
 begin
