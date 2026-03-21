@@ -37,6 +37,7 @@ import { article as homeStagingTips } from "@/content/articles/home-staging-tips
 import { article as chooseAgent } from "@/content/articles/how-to-choose-a-real-estate-agent";
 import { article as buyingVsRenting } from "@/content/articles/buying-vs-renting-a-home";
 import { article as costToSell } from "@/content/articles/how-much-does-it-cost-to-sell-a-house";
+import { article as stopLosingLeadsZillow } from "@/content/articles/how-to-stop-losing-leads-to-zillow";
 
 const allPosts: BlogPost[] = [
   howToGetLeads,
@@ -62,6 +63,7 @@ const allPosts: BlogPost[] = [
   chooseAgent,
   buyingVsRenting,
   costToSell,
+  stopLosingLeadsZillow,
 ];
 
 // Sort by date descending
