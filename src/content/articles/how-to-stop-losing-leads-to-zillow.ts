@@ -29,7 +29,7 @@ export const article: BlogPost = {
 
 <p>If you have ever wondered <strong>how to stop losing leads to Zillow</strong>, this guide is for you. We will break down exactly how the Zillow lead funnel works against listing agents, why paying for Zillow Premier Agent may not be the answer, and nine strategies you can implement today to capture buyer leads directly from your own listings without giving up a single prospect to the portals.</p>
 
-<img src="https://images.unsplash.com/photo-1563986768609-322da13575f2?w=800&h=450&fit=crop&q=80" alt="Stressed professional at a desk reviewing online leads being diverted to competing real estate agents" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=450&fit=crop&q=80" alt="Professional reviewing data and analytics on a laptop showing how online leads are being diverted to competing agents" loading="lazy" />
 
 <h2>How Zillow Takes Your Leads and Sells Them Back to You</h2>
 
