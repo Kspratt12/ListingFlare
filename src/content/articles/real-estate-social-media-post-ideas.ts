@@ -98,7 +98,7 @@ export const article: BlogPost = {
 
 <p>Share the most common issues home inspectors flag: aging roof, outdated electrical panels, water heater nearing end of life, grading and drainage problems. Explain which ones are deal-breakers and which are easy fixes. Buyers appreciate the education, and sellers who follow you will prep their homes better before listing, making your job easier.</p>
 
-<img src="https://images.unsplash.com/photo-1560184897-502a475f7a0d?w=800&h=450&fit=crop&q=80" alt="Real estate social media content displayed on multiple devices for agent marketing" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=800&h=450&fit=crop&q=80" alt="Smartphone showing social media apps used by real estate agents for property marketing and engagement" loading="lazy" />
 
 <h2>Personal Brand Posts (Ideas 17–22)</h2>
 

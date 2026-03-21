@@ -76,7 +76,7 @@ export const article: BlogPost = {
 
 <p><strong>Pro tip:</strong> Set up a sign-in sheet (digital is better; use a tablet) and follow up with every single visitor within 24 hours. Not 48 hours. Not "next week." Twenty-four hours.</p>
 
-<img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=450&fit=crop&q=80" alt="New real estate agent working on lead generation strategies at a modern office" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=450&fit=crop&q=80" alt="New real estate agent shaking hands with a potential client after a successful open house" loading="lazy" />
 
 <h3>Door Knocking and Farming a Neighborhood</h3>
 

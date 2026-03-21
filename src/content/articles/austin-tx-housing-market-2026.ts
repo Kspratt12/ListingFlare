@@ -90,7 +90,7 @@ export const article: BlogPost = {
 <h3>Southern Suburbs: Dripping Springs, Buda, Kyle, and Lakeway</h3>
 <p><strong>Dripping Springs</strong> and <strong>Lakeway</strong> cater to buyers seeking Hill Country living with larger lots and a more rural feel while staying within commuting distance of Austin. <strong>Buda and Kyle</strong>, located along the I-35 corridor south of Austin, have seen explosive new-construction activity and offer some of the most affordable options in the metro. Starter homes here can still be found in the low \$300Ks.</p>
 
-<img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=450&fit=crop&q=80" alt="Austin Texas home in a popular neighborhood representing the 2026 housing market" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&h=450&fit=crop&q=80" alt="Modern home in an Austin Texas suburb with a landscaped front yard representing popular neighborhoods" loading="lazy" />
 
 <h2>What This Means for Sellers</h2>
 

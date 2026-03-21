@@ -63,7 +63,7 @@ export const article: BlogPost = {
 
 <p>The rule is simple: if you can't afford to finish the full renovation, don't start it. A consistently dated kitchen looks far better than a half-renovated one. Buyers can envision upgrading a space that has a cohesive look. They struggle with a room that's stuck halfway between old and new.</p>
 
-<img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=800&h=450&fit=crop&q=80" alt="Kitchen that does not need a full renovation before selling a house" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=800&h=450&fit=crop&q=80" alt="Older kitchen with dated cabinets that does not need a full renovation before selling a house" loading="lazy" />
 
 <h3>6. Removing Popcorn Ceilings</h3>
 

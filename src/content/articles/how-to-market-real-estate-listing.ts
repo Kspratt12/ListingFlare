@@ -108,7 +108,7 @@ export const article: BlogPost = {
 
 <p><strong>Pro tip:</strong> Add the neighborhood name and city as additional keyword variations (e.g., "homes for sale in [Neighborhood]") to capture broader buyer searches.</p>
 
-<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=450&fit=crop&q=80" alt="Real estate agent setting up digital marketing campaigns for a property listing" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&h=450&fit=crop&q=80" alt="Digital marketing professional setting up Google Ads campaigns for real estate property listings" loading="lazy" />
 
 <h2>11. Broker Open Houses &amp; Agent Caravans</h2>
 
