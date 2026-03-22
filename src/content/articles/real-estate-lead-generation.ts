@@ -3,7 +3,7 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "real-estate-lead-generation",
   title:
-    "Real Estate Lead Generation: The Complete Guide to Getting More Clients in 2026",
+    "Real Estate Lead Generation: 15 Strategies Top Agents Use to Never Run Out of Clients",
   description:
     "Master real estate lead generation with 15 proven strategies that top-producing agents use to consistently attract buyers and sellers. From digital marketing to referral systems, this is the only guide you need.",
   date: "2026-03-21",
@@ -25,9 +25,9 @@ export const article: BlogPost = {
   ],
   readingTime: 18,
   coverImage:
-    "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=630&fit=crop&q=80",
+    "/blog/real-estate-lead-generation/hero.png",
   coverImageAlt:
-    "Modern real estate office with digital screens and marketing materials representing a comprehensive lead generation system for real estate agents",
+    "Magnet attracting colorful people figures representing real estate lead generation strategies that pull in qualified buyers and sellers",
   content: `
 <p>Every real estate agent faces the same fundamental challenge: where will the next client come from? The difference between agents who close 5 deals a year and those who close 50 comes down to one thing — a repeatable, scalable <strong>real estate lead generation</strong> system. Not luck. Not charm. A system.</p>
 
@@ -35,7 +35,7 @@ export const article: BlogPost = {
 
 <p>This guide breaks down <strong>15 proven real estate lead generation strategies</strong> that top producers use to build a consistent pipeline of qualified buyers and sellers. We will cover both paid and free methods, online and offline tactics, and short-term wins alongside long-term systems. Whether you are a new agent building from scratch or a veteran looking to scale, every strategy here is actionable and backed by data.</p>
 
-<img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=450&fit=crop&q=80" alt="Aerial view of a modern city skyline representing the scale of opportunity in real estate lead generation" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/top-real-estate-lead-generation-strategies-2025-guide.png" alt="Real estate lead generation funnel showing how agents convert prospects into clients through targeted marketing strategies" loading="lazy" />
 
 <h2>What Is Real Estate Lead Generation and Why It Matters</h2>
 
@@ -59,7 +59,7 @@ export const article: BlogPost = {
 
 <p>The best agents do not choose one over the other. They build both. Outbound fills the pipeline today while inbound builds the machine that generates leads tomorrow with less effort. The strategies below cover both, and the order is intentional — we start with the highest-impact digital strategies first.</p>
 
-<img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop&q=80" alt="Business analytics dashboard showing lead generation metrics and conversion funnels for real estate marketing" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/listingflare-1.png" alt="ListingFlare dashboard showing multiple property listings with lead tracking and analytics for real estate agents" loading="lazy" />
 
 <h2>1. Build a Lead-Capturing Website That Works 24/7</h2>
 
@@ -87,7 +87,7 @@ export const article: BlogPost = {
 
 <p><a href="/signup">ListingFlare</a> makes this effortless. You can create a professional single-property website in under five minutes, complete with an <strong>AI-powered chatbot</strong> that answers buyer questions and captures lead information around the clock. When a buyer asks "What school district is this in?" at midnight, the chatbot provides the answer and collects their contact info. You wake up to a qualified lead. <a href="/demo">See a live demo here.</a></p>
 
-<img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=450&fit=crop&q=80" alt="Beautiful modern home exterior with for-sale sign representing a single property website opportunity for lead capture" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/listingflare-2.png" alt="ListingFlare single-property website showing property details, highlights, and AI-powered lead capture for real estate agents" loading="lazy" />
 
 <h2>3. Dominate Local SEO to Attract Organic Leads</h2>
 
@@ -125,7 +125,7 @@ export const article: BlogPost = {
 
 <p>The critical mistake agents make is sending Google Ads traffic to their homepage. Instead, build <strong>dedicated landing pages</strong> for each campaign. A "Sell My House Fast in Austin" ad should land on a page specifically about selling in Austin with a home valuation form — not your generic homepage with 14 navigation links. Fewer distractions equal higher conversion.</p>
 
-<img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop&q=80" alt="Digital marketing analytics on multiple screens showing Google Ads performance metrics for real estate lead campaigns" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/google-ads-scaled.png" alt="Google Ads app on a smartphone showing the platform real estate agents use to run paid lead generation campaigns" loading="lazy" />
 
 <h2>5. Use Social Media to Build Trust and Generate Leads</h2>
 
@@ -177,7 +177,7 @@ export const article: BlogPost = {
 
 <p>For 30 more ideas on maximizing your open houses, read our complete guide on <a href="/blog/open-house-ideas-attract-buyers">open house ideas that attract buyers and generate leads</a>.</p>
 
-<img src="https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=800&h=450&fit=crop&q=80" alt="Beautifully staged open house living room with visitors touring the home representing in-person lead generation opportunities" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/social-media.png" alt="Modern home for sale social media marketing post showing how real estate agents use social platforms for lead generation" loading="lazy" />
 
 <h2>8. Generate Seller Leads with Home Valuation Tools</h2>
 
@@ -201,8 +201,6 @@ export const article: BlogPost = {
 <li><strong>Referral incentives</strong> — A $100 gift card, a dinner at a nice restaurant, or a charitable donation in their name for every referral that leads to a closing. Check your state's regulations on referral incentives, but most allow agent-to-consumer gifts under a reasonable threshold</li>
 <li><strong>Strategic partnerships</strong> — Build relationships with mortgage brokers, financial advisors, divorce attorneys, estate attorneys, home inspectors, and contractors. These professionals interact with people in life transitions that often involve real estate. A mortgage broker who sends you two buyer leads per month is worth more than any ad campaign</li>
 </ul>
-
-<img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=450&fit=crop&q=80" alt="Two professionals shaking hands after a successful business referral representing the power of referral networks in real estate" loading="lazy" />
 
 <h2>10. Leverage Video Marketing to Stand Out From Every Other Agent</h2>
 
@@ -248,7 +246,7 @@ export const article: BlogPost = {
 
 <p>FSBO sellers are trying to save on commission, but the vast majority — <strong>over 90 percent</strong> — eventually list with an agent. Your job is to be the agent they choose. Build the relationship by offering genuinely helpful advice without a hard sell. Offer to send them a market report for their area. Offer to review their listing photos. The FSBO who sees you as a helpful resource will call you first when they realize they need professional help.</p>
 
-<img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&h=450&fit=crop&q=80" alt="For sale sign in front of a residential home representing expired listing and FSBO lead generation opportunities" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/local-seo.png" alt="Google search results page showing local real estate agent listings and map pack representing local SEO lead generation" loading="lazy" />
 
 <h2>13. Host Community Events and Workshops</h2>
 
@@ -334,7 +332,7 @@ export const article: BlogPost = {
 
 <p>A single listing, marketed properly, can generate <strong>20 to 50 new leads</strong>. If you close just one additional deal from those leads, you have doubled the revenue from that listing. This is the power of treating every listing as a marketing event, not just a transaction. Learn more in our guide on <a href="/blog/how-to-market-real-estate-listing">how to market a real estate listing for maximum exposure</a>.</p>
 
-<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop&q=80" alt="Stunning modern home with professional photography and staging representing how to turn every listing into a lead generation opportunity" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/mailbox-mailer.png" alt="Direct mail marketing materials in a residential mailbox showing how real estate agents use physical mailers for lead generation" loading="lazy" />
 
 <h2>How to Track and Measure Your Lead Generation Results</h2>
 
@@ -388,8 +386,6 @@ export const article: BlogPost = {
 <li>Develop a personal brand through video content and speaking engagements</li>
 <li>Track every metric and optimize ruthlessly</li>
 </ol>
-
-<img src="https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=800&h=450&fit=crop&q=80" alt="Professional real estate agent reviewing analytics and strategy documents representing a structured lead generation action plan" loading="lazy" />
 
 <h2>Common Real Estate Lead Generation Mistakes to Avoid</h2>
 
