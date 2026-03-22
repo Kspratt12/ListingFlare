@@ -290,6 +290,8 @@ export const article: BlogPost = {
 <li><strong>Build a repeatable system</strong> — every new listing should automatically get a property website, AI description, social posts, and open house flyer. Make AI part of your standard workflow, not an afterthought</li>
 </ol>
 
+<img src="/blog/ai-for-real-estate-agents/sad-agent.png" alt="Frustrated real estate agent making common AI mistakes that hurt their lead generation and marketing results" loading="lazy" />
+
 <h2>Common Mistakes Agents Make With AI (And How to Avoid Them)</h2>
 
 <p>AI is a powerful tool, but it is not magic. Here are the mistakes that trip up most agents:</p>
@@ -315,6 +317,8 @@ export const article: BlogPost = {
 </ul>
 
 <p>The agents who build their AI foundation now will be best positioned to adopt these capabilities as they emerge. Starting with a platform like <a href="/signup">ListingFlare</a> that is actively developing AI features means you are not just keeping up — you are staying ahead.</p>
+
+<img src="/blog/ai-for-real-estate-agents/listingflare-7.png" alt="ListingFlare platform overview showing the complete AI-powered real estate marketing and lead generation solution" loading="lazy" />
 
 <h2>The Bottom Line: The Best AI for Real Estate Agents Is the One You Actually Use</h2>
 
