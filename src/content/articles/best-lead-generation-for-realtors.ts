@@ -259,6 +259,8 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Realtors who want to dominate a specific neighborhood and have the patience and budget ($300 to $800 per month for a 500-home farm) to commit for at least 12 months.</p>
 
+<img src="/blog/best-lead-generation-for-realtors/fsbo.png" alt="For sale by owner property representing FSBO and expired listing prospecting opportunities for realtors" loading="lazy" />
+
 <h2>10. Expired Listings and FSBO Prospecting</h2>
 
 <p><strong>ROI:</strong> Very High | <strong>Speed:</strong> Immediate | <strong>Lead Quality:</strong> Very High</p>
