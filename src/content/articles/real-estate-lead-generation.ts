@@ -59,6 +59,8 @@ export const article: BlogPost = {
 
 <p>The best agents do not choose one over the other. They build both. Outbound fills the pipeline today while inbound builds the machine that generates leads tomorrow with less effort. The strategies below cover both, and the order is intentional — we start with the highest-impact digital strategies first.</p>
 
+<img src="/blog/real-estate-lead-generation/listingflare-1.png" alt="ListingFlare dashboard showing multiple property listings with lead tracking and analytics for real estate agents" loading="lazy" />
+
 <h2>1. Build a Lead-Capturing Website That Works 24/7</h2>
 
 <p>Your website is the hub of your entire lead generation system. Every ad you run, every social media post you publish, every business card you hand out should drive traffic back to a website that is designed to capture contact information. Yet most real estate agent websites fail at this because they are built to look pretty, not to convert.</p>
@@ -75,8 +77,6 @@ export const article: BlogPost = {
 
 <p>The most important metric is not how much traffic your site gets. It is your <strong>conversion rate</strong> — the percentage of visitors who become leads. A site getting 500 visitors per month with a 5 percent conversion rate (25 leads) outperforms a site getting 2,000 visitors with a 0.5 percent rate (10 leads). Focus on conversion first, traffic second.</p>
 
-<img src="/blog/real-estate-lead-generation/listingflare-1.png" alt="ListingFlare dashboard showing multiple property listings with lead tracking and analytics for real estate agents" loading="lazy" />
-
 <h2>2. Create Single-Property Websites for Every Listing</h2>
 
 <p>Here is a strategy most agents overlook that can immediately change your lead flow: create a <strong>dedicated website for each listing</strong> instead of relying solely on MLS syndication.</p>
@@ -88,6 +88,8 @@ export const article: BlogPost = {
 <p><a href="/signup">ListingFlare</a> makes this effortless. You can create a professional single-property website in under five minutes, complete with an <strong>AI-powered chatbot</strong> that answers buyer questions and captures lead information around the clock. When a buyer asks "What school district is this in?" at midnight, the chatbot provides the answer and collects their contact info. You wake up to a qualified lead. <a href="/demo">See a live demo here.</a></p>
 
 <img src="/blog/real-estate-lead-generation/listingflare-2.png" alt="ListingFlare single-property website showing property details, highlights, and AI-powered lead capture for real estate agents" loading="lazy" />
+
+<img src="/blog/real-estate-lead-generation/local-seo.png" alt="Google search results page showing local real estate agent listings and map pack representing local SEO lead generation" loading="lazy" />
 
 <h2>3. Dominate Local SEO to Attract Organic Leads</h2>
 
@@ -107,7 +109,7 @@ export const article: BlogPost = {
 
 <p>Every page on your site needs a unique title tag, meta description, H1 heading, and natural keyword usage. Your homepage should target your primary market ("Real Estate Agent in [City]"), and interior pages should target long-tail variations. Internal linking between your blog posts, neighborhood pages, and listing pages builds authority and keeps visitors on your site longer — both signals Google values.</p>
 
-<img src="/blog/real-estate-lead-generation/local-seo.png" alt="Google search results page showing local real estate agent listings and map pack representing local SEO lead generation" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/google-ads-scaled.png" alt="Google Ads app on a smartphone showing the platform real estate agents use to run paid lead generation campaigns" loading="lazy" />
 
 <h2>4. Run Google Ads for Immediate Lead Flow</h2>
 
@@ -127,7 +129,7 @@ export const article: BlogPost = {
 
 <p>The critical mistake agents make is sending Google Ads traffic to their homepage. Instead, build <strong>dedicated landing pages</strong> for each campaign. A "Sell My House Fast in Austin" ad should land on a page specifically about selling in Austin with a home valuation form — not your generic homepage with 14 navigation links. Fewer distractions equal higher conversion.</p>
 
-<img src="/blog/real-estate-lead-generation/google-ads-scaled.png" alt="Google Ads app on a smartphone showing the platform real estate agents use to run paid lead generation campaigns" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/social-media.png" alt="Modern home for sale social media marketing post showing how real estate agents use social platforms for lead generation" loading="lazy" />
 
 <h2>5. Use Social Media to Build Trust and Generate Leads</h2>
 
@@ -148,8 +150,6 @@ export const article: BlogPost = {
 <p>YouTube is the second-largest search engine in the world, and real estate content performs exceptionally well on it. Neighborhood tour videos, market update vlogs, and "Day in the Life of a Real Estate Agent" content build trust and authority. The best part: YouTube videos rank in Google search results, giving you visibility on both platforms simultaneously.</p>
 
 <p>For more specific ideas, check out our guide on <a href="/blog/real-estate-social-media-post-ideas">real estate social media post ideas that actually generate leads</a>.</p>
-
-<img src="/blog/real-estate-lead-generation/social-media.png" alt="Modern home for sale social media marketing post showing how real estate agents use social platforms for lead generation" loading="lazy" />
 
 <h2>6. Build an Email Nurture System That Converts Over Time</h2>
 
@@ -222,6 +222,8 @@ export const article: BlogPost = {
 
 <p>You do not need a production crew. A smartphone, a $30 lapel microphone, and natural lighting are enough. Authenticity outperforms polish every time. Post every video on YouTube, Instagram Reels, TikTok, and Facebook for maximum distribution.</p>
 
+<img src="/blog/real-estate-lead-generation/mailbox-mailer.png" alt="Direct mail marketing materials in a residential mailbox showing how real estate agents use physical mailers for lead generation" loading="lazy" />
+
 <h2>11. Use Direct Mail in a Digital World</h2>
 
 <p>Direct mail is not dead — it is just underused, which makes it more effective for agents who do it right. The average American receives <strong>fewer than 2 pieces of marketing mail per day</strong> compared to 120 or more emails. Your postcard has a much better chance of being seen than your email.</p>
@@ -235,8 +237,6 @@ export const article: BlogPost = {
 </ul>
 
 <p>The key to making direct mail work as a lead generation channel is including a <strong>clear call to action</strong> with a trackable URL or QR code. "Scan this code to see what your home is worth" sends them to your valuation page where you capture their information. Now offline marketing feeds your digital pipeline.</p>
-
-<img src="/blog/real-estate-lead-generation/mailbox-mailer.png" alt="Direct mail marketing materials in a residential mailbox showing how real estate agents use physical mailers for lead generation" loading="lazy" />
 
 <h2>12. Prospect Expired Listings and FSBOs</h2>
 
