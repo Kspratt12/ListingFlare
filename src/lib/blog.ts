@@ -40,6 +40,7 @@ import { article as costToSell } from "@/content/articles/how-much-does-it-cost-
 import { article as stopLosingLeadsZillow } from "@/content/articles/how-to-stop-losing-leads-to-zillow";
 import { article as realEstateLeadGen } from "@/content/articles/real-estate-lead-generation";
 import { article as bestLeadGenRealtors } from "@/content/articles/best-lead-generation-for-realtors";
+import { article as aiForRealEstate } from "@/content/articles/ai-for-real-estate-agents";
 
 const allPosts: BlogPost[] = [
   howToGetLeads,
@@ -68,6 +69,7 @@ const allPosts: BlogPost[] = [
   stopLosingLeadsZillow,
   realEstateLeadGen,
   bestLeadGenRealtors,
+  aiForRealEstate,
 ];
 
 // Sort by date descending
