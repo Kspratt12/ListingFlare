@@ -23,17 +23,15 @@ export const article: BlogPost = {
   ],
   readingTime: 16,
   coverImage:
-    "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&h=630&fit=crop&q=80",
+    "/blog/best-lead-generation-for-realtors/hero.png",
   coverImageAlt:
-    "Real estate professionals reviewing lead generation strategies and marketing data to grow their business",
+    "Best lead generation methods for realtors ranked by ROI speed and quality with data-driven comparison",
   content: `
 <p>You have heard it all before. "Just cold call." "Farm a neighborhood." "Buy Zillow leads." Every coach, broker, and YouTube guru has a different opinion on the <strong>best lead generation for realtors</strong> — and most of them are trying to sell you something.</p>
 
 <p>This guide is different. We ranked the 12 most effective lead generation methods based on three metrics that actually matter: <strong>ROI</strong> (how much you earn per dollar spent), <strong>speed</strong> (how fast leads start flowing), and <strong>quality</strong> (how likely those leads are to convert into closings). No fluff. No theory. Just a data-backed breakdown so you can invest your time and money where it counts.</p>
 
 <p>Whether you are spending $500 a month or $5,000, a solo agent or running a team, this ranking will help you build a lead generation system that consistently puts clients in your pipeline.</p>
-
-<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop&q=80" alt="Professional analyzing marketing performance data and lead generation metrics on a modern display" loading="lazy" />
 
 <h2>How We Ranked Each Lead Generation Method</h2>
 
@@ -87,6 +85,8 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Every realtor at every level. If you are not building a referral system, you are leaving your highest-quality lead source on the table.</p>
 
+<img src="/blog/best-lead-generation-for-realtors/google-business.png" alt="Google Business Profile search results showing local real estate agent listings in the map pack for lead generation" loading="lazy" />
+
 <h2>2. Google Business Profile and Local SEO</h2>
 
 <p><strong>ROI:</strong> Exceptional | <strong>Speed:</strong> Slow (3–6 months) | <strong>Lead Quality:</strong> Very High</p>
@@ -103,7 +103,7 @@ export const article: BlogPost = {
 
 <p>The compounding effect is what makes this so powerful. Every review, every post, every photo you add builds authority that keeps working for months and years. Six months from now, you could be generating 5 to 15 inbound leads per month from Google alone — for free.</p>
 
-<img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=450&fit=crop&q=80" alt="Real estate professional working on digital marketing strategy for local search engine optimization" loading="lazy" />
+<img src="/blog/best-lead-generation-for-realtors/listingflare-4.png" alt="ListingFlare single-property website platform showing how realtors capture leads directly from their listings" loading="lazy" />
 
 <h2>3. Single-Property Websites With Lead Capture</h2>
 
@@ -120,6 +120,8 @@ export const article: BlogPost = {
 <p>The best part: every listing you take becomes a lead generation asset, not just a transaction. A single property website can generate <strong>15 to 40 buyer leads</strong> from one listing when promoted properly. <a href="/demo">See a live demo here.</a></p>
 
 <p><strong>Best for:</strong> Any realtor with active listings. If you have listings and are not capturing leads from them directly, you are leaving the most valuable leads in your business on the table.</p>
+
+<img src="/blog/best-lead-generation-for-realtors/google-ads.png" alt="Google Ads platform interface showing pay-per-click campaign setup for real estate lead generation" loading="lazy" />
 
 <h2>4. Google Ads (Pay-Per-Click)</h2>
 
@@ -173,7 +175,7 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Realtors who want high volume at a low cost and have the follow-up systems (CRM, drip emails, text sequences) to nurture leads over time.</p>
 
-<img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&h=450&fit=crop&q=80" alt="Social media marketing interface showing ad campaign targeting options for real estate lead generation" loading="lazy" />
+<img src="/blog/best-lead-generation-for-realtors/blogger.png" alt="Real estate blogger creating SEO-optimized content marketing articles for lead generation" loading="lazy" />
 
 <h2>6. Content Marketing and Blogging</h2>
 
@@ -214,6 +216,8 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> All realtors, especially newer agents who need face-to-face opportunities. Open houses are free (minus some snacks and signage) and put you directly in front of active buyers.</p>
 
+<img src="/blog/best-lead-generation-for-realtors/youtube.png" alt="YouTube video marketing platform showing real estate content creation for lead generation" loading="lazy" />
+
 <h2>8. YouTube Video Marketing</h2>
 
 <p><strong>ROI:</strong> Very High (long-term) | <strong>Speed:</strong> Medium (1–3 months) | <strong>Lead Quality:</strong> Very High</p>
@@ -232,8 +236,6 @@ export const article: BlogPost = {
 <p>You do not need expensive equipment. A smartphone, a $30 lapel mic, and natural lighting are enough. Authenticity beats polish every time in real estate content. Start with one video per week and stay consistent for 3 months — the algorithm rewards consistency.</p>
 
 <p><strong>Best for:</strong> Realtors comfortable on camera who want to build a personal brand. YouTube content compounds — a video you post today can generate leads for years.</p>
-
-<img src="https://images.unsplash.com/photo-1616587226960-4a03badbe8bf?w=800&h=450&fit=crop&q=80" alt="Real estate agent filming a property tour video for YouTube lead generation content marketing" loading="lazy" />
 
 <h2>9. Geographic Farming With Direct Mail</h2>
 
@@ -284,8 +286,6 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Realtors who are comfortable with outbound prospecting and want high-quality listing leads. Requires daily effort (1 to 2 hours) but produces results quickly.</p>
 
-<img src="https://images.unsplash.com/photo-1560520031-3a4dc4e9de0c?w=800&h=450&fit=crop&q=80" alt="Residential neighborhood with homes representing geographic farming and expired listing prospecting opportunities for realtors" loading="lazy" />
-
 <h2>11. Strategic Referral Partnerships</h2>
 
 <p><strong>ROI:</strong> Exceptional | <strong>Speed:</strong> Medium (1–3 months) | <strong>Lead Quality:</strong> Very High</p>
@@ -306,6 +306,8 @@ export const article: BlogPost = {
 <p>The key to building these partnerships is <strong>reciprocity</strong>. Do not just ask for referrals — send business back. Recommend your mortgage broker partner to your buyers. Refer your clients to your contractor partner. When both sides benefit, the relationship sustains itself.</p>
 
 <p><strong>Best for:</strong> Realtors at any level who are willing to invest time in relationship building. Start with 3 to 5 partnerships and nurture them with monthly check-ins, co-hosted events, and consistent referrals.</p>
+
+<img src="/blog/best-lead-generation-for-realtors/zillow.png" alt="Zillow Premier Agent platform showing paid lead generation options and costs for realtors" loading="lazy" />
 
 <h2>12. Zillow Premier Agent and Paid Lead Platforms</h2>
 
@@ -480,8 +482,6 @@ export const article: BlogPost = {
 </tr>
 </tbody>
 </table>
-
-<img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=450&fit=crop&q=80" alt="Strategy planning whiteboard with marketing data showing how realtors compare and choose the best lead generation methods" loading="lazy" />
 
 <h2>How to Build Your Lead Generation Stack</h2>
 
