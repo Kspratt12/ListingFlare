@@ -38,6 +38,7 @@ import { article as chooseAgent } from "@/content/articles/how-to-choose-a-real-
 import { article as buyingVsRenting } from "@/content/articles/buying-vs-renting-a-home";
 import { article as costToSell } from "@/content/articles/how-much-does-it-cost-to-sell-a-house";
 import { article as stopLosingLeadsZillow } from "@/content/articles/how-to-stop-losing-leads-to-zillow";
+import { article as realEstateLeadGen } from "@/content/articles/real-estate-lead-generation";
 
 const allPosts: BlogPost[] = [
   howToGetLeads,
@@ -64,6 +65,7 @@ const allPosts: BlogPost[] = [
   buyingVsRenting,
   costToSell,
   stopLosingLeadsZillow,
+  realEstateLeadGen,
 ];
 
 // Sort by date descending
