@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
+import { getAllPosts } from "@/lib/blog";
 import {
   Sparkles,
   Globe,
@@ -608,7 +609,11 @@ export default function LandingPage() {
     url: "https://www.listingflare.com",
     logo: "https://www.listingflare.com/icon.svg",
     description:
-      "Single-property listing websites with AI chatbot, lead capture, and auto follow-up for real estate agents.",
+      "Real estate software company building listing marketing tools for real estate agents. AI-powered property websites, lead capture, and automated follow-up.",
+    founder: {
+      "@type": "Person",
+      name: "Kelvin Spratt",
+    },
     sameAs: [],
     contactPoint: {
       "@type": "ContactPoint",
@@ -621,9 +626,10 @@ export default function LandingPage() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "ListingFlare",
+    alternateName: "ListingFlare Real Estate Software",
     url: "https://www.listingflare.com",
     description:
-      "Create stunning single-property listing websites with AI chatbot, instant lead capture, and auto follow-up.",
+      "Real estate software for listing agents. Create property websites, capture leads with AI chatbot, and automate follow-up to close more deals.",
     publisher: {
       "@type": "Organization",
       name: "ListingFlare",
@@ -634,25 +640,39 @@ export default function LandingPage() {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "ListingFlare",
+    alternateName: "ListingFlare Real Estate Software",
     url: "https://www.listingflare.com",
     applicationCategory: "BusinessApplication",
+    applicationSubCategory: "Real Estate Software",
     operatingSystem: "Web",
     description:
-      "Create stunning single-property listing websites with AI chatbot, instant lead capture, and auto follow-up. Built for real estate agents.",
+      "Real estate software that helps listing agents create stunning single-property websites, capture buyer leads with AI chatbot, and automate follow-up. The all-in-one listing marketing platform for real estate professionals.",
     offers: {
       "@type": "Offer",
-      price: "0",
+      price: "150",
       priceCurrency: "USD",
-      description: "Free trial available",
+      priceValidUntil: "2027-12-31",
+      description: "14-day free trial, then $150/month",
+      availability: "https://schema.org/InStock",
     },
     featureList: [
       "Single-property listing websites",
       "AI chatbot for buyer questions",
       "Automatic lead capture",
       "AI-drafted follow-up emails",
-      "Virtual tour integration",
-      "Analytics dashboard",
+      "Virtual tour integration (Matterport, Kuula)",
+      "Analytics dashboard with weekly reports",
+      "Social media post generation",
+      "Open house flyer creation",
+      "Custom agent branding",
+      "AI listing description writer",
     ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      ratingCount: "47",
+      bestRating: "5",
+    },
   };
 
   return (
@@ -738,14 +758,14 @@ export default function LandingPage() {
               14-day free trial &mdash; no credit card required
             </div>
             <h1 className="font-serif text-4xl font-bold leading-tight text-gray-900 md:text-display-lg">
-              Property websites
+              Real estate software
               <br />
-              that sell homes.
+              that sells homes.
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-gray-500 md:text-xl">
-              Create stunning single-property listing sites in minutes.
-              Impress sellers, attract buyers, and capture leads.
-              All from one beautiful dashboard.
+              The listing marketing platform built for real estate agents.
+              Create stunning property websites, capture leads with AI,
+              and close more deals. All from one beautiful dashboard.
             </p>
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link
@@ -1221,6 +1241,71 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Latest from the Blog */}
+      <section className="bg-gray-50 py-20 md:py-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+              Real Estate Marketing Tips
+            </p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
+              Insights for listing agents.
+            </h2>
+          </motion.div>
+
+          <div className="mt-14 grid gap-8 md:grid-cols-3">
+            {getAllPosts().slice(0, 6).map((post, i) => (
+              <motion.div
+                key={post.slug}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <Link href={`/blog/${post.slug}`} className="group block">
+                  <div className="overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow hover:shadow-lg hover:shadow-gray-200/50">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={post.coverImage}
+                      alt={post.coverImageAlt}
+                      loading="lazy"
+                      className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="p-5">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-brand-500">
+                        {post.category}
+                      </span>
+                      <h3 className="mt-2 font-serif text-lg font-bold text-gray-900 line-clamp-2 group-hover:text-brand-600 transition-colors">
+                        {post.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-gray-500 line-clamp-2">
+                        {post.description}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href="/blog"
+              className="group inline-flex items-center gap-2 text-base font-medium text-brand-600 transition-colors hover:text-brand-700"
+            >
+              View All Articles
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="bg-white py-20 md:py-28">
         <div className="mx-auto max-w-6xl px-6">
@@ -1259,6 +1344,8 @@ export default function LandingPage() {
           </span>
           <div className="flex items-center gap-5 text-sm text-gray-500">
             <Link href="/blog" className="underline underline-offset-2 transition-colors hover:text-gray-900">Blog</Link>
+            <span>&middot;</span>
+            <Link href="/about" className="underline underline-offset-2 transition-colors hover:text-gray-900">About</Link>
             <span>&middot;</span>
             <Link href="/privacy" className="underline underline-offset-2 transition-colors hover:text-gray-900">Privacy Policy</Link>
             <span>&middot;</span>

@@ -98,9 +98,14 @@ export default async function BlogPostPage({ params }: Props) {
     datePublished: post.date,
     dateModified: post.updated || post.date,
     author: {
-      "@type": "Organization",
-      name: "ListingFlare",
-      url: "https://www.listingflare.com",
+      "@type": "Person",
+      name: "Kelvin Spratt",
+      url: "https://www.listingflare.com/about",
+      jobTitle: "Founder",
+      worksFor: {
+        "@type": "Organization",
+        name: "ListingFlare",
+      },
     },
     publisher: {
       "@type": "Organization",
@@ -222,7 +227,7 @@ export default async function BlogPostPage({ params }: Props) {
             {post.title}
           </h1>
           <div className="mt-4 flex items-center gap-3 text-sm text-gray-500">
-            <span>{post.author}</span>
+            <a href="/about" className="font-medium text-gray-700 hover:text-brand-600 transition-colors">Kelvin Spratt</a>
             <span>&middot;</span>
             <time dateTime={post.date}>
               {new Date(post.date).toLocaleDateString("en-US", {

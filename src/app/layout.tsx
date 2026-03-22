@@ -21,21 +21,26 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.listingflare.com"),
   title: {
-    default: "ListingFlare — Single Property Websites for Real Estate Agents",
+    default: "ListingFlare — Real Estate Software for Listing Agents | Property Websites & Lead Capture",
     template: "%s | ListingFlare",
   },
   description:
-    "Create stunning single-property listing websites in minutes. AI chatbot answers buyer questions 24/7, captures leads instantly, and auto-follows up so you never miss a deal.",
+    "Real estate software that helps listing agents create stunning single-property websites, capture leads with AI chatbot, and auto follow-up. The all-in-one listing marketing platform.",
   keywords: [
+    "real estate software",
+    "realtor software",
+    "real estate agent software",
+    "real estate listing software",
     "single property website",
     "real estate listing website builder",
-    "single property listing website",
     "real estate lead capture",
     "AI chatbot for real estate",
     "property marketing tool",
     "real estate lead generation",
-    "listing marketing for agents",
-    "real estate listing page",
+    "listing marketing software",
+    "real estate marketing software",
+    "real estate agent tools",
+    "real estate technology",
     "property website for realtors",
   ],
   alternates: {
@@ -45,24 +50,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "ListingFlare",
-    title: "ListingFlare — Single Property Websites for Real Estate Agents",
+    title: "ListingFlare — Real Estate Software for Listing Agents",
     description:
-      "Create stunning listing pages with AI chatbot, instant lead capture, and auto follow-up. Your buyers get answers 24/7.",
+      "Real estate software that creates stunning listing pages with AI chatbot, instant lead capture, and auto follow-up.",
     url: "https://www.listingflare.com",
     images: [
       {
         url: "https://www.listingflare.com/icon.svg",
         width: 512,
         height: 512,
-        alt: "ListingFlare - Single Property Websites for Real Estate Agents",
+        alt: "ListingFlare - Real Estate Software for Listing Agents",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ListingFlare — Single Property Websites for Real Estate Agents",
+    title: "ListingFlare — Real Estate Software for Listing Agents",
     description:
-      "AI-powered listing pages that capture leads and answer buyer questions 24/7.",
+      "Real estate software with AI-powered listing pages that capture leads and answer buyer questions 24/7.",
   },
   robots: {
     index: true,
