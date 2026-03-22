@@ -77,6 +77,8 @@ export const article: BlogPost = {
 
 <p>The most important metric is not how much traffic your site gets. It is your <strong>conversion rate</strong> — the percentage of visitors who become leads. A site getting 500 visitors per month with a 5 percent conversion rate (25 leads) outperforms a site getting 2,000 visitors with a 0.5 percent rate (10 leads). Focus on conversion first, traffic second.</p>
 
+<img src="/blog/real-estate-lead-generation/listingflare-2.png" alt="ListingFlare single-property website showing property details, highlights, and AI-powered lead capture for real estate agents" loading="lazy" />
+
 <h2>2. Create Single-Property Websites for Every Listing</h2>
 
 <p>Here is a strategy most agents overlook that can immediately change your lead flow: create a <strong>dedicated website for each listing</strong> instead of relying solely on MLS syndication.</p>
@@ -86,8 +88,6 @@ export const article: BlogPost = {
 <p>Put the URL on your yard sign, your print flyers, your social media posts, and your email blasts. When a buyer scans the QR code on your for-sale sign at 9 PM on a Tuesday, they land on a beautiful, distraction-free page with every detail about the property, a full photo gallery, neighborhood data, and a way to contact you directly.</p>
 
 <p><a href="/signup">ListingFlare</a> makes this effortless. You can create a professional single-property website in under five minutes, complete with an <strong>AI-powered chatbot</strong> that answers buyer questions and captures lead information around the clock. When a buyer asks "What school district is this in?" at midnight, the chatbot provides the answer and collects their contact info. You wake up to a qualified lead. <a href="/demo">See a live demo here.</a></p>
-
-<img src="/blog/real-estate-lead-generation/listingflare-2.png" alt="ListingFlare single-property website showing property details, highlights, and AI-powered lead capture for real estate agents" loading="lazy" />
 
 <img src="/blog/real-estate-lead-generation/local-seo.png" alt="Google search results page showing local real estate agent listings and map pack representing local SEO lead generation" loading="lazy" />
 
@@ -150,6 +150,8 @@ export const article: BlogPost = {
 <p>YouTube is the second-largest search engine in the world, and real estate content performs exceptionally well on it. Neighborhood tour videos, market update vlogs, and "Day in the Life of a Real Estate Agent" content build trust and authority. The best part: YouTube videos rank in Google search results, giving you visibility on both platforms simultaneously.</p>
 
 <p>For more specific ideas, check out our guide on <a href="/blog/real-estate-social-media-post-ideas">real estate social media post ideas that actually generate leads</a>.</p>
+
+<img src="/blog/real-estate-lead-generation/email-system.png" alt="Email marketing automation system showing drip sequences and nurture campaigns for real estate lead follow-up" loading="lazy" />
 
 <h2>6. Build an Email Nurture System That Converts Over Time</h2>
 
@@ -337,6 +339,8 @@ export const article: BlogPost = {
 </ul>
 
 <p>A single listing, marketed properly, can generate <strong>20 to 50 new leads</strong>. If you close just one additional deal from those leads, you have doubled the revenue from that listing. This is the power of treating every listing as a marketing event, not just a transaction. Learn more in our guide on <a href="/blog/how-to-market-real-estate-listing">how to market a real estate listing for maximum exposure</a>.</p>
+
+<img src="/blog/real-estate-lead-generation/listingflare-3.png" alt="ListingFlare analytics and lead tracking dashboard showing how to measure real estate lead generation results" loading="lazy" />
 
 <h2>How to Track and Measure Your Lead Generation Results</h2>
 
