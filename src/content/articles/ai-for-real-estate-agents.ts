@@ -35,6 +35,8 @@ export const article: BlogPost = {
 
 <p>But here is the problem — most agents are either overwhelmed by the options or using AI wrong. They are copying and pasting generic ChatGPT outputs that sound robotic, or they are paying for expensive tools that do not integrate into their actual workflow. We tested and compared every major <strong>AI for real estate agents</strong> platform on the market to find the ones that actually deliver results. This guide breaks down exactly which tools are worth your money, how AI is being used by top producers right now, and how you can implement it into your business starting this week.</p>
 
+<img src="/blog/ai-for-real-estate-agents/Contributors-AI.png" alt="AI technology contributors and innovations shaping the future of real estate marketing and lead generation" loading="lazy" />
+
 <h2>Why AI Matters More for Real Estate Agents Than Almost Any Other Profession</h2>
 
 <p>Real estate is uniquely positioned to benefit from AI because the job is built on two things that AI excels at: <strong>communication at scale</strong> and <strong>content creation</strong>.</p>
@@ -245,7 +247,7 @@ export const article: BlogPost = {
 
 <p>Your listing goes live as a beautiful, standalone property website with your branding, photo gallery, virtual tour embed, and the AI chatbot ready to engage buyers. Share the URL on your yard sign, social media, flyers, and email blasts. Every visitor who interacts with the chatbot becomes a potential lead — captured automatically, 24/7.</p>
 
-<img src="/blog/ai-for-real-estate-agents/responder.png" alt="ListingFlare AI auto-responder drafting personalized lead follow-up emails for real estate agents" loading="lazy" />
+<img src="/blog/ai-for-real-estate-agents/responder.png" alt="ListingFlare AI auto-responder drafting personalized lead follow-up emails for real estate agents" loading="lazy" style="max-width: 70%; margin-left: auto; margin-right: auto; display: block;" />
 
 <h3>Step 3: Respond to Leads (AI Drafts the Reply)</h3>
 
