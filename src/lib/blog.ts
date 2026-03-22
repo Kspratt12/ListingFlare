@@ -41,6 +41,7 @@ import { article as stopLosingLeadsZillow } from "@/content/articles/how-to-stop
 import { article as realEstateLeadGen } from "@/content/articles/real-estate-lead-generation";
 import { article as bestLeadGenRealtors } from "@/content/articles/best-lead-generation-for-realtors";
 import { article as aiForRealEstate } from "@/content/articles/ai-for-real-estate-agents";
+import { article as bestAiToolsMarketing } from "@/content/articles/best-ai-tools-real-estate-marketing";
 
 const allPosts: BlogPost[] = [
   howToGetLeads,
@@ -70,6 +71,7 @@ const allPosts: BlogPost[] = [
   realEstateLeadGen,
   bestLeadGenRealtors,
   aiForRealEstate,
+  bestAiToolsMarketing,
 ];
 
 // Sort by date descending
