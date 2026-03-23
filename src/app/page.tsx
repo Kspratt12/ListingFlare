@@ -681,27 +681,27 @@ export default function LandingPage() {
   const faqs = [
     {
       question: "What is ListingFlare?",
-      answer: "ListingFlare is real estate software that helps listing agents create dedicated single-property websites for every listing. Each site includes an AI chatbot that answers buyer questions 24/7, captures leads automatically, and drafts follow-up emails so you never lose a deal to slow response time.",
+      answer: "ListingFlare gives every listing its own branded property website with a built-in AI assistant. The AI answers buyer questions 24/7, captures their contact information, drafts a follow-up response instantly, and can help book showings through Calendly. You get more leads and faster response times without any extra work.",
     },
     {
       question: "How is ListingFlare different from Zillow or Realtor.com?",
-      answer: "On Zillow and Realtor.com, your listing appears alongside competitor ads and other agent recommendations. Buyers who inquire often get redirected to other agents. With ListingFlare, every lead goes directly to you. Your listing page features your brand, your contact info, and zero competing agents.",
+      answer: "On Zillow, your listing sits next to competitor ads and other agents. Buyers who inquire often get routed away from you. With ListingFlare, every page is yours. Your brand, your contact info, zero competing agents. Every lead goes directly to your dashboard, and your AI assistant responds before anyone else can.",
     },
     {
       question: "How much does ListingFlare cost?",
-      answer: "ListingFlare is $150 per month with a 14-day free trial. No credit card required to start. The plan includes unlimited listing websites, AI chatbot, lead capture, automated follow-up, analytics dashboard, social media posts, open house flyers, and custom agent branding.",
+      answer: "ListingFlare is $150 per month with a 14-day free trial and no credit card required to start. That includes unlimited listing websites, AI chat on every page, lead capture, automated follow-up, analytics, social media posts, open house flyers, and full agent branding. One deal from a lead you would have missed covers the cost many times over.",
     },
     {
       question: "Do I need technical skills to use ListingFlare?",
-      answer: "No. You enter your property details, upload photos, and hit publish. Your listing site is live in under 5 minutes with a unique URL you can share anywhere. Our AI can even write the listing description for you.",
+      answer: "Not at all. Enter your property details, upload photos, and hit publish. Your listing page is live in under 5 minutes with a shareable URL. The AI can even write your listing description and photo captions for you.",
     },
     {
-      question: "What does the AI chatbot do?",
-      answer: "The AI chatbot lives on every listing page and answers buyer questions instantly. It knows your property details like bedrooms, bathrooms, square footage, and neighborhood info. When a buyer asks a question, the chatbot responds and captures their name, email, and phone number as a lead for you.",
+      question: "What does the AI chatbot actually do?",
+      answer: "It answers buyer questions instantly using your property details, things like bedrooms, square footage, neighborhood info, and specific features. When a buyer engages, the AI captures their name, email, and phone number, then invites them to schedule a showing. You get notified immediately with the lead ready in your dashboard.",
     },
     {
       question: "Can I use ListingFlare with my brokerage branding?",
-      answer: "Yes. Your headshot, name, brokerage logo, phone number, and social links appear on every listing page. ListingFlare is designed to build your personal brand and make you look professional to sellers and buyers.",
+      answer: "Yes. Your headshot, name, brokerage logo, phone number, and social links appear on every listing page. Sellers see a polished, professional presentation. Buyers see a premium experience that builds trust in you as their agent.",
     },
   ];
 
@@ -828,6 +828,9 @@ export default function LandingPage() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
+            <p className="mt-6 text-sm font-medium text-gray-400">
+              The first agent to respond usually wins the deal.
+            </p>
           </motion.div>
 
           {/* Preview mockup */}
@@ -907,17 +910,17 @@ export default function LandingPage() {
             <div className="mt-6 flex flex-wrap items-center justify-center gap-8 md:gap-14">
               <div className="text-center">
                 <p className="font-serif text-3xl font-bold text-gray-900">5 min</p>
-                <p className="mt-1 text-sm text-gray-500">Average setup time</p>
-              </div>
-              <div className="h-10 w-px bg-gray-200 hidden sm:block" />
-              <div className="text-center">
-                <p className="font-serif text-3xl font-bold text-gray-900">4K</p>
-                <p className="mt-1 text-sm text-gray-500">Photo & video quality</p>
+                <p className="mt-1 text-sm text-gray-500">From setup to live</p>
               </div>
               <div className="h-10 w-px bg-gray-200 hidden sm:block" />
               <div className="text-center">
                 <p className="font-serif text-3xl font-bold text-gray-900">Instant</p>
-                <p className="mt-1 text-sm text-gray-500">AI buyer response</p>
+                <p className="mt-1 text-sm text-gray-500">Buyer response speed</p>
+              </div>
+              <div className="h-10 w-px bg-gray-200 hidden sm:block" />
+              <div className="text-center">
+                <p className="font-serif text-3xl font-bold text-gray-900">24/7</p>
+                <p className="mt-1 text-sm text-gray-500">Listing coverage</p>
               </div>
               <div className="h-10 w-px bg-gray-200 hidden sm:block" />
               <div className="text-center">
@@ -1035,7 +1038,7 @@ export default function LandingPage() {
               </div>
               <div className="mt-4 text-center">
                 <p className="text-sm font-medium text-[#006AFF]">Your listing on Zillow</p>
-                <p className="mt-1 text-xs text-gray-400">Crowded with competitor ads. Zillow&apos;s brand, not yours. Buyers get redirected. You lose the lead.</p>
+                <p className="mt-1 text-xs text-gray-400">Surrounded by competitor listings and agent ads. Zillow owns the page, the brand, and the buyer&apos;s attention. Your lead goes to whoever pays more.</p>
               </div>
             </motion.div>
 
@@ -1149,10 +1152,34 @@ export default function LandingPage() {
               </div>
               <div className="mt-4 text-center">
                 <p className="text-sm font-medium text-gray-900">Your listing on ListingFlare</p>
-                <p className="mt-1 text-xs text-gray-500">Your brand, your photos, your leads. No competing agents. AI answers buyers and captures contact info for you.</p>
+                <p className="mt-1 text-xs text-gray-500">Your brand, your photos, zero distractions. AI responds to buyers instantly, captures their contact info, and offers to book a showing on your behalf.</p>
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Urgency Section */}
+      <section className="bg-gray-950 py-16 md:py-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <h2 className="font-serif text-3xl font-bold text-white md:text-display-sm">
+              You&apos;re losing buyers after hours.
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-gray-400">
+              Most buyers browse listings at night, ask questions, and move on fast.
+              If no one answers, that lead is gone before morning.
+            </p>
+            <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-gray-300">
+              ListingFlare answers instantly, captures their information, and helps book the showing before you even see the notification.
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -1441,6 +1468,9 @@ export default function LandingPage() {
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-lg text-gray-400">
               No tiers, no upsells. One price gets you unlimited branded listing pages, AI chat, lead capture, automated follow-up, and analytics.
+            </p>
+            <p className="mt-3 text-sm font-medium text-brand-400/80">
+              If one extra showing turns into a deal, this pays for itself fast.
             </p>
           </motion.div>
 
