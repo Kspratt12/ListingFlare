@@ -81,28 +81,28 @@ const walkthrough = [
   {
     step: "01",
     title: "Add your property details",
-    description: "Enter the address, price, beds, baths, and description. Our AI can even write the listing description for you.",
+    description: "Enter the address, price, beds, and baths. The AI writes the listing description for you if you want. Takes about two minutes.",
     icon: PlusCircle,
     mockup: "create",
   },
   {
     step: "02",
-    title: "Upload photos & 4K video",
-    description: "Drag and drop photos and ultra-high quality videos up to 8K. Full-screen hero slideshow, masonry gallery, and cinematic video playback.",
+    title: "Upload photos & video",
+    description: "Drag and drop your photos and videos. They show up in a full-screen slideshow and gallery that looks like a custom-built site.",
     icon: Upload,
     mockup: "photos",
   },
   {
     step: "03",
-    title: "Publish & share your link",
-    description: "Hit publish and your listing gets a unique URL. Share it on social media, in emails, or on your business card.",
+    title: "Publish and share the link",
+    description: "Your listing page goes live instantly with its own URL. Share it anywhere: social media, email, text, business cards.",
     icon: Globe,
     mockup: "published",
   },
   {
     step: "04",
-    title: "Leads come straight to you",
-    description: "Buyers fill out the contact form on your listing. You get an instant email notification and can reply from your dashboard.",
+    title: "Wake up to leads and booked showings",
+    description: "A buyer lands on your page at night, asks a question, gets an answer, and books a showing. You get notified with the lead already in your dashboard.",
     icon: Bell,
     mockup: "leads",
   },
@@ -808,9 +808,9 @@ export default function LandingPage() {
               Every listing comes with a 24/7 assistant that answers buyers, captures leads, and books showings for you.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-500 md:text-xl">
-              Respond faster. Capture more serious buyers. Book more showings.
-              ListingFlare gives every property a branded listing page with
-              AI chat, automatic follow-up, Calendly booking, and 3D tours.
+              Serious buyers don&apos;t wait. They ask questions, expect fast answers, and move on.
+              ListingFlare makes sure every inquiry gets an instant response, every lead gets captured,
+              and every showing gets booked, even when you are not available.
             </p>
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link
@@ -829,7 +829,7 @@ export default function LandingPage() {
               </Link>
             </div>
             <p className="mt-6 text-sm font-medium text-gray-400">
-              The first agent to respond usually wins the deal. Miss one serious buyer and you could lose thousands in commission.
+              Agents who respond first win the deal. While others miss messages, your listings are working.
             </p>
           </motion.div>
 
@@ -904,11 +904,8 @@ export default function LandingPage() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <p className="text-sm font-medium text-gray-400">
-              Agents using ListingFlare have captured leads overnight and booked showings without responding manually.
-            </p>
-            <p className="mt-2 text-xs text-gray-300">
-              Stop losing leads to Zillow. Give every listing its own branded website that works for you around the clock.
+            <p className="text-sm font-medium text-gray-500">
+              Early users are seeing buyers engage and schedule showings within minutes of landing on a listing.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-8 md:gap-14">
               <div className="text-center">
@@ -1041,7 +1038,7 @@ export default function LandingPage() {
               </div>
               <div className="mt-4 text-center">
                 <p className="text-sm font-medium text-[#006AFF]">Your listing on Zillow</p>
-                <p className="mt-1 text-xs text-gray-400">Surrounded by competitor listings and agent ads. Zillow owns the page, the brand, and the buyer&apos;s attention. Your lead goes to whoever pays more.</p>
+                <p className="mt-1 text-xs text-gray-400">Crowded, slow, and full of competitors. Buyers get redirected. Leads go to whoever pays Zillow the most.</p>
               </div>
             </motion.div>
 
@@ -1155,7 +1152,7 @@ export default function LandingPage() {
               </div>
               <div className="mt-4 text-center">
                 <p className="text-sm font-medium text-gray-900">Your listing on ListingFlare</p>
-                <p className="mt-1 text-xs text-gray-500">Your brand, your photos, zero distractions. AI responds to buyers instantly, captures their contact info, and offers to book a showing on your behalf.</p>
+                <p className="mt-1 text-xs text-gray-500">Direct, instant, and fully yours. Every lead goes to you. AI answers buyers and books showings before they leave the page.</p>
               </div>
             </motion.div>
           </div>
@@ -1216,15 +1213,15 @@ export default function LandingPage() {
               <ul className="mt-4 space-y-3">
                 <li className="flex items-start gap-3 text-sm text-gray-500">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
-                  Zillow takes your leads and sells them to other agents
+                  Your leads get sold to competing agents
                 </li>
                 <li className="flex items-start gap-3 text-sm text-gray-500">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
-                  Competing agents are shown right next to your listing
+                  Other agents show up right next to your listing
                 </li>
                 <li className="flex items-start gap-3 text-sm text-gray-500">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
-                  Buyer inquiries go to a queue you may not see for hours
+                  Buyer inquiries sit in a queue while they move on to the next home
                 </li>
               </ul>
             </motion.div>
@@ -1240,7 +1237,7 @@ export default function LandingPage() {
               <ul className="mt-4 space-y-3">
                 <li className="flex items-start gap-3 text-sm text-gray-700">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
-                  Every lead goes directly to you. No sharing, no bidding.
+                  Every lead goes directly to you. No middleman.
                 </li>
                 <li className="flex items-start gap-3 text-sm text-gray-700">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
@@ -1501,7 +1498,10 @@ export default function LandingPage() {
                   </motion.div>
                 </div>
                 <p className="mt-3 text-sm text-gray-400">
-                  All of this happened automatically. No waiting. No missed messages. No lost leads.
+                  All of this happened automatically at 10:47 PM on a Tuesday. No manual work. No missed lead.
+                </p>
+                <p className="mt-1 text-xs text-gray-300">
+                  Listings with ListingFlare are converting faster simply by responding instantly.
                 </p>
               </div>
             </div>
@@ -1523,9 +1523,9 @@ export default function LandingPage() {
               Everything You Need
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
-              Every tool to turn listings
+              Stop missing buyers.
               <br />
-              into closed deals.
+              Start closing faster.
             </h2>
           </motion.div>
 
@@ -1579,10 +1579,10 @@ export default function LandingPage() {
               becomes a lead machine.
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-lg text-gray-400">
-              No tiers, no upsells. One price gets you unlimited branded listing pages, AI chat, lead capture, automated follow-up, and analytics.
+              No tiers, no upsells. Unlimited listing pages, AI chat, lead capture, automated follow-up, and analytics. All included.
             </p>
             <p className="mt-3 text-sm font-medium text-brand-400/80">
-              If you miss one serious buyer, that could be thousands lost in commission.
+              You don&apos;t need more leads. You need to stop missing the ones already looking at your listings.
             </p>
           </motion.div>
 
@@ -1640,7 +1640,7 @@ export default function LandingPage() {
                 {!buyLoading && <ArrowRight className="h-4 w-4" />}
               </button>
               <p className="mt-6 text-center text-xs text-gray-500">
-                Early agents are locking in listings that respond 24/7 while others are still missing leads.
+                This pays for itself with a single showing that would have been missed.
               </p>
             </div>
           </motion.div>
@@ -1770,7 +1770,7 @@ export default function LandingPage() {
               an assistant that never sleeps.
             </h2>
             <p className="mt-4 text-lg text-gray-500">
-              Agents are using this to respond instantly and capture leads they would have missed.
+              Most agents are still relying on slow responses and hoping buyers wait. Your listings can do better than that.
             </p>
             <Link
               href="/signup"
