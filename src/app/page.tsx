@@ -30,39 +30,39 @@ import {
 const features = [
   {
     icon: Globe,
-    title: "Impress sellers. Win more listings.",
+    title: "Win the listing presentation",
     description:
-      "Full-screen slideshows, photo galleries, and elegant typography. Sellers see a $5,000 custom website. You build it in minutes.",
+      "Show sellers a dedicated property website that looks like it cost $5,000. You build it in five minutes. That is how you win the listing.",
   },
   {
     icon: MessageCircle,
-    title: "Answer buyers instantly so they don't leave",
+    title: "Never lose a buyer to silence",
     description:
-      "Every listing has an AI assistant that answers questions about bedrooms, features, and neighborhood info. It captures the lead before the buyer closes the tab.",
+      "Every listing has an AI that answers buyer questions instantly. Bedrooms, backyard, neighborhood. The lead gets captured before they close the tab.",
   },
   {
     icon: BarChart3,
-    title: "Respond in seconds, not hours",
+    title: "You respond before anyone else can",
     description:
-      "Leads go straight to your dashboard. AI drafts a personalized reply instantly. By the time other agents check their email, you have already responded.",
+      "AI drafts a personalized reply the second a lead comes in. While other agents check their email tomorrow morning, you already responded tonight.",
   },
   {
     icon: View,
-    title: "Keep buyers on your page longer",
+    title: "Serious buyers stay longer and book faster",
     description:
-      "Embed Matterport, Kuula, or any 3D tour directly on your listing page. More time on page means more engagement and more showings booked.",
+      "Embed Matterport, Kuula, or any 3D tour right on the page. Buyers who spend more time on your listing are more likely to book a showing.",
   },
   {
     icon: Zap,
-    title: "Live in five minutes. Converting overnight.",
+    title: "Five minutes to set up. Works overnight.",
     description:
-      "Enter your details, upload photos, hit publish. Your listing is live with its own URL. Share it anywhere and start capturing leads immediately.",
+      "Enter details, upload photos, publish. Your listing is live with its own URL. By tomorrow morning, it could already have a lead waiting.",
   },
   {
     icon: Sparkles,
-    title: "Every showing request builds your name",
+    title: "Sellers see your brand on every page",
     description:
-      "Your headshot, brokerage, and contact info on every page. Buyers and sellers associate your brand with a premium experience.",
+      "Your headshot, brokerage, and contact info on every listing. Sellers see professionalism. Buyers see someone they trust.",
   },
 ];
 
@@ -80,29 +80,29 @@ const included = [
 const walkthrough = [
   {
     step: "01",
-    title: "Add your property details",
-    description: "Enter the address, price, beds, and baths. The AI writes the listing description for you if you want. Takes about two minutes.",
+    title: "Enter your property details",
+    description: "Address, price, beds, baths. The AI writes the description if you want. Two minutes.",
     icon: PlusCircle,
     mockup: "create",
   },
   {
     step: "02",
-    title: "Upload photos & video",
-    description: "Drag and drop your photos and videos. They show up in a full-screen slideshow and gallery that looks like a custom-built site.",
+    title: "Drop in your photos and video",
+    description: "Drag and drop. They show up in a full-screen slideshow and gallery that looks like a custom site.",
     icon: Upload,
     mockup: "photos",
   },
   {
     step: "03",
-    title: "Publish and share the link",
-    description: "Your listing page goes live instantly with its own URL. Share it anywhere: social media, email, text, business cards.",
+    title: "Hit publish",
+    description: "Your listing goes live with its own URL. Share it on social, text it to clients, put it on your card.",
     icon: Globe,
     mockup: "published",
   },
   {
     step: "04",
-    title: "Wake up to leads and booked showings",
-    description: "A buyer lands on your page at night, asks a question, gets an answer, and books a showing. You get notified with the lead already in your dashboard.",
+    title: "Check your phone in the morning",
+    description: "A buyer found your listing at 11 PM, asked a question, got an answer, and booked a showing. The lead is already in your dashboard.",
     icon: Bell,
     mockup: "leads",
   },
@@ -805,12 +805,12 @@ export default function LandingPage() {
               14-day free trial &mdash; no credit card required
             </div>
             <h1 className="font-serif text-4xl font-bold leading-tight text-gray-900 md:text-display">
-              Last night, a buyer had a question
+              Last night, a buyer asked about
               <br />
-              about your listing. Nobody answered.
+              your listing. You lost them.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-500 md:text-xl">
-              ListingFlare gives every listing a branded page that answers buyers instantly, captures their info, and books the showing. Even at 11 PM on a Tuesday. Even while you sleep.
+              They had a question at 10:43 PM. Nobody answered. They moved on. With ListingFlare, that buyer gets an instant answer, submits their info, and books a showing. All while you sleep.
             </p>
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link
@@ -829,7 +829,7 @@ export default function LandingPage() {
               </Link>
             </div>
             <p className="mt-6 text-sm font-medium text-gray-400">
-              The agent who responds first gets the showing. This makes sure that agent is always you.
+              Speed wins deals. The agent who responds first books the showing. Every time.
             </p>
           </motion.div>
 
@@ -905,7 +905,7 @@ export default function LandingPage() {
             className="text-center"
           >
             <p className="text-sm font-medium text-gray-500">
-              Agents are waking up to booked showings from buyers who found their listing overnight.
+              While you were sleeping, a buyer found your listing, asked a question, and booked a showing. That is how this works.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-8 md:gap-14">
               <div className="text-center">
@@ -1038,7 +1038,7 @@ export default function LandingPage() {
               </div>
               <div className="mt-4 text-center">
                 <p className="text-sm font-medium text-[#006AFF]">Your listing on Zillow</p>
-                <p className="mt-1 text-xs text-gray-400">Your listing. Their platform. Competing agents shown. Leads redirected. Response delayed. You lose control.</p>
+                <p className="mt-1 text-xs text-gray-400">Your listing, their rules. Competing agents advertised. Leads sold off. Buyer messages ignored for hours. That deal is gone.</p>
               </div>
             </motion.div>
 
@@ -1152,7 +1152,7 @@ export default function LandingPage() {
               </div>
               <div className="mt-4 text-center">
                 <p className="text-sm font-medium text-gray-900">Your listing on ListingFlare</p>
-                <p className="mt-1 text-xs text-gray-500">Your page. Your brand. Buyer answered instantly. Lead captured. Showing booked. You own everything.</p>
+                <p className="mt-1 text-xs text-gray-500">Your page. Your brand. Buyer answered in seconds. Lead in your dashboard. Showing on your calendar. Nobody else involved.</p>
               </div>
             </motion.div>
           </div>
@@ -1173,10 +1173,10 @@ export default function LandingPage() {
               You&apos;re losing buyers after hours.
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-gray-400">
-              A buyer finds your listing at 10 PM. They want to know about the backyard. Nobody answers. They tap the next home. That was a serious buyer. You never knew they existed.
+              10:14 PM. A buyer wants to know if the backyard is fenced. No response. They scroll to the next listing. That was a $12,000 commission. Gone. You never even knew.
             </p>
             <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-gray-300">
-              With ListingFlare, that buyer gets an answer, submits their info, and books a showing. You find out when you check your phone in the morning.
+              With ListingFlare, that same buyer gets an answer, submits their info, and books Saturday morning. You see it when you wake up.
             </p>
           </motion.div>
         </div>
@@ -1212,15 +1212,15 @@ export default function LandingPage() {
               <ul className="mt-4 space-y-3">
                 <li className="flex items-start gap-3 text-sm text-gray-500">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
-                  Your leads get sold to whoever pays Zillow more
+                  Zillow sells your buyer leads to other agents
                 </li>
                 <li className="flex items-start gap-3 text-sm text-gray-500">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
-                  Competing agents are advertised on your listing page
+                  Three other agents are advertised on your listing
                 </li>
                 <li className="flex items-start gap-3 text-sm text-gray-500">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
-                  Buyer messages sit unanswered while they move on
+                  Buyer asks a question at 9 PM. No reply until tomorrow. They are gone.
                 </li>
               </ul>
             </motion.div>
@@ -1236,15 +1236,15 @@ export default function LandingPage() {
               <ul className="mt-4 space-y-3">
                 <li className="flex items-start gap-3 text-sm text-gray-700">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
-                  Every lead goes directly to you. No middleman.
+                  Every lead goes straight to you. Nobody else sees it.
                 </li>
                 <li className="flex items-start gap-3 text-sm text-gray-700">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
-                  AI responds to buyers in seconds, not hours
+                  Buyer gets an answer in under 10 seconds. Any hour.
                 </li>
                 <li className="flex items-start gap-3 text-sm text-gray-700">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
-                  Showings get booked automatically while you sleep
+                  Showing booked, lead captured, you notified. Automatically.
                 </li>
               </ul>
             </motion.div>
@@ -1269,7 +1269,7 @@ export default function LandingPage() {
               How it works while you sleep.
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-lg text-gray-500">
-              This is what happened on a Tuesday night for an agent using ListingFlare.
+              This happened last Tuesday night. The agent was asleep.
             </p>
           </motion.div>
 
@@ -1497,7 +1497,7 @@ export default function LandingPage() {
                   </motion.div>
                 </div>
                 <p className="mt-3 text-sm text-gray-400">
-                  This happened at 10:47 PM on a Tuesday. The agent was asleep. The lead was captured. The showing was booked.
+                  10:47 PM. Tuesday. The agent was asleep. The buyer booked Saturday at 10 AM.
                 </p>
               </div>
             </div>
@@ -1636,7 +1636,7 @@ export default function LandingPage() {
                 {!buyLoading && <ArrowRight className="h-4 w-4" />}
               </button>
               <p className="mt-6 text-center text-xs text-gray-500">
-                A 3% commission on a $400K home is $12,000. Missing that buyer costs more than a lifetime of this.
+                One missed buyer on a $400K listing is $12,000 in lost commission. This is $5 a day.
               </p>
             </div>
           </motion.div>
@@ -1761,12 +1761,12 @@ export default function LandingPage() {
             className="mx-auto max-w-2xl text-center"
           >
             <h2 className="font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
-              Tonight, a buyer will find
+              A buyer will find your listing tonight.
               <br />
-              one of your listings.
+              Will anyone be there to answer?
             </h2>
             <p className="mt-4 text-lg text-gray-500">
-              They will have a question. If nobody answers, they will move on. The only question is whether your listing is ready for that moment.
+              If not, they will move on. You will never know they were there. That is the deal you lost.
             </p>
             <Link
               href="/signup"
