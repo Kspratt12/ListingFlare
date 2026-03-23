@@ -22,42 +22,45 @@ import {
   Image as ImageIcon,
   MessageCircle,
   View,
+  CalendarCheck,
+  UserPlus,
+  BellRing,
 } from "lucide-react";
 
 const features = [
   {
     icon: Globe,
-    title: "Stunning Property Pages",
+    title: "Make every listing look like a luxury brand",
     description:
-      "Full-screen hero slideshows, photo galleries with lightbox, and elegant typography. Every listing looks like a $5,000 custom website.",
+      "Full-screen hero slideshows, photo galleries with lightbox, and elegant typography. Every listing looks like a $5,000 custom website, ready in minutes.",
   },
   {
     icon: MessageCircle,
-    title: "24/7 AI Chat Assistant",
+    title: "Answer buyers instantly, even after hours",
     description:
-      "Every listing gets an AI assistant that answers buyer questions instantly — bedrooms, features, neighborhood. It captures leads while you sleep.",
+      "Every listing gets an AI assistant that answers buyer questions about bedrooms, features, and neighborhood details. It captures leads while you sleep.",
   },
   {
     icon: BarChart3,
-    title: "Lead Capture & AI Follow-Up",
+    title: "Turn buyer interest into real conversations",
     description:
       "Built-in contact forms send leads straight to your dashboard. Our AI instantly drafts a personalized reply so you respond in seconds, not hours.",
   },
   {
     icon: View,
-    title: "Virtual Tour Integration",
+    title: "Let buyers walk through the home from anywhere",
     description:
       "Embed Matterport, Kuula, or any 360° tour directly on your listing page. Buyers explore the home in immersive 3D without leaving your site.",
   },
   {
     icon: Zap,
-    title: "Live in Minutes",
+    title: "Go live in under five minutes",
     description:
       "Enter your property details, upload photos, and hit publish. Your listing site is live with a unique URL you can share anywhere.",
   },
   {
     icon: Sparkles,
-    title: "Your Brand, Front & Center",
+    title: "Build your brand with every listing",
     description:
       "Your headshot, brokerage, and contact info appear on every listing page. Build recognition and trust with every showing request.",
   },
@@ -454,7 +457,7 @@ function HowItWorks() {
   }, [nextStep]);
 
   return (
-    <section className="bg-gray-50 py-20 md:py-28">
+    <section className="bg-white py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -801,15 +804,13 @@ export default function LandingPage() {
               <Sparkles className="h-3.5 w-3.5" />
               14-day free trial &mdash; no credit card required
             </div>
-            <h1 className="font-serif text-4xl font-bold leading-tight text-gray-900 md:text-display-lg">
-              Real estate software
-              <br />
-              that sells homes.
+            <h1 className="font-serif text-4xl font-bold leading-tight text-gray-900 md:text-display">
+              Every listing comes with a 24/7 assistant that answers buyers, captures leads, and books showings for you.
             </h1>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-gray-500 md:text-xl">
-              The listing marketing platform built for real estate agents.
-              Create stunning property websites, capture leads with AI,
-              and close more deals. All from one beautiful dashboard.
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-500 md:text-xl">
+              ListingFlare gives every property its own branded listing page
+              with instant buyer Q&amp;A, automatic follow-up, Calendly booking,
+              and built-in 3D tours so you never miss a serious lead.
             </p>
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link
@@ -901,7 +902,7 @@ export default function LandingPage() {
             className="text-center"
           >
             <p className="text-sm font-medium text-gray-400">
-              Stop sending buyers to Zillow. Give every listing its own website.
+              Stop losing leads to Zillow. Give every listing its own branded website that works for you around the clock.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-8 md:gap-14">
               <div className="text-center">
@@ -915,8 +916,8 @@ export default function LandingPage() {
               </div>
               <div className="h-10 w-px bg-gray-200 hidden sm:block" />
               <div className="text-center">
-                <p className="font-serif text-3xl font-bold text-gray-900">24hr</p>
-                <p className="mt-1 text-sm text-gray-500">Lead response time</p>
+                <p className="font-serif text-3xl font-bold text-gray-900">Instant</p>
+                <p className="mt-1 text-sm text-gray-500">AI buyer response</p>
               </div>
               <div className="h-10 w-px bg-gray-200 hidden sm:block" />
               <div className="text-center">
@@ -942,9 +943,9 @@ export default function LandingPage() {
               See The Difference
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
-              Your listing on Zillow
+              On Zillow, buyers see ads.
               <br />
-              vs. on ListingFlare.
+              On ListingFlare, they see you.
             </h2>
           </motion.div>
 
@@ -1034,7 +1035,7 @@ export default function LandingPage() {
               </div>
               <div className="mt-4 text-center">
                 <p className="text-sm font-medium text-[#006AFF]">Your listing on Zillow</p>
-                <p className="mt-1 text-xs text-gray-400">Competing listings everywhere. Zillow&apos;s brand, not yours. They keep the leads.</p>
+                <p className="mt-1 text-xs text-gray-400">Crowded with competitor ads. Zillow&apos;s brand, not yours. Buyers get redirected. You lose the lead.</p>
               </div>
             </motion.div>
 
@@ -1148,15 +1149,229 @@ export default function LandingPage() {
               </div>
               <div className="mt-4 text-center">
                 <p className="text-sm font-medium text-gray-900">Your listing on ListingFlare</p>
-                <p className="mt-1 text-xs text-gray-500">Your brand. Your photos. Your leads. Zero distractions. Looks like a $5,000 custom site.</p>
+                <p className="mt-1 text-xs text-gray-500">Your brand, your photos, your leads. No competing agents. AI answers buyers and captures contact info for you.</p>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Features */}
+      {/* How It Works While You Sleep */}
+      <section className="bg-gray-50 py-20 md:py-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+              Always Working For You
+            </p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
+              How it works while you sleep.
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-gray-500">
+              Every listing page runs on autopilot. Here is what happens when a buyer finds your property at 11 PM on a Tuesday.
+            </p>
+          </motion.div>
+
+          <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                step: "01",
+                icon: Globe,
+                title: "Buyer lands on your listing",
+                description: "They find your branded property page through a link you shared, a social post, or a Google search. No Zillow clutter, just your listing.",
+              },
+              {
+                step: "02",
+                icon: MessageCircle,
+                title: "Buyer asks a question in the AI chat",
+                description: "\"Does this home have a fenced backyard?\" The AI chat widget is right there on the page, ready to answer.",
+              },
+              {
+                step: "03",
+                icon: CalendarCheck,
+                title: "AI answers and invites them to book",
+                description: "The AI responds instantly with accurate property details, then offers the next step: schedule a showing through your Calendly link.",
+              },
+              {
+                step: "04",
+                icon: UserPlus,
+                title: "Lead captured, showing booked",
+                description: "The buyer submits their name, email, and phone number. If they book a showing, it goes straight to your calendar. You get notified immediately.",
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="relative rounded-2xl border border-gray-200 bg-white p-6 transition-shadow hover:shadow-lg hover:shadow-gray-100"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand-600">
+                    <item.icon className="h-5 w-5" />
+                  </div>
+                  <span className="text-xs font-bold text-brand-400 uppercase tracking-wider">Step {item.step}</span>
+                </div>
+                <h3 className="font-serif text-lg font-semibold text-gray-900">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-gray-500">
+                  {item.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What Happens When a Buyer Is Interested */}
       <section className="bg-white py-20 md:py-28">
+        <div className="mx-auto max-w-4xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+              See It In Action
+            </p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
+              What happens when a buyer
+              <br />
+              is interested.
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-gray-500">
+              This is not a static website. It is a working assistant that handles the conversation, captures the lead, and gets the showing booked.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="mt-14"
+          >
+            {/* Chat simulation */}
+            <div className="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 shadow-xl shadow-gray-200/30">
+              {/* Chat header */}
+              <div className="flex items-center gap-3 border-b border-gray-200 bg-white px-6 py-4">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-100">
+                  <MessageCircle className="h-4 w-4 text-brand-600" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-900">AI Assistant</p>
+                  <p className="text-xs text-green-600">Online now</p>
+                </div>
+              </div>
+
+              <div className="space-y-4 p-6">
+                {/* Buyer message */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                  className="flex justify-end"
+                >
+                  <div className="rounded-2xl rounded-br-md bg-gray-900 px-5 py-3 text-sm text-white max-w-sm">
+                    Does this home have a fenced backyard?
+                  </div>
+                </motion.div>
+
+                {/* AI response */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.5 }}
+                  className="flex justify-start"
+                >
+                  <div className="rounded-2xl rounded-bl-md bg-white border border-gray-200 px-5 py-3 text-sm text-gray-700 max-w-sm shadow-sm">
+                    Yes! This property has a fully fenced backyard with mature landscaping and a covered patio. It is great for entertaining or pets.
+                  </div>
+                </motion.div>
+
+                {/* AI follow-up */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.8 }}
+                  className="flex justify-start"
+                >
+                  <div className="rounded-2xl rounded-bl-md bg-white border border-gray-200 px-5 py-3 text-sm text-gray-700 max-w-sm shadow-sm">
+                    Would you like to schedule a showing this weekend? I can help you book a time that works for you.
+                  </div>
+                </motion.div>
+
+                {/* Buyer replies */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 1.1 }}
+                  className="flex justify-end"
+                >
+                  <div className="rounded-2xl rounded-br-md bg-gray-900 px-5 py-3 text-sm text-white max-w-sm">
+                    Yes, Saturday afternoon would be perfect.
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Outcome badges */}
+              <div className="border-t border-gray-200 bg-white px-6 py-5">
+                <div className="flex flex-wrap items-center gap-3">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: 1.4 }}
+                    className="flex items-center gap-2 rounded-full bg-green-50 border border-green-200 px-4 py-2"
+                  >
+                    <Check className="h-4 w-4 text-green-600" />
+                    <span className="text-sm font-medium text-green-700">Lead captured</span>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: 1.6 }}
+                    className="flex items-center gap-2 rounded-full bg-blue-50 border border-blue-200 px-4 py-2"
+                  >
+                    <CalendarCheck className="h-4 w-4 text-blue-600" />
+                    <span className="text-sm font-medium text-blue-700">Showing requested</span>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: 1.8 }}
+                    className="flex items-center gap-2 rounded-full bg-brand-50 border border-brand-200 px-4 py-2"
+                  >
+                    <BellRing className="h-4 w-4 text-brand-600" />
+                    <span className="text-sm font-medium text-brand-700">Agent notified</span>
+                  </motion.div>
+                </div>
+                <p className="mt-3 text-sm text-gray-400">
+                  All of this happened automatically. No manual work. No missed lead.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="bg-gray-50 py-20 md:py-28">
         <div className="mx-auto max-w-6xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1169,9 +1384,9 @@ export default function LandingPage() {
               Everything You Need
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
-              Win more listings.
+              Every tool to turn listings
               <br />
-              Close more deals.
+              into closed deals.
             </h2>
           </motion.div>
 
@@ -1220,10 +1435,12 @@ export default function LandingPage() {
               Simple Pricing
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-white md:text-display-sm">
-              One plan. Everything included.
+              One plan. Every listing
+              <br />
+              becomes a lead machine.
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-lg text-gray-400">
-              No tiers, no upsells. Every agent gets the full platform.
+              No tiers, no upsells. One price gets you unlimited branded listing pages, AI chat, lead capture, automated follow-up, and analytics.
             </p>
           </motion.div>
 
@@ -1405,11 +1622,11 @@ export default function LandingPage() {
             <h2 className="font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
               Your next listing deserves
               <br />
-              a website this good.
+              an assistant that never sleeps.
             </h2>
             <p className="mt-4 text-lg text-gray-500">
-              Join agents who are winning more listings and impressing
-              their clients with beautiful property websites.
+              Join agents who are capturing more leads, responding faster,
+              and booking more showings without lifting a finger.
             </p>
             <Link
               href="/signup"
