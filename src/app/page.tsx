@@ -829,7 +829,7 @@ export default function LandingPage() {
               </Link>
             </div>
             <p className="mt-6 text-sm font-medium text-gray-400">
-              The first agent to respond usually wins the deal.
+              The first agent to respond usually wins the deal. Miss one serious buyer and you could lose thousands in commission.
             </p>
           </motion.div>
 
@@ -905,6 +905,9 @@ export default function LandingPage() {
             className="text-center"
           >
             <p className="text-sm font-medium text-gray-400">
+              Agents using ListingFlare have captured leads overnight and booked showings without responding manually.
+            </p>
+            <p className="mt-2 text-xs text-gray-300">
               Stop losing leads to Zillow. Give every listing its own branded website that works for you around the clock.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-8 md:gap-14">
@@ -1183,6 +1186,76 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Why Agents Switch From Zillow */}
+      <section className="bg-white py-16 md:py-20">
+        <div className="mx-auto max-w-4xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+              The Real Problem
+            </p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
+              Why agents stop relying on Zillow.
+            </h2>
+          </motion.div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="rounded-2xl border border-gray-200 bg-gray-50 p-6"
+            >
+              <p className="text-xs font-bold uppercase tracking-wider text-gray-400">On Zillow</p>
+              <ul className="mt-4 space-y-3">
+                <li className="flex items-start gap-3 text-sm text-gray-500">
+                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
+                  Zillow takes your leads and sells them to other agents
+                </li>
+                <li className="flex items-start gap-3 text-sm text-gray-500">
+                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
+                  Competing agents are shown right next to your listing
+                </li>
+                <li className="flex items-start gap-3 text-sm text-gray-500">
+                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
+                  Buyer inquiries go to a queue you may not see for hours
+                </li>
+              </ul>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="rounded-2xl border border-brand-200 bg-brand-50/50 p-6"
+            >
+              <p className="text-xs font-bold uppercase tracking-wider text-brand-500">On ListingFlare</p>
+              <ul className="mt-4 space-y-3">
+                <li className="flex items-start gap-3 text-sm text-gray-700">
+                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
+                  Every lead goes directly to you. No sharing, no bidding.
+                </li>
+                <li className="flex items-start gap-3 text-sm text-gray-700">
+                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
+                  AI responds to buyers in seconds, not hours
+                </li>
+                <li className="flex items-start gap-3 text-sm text-gray-700">
+                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
+                  Showings get booked automatically while you sleep
+                </li>
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* How It Works While You Sleep */}
       <section className="bg-gray-50 py-20 md:py-28">
         <div className="mx-auto max-w-6xl px-6">
@@ -1337,7 +1410,10 @@ export default function LandingPage() {
               </div>
 
               <div className="space-y-4 p-6">
-                {/* Buyer message */}
+                {/* Timestamp */}
+                <p className="text-center text-xs text-gray-400">Tuesday, 10:47 PM</p>
+
+                {/* Buyer message 1 */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -1346,7 +1422,7 @@ export default function LandingPage() {
                   className="flex justify-end"
                 >
                   <div className="rounded-2xl rounded-br-md bg-gray-900 px-5 py-3 text-sm text-white max-w-sm">
-                    Does this home have a fenced backyard?
+                    We are relocating next month. Is this home still available? We need to move fast.
                   </div>
                 </motion.div>
 
@@ -1359,33 +1435,33 @@ export default function LandingPage() {
                   className="flex justify-start"
                 >
                   <div className="rounded-2xl rounded-bl-md bg-white border border-gray-200 px-5 py-3 text-sm text-gray-700 max-w-sm shadow-sm">
-                    Yes! This property has a fully fenced backyard with mature landscaping and a covered patio. It is great for entertaining or pets.
+                    Yes, this property is currently active! It features 4 bedrooms, 3.5 baths, a fully fenced backyard, and a renovated kitchen. Given your timeline, I would recommend scheduling a showing soon.
                   </div>
                 </motion.div>
 
-                {/* AI follow-up */}
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.8 }}
-                  className="flex justify-start"
-                >
-                  <div className="rounded-2xl rounded-bl-md bg-white border border-gray-200 px-5 py-3 text-sm text-gray-700 max-w-sm shadow-sm">
-                    Would you like to schedule a showing this weekend? I can help you book a time that works for you.
-                  </div>
-                </motion.div>
-
-                {/* Buyer replies */}
+                {/* Buyer message 2 */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 1.1 }}
+                  transition={{ duration: 0.4, delay: 0.8 }}
                   className="flex justify-end"
                 >
                   <div className="rounded-2xl rounded-br-md bg-gray-900 px-5 py-3 text-sm text-white max-w-sm">
-                    Yes, Saturday afternoon would be perfect.
+                    Can we see it this Saturday? Preferably morning.
+                  </div>
+                </motion.div>
+
+                {/* AI follow-up with booking */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 1.1 }}
+                  className="flex justify-start"
+                >
+                  <div className="rounded-2xl rounded-bl-md bg-white border border-gray-200 px-5 py-3 text-sm text-gray-700 max-w-sm shadow-sm">
+                    Absolutely. I have Saturday morning availability open. Just share your name and email below and I will get the showing confirmed for you right away.
                   </div>
                 </motion.div>
               </div>
@@ -1563,6 +1639,9 @@ export default function LandingPage() {
                 {buyLoading ? "Loading..." : "Buy Now — $150/mo"}
                 {!buyLoading && <ArrowRight className="h-4 w-4" />}
               </button>
+              <p className="mt-6 text-center text-xs text-gray-500">
+                Early agents are locking in listings that respond 24/7 while others are still missing leads.
+              </p>
             </div>
           </motion.div>
         </div>
