@@ -805,12 +805,12 @@ export default function LandingPage() {
               14-day free trial &mdash; no credit card required
             </div>
             <h1 className="font-serif text-4xl font-bold leading-tight text-gray-900 md:text-display">
-              Every listing comes with a 24/7 assistant that answers buyers, captures leads, and books showings for you.
+              Stop missing buyers.
+              <br />
+              Start waking up to booked showings.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-500 md:text-xl">
-              Serious buyers don&apos;t wait. They ask questions, expect fast answers, and move on.
-              ListingFlare makes sure every inquiry gets an instant response, every lead gets captured,
-              and every showing gets booked, even when you are not available.
+              ListingFlare turns every listing into a branded page that answers buyer questions instantly, captures their contact info, and books showings on your behalf. Even at 11 PM.
             </p>
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link
@@ -829,7 +829,7 @@ export default function LandingPage() {
               </Link>
             </div>
             <p className="mt-6 text-sm font-medium text-gray-400">
-              Listings are converting while agents are offline. Buyers don&apos;t wait.
+              Buyers are booking showings at 10 PM on a Tuesday. The agents who get those leads are the ones who respond first.
             </p>
           </motion.div>
 
@@ -1038,7 +1038,7 @@ export default function LandingPage() {
               </div>
               <div className="mt-4 text-center">
                 <p className="text-sm font-medium text-[#006AFF]">Your listing on Zillow</p>
-                <p className="mt-1 text-xs text-gray-400">You&apos;re competing for attention on someone else&apos;s platform. Buyers see other agents, other listings, and Zillow&apos;s ads before they ever see you.</p>
+                <p className="mt-1 text-xs text-gray-400">Your listing. Their platform. Competing agents shown. Leads redirected. Response delayed. You lose control.</p>
               </div>
             </motion.div>
 
@@ -1152,7 +1152,7 @@ export default function LandingPage() {
               </div>
               <div className="mt-4 text-center">
                 <p className="text-sm font-medium text-gray-900">Your listing on ListingFlare</p>
-                <p className="mt-1 text-xs text-gray-500">You own the page. You own the lead. AI answers the buyer, captures their info, and books the showing before they close the tab.</p>
+                <p className="mt-1 text-xs text-gray-500">Your page. Your brand. Buyer answered instantly. Lead captured. Showing booked. You own everything.</p>
               </div>
             </motion.div>
           </div>
@@ -1173,10 +1173,10 @@ export default function LandingPage() {
               You&apos;re losing buyers after hours.
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-gray-400">
-              A buyer finds your listing at 11 PM. They have a question. No one answers. They move on to the next home. That lead is gone. You never even knew they were there.
+              It happens every night. A buyer finds your listing. They have a question. Nobody answers. They tap on the next home. By morning, that buyer is someone else&apos;s client.
             </p>
             <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-gray-300">
-              ListingFlare doesn&apos;t just respond. It captures their information and books the showing before you wake up.
+              ListingFlare answers, captures the lead, and books the showing. All before your alarm goes off.
             </p>
           </motion.div>
         </div>
@@ -1578,7 +1578,7 @@ export default function LandingPage() {
               Unlimited listing pages, AI chat, lead capture, automated follow-up, and analytics. No tiers. No upsells. Everything included.
             </p>
             <p className="mt-3 text-sm font-medium text-brand-400/80">
-              One missed buyer could cost you thousands in commission. This replaces lost opportunities, not adds cost.
+              One deal from a lead you would have missed covers the cost for a year.
             </p>
           </motion.div>
 
@@ -1761,12 +1761,12 @@ export default function LandingPage() {
             className="mx-auto max-w-2xl text-center"
           >
             <h2 className="font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
-              Your next listing deserves
+              Every hour without this,
               <br />
-              an assistant that never sleeps.
+              your listings are losing buyers.
             </h2>
             <p className="mt-4 text-lg text-gray-500">
-              Right now, buyers are looking at listings and leaving because no one responds. That does not have to be your listing.
+              Buyers are browsing your listings right now. The question is whether anyone is there to answer them.
             </p>
             <Link
               href="/signup"
