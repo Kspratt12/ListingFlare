@@ -222,7 +222,7 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
                         className="relative aspect-square overflow-hidden rounded-lg"
                       >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={`https://images.unsplash.com/${id}?w=200&h=200&fit=crop&q=80`} alt="" loading="lazy" className="h-full w-full object-cover" />
+                        <img src={`https://images.unsplash.com/${id}?w=200&h=200&fit=crop&q=80`} alt="Property listing photo uploaded to ListingFlare real estate software" loading="lazy" className="h-full w-full object-cover" />
                         <span className="rounded-full bg-green-500 p-0.5 text-white absolute top-1 right-1">
                           <Check className="h-2.5 w-2.5" />
                         </span>
@@ -236,7 +236,7 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
                       className="relative aspect-square overflow-hidden rounded-lg bg-gray-900"
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=200&fit=crop&q=80" alt="" loading="lazy" className="h-full w-full object-cover opacity-70" />
+                      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=200&fit=crop&q=80" alt="4K property video thumbnail in ListingFlare listing builder" loading="lazy" className="h-full w-full object-cover opacity-70" />
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="rounded-full bg-white/90 p-1.5">
                           <svg className="h-3 w-3 text-gray-900 ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -286,7 +286,7 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
                   <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
                     <div className="relative h-36 overflow-hidden">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=300&fit=crop&q=80" alt="" loading="lazy" className="h-full w-full object-cover" />
+                      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=300&fit=crop&q=80" alt="Published property listing on ListingFlare real estate software dashboard" loading="lazy" className="h-full w-full object-cover" />
                       <motion.span
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
@@ -675,6 +675,46 @@ export default function LandingPage() {
     },
   };
 
+  const faqs = [
+    {
+      question: "What is ListingFlare?",
+      answer: "ListingFlare is real estate software that helps listing agents create dedicated single-property websites for every listing. Each site includes an AI chatbot that answers buyer questions 24/7, captures leads automatically, and drafts follow-up emails so you never lose a deal to slow response time.",
+    },
+    {
+      question: "How is ListingFlare different from Zillow or Realtor.com?",
+      answer: "On Zillow and Realtor.com, your listing appears alongside competitor ads and other agent recommendations. Buyers who inquire often get redirected to other agents. With ListingFlare, every lead goes directly to you. Your listing page features your brand, your contact info, and zero competing agents.",
+    },
+    {
+      question: "How much does ListingFlare cost?",
+      answer: "ListingFlare is $150 per month with a 14-day free trial. No credit card required to start. The plan includes unlimited listing websites, AI chatbot, lead capture, automated follow-up, analytics dashboard, social media posts, open house flyers, and custom agent branding.",
+    },
+    {
+      question: "Do I need technical skills to use ListingFlare?",
+      answer: "No. You enter your property details, upload photos, and hit publish. Your listing site is live in under 5 minutes with a unique URL you can share anywhere. Our AI can even write the listing description for you.",
+    },
+    {
+      question: "What does the AI chatbot do?",
+      answer: "The AI chatbot lives on every listing page and answers buyer questions instantly. It knows your property details like bedrooms, bathrooms, square footage, and neighborhood info. When a buyer asks a question, the chatbot responds and captures their name, email, and phone number as a lead for you.",
+    },
+    {
+      question: "Can I use ListingFlare with my brokerage branding?",
+      answer: "Yes. Your headshot, name, brokerage logo, phone number, and social links appear on every listing page. ListingFlare is designed to build your personal brand and make you look professional to sellers and buyers.",
+    },
+  ];
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <div className="bg-white">
       {/* Structured Data */}
@@ -689,6 +729,10 @@ export default function LandingPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       {/* Nav */}
@@ -936,7 +980,7 @@ export default function LandingPage() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=280&fit=crop&q=80"
-                      alt=""
+                      alt="Real estate listing on Zillow showing competing agent ads and distractions"
                       loading="lazy"
                       className="h-36 w-full object-cover"
                     />
@@ -1028,7 +1072,7 @@ export default function LandingPage() {
                     <img
                       key={id}
                       src={`https://images.unsplash.com/${id}?w=200&h=150&fit=crop&q=80`}
-                      alt=""
+                      alt="Property photo gallery thumbnail on ListingFlare listing page"
                       loading="lazy"
                       className="aspect-[4/3] w-full rounded object-cover"
                     />
@@ -1306,8 +1350,50 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* FAQ */}
       <section className="bg-white py-20 md:py-28">
+        <div className="mx-auto max-w-3xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+              FAQ
+            </p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
+              Common questions about
+              <br />
+              ListingFlare real estate software.
+            </h2>
+          </motion.div>
+
+          <div className="mt-14 space-y-6">
+            {faqs.map((faq, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="rounded-xl border border-gray-200 bg-gray-50/50 p-6"
+              >
+                <h3 className="font-serif text-lg font-bold text-gray-900">
+                  {faq.question}
+                </h3>
+                <p className="mt-3 leading-relaxed text-gray-600">
+                  {faq.answer}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="bg-gray-50 py-20 md:py-28">
         <div className="mx-auto max-w-6xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
