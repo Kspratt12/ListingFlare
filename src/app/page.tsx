@@ -457,7 +457,7 @@ function HowItWorks() {
   }, [nextStep]);
 
   return (
-    <section className="bg-white py-20 md:py-28">
+    <section className="bg-gray-50 py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -808,9 +808,9 @@ export default function LandingPage() {
               Every listing comes with a 24/7 assistant that answers buyers, captures leads, and books showings for you.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-500 md:text-xl">
-              ListingFlare gives every property its own branded listing page
-              with instant buyer Q&amp;A, automatic follow-up, Calendly booking,
-              and built-in 3D tours so you never miss a serious lead.
+              Respond faster. Capture more serious buyers. Book more showings.
+              ListingFlare gives every property a branded listing page with
+              AI chat, automatic follow-up, Calendly booking, and 3D tours.
             </p>
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link
@@ -1257,8 +1257,44 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Real Moment */}
+      <section className="bg-white py-16 md:py-20">
+        <div className="mx-auto max-w-2xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+              Picture This
+            </p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
+              What this looks like in real life.
+            </h2>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="mt-10 space-y-3 text-center"
+          >
+            <p className="text-lg text-gray-600">A buyer lands on your listing at 10:42 PM.</p>
+            <p className="text-lg text-gray-600">They ask: &ldquo;Does this home have a fenced backyard?&rdquo;</p>
+            <p className="text-lg text-gray-600">They get an answer instantly.</p>
+            <p className="text-lg text-gray-600">They request a showing.</p>
+            <p className="text-lg text-gray-600">They submit their info.</p>
+            <p className="mt-6 font-serif text-xl font-semibold text-gray-900">
+              By the time you wake up, you already have a booked showing.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* What Happens When a Buyer Is Interested */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-gray-50 py-20 md:py-28">
         <div className="mx-auto max-w-4xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1276,7 +1312,7 @@ export default function LandingPage() {
               is interested.
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-lg text-gray-500">
-              This is not a static website. It is a working assistant that handles the conversation, captures the lead, and gets the showing booked.
+              This is exactly how buyers interact with your listing. Not a static page. A working assistant that handles the conversation, captures the lead, and gets the showing booked.
             </p>
           </motion.div>
 
@@ -1389,7 +1425,7 @@ export default function LandingPage() {
                   </motion.div>
                 </div>
                 <p className="mt-3 text-sm text-gray-400">
-                  All of this happened automatically. No manual work. No missed lead.
+                  All of this happened automatically. No waiting. No missed messages. No lost leads.
                 </p>
               </div>
             </div>
@@ -1398,7 +1434,7 @@ export default function LandingPage() {
       </section>
 
       {/* Features */}
-      <section className="bg-gray-50 py-20 md:py-28">
+      <section className="bg-white py-20 md:py-28">
         <div className="mx-auto max-w-6xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1470,7 +1506,7 @@ export default function LandingPage() {
               No tiers, no upsells. One price gets you unlimited branded listing pages, AI chat, lead capture, automated follow-up, and analytics.
             </p>
             <p className="mt-3 text-sm font-medium text-brand-400/80">
-              If one extra showing turns into a deal, this pays for itself fast.
+              If you miss one serious buyer, that could be thousands lost in commission.
             </p>
           </motion.div>
 
@@ -1655,8 +1691,7 @@ export default function LandingPage() {
               an assistant that never sleeps.
             </h2>
             <p className="mt-4 text-lg text-gray-500">
-              Join agents who are capturing more leads, responding faster,
-              and booking more showings without lifting a finger.
+              Agents are using this to respond instantly and capture leads they would have missed.
             </p>
             <Link
               href="/signup"
