@@ -805,6 +805,7 @@ export default function LandingPage() {
               14-day free trial &mdash; no credit card required
             </div>
             <h1 className="font-serif text-4xl font-bold leading-tight text-gray-900 md:text-display">
+              <span className="sr-only">Real Estate Software for Listing Agents | ListingFlare</span>
               Last night, a buyer asked about
               <br />
               your listing. You lost them.
@@ -1138,7 +1139,7 @@ export default function LandingPage() {
                   <div className="flex items-center gap-3 border-t border-gray-100 pt-3">
                     <div className="h-10 w-10 overflow-hidden rounded-full border-2 border-brand-100">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&q=80" alt="" loading="lazy" className="h-full w-full object-cover" />
+                      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&q=80" alt="Real estate agent profile photo on ListingFlare listing page" loading="lazy" className="h-full w-full object-cover" />
                     </div>
                     <div className="flex-1">
                       <p className="text-sm font-semibold text-gray-900">Victoria Ashworth</p>
@@ -1350,11 +1351,11 @@ export default function LandingPage() {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="mt-10 space-y-3 text-center"
           >
-            <p className="text-lg text-gray-600">10:42 PM. A buyer opens your listing.</p>
-            <p className="text-lg text-gray-600">10:43 PM. They ask about the backyard.</p>
-            <p className="text-lg text-gray-600">10:43 PM. They get an answer.</p>
-            <p className="text-lg text-gray-600">10:44 PM. They book a showing for Saturday.</p>
-            <p className="text-lg text-gray-600">10:45 PM. Their contact info hits your dashboard.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-600">10:42 PM.</span> A buyer opens your listing.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-600">10:43 PM.</span> They ask about the backyard.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-600">10:43 PM.</span> They get an answer.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-600">10:44 PM.</span> They book a showing for Saturday.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-600">10:45 PM.</span> Their contact info hits your dashboard.</p>
             <p className="mt-6 font-serif text-xl font-semibold text-gray-900">
               You were asleep the entire time.
             </p>
