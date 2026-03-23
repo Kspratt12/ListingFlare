@@ -48,15 +48,15 @@ const features = [
   },
   {
     icon: View,
-    title: "Serious buyers stay longer and book faster",
+    title: "More time on your page. More showings booked.",
     description:
-      "Embed Matterport, Kuula, or any 3D tour right on the page. Buyers who spend more time on your listing are more likely to book a showing.",
+      "Embed Matterport, Kuula, or any 3D tour right on the listing. The longer a buyer stays, the more likely they book.",
   },
   {
     icon: Zap,
-    title: "Five minutes to set up. Works overnight.",
+    title: "Set up in five minutes. Capturing leads by tonight.",
     description:
-      "Enter details, upload photos, publish. Your listing is live with its own URL. By tomorrow morning, it could already have a lead waiting.",
+      "Enter details, upload photos, publish. Live with its own URL. Share it once. It works for you every night after that.",
   },
   {
     icon: Sparkles,
@@ -810,7 +810,7 @@ export default function LandingPage() {
               your listing. You lost them.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-500 md:text-xl">
-              They had a question at 10:43 PM. Nobody answered. They moved on. With ListingFlare, that buyer gets an instant answer, submits their info, and books a showing. All while you sleep.
+              10:43 PM. Question about the backyard. No answer. Gone. ListingFlare would have answered, captured their info, and booked the showing. You would have woken up to a new lead.
             </p>
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link
@@ -829,7 +829,7 @@ export default function LandingPage() {
               </Link>
             </div>
             <p className="mt-6 text-sm font-medium text-gray-400">
-              Speed wins deals. The agent who responds first books the showing. Every time.
+              In real estate, the fastest response wins. That is not an opinion. It is how deals close.
             </p>
           </motion.div>
 
@@ -915,12 +915,12 @@ export default function LandingPage() {
               <div className="h-10 w-px bg-gray-200 hidden sm:block" />
               <div className="text-center">
                 <p className="font-serif text-3xl font-bold text-gray-900">Instant</p>
-                <p className="mt-1 text-sm text-gray-500">Buyer response speed</p>
+                <p className="mt-1 text-sm text-gray-500">Buyer gets an answer</p>
               </div>
               <div className="h-10 w-px bg-gray-200 hidden sm:block" />
               <div className="text-center">
                 <p className="font-serif text-3xl font-bold text-gray-900">24/7</p>
-                <p className="mt-1 text-sm text-gray-500">Listing coverage</p>
+                <p className="mt-1 text-sm text-gray-500">No missed buyers</p>
               </div>
               <div className="h-10 w-px bg-gray-200 hidden sm:block" />
               <div className="text-center">
@@ -1570,9 +1570,9 @@ export default function LandingPage() {
               Simple Pricing
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-white md:text-display-sm">
-              Less than one missed showing
+              You lose more in one missed deal
               <br />
-              costs more than this.
+              than this costs in ten years.
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-lg text-gray-400">
               Unlimited listing pages, AI chat, lead capture, automated follow-up, and analytics. One plan. Everything included.
@@ -1766,7 +1766,7 @@ export default function LandingPage() {
               Will anyone be there to answer?
             </h2>
             <p className="mt-4 text-lg text-gray-500">
-              If not, they will move on. You will never know they were there. That is the deal you lost.
+              No answer means no showing. No showing means no deal. You will never even know it happened.
             </p>
             <Link
               href="/signup"
