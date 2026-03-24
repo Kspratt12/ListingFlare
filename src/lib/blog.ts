@@ -42,6 +42,7 @@ import { article as realEstateLeadGen } from "@/content/articles/real-estate-lea
 import { article as bestLeadGenRealtors } from "@/content/articles/best-lead-generation-for-realtors";
 import { article as aiForRealEstate } from "@/content/articles/ai-for-real-estate-agents";
 import { article as bestAiToolsMarketing } from "@/content/articles/best-ai-tools-real-estate-marketing";
+import { article as bestSpwBuilders } from "@/content/articles/best-single-property-website-builders";
 
 const allPosts: BlogPost[] = [
   howToGetLeads,
@@ -72,6 +73,7 @@ const allPosts: BlogPost[] = [
   bestLeadGenRealtors,
   aiForRealEstate,
   bestAiToolsMarketing,
+  bestSpwBuilders,
 ];
 
 // Sort by date descending

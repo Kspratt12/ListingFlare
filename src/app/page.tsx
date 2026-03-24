@@ -490,7 +490,7 @@ function HowItWorks() {
                   />
                 ))}
               </div>
-              <div className="rounded-xl bg-white shadow-lg shadow-gray-200/50 border border-gray-200 p-4">
+              <div className="rounded-xl bg-white shadow-lg shadow-gray-200/50 border border-gray-200 p-4 min-h-[140px]">
                 <div className="flex items-start gap-4">
                   <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-brand-500 text-white">
                     {(() => { const Icon = walkthrough[activeIndex].icon; return <Icon className="h-5 w-5" />; })()}
