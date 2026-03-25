@@ -490,25 +490,34 @@ function HowItWorks() {
                   />
                 ))}
               </div>
-              <div className="rounded-xl bg-white shadow-lg shadow-gray-200/50 border border-gray-200 p-4 min-h-[140px]">
-                <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-brand-500 text-white">
-                    {(() => { const Icon = walkthrough[activeIndex].icon; return <Icon className="h-5 w-5" />; })()}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-gray-900">{walkthrough[activeIndex].title}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-gray-500">{walkthrough[activeIndex].description}</p>
-                    <div className="mt-3 h-1 w-full rounded-full bg-gray-100">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: "100%" }}
-                        transition={{ duration: 4, ease: "linear" }}
-                        key={`mobile-progress-${activeIndex}`}
-                        className="h-1 rounded-full bg-brand-500"
-                      />
+              <div className="relative rounded-xl bg-white shadow-lg shadow-gray-200/50 border border-gray-200 p-4 h-[160px] overflow-hidden">
+                <AnimatePresence initial={false} mode="wait">
+                  <motion.div
+                    key={activeIndex}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex items-start gap-4"
+                  >
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-brand-500 text-white">
+                      {(() => { const Icon = walkthrough[activeIndex].icon; return <Icon className="h-5 w-5" />; })()}
                     </div>
-                  </div>
-                </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-gray-900">{walkthrough[activeIndex].title}</p>
+                      <p className="mt-1 text-sm leading-relaxed text-gray-500">{walkthrough[activeIndex].description}</p>
+                      <div className="mt-3 h-1 w-full rounded-full bg-gray-100">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: "100%" }}
+                          transition={{ duration: 4, ease: "linear" }}
+                          key={`mobile-progress-${activeIndex}`}
+                          className="h-1 rounded-full bg-brand-500"
+                        />
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </div>
 
