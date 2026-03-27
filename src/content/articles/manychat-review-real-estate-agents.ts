@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "manychat-review-real-estate-agents",
   title:
-    "ManyChat Review for Real Estate Agents: Automate Instagram & Facebook Leads in 2026",
+    "ManyChat Review for Real Estate Agents: Automate Instagram & Facebook Leads",
   description:
-    "An in-depth ManyChat review for real estate agents covering pricing, Instagram DM automation, Facebook Messenger chatbots, lead qualification flows, and 7 proven strategies to capture more buyer and seller leads from social media in 2026.",
+    "An in-depth ManyChat review for real estate agents covering pricing, Instagram DM automation, Facebook Messenger chatbots, lead qualification flows, and 7 proven strategies to capture more buyer and seller leads from social media.",
   date: "2026-03-27",
   author: "ListingFlare Team",
   category: "Lead Generation",
@@ -153,7 +153,7 @@ export const article: BlogPost = {
 <li><strong>Call to Action</strong> - Tell them exactly what to do next. This is where ManyChat comes in. Instead of "DM me for details" (which requires manual follow-up), you say "Comment GUIDE below and I will send it to you instantly."</li>
 </ul>
 
-<p>ManyChat turns the CTA into an automated lead capture machine. Here is how:</p>
+<p>The platform turns the CTA into an automated lead capture machine. Here is how:</p>
 
 <h3>1. Auto-DM Lead Magnets (The "Comment Trigger" Strategy)</h3>
 
@@ -181,7 +181,7 @@ export const article: BlogPost = {
 
 <h3>2. Lead Qualification Flows</h3>
 
-<p>Getting a DM is one thing. Knowing whether that person is a serious lead or just casually browsing is another. ManyChat lets you build qualification flows that ask the right questions automatically.</p>
+<p>Getting a DM is one thing. Knowing whether that person is a serious lead or just casually browsing is another. The software lets you build qualification flows that ask the right questions automatically.</p>
 
 <p>A simple real estate qualification flow might look like this:</p>
 
@@ -197,7 +197,7 @@ export const article: BlogPost = {
 
 <h3>3. Open House Registration via QR Codes</h3>
 
-<p>ManyChat generates unique QR codes that link directly to a Messenger or Instagram conversation. Print the QR code on your open house flyers, yard signs, and door hangers. When someone scans it, they are dropped into a ManyChat flow that:</p>
+<p>The platform generates unique QR codes that link directly to a Messenger or Instagram conversation. Print the QR code on your open house flyers, yard signs, and door hangers. When someone scans it, they are dropped into a ManyChat flow that:</p>
 
 <ul>
 <li>Welcomes them and asks for their name and email</li>
@@ -225,7 +225,7 @@ export const article: BlogPost = {
 
 <h3>5. Automated Follow-Up Sequences</h3>
 
-<p>The fortune is in the follow-up, and most agents are terrible at it. Studies show that it takes an average of 5 to 12 contacts before a lead converts. ManyChat lets you set up timed follow-up sequences that keep you top of mind without you lifting a finger.</p>
+<p>The fortune is in the follow-up, and most agents are terrible at it. Studies show that it takes an average of 5 to 12 contacts before a lead converts. It lets you set up timed follow-up sequences that keep you top of mind without you lifting a finger.</p>
 
 <p>Here is an example follow-up sequence for a buyer lead:</p>
 
@@ -244,7 +244,7 @@ export const article: BlogPost = {
 
 <p>How many times do you get the same questions? "What areas do you serve?" "How much does a buyer's agent cost?" "What is the market like right now?" "Do you work with first-time buyers?"</p>
 
-<p>ManyChat lets you set up keyword triggers for common questions. When someone DMs you with a question containing words like "commission," "areas," "first-time," or "market," ManyChat sends an instant, helpful answer and then offers to connect them with you for a deeper conversation.</p>
+<p>This tool lets you set up keyword triggers for common questions. When someone DMs you with a question containing words like "commission," "areas," "first-time," or "market," ManyChat sends an instant, helpful answer and then offers to connect them with you for a deeper conversation.</p>
 
 <p>This is especially powerful for agents who get a lot of DMs from <a href="/blog/real-estate-social-media-post-ideas">social media content</a>. Instead of letting messages sit unanswered for hours (which kills the lead's interest), they get an immediate response that makes them feel taken care of.</p>
 
@@ -408,7 +408,7 @@ export const article: BlogPost = {
 <h2>Frequently Asked Questions</h2>
 
 <h3>Is ManyChat free for real estate agents?</h3>
-<p>ManyChat offers a free plan that includes basic automation for up to 1,000 contacts. However, the most valuable features for real estate agents - Instagram comment automation, advanced flows, and CRM integrations - require the Pro plan at $15/mo. We recommend starting with the free plan to learn the interface and upgrading to Pro when you are ready to go live with comment triggers.</p>
+<p>ManyChat offers a free plan with basic automation for up to 1,000 contacts. However, Instagram comment automation, advanced flows, and CRM integrations require the Pro plan at $15/mo. Start free to learn the interface and upgrade to Pro when you are ready for comment triggers.</p>
 
 <h3>Does ManyChat work with Instagram Reels?</h3>
 <p>Yes. ManyChat can trigger automations based on comments on Reels, regular posts, and live videos. The comment trigger feature works the same way across all post types. Reels tend to get the most reach, making them the ideal content format for ManyChat-powered lead generation.</p>
@@ -417,7 +417,7 @@ export const article: BlogPost = {
 <p>No, ManyChat is an official Meta (Facebook/Instagram) partner. It uses approved APIs and follows all of Meta's policies. As long as you use ManyChat as intended - responding to people who engage with your content first - you are fully compliant. Avoid using it to spam people or send unsolicited messages, and you will have no issues.</p>
 
 <h3>Can I use ManyChat with my real estate CRM?</h3>
-<p>Yes. ManyChat integrates with most real estate CRMs through Zapier. Popular CRMs like Follow Up Boss, kvCORE, LionDesk, HubSpot, and Sierra Interactive all work with ManyChat via Zapier. Some CRMs also have native ManyChat integrations. You can automatically push new leads, including custom fields like budget and timeline, directly into your CRM.</p>
+<p>Yes. ManyChat integrates with most real estate CRMs through Zapier, including Follow Up Boss, kvCORE, LionDesk, HubSpot, and Sierra Interactive. You can automatically push new leads with custom fields like budget and timeline directly into your CRM.</p>
 
 <h3>How is ManyChat different from ListingFlare?</h3>
 <p>ManyChat automates conversations on social media platforms - Instagram DMs, Facebook Messenger, and WhatsApp. ListingFlare provides AI-powered chatbots on your single property websites that engage visitors and capture leads. They complement each other perfectly: ManyChat captures leads where they discover you (social media), and ListingFlare captures leads where they evaluate your listings (your property websites).</p>
@@ -429,7 +429,7 @@ export const article: BlogPost = {
 <p>Absolutely. For buyer leads, use comment triggers on listing posts, neighborhood guides, and market updates. For seller leads, use triggers on content about home values, selling tips, and market conditions. You can build separate qualification flows for buyers and sellers so each gets a personalized experience.</p>
 
 <h3>Can I send bulk messages to my ManyChat contacts?</h3>
-<p>Yes, the Pro plan includes broadcasting capabilities. You can send messages to your contact list via Instagram DM, Facebook Messenger, SMS, and email. However, Instagram has rules about promotional messages - you can only send promotional broadcasts to people who have messaged you within the last 24 hours. Outside that window, you can send non-promotional content. SMS and email broadcasts have no such restriction.</p>
+<p>Yes, the Pro plan includes broadcasting via Instagram DM, Facebook Messenger, SMS, and email. Instagram limits promotional broadcasts to people who messaged you within the last 24 hours. Outside that window, you can send non-promotional content. SMS and email broadcasts have no such restriction.</p>
 
 <h3>What happens when a lead asks a question ManyChat cannot answer?</h3>
 <p>ManyChat supports live chat handoff. When the automation cannot handle a question or when a lead explicitly asks to talk to a person, ManyChat pauses the flow and sends you a notification. You can then jump into the conversation manually and respond in real-time. This hybrid approach ensures no lead falls through the cracks.</p>

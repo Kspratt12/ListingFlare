@@ -2,9 +2,9 @@ import { BlogPost } from "@/lib/blog";
 
 export const article: BlogPost = {
   slug: "trainual-review-real-estate-brokerages",
-  title: "Trainual Review for Real Estate Teams: Is It Worth It in 2026?",
+  title: "Trainual Review for Real Estate Teams: Is It Worth It?",
   description:
-    "An in-depth Trainual review for real estate brokerages covering pricing, onboarding workflows, SOP documentation, compliance training, and whether Trainual is worth the investment for your team in 2026.",
+    "An in-depth Trainual review for real estate brokerages covering pricing, onboarding workflows, SOP documentation, compliance training, and whether Trainual is worth the investment for your team.",
   date: "2026-03-27",
   author: "ListingFlare Team",
   category: "Agent Growth",
@@ -47,11 +47,11 @@ export const article: BlogPost = {
 <li><strong>Automated Onboarding</strong> - When a new agent or staff member joins, Trainual automatically assigns them the relevant training content based on their role. No more scrambling to put together an onboarding packet. No more hoping someone remembers to walk the new hire through the compliance requirements.</li>
 <li><strong>Role-Based Training Paths</strong> - Different roles get different content. A buyer's agent sees training specific to working with buyers. A listing agent sees listing-focused SOPs. A transaction coordinator sees their own workflow. Everyone gets exactly what they need without wading through irrelevant material.</li>
 <li><strong>Searchable Knowledge Base</strong> - Every piece of content you create becomes part of a searchable library. When an agent forgets how to submit a commission disbursement request or needs to look up the brokerage's social media policy, they search for it instead of calling the office manager.</li>
-<li><strong>Completion Tracking</strong> - Trainual tracks who has completed which training modules and who has not. As a broker, you get a dashboard showing exactly where every team member stands. This is especially valuable for compliance training where you need documentation that every agent reviewed the fair housing guidelines or the brokerage's advertising policy.</li>
+<li><strong>Completion Tracking</strong> - The software tracks who has completed which training modules and who has not. As a broker, you get a dashboard showing exactly where every team member stands. This is especially valuable for compliance training where you need documentation that every agent reviewed the fair housing guidelines or the brokerage's advertising policy.</li>
 <li><strong>Tests and Quizzes</strong> - You can embed quizzes at the end of any training module to verify comprehension. This is not just busywork - it forces active engagement with the material and gives you a record that the agent understood the content.</li>
 </ul>
 
-<p>The interface is clean and modern. Creating content feels similar to building pages in Notion or Google Docs - you add text blocks, drag in media, and organize everything into subjects and topics. There is no steep learning curve, which matters when the person building content is a busy broker, not a professional instructional designer.</p>
+<p>The interface is clean and modern. Creating content in it feels similar to building pages in Notion or Google Docs - you add text blocks, drag in media, and organize everything into subjects and topics. There is no steep learning curve, which matters when the person building content is a busy broker, not a professional instructional designer.</p>
 
 <h2>Trainual Pricing in 2026</h2>
 
@@ -90,7 +90,7 @@ export const article: BlogPost = {
 <ul>
 <li><strong>Annual billing saves money.</strong> The prices above reflect monthly billing. If you commit to an annual plan, you can expect roughly a 20% discount, bringing the Train plan closer to $200/mo and the Scale plan closer to $333/mo.</li>
 <li><strong>Seats include everyone.</strong> Every person who needs access counts as a seat - agents, admins, TCs, and the broker. A team of 8 agents plus a broker, an office manager, and a TC is 11 seats, which means you are on the Train plan plus one additional seat.</li>
-<li><strong>There is a free trial.</strong> Trainual offers a 7-day free trial so you can build out a few SOPs and test the interface before committing. We recommend using that trial to document your onboarding process and have a current team member go through it as a test.</li>
+<li><strong>There is a free trial.</strong> The platform offers a 7-day free trial so you can build out a few SOPs and test the interface before committing. We recommend using that trial to document your onboarding process and have a current team member go through it as a test.</li>
 </ul>
 
 <p><strong>Is the price justified?</strong> If you are a solo agent or a team of two, Trainual is overkill. But if you run a brokerage with 5 or more agents and regularly bring on new hires, the math works in your favor. Losing a single agent due to poor onboarding costs you recruiting time, lost deals, and replacement costs. One retained agent easily covers a full year of Trainual.</p>
@@ -101,7 +101,7 @@ export const article: BlogPost = {
 
 <h3>Rapid Onboarding with a 30-Day Plan</h3>
 
-<p>The single biggest use case is structured onboarding. Instead of a chaotic first week where the new agent shadows random meetings and gets a firehose of information, Trainual lets you build a defined 30-day onboarding path. The new agent logs in on day one and sees exactly what they need to learn, in what order, and by when. Each module builds on the previous one, taking them from "here is how we do things" to "here is how you start building your pipeline."</p>
+<p>The single biggest use case is structured onboarding. Instead of a chaotic first week where the new agent shadows random meetings and gets a firehose of information, The platform lets you build a defined 30-day onboarding path. The new agent logs in on day one and sees exactly what they need to learn, in what order, and by when. Each module builds on the previous one, taking them from "here is how we do things" to "here is how you start building your pipeline."</p>
 
 <p>This is especially powerful for brokerages that hire in batches. Instead of the broker personally walking each group through the same material, the training is pre-built and self-paced. The broker's time shifts from lecturing to coaching.</p>
 
@@ -329,7 +329,7 @@ export const article: BlogPost = {
 <p>No. Trainual is industry-agnostic and does not include pre-built real estate templates or MLS-specific content. You will need to create all of your training content from scratch. That said, the platform's structure - role-based assignments, completion tracking, searchable knowledge base - maps well to how real estate teams operate.</p>
 
 <h3>How long does it take to set up Trainual for a brokerage?</h3>
-<p>Plan for 20 to 40 hours of initial content creation to build a solid foundation. That includes a 30-day onboarding plan, your core SOPs (listing launch, closing process, lead response), compliance training, and role-specific content. You do not need to build everything at once. Start with onboarding and your three most important SOPs, then add content over time. Most brokerages have a usable training system within 2 to 4 weeks if someone dedicates a few hours per day to it.</p>
+<p>Plan for 20 to 40 hours of initial content creation. Start with onboarding and your three most important SOPs (listing launch, closing process, lead response), then add content over time. Most brokerages have a usable training system within 2 to 4 weeks.</p>
 
 <h3>Can I use Trainual for independent contractors?</h3>
 <p>Yes. You add each agent as a user with their assigned role, and they access the training content on their own schedule. The platform does not care about employment classification. Just make sure your training content focuses on recommended best practices rather than mandated schedules or methods to reinforce the independent contractor relationship.</p>
@@ -338,10 +338,10 @@ export const article: BlogPost = {
 <p>Not natively. Trainual integrates with general business tools like Slack, Gusto, BambooHR, and Zapier. Through Zapier you can create basic automations, but there are no direct integrations with real estate-specific platforms. You will need to manage your training platform and your real estate tools separately.</p>
 
 <h3>What is the difference between Trainual's Train and Scale plans?</h3>
-<p>The Train plan ($250/mo for up to 10 seats) includes all core features: unlimited content creation, role-based assignments, completion tracking, quizzes, screen recorder, and basic integrations. The Scale plan ($417/mo for up to 20 seats) adds custom branding, org chart functionality, advanced reporting, priority support, API access, and single sign-on (SSO). For most small to mid-sized brokerages, the Train plan has everything you need. The Scale plan makes sense when you have more than 10 team members or need the advanced reporting and branding features.</p>
+<p>The Train plan ($250/mo, up to 10 seats) includes unlimited content creation, role-based assignments, completion tracking, quizzes, and basic integrations. The Scale plan ($417/mo, up to 20 seats) adds custom branding, org chart, advanced reporting, and SSO. Most small to mid-sized brokerages only need the Train plan.</p>
 
 <h3>Is there a free version of Trainual?</h3>
-<p>No. Trainual does not offer a free plan. They do provide a 7-day free trial that gives you full access to the platform so you can test it before committing. If you need a free alternative for documenting processes, Notion's free tier or Google Docs are your best options - though they lack the training-specific features like completion tracking, automated assignments, and quizzes.</p>
+<p>No, but they offer a 7-day free trial with full platform access. If you need a free alternative, Notion or Google Docs work for documenting processes but lack training-specific features like completion tracking, automated assignments, and quizzes.</p>
 
 <h3>How does Trainual compare to just recording training videos and sharing them?</h3>
 <p>Recording training videos and sharing them in a folder is better than nothing, but you cannot track who watched what, verify comprehension, assign content by role, or update a single step without re-recording. Trainual wraps your content (including videos) in a structured, trackable, and searchable system. The videos are still valuable - but they are ingredients, not the whole recipe.</p>

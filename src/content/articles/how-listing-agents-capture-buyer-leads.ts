@@ -3,7 +3,7 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "how-listing-agents-capture-buyer-leads",
   title:
-    "5 Ways Listing Agents Can Capture Buyer Leads Directly in 2026",
+    "5 Ways Listing Agents Can Capture Buyer Leads Directly",
   description:
     "Most listing agents lose 90% of buyer interest to portals and competing agents. Learn 5 proven strategies to capture buyer leads directly from your listings and turn every listing into a lead generation machine.",
   date: "2026-03-27",
@@ -255,22 +255,22 @@ export const article: BlogPost = {
 <h2>Frequently Asked Questions</h2>
 
 <h3>How many buyer leads can I expect per listing with a direct capture system?</h3>
-<p>It varies by market and price point, but agents using single property websites with AI chatbots, QR codes, and social media campaigns typically report capturing 5 to 15 buyer leads per listing over its active life. Higher-priced listings and those with strong social media promotion tend to generate more leads. Even in slower markets, capturing 3 to 5 leads per listing that you would have otherwise lost to portals can make a significant impact on your annual income.</p>
+<p>Agents using single property websites with AI chatbots, QR codes, and social media campaigns typically capture 5 to 15 buyer leads per listing. Higher-priced listings and those with strong social promotion generate more. Even capturing 3 to 5 leads per listing that would have otherwise gone to portals can significantly impact your annual income.</p>
 
 <h3>Do I still need to list on Zillow and other portals?</h3>
-<p>Yes. Your listings appear on portals automatically through the MLS feed, and there is no reason to remove that exposure. The goal is not to disappear from Zillow - it is to create an additional channel where you capture leads directly. Think of portals as bonus exposure, but treat your single property website as the primary destination you drive traffic to through all your marketing efforts. For a deeper look at reducing portal dependency, read our guide on <a href="/blog/how-to-stop-losing-leads-to-zillow">how to stop losing leads to Zillow</a>.</p>
+<p>Yes. Your listings appear on portals automatically through the MLS feed. The goal is not to disappear from Zillow - it is to create an additional channel where you capture leads directly. Treat your single property website as the primary destination for all your marketing, and portals as bonus exposure.</p>
 
 <h3>How much does it cost to set up a direct lead capture system?</h3>
-<p>You can get started for under $200 per month. <a href="/signup">ListingFlare</a> costs $150 per month for unlimited single property websites with AI chatbot and automated follow-up. QR codes are free to generate. Social media posts are free. If you want to add Facebook ads, even $5 to $10 per day for a listing campaign is enough to generate meaningful traffic. Compare that to $1,500+ per month for Zillow Premier Agent, and the value is clear.</p>
+<p>Under $200 per month. <a href="/signup">ListingFlare</a> costs $150/month for unlimited single property websites with AI chatbot and automated follow-up. QR codes and social media posts are free. Add $5 to $10/day for Facebook ads to generate meaningful traffic. Compare that to $1,500+/month for Zillow Premier Agent.</p>
 
 <h3>Will an AI chatbot feel impersonal to buyers?</h3>
-<p>Modern real estate AI chatbots are designed to feel conversational and helpful, not robotic. They answer specific questions about the property accurately and naturally, which buyers appreciate - especially at 10 PM when the alternative is no response at all. Studies show that consumers prefer getting an immediate helpful response from an AI over waiting hours for a human reply. And because the chatbot captures their information, you can always follow up personally within minutes when you are available.</p>
+<p>Modern AI chatbots are designed to feel conversational and helpful, not robotic. They answer property-specific questions accurately, which buyers appreciate - especially at 10 PM when the alternative is no response at all. Studies show consumers prefer an immediate AI response over waiting hours for a human reply.</p>
 
 <h3>What if I only have one or two listings at a time?</h3>
 <p>That makes this strategy even more important. When you only have a couple of listings, every lead matters more. A single property website with an AI chatbot and QR codes costs the same to set up whether you have one listing or twenty. If your one listing generates three buyer leads you would have otherwise lost, and one of them closes, you just made $12,000 from a $150 investment. The ROI is highest for agents who cannot afford to waste a single lead.</p>
 
 <h3>How do single property websites help me win more listings?</h3>
-<p>When you walk into a listing presentation and show the seller a live example of a single property website with an AI chatbot, QR code integration, and social media campaign - and you explain that every buyer lead goes directly to you instead of being routed to Zillow's paying agents - you instantly stand out from every other agent in the room. Sellers want to know their listing will get maximum exposure and that the agent is using modern marketing tools. A complete lead capture system is the most compelling thing you can show in a listing presentation.</p>
+<p>Show the seller a live single property website with an AI chatbot, QR code integration, and social media campaign. Explain that every buyer lead goes directly to you instead of being routed to Zillow's paying agents. You instantly stand out from every other agent in the room. A complete lead capture system is the most compelling thing you can show in a listing presentation.</p>
 </div>
 
 <h2>Stop Letting Your Listings Work for Everyone Except You</h2>

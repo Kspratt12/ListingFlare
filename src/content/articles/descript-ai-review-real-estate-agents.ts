@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "descript-ai-review-real-estate-agents",
   title:
-    "Descript AI Review for Real Estate Agents: Edit Videos Like a Doc in 2026",
+    "Descript AI Review for Real Estate Agents: Edit Videos Like a Doc",
   description:
-    "A comprehensive Descript review for real estate agents covering pricing, AI features, transcript-based video editing, filler word removal, Studio Sound, and how to create polished listing videos without any editing experience in 2026.",
+    "A comprehensive Descript review for real estate agents covering pricing, AI features, transcript-based video editing, filler word removal, Studio Sound, and how to create polished listing videos without any editing experience.",
   date: "2026-03-27",
   author: "ListingFlare Team",
   category: "Listing Marketing",
@@ -37,7 +37,7 @@ export const article: BlogPost = {
 
 <h2>What Is Descript?</h2>
 
-<p><a href="https://www.descript.com" target="_blank" rel="noopener noreferrer">Descript</a> is an AI-powered video and audio editing platform that takes an entirely different approach to editing. Instead of working with a traditional drag-and-drop timeline, Descript automatically transcribes your video and lets you edit the footage by editing the transcript text. If you can use a word processor, you can edit video in Descript. It is genuinely that simple.</p>
+<p><a href="https://www.descript.com" target="_blank" rel="noopener noreferrer">Descript</a> is an AI-powered video and audio editing platform that takes an entirely different approach to editing. Instead of working with a traditional drag-and-drop timeline, the platform automatically transcribes your video and lets you edit the footage by editing the transcript text. If you can use a word processor, you can edit video in Descript. It is genuinely that simple.</p>
 
 <p>The company was founded in 2017 by Andrew Mason (yes, the Groupon founder) and has grown into one of the most popular video editing tools for creators, marketers, podcasters, and businesses. As of 2026, Descript has raised over $100 million in funding and serves millions of users worldwide.</p>
 
@@ -45,7 +45,7 @@ export const article: BlogPost = {
 
 <ul>
 <li><strong>Transcript-Based Editing</strong> - Record or upload a video, and Descript automatically transcribes it with high accuracy. Edit the text, and the video edits itself. Delete a sentence, and that segment is removed from the video. Rearrange paragraphs, and the video clips rearrange to match.</li>
-<li><strong>Filler Word Removal</strong> - Descript automatically detects and highlights every "um," "uh," "like," "you know," and other filler words in your transcript. One click removes them all from both the text and the video. This alone saves agents hours of manual editing.</li>
+<li><strong>Filler Word Removal</strong> - The software automatically detects and highlights every "um," "uh," "like," "you know," and other filler words in your transcript. One click removes them all from both the text and the video. This alone saves agents hours of manual editing.</li>
 <li><strong>AI Eye Contact Correction</strong> - Even if you were looking at notes, a teleprompter, or the floor during recording, Descript's AI adjusts your eye line so it looks like you are making direct eye contact with the camera. The result is surprisingly convincing.</li>
 <li><strong>Studio Sound</strong> - An AI-powered noise removal tool that cleans up background noise from your recordings. Barking dogs, traffic noise, HVAC hum, wind, and echo are all dramatically reduced. Your audio sounds like it was recorded in a professional studio.</li>
 <li><strong>Overdub (AI Voice Clone)</strong> - Clone your own voice and use it to generate new audio from text. Made a mistake during recording? Instead of re-shooting, just type the correction and Descript generates the audio in your voice. The corrected audio blends seamlessly into the original recording.</li>
@@ -55,11 +55,11 @@ export const article: BlogPost = {
 <li><strong>Text-to-Speech</strong> - Convert written text into natural-sounding speech using AI voices. Useful for creating quick explainer videos or adding narration without recording yourself.</li>
 </ul>
 
-<p>The magic of Descript is that all of these features work together in a single interface. You do not need to bounce between five different apps. Record, transcribe, edit, add captions, clean audio, correct eye contact, and export - all in one place.</p>
+<p>The magic of this tool is that all of these features work together in a single interface. You do not need to bounce between five different apps. Record, transcribe, edit, add captions, clean audio, correct eye contact, and export - all in one place.</p>
 
 <h2>Descript Pricing Breakdown for Real Estate Agents</h2>
 
-<p>Descript uses a subscription model based on transcription hours and feature access. Here is the complete pricing breakdown as of early 2026:</p>
+<p>The platform uses a subscription model based on transcription hours and feature access. Here is the complete pricing breakdown as of early 2026:</p>
 
 <table>
 <thead>
@@ -329,7 +329,7 @@ export const article: BlogPost = {
 <p>Yes. Descript lets you resize your canvas to 9:16 (vertical), 1:1 (square), 16:9 (horizontal), and other custom aspect ratios. You can take a horizontally recorded listing walkthrough and create a vertical version with repositioned framing, add animated captions, and export it ready for Reels, TikTok, or YouTube Shorts.</p>
 
 <h3>Is Descript better than CapCut for real estate videos?</h3>
-<p>For most real estate video editing, yes. Descript's transcript-based editing, automatic filler word removal, Studio Sound noise reduction, and AI eye contact correction are all features that CapCut does not offer. CapCut is better for quick, trendy social media clips with effects and music. But for listing walkthroughs, market updates, and any video where you are speaking to the camera, Descript produces better results with less effort. Many agents use both - Descript for primary editing and CapCut for adding trendy effects to short clips.</p>
+<p>For listing walkthroughs and market updates, yes. Descript's transcript-based editing, filler word removal, Studio Sound, and AI eye contact correction are features CapCut lacks. CapCut is better for quick, trendy social clips with effects and music. Many agents use both - Descript for primary editing and CapCut for short-form effects.</p>
 
 <h3>How long does it take to edit a listing video in Descript?</h3>
 <p>A typical 3 to 5 minute listing walkthrough video takes about 10 to 15 minutes to edit in Descript. That includes uploading, transcription, removing filler words, deleting mistakes, applying Studio Sound, adding captions, and exporting. By comparison, the same edit in a traditional timeline editor would take 45 minutes to an hour for someone with moderate editing skills.</p>
