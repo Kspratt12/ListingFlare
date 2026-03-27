@@ -79,7 +79,7 @@ Your browser does not support the video tag.
 <li><strong>No social media content generation.</strong> You still need to create your own social posts, captions, and marketing assets separately.</li>
 </ul>
 
-<img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=450&fit=crop&q=80" alt="Real estate agent reviewing single property website alternatives on a laptop screen" loading="lazy" />
+<img src="/blog/rela-alternatives/Intelligent-property-matching.png" alt="Intelligent property matching comparison showing why real estate agents look for Rela alternatives with better lead capture" loading="lazy" style="width:100%;border-radius:0.75rem;" />
 
 <h2>Why Agents Look for Rela Alternatives</h2>
 
@@ -108,6 +108,8 @@ Your browser does not support the video tag.
 <p>Here are the top alternatives ranked by overall value for listing agents who want to capture leads, not just showcase properties.</p>
 
 <h3>1. ListingFlare - Best Overall Rela Alternative</h3>
+
+<img src="/blog/rela-alternatives/listing-flare.png" alt="ListingFlare single property website builder dashboard showing AI chatbot, lead capture, and analytics features" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1rem;" />
 
 <p><strong>Price:</strong> $150/month (unlimited listings) | 14-day free trial, no credit card required</p>
 
@@ -139,6 +141,8 @@ Your browser does not support the video tag.
 
 <h3>2. CribFlyer - Best Budget Rela Alternative</h3>
 
+<img src="/blog/rela-alternatives/cribflyer.png" alt="CribFlyer single property website builder interface showing budget-friendly listing page templates" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1rem;" />
+
 <p><strong>Price:</strong> $7-25/month depending on plan</p>
 
 <p>CribFlyer has been around for years and offers a straightforward single property website builder at a fraction of Rela&rsquo;s cost. The platform includes basic templates, photo galleries, and the ability to add property details and open house information.</p>
@@ -163,6 +167,8 @@ Your browser does not support the video tag.
 <p>Budget-conscious agents who need a basic listing page without advanced lead capture features. Works well for agents who primarily use single property sites as digital brochures for open houses.</p>
 
 <h3>3. SinglePropertySites - Best for High-Volume Teams</h3>
+
+<img src="/blog/rela-alternatives/single-property.png" alt="SinglePropertySites platform showing MLS auto-generated listing pages for high-volume real estate teams" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1rem;" />
 
 <p><strong>Price:</strong> Starting at $0.50/listing for enterprise plans</p>
 
@@ -190,6 +196,8 @@ Your browser does not support the video tag.
 
 <h3>4. Listings Unlimited - Best for Video-Heavy Listings</h3>
 
+<img src="/blog/rela-alternatives/listing.unlimited.png" alt="Listings Unlimited platform showing video builder and unlimited single property website features" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1rem;" />
+
 <p><strong>Price:</strong> $24.95/month for unlimited sites</p>
 
 <p>Listings Unlimited offers unlimited single property websites at a competitive flat rate. The platform includes a built-in video builder that lets you create listing videos from your photos, which is a unique feature in this space.</p>
@@ -214,9 +222,9 @@ Your browser does not support the video tag.
 <h4>Best For</h4>
 <p>Agents who want unlimited listing pages at a low monthly cost and like the idea of auto-generated listing videos. Good for agents who post frequently on social media and want quick video content.</p>
 
-<img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&h=450&fit=crop&q=80" alt="Luxury home interior photography used for single property website marketing" loading="lazy" />
-
 <h3>5. PhotoUp - Best for Agents Who Bundle Photo Editing</h3>
+
+<img src="/blog/rela-alternatives/photo-up.png" alt="PhotoUp real estate photo editing and single property website platform showing edited listing photos" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1rem;" />
 
 <p><strong>Price:</strong> Approximately $9/site</p>
 
@@ -243,6 +251,8 @@ Your browser does not support the video tag.
 
 <h3>6. Modobay - Best for SEO-Focused Agents</h3>
 
+<img src="/blog/rela-alternatives/modo-bay.png" alt="Modobay real estate listing platform showing automated SEO optimization and schema markup features" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1rem;" />
+
 <p><strong>Price:</strong> Contact for pricing</p>
 
 <p>Modobay differentiates itself with automated SEO optimization for each listing page. The platform generates meta tags, schema markup, and keyword-optimized descriptions automatically, which can help your listing pages rank in local Google searches.</p>
@@ -267,6 +277,8 @@ Your browser does not support the video tag.
 <p>Agents who want their listing pages to appear in Google search results and value SEO optimization. Keep in mind that most listing pages are active for 30 to 90 days, which limits the SEO benefit.</p>
 
 <h3>7. RealBird - Best for Portal Syndication</h3>
+
+<img src="/blog/rela-alternatives/Listing-Widgets.png" alt="RealBird listing widgets and portal syndication platform showing auto-distribution to real estate websites" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1rem;" />
 
 <p><strong>Price:</strong> Free basic plan, premium plans available</p>
 
