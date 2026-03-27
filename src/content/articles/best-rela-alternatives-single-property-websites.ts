@@ -118,24 +118,24 @@ Your browser does not support the video tag.
 
 <p>Beyond the chatbot, ListingFlare includes automated lead follow-up emails, a detailed analytics dashboard showing engagement metrics, and built-in social media post generation so you can market your listing across platforms without hiring a separate tool.</p>
 
-<div style="display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0;">
-<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:0.75rem;padding:1.25rem;flex:1 1 280px;min-width:0;">
-<p style="font-weight:700;color:#166534;margin-bottom:0.75rem;font-size:0.95rem;">Pros</p>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> AI chatbot on every listing page - the only platform offering this</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Automated lead follow-up emails sent within seconds</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Unlimited listings for a flat monthly price</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Detailed analytics (time on page, scroll depth, chatbot engagement)</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Built-in social media content generation</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Clean, modern templates optimized for mobile</li>
-<li style="padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> 14-day free trial with no credit card required</li>
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
+<ul>
+<li>AI chatbot on every listing page - the only platform offering this</li>
+<li>Automated lead follow-up emails sent within seconds</li>
+<li>Unlimited listings for a flat monthly price</li>
+<li>Detailed analytics (time on page, scroll depth, chatbot engagement)</li>
+<li>Built-in social media content generation</li>
+<li>Clean, modern templates optimized for mobile</li>
+<li>14-day free trial with no credit card required</li>
 </ul>
 </div>
-<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:0.75rem;padding:1.25rem;flex:1 1 280px;min-width:0;">
-<p style="font-weight:700;color:#991b1b;margin-bottom:0.75rem;font-size:0.95rem;">Cons</p>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> Higher monthly cost than some budget alternatives</li>
-<li style="padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> Newer platform compared to Rela&rsquo;s longer track record</li>
+<div class="cons-card">
+<p>Cons</p>
+<ul>
+<li>Higher monthly cost than some budget alternatives</li>
+<li>Newer platform compared to Rela&rsquo;s longer track record</li>
 </ul>
 </div>
 </div>
@@ -152,23 +152,23 @@ Your browser does not support the video tag.
 
 <p>CribFlyer has been around for years and offers a straightforward single property website builder at a fraction of Rela&rsquo;s cost. The platform includes basic templates, photo galleries, and the ability to add property details and open house information.</p>
 
-<div style="display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0;">
-<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:0.75rem;padding:1.25rem;flex:1 1 280px;min-width:0;">
-<p style="font-weight:700;color:#166534;margin-bottom:0.75rem;font-size:0.95rem;">Pros</p>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Low entry price starting at $7/month</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Simple setup process under 10 minutes</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Basic lead capture forms included</li>
-<li style="padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Custom domain support on higher plans</li>
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
+<ul>
+<li>Low entry price starting at $7/month</li>
+<li>Simple setup process under 10 minutes</li>
+<li>Basic lead capture forms included</li>
+<li>Custom domain support on higher plans</li>
 </ul>
 </div>
-<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:0.75rem;padding:1.25rem;flex:1 1 280px;min-width:0;">
-<p style="font-weight:700;color:#991b1b;margin-bottom:0.75rem;font-size:0.95rem;">Cons</p>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> Templates feel dated compared to Rela or ListingFlare</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> No AI chatbot or automated follow-up</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> Limited customization options</li>
-<li style="padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> Analytics are minimal</li>
+<div class="cons-card">
+<p>Cons</p>
+<ul>
+<li>Templates feel dated compared to Rela or ListingFlare</li>
+<li>No AI chatbot or automated follow-up</li>
+<li>Limited customization options</li>
+<li>Analytics are minimal</li>
 </ul>
 </div>
 </div>
@@ -185,24 +185,24 @@ Your browser does not support the video tag.
 
 <p>SinglePropertySites targets brokerages and high-volume teams with aggressive per-listing pricing that drops as your volume increases. The platform auto-generates listing pages from MLS data and includes basic marketing assets like flyers and social graphics.</p>
 
-<div style="display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0;">
-<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:0.75rem;padding:1.25rem;flex:1 1 280px;min-width:0;">
-<p style="font-weight:700;color:#166534;margin-bottom:0.75rem;font-size:0.95rem;">Pros</p>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Extremely low per-listing cost at scale</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> MLS auto-population saves setup time</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Includes flyer and social media templates</li>
-<li style="padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> White-label options for brokerages</li>
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
+<ul>
+<li>Extremely low per-listing cost at scale</li>
+<li>MLS auto-population saves setup time</li>
+<li>Includes flyer and social media templates</li>
+<li>White-label options for brokerages</li>
 </ul>
 </div>
-<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:0.75rem;padding:1.25rem;flex:1 1 280px;min-width:0;">
-<p style="font-weight:700;color:#991b1b;margin-bottom:0.75rem;font-size:0.95rem;">Cons</p>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> Templates are basic and lack visual polish</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> No AI chatbot or intelligent lead capture</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> No automated follow-up system</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> Customization limited on lower plans</li>
-<li style="padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> Design quality does not compare to Rela</li>
+<div class="cons-card">
+<p>Cons</p>
+<ul>
+<li>Templates are basic and lack visual polish</li>
+<li>No AI chatbot or intelligent lead capture</li>
+<li>No automated follow-up system</li>
+<li>Customization limited on lower plans</li>
+<li>Design quality does not compare to Rela</li>
 </ul>
 </div>
 </div>
@@ -219,24 +219,24 @@ Your browser does not support the video tag.
 
 <p>Listings Unlimited offers unlimited single property websites at a competitive flat rate. The platform includes a built-in video builder that lets you create listing videos from your photos, which is a unique feature in this space.</p>
 
-<div style="display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0;">
-<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:0.75rem;padding:1.25rem;flex:1 1 280px;min-width:0;">
-<p style="font-weight:700;color:#166534;margin-bottom:0.75rem;font-size:0.95rem;">Pros</p>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Unlimited listings for under $25/month</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Built-in video builder creates listing videos from photos</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Decent template selection</li>
-<li style="padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Basic lead capture forms</li>
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
+<ul>
+<li>Unlimited listings for under $25/month</li>
+<li>Built-in video builder creates listing videos from photos</li>
+<li>Decent template selection</li>
+<li>Basic lead capture forms</li>
 </ul>
 </div>
-<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:0.75rem;padding:1.25rem;flex:1 1 280px;min-width:0;">
-<p style="font-weight:700;color:#991b1b;margin-bottom:0.75rem;font-size:0.95rem;">Cons</p>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> No AI chatbot</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> No automated lead follow-up</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> Video builder produces generic-feeling results</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> Templates not as polished as Rela</li>
-<li style="padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> Limited analytics</li>
+<div class="cons-card">
+<p>Cons</p>
+<ul>
+<li>No AI chatbot</li>
+<li>No automated lead follow-up</li>
+<li>Video builder produces generic-feeling results</li>
+<li>Templates not as polished as Rela</li>
+<li>Limited analytics</li>
 </ul>
 </div>
 </div>
@@ -253,23 +253,23 @@ Your browser does not support the video tag.
 
 <p>PhotoUp started as a real estate photo editing service and expanded into single property websites. If you already use PhotoUp for photo editing, adding listing pages to your workflow is seamless. The property sites pull directly from your edited photos, saving time on uploads.</p>
 
-<div style="display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0;">
-<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:0.75rem;padding:1.25rem;flex:1 1 280px;min-width:0;">
-<p style="font-weight:700;color:#166534;margin-bottom:0.75rem;font-size:0.95rem;">Pros</p>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Seamless integration with PhotoUp photo editing</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Clean, photo-focused templates</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Virtual staging add-on available</li>
-<li style="padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Reasonable per-site pricing</li>
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
+<ul>
+<li>Seamless integration with PhotoUp photo editing</li>
+<li>Clean, photo-focused templates</li>
+<li>Virtual staging add-on available</li>
+<li>Reasonable per-site pricing</li>
 </ul>
 </div>
-<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:0.75rem;padding:1.25rem;flex:1 1 280px;min-width:0;">
-<p style="font-weight:700;color:#991b1b;margin-bottom:0.75rem;font-size:0.95rem;">Cons</p>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> Per-site pricing adds up for active agents</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> No AI chatbot or automated follow-up</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> Limited standalone value without their photo editing</li>
-<li style="padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> Basic lead capture only</li>
+<div class="cons-card">
+<p>Cons</p>
+<ul>
+<li>Per-site pricing adds up for active agents</li>
+<li>No AI chatbot or automated follow-up</li>
+<li>Limited standalone value without their photo editing</li>
+<li>Basic lead capture only</li>
 </ul>
 </div>
 </div>
@@ -286,23 +286,23 @@ Your browser does not support the video tag.
 
 <p>Modobay differentiates itself with automated SEO optimization for each listing page. The platform generates meta tags, schema markup, and keyword-optimized descriptions automatically, which can help your listing pages rank in local Google searches.</p>
 
-<div style="display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0;">
-<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:0.75rem;padding:1.25rem;flex:1 1 280px;min-width:0;">
-<p style="font-weight:700;color:#166534;margin-bottom:0.75rem;font-size:0.95rem;">Pros</p>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Automated SEO optimization for each listing page</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Custom branding and white-label options</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Schema markup for rich search results</li>
-<li style="padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Clean mobile-responsive designs</li>
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
+<ul>
+<li>Automated SEO optimization for each listing page</li>
+<li>Custom branding and white-label options</li>
+<li>Schema markup for rich search results</li>
+<li>Clean mobile-responsive designs</li>
 </ul>
 </div>
-<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:0.75rem;padding:1.25rem;flex:1 1 280px;min-width:0;">
-<p style="font-weight:700;color:#991b1b;margin-bottom:0.75rem;font-size:0.95rem;">Cons</p>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> Pricing is not transparent - need to contact sales</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> No AI chatbot</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> No automated lead follow-up</li>
-<li style="padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> SEO benefits limited since listings are short-lived</li>
+<div class="cons-card">
+<p>Cons</p>
+<ul>
+<li>Pricing is not transparent - need to contact sales</li>
+<li>No AI chatbot</li>
+<li>No automated lead follow-up</li>
+<li>SEO benefits limited since listings are short-lived</li>
 </ul>
 </div>
 </div>
@@ -319,24 +319,24 @@ Your browser does not support the video tag.
 
 <p>RealBird takes a different approach by focusing on syndication. When you create a listing page, the platform can automatically distribute it to real estate portals and classified sites, expanding your listing&rsquo;s reach beyond your own marketing channels.</p>
 
-<div style="display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0;">
-<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:0.75rem;padding:1.25rem;flex:1 1 280px;min-width:0;">
-<p style="font-weight:700;color:#166534;margin-bottom:0.75rem;font-size:0.95rem;">Pros</p>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Auto-syndication to real estate portals and classified sites</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Free basic plan available</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> QR code generation for print materials</li>
-<li style="padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#22c55e;">&#10003;</span> Basic analytics included</li>
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
+<ul>
+<li>Auto-syndication to real estate portals and classified sites</li>
+<li>Free basic plan available</li>
+<li>QR code generation for print materials</li>
+<li>Basic analytics included</li>
 </ul>
 </div>
-<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:0.75rem;padding:1.25rem;flex:1 1 280px;min-width:0;">
-<p style="font-weight:700;color:#991b1b;margin-bottom:0.75rem;font-size:0.95rem;">Cons</p>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> Template designs feel outdated</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> No AI chatbot or intelligent lead capture</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> No automated follow-up</li>
-<li style="margin-bottom:0.5rem;padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> Syndication quality varies by portal</li>
-<li style="padding-left:1.5rem;position:relative;font-size:0.9rem;"><span style="position:absolute;left:0;color:#ef4444;">&#10007;</span> User interface is not as intuitive as newer platforms</li>
+<div class="cons-card">
+<p>Cons</p>
+<ul>
+<li>Template designs feel outdated</li>
+<li>No AI chatbot or intelligent lead capture</li>
+<li>No automated follow-up</li>
+<li>Syndication quality varies by portal</li>
+<li>User interface is not as intuitive as newer platforms</li>
 </ul>
 </div>
 </div>
