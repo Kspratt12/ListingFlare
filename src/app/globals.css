@@ -239,53 +239,90 @@ input[type="number"]::-webkit-inner-spin-button {
   margin-bottom: 1.25rem;
 }
 
-/* FAQ accordion - pure CSS, no JS */
-.blog-content .faq-section h3 {
-  font-size: 1.05rem;
-  margin-top: 0;
-  margin-bottom: 0;
-  padding: 1rem 2.5rem 1rem 1.25rem;
-  background: #f9f8f6;
+/* FAQ accordion using native details/summary */
+.blog-content .faq-section details {
+  margin-bottom: 0.75rem;
   border: 1px solid #e5e3de;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  position: relative;
-  transition: background 0.2s, border-color 0.2s;
-  line-height: 1.5;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: border-color 0.2s;
 }
 
-.blog-content .faq-section h3:hover {
-  background: #f0ede6;
+.blog-content .faq-section details:hover {
   border-color: #c5bca3;
 }
 
-/* Chevron indicator */
-.blog-content .faq-section h3::after {
+.blog-content .faq-section details[open] {
+  border-color: #c5bca3;
+}
+
+.blog-content .faq-section summary {
+  font-family: var(--font-playfair), serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding: 1rem 3rem 1rem 1.25rem;
+  background: #f9f8f6;
+  cursor: pointer;
+  position: relative;
+  list-style: none;
+  line-height: 1.5;
+  transition: background 0.2s;
+}
+
+.blog-content .faq-section summary::-webkit-details-marker {
+  display: none;
+}
+
+.blog-content .faq-section summary::marker {
+  display: none;
+  content: "";
+}
+
+.blog-content .faq-section summary:hover {
+  background: #f0ede6;
+}
+
+/* Plus/minus indicator */
+.blog-content .faq-section summary::after {
   content: "+";
   position: absolute;
   right: 1.25rem;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.25rem;
-  font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 300;
   color: #9a8866;
-  transition: transform 0.2s;
+  transition: transform 0.3s;
 }
 
-/* FAQ answer styling */
-.blog-content .faq-section h3 + p {
-  margin-top: 0;
-  padding: 1rem 1.25rem;
-  background: #ffffff;
-  border: 1px solid #e5e3de;
-  border-top: none;
-  border-radius: 0 0 0.5rem 0.5rem;
-  margin-bottom: 0.75rem;
-  line-height: 1.7;
+.blog-content .faq-section details[open] summary::after {
+  content: "-";
+}
+
+.blog-content .faq-section details[open] summary {
+  border-bottom: 1px solid #e5e3de;
+}
+
+/* Answer content */
+.blog-content .faq-section details p {
+  margin: 0;
+  padding: 1.25rem;
+  line-height: 1.8;
   color: #4b5563;
+  background: #ffffff;
 }
 
-/* Spacing between FAQ items */
-.blog-content .faq-section h3 + p + h3 {
-  margin-top: 0.5rem;
+.blog-content .faq-section details ul,
+.blog-content .faq-section details ol {
+  padding: 0 1.25rem 1.25rem 2.75rem;
+  background: #ffffff;
+  margin: 0;
+}
+
+/* Keep h3 styling for non-accordion fallback */
+.blog-content .faq-section h3 {
+  font-size: 1.05rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
 }

@@ -78,6 +78,25 @@ function injectHeadingIds(html: string): string {
   });
 }
 
+/** Transform FAQ h3/p pairs into details/summary accordions */
+function transformFaqAccordions(html: string): string {
+  return html.replace(
+    /<div([^>]*class="faq-section"[^>]*)>([\s\S]*?)<\/div>/,
+    (_match, attrs, inner) => {
+      // Convert h3 + following content into details/summary pairs
+      const transformed = inner.replace(
+        /<h3[^>]*>(.*?)<\/h3>([\s\S]*?)(?=<h3|$)/g,
+        (_m: string, question: string, answer: string) => {
+          const cleanAnswer = answer.trim();
+          if (!cleanAnswer) return "";
+          return `<details><summary>${question}</summary>${cleanAnswer}</details>`;
+        }
+      );
+      return `<div${attrs}>${transformed}</div>`;
+    }
+  );
+}
+
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -85,7 +104,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   const related = getRelatedPosts(slug, 3);
   const headings = extractHeadings(post.content);
-  const contentWithIds = injectHeadingIds(post.content);
+  const contentWithIds = transformFaqAccordions(injectHeadingIds(post.content));
 
   const articleUrl = `https://www.listingflare.com/blog/${post.slug}`;
 
