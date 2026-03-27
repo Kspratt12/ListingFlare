@@ -18,10 +18,9 @@ export const article: BlogPost = {
     "rela hq alternative",
   ],
   readingTime: 14,
-  coverImage:
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=630&fit=crop&q=80",
+  coverImage: "/blog/rela-alternatives/hero.png",
   coverImageAlt:
-    "Modern luxury home exterior representing single property website marketing for real estate agents comparing Rela alternatives",
+    "Best Rela alternatives for single property websites compared side by side for real estate agents in 2026",
   content: `
 <p>Rela makes beautiful single property websites. Nobody disputes that. The templates are polished, the photo galleries look clean, and the overall presentation is a step above what most agents create on their own. But beauty does not pay the bills. Leads do.</p>
 
