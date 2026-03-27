@@ -89,7 +89,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   const articleUrl = `https://www.listingflare.com/blog/${post.slug}`;
 
-  // JSON-LD structured data for BlogPosting
+  // JSON-LD structured data for BlogPosting (Google rich results)
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -97,20 +97,31 @@ export default async function BlogPostPage({ params }: Props) {
     description: post.description,
     datePublished: post.date,
     dateModified: post.updated || post.date,
+    articleSection: post.category,
     author: {
       "@type": "Person",
       name: "Kelvin Spratt",
       url: "https://www.listingflare.com/about",
-      jobTitle: "Founder",
+      jobTitle: "Founder & CEO",
       worksFor: {
         "@type": "Organization",
         name: "ListingFlare",
+        url: "https://www.listingflare.com",
       },
+      sameAs: [
+        "https://www.listingflare.com/about",
+      ],
     },
     publisher: {
       "@type": "Organization",
       name: "ListingFlare",
       url: "https://www.listingflare.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.listingflare.com/icon.svg",
+        width: 512,
+        height: 512,
+      },
     },
     image: {
       "@type": "ImageObject",
@@ -122,11 +133,18 @@ export default async function BlogPostPage({ params }: Props) {
       "@type": "WebPage",
       "@id": articleUrl,
     },
+    isPartOf: {
+      "@type": "Blog",
+      name: "The ListingFlare Blog",
+      url: "https://www.listingflare.com/blog",
+    },
     wordCount: post.content.split(/\s+/).length,
     keywords: post.keywords.join(", "),
+    inLanguage: "en-US",
   };
 
-  // Extract FAQ items for FAQPage schema
+  // Extract FAQ items for FAQPage schema (Google FAQ rich snippets)
+  // Matches <h3>Question</h3> followed by any content until the next <h3> or end of section
   const faqRegex =
     /<div[^>]*class="faq-section"[^>]*>([\s\S]*?)<\/div>/;
   const faqMatch = post.content.match(faqRegex);
@@ -134,19 +152,26 @@ export default async function BlogPostPage({ params }: Props) {
 
   if (faqMatch) {
     const faqHtml = faqMatch[1];
-    const questionRegex =
-      /<h3[^>]*>(.*?)<\/h3>\s*<p[^>]*>([\s\S]*?)<\/p>/g;
+    // Split FAQ section by h3 headings, then pair each heading with its answer content
+    const faqParts = faqHtml.split(/<h3[^>]*>/);
     const faqItems: { "@type": string; name: string; acceptedAnswer: { "@type": string; text: string } }[] = [];
-    let match;
-    while ((match = questionRegex.exec(faqHtml)) !== null) {
-      faqItems.push({
-        "@type": "Question",
-        name: match[1].replace(/<[^>]*>/g, ""),
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: match[2].replace(/<[^>]*>/g, ""),
-        },
-      });
+    for (const part of faqParts) {
+      if (!part.trim()) continue;
+      const h3End = part.indexOf("</h3>");
+      if (h3End === -1) continue;
+      const question = part.substring(0, h3End).replace(/<[^>]*>/g, "").trim();
+      const answerHtml = part.substring(h3End + 5).trim();
+      const answer = answerHtml.replace(/<[^>]*>/g, "").trim();
+      if (question && answer) {
+        faqItems.push({
+          "@type": "Question",
+          name: question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: answer,
+          },
+        });
+      }
     }
     if (faqItems.length > 0) {
       faqJsonLd = {

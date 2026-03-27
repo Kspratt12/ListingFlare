@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 import { getAllPosts } from "@/lib/blog";
 import {
@@ -619,19 +620,39 @@ export default function LandingPage() {
     "@type": "Organization",
     name: "ListingFlare",
     url: "https://www.listingflare.com",
-    logo: "https://www.listingflare.com/icon.svg",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://www.listingflare.com/icon.svg",
+      width: 512,
+      height: 512,
+    },
     description:
       "Real estate software company building listing marketing tools for real estate agents. AI-powered property websites, lead capture, and automated follow-up.",
+    foundingDate: "2026",
     founder: {
       "@type": "Person",
       name: "Kelvin Spratt",
+      url: "https://www.listingflare.com/about",
+      jobTitle: "Founder & CEO",
     },
     sameAs: [],
     contactPoint: {
       "@type": "ContactPoint",
       email: "support@listingflare.com",
       contactType: "customer support",
+      availableLanguage: "English",
     },
+    numberOfEmployees: {
+      "@type": "QuantitativeValue",
+      value: 1,
+    },
+    knowsAbout: [
+      "Real Estate Software",
+      "Single Property Websites",
+      "AI Chatbots for Real Estate",
+      "Real Estate Lead Generation",
+      "Listing Marketing",
+    ],
   };
 
   const websiteJsonLd = {
@@ -645,6 +666,14 @@ export default function LandingPage() {
     publisher: {
       "@type": "Organization",
       name: "ListingFlare",
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: "https://www.listingflare.com/blog?q={search_term_string}",
+      },
+      "query-input": "required name=search_term_string",
     },
   };
 
@@ -814,7 +843,7 @@ export default function LandingPage() {
               14-day free trial &mdash; no credit card required
             </div>
             <h1 className="font-serif text-4xl font-bold leading-tight text-gray-900 md:text-display">
-              <span className="sr-only">Real Estate Software for Listing Agents | ListingFlare</span>
+              <span className="mb-3 block text-base font-semibold tracking-wide text-brand-600 md:text-lg" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>Real Estate Software for Listing Agents</span>
               Last night, a buyer asked about
               <br />
               your listing. You lost them.
@@ -866,13 +895,14 @@ export default function LandingPage() {
                 </div>
                 {/* Screenshot placeholder — hero image */}
                 <div className="relative aspect-[16/9] overflow-hidden bg-gray-900">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=3840&h=2160&fit=crop&q=90&auto=format"
-                    alt="ListingFlare property page preview"
-                    loading="eager"
-                    fetchPriority="high"
+                  <Image
+                    src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&h=1080&fit=crop&q=85&auto=format"
+                    alt="ListingFlare single property website preview showing a luxury home listing page with AI chatbot, lead capture form, and agent branding"
+                    width={1920}
+                    height={1080}
+                    priority
                     className="h-full w-full object-cover opacity-80"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
                   <div className="absolute bottom-8 left-8 text-white md:bottom-12 md:left-12">

@@ -43,6 +43,20 @@ import { article as bestLeadGenRealtors } from "@/content/articles/best-lead-gen
 import { article as aiForRealEstate } from "@/content/articles/ai-for-real-estate-agents";
 import { article as bestAiToolsMarketing } from "@/content/articles/best-ai-tools-real-estate-marketing";
 import { article as bestSpwBuilders } from "@/content/articles/best-single-property-website-builders";
+import { article as bestRelaAlternatives } from "@/content/articles/best-rela-alternatives-single-property-websites";
+import { article as zillowStealsLeads } from "@/content/articles/how-zillow-steals-leads-from-listing-agents";
+import { article as cribflyerVsRelaVsListingflare } from "@/content/articles/cribflyer-vs-rela-vs-listingflare";
+import { article as listingAgentsBuyerLeads } from "@/content/articles/how-listing-agents-capture-buyer-leads";
+import { article as listingsToLeadsAlts } from "@/content/articles/listings-to-leads-alternatives";
+import { article as propertysimpleAlts } from "@/content/articles/propertysimple-alternatives";
+import { article as elevenlabsReview } from "@/content/articles/elevenlabs-review-real-estate-agents";
+import { article as manychatReview } from "@/content/articles/manychat-review-real-estate-agents";
+import { article as trainualReview } from "@/content/articles/trainual-review-real-estate-brokerages";
+import { article as aragonAiReview } from "@/content/articles/aragon-ai-review-real-estate-agents";
+import { article as surferSeoReview } from "@/content/articles/surfer-seo-review-real-estate-agents";
+import { article as restreamReview } from "@/content/articles/restream-review-real-estate-agents";
+import { article as castmagicReview } from "@/content/articles/castmagic-review-real-estate-agents";
+import { article as descriptReview } from "@/content/articles/descript-ai-review-real-estate-agents";
 
 const allPosts: BlogPost[] = [
   howToGetLeads,
@@ -74,6 +88,20 @@ const allPosts: BlogPost[] = [
   aiForRealEstate,
   bestAiToolsMarketing,
   bestSpwBuilders,
+  bestRelaAlternatives,
+  zillowStealsLeads,
+  cribflyerVsRelaVsListingflare,
+  listingAgentsBuyerLeads,
+  listingsToLeadsAlts,
+  propertysimpleAlts,
+  elevenlabsReview,
+  manychatReview,
+  trainualReview,
+  aragonAiReview,
+  surferSeoReview,
+  restreamReview,
+  castmagicReview,
+  descriptReview,
 ];
 
 // Sort by date descending
