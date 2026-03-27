@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const inter = Inter({
@@ -14,9 +16,10 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-// Force all pages to render dynamically (no static pre-rendering)
-// Required because most pages depend on Supabase auth/cookies at runtime
-export const dynamic = "force-dynamic";
+// NOTE: Do NOT set force-dynamic here — it would prevent blog pages and
+// other static content from being cached/pre-rendered at build time,
+// hurting SEO and Core Web Vitals. Pages that need runtime data (dashboard,
+// listing pages) set their own `export const dynamic = "force-dynamic"`.
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.listingflare.com"),
@@ -54,14 +57,6 @@ export const metadata: Metadata = {
     description:
       "Real estate software that creates stunning listing pages with AI chatbot, instant lead capture, and auto follow-up.",
     url: "https://www.listingflare.com",
-    images: [
-      {
-        url: "https://www.listingflare.com/icon.svg",
-        width: 512,
-        height: 512,
-        alt: "ListingFlare - Real Estate Software for Listing Agents",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -82,7 +77,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="font-sans antialiased">{children}</body>
+      <head>
+        {/* Preconnect to external origins for faster resource loading (LCP) */}
+        <link rel="preconnect" href="https://pvnsirpfofxklqgxwdiz.supabase.co" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://pvnsirpfofxklqgxwdiz.supabase.co" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+      </head>
+      <body className="font-sans antialiased">
+        {/* Skip to main content for accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-gray-950 focus:px-4 focus:py-2 focus:text-white"
+        >
+          Skip to main content
+        </a>
+        <div id="main-content">{children}</div>
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
