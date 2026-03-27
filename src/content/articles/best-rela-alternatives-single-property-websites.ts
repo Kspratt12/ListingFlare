@@ -29,6 +29,14 @@ export const article: BlogPost = {
 
 <p>This guide breaks down the seven best Rela alternatives for single property websites in 2026, with honest pricing, feature comparisons, and a clear recommendation for each type of agent. If you want a broader look at the single property website space, check out our full <a href="/blog/best-single-property-website-builders">best single property website builders</a> roundup.</p>
 
+<div style="margin: 2rem 0;">
+<video controls playsinline preload="metadata" style="width:100%;border-radius:0.75rem;" poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop&q=80">
+<source src="/rela.mp4" type="video/mp4" />
+Your browser does not support the video tag.
+</video>
+<p style="margin-top:0.5rem;font-size:0.875rem;color:#6b7280;text-align:center;">Watch: A quick look at Rela and why agents are searching for alternatives</p>
+</div>
+
 <h2>What Is Rela? A Quick Overview</h2>
 
 <p>Rela (also known as Rela HQ) is a single property website builder designed for real estate agents and teams. It launched as one of the first dedicated platforms for creating standalone listing pages, and it built a loyal following around its design quality.</p>
