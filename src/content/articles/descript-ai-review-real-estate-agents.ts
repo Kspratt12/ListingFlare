@@ -25,7 +25,7 @@ export const article: BlogPost = {
   coverImageAlt:
     "Professional video editing setup with monitor and camera equipment representing AI-powered video editing for real estate marketing",
   content: `
-<p>Video is the single most powerful content format in real estate marketing right now. According to the National Association of Realtors, 73% of homeowners say they are more likely to list with an agent who uses video. Listings with video get 403% more inquiries than those without. Buyers overwhelmingly prefer video tours over static photos when browsing homes online.</p>
+<p>Video is the single most powerful content format in real estate marketing right now. According to the National Association of Realtors, 73% of homeowners say they are more likely to list with an agent who uses video. Listings with video get 403% more inquiries than those without, and AI editing tools like Descript are making it easier than ever to create them. Buyers overwhelmingly prefer video tours over static photos when browsing homes online.</p>
 
 <p>And yet, the vast majority of real estate agents do not create video content consistently. Why? Because traditional video editing is genuinely painful. Learning Premiere Pro or Final Cut Pro takes months. Even "beginner-friendly" editors like iMovie require you to scrub through timelines, split clips, adjust audio, add transitions, and export in the right format. A 2-minute listing walkthrough can easily take 45 minutes to an hour to edit, and that is if you already know what you are doing.</p>
 
@@ -208,8 +208,9 @@ export const article: BlogPost = {
 
 <p>After extensive testing, here is our honest assessment of where Descript excels and where it falls short for real estate-specific use cases.</p>
 
-<h3>Pros</h3>
-
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
 <ul>
 <li><strong>Incredibly easy to learn</strong> - If you can edit a Google Doc, you can edit video in Descript. The learning curve is essentially zero for basic editing. We had an agent with no video editing experience create a polished listing video in under 20 minutes on their first try.</li>
 <li><strong>Filler word removal is a game-changer</strong> - This single feature saves more time than any other. Automatically removing every um and uh from a recording would take 20+ minutes manually. Descript does it in seconds.</li>
@@ -219,9 +220,9 @@ export const article: BlogPost = {
 <li><strong>Fast export times</strong> - Videos render quickly, which matters when you are trying to get a listing video published same-day.</li>
 <li><strong>Regular updates</strong> - Descript ships new AI features frequently. The product has improved significantly over the past year alone.</li>
 </ul>
-
-<h3>Cons</h3>
-
+</div>
+<div class="cons-card">
+<p>Cons</p>
 <ul>
 <li><strong>Limited advanced editing capabilities</strong> - If you want complex transitions, motion graphics, color grading, or multi-track compositing, Descript is not the right tool. It is designed for simplicity, not power.</li>
 <li><strong>Transcription accuracy varies with accents</strong> - Agents with thick regional accents or those who speak English as a second language may find that the transcription accuracy drops below 90%, requiring more manual corrections.</li>
@@ -231,6 +232,8 @@ export const article: BlogPost = {
 <li><strong>Large video files can be slow to upload</strong> - 4K footage from newer phones creates large files. Uploading a 10-minute 4K video can take several minutes depending on your internet connection.</li>
 <li><strong>Subscription model adds up</strong> - While $24 to $33 per month is reasonable, it is another recurring cost on top of your CRM, MLS fees, website, and other tools. If you only create one or two videos per year, the subscription is hard to justify.</li>
 </ul>
+</div>
+</div>
 
 <h2>Descript vs Alternatives: How Does It Compare?</h2>
 

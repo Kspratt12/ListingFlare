@@ -25,7 +25,7 @@ export const article: BlogPost = {
   coverImageAlt:
     "Smartphone showing Instagram and social media messaging apps representing automated DM lead generation for real estate agents",
   content: `
-<p>Here is the reality of social media marketing for real estate agents in 2026: you can post the most beautiful listing photos, record the most polished Reels, and write the most engaging captions - but if you are not capturing leads from that content, you are leaving money on the table.</p>
+<p>Here is the reality of social media marketing for real estate agents in 2026: you can post the most beautiful listing photos, record the most polished Reels, and write the most engaging captions - but if you are not capturing leads from that content - with a tool like ManyChat automating your DMs - you are leaving money on the table.</p>
 
 <p>Most agents fall into what we call the "post and pray" trap. They spend hours creating content, hit publish, and then hope that someone reaches out. Maybe a few people like the post. Maybe someone drops a comment. But turning that engagement into an actual lead? That requires a fast, personal response - and most agents simply cannot reply to every DM and comment within minutes while also showing homes, writing offers, and managing closings.</p>
 
@@ -316,8 +316,9 @@ export const article: BlogPost = {
 
 <p>After extensive testing, here is our honest assessment of where ManyChat shines and where it falls short for real estate professionals.</p>
 
-<h3>Pros</h3>
-
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
 <ul>
 <li><strong>Instagram comment automation is a game-changer.</strong> This single feature justifies the $15/mo cost. The ability to automatically DM everyone who comments a keyword on your posts dramatically increases your lead capture rate from social content.</li>
 <li><strong>Extremely affordable.</strong> At $15/mo for the Pro plan, ManyChat costs less than a single Zillow lead. Even if you only capture 2 to 3 extra leads per month, the ROI is significant.</li>
@@ -327,9 +328,9 @@ export const article: BlogPost = {
 <li><strong>CRM integration.</strong> Zapier support means ManyChat works with virtually any real estate CRM - Follow Up Boss, kvCORE, LionDesk, Sierra Interactive, and others.</li>
 <li><strong>Boosts algorithm performance.</strong> Comment triggers and auto-replies generate more engagement on your posts, which signals to Instagram's algorithm that your content is worth showing to more people.</li>
 </ul>
-
-<h3>Cons</h3>
-
+</div>
+<div class="cons-card">
+<p>Cons</p>
 <ul>
 <li><strong>Instagram API limitations.</strong> ManyChat can only send messages to people who have interacted with your content first (commented, DM'd you, replied to a Story). You cannot cold-DM people. This is an Instagram rule, not a ManyChat limitation, but it is important to understand.</li>
 <li><strong>Setup time.</strong> While individual flows are easy to build, creating a comprehensive automation system with multiple flows, qualification paths, and follow-up sequences takes several hours upfront.</li>
@@ -338,6 +339,8 @@ export const article: BlogPost = {
 <li><strong>WhatsApp and SMS costs extra.</strong> While included in the Pro plan, WhatsApp and SMS messages have per-message costs beyond the base subscription.</li>
 <li><strong>Facebook dependency.</strong> ManyChat requires a Facebook Business Page and relies on Meta's APIs. If Meta changes its API policies (which happens occasionally), certain features can break temporarily.</li>
 </ul>
+</div>
+</div>
 
 <h2>ManyChat vs Alternatives: How Does It Compare?</h2>
 

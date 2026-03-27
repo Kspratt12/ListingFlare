@@ -78,8 +78,9 @@ export const article: BlogPost = {
 
 <p>Basic view counts are available on all plans. The premium plan adds slightly more detail, including referral sources. But compared to what is available on other platforms, the analytics are minimal. You will know how many people visited your page. You will not know what they looked at, how long they stayed, or whether they were genuinely interested.</p>
 
-<h3>Pros</h3>
-
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
 <ul>
 <li>Cheapest option on this list - starts at just $7/mo</li>
 <li>Flexible monthly billing with easy plan changes</li>
@@ -87,9 +88,9 @@ export const article: BlogPost = {
 <li>Custom domain support on premium plan</li>
 <li>QR code generation for print materials</li>
 </ul>
-
-<h3>Cons</h3>
-
+</div>
+<div class="cons-card">
+<p>Cons</p>
 <ul>
 <li>No AI chatbot or conversational lead capture</li>
 <li>Limited lead capture - static forms only</li>
@@ -98,6 +99,8 @@ export const article: BlogPost = {
 <li>Templates look dated compared to Rela and ListingFlare</li>
 <li>No social media post generation</li>
 </ul>
+</div>
+</div>
 
 <h2>Rela Overview</h2>
 
@@ -137,8 +140,9 @@ export const article: BlogPost = {
 
 <p>Rela provides basic view counts and some engagement metrics. It is a step up from CribFlyer but still limited compared to a full analytics dashboard. You will not get detailed data on individual visitor behavior, chatbot engagement (since there is no chatbot), or lead quality scoring.</p>
 
-<h3>Pros</h3>
-
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
 <ul>
 <li>Best-in-class template design - 20 premium options</li>
 <li>Excellent mobile experience with fast load times</li>
@@ -147,9 +151,9 @@ export const article: BlogPost = {
 <li>Custom domain support on Pro and Business plans</li>
 <li>Video embed support for walkthroughs and drone footage</li>
 </ul>
-
-<h3>Cons</h3>
-
+</div>
+<div class="cons-card">
+<p>Cons</p>
 <ul>
 <li>No AI chatbot or conversational lead engagement</li>
 <li>No automated follow-up emails</li>
@@ -158,6 +162,8 @@ export const article: BlogPost = {
 <li>No social media post generation</li>
 <li>Lead capture limited to static forms and Calendly</li>
 </ul>
+</div>
+</div>
 
 <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=450&fit=crop&q=80" alt="Real estate agent reviewing listing performance data on a tablet device" loading="lazy" />
 
@@ -215,8 +221,9 @@ export const article: BlogPost = {
 
 <p>The design is not as visually dramatic as Rela's best luxury templates. But for the vast majority of listings, ListingFlare pages look sharp and load fast on every device. And the presence of the AI chatbot adds a level of interactivity that no amount of design polish can replicate.</p>
 
-<h3>Pros</h3>
-
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
 <ul>
 <li>Only platform with an AI chatbot on every listing page - captures leads 24/7</li>
 <li>Automatic lead capture through natural conversation, not just static forms</li>
@@ -227,15 +234,17 @@ export const article: BlogPost = {
 <li>14-day free trial with no credit card required</li>
 <li>Strong agent branding on every page</li>
 </ul>
-
-<h3>Cons</h3>
-
+</div>
+<div class="cons-card">
+<p>Cons</p>
 <ul>
 <li>Higher price point at $150/mo - not ideal for agents with very low volume</li>
 <li>Smaller template library compared to Rela</li>
 <li>No IDX integration (intentionally a single property tool, not a full agent site)</li>
 <li>Newer platform with a shorter track record than CribFlyer or Rela</li>
 </ul>
+</div>
+</div>
 
 <h2>Head-to-Head Comparison Table</h2>
 

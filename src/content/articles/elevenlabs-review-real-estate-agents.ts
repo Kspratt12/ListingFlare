@@ -29,7 +29,7 @@ export const article: BlogPost = {
   coverImageAlt:
     "Professional microphone in a recording studio setup representing AI voiceover technology for real estate listing videos",
   content: `
-<p>AI is reshaping every corner of real estate marketing. We have AI listing descriptions, AI photo editing, AI chatbots, and AI ad generators. But there is one category that most agents are sleeping on: <strong>AI voice</strong>.</p>
+<p>AI is reshaping every corner of real estate marketing. We have AI listing descriptions, AI photo editing, AI chatbots, and AI ad generators. But there is one category that most agents are sleeping on: <strong>AI voice</strong> - and tools like <strong>ElevenLabs</strong> are leading the charge.</p>
 
 <p>Think about how many times you have scrolled past a silent listing slideshow on Instagram. Now think about the last time you stopped to watch a property video with a smooth, confident voiceover walking you through the home. The difference is night and day. Voice adds emotion, authority, and professionalism to your content in a way that text overlays simply cannot.</p>
 
@@ -248,8 +248,9 @@ export const article: BlogPost = {
 
 <p>We have covered the use cases. Now let us give you an honest assessment of what ElevenLabs does well and where it falls short for real estate agents specifically. This is not a sponsored review - we are giving you the straight picture so you can make an informed decision.</p>
 
-<h3>Pros</h3>
-
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
 <ul>
 <li><strong>Incredibly realistic voice quality</strong> - The voices sound genuinely human. Natural pauses, breathing, intonation, and emotion. This is not the robotic text-to-speech of five years ago. In blind tests, most people cannot distinguish ElevenLabs audio from a human recording.</li>
 <li><strong>Voice cloning is a game-changer for personal branding</strong> - Being able to create content that sounds like you without spending time recording is a massive time-saver. Your brand stays consistent even when you are scaling content production.</li>
@@ -259,9 +260,9 @@ export const article: BlogPost = {
 <li><strong>No specialized equipment needed</strong> - No microphone, no soundproofing, no audio editing software. Just a web browser and a script. The barrier to entry is as low as it can possibly be.</li>
 <li><strong>Growing voice library</strong> - Thousands of voices to choose from, plus new ones added regularly. You can find voices that match virtually any brand persona - authoritative, friendly, warm, energetic, calm.</li>
 </ul>
-
-<h3>Cons</h3>
-
+</div>
+<div class="cons-card">
+<p>Cons</p>
 <ul>
 <li><strong>Learning curve for first-time users</strong> - The platform is not complicated, but it is not as simple as pressing a single button either. You need to experiment with voice selection, pacing settings, and script formatting to get the best results. Budget 30 to 60 minutes to get comfortable with the interface.</li>
 <li><strong>Voice cloning requires Creator plan or above</strong> - If you want to clone your own voice, you need to be on the Creator plan at $22 per month minimum. The $5 Starter plan does not include this feature, which is disappointing since voice cloning is one of the platform's biggest selling points.</li>
@@ -271,6 +272,8 @@ export const article: BlogPost = {
 <li><strong>You still need video editing skills</strong> - ElevenLabs generates audio files, not finished videos. You need to pair the audio with visuals using a video editor like CapCut, Canva, Descript, or iMovie. If you have never edited video before, there is an additional learning curve on top of learning ElevenLabs itself.</li>
 <li><strong>Character limits can sneak up on you</strong> - If you are producing a lot of content - daily social media posts, weekly podcasts, multiple listing videos - you can burn through your character allocation faster than expected. Keep an eye on your usage dashboard.</li>
 </ul>
+</div>
+</div>
 
 <h2>ElevenLabs vs Alternatives for Real Estate</h2>
 

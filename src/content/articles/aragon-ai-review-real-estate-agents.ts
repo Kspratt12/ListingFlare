@@ -25,7 +25,7 @@ export const article: BlogPost = {
   coverImageAlt:
     "Professional portrait photography setup with lighting equipment representing AI headshot technology for real estate agents",
   content: `
-<p>Your headshot is the first thing buyers and sellers see. Before they read your bio, before they check your reviews, before they look at a single listing - they see your face. And in about two seconds, they decide whether you look trustworthy, professional, and competent enough to handle the biggest financial transaction of their lives.</p>
+<p>Your headshot is the first thing buyers and sellers see. Before they read your bio, before they check your reviews, before they look at a single listing - they see your face. And in about two seconds, they decide whether you look trustworthy, professional, and competent enough to handle the biggest financial transaction of their lives. That is why tools like Aragon AI, which generate professional headshots from simple selfies, have become so popular among agents.</p>
 
 <p>That is a lot of pressure riding on one photo.</p>
 
@@ -203,8 +203,9 @@ export const article: BlogPost = {
 
 <p>After extensive testing, here is our honest assessment of where Aragon AI excels and where it falls short for real estate agents.</p>
 
-<h3>Pros</h3>
-
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
 <ul>
 <li><strong>Incredibly fast</strong> - From selfie to finished headshot in one to two hours. No scheduling, no travel, no waiting for a photographer's edits.</li>
 <li><strong>Extremely affordable</strong> - Starting at $29 for 40 headshots compared to $200 to $500 for a traditional session. The per-image cost is a fraction of professional photography.</li>
@@ -215,9 +216,9 @@ export const article: BlogPost = {
 <li><strong>Great for teams</strong> - Every team member can generate their own headshots independently, making it much easier to keep a brokerage's team page looking polished and current.</li>
 <li><strong>High resolution output</strong> - Images are suitable for both digital use and print materials, including yard signs and large format displays.</li>
 </ul>
-
-<h3>Cons</h3>
-
+</div>
+<div class="cons-card">
+<p>Cons</p>
 <ul>
 <li><strong>AI can miss small details</strong> - Occasionally, the AI generates headshots with minor imperfections - slightly off skin texture, an earring that looks odd, a collar that bends unnaturally. You need to review each image carefully.</li>
 <li><strong>Not 100% photorealistic for everyone</strong> - Results vary by person. People with very distinctive features, unique hairstyles, or significant facial hair sometimes get less accurate results. The AI works best with clear, well-lit input photos.</li>
@@ -226,6 +227,8 @@ export const article: BlogPost = {
 <li><strong>Some results look too polished</strong> - A handful of generated headshots can have an overly smooth, magazine-cover quality that might look slightly unrealistic to a discerning eye. Picking the right images from the batch is important.</li>
 <li><strong>One-time payment model</strong> - While affordable per session, costs add up if you regenerate frequently. Agents who update their headshot quarterly would spend $116 to $276 per year depending on the plan.</li>
 </ul>
+</div>
+</div>
 
 <p>The bottom line: Aragon AI's pros significantly outweigh the cons for most real estate agents. The speed, affordability, and variety make it an outstanding choice for agents at every level. The limitations are real but manageable - you just need to review your results carefully and select the best images from each batch.</p>
 

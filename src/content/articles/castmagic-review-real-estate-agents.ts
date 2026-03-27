@@ -25,7 +25,7 @@ export const article: BlogPost = {
   coverImageAlt:
     "Real estate agent recording video content on smartphone with AI content repurposing tools transforming one video into multiple social media posts and blog articles",
   content: `
-<p>Every real estate agent knows the feeling. You sit down on a Sunday night to plan your social media content for the week, open a blank document, and stare at the cursor for 20 minutes before giving up and posting a stock photo with a generic caption. The next day you see a competing agent in your market posting polished Instagram carousels, weekly email newsletters, LinkedIn thought leadership pieces, and blog articles - all with consistent branding and messaging. You wonder how they have time to produce all of that while also showing homes and closing deals.</p>
+<p>Every real estate agent knows the feeling. You sit down on a Sunday night to plan your social media content for the week, open a blank document, and stare at the cursor for 20 minutes before giving up and posting a stock photo with a generic caption. The next day you see a competing agent in your market posting polished Instagram carousels, weekly email newsletters, LinkedIn thought leadership pieces, and blog articles - all with consistent branding and messaging. You wonder how they have time to produce all of that while also showing homes and closing deals. The answer, increasingly, is AI content repurposing tools like Castmagic.</p>
 
 <p>Here is the secret most top-producing agents have figured out: they are not creating 30 separate pieces of content. They are creating one piece of content and using AI to turn it into 30. The tool making this possible for thousands of agents right now is called <strong>Castmagic</strong>, and it is changing how real estate professionals approach content marketing entirely.</p>
 
@@ -172,8 +172,9 @@ export const article: BlogPost = {
 
 <p>After extensive testing and reviewing feedback from dozens of agents using the platform, here is an honest assessment of Castmagic's strengths and weaknesses.</p>
 
-<h3>Pros</h3>
-
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
 <ul>
 <li><strong>Massive time savings</strong> - The average agent saves 5 to 8 hours per week on content creation. That is time you can reinvest in prospecting, client meetings, and closing deals.</li>
 <li><strong>High output quality</strong> - The AI-generated content reads naturally and requires minimal editing. It is noticeably better than generic ChatGPT outputs because it works from your actual words and ideas, not a blank prompt.</li>
@@ -183,9 +184,9 @@ export const article: BlogPost = {
 <li><strong>Affordable entry point</strong> - At $23 per month for the Starter plan, Castmagic costs less than a single hour of a freelance content writer's time and produces far more output.</li>
 <li><strong>Podcast and video support</strong> - Direct integrations with YouTube, Zoom, and podcast feeds make it easy to repurpose content you are already creating.</li>
 </ul>
-
-<h3>Cons</h3>
-
+</div>
+<div class="cons-card">
+<p>Cons</p>
 <ul>
 <li><strong>No built-in scheduling</strong> - Castmagic generates the content but does not post it for you. You still need a separate tool like Buffer or Later to schedule and publish across platforms.</li>
 <li><strong>Requires review</strong> - While the AI is good, it is not perfect. You need to review every output for accuracy, especially when it comes to property details, pricing, and market statistics. Publishing AI content without review is a recipe for embarrassing mistakes.</li>
@@ -194,6 +195,8 @@ export const article: BlogPost = {
 <li><strong>No real estate-specific templates out of the box</strong> - The default templates are generic. You will need to spend time creating custom templates tailored to real estate content types. This is a one-time setup cost, but it does add friction during onboarding.</li>
 <li><strong>No lead capture</strong> - Castmagic helps you create content, but it does not help you capture leads from that content. You need a separate system for turning social media followers and blog readers into actual leads with contact information.</li>
 </ul>
+</div>
+</div>
 
 <h2>Castmagic vs Alternatives: How Does It Compare?</h2>
 

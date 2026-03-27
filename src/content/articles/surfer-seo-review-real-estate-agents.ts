@@ -25,7 +25,7 @@ export const article: BlogPost = {
   coverImageAlt:
     "Laptop displaying website analytics and SEO performance data for real estate content optimization",
   content: `
-<p>You can write the best real estate blog post in the world. You can pour hours into a neighborhood guide, load it with beautiful photos, and share it across every social media platform you have. But if Google does not rank it, nobody sees it. Your masterpiece sits on page 7 collecting digital dust while a competitor's mediocre 500-word article sits at position one stealing every click.</p>
+<p>You can write the best real estate blog post in the world. You can pour hours into a neighborhood guide, load it with beautiful photos, and share it across every social media platform you have. But if Google does not rank it - and you are not using a content optimization tool like Surfer SEO - nobody sees it. Your masterpiece sits on page 7 collecting digital dust while a competitor's mediocre 500-word article sits at position one stealing every click.</p>
 
 <p>This is the reality most real estate agents face with content marketing. They know they should be blogging. They know content drives organic leads. But they do not understand why some articles rank and others vanish into the void. The missing piece is almost always <strong>content optimization</strong> - making sure your article gives Google exactly what it wants to see for a given keyword.</p>
 
@@ -188,8 +188,9 @@ export const article: BlogPost = {
 
 <p>After months of testing Surfer for real estate content, here is our honest assessment of what works and what falls short.</p>
 
-<h3>Pros</h3>
-
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
 <ul>
 <li><strong>Takes the guesswork out of content optimization</strong> - Instead of wondering why your article is not ranking, Surfer gives you specific, actionable data. You know exactly what to include, how long to write, and what keywords to target.</li>
 <li><strong>Real-time scoring is addictive and motivating</strong> - Watching your score climb as you write is genuinely satisfying. It gamifies the writing process and keeps you on track.</li>
@@ -199,9 +200,9 @@ export const article: BlogPost = {
 <li><strong>SERP Analyzer provides genuine competitive intelligence</strong> - Seeing exactly what your competitors wrote to earn their rankings is incredibly valuable for planning your content strategy.</li>
 <li><strong>Keyword clustering helps with content planning</strong> - Surfer's keyword research tool groups related keywords together, which helps you plan content clusters rather than writing random one-off articles.</li>
 </ul>
-
-<h3>Cons</h3>
-
+</div>
+<div class="cons-card">
+<p>Cons</p>
 <ul>
 <li><strong>The $89/month price point is a commitment</strong> - For agents who are only writing one or two blog posts per month, $89 is a significant per-article cost. You need to be committed to regular content production to justify the expense.</li>
 <li><strong>It can encourage over-optimization if you are not careful</strong> - Chasing a perfect score can lead to keyword-stuffed content that reads poorly. You need to balance Surfer's recommendations with readability and your own voice.</li>
@@ -210,6 +211,8 @@ export const article: BlogPost = {
 <li><strong>AI writing quality is inconsistent</strong> - The Scale AI plan's AI writing feature produces decent first drafts, but the output for real estate content specifically tends to be generic. It lacks the local knowledge and personal touch that makes real estate content compelling.</li>
 <li><strong>No free tier for ongoing use</strong> - Unlike some competitors, Surfer does not offer a limited free plan. There is a 7-day money-back guarantee, but no perpetual free option to test with a few articles per month.</li>
 </ul>
+</div>
+</div>
 
 <h2>Surfer SEO vs Alternatives: How Does It Compare?</h2>
 

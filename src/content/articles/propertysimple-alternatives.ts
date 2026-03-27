@@ -76,7 +76,9 @@ export const article: BlogPost = {
 
 <p>Beyond the chatbot, you get automatic follow-up emails for leads who visit but do not convert immediately, an analytics dashboard that shows visitor behavior and engagement, and the ability to share listing pages via QR codes, text, email, and social media. For a deeper look at AI-powered marketing tools, check out our <a href="/blog/best-ai-tools-real-estate-marketing">guide to the best AI tools for real estate marketing</a>.</p>
 
-<p><strong>Pros:</strong></p>
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
 <ul>
 <li>AI chatbot per listing that answers buyer questions 24/7</li>
 <li>Single property websites with custom branding</li>
@@ -85,12 +87,15 @@ export const article: BlogPost = {
 <li>Analytics dashboard with visitor tracking</li>
 <li>Fast setup - publish a listing page in under 10 minutes</li>
 </ul>
-
-<p><strong>Cons:</strong></p>
+</div>
+<div class="cons-card">
+<p>Cons</p>
 <ul>
 <li>Does not include social media automation (focused on listing marketing)</li>
 <li>No built-in CRM (integrates with popular CRMs)</li>
 </ul>
+</div>
+</div>
 
 <p><strong>Best for:</strong> Listing agents who want to capture more buyer leads from their active listings and provide sellers with impressive, dedicated property marketing. If you want to see it in action, <a href="/demo">request a demo</a>.</p>
 
@@ -104,20 +109,25 @@ export const article: BlogPost = {
 
 <p>Where Listings to Leads falls short compared to ListingFlare is in lead engagement. There is no AI chatbot to answer buyer questions in real time. Lead capture relies on traditional forms, which means you miss out on after-hours conversations. The follow-up sequences are email-based and templated, not conversational.</p>
 
-<p><strong>Pros:</strong></p>
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
 <ul>
 <li>Affordable starting price for a broad feature set</li>
 <li>Auto-generates marketing materials from MLS data</li>
 <li>Includes print flyers and social media templates</li>
 <li>Single property websites with lead capture forms</li>
 </ul>
-
-<p><strong>Cons:</strong></p>
+</div>
+<div class="cons-card">
+<p>Cons</p>
 <ul>
 <li>No AI chatbot for real-time buyer engagement</li>
 <li>Templates are functional but not premium-looking</li>
 <li>Some features require higher-tier plans</li>
 </ul>
+</div>
+</div>
 
 <p><strong>Best for:</strong> Agents who want a jack-of-all-trades marketing platform at a lower price point and are comfortable with traditional lead capture forms rather than AI-driven conversations.</p>
 
@@ -131,20 +141,25 @@ export const article: BlogPost = {
 
 <p>The downside is lead capture. Rela relies on static contact forms and does not include an AI chatbot or intelligent lead engagement. You get the buyer&rsquo;s name and email, but there is no automated conversation or after-hours response. Pricing can also add up because lower-tier plans limit the number of active listing pages you can run simultaneously.</p>
 
-<p><strong>Pros:</strong></p>
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
 <ul>
 <li>Stunning, magazine-quality property website templates</li>
 <li>Matterport and video integration</li>
 <li>Mobile-optimized and fast-loading</li>
 <li>Strong branding options</li>
 </ul>
-
-<p><strong>Cons:</strong></p>
+</div>
+<div class="cons-card">
+<p>Cons</p>
 <ul>
 <li>No AI chatbot or intelligent lead engagement</li>
 <li>Lower-tier plans limit active listings</li>
 <li>Per-listing costs add up for high-volume agents</li>
 </ul>
+</div>
+</div>
 
 <p><strong>Best for:</strong> Luxury agents and teams who prioritize visual presentation above all else and are okay with basic lead capture.</p>
 
@@ -158,7 +173,9 @@ export const article: BlogPost = {
 
 <p>The challenge with Ylopo is cost and complexity. The base platform fee is $500 or more per month before you add ad spend, and most Ylopo users budget $1,000 to $2,000 per month total. It also does not focus on per-listing marketing the way ListingFlare or Rela does. Ylopo is about generating and nurturing leads across your entire business, not marketing individual properties with dedicated pages.</p>
 
-<p><strong>Pros:</strong></p>
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
 <ul>
 <li>Sophisticated AI follow-up via text and voice</li>
 <li>Integrated paid advertising on Facebook and Google</li>
@@ -166,14 +183,17 @@ export const article: BlogPost = {
 <li>IDX home search website included</li>
 <li>Strong analytics and attribution tracking</li>
 </ul>
-
-<p><strong>Cons:</strong></p>
+</div>
+<div class="cons-card">
+<p>Cons</p>
 <ul>
 <li>Expensive - $500+/month before ad spend</li>
 <li>Steep learning curve</li>
 <li>No single property websites</li>
 <li>Overkill for solo agents focused on listing marketing</li>
 </ul>
+</div>
+</div>
 
 <p><strong>Best for:</strong> Teams and brokerages with large budgets who want a full-stack AI marketing and advertising platform. Not ideal for individual listing agents.</p>
 
@@ -187,21 +207,26 @@ export const article: BlogPost = {
 
 <p>Brivity is a solid choice if you want a CRM that also handles marketing. But the property pages are not as feature-rich as dedicated single property website builders. There is no AI chatbot for buyer engagement on listing pages. The strength is in the CRM and pipeline management, not in per-listing marketing innovation.</p>
 
-<p><strong>Pros:</strong></p>
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
 <ul>
 <li>Strong CRM with pipeline tracking</li>
 <li>Automated text and email follow-up</li>
 <li>Built by an active real estate professional</li>
 <li>Marketing material generator from listing data</li>
 </ul>
-
-<p><strong>Cons:</strong></p>
+</div>
+<div class="cons-card">
+<p>Cons</p>
 <ul>
 <li>Property pages are basic compared to dedicated builders</li>
 <li>No per-listing AI chatbot</li>
 <li>Pricing can be unclear - varies by feature bundle</li>
 <li>Better as a CRM than a listing marketing tool</li>
 </ul>
+</div>
+</div>
 
 <p><strong>Best for:</strong> Agents and teams who want a CRM-centered platform that includes listing marketing as one part of a broader lead management system.</p>
 

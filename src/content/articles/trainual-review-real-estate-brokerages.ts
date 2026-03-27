@@ -24,7 +24,7 @@ export const article: BlogPost = {
   coverImageAlt:
     "Real estate team collaborating in a modern office setting representing structured onboarding and training processes for brokerages",
   content: `
-<p>Here is a stat that should keep every broker and team leader up at night: <strong>87% of newly licensed real estate agents leave the industry within five years</strong>. Even more alarming, roughly 75% do not survive their first year. That is not a talent problem. It is a training problem.</p>
+<p>Here is a stat that should keep every broker and team leader up at night: <strong>87% of newly licensed real estate agents leave the industry within five years</strong>. Even more alarming, roughly 75% do not survive their first year. That is not a talent problem. It is a training problem - and platforms like Trainual are built to fix it.</p>
 
 <p>Most brokerages hand a new agent a login to the MLS, point them toward a desk, and say "go get 'em." No structured onboarding. No documented processes. No clear path from day one to first closing. The agents who survive figure it out on their own. Everyone else burns through their savings, gets discouraged, and quietly lets their license lapse.</p>
 
@@ -238,7 +238,9 @@ export const article: BlogPost = {
 
 <p>Here is our honest assessment of where Trainual excels and where it falls short for real estate brokerages.</p>
 
-<p><strong>Pros:</strong></p>
+<div class="pros-cons">
+<div class="pros-card">
+<p>Pros</p>
 <ul>
 <li><strong>Clean, intuitive interface.</strong> Creating and organizing training content is straightforward. You do not need technical skills or instructional design experience. If you can write an email and upload a photo, you can build a training module.</li>
 <li><strong>Role-based assignments work well for real estate.</strong> The ability to assign different content to different roles (buyer agent, listing agent, TC, admin) matches how real estate teams actually operate.</li>
@@ -248,8 +250,9 @@ export const article: BlogPost = {
 <li><strong>Built-in screen recorder.</strong> You can record walkthroughs of your MLS, CRM, or transaction management software directly within Trainual. This is perfect for showing agents exactly how to use your tech stack.</li>
 <li><strong>Solid mobile experience.</strong> Agents can complete training modules from their phone between showings - which is how most training actually gets consumed in real estate.</li>
 </ul>
-
-<p><strong>Cons:</strong></p>
+</div>
+<div class="cons-card">
+<p>Cons</p>
 <ul>
 <li><strong>Price is steep for small teams.</strong> At $250/mo for up to 10 seats, Trainual is a meaningful expense for a small team of 3 to 5 people. The per-person cost improves as your team grows, but for smaller operations, cheaper alternatives might make more sense.</li>
 <li><strong>No real estate-specific templates.</strong> Trainual is industry-agnostic. It does not ship with pre-built real estate onboarding plans, compliance modules, or SOP templates. You are building everything from scratch, which takes significant upfront time.</li>
@@ -258,6 +261,8 @@ export const article: BlogPost = {
 <li><strong>No built-in video hosting for long content.</strong> While you can embed videos from YouTube, Loom, or Vimeo, Trainual does not host long-form video natively. If you create a lot of video training, you will need a separate hosting solution.</li>
 <li><strong>Overkill for teams that are not growing.</strong> If your team is stable and you rarely bring on new members, the ongoing monthly cost is hard to justify. The ROI is strongest for brokerages that hire multiple agents per year.</li>
 </ul>
+</div>
+</div>
 
 <h2>Trainual vs Alternatives for Real Estate Teams</h2>
 
