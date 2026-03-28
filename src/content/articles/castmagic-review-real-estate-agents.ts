@@ -27,7 +27,7 @@ export const article: BlogPost = {
   content: `
 <p>Every real estate agent knows the feeling. You sit down on a Sunday night to plan your social media content for the week, open a blank document, and stare at the cursor for 20 minutes before giving up and posting a stock photo with a generic caption. The next day you see a competing agent in your market posting polished Instagram carousels, weekly email newsletters, LinkedIn thought leadership pieces, and blog articles - all with consistent branding and messaging. You wonder how they have time to produce all of that while also showing homes and closing deals. The answer, increasingly, is AI content repurposing tools like Castmagic.</p>
 
-<p>Here is the secret most top-producing agents have figured out: they are not creating 30 separate pieces of content. They are creating one piece of content and using AI to turn it into 30. The tool making this possible for thousands of agents right now is called <strong>Castmagic</strong>, and it is changing how real estate professionals approach content marketing entirely.</p>
+<p>The secret most top-producing agents have figured out: they are not creating 30 separate pieces of content. They are creating one piece of content and using AI to turn it into 30. The tool making this possible for thousands of agents right now is called <strong>Castmagic</strong>, and it is changing how real estate professionals approach content marketing entirely.</p>
 
 <p>In this <strong>Castmagic review</strong>, we will break down exactly what the platform does, how real estate agents are using it to dominate social media with minimal effort, what it costs, and whether it is worth the investment for your business. We will also compare it to the top alternatives so you can make an informed decision. If you have been struggling with the content creation treadmill, this guide will show you how to get off it.</p>
 
@@ -113,7 +113,7 @@ export const article: BlogPost = {
 
 <h2>How Real Estate Agents Use Castmagic</h2>
 
-<p>The real value of this platform becomes clear when you see how it fits into a real estate agent's actual workflow. Here are the five most common use cases we have seen agents implement successfully.</p>
+<p>The real value of this platform becomes clear when you see how it fits into a real estate agent's actual workflow. These are the five most common use cases we have seen agents implement successfully.</p>
 
 <h3>1. Weekly Market Update to Multi-Platform Content</h3>
 
@@ -330,11 +330,11 @@ export const article: BlogPost = {
 
 <h2>Castmagic + ListingFlare: The Complete Real Estate Content-to-Lead Pipeline</h2>
 
-<p>Here is where things get really interesting for real estate agents. Castmagic solves the content creation problem brilliantly, but content alone does not pay your mortgage. Content needs to drive leads, and leads need to convert into clients. This is where <a href="/signup">ListingFlare</a> completes the picture.</p>
+<p>This is where things get really interesting for real estate agents. Castmagic solves the content creation problem brilliantly, but content alone does not pay your mortgage. Content needs to drive leads, and leads need to convert into clients. This is where <a href="/signup">ListingFlare</a> completes the picture.</p>
 
 <p>Think of it as a two-stage rocket. <strong>Stage one</strong> is Castmagic: you create content at scale from simple recordings, building your audience and driving traffic across social media, email, and your blog. <strong>Stage two</strong> is ListingFlare: when that traffic lands on your property pages, an AI-powered chatbot engages visitors in real time, answers their questions about your listings, and captures their contact information automatically - 24 hours a day, 7 days a week.</p>
 
-<p>Here is the workflow in practice:</p>
+<p>The workflow in practice:</p>
 
 <ol>
 <li><strong>Record a 5-minute market update</strong> discussing new listings in your area</li>

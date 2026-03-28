@@ -24,7 +24,7 @@ export const article: BlogPost = {
   coverImageAlt:
     "Real estate team collaborating in a modern office setting representing structured onboarding and training processes for brokerages",
   content: `
-<p>Here is a stat that should keep every broker and team leader up at night: <strong>87% of newly licensed real estate agents leave the industry within five years</strong>. Even more alarming, roughly 75% do not survive their first year. That is not a talent problem. It is a training problem - and platforms like Trainual are built to fix it.</p>
+<p>A stat that should keep every broker and team leader up at night: <strong>87% of newly licensed real estate agents leave the industry within five years</strong>. Even more alarming, roughly 75% do not survive their first year. That is not a talent problem. It is a training problem - and platforms like Trainual are built to fix it.</p>
 
 <p>Most brokerages hand a new agent a login to the MLS, point them toward a desk, and say "go get 'em." No structured onboarding. No documented processes. No clear path from day one to first closing. The agents who survive figure it out on their own. Everyone else burns through their savings, gets discouraged, and quietly lets their license lapse.</p>
 
@@ -32,7 +32,7 @@ export const article: BlogPost = {
 
 <p><strong>Trainual</strong> is one of the most popular platforms for building that system. It has gained real traction with real estate teams who are tired of reinventing the wheel every time a new agent joins. But is it worth the investment? Does it solve the right problems?</p>
 
-<p>We spent several weeks evaluating Trainual through the lens of real estate brokerages. This is our honest <strong>Trainual review for 2026</strong> - covering features, pricing, real-world use cases, and whether it deserves a spot in your tech stack.</p>
+<p>We spent several weeks evaluating Trainual through the lens of real estate brokerages. Here is our <strong>Trainual review for 2026</strong> - covering features, pricing, real-world use cases, and whether it deserves a spot in your tech stack.</p>
 
 <img src="/blog/trainual/trainual.gif" alt="Trainual platform overview for real estate team training and onboarding" loading="lazy" />
 
@@ -55,7 +55,7 @@ export const article: BlogPost = {
 
 <h2>Trainual Pricing in 2026</h2>
 
-<p>Pricing is one of the first questions every brokerage asks, so let us get into the specifics. Trainual uses a seat-based pricing model with two main plans. Here is the breakdown as of early 2026:</p>
+<p>Pricing is one of the first questions every brokerage asks, so here are the specifics. Trainual uses a seat-based pricing model with two main plans. Here is the breakdown as of early 2026:</p>
 
 <table>
 <thead>
@@ -214,7 +214,7 @@ export const article: BlogPost = {
 
 <h2>5 Training Mistakes Brokerages Make (and How to Avoid Them)</h2>
 
-<p>Having a platform like Trainual is only half the equation. The content you put in it matters just as much. Here are five training mistakes we see brokerages make repeatedly - and most of them have nothing to do with software.</p>
+<p>Having a platform like Trainual is only half the equation. The content you put in it matters just as much. Five training mistakes we see brokerages make repeatedly - and most of them have nothing to do with software.</p>
 
 <h3>1. Confusing Licensing with Training</h3>
 
@@ -248,7 +248,7 @@ export const article: BlogPost = {
 
 <h2>Trainual Pros and Cons for Real Estate Teams</h2>
 
-<p>Here is our honest assessment of where Trainual excels and where it falls short for real estate brokerages.</p>
+<p>Our assessment of where Trainual excels and where it falls short for real estate brokerages.</p>
 
 <div class="pros-cons">
 <div class="pros-card">
@@ -326,9 +326,9 @@ export const article: BlogPost = {
 
 <p><strong>Yes, with conditions.</strong></p>
 
-<p>Trainual is a genuinely good platform for documenting processes, onboarding new team members, and building a searchable knowledge base. The interface is clean, the role-based training paths fit real estate team structures well, and the completion tracking gives brokers visibility into who is keeping up with their training.</p>
+<p>Trainual is a solid platform for documenting processes, onboarding new team members, and building a searchable knowledge base. The interface is clean, the role-based training paths fit real estate team structures well, and the completion tracking gives brokers visibility into who is keeping up with their training.</p>
 
-<p>However, it is not for everyone. Here is our recommendation broken down by team size:</p>
+<p>However, it is not for everyone. Our recommendation broken down by team size:</p>
 
 <ul>
 <li><strong>Solo agents or teams of 2-3:</strong> Skip Trainual. Use Notion or Google Docs to document your personal processes. The monthly cost is not justified at this scale.</li>

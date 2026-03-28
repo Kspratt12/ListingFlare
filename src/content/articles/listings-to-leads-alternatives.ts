@@ -40,7 +40,7 @@ export const article: BlogPost = {
 
 <ul>
 <li><strong>Broad marketing suite.</strong> Few platforms cover as many channels in one place. You can generate a landing page, a print flyer, a social media post, and an email campaign from the same listing data. That saves time if you are managing all of your marketing from a single dashboard.</li>
-<li><strong>Print materials.</strong> The platform has genuinely useful print templates for flyers, postcards, and brochures. If you still use print marketing (and many agents do), this is a real advantage over platforms that are digital-only.</li>
+<li><strong>Print materials.</strong> The platform has useful print templates for flyers, postcards, and brochures. If you still use print marketing (and many agents do), this is a real advantage over platforms that are digital-only.</li>
 <li><strong>Social media templates.</strong> Pre-built templates for Instagram, Facebook, and other platforms make it easy to create listing-specific social content without hiring a designer.</li>
 <li><strong>Established community.</strong> With 10,000+ agents on the platform, there is a solid knowledge base, support infrastructure, and peer community.</li>
 </ul>

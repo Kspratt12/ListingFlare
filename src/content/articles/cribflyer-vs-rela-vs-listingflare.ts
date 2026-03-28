@@ -42,7 +42,7 @@ export const article: BlogPost = {
 <li><strong>Best overall value:</strong> ListingFlare. A beautiful page that does not capture leads is a missed opportunity. ListingFlare combines professional design with actual lead generation tools that work 24/7.</li>
 </ul>
 
-<p>Now let us dig into each platform.</p>
+<p>Now for the details on each platform.</p>
 
 <h2>CribFlyer Overview</h2>
 
@@ -60,7 +60,7 @@ export const article: BlogPost = {
 <li><strong>Premium:</strong> $25/mo - Custom domain support, priority support, enhanced analytics</li>
 </ul>
 
-<p>One thing CribFlyer does well is flexibility. You can upgrade or downgrade your plan monthly without penalty. If you have a luxury listing that justifies the premium tier but your next listing is a standard sale, you can adjust. That flexibility is genuinely useful for agents whose listing volume fluctuates.</p>
+<p>One thing CribFlyer does well is flexibility. You can upgrade or downgrade your plan monthly without penalty. If you have a luxury listing that justifies the premium tier but your next listing is a standard sale, you can adjust. That flexibility is useful for agents whose listing volume fluctuates.</p>
 
 <h3>Templates and Design</h3>
 
@@ -78,7 +78,7 @@ export const article: BlogPost = {
 
 <h3>Analytics</h3>
 
-<p>Basic view counts are available on all plans. The premium plan adds slightly more detail, including referral sources. But compared to what is available on other platforms, the analytics are minimal. You will know how many people visited your page. You will not know what they looked at, how long they stayed, or whether they were genuinely interested.</p>
+<p>Basic view counts are available on all plans. The premium plan adds slightly more detail, including referral sources. But compared to what is available on other platforms, the analytics are minimal. You will know how many people visited your page. You will not know what they looked at, how long they stayed, or whether they were seriously interested.</p>
 
 <div class="pros-cons">
 <div class="pros-card">
@@ -124,7 +124,7 @@ export const article: BlogPost = {
 
 <h3>Templates and Design</h3>
 
-<p>This is where Rela shines. The platform offers 20+ premium templates that are genuinely beautiful. Full-width hero images, elegant typography, smooth scrolling animations, and photo galleries that feel like flipping through an architecture magazine. For luxury listings, Rela is hard to beat on pure visual impact.</p>
+<p>This is where Rela shines. The platform offers 20+ premium templates that are beautiful. Full-width hero images, elegant typography, smooth scrolling animations, and photo galleries that feel like flipping through an architecture magazine. For luxury listings, Rela is hard to beat on pure visual impact.</p>
 
 <p>The templates are also mobile-responsive and load quickly, which matters when 76% of buyers are browsing on their phones. Rela clearly invested heavily in design, and it shows.</p>
 

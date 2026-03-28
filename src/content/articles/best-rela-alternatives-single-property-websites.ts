@@ -65,7 +65,7 @@ Your browser does not support the video tag.
 
 <h3>What Rela Does Well</h3>
 
-<p>Rela&rsquo;s templates are genuinely attractive. If your only goal is to create a visually impressive listing presentation, Rela delivers. The 3D tour integration is smooth, the photo galleries load quickly, and the mobile experience is solid. For agents who primarily want a digital brochure to share at open houses or include in listing presentations, Rela works.</p>
+<p>Rela&rsquo;s templates are attractive. If your only goal is to create a visually impressive listing presentation, Rela delivers. The 3D tour integration is smooth, the photo galleries load quickly, and the mobile experience is solid. For agents who primarily want a digital brochure to share at open houses or include in listing presentations, Rela works.</p>
 
 <h3>What Rela Is Missing</h3>
 
