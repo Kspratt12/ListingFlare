@@ -198,24 +198,24 @@ export const article: BlogPost = {
 <div class="pros-card">
 <p>Pros</p>
 <ul>
-<li><strong>Massive time savings</strong> - The average agent saves 5 to 8 hours per week on content creation. That is time you can reinvest in prospecting, client meetings, and closing deals.</li>
-<li><strong>High output quality</strong> - The AI-generated content reads naturally and requires minimal editing. It is noticeably better than generic ChatGPT outputs because it works from your actual words and ideas, not a blank prompt.</li>
-<li><strong>Multi-format output</strong> - One upload produces content for every platform. Blog, email, Instagram, LinkedIn, YouTube, Twitter - all from a single recording. This level of content multiplication is nearly impossible to achieve manually.</li>
-<li><strong>Custom templates</strong> - You can train the AI to match your brand voice, include your preferred calls to action, and format content the way you want it. This means the more you use it, the better the outputs get.</li>
-<li><strong>Low learning curve</strong> - If you can record a voice memo on your phone and upload a file, you can use Castmagic. There is no complex editing interface or technical knowledge required.</li>
-<li><strong>Affordable entry point</strong> - At $29 per month for the Hobby plan (or $21/mo annually), Castmagic costs less than a single hour of a freelance content writer's time and produces far more output.</li>
-<li><strong>Podcast and video support</strong> - Direct integrations with YouTube, Zoom, and podcast feeds make it easy to repurpose content you are already creating.</li>
+<li><strong>Massive time savings</strong> - saves 5-8 hours per week on content creation</li>
+<li><strong>High output quality</strong> - reads naturally, better than generic ChatGPT outputs</li>
+<li><strong>Multi-format output</strong> - one upload creates blog, email, and social content</li>
+<li><strong>Custom templates</strong> - train AI to match your brand voice</li>
+<li><strong>Low learning curve</strong> - record a voice memo and upload, that is it</li>
+<li><strong>Affordable entry point</strong> - starts at $29/mo or $21/mo annually</li>
+<li><strong>Podcast and video support</strong> - integrates with YouTube, Zoom, and podcast feeds</li>
 </ul>
 </div>
 <div class="cons-card">
 <p>Cons</p>
 <ul>
-<li><strong>No built-in scheduling</strong> - Castmagic generates the content but does not post it for you. You still need a separate tool like Buffer or Later to schedule and publish across platforms.</li>
-<li><strong>Requires review</strong> - While the AI is good, it is not perfect. You need to review every output for accuracy, especially when it comes to property details, pricing, and market statistics. Publishing AI content without review is a recipe for embarrassing mistakes.</li>
-<li><strong>Audio quality matters</strong> - Recordings in noisy environments, with poor microphones, or with heavy accents can reduce transcription accuracy, which degrades all downstream outputs. A $30 lavalier microphone solves this problem.</li>
-<li><strong>No image or video generation</strong> - Castmagic produces text content only. You still need to create or source visuals for your social posts, blog headers, and email graphics separately.</li>
-<li><strong>No real estate-specific templates out of the box</strong> - The default templates are generic. You will need to spend time creating custom templates tailored to real estate content types. This is a one-time setup cost, but it does add friction during onboarding.</li>
-<li><strong>No lead capture</strong> - Castmagic helps you create content, but it does not help you capture leads from that content. You need a separate system for turning social media followers and blog readers into actual leads with contact information.</li>
+<li><strong>No built-in scheduling</strong> - you still need Buffer or Later to publish</li>
+<li><strong>Requires review</strong> - AI outputs need human fact-checking before publishing</li>
+<li><strong>Audio quality matters</strong> - noisy recordings reduce transcription accuracy</li>
+<li><strong>No image or video generation</strong> - text content only</li>
+<li><strong>No real estate-specific templates</strong> - default templates are generic</li>
+<li><strong>No lead capture</strong> - content creation only, no lead conversion tools</li>
 </ul>
 </div>
 </div>

@@ -244,25 +244,25 @@ export const article: BlogPost = {
 <div class="pros-card">
 <p>Pros</p>
 <ul>
-<li><strong>Incredibly easy to learn</strong> - If you can edit a Google Doc, you can edit video in Descript. The learning curve is essentially zero for basic editing. We had an agent with no video editing experience create a polished listing video in under 20 minutes on their first try.</li>
-<li><strong>Filler word removal is a game-changer</strong> - This single feature saves more time than any other. Automatically removing every um and uh from a recording would take 20+ minutes manually. Descript does it in seconds.</li>
-<li><strong>Studio Sound works well for typical real estate scenarios</strong> - Open house noise, echo in empty rooms, outdoor wind - Studio Sound handles all of these competently. Not perfectly, but well enough for social media and web content.</li>
-<li><strong>Eye contact correction adds professionalism</strong> - The improvement in perceived confidence and engagement is noticeable. Agents who struggle to look at the camera while talking about a property benefit enormously from this feature.</li>
-<li><strong>All-in-one platform</strong> - Recording, transcription, editing, captions, noise removal, and export all happen in one app. No bouncing between tools.</li>
-<li><strong>Fast export times</strong> - Videos render quickly, which matters when you are trying to get a listing video published same-day.</li>
-<li><strong>Regular updates</strong> - Descript ships new AI features frequently. The product has improved significantly over the past year alone.</li>
+<li><strong>Incredibly easy to learn</strong> - edit video like editing a Google Doc</li>
+<li><strong>Filler word removal</strong> - removes every um and uh in seconds</li>
+<li><strong>Studio Sound</strong> - cleans up open house noise, echo, and wind</li>
+<li><strong>Eye contact correction</strong> - AI fixes your eye line for camera confidence</li>
+<li><strong>All-in-one platform</strong> - record, transcribe, edit, caption, and export in one app</li>
+<li><strong>Fast export times</strong> - quick rendering for same-day publishing</li>
+<li><strong>Regular updates</strong> - new AI features shipped frequently</li>
 </ul>
 </div>
 <div class="cons-card">
 <p>Cons</p>
 <ul>
-<li><strong>Limited advanced editing capabilities</strong> - If you want complex transitions, motion graphics, color grading, or multi-track compositing, Descript is not the right tool. It is designed for simplicity, not power.</li>
-<li><strong>Transcription accuracy varies with accents</strong> - Agents with thick regional accents or those who speak English as a second language may find that the transcription accuracy drops below 90%, requiring more manual corrections.</li>
-<li><strong>Eye contact correction is not always seamless</strong> - Quick head movements, extreme angles, and poor lighting can cause the eye correction to look unnatural. It works best in well-lit, relatively static talking-head shots.</li>
-<li><strong>Overdub voice clone requires Business plan</strong> - At $50/month annually ($65 monthly), the Business plan is not expensive, but agents on a tight budget who want voice cloning will need to step up from the $24 Hobbyist tier.</li>
-<li><strong>No mobile editing app</strong> - As of 2026, Descript is a desktop application only (Mac and Windows). You cannot edit on your phone or tablet, which means you need to transfer footage from your phone to your computer before editing.</li>
-<li><strong>Large video files can be slow to upload</strong> - 4K footage from newer phones creates large files. Uploading a 10-minute 4K video can take several minutes depending on your internet connection.</li>
-<li><strong>Subscription model adds up</strong> - While $24 to $65 per month is reasonable, it is another recurring cost on top of your CRM, MLS fees, website, and other tools. If you only create one or two videos per year, the subscription is hard to justify.</li>
+<li><strong>Limited advanced editing</strong> - no complex transitions, motion graphics, or color grading</li>
+<li><strong>Transcription accuracy varies with accents</strong> - can drop below 90% accuracy</li>
+<li><strong>Eye contact correction not always seamless</strong> - struggles with quick head movements</li>
+<li><strong>Voice clone requires Business plan</strong> - $50/mo annually, $65/mo monthly</li>
+<li><strong>No mobile editing app</strong> - desktop only on Mac and Windows</li>
+<li><strong>Large video files slow to upload</strong> - 4K footage takes time to transfer</li>
+<li><strong>Subscription adds up</strong> - hard to justify if you rarely create videos</li>
 </ul>
 </div>
 </div>

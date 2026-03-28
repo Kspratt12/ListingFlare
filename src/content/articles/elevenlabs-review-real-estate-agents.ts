@@ -279,25 +279,25 @@ export const article: BlogPost = {
 <div class="pros-card">
 <p>Pros</p>
 <ul>
-<li><strong>Incredibly realistic voice quality</strong> - The voices sound human. Natural pauses, breathing, intonation, and emotion. This is not the robotic text-to-speech of five years ago. In blind tests, most people cannot distinguish ElevenLabs audio from a human recording.</li>
-<li><strong>Voice cloning is a game-changer for personal branding</strong> - Being able to create content that sounds like you without spending time recording is a massive time-saver. Your brand stays consistent even when you are scaling content production.</li>
-<li><strong>Very affordable for what you get</strong> - At $5 to $22 per month, most agents can produce all the voiceover content they need. Compare that to $100 to $500 per freelance voiceover recording. The math is not even close.</li>
-<li><strong>30+ languages for international markets</strong> - This is a genuine competitive advantage in diverse metros. Creating multilingual content used to require hiring multiple voiceover artists who spoke each language. Now it costs nothing extra.</li>
-<li><strong>Speed</strong> - Generate a 60-second voiceover in about 5 seconds. A 5-minute podcast episode in about 15 seconds. The turnaround time is essentially instant, which means you can iterate quickly and produce more content.</li>
-<li><strong>No specialized equipment needed</strong> - No microphone, no soundproofing, no audio editing software. Just a web browser and a script. The barrier to entry is as low as it can possibly be.</li>
-<li><strong>Growing voice library</strong> - Thousands of voices to choose from, plus new ones added regularly. You can find voices that match virtually any brand persona - authoritative, friendly, warm, energetic, calm.</li>
+<li><strong>Incredibly realistic voice quality</strong> - indistinguishable from human recordings in blind tests</li>
+<li><strong>Voice cloning</strong> - create content that sounds like you without recording</li>
+<li><strong>Very affordable</strong> - $5-22/mo versus $100-500 per freelance voiceover</li>
+<li><strong>30+ languages</strong> - multilingual content at no extra cost</li>
+<li><strong>Speed</strong> - generate a 60-second voiceover in about 5 seconds</li>
+<li><strong>No specialized equipment needed</strong> - just a browser and a script</li>
+<li><strong>Growing voice library</strong> - thousands of voices across all styles and tones</li>
 </ul>
 </div>
 <div class="cons-card">
 <p>Cons</p>
 <ul>
-<li><strong>Learning curve for first-time users</strong> - The platform is not complicated, but it is not as simple as pressing a single button either. You need to experiment with voice selection, pacing settings, and script formatting to get the best results. Budget 30 to 60 minutes to get comfortable with the interface.</li>
-<li><strong>Voice cloning requires Creator plan or above</strong> - If you want to clone your own voice, you need to be on the Creator plan at $22 per month minimum. The $5 Starter plan does not include this feature, which is disappointing since voice cloning is one of the platform's biggest selling points.</li>
-<li><strong>Free tier is very limited</strong> - The free plan gives you 10,000 characters per month, which is roughly 10 minutes of audio. That is enough to test the platform but not enough to produce content consistently. You will almost certainly need to upgrade.</li>
-<li><strong>Occasional "off" moments on emotional inflections</strong> - While the voice quality is excellent overall, the AI occasionally stumbles on sentences that require strong emotional delivery. A line like "This is the home you have been dreaming of" sometimes comes out flat instead of aspirational. Human voiceover artists still have an edge on emotional nuance.</li>
-<li><strong>Does not help with lead capture</strong> - This is the most important limitation for real estate agents. ElevenLabs is a content creation tool. It helps you make better videos and audio content. But it does absolutely nothing to capture leads from that content. You still need a separate system to turn viewers into qualified leads.</li>
-<li><strong>You still need video editing skills</strong> - ElevenLabs generates audio files, not finished videos. You need to pair the audio with visuals using a video editor like CapCut, Canva, Descript, or iMovie. If you have never edited video before, there is an additional learning curve on top of learning ElevenLabs itself.</li>
-<li><strong>Character limits can sneak up on you</strong> - If you are producing a lot of content - daily social media posts, weekly podcasts, multiple listing videos - you can burn through your character allocation faster than expected. Keep an eye on your usage dashboard.</li>
+<li><strong>Learning curve for first-time users</strong> - budget 30-60 minutes to get comfortable</li>
+<li><strong>Voice cloning requires Creator plan</strong> - $22/mo minimum for voice cloning</li>
+<li><strong>Free tier is very limited</strong> - only about 10 minutes of audio per month</li>
+<li><strong>Occasional "off" emotional inflections</strong> - AI can sound flat on emotional lines</li>
+<li><strong>Does not help with lead capture</strong> - content creation only, no lead tools</li>
+<li><strong>You still need video editing skills</strong> - generates audio files, not finished videos</li>
+<li><strong>Character limits can sneak up</strong> - heavy usage burns through allocation fast</li>
 </ul>
 </div>
 </div>

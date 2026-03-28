@@ -229,24 +229,24 @@ export const article: BlogPost = {
 <div class="pros-card">
 <p>Pros</p>
 <ul>
-<li><strong>Massive time savings</strong> - Going live once instead of four or five times is a game-changer for busy agents. This alone justifies the subscription cost.</li>
-<li><strong>Browser-based studio</strong> - No software to download or configure. Restream Studio runs entirely in your browser, which means you can go live from any computer with a webcam.</li>
-<li><strong>Professional overlays and branding</strong> - Custom logos, banners, and lower-thirds make your streams look polished without needing a production team.</li>
-<li><strong>Chat aggregation</strong> - Seeing all comments in one place is essential for engagement. This feature alone sets Restream apart from going live natively on each platform.</li>
-<li><strong>Guest invites</strong> - Bringing on co-hosts, clients, or industry partners is seamless. They click a link and join - no account required.</li>
-<li><strong>Recordings and analytics</strong> - Automatic cloud recordings and post-stream analytics help you improve over time and repurpose content efficiently.</li>
-<li><strong>Reliable uptime</strong> - In our testing, we experienced zero dropped streams or connection issues. The platform is stable and consistent.</li>
-<li><strong>Stream scheduling</strong> - Schedule streams in advance so platforms can notify your audience and you can promote the event ahead of time.</li>
+<li><strong>Massive time savings</strong> - go live once instead of four or five times</li>
+<li><strong>Browser-based studio</strong> - no software to download, works from any computer</li>
+<li><strong>Professional overlays and branding</strong> - custom logos, banners, and lower-thirds</li>
+<li><strong>Chat aggregation</strong> - all platform comments in one unified window</li>
+<li><strong>Guest invites</strong> - co-hosts join via link, no account required</li>
+<li><strong>Recordings and analytics</strong> - automatic cloud recordings and post-stream data</li>
+<li><strong>Reliable uptime</strong> - zero dropped streams in our testing</li>
+<li><strong>Stream scheduling</strong> - schedule in advance so platforms notify your audience</li>
 </ul>
 </div>
 <div class="cons-card">
 <p>Cons</p>
 <ul>
-<li><strong>Free plan is limited</strong> - Two channels and a watermark make the free tier impractical for professional use. You will almost certainly need the Standard or Professional plan.</li>
-<li><strong>Mobile streaming is basic</strong> - While you can use Restream Studio on mobile browsers, the experience is not as smooth as a dedicated mobile app. For on-location property walkthroughs, you may need a phone mount and some patience.</li>
-<li><strong>Instagram Live limitations</strong> - Instagram does not natively support RTMP multistreaming, so going live on Instagram simultaneously with other platforms requires workarounds. This is an Instagram limitation, not a Restream limitation, but it is worth noting.</li>
-<li><strong>Learning curve for advanced features</strong> - The basic go-live flow is simple, but setting up custom overlays, scene transitions, and multi-guest layouts takes some time to learn.</li>
-<li><strong>No built-in lead capture</strong> - Restream is a broadcasting tool, not a CRM. It gets you in front of people, but you need a separate tool to capture the leads that come from your streams.</li>
+<li><strong>Free plan is limited</strong> - two channels and a watermark, impractical for pros</li>
+<li><strong>Mobile streaming is basic</strong> - mobile browser experience is not as smooth</li>
+<li><strong>Instagram Live limitations</strong> - no native RTMP multistreaming support</li>
+<li><strong>Learning curve for advanced features</strong> - overlays and multi-guest layouts take time</li>
+<li><strong>No built-in lead capture</strong> - broadcasting only, no CRM or lead tools</li>
 </ul>
 </div>
 </div>

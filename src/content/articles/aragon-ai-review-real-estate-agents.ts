@@ -217,25 +217,25 @@ export const article: BlogPost = {
 <div class="pros-card">
 <p>Pros</p>
 <ul>
-<li><strong>Incredibly fast</strong> - From selfie to finished headshot in one to two hours. No scheduling, no travel, no waiting for a photographer's edits.</li>
-<li><strong>Extremely affordable</strong> - Starting at $35 for 40 headshots compared to $200 to $500 for a traditional session. The per-image cost is a fraction of professional photography.</li>
-<li><strong>Multiple looks from one session</strong> - This is the biggest advantage. You get formal, casual, outdoor, and studio looks without changing clothes or locations. A photographer would charge significantly more for this variety.</li>
-<li><strong>Consistent professional quality</strong> - The AI maintains proper lighting, composition, and framing across all generated images. You do not get the occasional bad shot that even good photographers produce.</li>
-<li><strong>Easy to update</strong> - Changed your hairstyle? Lost weight? Switched to a new brokerage? Generate fresh headshots in two hours instead of booking a new session.</li>
-<li><strong>No photography skills needed</strong> - You do not need to worry about posing, lighting direction, or camera settings. The AI handles all of that.</li>
-<li><strong>Great for teams</strong> - Every team member can generate their own headshots independently, making it much easier to keep a brokerage's team page looking polished and current.</li>
-<li><strong>High resolution output</strong> - Images are suitable for both digital use and print materials, including yard signs and large format displays.</li>
+<li><strong>Incredibly fast</strong> - selfie to finished headshot in one to two hours</li>
+<li><strong>Extremely affordable</strong> - $35 for 40 headshots versus $200-500 traditional session</li>
+<li><strong>Multiple looks from one session</strong> - formal, casual, outdoor, and studio styles</li>
+<li><strong>Consistent professional quality</strong> - proper lighting and framing on every image</li>
+<li><strong>Easy to update</strong> - new headshots in hours, not weeks</li>
+<li><strong>No photography skills needed</strong> - AI handles posing, lighting, and composition</li>
+<li><strong>Great for teams</strong> - each member generates headshots independently</li>
+<li><strong>High resolution output</strong> - suitable for digital, print, and yard signs</li>
 </ul>
 </div>
 <div class="cons-card">
 <p>Cons</p>
 <ul>
-<li><strong>AI can miss small details</strong> - Occasionally, the AI generates headshots with minor imperfections - slightly off skin texture, an earring that looks odd, a collar that bends unnaturally. You need to review each image carefully.</li>
-<li><strong>Not 100% photorealistic for everyone</strong> - Results vary by person. People with very distinctive features, unique hairstyles, or significant facial hair sometimes get less accurate results. The AI works best with clear, well-lit input photos.</li>
-<li><strong>No full-body shots</strong> - Aragon AI focuses exclusively on headshots and upper-body portraits. If you need a full-length standing photo for a yard sign or billboard, you still need a photographer.</li>
-<li><strong>Cannot replicate exact outfits</strong> - If you want to be photographed in a specific blazer you own for brand consistency, the AI cannot do that. It generates its own outfit interpretations.</li>
-<li><strong>Some results look too polished</strong> - A handful of generated headshots can have an overly smooth, magazine-cover quality that might look slightly unrealistic to a discerning eye. Picking the right images from the batch is important.</li>
-<li><strong>One-time payment model</strong> - While affordable per session, costs add up if you regenerate frequently. Agents who update their headshot quarterly would spend $140 to $300 per year depending on the plan.</li>
+<li><strong>AI can miss small details</strong> - occasional imperfections in skin texture or accessories</li>
+<li><strong>Not 100% photorealistic for everyone</strong> - results vary with distinctive features</li>
+<li><strong>No full-body shots</strong> - headshots and upper-body portraits only</li>
+<li><strong>Cannot replicate exact outfits</strong> - AI generates its own outfit interpretations</li>
+<li><strong>Some results look too polished</strong> - can appear overly smooth or airbrushed</li>
+<li><strong>One-time payment model</strong> - costs add up if you regenerate quarterly</li>
 </ul>
 </div>
 </div>

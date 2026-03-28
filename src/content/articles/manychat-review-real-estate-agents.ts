@@ -293,24 +293,24 @@ export const article: BlogPost = {
 <div class="pros-card">
 <p>Pros</p>
 <ul>
-<li><strong>Instagram comment automation is a game-changer.</strong> This single feature justifies the $15/mo cost. The ability to automatically DM everyone who comments a keyword on your posts dramatically increases your lead capture rate from social content.</li>
-<li><strong>Extremely affordable.</strong> At $15/mo for the Pro plan, ManyChat costs less than a single Zillow lead. Even if you only capture 2 to 3 extra leads per month, the ROI is significant.</li>
-<li><strong>No coding required.</strong> The visual flow builder is intuitive. If you have ever used a tool like Canva or Trello, you can build ManyChat flows.</li>
-<li><strong>Multi-channel support.</strong> Instagram, Facebook Messenger, WhatsApp, SMS, and email - all from one platform. You meet leads wherever they are.</li>
-<li><strong>Instant response time.</strong> Speed-to-lead is everything in real estate. ManyChat responds in seconds, 24 hours a day, 7 days a week.</li>
-<li><strong>CRM integration.</strong> Zapier support means ManyChat works with virtually any real estate CRM - Follow Up Boss, kvCORE, LionDesk, Sierra Interactive, and others.</li>
-<li><strong>Boosts algorithm performance.</strong> Comment triggers and auto-replies generate more engagement on your posts, which signals to Instagram's algorithm that your content is worth showing to more people.</li>
+<li><strong>Instagram comment automation.</strong> Auto-DM everyone who comments a keyword on your posts.</li>
+<li><strong>Extremely affordable.</strong> $15/mo Pro plan costs less than a single Zillow lead.</li>
+<li><strong>No coding required.</strong> Visual flow builder is as intuitive as Canva.</li>
+<li><strong>Multi-channel support.</strong> Instagram, Facebook, WhatsApp, SMS, and email in one platform.</li>
+<li><strong>Instant response time.</strong> Responds in seconds, 24/7, every day of the year.</li>
+<li><strong>CRM integration.</strong> Works with any CRM via Zapier.</li>
+<li><strong>Boosts algorithm performance.</strong> Auto-replies increase engagement signals for Instagram.</li>
 </ul>
 </div>
 <div class="cons-card">
 <p>Cons</p>
 <ul>
-<li><strong>Instagram API limitations.</strong> ManyChat can only send messages to people who have interacted with your content first (commented, DM'd you, replied to a Story). You cannot cold-DM people. This is an Instagram rule, not a ManyChat limitation, but it is important to understand.</li>
-<li><strong>Setup time.</strong> While individual flows are easy to build, creating a comprehensive automation system with multiple flows, qualification paths, and follow-up sequences takes several hours upfront.</li>
-<li><strong>Can feel impersonal if done poorly.</strong> If your messages are overly robotic or pushy, people will disengage. The best ManyChat flows sound conversational and casual, not like a sales script.</li>
-<li><strong>Limited AI capabilities.</strong> ManyChat has introduced some AI features, but it is fundamentally a rule-based system. It cannot hold a truly natural, open-ended conversation. If someone asks a question your flow does not anticipate, they hit a dead end unless you set up a human handoff.</li>
-<li><strong>WhatsApp and SMS costs extra.</strong> While included in the Pro plan, WhatsApp and SMS messages have per-message costs beyond the base subscription.</li>
-<li><strong>Facebook dependency.</strong> ManyChat requires a Facebook Business Page and relies on Meta's APIs. If Meta changes its API policies (which happens occasionally), certain features can break temporarily.</li>
+<li><strong>Instagram API limitations.</strong> Can only message people who interact with your content first.</li>
+<li><strong>Setup time.</strong> Building a full automation system takes several hours upfront.</li>
+<li><strong>Can feel impersonal.</strong> Robotic or pushy messages will disengage leads fast.</li>
+<li><strong>Limited AI capabilities.</strong> Rule-based system, not truly conversational AI.</li>
+<li><strong>WhatsApp and SMS costs extra.</strong> Per-message costs beyond the base subscription.</li>
+<li><strong>Facebook dependency.</strong> Relies on Meta APIs which can change unexpectedly.</li>
 </ul>
 </div>
 </div>

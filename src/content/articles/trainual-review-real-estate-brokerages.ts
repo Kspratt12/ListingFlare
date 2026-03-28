@@ -256,24 +256,24 @@ export const article: BlogPost = {
 <div class="pros-card">
 <p>Pros</p>
 <ul>
-<li><strong>Clean, intuitive interface.</strong> Creating and organizing training content is straightforward. You do not need technical skills or instructional design experience. If you can write an email and upload a photo, you can build a training module.</li>
-<li><strong>Role-based assignments work well for real estate.</strong> The ability to assign different content to different roles (buyer agent, listing agent, TC, admin) matches how real estate teams actually operate.</li>
-<li><strong>Completion tracking provides accountability.</strong> Knowing exactly who has finished their training and who has not is valuable - especially for compliance documentation and performance conversations.</li>
-<li><strong>Searchable knowledge base reduces repetitive questions.</strong> Once you build out your SOPs, agents can self-serve instead of calling the office for every procedural question.</li>
-<li><strong>Multimedia support makes content engaging.</strong> Embedding videos, screen recordings, images, and GIFs helps keep training from feeling like a boring textbook.</li>
-<li><strong>Built-in screen recorder.</strong> You can record walkthroughs of your MLS, CRM, or transaction management software directly within Trainual. This is perfect for showing agents exactly how to use your tech stack.</li>
-<li><strong>Solid mobile experience.</strong> Agents can complete training modules from their phone between showings - which is how most training actually gets consumed in real estate.</li>
+<li><strong>Clean, intuitive interface.</strong> No technical skills needed to create content.</li>
+<li><strong>Role-based assignments.</strong> Different training paths for agents, TCs, and admins.</li>
+<li><strong>Completion tracking.</strong> See exactly who finished training and who has not.</li>
+<li><strong>Searchable knowledge base.</strong> Agents self-serve instead of calling the office.</li>
+<li><strong>Multimedia support.</strong> Embed videos, screen recordings, images, and GIFs.</li>
+<li><strong>Built-in screen recorder.</strong> Record MLS and CRM walkthroughs directly in Trainual.</li>
+<li><strong>Solid mobile experience.</strong> Agents complete training from their phone between showings.</li>
 </ul>
 </div>
 <div class="cons-card">
 <p>Cons</p>
 <ul>
-<li><strong>Price is steep for small teams.</strong> Trainual does not publicly list prices, so contact their sales team for a quote. It can be a meaningful expense for a small team of 3 to 5 people. The per-person cost improves as your team grows, but for smaller operations, cheaper alternatives might make more sense.</li>
-<li><strong>No real estate-specific templates.</strong> Trainual is industry-agnostic. It does not ship with pre-built real estate onboarding plans, compliance modules, or SOP templates. You are building everything from scratch, which takes significant upfront time.</li>
-<li><strong>Content creation is a real time investment.</strong> The platform is easy to use, but creating high-quality training content still requires hours of work. Someone on your team needs to own this, and that person needs dedicated time to do it well.</li>
-<li><strong>Limited integrations with real estate tools.</strong> Trainual integrates with general business tools (Slack, Gusto, BambooHR) but does not natively connect with real estate-specific platforms like your MLS, transaction management software, or real estate CRMs.</li>
-<li><strong>No built-in video hosting for long content.</strong> While you can embed videos from YouTube, Loom, or Vimeo, Trainual does not host long-form video natively. If you create a lot of video training, you will need a separate hosting solution.</li>
-<li><strong>Overkill for teams that are not growing.</strong> If your team is stable and you rarely bring on new members, the ongoing monthly cost is hard to justify. The ROI is strongest for brokerages that hire multiple agents per year.</li>
+<li><strong>Price is steep for small teams.</strong> Contact sales for a quote; costly for 3-5 people.</li>
+<li><strong>No real estate-specific templates.</strong> You build all SOPs and onboarding from scratch.</li>
+<li><strong>Content creation takes real time.</strong> Hours of upfront work to build quality training.</li>
+<li><strong>Limited real estate integrations.</strong> No native MLS, CRM, or transaction tool connections.</li>
+<li><strong>No built-in video hosting.</strong> Long-form video requires YouTube, Loom, or Vimeo.</li>
+<li><strong>Overkill for stable teams.</strong> Best for brokerages hiring multiple agents per year.</li>
 </ul>
 </div>
 </div>

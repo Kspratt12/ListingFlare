@@ -206,24 +206,24 @@ export const article: BlogPost = {
 <div class="pros-card">
 <p>Pros</p>
 <ul>
-<li><strong>Takes the guesswork out of content optimization</strong> - Instead of wondering why your article is not ranking, Surfer gives you specific, actionable data. You know exactly what to include, how long to write, and what keywords to target.</li>
-<li><strong>Real-time scoring is addictive and motivating</strong> - Watching your score climb as you write is satisfying. It gamifies the writing process and keeps you on track.</li>
-<li><strong>Works exceptionally well for local SEO content</strong> - Real estate content is inherently local, and Surfer is very good at identifying location-specific NLP terms and entities that Google expects to see on local pages.</li>
-<li><strong>The Audit tool is invaluable for existing content</strong> - If you have a library of blog posts that are not performing, the Audit tool shows you exactly how to fix them. Updating existing content with Surfer's recommendations is one of the fastest ways to improve your rankings.</li>
-<li><strong>Google Docs and WordPress integrations</strong> - You do not have to change your writing workflow. Surfer integrates with the tools most agents already use, so you can optimize content without learning a completely new platform.</li>
-<li><strong>SERP Analyzer provides genuine competitive intelligence</strong> - Seeing exactly what your competitors wrote to earn their rankings is incredibly valuable for planning your content strategy.</li>
-<li><strong>Keyword clustering helps with content planning</strong> - Surfer's keyword research tool groups related keywords together, which helps you plan content clusters rather than writing random one-off articles.</li>
+<li><strong>Takes the guesswork out of optimization</strong> - specific, actionable data for every article</li>
+<li><strong>Real-time scoring</strong> - watch your content score climb as you write</li>
+<li><strong>Works great for local SEO</strong> - identifies location-specific terms Google expects</li>
+<li><strong>Audit tool for existing content</strong> - shows exactly how to fix underperforming posts</li>
+<li><strong>Google Docs and WordPress integrations</strong> - no need to change your writing workflow</li>
+<li><strong>SERP Analyzer</strong> - see exactly what top-ranking competitors wrote</li>
+<li><strong>Keyword clustering</strong> - plan content clusters instead of random one-off articles</li>
 </ul>
 </div>
 <div class="cons-card">
 <p>Cons</p>
 <ul>
-<li><strong>The $99/month price point is a commitment</strong> - For agents who are only writing one or two blog posts per month, $99 is a significant per-article cost. You need to be committed to regular content production to justify the expense.</li>
-<li><strong>It can encourage over-optimization if you are not careful</strong> - Chasing a perfect score can lead to keyword-stuffed content that reads poorly. You need to balance Surfer's recommendations with readability and your own voice.</li>
-<li><strong>It does not replace writing skill</strong> - Surfer tells you what to include, but it does not write great content for you. You still need to be a competent writer or hire one. Poorly written content with a high Surfer score is still poorly written content.</li>
-<li><strong>The learning curve takes a few sessions</strong> - The Content Editor is intuitive, but the SERP Analyzer and Audit tools have a lot of data that can be overwhelming at first. Plan to spend a few hours getting comfortable with the platform.</li>
-<li><strong>AI writing quality is inconsistent</strong> - The AI writing feature produces decent first drafts, but the output for real estate content specifically tends to be generic. It lacks the local knowledge and personal touch that makes real estate content compelling.</li>
-<li><strong>No free tier for ongoing use</strong> - Unlike some competitors, Surfer does not offer a limited free plan. There is a 7-day money-back guarantee, but no perpetual free option to test with a few articles per month.</li>
+<li><strong>$99/month is a commitment</strong> - expensive if you only write 1-2 posts monthly</li>
+<li><strong>Can encourage over-optimization</strong> - chasing perfect scores leads to keyword stuffing</li>
+<li><strong>Does not replace writing skill</strong> - tells you what to include, not how to write well</li>
+<li><strong>Learning curve takes a few sessions</strong> - SERP Analyzer data can be overwhelming</li>
+<li><strong>AI writing quality is inconsistent</strong> - real estate outputs tend to be generic</li>
+<li><strong>No free tier</strong> - 7-day money-back guarantee only, no free plan</li>
 </ul>
 </div>
 </div>
