@@ -61,29 +61,35 @@ export const article: BlogPost = {
 <thead>
 <tr>
 <th>Plan</th>
-<th>Monthly Price</th>
-<th>Seats Included</th>
-<th>Additional Seats</th>
 <th>Key Features</th>
+<th>Best For</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Train</strong></td>
-<td>$250/mo</td>
-<td>Up to 10</td>
-<td>$4/seat/mo</td>
-<td>Unlimited documentation, role-based assignments, completion tracking, screen recorder, stock photo and GIF library, Loom and YouTube embeds, basic integrations</td>
+<td><strong>Core</strong></td>
+<td>Unlimited AI-assisted docs, Flowcharts, AI-powered search, 500+ templates, Screen recording, Commenting, Language translation, Roles builder, Testing/tracking/reporting, Employee directory, HRIS/Slack integrations, Mobile app, Gamification</td>
+<td>Small teams starting out</td>
 </tr>
 <tr>
-<td><strong>Scale</strong></td>
-<td>$417/mo</td>
-<td>Up to 20</td>
-<td>$3/seat/mo</td>
-<td>Everything in Train, plus custom branding, org chart, advanced reporting, priority support, API access, single sign-on (SSO)</td>
+<td><strong>Pro (Most Popular)</strong></td>
+<td>Everything in Core + Individual training paths, Time estimates, Content feedback, Video transcriptions, 15GB video storage, E-signatures (300/yr), Org chart, Delegation Planner, 90-day version history, Customer Success Manager</td>
+<td>Growing brokerages</td>
+</tr>
+<tr>
+<td><strong>Premium</strong></td>
+<td>Everything in Pro + Unlimited video storage, Unlimited version history, Unlimited e-signatures, Custom branding, Custom domain, SSO, Training path templates</td>
+<td>Large brokerages needing customization</td>
+</tr>
+<tr>
+<td><strong>Enterprise</strong></td>
+<td>Everything in Premium + API access, SOC2 docs, Extended implementation, Dedicated CSM, Quarterly reviews, Priority support</td>
+<td>Enterprise organizations</td>
 </tr>
 </tbody>
 </table>
+
+<p>Trainual does not publicly list prices on their website. Contact their sales team for a demo and custom pricing based on your team size.</p>
 
 <p>A few things to note about the pricing:</p>
 

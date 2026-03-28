@@ -68,39 +68,45 @@ export const article: BlogPost = {
 <tr>
 <th>Plan</th>
 <th>Price</th>
-<th>Headshots Included</th>
-<th>Styles</th>
-<th>Turnaround</th>
-<th>Best For</th>
+<th>Headshots</th>
+<th>Generation Time</th>
+<th>Attires</th>
+<th>Backgrounds</th>
+<th>Resolution</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Starter</strong></td>
-<td>$29</td>
+<td><strong>Basic</strong></td>
+<td>$35</td>
 <td>40 headshots</td>
-<td>Multiple backgrounds and outfits</td>
-<td>1-2 hours</td>
-<td>Solo agents who need a few solid options</td>
+<td>45 minutes</td>
+<td>1 attire</td>
+<td>1 background</td>
+<td>Standard</td>
 </tr>
 <tr>
-<td><strong>Professional</strong></td>
-<td>$49</td>
-<td>80 headshots</td>
-<td>Extended style variety</td>
-<td>1-2 hours</td>
-<td>Active agents wanting variety for different channels</td>
+<td><strong>Standard (83% pick this)</strong></td>
+<td>$45</td>
+<td>60 headshots</td>
+<td>30 minutes</td>
+<td>2 attires</td>
+<td>2 backgrounds</td>
+<td>Standard</td>
 </tr>
 <tr>
-<td><strong>Premium</strong></td>
-<td>$69</td>
-<td>200 headshots</td>
-<td>Maximum variety with premium styles</td>
-<td>1-2 hours</td>
-<td>Teams, top producers, agents who market heavily</td>
+<td><strong>Executive (Best Value)</strong></td>
+<td>$75</td>
+<td>100 headshots</td>
+<td>15 minutes</td>
+<td>All attires</td>
+<td>All backgrounds</td>
+<td>Enhanced</td>
 </tr>
 </tbody>
 </table>
+
+<p><strong>Teams pricing:</strong> Starts at $45/person for Teams Basic with admin dashboard, invite links, and custom backgrounds. Teams Pro offers custom pricing with higher resolution, unlimited storage, API integration, and SSO.</p>
 
 <p>Let us put those numbers in perspective. A typical professional headshot session with a photographer in most US markets costs $200 to $500. That gets you one session, usually 20 to 30 raw shots, and five to ten retouched final images. If you want different outfits or backgrounds, many photographers charge extra for extended sessions.</p>
 

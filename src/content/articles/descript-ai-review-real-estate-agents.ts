@@ -66,32 +66,52 @@ export const article: BlogPost = {
 <tr>
 <th>Plan</th>
 <th>Monthly Price</th>
-<th>Transcription Hours</th>
+<th>Annual Price</th>
+<th>Media Hours</th>
+<th>AI Credits</th>
 <th>Key Features</th>
-<th>Best For</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Free</strong></td>
 <td>$0</td>
-<td>1 hour</td>
-<td>Basic editing, limited exports, watermark</td>
-<td>Testing the platform</td>
+<td>$0</td>
+<td>Limited</td>
+<td>Limited</td>
+<td>Text-based editing, Basic AI tools</td>
 </tr>
 <tr>
 <td><strong>Hobbyist</strong></td>
 <td>$24/mo</td>
-<td>10 hours</td>
-<td>No watermark, filler word removal, Studio Sound, AI eye contact, 720p export</td>
-<td>Agents posting 2-4 videos per month</td>
+<td>$16/mo</td>
+<td>10 hrs/mo</td>
+<td>400/mo</td>
+<td>1080p export, Underlord AI co-editor, Studio Sound, Filler Word Removal, AI Speech with voice clones</td>
+</tr>
+<tr>
+<td><strong>Creator (Most Popular)</strong></td>
+<td>$35/mo</td>
+<td>$24/mo</td>
+<td>30 hrs/mo (+5 bonus)</td>
+<td>800/mo (+500 bonus)</td>
+<td>4K export, 20+ AI tools, Latest AI models, Royalty-free stock library</td>
 </tr>
 <tr>
 <td><strong>Business</strong></td>
-<td>$33/mo</td>
-<td>30 hours</td>
-<td>All Hobbyist features plus 4K export, Overdub voice clone, advanced AI features, team collaboration</td>
-<td>Active content creators, 8+ videos per month</td>
+<td>$65/mo</td>
+<td>$50/mo</td>
+<td>40 hrs/mo (+10 bonus)</td>
+<td>1,500/mo (+1000 bonus)</td>
+<td>Brand Studio, 30+ language dubbing, Custom avatars, Priority support</td>
+</tr>
+<tr>
+<td><strong>Enterprise</strong></td>
+<td>Custom</td>
+<td>Custom</td>
+<td>Custom</td>
+<td>Custom</td>
+<td>SSO/SCIM, Granular brand controls, Custom terms, Flexible licensing</td>
 </tr>
 </tbody>
 </table>

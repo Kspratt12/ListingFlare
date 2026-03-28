@@ -68,58 +68,59 @@ export const article: BlogPost = {
 <thead>
 <tr>
 <th>Plan</th>
-<th>Monthly Price</th>
-<th>Characters/Month</th>
-<th>Approx. Audio Minutes</th>
-<th>Voice Cloning</th>
+<th>Price</th>
+<th>Credits/Month</th>
+<th>Key Features</th>
 <th>Best For</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Free</strong></td>
-<td>$0</td>
-<td>10,000</td>
-<td>10 min</td>
-<td>No</td>
+<td>$0/mo</td>
+<td>10,000 credits</td>
+<td>Text to Speech, Speech to Text, Sound Effects, Voice Design, 3 Projects</td>
 <td>Testing the platform</td>
 </tr>
 <tr>
 <td><strong>Starter</strong></td>
 <td>$5/mo</td>
-<td>30,000</td>
-<td>30 min</td>
-<td>No</td>
-<td>Agents posting 2-4 listing videos/month</td>
+<td>30,000 credits</td>
+<td>Commercial License, Instant Voice Cloning, 20 Projects, Dubbing Studio</td>
+<td>Solo agents getting started</td>
 </tr>
 <tr>
 <td><strong>Creator</strong></td>
-<td>$22/mo</td>
-<td>100,000</td>
-<td>100 min</td>
-<td>Yes (Professional)</td>
-<td>Active content creators, 8-15 videos/month</td>
+<td>$22/mo (first month $11)</td>
+<td>100,000 credits</td>
+<td>Professional Voice Cloning, 192kbps audio, Additional Credits</td>
+<td>Most real estate agents</td>
 </tr>
 <tr>
 <td><strong>Pro</strong></td>
 <td>$99/mo</td>
-<td>500,000</td>
-<td>500 min</td>
-<td>Yes (Professional)</td>
-<td>Teams, heavy content producers, podcasters</td>
+<td>500,000 credits</td>
+<td>44.1kHz PCM audio via API</td>
+<td>High-volume content creators</td>
 </tr>
 <tr>
 <td><strong>Scale</strong></td>
 <td>$330/mo</td>
-<td>2,000,000</td>
-<td>2,000 min</td>
-<td>Yes (Professional)</td>
-<td>Brokerages, enterprise teams</td>
+<td>2,000,000 credits</td>
+<td>3 Workspace seats, Team Collaboration</td>
+<td>Teams and brokerages</td>
+</tr>
+<tr>
+<td><strong>Business</strong></td>
+<td>$1,320/mo</td>
+<td>11,000,000 credits</td>
+<td>Low-latency TTS, 3 Pro Voice Clones, 5 seats</td>
+<td>Large organizations</td>
 </tr>
 </tbody>
 </table>
 
-<p><strong>Bottom line:</strong> Most agents need the Creator plan at $22 per month. It covers 30-40 listing videos monthly with voice cloning included.</p>
+<p><strong>ElevenLabs Agents pricing:</strong> Free plan includes 15 minutes of calls. Paid plans start at $0.09-$0.10 per minute with 50-13,750 prepaid minutes depending on tier. All plans include Workflow Builder, Tool Calling, Knowledge Base, and Multilingual support.</p>
 
 <p><strong>Our recommendation for most agents:</strong> The <strong>Starter plan at $5 per month</strong> is enough for agents who create a few listing videos and social media clips each month. If you are producing content regularly - say 8 to 15 videos per month with voiceovers - the <strong>Creator plan at $22 per month</strong> gives you plenty of room and unlocks professional voice cloning. The Pro and Scale plans are overkill unless you are running a team or producing daily podcast content.</p>
 

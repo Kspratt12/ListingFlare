@@ -64,36 +64,39 @@ export const article: BlogPost = {
 <tr>
 <th>Plan</th>
 <th>Monthly Price</th>
+<th>Annual Price</th>
 <th>Channels</th>
-<th>Resolution</th>
 <th>Key Features</th>
-<th>Best For</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Free</strong></td>
 <td>$0</td>
-<td>2</td>
-<td>720p</td>
-<td>Restream Studio, basic overlays, Restream watermark</td>
-<td>Testing the platform</td>
+<td>$0</td>
+<td>2 channels</td>
+<td>Multistreaming, Restream branding</td>
+</tr>
+<tr>
+<td><strong>Standard</strong></td>
+<td>$19/mo</td>
+<td>$16/mo</td>
+<td>3 channels</td>
+<td>No branding, Guest channels, 50 Clips</td>
 </tr>
 <tr>
 <td><strong>Professional</strong></td>
-<td>$16/mo</td>
-<td>5+</td>
-<td>1080p Full HD</td>
-<td>No watermark, custom graphics, stream scheduling, recordings, analytics</td>
-<td>Individual agents streaming weekly</td>
+<td>$49/mo</td>
+<td>$39/mo</td>
+<td>5 channels</td>
+<td>Full HD 1080p, 4K recording, Dual format, 100 Clips</td>
 </tr>
 <tr>
 <td><strong>Business</strong></td>
-<td>$41/mo</td>
-<td>Unlimited</td>
-<td>1080p Full HD</td>
-<td>Everything in Professional plus custom branding, multiple guests, priority support</td>
-<td>Teams and brokerages</td>
+<td>$239/mo</td>
+<td>$199/mo</td>
+<td>8 channels</td>
+<td>Website player (1000 viewers), 2 team seats, Co-producer mode, Workspaces, 250 Clips</td>
 </tr>
 </tbody>
 </table>

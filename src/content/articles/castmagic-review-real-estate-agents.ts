@@ -63,28 +63,40 @@ export const article: BlogPost = {
 <tr>
 <th>Plan</th>
 <th>Monthly Price</th>
-<th>Upload Hours</th>
-<th>Best For</th>
+<th>Annual Price</th>
+<th>Hours/Month</th>
+<th>Seats</th>
+<th>Storage</th>
+<th>Key Features</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td><strong>Hobby</strong></td>
+<td>$29/mo</td>
+<td>$21/mo</td>
+<td>5 hours</td>
+<td>5 seats</td>
+<td>10GB</td>
+<td>AI transcription, 60+ languages, Custom prompts, Magic Chat, Media clipping, Audiograms</td>
+</tr>
+<tr>
 <td><strong>Starter</strong></td>
-<td>$23/mo</td>
-<td>10 hours</td>
-<td>Solo agents posting 2-3 times per week</td>
-</tr>
-<tr>
-<td><strong>Growth</strong></td>
-<td>$49/mo</td>
-<td>40 hours</td>
-<td>Active agents or small teams with weekly content</td>
-</tr>
-<tr>
-<td><strong>Professional</strong></td>
 <td>$99/mo</td>
-<td>Unlimited</td>
-<td>Teams, brokerages, or agents with daily content output</td>
+<td>$79/mo</td>
+<td>20 hours</td>
+<td>10 seats</td>
+<td>100GB</td>
+<td>Everything in Hobby + Live chat support</td>
+</tr>
+<tr>
+<td><strong>Business</strong></td>
+<td>$999/mo</td>
+<td>$790/mo</td>
+<td>80 hours</td>
+<td>20 seats</td>
+<td>1TB</td>
+<td>Everything in Starter + Onboarding call, Workspace customization</td>
 </tr>
 </tbody>
 </table>

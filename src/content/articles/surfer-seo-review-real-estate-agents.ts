@@ -63,32 +63,36 @@ export const article: BlogPost = {
 <tr>
 <th>Plan</th>
 <th>Monthly Price</th>
-<th>Articles/Month</th>
+<th>Annual Price</th>
+<th>Documents</th>
+<th>AI Prompts</th>
 <th>Key Features</th>
-<th>Best For</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Essential</strong></td>
-<td>$89/mo</td>
-<td>30</td>
-<td>Content Editor, SERP Analyzer, Keyword Research, Audit Tool, NLP analysis</td>
-<td>Solo agents writing 2-4 blog posts per month</td>
+<td><strong>Standard</strong></td>
+<td>$119/mo</td>
+<td>$99/mo</td>
+<td>30/mo (360 annual)</td>
+<td>25 prompts, weekly refresh</td>
+<td>1-click optimization, Brand Knowledge, Team Collaboration, Plagiarism Checker</td>
 </tr>
 <tr>
-<td><strong>Scale</strong></td>
-<td>$129/mo</td>
-<td>100</td>
-<td>Everything in Essential + more articles, content planner, priority support</td>
-<td>Active agents or small teams producing weekly content</td>
-</tr>
-<tr>
-<td><strong>Scale AI</strong></td>
+<td><strong>Pro (Recommended)</strong></td>
 <td>$219/mo</td>
-<td>100 + AI writing</td>
-<td>Everything in Scale + Surfy AI writer, one-click article generation, AI optimization</td>
-<td>Agents who want AI-assisted content creation at scale</td>
+<td>$182/mo</td>
+<td>30/mo (360 annual)</td>
+<td>50 prompts, daily refresh</td>
+<td>Everything in Standard + 5 Brand Workspaces, Internal Linking, Content Ideas, Templates, Rank Drop Detection, Cannibalization Report</td>
+</tr>
+<tr>
+<td><strong>Peace of Mind</strong></td>
+<td>$359/mo</td>
+<td>$299/mo</td>
+<td>Unlimited</td>
+<td>100 prompts, daily refresh</td>
+<td>Everything in Pro + Unlimited Brand Workspaces, Advanced SERP Analysis, Personalized Onboarding, Dedicated Success Manager, API Access</td>
 </tr>
 </tbody>
 </table>

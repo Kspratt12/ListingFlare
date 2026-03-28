@@ -63,76 +63,41 @@ export const article: BlogPost = {
 <table>
 <thead>
 <tr>
-<th>Feature</th>
-<th>Free Plan</th>
-<th>Pro Plan ($15/mo)</th>
+<th>Plan</th>
+<th>Price</th>
+<th>Contacts</th>
+<th>Key Features</th>
+<th>Best For</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Contacts</strong></td>
+<td><strong>Free</strong></td>
+<td>$0/mo</td>
 <td>Up to 1,000</td>
-<td>Unlimited</td>
+<td>Instagram DMs, Facebook Messenger, TikTok (Beta), Unlimited custom flows, 10 Tags, 3 Keywords</td>
+<td>Getting started</td>
 </tr>
 <tr>
-<td><strong>Instagram DM Automation</strong></td>
-<td>Basic flows only</td>
-<td>Full automation + comment triggers</td>
+<td><strong>Pro</strong></td>
+<td>$15/mo+</td>
+<td>Unlimited (scales with contacts)</td>
+<td>All channels (+ WhatsApp, SMS, Email), Unlimited Tags/Keywords/Growth Tools, Analytics, No branding, Integrations</td>
+<td>Growing agents</td>
 </tr>
 <tr>
-<td><strong>Facebook Messenger</strong></td>
-<td>Basic flows</td>
-<td>Full automation</td>
+<td><strong>Pro + AI</strong></td>
+<td>+$29/mo add-on</td>
+<td>Same as Pro</td>
+<td>AI Step, Intention Recognition, Flow Builder Assistant, Text Improver</td>
+<td>AI-powered automation</td>
 </tr>
 <tr>
-<td><strong>WhatsApp</strong></td>
-<td>Not included</td>
-<td>Included</td>
-</tr>
-<tr>
-<td><strong>SMS</strong></td>
-<td>Not included</td>
-<td>Included (pay per message)</td>
-</tr>
-<tr>
-<td><strong>Email</strong></td>
-<td>Not included</td>
-<td>Included</td>
-</tr>
-<tr>
-<td><strong>Keyword Triggers</strong></td>
-<td>Limited</td>
-<td>Unlimited</td>
-</tr>
-<tr>
-<td><strong>Custom Fields</strong></td>
-<td>Limited</td>
-<td>Unlimited</td>
-</tr>
-<tr>
-<td><strong>Zapier / Integrations</strong></td>
-<td>Not included</td>
-<td>Included</td>
-</tr>
-<tr>
-<td><strong>A/B Testing</strong></td>
-<td>Not included</td>
-<td>Included</td>
-</tr>
-<tr>
-<td><strong>Advanced Analytics</strong></td>
-<td>Basic only</td>
-<td>Full analytics dashboard</td>
-</tr>
-<tr>
-<td><strong>ManyChat Branding</strong></td>
-<td>Shown</td>
-<td>Removed</td>
-</tr>
-<tr>
-<td><strong>Best For</strong></td>
-<td>Testing the platform</td>
-<td>Active agents generating leads</td>
+<td><strong>Elite</strong></td>
+<td>Custom pricing</td>
+<td>Custom</td>
+<td>Dedicated onboarding, Strategic CSM, Priority support, Expert automations</td>
+<td>Teams and agencies</td>
 </tr>
 </tbody>
 </table>
