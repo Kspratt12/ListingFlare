@@ -54,7 +54,7 @@ export const article: BlogPost = {
 <p>This is the comparison every Triangle buyer and seller wants to understand. Durham and Raleigh are just 25 miles apart and share the same regional economy, but their housing markets have distinct personalities.</p>
 
 <ul>
-  <li><strong>Median price:</strong> Durham's median (\$370K–\$390K) runs roughly <strong>\$40,000–\$60,000 below Raleigh's</strong> (\$430K–\$436K). For buyers who work in Research Triangle Park — which sits almost exactly between the two cities — Durham offers meaningfully more house for the money.</li>
+  <li><strong>Median price:</strong> Durham's median (\$370K–\$390K) runs roughly <strong>\$40,000–\$60,000 below Raleigh's</strong> (\$430K–\$436K). For buyers who work in Research Triangle Park - which sits almost exactly between the two cities - Durham offers meaningfully more house for the money.</li>
   <li><strong>Inventory:</strong> Raleigh's inventory has grown faster (up 24% vs. Durham's 18%), which means Raleigh has shifted more decisively toward a balanced market. Durham remains slightly more competitive, particularly in the entry-level segment.</li>
   <li><strong>Appreciation:</strong> Durham is appreciating at roughly 3.1% compared to Raleigh's 2.4%. This faster pace reflects Durham's relative affordability and its continued momentum as a destination city.</li>
   <li><strong>Character:</strong> Raleigh offers more suburban options, better-established school ratings in certain districts, and a larger geographic footprint. Durham offers walkability, a grittier urban vibe, proximity to Duke, and a cultural scene that punches well above its weight.</li>

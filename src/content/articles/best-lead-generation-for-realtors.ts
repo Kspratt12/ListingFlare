@@ -66,7 +66,7 @@ export const article: BlogPost = {
 
 <p>We also note the <strong>estimated cost</strong> and <strong>best fit</strong> for each method so you can match the strategy to your budget and experience level. Let's get into it.</p>
 
-<h2>1. Past Client Referrals — The Undisputed Champion</h2>
+<h2>1. Past Client Referrals - The Undisputed Champion</h2>
 
 <p><strong>ROI:</strong> Exceptional | <strong>Speed:</strong> Medium | <strong>Lead Quality:</strong> Highest</p>
 
@@ -77,10 +77,10 @@ export const article: BlogPost = {
 <p>Here is what a real referral system looks like:</p>
 
 <ul>
-<li><strong>Touch your database 12 to 18 times per year</strong> — mix of calls, texts, emails, handwritten notes, pop-by gifts, and event invitations</li>
-<li><strong>Ask at every closing</strong> — "Who do you know that might be thinking about buying or selling in the next year?" Be specific. A vague ask gets a vague answer</li>
-<li><strong>Create a VIP past-client event</strong> — annual appreciation dinner, holiday party, or summer barbecue. These events reactivate relationships and generate referrals naturally</li>
-<li><strong>Send market updates quarterly</strong> — a quick email with their home's estimated value and local market trends keeps you relevant and positions you as their lifetime real estate advisor</li>
+<li><strong>Touch your database 12 to 18 times per year</strong> - mix of calls, texts, emails, handwritten notes, pop-by gifts, and event invitations</li>
+<li><strong>Ask at every closing</strong> - "Who do you know that might be thinking about buying or selling in the next year?" Be specific. A vague ask gets a vague answer</li>
+<li><strong>Create a VIP past-client event</strong> - annual appreciation dinner, holiday party, or summer barbecue. These events reactivate relationships and generate referrals naturally</li>
+<li><strong>Send market updates quarterly</strong> - a quick email with their home's estimated value and local market trends keeps you relevant and positions you as their lifetime real estate advisor</li>
 </ul>
 
 <p><strong>Best for:</strong> Every realtor at every level. If you are not building a referral system, you are leaving your highest-quality lead source on the table.</p>
@@ -96,9 +96,9 @@ export const article: BlogPost = {
 <p>Your Google Business Profile is the key to ranking in the map pack. The agents who dominate it do three things consistently:</p>
 
 <ol>
-<li><strong>Complete every field</strong> — business name, category (Real Estate Agent), service area, hours, website URL, description with keywords, and attributes</li>
-<li><strong>Post weekly</strong> — share new listings, market updates, client testimonials, and open house announcements directly on your profile</li>
-<li><strong>Generate reviews relentlessly</strong> — agents with 50-plus five-star reviews outrank everyone else. Ask every single client. Make it easy by texting them a direct link to your review page after closing</li>
+<li><strong>Complete every field</strong> - business name, category (Real Estate Agent), service area, hours, website URL, description with keywords, and attributes</li>
+<li><strong>Post weekly</strong> - share new listings, market updates, client testimonials, and open house announcements directly on your profile</li>
+<li><strong>Generate reviews relentlessly</strong> - agents with 50-plus five-star reviews outrank everyone else. Ask every single client. Make it easy by texting them a direct link to your review page after closing</li>
 </ol>
 
 <p>The compounding effect is what makes this so powerful. Every review, every post, every photo you add builds authority that keeps working for months and years. Six months from now, you could be generating 5 to 15 inbound leads per month from Google alone, completely free.</p>
@@ -142,10 +142,10 @@ export const article: BlogPost = {
 <p>The keys to making Google Ads work for realtors:</p>
 
 <ul>
-<li><strong>Target high-intent keywords</strong> — "homes for sale in [city]," "real estate agent near me," "sell my house [city]" — not broad terms like "real estate"</li>
-<li><strong>Build dedicated landing pages</strong> — never send ad traffic to your homepage. Send it to a page built specifically for that search with one clear call to action</li>
-<li><strong>Track everything</strong> — use call tracking and form tracking to know exactly which keywords produce closings, not just clicks</li>
-<li><strong>Start with $500 to $1,000 per month</strong> — enough to collect data and optimize before scaling</li>
+<li><strong>Target high-intent keywords</strong> - "homes for sale in [city]," "real estate agent near me," "sell my house [city]" - not broad terms like "real estate"</li>
+<li><strong>Build dedicated landing pages</strong> - never send ad traffic to your homepage. Send it to a page built specifically for that search with one clear call to action</li>
+<li><strong>Track everything</strong> - use call tracking and form tracking to know exactly which keywords produce closings, not just clicks</li>
+<li><strong>Start with $500 to $1,000 per month</strong> - enough to collect data and optimize before scaling</li>
 </ul>
 
 <p><strong>Best for:</strong> Realtors with a marketing budget who want leads immediately. Especially effective in mid-sized markets where cost per click is still reasonable.</p>
@@ -168,9 +168,9 @@ export const article: BlogPost = {
 <p>The ad types that work best for realtors:</p>
 
 <ul>
-<li><strong>Home valuation ads</strong> — "What's your home worth in today's market?" targeting homeowners in specific zip codes. These generate seller leads at $3 to $12 each</li>
-<li><strong>Just Listed ads</strong> — promote new listings to buyers in your area. These generate buyer leads and showcase your active inventory</li>
-<li><strong>Open house event ads</strong> — drive foot traffic with a $20 to $50 boost that can reach 5,000 to 15,000 local users</li>
+<li><strong>Home valuation ads</strong> - "What's your home worth in today's market?" targeting homeowners in specific zip codes. These generate seller leads at $3 to $12 each</li>
+<li><strong>Just Listed ads</strong> - promote new listings to buyers in your area. These generate buyer leads and showcase your active inventory</li>
+<li><strong>Open house event ads</strong> - drive foot traffic with a $20 to $50 boost that can reach 5,000 to 15,000 local users</li>
 </ul>
 
 <p><strong>Best for:</strong> Realtors who want high volume at a low cost and have the follow-up systems (CRM, drip emails, text sequences) to nurture leads over time.</p>
@@ -186,10 +186,10 @@ export const article: BlogPost = {
 <p>The content that ranks and converts for realtors:</p>
 
 <ul>
-<li><strong>Neighborhood guides</strong> — "Moving to [City/Neighborhood]: Everything You Need to Know" articles rank for long-tail searches that relocating buyers use</li>
-<li><strong>Market reports</strong> — "[City] Housing Market: Prices, Trends, and Predictions" pages attract both buyers and sellers researching their market</li>
-<li><strong>How-to guides</strong> — "How to Sell Your Home for Top Dollar" or "First-Time Home Buyer Guide for [City]" articles capture prospects early in their journey</li>
-<li><strong>Comparison content</strong> — "[Neighborhood A] vs [Neighborhood B]: Where Should You Live?" articles rank for high-intent searches</li>
+<li><strong>Neighborhood guides</strong> - "Moving to [City/Neighborhood]: Everything You Need to Know" articles rank for long-tail searches that relocating buyers use</li>
+<li><strong>Market reports</strong> - "[City] Housing Market: Prices, Trends, and Predictions" pages attract both buyers and sellers researching their market</li>
+<li><strong>How-to guides</strong> - "How to Sell Your Home for Top Dollar" or "First-Time Home Buyer Guide for [City]" articles capture prospects early in their journey</li>
+<li><strong>Comparison content</strong> - "[Neighborhood A] vs [Neighborhood B]: Where Should You Live?" articles rank for high-intent searches</li>
 </ul>
 
 <p>The compounding effect is what makes content marketing the <strong>best long-term lead generation strategy</strong> for realtors. A single well-written article can rank on Google for years, generating leads while you sleep. After 12 months of consistent publishing, you could have 20 to 50 articles working for you 24/7, an army of lead generation pages that cost nothing to maintain.</p>
@@ -206,10 +206,10 @@ export const article: BlogPost = {
 
 <ul>
 <li><strong>Promote 5 to 7 days in advance</strong> on Facebook, Instagram, Nextdoor, and local community groups. Boost the post for $30 to $50 to reach 10,000-plus local users</li>
-<li><strong>Use digital sign-in</strong> — require name, email, phone number, and "Are you currently working with an agent?" No paper sheets that people scribble fake info on</li>
-<li><strong>Offer value beyond the home</strong> — have printed market reports, neighborhood guides, or a "What your home is worth" QR code. Position yourself as the local expert, not just a door opener</li>
-<li><strong>Follow up within 4 hours</strong> — call or text every attendee the same day. "Thanks for visiting 123 Oak Street! Do you have questions about the property or the area?" Speed wins</li>
-<li><strong>Hold open houses for other agents' listings</strong> — if you are a newer realtor without many listings, offer to host opens for agents in your office. You get the leads, they get the exposure for their seller</li>
+<li><strong>Use digital sign-in</strong> - require name, email, phone number, and "Are you currently working with an agent?" No paper sheets that people scribble fake info on</li>
+<li><strong>Offer value beyond the home</strong> - have printed market reports, neighborhood guides, or a "What your home is worth" QR code. Position yourself as the local expert, not just a door opener</li>
+<li><strong>Follow up within 4 hours</strong> - call or text every attendee the same day. "Thanks for visiting 123 Oak Street! Do you have questions about the property or the area?" Speed wins</li>
+<li><strong>Hold open houses for other agents' listings</strong> - if you are a newer realtor without many listings, offer to host opens for agents in your office. You get the leads, they get the exposure for their seller</li>
 </ul>
 
 <p>For a complete playbook, read our guide on <a href="/blog/open-house-ideas-attract-buyers">open house ideas that attract buyers and generate leads</a>.</p>
@@ -227,10 +227,10 @@ export const article: BlogPost = {
 <p>That gap is your opportunity. The videos that generate leads for realtors:</p>
 
 <ul>
-<li><strong>Neighborhood tours</strong> — "Living in [Neighborhood]: Pros, Cons, and What to Expect" videos rank on both YouTube and Google. A relocating buyer who watches your 8-minute tour of their target neighborhood already trusts you before they ever reach out</li>
-<li><strong>Market updates</strong> — monthly 3-minute videos covering median prices, inventory levels, and what it means for buyers and sellers. These establish you as the data-driven expert in your market</li>
-<li><strong>Listing walkthroughs</strong> — full property tours with your commentary. These generate direct inquiries and can be repurposed on Instagram Reels and TikTok</li>
-<li><strong>Educational content</strong> — "5 Mistakes First-Time Buyers Make" or "How to Price Your Home to Sell" videos attract prospects early in their journey</li>
+<li><strong>Neighborhood tours</strong> - "Living in [Neighborhood]: Pros, Cons, and What to Expect" videos rank on both YouTube and Google. A relocating buyer who watches your 8-minute tour of their target neighborhood already trusts you before they ever reach out</li>
+<li><strong>Market updates</strong> - monthly 3-minute videos covering median prices, inventory levels, and what it means for buyers and sellers. These establish you as the data-driven expert in your market</li>
+<li><strong>Listing walkthroughs</strong> - full property tours with your commentary. These generate direct inquiries and can be repurposed on Instagram Reels and TikTok</li>
+<li><strong>Educational content</strong> - "5 Mistakes First-Time Buyers Make" or "How to Price Your Home to Sell" videos attract prospects early in their journey</li>
 </ul>
 
 <p>You do not need expensive equipment. A smartphone, a $30 lapel mic, and natural lighting are enough. Authenticity beats polish every time in real estate content. Start with one video per week and stay consistent for 3 months because the algorithm rewards consistency.</p>
@@ -248,9 +248,9 @@ export const article: BlogPost = {
 <p>Effective farming mailers for realtors:</p>
 
 <ul>
-<li><strong>Just Sold postcards</strong> — "Your neighbor's home just sold for $425,000. Wondering what yours is worth?" Send to every home within a half-mile of your closing</li>
-<li><strong>Monthly market update cards</strong> — hyperlocal stats for that specific subdivision: homes sold, average price, days on market. Homeowners are obsessed with knowing what their neighbors' homes sell for</li>
-<li><strong>Community newsletter</strong> — a quarterly mailer with local event info, restaurant spotlights, and market data positions you as a community member, not just a salesperson</li>
+<li><strong>Just Sold postcards</strong> - "Your neighbor's home just sold for $425,000. Wondering what yours is worth?" Send to every home within a half-mile of your closing</li>
+<li><strong>Monthly market update cards</strong> - hyperlocal stats for that specific subdivision: homes sold, average price, days on market. Homeowners are obsessed with knowing what their neighbors' homes sell for</li>
+<li><strong>Community newsletter</strong> - a quarterly mailer with local event info, restaurant spotlights, and market data positions you as a community member, not just a salesperson</li>
 </ul>
 
 <p>The critical rule of farming: <strong>consistency beats creativity</strong>. It takes 6 to 8 mailings before most homeowners recognize your name. Agents who mail once or twice and quit waste their money. Agents who commit to 12 months of monthly mailers build a pipeline that generates 3 to 5 listings per year from a single farm area.</p>
@@ -275,7 +275,7 @@ export const article: BlogPost = {
 
 <ul>
 <li>A custom comparative market analysis showing where pricing went wrong</li>
-<li>Your marketing plan — professional photography, single-property website with <a href="/signup">ListingFlare</a>, social media promotion, targeted ads</li>
+<li>Your marketing plan - professional photography, single-property website with <a href="/signup">ListingFlare</a>, social media promotion, targeted ads</li>
 <li>A side-by-side comparison of what their previous agent did versus what you would do</li>
 <li>Two or three testimonials from past sellers</li>
 </ul>
@@ -297,12 +297,12 @@ export const article: BlogPost = {
 <p>The highest-value referral partners for realtors:</p>
 
 <ul>
-<li><strong>Mortgage brokers and loan officers</strong> — they talk to pre-approved buyers every day who need an agent. A loan officer who sends you 2 to 3 buyer leads per month is worth more than any ad campaign</li>
-<li><strong>Divorce attorneys</strong> — divorcing couples almost always need to sell a home. One relationship with a busy divorce attorney can generate 4 to 8 listings per year</li>
-<li><strong>Estate and probate attorneys</strong> — inherited properties need to be sold. These are often motivated sellers who need an agent fast</li>
-<li><strong>Financial advisors</strong> — clients buying investment properties, downsizing in retirement, or relocating for work all need a realtor</li>
-<li><strong>Home inspectors and contractors</strong> — they are inside homes every day and hear about plans to sell before anyone else</li>
-<li><strong>Relocation companies</strong> — corporate relocations are high-value transactions with motivated timelines</li>
+<li><strong>Mortgage brokers and loan officers</strong> - they talk to pre-approved buyers every day who need an agent. A loan officer who sends you 2 to 3 buyer leads per month is worth more than any ad campaign</li>
+<li><strong>Divorce attorneys</strong> - divorcing couples almost always need to sell a home. One relationship with a busy divorce attorney can generate 4 to 8 listings per year</li>
+<li><strong>Estate and probate attorneys</strong> - inherited properties need to be sold. These are often motivated sellers who need an agent fast</li>
+<li><strong>Financial advisors</strong> - clients buying investment properties, downsizing in retirement, or relocating for work all need a realtor</li>
+<li><strong>Home inspectors and contractors</strong> - they are inside homes every day and hear about plans to sell before anyone else</li>
+<li><strong>Relocation companies</strong> - corporate relocations are high-value transactions with motivated timelines</li>
 </ul>
 
 <p>The key to building these partnerships is <strong>reciprocity</strong>. Do not just ask for referrals. Send business back. Recommend your mortgage broker partner to your buyers. Refer your clients to your contractor partner. When both sides benefit, the relationship sustains itself.</p>
@@ -495,9 +495,9 @@ export const article: BlogPost = {
 
 <ol>
 <li><strong>Open houses</strong> every weekend (your listings or other agents' listings)</li>
-<li><strong>Google Business Profile</strong> — set it up on day one and ask every person you help for a review</li>
-<li><strong>Expired listing and FSBO prospecting</strong> — 1 to 2 hours daily</li>
-<li><strong>Social media</strong> — post daily on Instagram and Facebook to build your brand</li>
+<li><strong>Google Business Profile</strong> - set it up on day one and ask every person you help for a review</li>
+<li><strong>Expired listing and FSBO prospecting</strong> - 1 to 2 hours daily</li>
+<li><strong>Social media</strong> - post daily on Instagram and Facebook to build your brand</li>
 <li>Create a <a href="/blog/real-estate-leads-new-agents">lead generation plan designed specifically for new agents</a></li>
 </ol>
 
@@ -506,11 +506,11 @@ export const article: BlogPost = {
 <p>Layer paid strategies on top of your organic foundation:</p>
 
 <ol>
-<li><strong>Referral system</strong> — systematize your past client follow-up</li>
+<li><strong>Referral system</strong> - systematize your past client follow-up</li>
 <li><strong>Single-property websites</strong> with <a href="/signup">ListingFlare</a> for every listing</li>
-<li><strong>Google Ads</strong> — $500 to $1,000 per month targeting high-intent keywords</li>
-<li><strong>Content marketing</strong> — 2 to 4 blog posts per month targeting local searches</li>
-<li><strong>Geographic farming</strong> — choose one neighborhood and commit for 12 months</li>
+<li><strong>Google Ads</strong> - $500 to $1,000 per month targeting high-intent keywords</li>
+<li><strong>Content marketing</strong> - 2 to 4 blog posts per month targeting local searches</li>
+<li><strong>Geographic farming</strong> - choose one neighborhood and commit for 12 months</li>
 </ol>
 
 <h3>If You Are a Top Producer or Team Leader</h3>
@@ -518,11 +518,11 @@ export const article: BlogPost = {
 <p>Scale what works and delegate what does not require your personal touch:</p>
 
 <ol>
-<li><strong>Referral partnerships</strong> — 10-plus active partners sending you business</li>
-<li><strong>Google Ads + Facebook Ads</strong> — $2,000 to $5,000 per month with an ISA or VA handling follow-up</li>
-<li><strong>YouTube channel</strong> — weekly videos building your personal brand</li>
-<li><strong>Content marketing at scale</strong> — publish weekly, target every neighborhood in your market</li>
-<li><strong>Multiple farm areas</strong> — expand from one neighborhood to three or four</li>
+<li><strong>Referral partnerships</strong> - 10-plus active partners sending you business</li>
+<li><strong>Google Ads + Facebook Ads</strong> - $2,000 to $5,000 per month with an ISA or VA handling follow-up</li>
+<li><strong>YouTube channel</strong> - weekly videos building your personal brand</li>
+<li><strong>Content marketing at scale</strong> - publish weekly, target every neighborhood in your market</li>
+<li><strong>Multiple farm areas</strong> - expand from one neighborhood to three or four</li>
 </ol>
 
 <h2>The Biggest Mistake Realtors Make With Lead Generation</h2>

@@ -128,7 +128,7 @@ export const article: BlogPost = {
 <ol>
   <li><strong>Population growth will keep demand elevated.</strong> Charlotte is consistently among the top 5 U.S. metros for net migration. People are moving here for jobs, affordability relative to coastal cities, and quality of life. That inflow provides a durable floor under home prices.</li>
   <li><strong>The banking and finance sector anchors stability.</strong> Unlike metros tied to a single volatile industry, Charlotte's economy is diversified across banking, energy, healthcare, logistics, and tech. Bank of America alone employs over 15,000 people in the metro, and Honeywell's headquarters relocation brought additional corporate investment.</li>
-  <li><strong>New construction will moderate — not crash — prices.</strong> Builders are adding supply in the suburbs and exurbs, but land costs, labor shortages, and permitting timelines prevent the kind of overbuilding that could crater values. Expect new construction to absorb demand growth rather than flood the market.</li>
+  <li><strong>New construction will moderate - not crash - prices.</strong> Builders are adding supply in the suburbs and exurbs, but land costs, labor shortages, and permitting timelines prevent the kind of overbuilding that could crater values. Expect new construction to absorb demand growth rather than flood the market.</li>
   <li><strong>National sales volume is rising.</strong> The National Association of Realtors projects a <strong>14% increase in existing-home sales nationally</strong> in 2026, driven by improving rates and pent-up demand. Charlotte, as a top migration destination, is positioned to outperform the national trend.</li>
 </ol>
 

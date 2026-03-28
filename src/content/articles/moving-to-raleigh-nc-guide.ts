@@ -99,10 +99,10 @@ export const article: BlogPost = {
 <p>Standout public schools frequently cited by families include:</p>
 
 <ul>
-  <li><strong>Green Hope High School</strong> (Cary) — consistently high test scores and AP pass rates</li>
-  <li><strong>Panther Creek High School</strong> (Cary) — strong athletics and academics</li>
-  <li><strong>Leesville Road High School</strong> (North Raleigh) — popular IB program</li>
-  <li><strong>Apex Friendship High School</strong> — newer school with modern facilities</li>
+  <li><strong>Green Hope High School</strong> (Cary) - consistently high test scores and AP pass rates</li>
+  <li><strong>Panther Creek High School</strong> (Cary) - strong athletics and academics</li>
+  <li><strong>Leesville Road High School</strong> (North Raleigh) - popular IB program</li>
+  <li><strong>Apex Friendship High School</strong> - newer school with modern facilities</li>
 </ul>
 
 <p>For private schools, <strong>Ravenscroft</strong>, <strong>Cary Academy</strong>, and <strong>Saint Mary's School</strong> are the most well-known, with tuition ranging from \$15,000 to \$30,000+ per year.</p>
@@ -149,10 +149,10 @@ export const article: BlogPost = {
 <p>Every city has quirks, and Raleigh is no exception. Here's what catches newcomers off guard:</p>
 
 <ul>
-  <li><strong>Pollen season is real.</strong> From late March through May, everything — your car, your patio, your lungs — is coated in a yellow-green layer of pine pollen. If you have allergies, stock up on antihistamines and prepare yourself. It's temporary, but it's intense.</li>
-  <li><strong>Humidity.</strong> Summers are hot and humid, with temperatures regularly hitting 90°F+ from June through September. Air conditioning isn't optional. The upside? Winters are mild — average January temps hover around 40°F, and significant snowfall is rare (and shuts the city down when it happens).</li>
+  <li><strong>Pollen season is real.</strong> From late March through May, everything - your car, your patio, your lungs - is coated in a yellow-green layer of pine pollen. If you have allergies, stock up on antihistamines and prepare yourself. It's temporary, but it's intense.</li>
+  <li><strong>Humidity.</strong> Summers are hot and humid, with temperatures regularly hitting 90°F+ from June through September. Air conditioning isn't optional. The upside? Winters are mild - average January temps hover around 40°F, and significant snowfall is rare (and shuts the city down when it happens).</li>
   <li><strong>Hurricane season.</strong> Raleigh is inland enough that direct hurricane hits are rare, but tropical storms can bring heavy rain, flooding, and power outages. Hurricane season runs June through November, and you'll want to have a basic preparedness kit.</li>
-  <li><strong>The culture blend.</strong> Raleigh is a unique mix of Southern hospitality and tech-industry energy. You'll hear "y'all" at the same coffee shop where someone is pitching a startup. People are genuinely friendly — the kind of friendly where your neighbor brings over cookies when you move in. Transplants from the Northeast sometimes take a minute to adjust to the pace, but most fall in love with it.</li>
+  <li><strong>The culture blend.</strong> Raleigh is a unique mix of Southern hospitality and tech-industry energy. You'll hear "y'all" at the same coffee shop where someone is pitching a startup. People are genuinely friendly - the kind of friendly where your neighbor brings over cookies when you move in. Transplants from the Northeast sometimes take a minute to adjust to the pace, but most fall in love with it.</li>
   <li><strong>Growth has growing pains.</strong> Construction is everywhere. New subdivisions, road widening projects, and commercial development are constant. If you're used to a more "settled" city, the constant change can feel disorienting. But it also means the city is investing in itself.</li>
 </ul>
 
@@ -164,9 +164,9 @@ export const article: BlogPost = {
 
 <ol>
   <li><strong>Work with a local agent.</strong> A Raleigh-area agent who knows the micro-neighborhoods, school zones, and commute patterns is invaluable. They'll steer you toward areas that match your priorities and away from potential issues you wouldn't spot on Zillow.</li>
-  <li><strong>Get pre-approved before you tour.</strong> In a competitive market, sellers take pre-approved buyers more seriously. Talk to a local lender — credit unions like State Employees' Credit Union (SECU) and Coastal Federal are popular here.</li>
+  <li><strong>Get pre-approved before you tour.</strong> In a competitive market, sellers take pre-approved buyers more seriously. Talk to a local lender - credit unions like State Employees' Credit Union (SECU) and Coastal Federal are popular here.</li>
   <li><strong>Drive the neighborhoods at different times.</strong> A neighborhood feels different at 8 AM on a Tuesday vs. 6 PM on a Saturday. Visit multiple times before committing.</li>
-  <li><strong>Explore listings online in detail.</strong> Many agents now use dedicated listing websites where you can explore homes and chat with an AI about the property — getting answers to questions about the home 24/7, before you even schedule a showing. You can <a href="/demo">browse a sample listing page</a> to see what that experience looks like.</li>
+  <li><strong>Explore listings online in detail.</strong> Many agents now use dedicated listing websites where you can explore homes and chat with an AI about the property - getting answers to questions about the home 24/7, before you even schedule a showing. You can <a href="/demo">browse a sample listing page</a> to see what that experience looks like.</li>
   <li><strong>Consider your commute carefully.</strong> Raleigh is growing, and a 15-minute drive today might be 25 minutes in two years. Factor in future development when choosing a location.</li>
 </ol>
 
@@ -175,7 +175,7 @@ export const article: BlogPost = {
 <p>A few practical tips to make your move to Raleigh easier:</p>
 
 <ul>
-  <li><strong>Visit before you commit.</strong> Spend a long weekend exploring. Stay in different areas — a hotel in North Hills, an Airbnb in Cary — to get a feel for the vibe.</li>
+  <li><strong>Visit before you commit.</strong> Spend a long weekend exploring. Stay in different areas - a hotel in North Hills, an Airbnb in Cary - to get a feel for the vibe.</li>
   <li><strong>Join local groups early.</strong> The "Raleigh Newcomers" and neighborhood-specific Facebook groups are surprisingly active and helpful for everything from restaurant recommendations to finding a pediatrician.</li>
   <li><strong>Update your license quickly.</strong> North Carolina requires you to get a new driver's license within 60 days of establishing residency.</li>
   <li><strong>Register to vote.</strong> You can register at the Wake County Board of Elections or online through the NC DMV.</li>

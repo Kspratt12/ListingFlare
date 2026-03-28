@@ -31,7 +31,7 @@ export const article: BlogPost = {
 <ul>
   <li><strong>Set daily prospecting hours.</strong> Block 9 AM to 11 AM every single day for lead generation activities. No exceptions, no "I'll do it later." This is your revenue-generating time.</li>
   <li><strong>Track everything.</strong> Use a simple spreadsheet or CRM from day one. Every conversation, every follow-up, every lead source. You cannot improve what you do not measure.</li>
-  <li><strong>Invest in yourself before you invest in ads.</strong> Your time is your biggest asset right now. Spend it on activities that put you in front of real people — not scrolling through courses or watching YouTube videos about lead gen.</li>
+  <li><strong>Invest in yourself before you invest in ads.</strong> Your time is your biggest asset right now. Spend it on activities that put you in front of real people - not scrolling through courses or watching YouTube videos about lead gen.</li>
   <li><strong>Set a 90-day commitment.</strong> Tell yourself: "I will follow this plan for 90 days before I judge whether it is working." Most new agents quit right before momentum kicks in.</li>
 </ul>
 
@@ -42,8 +42,8 @@ export const article: BlogPost = {
 <p>You have heard the advice to "tell everyone you know that you are in real estate." That is true, but most new agents do it wrong. They make a single Facebook announcement and then wait for the phone to ring. Instead, do this:</p>
 
 <ul>
-  <li>Make a list of every person you know — friends, family, former coworkers, neighbors, your dentist, your barber, your kid's teacher. Aim for at least 100 names.</li>
-  <li>Reach out to each one individually (not a mass text) with a personal message. Something like: "Hey Sarah, I just got my real estate license and I am building my business here in [city]. If you or anyone you know is thinking about buying or selling, I would love to help. No pressure at all — just wanted you to know I am here."</li>
+  <li>Make a list of every person you know - friends, family, former coworkers, neighbors, your dentist, your barber, your kid's teacher. Aim for at least 100 names.</li>
+  <li>Reach out to each one individually (not a mass text) with a personal message. Something like: "Hey Sarah, I just got my real estate license and I am building my business here in [city]. If you or anyone you know is thinking about buying or selling, I would love to help. No pressure at all - just wanted you to know I am here."</li>
   <li>Add them to a monthly email or text update with local market stats. Stay top of mind without being annoying.</li>
   <li>Ask for introductions, not referrals. "Do you know anyone who has been talking about moving?" feels much less salesy than "Send me referrals!"</li>
 </ul>
@@ -56,7 +56,7 @@ export const article: BlogPost = {
 
 <ul>
   <li><strong>Post three to five times per week.</strong> Mix listing tours, market updates, neighborhood spotlights, and behind-the-scenes content of your real estate journey.</li>
-  <li><strong>Use Stories daily.</strong> Stories have higher engagement than feed posts. Show your day — driving to showings, previewing properties, attending open houses.</li>
+  <li><strong>Use Stories daily.</strong> Stories have higher engagement than feed posts. Show your day - driving to showings, previewing properties, attending open houses.</li>
   <li><strong>Engage before you post.</strong> Spend 15 minutes commenting on other people's posts before you publish your own. The algorithm rewards engagement.</li>
   <li><strong>Share your wins, even small ones.</strong> Got your first showing? Attended a broker tour? Helped a friend understand the buying process? That is all content.</li>
 </ul>
@@ -134,7 +134,7 @@ export const article: BlogPost = {
 
 <ul>
   <li><strong>Floor time and phone duty:</strong> If your brokerage offers floor time (where you answer incoming calls and walk-ins), take every shift you can. These are warm leads walking through the door.</li>
-  <li><strong>Lead routing:</strong> Some brokerages distribute online leads to agents on a rotation. Find out how the system works and make sure you are opted in. Respond to every lead within five minutes — speed to lead is everything.</li>
+  <li><strong>Lead routing:</strong> Some brokerages distribute online leads to agents on a rotation. Find out how the system works and make sure you are opted in. Respond to every lead within five minutes - speed to lead is everything.</li>
   <li><strong>Find a mentor:</strong> Attach yourself to a top producer who is willing to let you shadow them. Offer to do their open houses, help with paperwork, or assist at closings. The education is priceless, and they will eventually send you leads they are too busy to handle.</li>
 </ul>
 
@@ -186,7 +186,7 @@ export const article: BlogPost = {
 
 <h3>Weeks 5-8: Consistency</h3>
 <ul>
-  <li>Hold open houses every weekend — make it non-negotiable</li>
+  <li>Hold open houses every weekend - make it non-negotiable</li>
   <li>Continue door knocking your farm area (you should be on your second pass by now)</li>
   <li>Post on social media five times per week and use Stories daily</li>
   <li>Follow up with every lead in your CRM on a regular schedule</li>
@@ -196,12 +196,12 @@ export const article: BlogPost = {
 
 <h3>Weeks 9-12: Acceleration</h3>
 <ul>
-  <li>Review your lead sources — double down on what is working, drop what is not</li>
+  <li>Review your lead sources - double down on what is working, drop what is not</li>
   <li>Consider joining a local real estate investor meetup for referral opportunities</li>
   <li>Start creating simple video content (listing tours, market updates, neighborhood walks)</li>
   <li>Evaluate whether a small paid ad budget ($5 to $10/day on Facebook) makes sense based on your results</li>
   <li>Set your goals for the next 90 days based on what you have learned</li>
-  <li>Celebrate your wins — you have made it further than most new agents do</li>
+  <li>Celebrate your wins - you have made it further than most new agents do</li>
 </ul>
 
 <h2>Frequently Asked Questions</h2>

@@ -56,7 +56,7 @@ export const article: BlogPost = {
 <ul>
   <li><strong>Local expertise:</strong> They should know your neighborhood's pricing trends, buyer demographics, and competition.</li>
   <li><strong>A clear marketing plan:</strong> Ask how they plan to market your specific property. Professional photos, online syndication, and social media promotion should be the bare minimum.</li>
-  <li><strong>Communication style:</strong> You want an agent who communicates proactively and in the way you prefer — whether that's text, email, or phone calls.</li>
+  <li><strong>Communication style:</strong> You want an agent who communicates proactively and in the way you prefer - whether that's text, email, or phone calls.</li>
   <li><strong>Track record:</strong> Look for agents who can show recent comparable sales and client testimonials.</li>
 </ul>
 
@@ -85,7 +85,7 @@ export const article: BlogPost = {
 <ul>
   <li><strong>At market value:</strong> Pricing at what the data says your home is worth. This is the safest strategy and attracts serious buyers.</li>
   <li><strong>Slightly below market:</strong> Pricing 1–3% below market value can generate more showings, create urgency, and sometimes spark a bidding war that pushes the final price above what you would have listed at. This strategy works best in competitive markets with low inventory.</li>
-  <li><strong>Aspirational pricing:</strong> Pricing above market value "to see what happens." This strategy almost always backfires — homes that sit on the market for more than 3–4 weeks often sell for less than they would have at the correct price from day one.</li>
+  <li><strong>Aspirational pricing:</strong> Pricing above market value "to see what happens." This strategy almost always backfires - homes that sit on the market for more than 3–4 weeks often sell for less than they would have at the correct price from day one.</li>
 </ul>
 
 <h3>Common Pricing Mistakes</h3>
@@ -108,16 +108,16 @@ export const article: BlogPost = {
   <li>Clear kitchen counters down to 1–2 small appliances.</li>
   <li>Remove at least 30–50% of items from closets so they look spacious.</li>
   <li>Box up personal photographs, religious items, and hobby collections.</li>
-  <li>Pare down furniture — less is more when it comes to making rooms feel open.</li>
+  <li>Pare down furniture - less is more when it comes to making rooms feel open.</li>
 </ul>
 
 <h3>Repairs and Improvements That Add Value</h3>
 
 <p>Focus on fixes that buyers notice most:</p>
 <ul>
-  <li><strong>Fresh paint in neutral colors</strong> — one of the highest-ROI improvements you can make (\$200–\$500 per room can add thousands to your sale price).</li>
-  <li><strong>Fix the "little things"</strong> — leaky faucets, cracked tiles, squeaky doors, burned-out light bulbs. Individually they're minor, but collectively they make buyers wonder what <em>else</em> is wrong.</li>
-  <li><strong>Update dated hardware</strong> — new cabinet pulls, light fixtures, and faucets modernize a space for a few hundred dollars.</li>
+  <li><strong>Fresh paint in neutral colors</strong> - one of the highest-ROI improvements you can make (\$200–\$500 per room can add thousands to your sale price).</li>
+  <li><strong>Fix the "little things"</strong> - leaky faucets, cracked tiles, squeaky doors, burned-out light bulbs. Individually they're minor, but collectively they make buyers wonder what <em>else</em> is wrong.</li>
+  <li><strong>Update dated hardware</strong> - new cabinet pulls, light fixtures, and faucets modernize a space for a few hundred dollars.</li>
 </ul>
 
 <p>Skip these costly projects (they rarely return their investment for sellers):</p>
@@ -127,7 +127,7 @@ export const article: BlogPost = {
   <li>Converting the garage into living space.</li>
 </ul>
 
-<h3>Professional Staging — Is It Worth It?</h3>
+<h3>Professional Staging - Is It Worth It?</h3>
 
 <p>Studies from the National Association of Realtors show that <strong>staging can increase a home's sale price by 1–5%</strong> and significantly reduce time on market. Full staging costs \$2,000–\$5,000 for a typical home but can pay for itself many times over. At minimum, ask your agent about partial staging for key rooms like the living room, primary bedroom, and kitchen.</p>
 
@@ -138,7 +138,7 @@ export const article: BlogPost = {
   <li>Mow, edge, and weed the lawn.</li>
   <li>Add fresh mulch and seasonal flowers to garden beds.</li>
   <li>Power-wash the driveway, walkways, and siding.</li>
-  <li>Paint or replace the front door — it's the focal point of your home's exterior.</li>
+  <li>Paint or replace the front door - it's the focal point of your home's exterior.</li>
   <li>Update house numbers and the mailbox if they're outdated.</li>
   <li>Make sure exterior lights work and are clean.</li>
 </ol>
@@ -173,7 +173,7 @@ export const article: BlogPost = {
 <ul>
   <li><strong>Offer price:</strong> What the buyer is willing to pay.</li>
   <li><strong>Earnest money deposit:</strong> Typically 1–3% of the offer price, deposited into escrow. A larger deposit signals a more serious buyer.</li>
-  <li><strong>Contingencies:</strong> Conditions that must be met for the sale to proceed — usually inspection, appraisal, and financing contingencies. Fewer contingencies means less risk for you.</li>
+  <li><strong>Contingencies:</strong> Conditions that must be met for the sale to proceed - usually inspection, appraisal, and financing contingencies. Fewer contingencies means less risk for you.</li>
   <li><strong>Closing date:</strong> When the buyer wants to finalize the transaction. Make sure it aligns with your timeline.</li>
   <li><strong>Financing type:</strong> Cash offers close faster and have fewer hurdles. FHA or VA loans may require additional property conditions to be met.</li>
 </ul>

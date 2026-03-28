@@ -96,10 +96,10 @@ export const article: BlogPost = {
 <p>The top issues inspectors in the Triangle call out:</p>
 
 <ol>
-<li><strong>HVAC systems</strong> — Raleigh's hot, humid summers put serious wear on air conditioning units. If your system is 15+ years old, get it serviced and consider a pre-listing inspection. A clean bill of health on HVAC removes a major objection.</li>
-<li><strong>Crawl spaces</strong> — Moisture issues in crawl spaces are extremely common in central North Carolina. Encapsulation or at minimum a vapor barrier can prevent a red flag on the inspection report.</li>
-<li><strong>Roof condition</strong> — Hail and storms take a toll on roofs in the Piedmont. If your roof has visible damage or is nearing end of life, get a roofer's assessment. You may not need to replace it, but knowing its condition lets you price accordingly.</li>
-<li><strong>Grading and drainage</strong> — Water pooling near the foundation is another common finding. Re-grading or adding French drains can be relatively inexpensive and prevents a deal from falling apart.</li>
+<li><strong>HVAC systems</strong> - Raleigh's hot, humid summers put serious wear on air conditioning units. If your system is 15+ years old, get it serviced and consider a pre-listing inspection. A clean bill of health on HVAC removes a major objection.</li>
+<li><strong>Crawl spaces</strong> - Moisture issues in crawl spaces are extremely common in central North Carolina. Encapsulation or at minimum a vapor barrier can prevent a red flag on the inspection report.</li>
+<li><strong>Roof condition</strong> - Hail and storms take a toll on roofs in the Piedmont. If your roof has visible damage or is nearing end of life, get a roofer's assessment. You may not need to replace it, but knowing its condition lets you price accordingly.</li>
+<li><strong>Grading and drainage</strong> - Water pooling near the foundation is another common finding. Re-grading or adding French drains can be relatively inexpensive and prevents a deal from falling apart.</li>
 </ol>
 
 <p>Spending \$1,000 to \$3,000 on targeted repairs before listing can save you \$10,000 or more in buyer negotiations after inspection.</p>
@@ -113,10 +113,10 @@ export const article: BlogPost = {
 <p>For landscaping, stick with plants that thrive in <strong>USDA Zones 7b and 8a</strong>:</p>
 
 <ul>
-<li><strong>Knockout roses</strong> — low maintenance, bloom from spring through fall</li>
-<li><strong>Crepe myrtles</strong> — a Triangle staple that adds color and shade</li>
-<li><strong>Liriope and hostas</strong> — great groundcover for shady areas</li>
-<li><strong>Native grasses like muhly grass</strong> — drought-tolerant and visually striking</li>
+<li><strong>Knockout roses</strong> - low maintenance, bloom from spring through fall</li>
+<li><strong>Crepe myrtles</strong> - a Triangle staple that adds color and shade</li>
+<li><strong>Liriope and hostas</strong> - great groundcover for shady areas</li>
+<li><strong>Native grasses like muhly grass</strong> - drought-tolerant and visually striking</li>
 </ul>
 
 <p>Fresh mulch in the beds, a painted or replaced front door, and updated house numbers can deliver outsized curb appeal impact for under \$500 total.</p>
@@ -129,7 +129,7 @@ export const article: BlogPost = {
 
 <ul>
 <li>Allow showings on evenings and weekends, even if it's inconvenient</li>
-<li>Keep the home "show-ready" at all times — dishes done, beds made, clutter out of sight</li>
+<li>Keep the home "show-ready" at all times - dishes done, beds made, clutter out of sight</li>
 <li>Leave during showings so buyers feel comfortable exploring and talking honestly with their agent</li>
 <li>Consider a lockbox so your agent can arrange access even when you're not available to coordinate</li>
 </ul>
@@ -143,10 +143,10 @@ export const article: BlogPost = {
 <p>A local agent knows:</p>
 
 <ul>
-<li><strong>Neighborhood-specific pricing</strong> — the difference between what a renovated ranch in <strong>Oakwood</strong> fetches versus a similar home in <strong>Southeast Raleigh</strong> or <strong>Brier Creek</strong></li>
-<li><strong>Local buyer pools</strong> — who's relocating from where, what employers are driving demand (Apple, Google, Epic Games, the universities), and where those buyers want to live</li>
+<li><strong>Neighborhood-specific pricing</strong> - the difference between what a renovated ranch in <strong>Oakwood</strong> fetches versus a similar home in <strong>Southeast Raleigh</strong> or <strong>Brier Creek</strong></li>
+<li><strong>Local buyer pools</strong> - who's relocating from where, what employers are driving demand (Apple, Google, Epic Games, the universities), and where those buyers want to live</li>
 <li><strong>Seasonal patterns</strong> specific to the Triangle market, not national averages</li>
-<li><strong>Inspector and appraiser tendencies</strong> — knowing what local inspectors focus on helps you prepare</li>
+<li><strong>Inspector and appraiser tendencies</strong> - knowing what local inspectors focus on helps you prepare</li>
 </ul>
 
 <p>Ask potential agents about their average days on market for listings, their list-to-sale price ratio, and how many homes they've sold in your specific area in the past year. With average Raleigh realtor commissions running <strong>5.5% to 6.3%</strong>, you want to make sure you're getting an agent who earns that fee through results, not just a sign in the yard.</p>
@@ -159,8 +159,8 @@ export const article: BlogPost = {
 
 <ul>
 <li><strong>Respond within 24 hours</strong> whenever possible. Letting an offer sit for days signals disinterest and gives the buyer time to find another home.</li>
-<li><strong>Counter strategically</strong> — if the offer is below what you want, don't reject it outright. A well-crafted counter keeps the conversation alive.</li>
-<li><strong>Be open to concessions</strong> that don't cost you much — things like a flexible closing date or including a home warranty can seal a deal without significantly impacting your bottom line.</li>
+<li><strong>Counter strategically</strong> - if the offer is below what you want, don't reject it outright. A well-crafted counter keeps the conversation alive.</li>
+<li><strong>Be open to concessions</strong> that don't cost you much - things like a flexible closing date or including a home warranty can seal a deal without significantly impacting your bottom line.</li>
 <li><strong>Don't hold out for a better offer</strong> if the one in front of you is reasonable. In today's Raleigh market, a bird in the hand is worth two on Zillow.</li>
 </ul>
 

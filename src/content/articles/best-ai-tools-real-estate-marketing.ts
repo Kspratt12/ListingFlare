@@ -58,13 +58,13 @@ export const article: BlogPost = {
 <p><strong>Key AI features:</strong></p>
 
 <ul>
-<li><strong>AI listing descriptions</strong> — one-click luxury property descriptions that sound human-written</li>
-<li><strong>AI photo captions</strong> — vision-based AI that analyzes your actual photos and writes captions</li>
-<li><strong>24/7 AI chatbot</strong> — captures leads on every listing page while you sleep</li>
-<li><strong>AI auto-reply</strong> — drafts personalized follow-up emails the moment a lead comes in</li>
-<li><strong>AI business assistant</strong> — answers questions about your listings, leads, and performance data</li>
-<li><strong>Social media post generator</strong> — branded posts for Instagram, Facebook, and Stories in one click</li>
-<li><strong>Open house flyer generator</strong> — printable flyers with QR codes for digital lead capture</li>
+<li><strong>AI listing descriptions</strong> - one-click luxury property descriptions that sound human-written</li>
+<li><strong>AI photo captions</strong> - vision-based AI that analyzes your actual photos and writes captions</li>
+<li><strong>24/7 AI chatbot</strong> - captures leads on every listing page while you sleep</li>
+<li><strong>AI auto-reply</strong> - drafts personalized follow-up emails the moment a lead comes in</li>
+<li><strong>AI business assistant</strong> - answers questions about your listings, leads, and performance data</li>
+<li><strong>Social media post generator</strong> - branded posts for Instagram, Facebook, and Stories in one click</li>
+<li><strong>Open house flyer generator</strong> - printable flyers with QR codes for digital lead capture</li>
 </ul>
 
 <p><strong>Pricing:</strong> $150 per month (unlimited listings, unlimited leads, all AI features included). Free 14-day trial with no credit card required.</p>
@@ -84,11 +84,11 @@ export const article: BlogPost = {
 <p><strong>Key AI features:</strong></p>
 
 <ul>
-<li><strong>Text-based video editing</strong> — edit video by editing the transcript</li>
-<li><strong>Filler word removal</strong> — automatically removes "um," "uh," "like," and other filler words</li>
-<li><strong>AI captions</strong> — auto-generated captions for social media (critical since most viewers watch without sound)</li>
-<li><strong>Studio Sound</strong> — AI enhances audio quality to sound like you recorded in a professional studio</li>
-<li><strong>Eye Contact correction</strong> — AI adjusts your eye line so you always appear to be looking at the camera</li>
+<li><strong>Text-based video editing</strong> - edit video by editing the transcript</li>
+<li><strong>Filler word removal</strong> - automatically removes "um," "uh," "like," and other filler words</li>
+<li><strong>AI captions</strong> - auto-generated captions for social media (critical since most viewers watch without sound)</li>
+<li><strong>Studio Sound</strong> - AI enhances audio quality to sound like you recorded in a professional studio</li>
+<li><strong>Eye Contact correction</strong> - AI adjusts your eye line so you always appear to be looking at the camera</li>
 </ul>
 
 <p><strong>Pricing:</strong> Free plan available. Hobbyist at $16 per month, Creator at $24 per month, Business at $50 per month.</p>
@@ -108,10 +108,10 @@ export const article: BlogPost = {
 <p><strong>Key AI features:</strong></p>
 
 <ul>
-<li><strong>AI headshot generation</strong> — studio-quality results from casual selfies</li>
-<li><strong>Multiple styles</strong> — business professional, casual, outdoor, and more</li>
-<li><strong>Background options</strong> — office, solid color, outdoor, and custom backgrounds</li>
-<li><strong>Quick turnaround</strong> — results delivered in under 2 hours</li>
+<li><strong>AI headshot generation</strong> - studio-quality results from casual selfies</li>
+<li><strong>Multiple styles</strong> - business professional, casual, outdoor, and more</li>
+<li><strong>Background options</strong> - office, solid color, outdoor, and custom backgrounds</li>
+<li><strong>Quick turnaround</strong> - results delivered in under 2 hours</li>
 </ul>
 
 <p><strong>Pricing:</strong> Basic at $35 (40 headshots), Standard at $45 (60 headshots), Executive at $75 (100 headshots).</p>
@@ -131,11 +131,11 @@ export const article: BlogPost = {
 <p><strong>Key AI features:</strong></p>
 
 <ul>
-<li><strong>AI ad creative generation</strong> — dozens of ad variations from a single input</li>
-<li><strong>Performance scoring</strong> — AI predicts which creatives will convert best before you spend a dollar</li>
-<li><strong>Multi-platform formats</strong> — generates creatives sized for Facebook, Instagram, Google Display, and more</li>
-<li><strong>AI copywriting</strong> — generates ad headlines and descriptions alongside the visuals</li>
-<li><strong>Brand consistency</strong> — saves your colors, fonts, and logo for consistent branding across all creatives</li>
+<li><strong>AI ad creative generation</strong> - dozens of ad variations from a single input</li>
+<li><strong>Performance scoring</strong> - AI predicts which creatives will convert best before you spend a dollar</li>
+<li><strong>Multi-platform formats</strong> - generates creatives sized for Facebook, Instagram, Google Display, and more</li>
+<li><strong>AI copywriting</strong> - generates ad headlines and descriptions alongside the visuals</li>
+<li><strong>Brand consistency</strong> - saves your colors, fonts, and logo for consistent branding across all creatives</li>
 </ul>
 
 <p><strong>Pricing:</strong> Starter at $39 per month, Professional at $249 per month. Save up to 40 percent with annual billing.</p>
@@ -157,10 +157,10 @@ export const article: BlogPost = {
 <p><strong>Key AI features:</strong></p>
 
 <ul>
-<li><strong>Text-to-speech</strong> — type your script and get studio-quality audio in seconds</li>
-<li><strong>Voice cloning</strong> — create a digital version of your own voice for consistent branding</li>
-<li><strong>29+ languages</strong> — reach international buyers with voiceovers in their language</li>
-<li><strong>Emotion and tone control</strong> — adjust pacing, emphasis, and delivery style</li>
+<li><strong>Text-to-speech</strong> - type your script and get studio-quality audio in seconds</li>
+<li><strong>Voice cloning</strong> - create a digital version of your own voice for consistent branding</li>
+<li><strong>29+ languages</strong> - reach international buyers with voiceovers in their language</li>
+<li><strong>Emotion and tone control</strong> - adjust pacing, emphasis, and delivery style</li>
 </ul>
 
 <p><strong>Pricing:</strong> Free tier available. Starter at $5 per month, Creator at $22 per month, Pro at $99 per month.</p>
@@ -180,11 +180,11 @@ export const article: BlogPost = {
 <p><strong>Key AI features:</strong></p>
 
 <ul>
-<li><strong>Multi-platform simulcasting</strong> — stream to 30+ platforms at once</li>
-<li><strong>AI captions</strong> — real-time captions on your live stream for accessibility</li>
-<li><strong>AI highlight clips</strong> — automatically identifies and clips the best moments from your stream</li>
-<li><strong>Chat aggregation</strong> — combines comments from all platforms into one view so you can engage every audience</li>
-<li><strong>Recording and repurposing</strong> — every stream is recorded and ready to clip into short-form content</li>
+<li><strong>Multi-platform simulcasting</strong> - stream to 30+ platforms at once</li>
+<li><strong>AI captions</strong> - real-time captions on your live stream for accessibility</li>
+<li><strong>AI highlight clips</strong> - automatically identifies and clips the best moments from your stream</li>
+<li><strong>Chat aggregation</strong> - combines comments from all platforms into one view so you can engage every audience</li>
+<li><strong>Recording and repurposing</strong> - every stream is recorded and ready to clip into short-form content</li>
 </ul>
 
 <p><strong>Pricing:</strong> Free plan available. Standard at $19 per month, Professional at $49 per month, Business at $239 per month.</p>
@@ -206,10 +206,10 @@ export const article: BlogPost = {
 <p><strong>Key AI features:</strong></p>
 
 <ul>
-<li><strong>AI transcription</strong> — accurate transcripts from any audio or video file</li>
-<li><strong>Content generation</strong> — blog posts, social captions, newsletters, and more from a single recording</li>
-<li><strong>Custom templates</strong> — create reusable output templates tailored to your content workflow</li>
-<li><strong>Speaker identification</strong> — distinguishes between multiple speakers in interviews or panel discussions</li>
+<li><strong>AI transcription</strong> - accurate transcripts from any audio or video file</li>
+<li><strong>Content generation</strong> - blog posts, social captions, newsletters, and more from a single recording</li>
+<li><strong>Custom templates</strong> - create reusable output templates tailored to your content workflow</li>
+<li><strong>Speaker identification</strong> - distinguishes between multiple speakers in interviews or panel discussions</li>
 </ul>
 
 <p><strong>Pricing:</strong> Hobby at $29 per month, Starter at $99 per month. Save 20 percent with annual billing.</p>
@@ -227,11 +227,11 @@ export const article: BlogPost = {
 <p><strong>Key AI features:</strong></p>
 
 <ul>
-<li><strong>Magic Write</strong> — AI generates text for your designs (headlines, descriptions, social captions)</li>
-<li><strong>Magic Resize</strong> — resize any design for different platforms instantly</li>
-<li><strong>Background Remover</strong> — one-click background removal for product or headshot photos</li>
-<li><strong>Text to Image</strong> — generate custom images from text descriptions</li>
-<li><strong>Brand Kit</strong> — save your colors, fonts, and logos for consistent branding</li>
+<li><strong>Magic Write</strong> - AI generates text for your designs (headlines, descriptions, social captions)</li>
+<li><strong>Magic Resize</strong> - resize any design for different platforms instantly</li>
+<li><strong>Background Remover</strong> - one-click background removal for product or headshot photos</li>
+<li><strong>Text to Image</strong> - generate custom images from text descriptions</li>
+<li><strong>Brand Kit</strong> - save your colors, fonts, and logos for consistent branding</li>
 </ul>
 
 <p><strong>Pricing:</strong> Free plan available. Canva Pro at $13 per month.</p>
@@ -251,10 +251,10 @@ export const article: BlogPost = {
 <p><strong>Key AI features:</strong></p>
 
 <ul>
-<li><strong>Text generation</strong> — emails, blog posts, social captions, video scripts, and more</li>
-<li><strong>Brainstorming</strong> — marketing ideas, content calendars, campaign strategies</li>
-<li><strong>Analysis</strong> — market data interpretation, competitive analysis, pricing strategy input</li>
-<li><strong>Conversation</strong> — ask follow-up questions and refine outputs iteratively</li>
+<li><strong>Text generation</strong> - emails, blog posts, social captions, video scripts, and more</li>
+<li><strong>Brainstorming</strong> - marketing ideas, content calendars, campaign strategies</li>
+<li><strong>Analysis</strong> - market data interpretation, competitive analysis, pricing strategy input</li>
+<li><strong>Conversation</strong> - ask follow-up questions and refine outputs iteratively</li>
 </ul>
 
 <p><strong>Pricing:</strong> Free tiers available. ChatGPT Plus at $20 per month. Claude Pro at $20 per month.</p>
@@ -274,11 +274,11 @@ export const article: BlogPost = {
 <p><strong>Key AI features:</strong></p>
 
 <ul>
-<li><strong>Automated follow-up sequences</strong> — email and text drip campaigns that run on autopilot</li>
-<li><strong>Lead scoring</strong> — AI identifies which leads are most likely to convert based on engagement</li>
-<li><strong>Pipeline management</strong> — visual sales pipeline with automated stage transitions</li>
-<li><strong>Smart segmentation</strong> — automatically groups leads by behavior, source, and engagement level</li>
-<li><strong>Appointment scheduling</strong> — built-in booking links that sync with your calendar</li>
+<li><strong>Automated follow-up sequences</strong> - email and text drip campaigns that run on autopilot</li>
+<li><strong>Lead scoring</strong> - AI identifies which leads are most likely to convert based on engagement</li>
+<li><strong>Pipeline management</strong> - visual sales pipeline with automated stage transitions</li>
+<li><strong>Smart segmentation</strong> - automatically groups leads by behavior, source, and engagement level</li>
+<li><strong>Appointment scheduling</strong> - built-in booking links that sync with your calendar</li>
 </ul>
 
 <p><strong>Pricing:</strong> Starts at $299 per month (all features included, no tier restrictions). Additional users at $39 per month each.</p>

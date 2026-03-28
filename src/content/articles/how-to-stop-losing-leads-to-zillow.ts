@@ -72,11 +72,11 @@ export const article: BlogPost = {
 <p>Place a QR code that links to your property website on:</p>
 
 <ul>
-<li><strong>Yard signs</strong> — Buyers driving by scan the code and land on your page, not Zillow</li>
-<li><strong>Print flyers and brochures</strong> — Open house visitors take a flyer and revisit the listing later through your site</li>
-<li><strong>Direct mail postcards</strong> — "Just Listed" cards with a QR code give neighbors an easy way to share the listing</li>
-<li><strong>Business cards</strong> — Hand them out at open houses and networking events</li>
-<li><strong>Social media posts</strong> — Include a QR code image in Instagram Stories and Facebook posts</li>
+<li><strong>Yard signs</strong> - Buyers driving by scan the code and land on your page, not Zillow</li>
+<li><strong>Print flyers and brochures</strong> - Open house visitors take a flyer and revisit the listing later through your site</li>
+<li><strong>Direct mail postcards</strong> - "Just Listed" cards with a QR code give neighbors an easy way to share the listing</li>
+<li><strong>Business cards</strong> - Hand them out at open houses and networking events</li>
+<li><strong>Social media posts</strong> - Include a QR code image in Instagram Stories and Facebook posts</li>
 </ul>
 
 <p>The goal is simple: every touchpoint a buyer has with your listing should lead them to a page you own, not a page Zillow owns. Every scan is a potential lead captured without paying a portal a dime.</p>
@@ -107,7 +107,7 @@ export const article: BlogPost = {
 <p>Here is a social media posting framework that generates leads instead of giving them away:</p>
 
 <ul>
-<li><strong>Instagram Reels:</strong> 60-second property walk-through with a caption that says "Link in bio for full details and virtual tour" — bio link goes to your property website</li>
+<li><strong>Instagram Reels:</strong> 60-second property walk-through with a caption that says "Link in bio for full details and virtual tour" - bio link goes to your property website</li>
 <li><strong>Facebook Posts:</strong> Photo carousel with "Message me for the full listing page" or a direct link to your property site</li>
 <li><strong>TikTok:</strong> Quick listing highlights with "Comment TOUR and I'll send you the link" to capture engagement</li>
 <li><strong>LinkedIn:</strong> Market insights post with a mention of your latest listing and a link to the property page</li>
@@ -124,10 +124,10 @@ export const article: BlogPost = {
 <p>Your email strategy should include:</p>
 
 <ul>
-<li><strong>New listing alerts</strong> — Share your latest listings with a link to the property website, not the MLS page</li>
-<li><strong>Monthly market updates</strong> — Show your expertise with local stats and trends</li>
-<li><strong>Tips and guides</strong> — Home staging advice, moving checklists, or neighborhood spotlights</li>
-<li><strong>Personal stories</strong> — Share a recent closing or a behind-the-scenes look at your process</li>
+<li><strong>New listing alerts</strong> - Share your latest listings with a link to the property website, not the MLS page</li>
+<li><strong>Monthly market updates</strong> - Show your expertise with local stats and trends</li>
+<li><strong>Tips and guides</strong> - Home staging advice, moving checklists, or neighborhood spotlights</li>
+<li><strong>Personal stories</strong> - Share a recent closing or a behind-the-scenes look at your process</li>
 </ul>
 
 <p>Every email should drive traffic back to pages you own. When a subscriber clicks through to a listing, they land on your property website where your lead capture is waiting, not on a Zillow page where they get poached. For deeper strategies on nurturing prospects, read our guide on <a href="/blog/how-to-get-leads-as-a-real-estate-agent">how to get leads as a real estate agent</a>.</p>
@@ -143,10 +143,10 @@ export const article: BlogPost = {
 <p>Focus on these content types:</p>
 
 <ul>
-<li><strong>Neighborhood guides</strong> — Detailed breakdowns of schools, dining, commute times, and home prices</li>
-<li><strong>Market reports</strong> — Monthly or quarterly updates with real data on prices, inventory, and days on market</li>
-<li><strong>Buyer and seller guides</strong> — Step-by-step content like <a href="/blog/first-time-home-sellers-guide">"First-Time Home Seller's Guide"</a> or <a href="/blog/how-much-does-it-cost-to-sell-a-house">"How Much Does It Cost to Sell a House"</a></li>
-<li><strong>Comparison content</strong> — "<a href="/blog/buying-vs-renting-a-home">Buying vs. Renting</a>" or "Living in [City A] vs. [City B]"</li>
+<li><strong>Neighborhood guides</strong> - Detailed breakdowns of schools, dining, commute times, and home prices</li>
+<li><strong>Market reports</strong> - Monthly or quarterly updates with real data on prices, inventory, and days on market</li>
+<li><strong>Buyer and seller guides</strong> - Step-by-step content like <a href="/blog/first-time-home-sellers-guide">"First-Time Home Seller's Guide"</a> or <a href="/blog/how-much-does-it-cost-to-sell-a-house">"How Much Does It Cost to Sell a House"</a></li>
+<li><strong>Comparison content</strong> - "<a href="/blog/buying-vs-renting-a-home">Buying vs. Renting</a>" or "Living in [City A] vs. [City B]"</li>
 </ul>
 
 <p>Every blog post should include internal links to your listings, your property websites, and your contact page. Over time, a consistent content strategy makes your website the local authority that buyers find before they ever open Zillow. This is how you build a lead generation engine that works while you sleep.</p>
@@ -160,10 +160,10 @@ export const article: BlogPost = {
 <p>Create these types of videos and post them on YouTube, Instagram, and TikTok:</p>
 
 <ul>
-<li><strong>Listing walk-throughs</strong> — Two to three minutes showing the home while you narrate the highlights. Link to the property website in the description</li>
-<li><strong>Neighborhood tours</strong> — Drive or walk through a neighborhood while talking about what makes it special</li>
-<li><strong>Market updates</strong> — Two-minute monthly video with the latest stats for your market area</li>
-<li><strong>Tips for buyers and sellers</strong> — Quick advice videos that position you as the local expert</li>
+<li><strong>Listing walk-throughs</strong> - Two to three minutes showing the home while you narrate the highlights. Link to the property website in the description</li>
+<li><strong>Neighborhood tours</strong> - Drive or walk through a neighborhood while talking about what makes it special</li>
+<li><strong>Market updates</strong> - Two-minute monthly video with the latest stats for your market area</li>
+<li><strong>Tips for buyers and sellers</strong> - Quick advice videos that position you as the local expert</li>
 </ul>
 
 <p>YouTube videos rank in Google search results and generate views for months or years after publishing. A listing walk-through video that ranks for "[Address] home tour" means every buyer searching for that property finds you, not Zillow.</p>
@@ -177,10 +177,10 @@ export const article: BlogPost = {
 <p>Here is why Google Ads outperform Zillow leads:</p>
 
 <ul>
-<li><strong>Higher intent</strong> — The buyer is actively searching for what you offer right now</li>
-<li><strong>Exclusive leads</strong> — When someone clicks your ad, they land on your page. No competing agents in the sidebar</li>
-<li><strong>Better conversion rates</strong> — Google Ads leads convert at two to four times the rate of Zillow leads</li>
-<li><strong>Full control</strong> — You choose the keywords, the budget, the landing page, and the follow-up process</li>
+<li><strong>Higher intent</strong> - The buyer is actively searching for what you offer right now</li>
+<li><strong>Exclusive leads</strong> - When someone clicks your ad, they land on your page. No competing agents in the sidebar</li>
+<li><strong>Better conversion rates</strong> - Google Ads leads convert at two to four times the rate of Zillow leads</li>
+<li><strong>Full control</strong> - You choose the keywords, the budget, the landing page, and the follow-up process</li>
 </ul>
 
 <p>Start with a budget of $20 to $50 per day targeting your local market. Send traffic to a landing page or a single-property website with a strong call to action and lead capture form. Track your cost per lead and cost per closing to know exactly what each deal costs you. Most agents find that Google Ads deliver a lower cost per closed deal than Zillow Premier Agent once they optimize their campaigns.</p>

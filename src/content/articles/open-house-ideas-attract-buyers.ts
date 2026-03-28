@@ -76,7 +76,7 @@ export const article: BlogPost = {
 
 <ul>
   <li><strong>Floor plan</strong> with room dimensions</li>
-  <li><strong>Neighborhood stats</strong> — walkability score, commute times, nearby amenities</li>
+  <li><strong>Neighborhood stats</strong> - walkability score, commute times, nearby amenities</li>
   <li><strong>School ratings</strong> for the district</li>
   <li><strong>Utility cost estimates</strong> (buyers always wonder)</li>
   <li><strong>Recent upgrades</strong> with dates and costs</li>
