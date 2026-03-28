@@ -79,12 +79,24 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-semibold text-gray-900">8. Changes to This Policy</h2>
+            <h2 className="font-serif text-xl font-semibold text-gray-900">8. Your Privacy Rights (CCPA and GDPR)</h2>
+            <p className="mt-3">If you are a California resident, the California Consumer Privacy Act (CCPA) gives you specific rights regarding your personal information, including the right to know what data we collect, the right to request deletion, and the right to opt out of the sale of your personal information. We do not sell your personal information to third parties.</p>
+            <p className="mt-3">If you are located in the European Economic Area (EEA), the General Data Protection Regulation (GDPR) gives you additional rights including the right to access, rectify, port, and erase your data, as well as the right to restrict or object to processing. Our legal basis for processing your information is your consent (which you can withdraw at any time) and our legitimate interest in providing the ListingFlare service.</p>
+            <p className="mt-3">To exercise any of these rights, please contact us at <a href="mailto:kelvin@listingflare.com" className="text-brand-600 hover:underline">kelvin@listingflare.com</a>. We will respond to your request within 30 days.</p>
+          </section>
+
+          <section>
+            <h2 className="font-serif text-xl font-semibold text-gray-900">9. Lead Data Retention</h2>
+            <p className="mt-3">Lead information captured through listing pages (buyer names, emails, phone numbers, and messages) is stored securely in our database and shared only with the listing agent who owns that property page. Agents can delete individual leads or their entire account at any time. When an agent deletes their account, all associated lead data is permanently deleted within 30 days.</p>
+          </section>
+
+          <section>
+            <h2 className="font-serif text-xl font-semibold text-gray-900">10. Changes to This Policy</h2>
             <p className="mt-3">We may update this privacy policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the &quot;Last updated&quot; date.</p>
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-semibold text-gray-900">9. Contact Us</h2>
+            <h2 className="font-serif text-xl font-semibold text-gray-900">11. Contact Us</h2>
             <p className="mt-3">If you have questions about this privacy policy or your data, please contact us at <a href="mailto:support@listingflare.com" className="text-brand-600 hover:underline">support@listingflare.com</a>.</p>
           </section>
         </div>

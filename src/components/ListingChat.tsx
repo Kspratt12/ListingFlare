@@ -54,9 +54,9 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Hide hint after 6 seconds
+  // Hide hint after 15 seconds (longer so visitors notice it)
   useEffect(() => {
-    const timer = setTimeout(() => setShowHint(false), 6000);
+    const timer = setTimeout(() => setShowHint(false), 15000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -65,7 +65,7 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
       setShowHint(false);
       setMessages([{
         role: "assistant",
-        text: `Hey! Have any questions about ${listing.street}? I know the property well — ask me anything.`,
+        text: `Hey! Have any questions about ${listing.street}? I know the property well - ask me anything.`,
       }]);
     }
   }, [open, messages.length, listing.street]);

@@ -467,12 +467,20 @@ export default async function BlogPostPage({ params }: Props) {
             Join agents who get our best strategies, templates, and market insights
             delivered weekly. No spam, unsubscribe anytime.
           </p>
-          <a
-            href="mailto:kelvin@listingflare.com?subject=Subscribe%20to%20ListingFlare%20Newsletter&body=Hi%20Kelvin%2C%20I%27d%20like%20to%20subscribe%20to%20your%20real%20estate%20marketing%20tips%20newsletter."
-            className="mt-5 inline-flex items-center gap-2 rounded-lg bg-brand-500 px-6 py-3 text-sm font-medium text-white hover:bg-brand-600 transition-colors"
-          >
-            Subscribe to Newsletter
-          </a>
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <Link
+              href="/signup"
+              className="rounded-lg bg-brand-500 px-6 py-3 text-center text-sm font-medium text-white hover:bg-brand-600 transition-colors"
+            >
+              Start Free Trial
+            </Link>
+            <Link
+              href="/blog"
+              className="rounded-lg border border-gray-300 px-6 py-3 text-center text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              Read More Articles
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -812,13 +812,6 @@ export default function LandingPage() {
                 >
                   Start Free Trial
                 </Link>
-                <button
-                  onClick={handleBuyNow}
-                  disabled={buyLoading}
-                  className="rounded-full border-2 border-brand-400 bg-brand-50 px-4 py-2 text-xs font-medium text-brand-700 transition-colors hover:bg-brand-100 disabled:opacity-50 sm:px-5 sm:text-sm"
-                >
-                  {buyLoading ? "Loading..." : "Buy Now"}
-                </button>
               </>
             )}
           </div>
