@@ -297,6 +297,20 @@ export default async function BlogPostPage({ params }: Props) {
           />
         </div>
 
+        {/* Key Takeaways */}
+        <div className="mt-8 rounded-xl border border-brand-200 bg-gradient-to-br from-brand-50 to-white p-6">
+          <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-brand-700">
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            Key Takeaways
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed text-gray-700">
+            {post.description}
+          </p>
+          <p className="mt-3 text-xs text-gray-400">
+            {post.readingTime} min read by {post.author}
+          </p>
+        </div>
+
         {/* Table of Contents */}
         {headings.length > 3 && (
           <nav className="mt-8 rounded-xl border border-gray-200 bg-gray-50 p-5">
@@ -401,6 +415,43 @@ export default async function BlogPostPage({ params }: Props) {
           </a>
         </div>
       </article>
+
+      {/* Author Bio - E-E-A-T signal */}
+      <section className="border-t border-gray-100 bg-white py-10">
+        <div className="mx-auto max-w-3xl px-6">
+          <div className="flex items-start gap-5 rounded-xl border border-gray-200 bg-gray-50 p-6">
+            <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-brand-100 font-serif text-2xl font-bold text-brand-700">
+              KS
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-brand-500">
+                Written by
+              </p>
+              <Link href="/about" className="mt-1 block font-serif text-lg font-bold text-gray-900 hover:text-brand-600 transition-colors">
+                Kelvin Spratt
+              </Link>
+              <p className="mt-1 text-sm text-gray-500">
+                Founder &amp; CEO of ListingFlare
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-gray-600">
+                Kelvin builds real estate software that helps listing agents
+                capture more leads. His background in digital marketing, SEO,
+                and conversion optimization drives everything ListingFlare
+                does. When he is not building software, he is studying how
+                buyers search for homes online and what makes them reach out
+                to an agent.
+              </p>
+              <Link
+                href="/about"
+                className="mt-3 inline-flex items-center text-sm font-medium text-brand-600 hover:text-brand-700 transition-colors"
+              >
+                Learn more about Kelvin
+                <svg className="ml-1 h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Newsletter CTA */}
       <section className="border-t border-gray-100 bg-brand-50 py-12">
