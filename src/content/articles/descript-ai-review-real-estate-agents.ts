@@ -257,10 +257,10 @@ export const article: BlogPost = {
 <li><strong>Limited advanced editing capabilities</strong> - If you want complex transitions, motion graphics, color grading, or multi-track compositing, Descript is not the right tool. It is designed for simplicity, not power.</li>
 <li><strong>Transcription accuracy varies with accents</strong> - Agents with thick regional accents or those who speak English as a second language may find that the transcription accuracy drops below 90%, requiring more manual corrections.</li>
 <li><strong>Eye contact correction is not always seamless</strong> - Quick head movements, extreme angles, and poor lighting can cause the eye correction to look unnatural. It works best in well-lit, relatively static talking-head shots.</li>
-<li><strong>Overdub voice clone requires Business plan</strong> - At $33/month, the Business plan is not expensive, but agents on a tight budget who want voice cloning will need to step up from the $24 Hobbyist tier.</li>
+<li><strong>Overdub voice clone requires Business plan</strong> - At $50/month annually ($65 monthly), the Business plan is not expensive, but agents on a tight budget who want voice cloning will need to step up from the $24 Hobbyist tier.</li>
 <li><strong>No mobile editing app</strong> - As of 2026, Descript is a desktop application only (Mac and Windows). You cannot edit on your phone or tablet, which means you need to transfer footage from your phone to your computer before editing.</li>
 <li><strong>Large video files can be slow to upload</strong> - 4K footage from newer phones creates large files. Uploading a 10-minute 4K video can take several minutes depending on your internet connection.</li>
-<li><strong>Subscription model adds up</strong> - While $24 to $33 per month is reasonable, it is another recurring cost on top of your CRM, MLS fees, website, and other tools. If you only create one or two videos per year, the subscription is hard to justify.</li>
+<li><strong>Subscription model adds up</strong> - While $24 to $65 per month is reasonable, it is another recurring cost on top of your CRM, MLS fees, website, and other tools. If you only create one or two videos per year, the subscription is hard to justify.</li>
 </ul>
 </div>
 </div>
@@ -352,7 +352,7 @@ export const article: BlogPost = {
 <h2>Frequently Asked Questions</h2>
 
 <h3>Is Descript free for real estate agents?</h3>
-<p>Descript offers a free plan with 1 hour of transcription, basic editing features, and watermarked exports. It is useful for testing the platform, but for professional real estate content you will want the Hobbyist plan at $24/month or the Business plan at $33/month to remove the watermark and access AI features like filler word removal, Studio Sound, and eye contact correction.</p>
+<p>Descript offers a free plan with limited transcription, basic editing features, and watermarked exports. It is useful for testing the platform, but for professional real estate content you will want the Hobbyist plan at $24/month (or $16/month annually) or the Business plan at $65/month ($50/month annually) to remove the watermark and access AI features like filler word removal, Studio Sound, and eye contact correction.</p>
 
 <h3>Can Descript edit video recorded on a smartphone?</h3>
 <p>Yes. Descript works with video files from any source, including iPhone, Android, GoPro, DSLR, and screen recordings. Most real estate agents record listing walkthroughs on their smartphones and upload the files directly to Descript. The platform supports all common video formats including MP4, MOV, and AVI.</p>

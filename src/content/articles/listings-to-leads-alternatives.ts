@@ -277,7 +277,7 @@ export const article: BlogPost = {
 </tr>
 <tr>
 <td><strong>Social Media Tools</strong></td>
-<td>No</td>
+<td>Yes</td>
 <td>Yes (add-on)</td>
 <td>Basic sharing</td>
 <td>No</td>
@@ -303,7 +303,7 @@ export const article: BlogPost = {
 <td>Open house data</td>
 </tr>
 <tr>
-<td><strong>Open House Sign-In</strong></td>
+<td><strong>Open House Info</strong></td>
 <td>No</td>
 <td>No</td>
 <td>Yes</td>

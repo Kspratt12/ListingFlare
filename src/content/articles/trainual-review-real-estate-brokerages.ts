@@ -94,8 +94,8 @@ export const article: BlogPost = {
 <p>A few things to note about the pricing:</p>
 
 <ul>
-<li><strong>Annual billing saves money.</strong> The prices above reflect monthly billing. If you commit to an annual plan, you can expect roughly a 20% discount, bringing the Train plan closer to $200/mo and the Scale plan closer to $333/mo.</li>
-<li><strong>Seats include everyone.</strong> Every person who needs access counts as a seat - agents, admins, TCs, and the broker. A team of 8 agents plus a broker, an office manager, and a TC is 11 seats, which means you are on the Train plan plus one additional seat.</li>
+<li><strong>Annual billing saves money.</strong> If you commit to an annual plan, you can expect roughly a 20% discount. Contact Trainual for current pricing based on your team size.</li>
+<li><strong>Seats include everyone.</strong> Every person who needs access counts as a seat - agents, admins, TCs, and the broker. A team of 8 agents plus a broker, an office manager, and a TC is 11 seats. Contact Trainual to determine which plan fits your team size.</li>
 <li><strong>There is a free trial.</strong> The platform offers a 7-day free trial so you can build out a few SOPs and test the interface before committing. We recommend using that trial to document your onboarding process and have a current team member go through it as a test.</li>
 </ul>
 
@@ -266,7 +266,7 @@ export const article: BlogPost = {
 <div class="cons-card">
 <p>Cons</p>
 <ul>
-<li><strong>Price is steep for small teams.</strong> At $250/mo for up to 10 seats, Trainual is a meaningful expense for a small team of 3 to 5 people. The per-person cost improves as your team grows, but for smaller operations, cheaper alternatives might make more sense.</li>
+<li><strong>Price is steep for small teams.</strong> Trainual does not publicly list prices, so contact their sales team for a quote. It can be a meaningful expense for a small team of 3 to 5 people. The per-person cost improves as your team grows, but for smaller operations, cheaper alternatives might make more sense.</li>
 <li><strong>No real estate-specific templates.</strong> Trainual is industry-agnostic. It does not ship with pre-built real estate onboarding plans, compliance modules, or SOP templates. You are building everything from scratch, which takes significant upfront time.</li>
 <li><strong>Content creation is a real time investment.</strong> The platform is easy to use, but creating high-quality training content still requires hours of work. Someone on your team needs to own this, and that person needs dedicated time to do it well.</li>
 <li><strong>Limited integrations with real estate tools.</strong> Trainual integrates with general business tools (Slack, Gusto, BambooHR) but does not natively connect with real estate-specific platforms like your MLS, transaction management software, or real estate CRMs.</li>
@@ -332,7 +332,7 @@ export const article: BlogPost = {
 
 <ul>
 <li><strong>Solo agents or teams of 2-3:</strong> Skip Trainual. Use Notion or Google Docs to document your personal processes. The monthly cost is not justified at this scale.</li>
-<li><strong>Teams of 4-10 agents:</strong> Trainual is a strong fit, especially if you are hiring at least 2-3 new agents per year. The Train plan at $250/mo covers you, and the time savings on onboarding alone will cover the cost within a few months.</li>
+<li><strong>Teams of 4-10 agents:</strong> Trainual is a strong fit, especially if you are hiring at least 2-3 new agents per year. The Core plan is designed for small teams starting out, and the time savings on onboarding alone will cover the cost within a few months. Contact Trainual for current pricing.</li>
 <li><strong>Brokerages with 10+ agents:</strong> This is where Trainual delivers the most value. At scale, the consistency of training, the compliance documentation, and the reduction in repetitive questions from new agents make a material difference in how efficiently your brokerage operates.</li>
 </ul>
 
@@ -357,8 +357,8 @@ export const article: BlogPost = {
 <h3>Does Trainual integrate with real estate CRMs like Follow Up Boss or KVCore?</h3>
 <p>Not natively. Trainual integrates with general business tools like Slack, Gusto, BambooHR, and Zapier. Through Zapier you can create basic automations, but there are no direct integrations with real estate-specific platforms. You will need to manage your training platform and your real estate tools separately.</p>
 
-<h3>What is the difference between Trainual's Train and Scale plans?</h3>
-<p>The Train plan ($250/mo, up to 10 seats) includes unlimited content creation, role-based assignments, completion tracking, quizzes, and basic integrations. The Scale plan ($417/mo, up to 20 seats) adds custom branding, org chart, advanced reporting, and SSO. Most small to mid-sized brokerages only need the Train plan.</p>
+<h3>What is the difference between Trainual's Core and Pro plans?</h3>
+<p>The Core plan includes unlimited AI-assisted docs, flowcharts, AI-powered search, 500+ templates, screen recording, testing/tracking/reporting, and gamification. The Pro plan adds individual training paths, time estimates, content feedback, video transcriptions, e-signatures, org chart, delegation planner, and a dedicated customer success manager. Most small to mid-sized brokerages start with the Core plan and upgrade as needed. Contact Trainual for current pricing.</p>
 
 <h3>Is there a free version of Trainual?</h3>
 <p>No, but they offer a 7-day free trial with full platform access. If you need a free alternative, Notion or Google Docs work for documenting processes but lack training-specific features like completion tracking, automated assignments, and quizzes.</p>

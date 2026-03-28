@@ -97,13 +97,13 @@ export const article: BlogPost = {
 </tbody>
 </table>
 
-<p>For most real estate agents, the <strong>Essential plan at $89 per month</strong> is the right starting point. If you are publishing two to four blog posts per month - which is a solid cadence for a local real estate blog - 30 articles per month gives you plenty of room to optimize your content, run audits on existing pages, and experiment with different keywords.</p>
+<p>For most real estate agents, the <strong>Standard plan at $99 per month (billed annually, or $119 monthly)</strong> is the right starting point. If you are publishing two to four blog posts per month - which is a solid cadence for a local real estate blog - 30 documents per month gives you plenty of room to optimize your content, run audits on existing pages, and experiment with different keywords.</p>
 
-<p>The Scale plan at $129 per month makes sense if you are part of a team, manage multiple market areas, or produce a high volume of content. The jump from 30 to 100 articles per month is significant, and the content planner feature helps you map out topic clusters so you are not writing random one-off posts.</p>
+<p>The Pro plan at $182 per month annually (or $219 monthly) makes sense if you are part of a team, manage multiple market areas, or produce a high volume of content. The additional features like internal linking, content ideas, and rank drop detection help you build a more sophisticated content strategy beyond one-off posts.</p>
 
-<p>The Scale AI plan at $219 per month adds Surfer's AI writing capabilities. You can generate full article drafts that are already optimized for your target keyword. The AI quality is decent, but we recommend treating AI-generated drafts as starting points that you refine with your local expertise and personal voice. Google's algorithms in 2026 are very good at detecting thin, generic AI content, and the last thing you want is to publish a neighborhood guide that reads like it was written by someone who has never been to your city.</p>
+<p>The Peace of Mind plan at $299 per month annually (or $359 monthly) adds unlimited documents, advanced SERP analysis, and a dedicated success manager. It also includes more AI prompts with daily refresh. The AI quality is decent, but we recommend treating AI-generated drafts as starting points that you refine with your local expertise and personal voice. Google's algorithms in 2026 are very good at detecting thin, generic AI content, and the last thing you want is to publish a neighborhood guide that reads like it was written by someone who has never been to your city.</p>
 
-<p>Is $89 per month worth it for a real estate agent? Consider this: one new client from an organic blog post is worth thousands in commission. If Surfer helps just one of your articles reach page one and that article generates even one lead over the course of a year, the tool has paid for itself ten times over. For agents who are serious about content marketing as a lead generation channel, Surfer is one of the highest-ROI tools you can invest in.</p>
+<p>Is $99 per month worth it for a real estate agent? Consider this: one new client from an organic blog post is worth thousands in commission. If Surfer helps just one of your articles reach page one and that article generates even one lead over the course of a year, the tool has paid for itself ten times over. For agents who are serious about content marketing as a lead generation channel, Surfer is one of the highest-ROI tools you can invest in.</p>
 
 <h2>How Real Estate Agents Use Surfer SEO</h2>
 
@@ -216,11 +216,11 @@ export const article: BlogPost = {
 <div class="cons-card">
 <p>Cons</p>
 <ul>
-<li><strong>The $89/month price point is a commitment</strong> - For agents who are only writing one or two blog posts per month, $89 is a significant per-article cost. You need to be committed to regular content production to justify the expense.</li>
+<li><strong>The $99/month price point is a commitment</strong> - For agents who are only writing one or two blog posts per month, $99 is a significant per-article cost. You need to be committed to regular content production to justify the expense.</li>
 <li><strong>It can encourage over-optimization if you are not careful</strong> - Chasing a perfect score can lead to keyword-stuffed content that reads poorly. You need to balance Surfer's recommendations with readability and your own voice.</li>
 <li><strong>It does not replace writing skill</strong> - Surfer tells you what to include, but it does not write great content for you. You still need to be a competent writer or hire one. Poorly written content with a high Surfer score is still poorly written content.</li>
 <li><strong>The learning curve takes a few sessions</strong> - The Content Editor is intuitive, but the SERP Analyzer and Audit tools have a lot of data that can be overwhelming at first. Plan to spend a few hours getting comfortable with the platform.</li>
-<li><strong>AI writing quality is inconsistent</strong> - The Scale AI plan's AI writing feature produces decent first drafts, but the output for real estate content specifically tends to be generic. It lacks the local knowledge and personal touch that makes real estate content compelling.</li>
+<li><strong>AI writing quality is inconsistent</strong> - The AI writing feature produces decent first drafts, but the output for real estate content specifically tends to be generic. It lacks the local knowledge and personal touch that makes real estate content compelling.</li>
 <li><strong>No free tier for ongoing use</strong> - Unlike some competitors, Surfer does not offer a limited free plan. There is a 7-day money-back guarantee, but no perpetual free option to test with a few articles per month.</li>
 </ul>
 </div>
@@ -258,7 +258,7 @@ export const article: BlogPost = {
 
 <p>Frase is surprisingly capable for its price point. The content optimization scoring is solid, the AI writing is decent, and the research features help you build content briefs quickly. However, Frase's optimization data is less granular than Surfer's, and the SERP analysis is not as deep. For agents who are just starting with content marketing and want to dip their toes in without a major investment, Frase is a solid choice.</p>
 
-<p><strong>What stands out:</strong> Frase is the best budget option. If $89 per month for Surfer feels like too much right now, start with Frase at $15 per month and upgrade to Surfer when your content volume and revenue justify the cost.</p>
+<p><strong>What stands out:</strong> Frase is the best budget option. If $99 per month for Surfer feels like too much right now, start with Frase at $15 per month and upgrade to Surfer when your content volume and revenue justify the cost.</p>
 
 <h3>Surfer SEO vs NeuronWriter</h3>
 
@@ -284,7 +284,7 @@ export const article: BlogPost = {
 <tbody>
 <tr>
 <td><strong>Surfer SEO</strong></td>
-<td>$89/mo</td>
+<td>$99/mo (annual)</td>
 <td>Real-time content scoring + SERP Analyzer</td>
 <td>Agents serious about content SEO</td>
 </tr>
@@ -340,7 +340,7 @@ export const article: BlogPost = {
 
 <p>After months of testing, our answer is a clear <strong>yes</strong> - with a few caveats.</p>
 
-<p>Surfer SEO is one of the most effective tools available for real estate content optimization. It takes the guesswork out of SEO, gives you a clear roadmap for every article you write, and measurably improves your chances of ranking on page one. For agents who are committed to content marketing as a lead generation strategy, the $89 per month Essential plan is one of the highest-ROI investments you can make.</p>
+<p>Surfer SEO is one of the most effective tools available for real estate content optimization. It takes the guesswork out of SEO, gives you a clear roadmap for every article you write, and measurably improves your chances of ranking on page one. For agents who are committed to content marketing as a lead generation strategy, the $99 per month Standard plan (billed annually) is one of the highest-ROI investments you can make.</p>
 
 <p>The tool is especially powerful for local real estate content. Neighborhood guides, market reports, moving guides, and area-specific blog posts all benefit enormously from Surfer's data-driven optimization. The SERP Analyzer alone is worth the price of admission for competitive research, and the Audit tool can breathe new life into your existing content library.</p>
 
@@ -372,10 +372,10 @@ export const article: BlogPost = {
 <h2>Frequently Asked Questions</h2>
 
 <h3>Is Surfer SEO worth it for real estate agents?</h3>
-<p>Yes, Surfer SEO is worth it for real estate agents who are committed to content marketing. The $89 per month Essential plan pays for itself if it helps even one blog post reach page one of Google and generate a single lead. Agents who publish at least two blog posts per month and target local keywords will see the most value from the platform.</p>
+<p>Yes, Surfer SEO is worth it for real estate agents who are committed to content marketing. The $99 per month Standard plan (billed annually) pays for itself if it helps even one blog post reach page one of Google and generate a single lead. Agents who publish at least two blog posts per month and target local keywords will see the most value from the platform.</p>
 
 <h3>What is the best Surfer SEO plan for a solo real estate agent?</h3>
-<p>The Essential plan at $89 per month is the best choice for most solo agents. It includes 30 articles per month, which is more than enough for agents publishing two to four blog posts monthly. You also get access to the Content Editor, SERP Analyzer, Keyword Research, and Audit tools - everything you need for effective content optimization.</p>
+<p>The Standard plan at $99 per month (billed annually, or $119 monthly) is the best choice for most solo agents. It includes 30 documents per month, which is more than enough for agents publishing two to four blog posts monthly. You also get access to the Content Editor, SERP Analyzer, Keyword Research, and Audit tools - everything you need for effective content optimization.</p>
 
 <h3>Can Surfer SEO help me rank for local real estate keywords?</h3>
 <p>Absolutely. Surfer SEO is particularly effective for local keywords because it analyzes what the top-ranking pages in your specific market include. It identifies location-specific terms, entities, and content structures that Google expects to see on local real estate pages. We saw the best results with neighborhood guides, market reports, and city-specific moving guides.</p>
@@ -396,7 +396,7 @@ export const article: BlogPost = {
 <p>Aim for a content score of 80 or above. In our testing, articles scoring between 82 and 90 performed best in search rankings. Do not chase a perfect 100, as that often leads to over-optimized content that reads unnaturally. Focus on writing valuable, comprehensive content that naturally incorporates Surfer's keyword and structure recommendations.</p>
 
 <h3>How does Surfer SEO compare to Clearscope for real estate agents?</h3>
-<p>Surfer offers better value. Its Essential plan provides 30 articles for $89/month, while Clearscope starts at $170/month for just 10 reports. Clearscope has a slight edge in grading accuracy, but Surfer's broader feature set, higher volume, and lower price make it the better choice for most agents.</p>
+<p>Surfer offers better value. Its Standard plan provides 30 documents for $99/month (billed annually), while Clearscope starts at $170/month for just 10 reports. Clearscope has a slight edge in grading accuracy, but Surfer's broader feature set, higher volume, and lower price make it the better choice for most agents.</p>
 
 <h3>Can Surfer SEO help with my ListingFlare property page content?</h3>
 <p>Yes. Use Surfer to optimize blog posts that drive organic traffic, then link those posts to your ListingFlare property pages to capture leads. This blog-to-listing funnel is one of the most effective organic lead generation strategies for real estate agents.</p>

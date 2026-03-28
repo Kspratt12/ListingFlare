@@ -101,7 +101,7 @@ export const article: BlogPost = {
 </tbody>
 </table>
 
-<p>For most individual real estate agents, the <strong>Professional plan at $16 per month</strong> is the sweet spot. It removes the watermark (which looks unprofessional on a listing stream), unlocks Full HD streaming, and gives you access to recordings and analytics. That is less than the cost of a single Zillow zip code for a month, and the ROI from just one lead captured during a live stream can pay for years of the subscription.</p>
+<p>For most individual real estate agents, the <strong>Standard plan at $16 per month annually ($19 monthly)</strong> is the sweet spot. It removes the watermark (which looks unprofessional on a listing stream), gives you 3 channels, and includes guest channels and 50 clips. That is less than the cost of a single Zillow zip code for a month, and the ROI from just one lead captured during a live stream can pay for years of the subscription.</p>
 
 <p>The Free plan is fine for testing, but the 2-channel limit and watermark make it impractical for serious use. The Business plan is worth considering if you run a team and want unlimited channels for streaming to multiple Facebook groups, multiple YouTube channels, or niche platforms simultaneously.</p>
 
@@ -240,7 +240,7 @@ export const article: BlogPost = {
 <div class="cons-card">
 <p>Cons</p>
 <ul>
-<li><strong>Free plan is limited</strong> - Two channels and a watermark make the free tier impractical for professional use. You will almost certainly need the Professional plan.</li>
+<li><strong>Free plan is limited</strong> - Two channels and a watermark make the free tier impractical for professional use. You will almost certainly need the Standard or Professional plan.</li>
 <li><strong>Mobile streaming is basic</strong> - While you can use Restream Studio on mobile browsers, the experience is not as smooth as a dedicated mobile app. For on-location property walkthroughs, you may need a phone mount and some patience.</li>
 <li><strong>Instagram Live limitations</strong> - Instagram does not natively support RTMP multistreaming, so going live on Instagram simultaneously with other platforms requires workarounds. This is an Instagram limitation, not a Restream limitation, but it is worth noting.</li>
 <li><strong>Learning curve for advanced features</strong> - The basic go-live flow is simple, but setting up custom overlays, scene transitions, and multi-guest layouts takes some time to learn.</li>
@@ -328,7 +328,7 @@ export const article: BlogPost = {
 
 <p><strong>Yes, absolutely.</strong> Restream is one of the most efficient tools a real estate agent can add to their marketing stack in 2026. The math is straightforward: live video dramatically outperforms static content, but going live on multiple platforms separately is impractical. Restream eliminates that friction entirely.</p>
 
-<p>At $16 per month for the Professional plan, the cost is negligible compared to almost any other marketing expense in real estate. A single lead generated from a live stream can result in thousands of dollars in commission. The ROI potential is enormous.</p>
+<p>At $16 per month for the Standard plan (billed annually), the cost is negligible compared to almost any other marketing expense in real estate. A single lead generated from a live stream can result in thousands of dollars in commission. The ROI potential is enormous.</p>
 
 <p>The platform is easy to use, reliable, and packed with features that make your streams look professional without a production crew. The browser-based studio means you can go live from anywhere with a laptop and webcam. The chat aggregation keeps you connected to your audience across every platform. And the recordings give you a library of content to repurpose for weeks after each stream.</p>
 
@@ -340,7 +340,7 @@ export const article: BlogPost = {
 <h2>Frequently Asked Questions</h2>
 
 <h3>Is Restream free for real estate agents?</h3>
-<p>Restream offers a free plan that includes 2 streaming channels and 720p resolution, but it includes a Restream watermark on your stream. For professional real estate use, the Professional plan at $16 per month is recommended. It removes the watermark, unlocks 1080p Full HD, and includes recordings, analytics, and stream scheduling. The free plan is best used for testing the platform before committing.</p>
+<p>Restream offers a free plan that includes 2 streaming channels, but it includes a Restream watermark on your stream. For professional real estate use, the Standard plan at $16 per month (billed annually, or $19 monthly) is the recommended starting point. It removes the watermark and includes guest channels and 50 clips. The Professional plan at $39 per month (billed annually, or $49 monthly) adds Full HD 1080p, 4K recording, and more clips. The free plan is best used for testing the platform before committing.</p>
 
 <h3>Can I go live on Instagram and YouTube at the same time with Restream?</h3>
 <p>Restream supports simultaneous streaming to YouTube, Facebook, LinkedIn, TikTok, X, and 30+ platforms. Instagram Live has limited RTMP support, making multistreaming to Instagram less seamless. Focus on YouTube, Facebook, and LinkedIn as primary live channels, and repurpose clips to Instagram Reels afterward.</p>

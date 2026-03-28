@@ -110,7 +110,7 @@ export const article: BlogPost = {
 
 <p>Let us put those numbers in perspective. A typical professional headshot session with a photographer in most US markets costs $200 to $500. That gets you one session, usually 20 to 30 raw shots, and five to ten retouched final images. If you want different outfits or backgrounds, many photographers charge extra for extended sessions.</p>
 
-<p>With the Starter plan at $29, you get 40 finished headshots across multiple styles. That is roughly $0.73 per headshot compared to $20 to $50 per headshot with a photographer. Even the Premium plan at $69 for 200 headshots works out to about $0.35 per image.</p>
+<p>With the Basic plan at $35, you get 40 finished headshots across multiple styles. That is roughly $0.88 per headshot compared to $20 to $50 per headshot with a photographer. Even the Executive plan at $75 for 100 headshots works out to about $0.75 per image.</p>
 
 <p>The value proposition is hard to argue with, especially for new agents who are still building their business and watching every dollar. But price only matters if the quality is good enough. We will cover that in detail below.</p>
 
@@ -177,7 +177,7 @@ export const article: BlogPost = {
 
 <h3>Step 2: Upload and Select Your Preferences</h3>
 
-<p>Once you have your selfies, head to the Aragon AI website and create an account. Choose your plan (Starter, Professional, or Premium) and upload your photos. The platform will guide you through selecting your preferences, including:</p>
+<p>Once you have your selfies, head to the Aragon AI website and create an account. Choose your plan (Basic, Standard, or Executive) and upload your photos. The platform will guide you through selecting your preferences, including:</p>
 
 <ul>
 <li>Your gender presentation</li>
@@ -205,7 +205,7 @@ export const article: BlogPost = {
 <li><strong>Background consistency</strong> - Make sure backgrounds look clean and realistic, without any AI artifacts or distortions.</li>
 </ul>
 
-<p>Out of 40 headshots (Starter plan), you will likely find 8 to 15 that are excellent, 10 to 15 that are good, and the rest ranging from acceptable to unusable. That is a normal hit rate for AI-generated content, and it still gives you far more options than a typical photo session.</p>
+<p>Out of 40 headshots (Basic plan), you will likely find 8 to 15 that are excellent, 10 to 15 that are good, and the rest ranging from acceptable to unusable. That is a normal hit rate for AI-generated content, and it still gives you far more options than a typical photo session.</p>
 
 <h2>Aragon AI Pros and Cons</h2>
 
@@ -216,7 +216,7 @@ export const article: BlogPost = {
 <p>Pros</p>
 <ul>
 <li><strong>Incredibly fast</strong> - From selfie to finished headshot in one to two hours. No scheduling, no travel, no waiting for a photographer's edits.</li>
-<li><strong>Extremely affordable</strong> - Starting at $29 for 40 headshots compared to $200 to $500 for a traditional session. The per-image cost is a fraction of professional photography.</li>
+<li><strong>Extremely affordable</strong> - Starting at $35 for 40 headshots compared to $200 to $500 for a traditional session. The per-image cost is a fraction of professional photography.</li>
 <li><strong>Multiple looks from one session</strong> - This is the biggest advantage. You get formal, casual, outdoor, and studio looks without changing clothes or locations. A photographer would charge significantly more for this variety.</li>
 <li><strong>Consistent professional quality</strong> - The AI maintains proper lighting, composition, and framing across all generated images. You do not get the occasional bad shot that even good photographers produce.</li>
 <li><strong>Easy to update</strong> - Changed your hairstyle? Lost weight? Switched to a new brokerage? Generate fresh headshots in two hours instead of booking a new session.</li>
@@ -233,7 +233,7 @@ export const article: BlogPost = {
 <li><strong>No full-body shots</strong> - Aragon AI focuses exclusively on headshots and upper-body portraits. If you need a full-length standing photo for a yard sign or billboard, you still need a photographer.</li>
 <li><strong>Cannot replicate exact outfits</strong> - If you want to be photographed in a specific blazer you own for brand consistency, the AI cannot do that. It generates its own outfit interpretations.</li>
 <li><strong>Some results look too polished</strong> - A handful of generated headshots can have an overly smooth, magazine-cover quality that might look slightly unrealistic to a discerning eye. Picking the right images from the batch is important.</li>
-<li><strong>One-time payment model</strong> - While affordable per session, costs add up if you regenerate frequently. Agents who update their headshot quarterly would spend $116 to $276 per year depending on the plan.</li>
+<li><strong>One-time payment model</strong> - While affordable per session, costs add up if you regenerate frequently. Agents who update their headshot quarterly would spend $140 to $300 per year depending on the plan.</li>
 </ul>
 </div>
 </div>
@@ -283,7 +283,7 @@ export const article: BlogPost = {
 <tbody>
 <tr>
 <td><strong>Starting Price</strong></td>
-<td>$29</td>
+<td>$35</td>
 <td>$29</td>
 <td>$19</td>
 <td>$29</td>
@@ -363,11 +363,11 @@ export const article: BlogPost = {
 
 <p>After testing Aragon AI thoroughly, our verdict is clear: <strong>yes, it is absolutely worth it for real estate agents at every experience level.</strong></p>
 
-<p>For $29 to $69, you get a library of professional headshots that would cost $500 or more with a traditional photographer. The quality is strong enough for business cards, yard signs, listing pages, social media, and LinkedIn. The variety is unmatched - you get formal and casual options, different backgrounds, and multiple outfit styles, all from a single batch of selfies.</p>
+<p>For $35 to $75, you get a library of professional headshots that would cost $500 or more with a traditional photographer. The quality is strong enough for business cards, yard signs, listing pages, social media, and LinkedIn. The variety is unmatched - you get formal and casual options, different backgrounds, and multiple outfit styles, all from a single batch of selfies.</p>
 
 <p>Is it a perfect replacement for professional photography? Not entirely. If you are a luxury agent whose brand depends on absolutely flawless, magazine-quality imagery, you should still invest in a professional photographer for your primary headshot. But even luxury agents can benefit from Aragon AI for secondary uses - social media profiles, seasonal updates, team directory photos, and quick refreshes between professional sessions.</p>
 
-<p>For the vast majority of agents - especially new agents, solo agents, and agents in competitive markets where every dollar matters - Aragon AI is one of the highest-ROI investments you can make in your personal brand. A $29 headshot session that helps you close even one additional deal pays for itself thousands of times over.</p>
+<p>For the vast majority of agents - especially new agents, solo agents, and agents in competitive markets where every dollar matters - Aragon AI is one of the highest-ROI investments you can make in your personal brand. A $35 headshot session that helps you close even one additional deal pays for itself thousands of times over.</p>
 
 <p>Here is who should use Aragon AI:</p>
 
@@ -409,7 +409,7 @@ export const article: BlogPost = {
 <p>Yes. According to Aragon AI's terms of service, you own full commercial rights to the headshots generated from your uploads. You can use them freely for business cards, websites, social media, advertising, and any other commercial purpose.</p>
 
 <h3>How often should real estate agents update their headshot?</h3>
-<p>We recommend updating your headshot every one to two years, or whenever you have a significant change in appearance. With Aragon AI costing just $29 to $69 per session, there is no reason to use an outdated photo. Buyers and sellers should recognize you when they meet you in person - if your headshot looks nothing like you today, it is time for a refresh.</p>
+<p>We recommend updating your headshot every one to two years, or whenever you have a significant change in appearance. With Aragon AI costing just $35 to $75 per session, there is no reason to use an outdated photo. Buyers and sellers should recognize you when they meet you in person - if your headshot looks nothing like you today, it is time for a refresh.</p>
 </div>
 `,
 };

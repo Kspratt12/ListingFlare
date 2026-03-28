@@ -115,16 +115,16 @@ export const article: BlogPost = {
 <p>Rela uses tiered pricing with per-listing costs on lower plans:</p>
 
 <ul>
-<li><strong>Starter:</strong> $24/mo - 3 active listings, basic templates</li>
-<li><strong>Pro:</strong> $49/mo - 10 active listings, premium templates, custom domain</li>
-<li><strong>Business:</strong> $99/mo - Unlimited listings, all templates, priority support, Calendly integration</li>
+<li><strong>Starter:</strong> $24/mo - 1 active listing, basic templates</li>
+<li><strong>Pro:</strong> $49/mo - 5 active listings, premium templates, custom domain</li>
+<li><strong>Team:</strong> $99/mo - 15 active listings, all templates, team branding, priority support, Calendly integration</li>
 </ul>
 
-<p>The jump from $24 to $99 is significant, and most serious listing agents will end up on the Pro or Business plan once they start using the platform regularly. If you carry more than three listings at a time, the Starter plan is not going to cut it.</p>
+<p>The jump from $24 to $99 is significant, and most serious listing agents will end up on the Pro or Team plan once they start using the platform regularly. If you carry more than one listing at a time, the Starter plan is not going to cut it.</p>
 
 <h3>Templates and Design</h3>
 
-<p>This is where Rela shines. The platform offers around 20 premium templates that are genuinely beautiful. Full-width hero images, elegant typography, smooth scrolling animations, and photo galleries that feel like flipping through an architecture magazine. For luxury listings, Rela is hard to beat on pure visual impact.</p>
+<p>This is where Rela shines. The platform offers 20+ premium templates that are genuinely beautiful. Full-width hero images, elegant typography, smooth scrolling animations, and photo galleries that feel like flipping through an architecture magazine. For luxury listings, Rela is hard to beat on pure visual impact.</p>
 
 <p>The templates are also mobile-responsive and load quickly, which matters when 76% of buyers are browsing on their phones. Rela clearly invested heavily in design, and it shows.</p>
 
@@ -136,7 +136,7 @@ export const article: BlogPost = {
 
 <h3>Lead Capture</h3>
 
-<p>Rela includes lead capture forms and supports Calendly integration on the Business plan, which lets buyers schedule showings directly from the listing page. This is a useful feature that reduces friction for motivated buyers.</p>
+<p>Rela includes lead capture forms and supports Calendly integration on the Team plan, which lets buyers schedule showings directly from the listing page. This is a useful feature that reduces friction for motivated buyers.</p>
 
 <p>However, like CribFlyer, there is no intelligent chat assistant. There is no way for the page to engage a buyer who is browsing at midnight. If the buyer does not fill out the form or click the Calendly link, they leave without a trace.</p>
 
@@ -153,8 +153,8 @@ export const article: BlogPost = {
 <li>Best-in-class template design - 20 premium options</li>
 <li>Excellent mobile experience with fast load times</li>
 <li>Strong 3D tour integration (Matterport, iGuide)</li>
-<li>Calendly integration for showing scheduling (Business plan)</li>
-<li>Custom domain support on Pro and Business plans</li>
+<li>Calendly integration for showing scheduling (Team plan)</li>
+<li>Custom domain support on Pro and Team plans</li>
 <li>Video embed support for walkthroughs and drone footage</li>
 </ul>
 </div>
@@ -163,7 +163,7 @@ export const article: BlogPost = {
 <ul>
 <li>No automated buyer engagement or conversational lead capture</li>
 <li>No automated follow-up emails</li>
-<li>Gets expensive quickly - unlimited listings require $99/mo plan</li>
+<li>Gets expensive quickly - 15 active listings require $99/mo Team plan</li>
 <li>Basic analytics without detailed buyer behavior data</li>
 <li>No social media post generation</li>
 <li>Lead capture limited to static forms and Calendly</li>
@@ -198,7 +198,7 @@ export const article: BlogPost = {
 
 <p>The buyer provides their name, email, and phone number within the flow of the conversation, which feels more natural than a cold form.</p>
 
-<p>This matters most after hours. The National Association of Realtors reports that 78% of buyers work with the first agent who responds. When a buyer is browsing listings at 10:30 PM and your chatbot engages them instantly while other agents' pages just sit there, you win that lead. For more on why response time is everything in real estate, read our guide on <a href="/blog/how-to-stop-losing-leads-to-zillow">how to stop losing leads to Zillow</a>.</p>
+<p>This matters most after hours. Research consistently shows that buyers tend to work with the first agent who responds. When a buyer is browsing listings at 10:30 PM and your chatbot engages them instantly while other agents' pages just sit there, you win that lead. For more on why response time is everything in real estate, read our guide on <a href="/blog/how-to-stop-losing-leads-to-zillow">how to stop losing leads to Zillow</a>.</p>
 
 <h3>Automatic Lead Capture and AI-Drafted Follow-Up Emails</h3>
 
@@ -396,7 +396,7 @@ export const article: BlogPost = {
 
 <p>Consider this scenario: a buyer finds your listing on Instagram at 9:45 PM on a Saturday. They love the kitchen but want to know if the backyard is fenced. On CribFlyer or Rela, they fill out a form and wait. Maybe they hear back Sunday morning - or maybe they have already moved on to another agent.</p>
 
-<p>On ListingFlare, the conversational AI answers their question in three seconds, then asks if they would like to see the home in person. You wake up Sunday morning with a qualified lead, a full conversation transcript, and a follow-up email already sent on your behalf. The NAR data backs this up: 78% of buyers work with the first agent who responds.</p>
+<p>On ListingFlare, the conversational AI answers their question in three seconds, then asks if they would like to see the home in person. You wake up Sunday morning with a qualified lead, a full conversation transcript, and a follow-up email already sent on your behalf. Industry research backs this up: buyers overwhelmingly work with the first agent who responds.</p>
 
 <p>If you are spending money on professional photography, virtual tours, drone footage, and staging, it makes no sense to send all that traffic to a page that cannot capture leads after business hours.</p>
 
@@ -411,7 +411,7 @@ export const article: BlogPost = {
 <p>CribFlyer offers a limited free plan and paid plans starting at $7/mo. The free plan has significant restrictions on templates and features. Most agents need at least the Standard plan at $15/mo for useful functionality like QR codes and better templates.</p>
 
 <h3>Does Rela have an AI chatbot?</h3>
-<p>No. Rela does not offer an AI chatbot on its listing pages. Lead capture is limited to static contact forms and Calendly integration on the Business plan ($99/mo). If a buyer visits after hours, they must fill out a form and wait. <a href="/signup">ListingFlare</a> is currently the only builder with an AI chatbot that engages buyers in real-time conversation.</p>
+<p>No. Rela does not offer an AI chatbot on its listing pages. Lead capture is limited to static contact forms and Calendly integration on the Team plan ($99/mo). If a buyer visits after hours, they must fill out a form and wait. <a href="/signup">ListingFlare</a> is currently the only builder with an AI chatbot that engages buyers in real-time conversation.</p>
 
 <h3>Which platform is best for luxury listings?</h3>
 <p>For pure visual design, Rela has the edge with 20 premium templates built for high-end properties. However, luxury buyers have detailed questions and expect immediate answers. ListingFlare's chatbot provides that instant engagement while still offering clean, professional templates. The best choice depends on whether you prioritize design or lead conversion.</p>

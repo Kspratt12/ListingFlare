@@ -101,11 +101,11 @@ export const article: BlogPost = {
 </tbody>
 </table>
 
-<p>For most solo real estate agents, the <strong>Starter plan at $23 per month</strong> is more than enough. Ten hours of upload time translates to roughly 120 individual recordings at 5 minutes each. If you record one market update per week and one listing walkthrough, that is only 40 to 50 minutes of content per month - well within the Starter limit.</p>
+<p>For most solo real estate agents, the <strong>Hobby plan at $29 per month</strong> (or $21/mo billed annually) is more than enough. Five hours of upload time translates to roughly 60 individual recordings at 5 minutes each. If you record one market update per week and one listing walkthrough, that is only 40 to 50 minutes of content per month - well within the Hobby limit.</p>
 
-<p>The <strong>Growth plan at $49 per month</strong> makes sense if you are recording podcast episodes, hosting regular live streams, or managing content for a small team. Forty hours gives you significant room to repurpose longer-form content like hour-long interviews or training sessions.</p>
+<p>The <strong>Starter plan at $99 per month</strong> (or $79/mo billed annually) makes sense if you are recording podcast episodes, hosting regular live streams, or managing content for a small team. Twenty hours gives you significant room to repurpose longer-form content like hour-long interviews or training sessions.</p>
 
-<p>The <strong>Professional plan at $99 per month</strong> is designed for high-volume content producers, real estate teams with multiple agents creating content, or brokerages that want to centralize content production. Unlimited uploads mean you never have to worry about running out of capacity.</p>
+<p>The <strong>Business plan at $999 per month</strong> (or $790/mo billed annually) is designed for high-volume content producers, real estate teams with multiple agents creating content, or brokerages that want to centralize content production. Eighty hours of upload time and 20 seats mean you have plenty of capacity for large teams.</p>
 
 <p>All plans include AI-generated outputs, custom templates, and the ability to create your own content workflows. The main differentiator between tiers is upload hours and priority processing speed.</p>
 
@@ -201,7 +201,7 @@ export const article: BlogPost = {
 <li><strong>Multi-format output</strong> - One upload produces content for every platform. Blog, email, Instagram, LinkedIn, YouTube, Twitter - all from a single recording. This level of content multiplication is nearly impossible to achieve manually.</li>
 <li><strong>Custom templates</strong> - You can train the AI to match your brand voice, include your preferred calls to action, and format content the way you want it. This means the more you use it, the better the outputs get.</li>
 <li><strong>Low learning curve</strong> - If you can record a voice memo on your phone and upload a file, you can use Castmagic. There is no complex editing interface or technical knowledge required.</li>
-<li><strong>Affordable entry point</strong> - At $23 per month for the Starter plan, Castmagic costs less than a single hour of a freelance content writer's time and produces far more output.</li>
+<li><strong>Affordable entry point</strong> - At $29 per month for the Hobby plan (or $21/mo annually), Castmagic costs less than a single hour of a freelance content writer's time and produces far more output.</li>
 <li><strong>Podcast and video support</strong> - Direct integrations with YouTube, Zoom, and podcast feeds make it easy to repurpose content you are already creating.</li>
 </ul>
 </div>
@@ -316,7 +316,7 @@ export const article: BlogPost = {
 </tr>
 <tr>
 <td>Starting price</td>
-<td>$23/mo</td>
+<td>$29/mo</td>
 <td>Free/$15/mo</td>
 <td>$29/mo</td>
 <td>Free/$24/mo</td>
@@ -352,7 +352,7 @@ export const article: BlogPost = {
 
 <h2>Verdict: Is Castmagic Worth It for Real Estate Agents?</h2>
 
-<p><strong>Yes, for most agents Castmagic is worth the investment.</strong> At $23 per month, it costs less than what most agents spend on a single social media graphic from a freelancer. The time savings alone justify the cost: if Castmagic saves you even 3 hours per week on content creation, that is 12 hours per month - time you can spend on activities that directly generate revenue like prospecting, showing homes, and negotiating deals.</p>
+<p><strong>Yes, for most agents Castmagic is worth the investment.</strong> At $29 per month for the Hobby plan (or $21/mo annually), it costs less than what most agents spend on a single social media graphic from a freelancer. The time savings alone justify the cost: if Castmagic saves you even 3 hours per week on content creation, that is 12 hours per month - time you can spend on activities that directly generate revenue like prospecting, showing homes, and negotiating deals.</p>
 
 <p>Castmagic is especially valuable for agents who:</p>
 
@@ -375,7 +375,7 @@ export const article: BlogPost = {
 
 <p>The smartest approach is to combine Castmagic for content creation with <a href="/signup">ListingFlare</a> for lead capture. This gives you the full pipeline: create content at scale, drive traffic to your listings, and convert visitors into leads automatically. That combination, at under $175 per month total, replaces what would otherwise require a part-time marketing assistant and a separate lead capture system.</p>
 
-<p>Start with the Castmagic Starter plan at $23 per month. Record your first market update. Generate a week of content in 20 minutes. Once you see the time savings, you will wonder how you ever created content the old way.</p>
+<p>Start with the Castmagic Hobby plan at $29 per month (or $21/mo annually). Record your first market update. Generate a week of content in 20 minutes. Once you see the time savings, you will wonder how you ever created content the old way.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions About Castmagic for Real Estate</h2>
@@ -384,7 +384,7 @@ export const article: BlogPost = {
 <p>Yes. Real estate naturally generates content through market updates, listing presentations, and client conversations. Agents using Castmagic typically save 5 to 8 hours per week by recording one clip and letting AI generate blog posts, social captions, email newsletters, and more from that single recording.</p>
 
 <h3>How much does Castmagic cost?</h3>
-<p>Castmagic offers three plans: Starter at $23 per month (10 hours of uploads), Growth at $49 per month (40 hours), and Professional at $99 per month (unlimited uploads). Most solo real estate agents find the Starter plan sufficient for their content needs. All plans include AI-generated outputs, custom templates, and transcription.</p>
+<p>Castmagic offers three plans: Hobby at $29 per month (5 hours of uploads), Starter at $99 per month (20 hours), and Business at $999 per month (80 hours). Annual billing reduces the cost to $21/mo, $79/mo, and $790/mo respectively. Most solo real estate agents find the Hobby plan sufficient for their content needs. All plans include AI-generated outputs, custom templates, and transcription.</p>
 
 <h3>Can Castmagic write listing descriptions?</h3>
 <p>Castmagic can generate listing-related content from a recording where you describe the property. However, it is not specifically designed as a listing description generator. For dedicated AI listing descriptions, property websites, and lead capture, <a href="/signup">ListingFlare</a> is purpose-built for that workflow and produces MLS-ready descriptions in one click.</p>
