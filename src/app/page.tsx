@@ -638,7 +638,7 @@ export default function LandingPage() {
     sameAs: [],
     contactPoint: {
       "@type": "ContactPoint",
-      email: "support@listingflare.com",
+      email: "kelvin@listingflare.com",
       contactType: "customer support",
       availableLanguage: "English",
     },
@@ -708,12 +708,6 @@ export default function LandingPage() {
       "Custom agent branding",
       "AI listing description writer",
     ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      ratingCount: "47",
-      bestRating: "5",
-    },
   };
 
   const faqs = [
@@ -788,6 +782,12 @@ export default function LandingPage() {
               className="hidden text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 md:block"
             >
               Blog
+            </Link>
+            <Link
+              href="/pricing"
+              className="hidden text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 md:block"
+            >
+              Pricing
             </Link>
             {isLoggedIn ? (
               <Link
@@ -1203,13 +1203,13 @@ export default function LandingPage() {
             className="text-center"
           >
             <h2 className="font-serif text-3xl font-bold text-white md:text-display-sm">
-              You&apos;re losing buyers after hours.
+              Your open house visitors are walking out unnamed.
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-gray-400">
-              10:14 PM. A buyer wants to know if the backyard is fenced. No response. They scroll to the next listing. That was a $12,000 commission. Gone. You never even knew.
+              Saturday open house. 14 people walked through. 2 signed the guest book. The other 12 left without giving you their name, their email, or any way to follow up. That is 12 potential buyers you will never hear from again.
             </p>
             <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-gray-300">
-              With ListingFlare, that same buyer gets an answer, submits their info, and books Saturday morning. You see it when you wake up.
+              With ListingFlare, every visitor who scans your QR code lands on a page with an AI that starts a conversation and captures their info before they drive away.
             </p>
           </motion.div>
         </div>
