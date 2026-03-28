@@ -105,6 +105,8 @@ export const article: BlogPost = {
 
 <p>Is $99 per month worth it for a real estate agent? Consider this: one new client from an organic blog post is worth thousands in commission. If Surfer helps just one of your articles reach page one and that article generates even one lead over the course of a year, the tool has paid for itself ten times over. For agents who are serious about content marketing as a lead generation channel, Surfer is one of the highest-ROI tools you can invest in.</p>
 
+<a href="https://get.surferseo.com/drivabtrwy6x" target="_blank" rel="noopener noreferrer" class="cta-button">Try Surfer SEO Free</a>
+
 <h2>How Real Estate Agents Use Surfer SEO</h2>
 
 <p>Surfer SEO is a general-purpose content optimization tool, but it works exceptionally well for real estate content because local SEO follows very predictable patterns. Google has clear expectations for what a page about "homes for sale in Austin TX" should contain, and Surfer decodes those expectations for you. Here are the five most valuable use cases we found for real estate agents.</p>
@@ -367,6 +369,8 @@ export const article: BlogPost = {
 </ul>
 
 <p>If you are ready to take your real estate content marketing seriously, Surfer SEO deserves a spot in your toolkit. Pair it with <a href="/signup">ListingFlare</a> for property presentation and lead capture, and you have a complete organic marketing system that generates leads while you sleep.</p>
+
+<a href="https://get.surferseo.com/drivabtrwy6x" target="_blank" rel="noopener noreferrer" class="cta-button">Try Surfer SEO Free</a>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

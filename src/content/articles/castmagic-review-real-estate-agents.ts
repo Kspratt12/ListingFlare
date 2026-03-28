@@ -109,6 +109,8 @@ export const article: BlogPost = {
 
 <p>All plans include AI-generated outputs, custom templates, and the ability to create your own content workflows. The main differentiator between tiers is upload hours and priority processing speed.</p>
 
+<a href="https://get.castmagic.io/nrxry3kwbzkj" target="_blank" rel="noopener noreferrer" class="cta-button">Try Castmagic Free</a>
+
 <img src="/blog/castmagic/agent-casting.png" alt="Real estate agent using Castmagic to repurpose content" loading="lazy" />
 
 <h2>How Real Estate Agents Use Castmagic</h2>
@@ -376,6 +378,8 @@ export const article: BlogPost = {
 <p>The smartest approach is to combine Castmagic for content creation with <a href="/signup">ListingFlare</a> for lead capture. This gives you the full pipeline: create content at scale, drive traffic to your listings, and convert visitors into leads automatically. That combination, at under $175 per month total, replaces what would otherwise require a part-time marketing assistant and a separate lead capture system.</p>
 
 <p>Start with the Castmagic Hobby plan at $29 per month (or $21/mo annually). Record your first market update. Generate a week of content in 20 minutes. Once you see the time savings, you will wonder how you ever created content the old way.</p>
+
+<a href="https://get.castmagic.io/nrxry3kwbzkj" target="_blank" rel="noopener noreferrer" class="cta-button">Try Castmagic Free</a>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions About Castmagic for Real Estate</h2>

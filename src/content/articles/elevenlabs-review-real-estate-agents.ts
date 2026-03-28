@@ -126,6 +126,8 @@ export const article: BlogPost = {
 
 <p>To put the cost in perspective, a single freelance voiceover artist charges $100 to $300 for one listing video narration. The ElevenLabs Creator plan at $22 per month gives you enough characters to produce 30 to 40 listing voiceovers. That is a cost savings of roughly 99 percent compared to hiring human talent for every video.</p>
 
+<a href="https://try.elevenlabs.io/bkxad5z0cuhk" target="_blank" rel="noopener noreferrer" class="cta-button">Try ElevenLabs Free</a>
+
 <h2>7 Ways Real Estate Agents Can Use ElevenLabs</h2>
 
 <p>Now for the practical part. We tested the platform across every real estate use case we could think of. Here are the seven that delivered the most value, with specific examples and tips for each one.</p>
@@ -490,6 +492,8 @@ export const article: BlogPost = {
 <p>The voice gets them interested. The AI chatbot closes the lead. Together, they cover the full journey from attention to conversion.</p>
 
 <p>If you want to see how the lead capture side works, <a href="/demo">see a live demo of ListingFlare</a> or <a href="/signup">start your free trial</a> - no credit card required.</p>
+
+<a href="https://try.elevenlabs.io/bkxad5z0cuhk" target="_blank" rel="noopener noreferrer" class="cta-button">Try ElevenLabs Free</a>
 
 <div class="faq-section">
 

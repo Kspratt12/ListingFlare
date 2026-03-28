@@ -106,6 +106,8 @@ export const article: BlogPost = {
 
 <p>The Pro plan price of $15/mo is for the base tier. If your contact list grows past certain thresholds (10,000, 25,000, etc.), the price scales up slightly. But for the vast majority of individual agents and small teams, $15/mo covers everything you need.</p>
 
+<a href="https://manychat.partnerlinks.io/01x6zkowpzw1" target="_blank" rel="noopener noreferrer" class="cta-button">Try ManyChat Free</a>
+
 <h2>7 Ways Real Estate Agents Use ManyChat to Generate Leads</h2>
 
 <p>On to the practical strategies. These are not hypothetical ideas - these are workflows that top-producing agents are actively running right now to turn social media followers into real leads.</p>
@@ -378,6 +380,8 @@ export const article: BlogPost = {
 <p>If you are not yet active on social media, ManyChat will not help. It is an amplifier, not a replacement for content creation. You need to be posting regularly and building an audience first. But once you are, ManyChat turns that audience into a lead pipeline.</p>
 
 <p>Pair it with <a href="/signup">ListingFlare</a> for your property websites and you have a comprehensive lead capture system that covers social media, your website, and everything in between.</p>
+
+<a href="https://manychat.partnerlinks.io/01x6zkowpzw1" target="_blank" rel="noopener noreferrer" class="cta-button">Try ManyChat Free</a>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
