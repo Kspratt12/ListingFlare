@@ -31,7 +31,7 @@ export const article: BlogPost = {
 
 <p>But here's what the headlines often miss: this correction didn't signal a broken market. It signaled a market returning to reality. Austin's prices had gotten disconnected from local incomes during the pandemic, fueled by remote workers cashing in coastal equity, rock-bottom interest rates, and a collective fear of missing out. When rates climbed and remote-work migration slowed, the speculative froth burned off.</p>
 
-<p>The good news for current homeowners is that <strong>prices have largely stabilized</strong>. Month-over-month data through early 2026 shows modest appreciation returning (roughly 1–3% annually), which suggests the correction has bottomed out and the market is finding its footing again.</p>
+<p>For current homeowners, <strong>prices have largely stabilized</strong>. Month-over-month data through early 2026 shows modest appreciation returning (roughly 1–3% annually), which suggests the correction has bottomed out and the market is finding its footing again.</p>
 
 <h2>Current Market Data: Where Austin Stands Today</h2>
 

@@ -81,7 +81,7 @@ export const article: BlogPost = {
 
 <h2>7. Make Bathrooms Feel Spa-Like</h2>
 
-<p>Bathrooms are the second most scrutinized rooms in a home, right behind the kitchen. A tired, dingy bathroom can tank a buyer's enthusiasm faster than almost anything else. The good news is that making a bathroom feel luxurious doesn't require a renovation.</p>
+<p>Bathrooms are the second most scrutinized rooms in a home, right behind the kitchen. A tired, dingy bathroom can tank a buyer's enthusiasm faster than almost anything else. Making a bathroom feel luxurious doesn't require a renovation.</p>
 
 <p>Start with fresh <strong>white towels</strong>, rolled or neatly folded on the counter or a shelf. Add a small candle (unlit during showings, but present for the visual), a simple soap dispenser, and a small plant like a succulent or air plant. Remove all personal toiletries, medicine cabinet contents, and anything that makes the bathroom feel used.</p>
 

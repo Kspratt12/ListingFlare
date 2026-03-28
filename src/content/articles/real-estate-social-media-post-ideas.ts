@@ -205,7 +205,7 @@ export const article: BlogPost = {
 <p>Instagram and Facebook remain the strongest platforms for real estate agents in 2026 because they support photos, video, Stories, and long-form captions. TikTok is excellent for reaching younger and first-time buyers. LinkedIn works well for luxury and commercial agents. Pick one platform to master first, then expand.</p>
 
 <h3>Do I need to use video for real estate social media?</h3>
-<p>Yes, video is no longer optional. Reels and TikTok videos receive significantly more reach than static photo posts on every major platform. The good news is that your videos don't need to be professionally produced. A 30-second walkthrough filmed on your phone with natural light and trending audio will outperform a \$2,000 production most of the time.</p>
+<p>Yes, video is no longer optional. Reels and TikTok videos receive significantly more reach than static photo posts on every major platform. Your videos don't need to be professionally produced. A 30-second walkthrough filmed on your phone with natural light and trending audio will outperform a \$2,000 production most of the time.</p>
 
 <h3>How do I turn social media followers into actual leads?</h3>
 <p>The key is having a clear path from content to conversation. Include calls to action in every post ("DM me," "click the link in bio," "comment DETAILS below"). Use lead capture tools on your listing pages so that when people click through, their information is collected automatically. Follow up with every DM and comment within a few hours because speed matters. For a complete system that goes beyond social media, see our full guide on <a href="/blog/how-to-get-leads-as-a-real-estate-agent">how to get leads as a real estate agent</a>.</p>

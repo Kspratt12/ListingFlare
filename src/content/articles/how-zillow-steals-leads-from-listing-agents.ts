@@ -157,7 +157,7 @@ export const article: BlogPost = {
 
 <h2>The Lawsuits - Agents Fighting Back in 2025-2026</h2>
 
-<p>The good news? Agents are not taking this lying down. In 2025, Zillow faced significant legal action over its lead routing practices, and the ramifications are still unfolding in 2026.</p>
+<p>Agents are not taking this lying down. In 2025, Zillow faced significant legal action over its lead routing practices, and the ramifications are still unfolding in 2026.</p>
 
 <p><strong>Zillow was sued in 2025</strong> over its deceptive "Contact Agent" button practices. The lawsuit alleged that Zillow's interface was intentionally designed to mislead consumers into believing they were contacting the listing agent when they were actually being connected to a paying advertiser. The suit cited the University of Pennsylvania study as evidence that 99.7% of consumers were deceived by the design.</p>
 
@@ -322,7 +322,7 @@ export const article: BlogPost = {
 
 <h2>The Math - What Happens When You Capture Just 1 Extra Lead Per Listing</h2>
 
-<p>Time to get specific about the financial impact of implementing these strategies. We will use conservative numbers to show what happens when you capture just one additional lead per listing that would have otherwise gone to Zillow.</p>
+<p>Consider the financial impact of implementing these strategies. We will use conservative numbers to show what happens when you capture just one additional lead per listing that would have otherwise gone to Zillow.</p>
 
 <p><strong>Assumptions:</strong></p>
 

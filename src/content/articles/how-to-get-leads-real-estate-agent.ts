@@ -18,7 +18,7 @@ export const article: BlogPost = {
   coverImage: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&h=630&fit=crop&q=80",
   coverImageAlt: "Real estate agent reviewing lead generation strategies on a laptop to get more clients",
   content: `
-<p>If you have ever wondered <strong>how to get leads as a real estate agent</strong>, you are not alone. According to the National Association of Realtors, lead generation remains the single biggest challenge facing agents at every experience level. The market in 2026 is more competitive than ever: buyers start their search online, attention spans are shorter, and the agents who win are the ones with a repeatable system for attracting and capturing new prospects. The good news? There are more channels available to you today than at any point in the industry's history.</p>
+<p>If you have ever wondered <strong>how to get leads as a real estate agent</strong>, you are not alone. According to the National Association of Realtors, lead generation remains the single biggest challenge facing agents at every experience level. The market in 2026 is more competitive than ever: buyers start their search online, attention spans are shorter, and the agents who win are the ones with a repeatable system for attracting and capturing new prospects. There are more channels available to you today than at any point in the industry's history.</p>
 
 <p>In this guide we break down 12 proven strategies for <strong>lead generation for real estate agents</strong> that are working right now. Whether you are a solo agent building your first pipeline or a team leader looking to scale, you will find actionable tactics you can implement this week. Let's dive in.</p>
 

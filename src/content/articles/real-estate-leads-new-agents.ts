@@ -21,7 +21,7 @@ export const article: BlogPost = {
   content: `
 <p>Getting your first <strong>real estate leads for new agents</strong> might feel like the hardest thing you have ever done. You have no listings, no track record, no sphere of influence worth mentioning, and a marketing budget that is basically whatever is left over after your licensing fees. Sound familiar? You are not alone. Every single top producer in your market started in exactly the same place.</p>
 
-<p>The good news: generating real estate leads for agents who are brand new is absolutely possible in 2026, even without spending thousands on Zillow or Realtor.com ads. This guide lays out a concrete, week-by-week plan to build your pipeline from zero using strategies that actually work, most of them free.</p>
+<p>Generating real estate leads for agents who are brand new is absolutely possible in 2026, even without spending thousands on Zillow or Realtor.com ads. This guide lays out a concrete, week-by-week plan to build your pipeline from zero using strategies that actually work, most of them free.</p>
 
 <h2>The New Agent Mindset: Treat Yourself Like a Business from Day One</h2>
 

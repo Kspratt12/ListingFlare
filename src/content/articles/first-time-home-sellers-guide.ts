@@ -22,7 +22,7 @@ export const article: BlogPost = {
   content: `
 <p>Congratulations, you're about to sell your first home! Whether you've outgrown your starter house, you're relocating for work, or you're simply ready for a change, selling a home for the first time can feel equal parts exciting and overwhelming. There are contracts, timelines, inspections, pricing decisions, and an avalanche of paperwork standing between you and a successful sale.</p>
 
-<p>But here's the good news: the <strong>home selling process</strong> follows a predictable set of steps, and once you understand them, the entire journey becomes far less intimidating. This <strong>first time home seller's guide</strong> walks you through every stage, from deciding whether you're truly ready to sell all the way to handing over the keys at closing. Let's get started.</p>
+<p>The <strong>home selling process</strong> follows a predictable set of steps, and once you understand them, the entire journey becomes far less intimidating. This <strong>first time home seller's guide</strong> walks you through every stage, from deciding whether you're truly ready to sell all the way to handing over the keys at closing. Let's get started.</p>
 
 <h2>Step 1: Decide If You're Ready to Sell</h2>
 

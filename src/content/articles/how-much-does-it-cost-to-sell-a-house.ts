@@ -101,7 +101,7 @@ export const article: BlogPost = {
 
 <h3>Capital Gains Tax</h3>
 
-<p>If your home has appreciated significantly, you may owe capital gains tax on the profit. The good news is that most primary-residence sellers qualify for a generous exclusion: <strong>\$250,000 for single filers</strong> and <strong>\$500,000 for married couples filing jointly</strong>. To qualify, you must have owned and lived in the home for at least two of the last five years. If your profit exceeds these thresholds, you'll owe federal capital gains tax (typically 15 to 20 percent) on the excess amount, plus any applicable state taxes.</p>
+<p>If your home has appreciated significantly, you may owe capital gains tax on the profit. Most primary-residence sellers qualify for a generous exclusion: <strong>\$250,000 for single filers</strong> and <strong>\$500,000 for married couples filing jointly</strong>. To qualify, you must have owned and lived in the home for at least two of the last five years. If your profit exceeds these thresholds, you'll owe federal capital gains tax (typically 15 to 20 percent) on the excess amount, plus any applicable state taxes.</p>
 
 <h3>Mortgage Payoff</h3>
 

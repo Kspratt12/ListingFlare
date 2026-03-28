@@ -47,7 +47,7 @@ export const article: BlogPost = {
 
 <p>Every one of these scenarios represents money walking out the door. A buyer who was interested enough to view your listing - interested enough to click, call, or visit - is now in someone else's pipeline. And you are back to prospecting for new clients while your own listings generate business for the competition.</p>
 
-<p>The good news is that every one of these problems is solvable. Here are five strategies that put you back in control.</p>
+<p>Every one of these problems is solvable. Here are five strategies that put you back in control.</p>
 
 <h2>Strategy 1 - Create Single Property Websites for Every Listing</h2>
 

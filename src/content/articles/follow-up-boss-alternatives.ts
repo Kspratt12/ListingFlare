@@ -497,7 +497,7 @@ export const article: BlogPost = {
 
 <h2>The Biggest Gap in Every Real Estate CRM - Listing Marketing</h2>
 
-<p>Here is the thing that none of these platforms want to talk about: your CRM manages leads after they enter your system. But what captures those leads in the first place?</p>
+<p>None of these platforms want to talk about this: your CRM manages leads after they enter your system. But what captures those leads in the first place?</p>
 
 <p>Think about the lifecycle of a listing lead. A buyer sees your listing somewhere - on Zillow, on social media, on a flyer at an open house. They want to know more. Where do they go? To Zillow, where three other agents are advertised on your listing? To Realtor.com, where the lead gets sold to whoever pays the most? To a generic page on your brokerage website surrounded by competing listings?</p>
 

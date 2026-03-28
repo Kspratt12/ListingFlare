@@ -129,7 +129,7 @@ export const article: BlogPost = {
 
 <h2>Transportation &amp; Getting Around</h2>
 
-<p>Let's be honest: Raleigh is a <strong>car-dependent city</strong>. While downtown is increasingly walkable and certain neighborhoods have decent bike infrastructure, you'll need a car for most daily errands and commutes. The good news is that traffic, while growing, is still manageable compared to Atlanta, DC, or Houston. A typical commute across the metro runs 20–35 minutes.</p>
+<p>Let's be honest: Raleigh is a <strong>car-dependent city</strong>. While downtown is increasingly walkable and certain neighborhoods have decent bike infrastructure, you'll need a car for most daily errands and commutes. Traffic, while growing, is still manageable compared to Atlanta, DC, or Houston. A typical commute across the metro runs 20–35 minutes.</p>
 
 <p>Key roads to know:</p>
 
