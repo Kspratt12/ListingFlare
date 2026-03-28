@@ -400,16 +400,16 @@ export const article: BlogPost = {
 
 <p>Your script is the foundation of your voiceover. Write it in a conversational tone as if you were walking a buyer through the home in person. A template you can customize for any listing:</p>
 
-<div style="background:#1a1a1a;border-radius:0.75rem;padding:1.5rem 1.75rem;margin:1.25rem 0;font-family:monospace;font-size:0.9rem;line-height:1.8;color:#e5e3de;overflow-x:auto;">
-<p style="color:#9a8866;font-weight:700;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem;font-family:system-ui;">Listing Voiceover Script Template - Copy and Customize</p>
-<p style="color:#f0ede6;margin-bottom:0.75rem;">"Welcome to <span style="color:#ac9d7e;">[ADDRESS]</span> - a <span style="color:#ac9d7e;">[BEDROOM COUNT]</span>-bedroom, <span style="color:#ac9d7e;">[BATHROOM COUNT]</span>-bathroom <span style="color:#ac9d7e;">[PROPERTY TYPE]</span> in <span style="color:#ac9d7e;">[NEIGHBORHOOD]</span>.</p>
-<p style="color:#f0ede6;margin-bottom:0.75rem;">From the moment you arrive, you will notice <span style="color:#ac9d7e;">[FIRST IMPRESSION - e.g., the manicured landscaping, the grand entrance]</span>.</p>
-<p style="color:#f0ede6;margin-bottom:0.75rem;">Step inside and you are greeted by <span style="color:#ac9d7e;">[MAIN INTERIOR FEATURE - e.g., soaring ceilings, natural light through oversized windows]</span>.</p>
-<p style="color:#f0ede6;margin-bottom:0.75rem;">The kitchen is a true showpiece, featuring <span style="color:#ac9d7e;">[KITCHEN HIGHLIGHTS - e.g., quartz countertops, stainless steel appliances, center island]</span>.</p>
-<p style="color:#f0ede6;margin-bottom:0.75rem;">The primary suite offers <span style="color:#ac9d7e;">[PRIMARY SUITE - e.g., spa-like bathroom with dual vanities, walk-in closet, private balcony]</span>.</p>
-<p style="color:#f0ede6;margin-bottom:0.75rem;">Step outside to <span style="color:#ac9d7e;">[OUTDOOR FEATURES - e.g., landscaped backyard, covered patio, pool and spa]</span>.</p>
-<p style="color:#f0ede6;margin-bottom:0.75rem;">Located in <span style="color:#ac9d7e;">[NEIGHBORHOOD]</span>, you are just minutes from <span style="color:#ac9d7e;">[NEARBY AMENITIES - e.g., top-rated schools, shopping, dining, parks]</span>.</p>
-<p style="color:#f0ede6;margin-bottom:0;">This home is listed at <span style="color:#ac9d7e;">[PRICE]</span>. To schedule a private showing, visit <span style="color:#ac9d7e;">[YOUR WEBSITE]</span>."</p>
+<div style="background:linear-gradient(135deg, #f9f8f4 0%, #f0ede6 100%);border:1px solid #ddd8c8;border-radius:0.75rem;padding:1.5rem 1.75rem;margin:1.25rem 0;font-size:0.95rem;line-height:1.9;color:#504436;">
+<p style="color:#9a8866;font-weight:700;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:1px solid #ddd8c8;">Listing Voiceover Script Template</p>
+<p style="margin-bottom:0.75rem;font-style:italic;">"Welcome to <strong style="color:#75634a;font-style:normal;">[ADDRESS]</strong> - a <strong style="color:#75634a;font-style:normal;">[BEDROOM COUNT]</strong>-bedroom, <strong style="color:#75634a;font-style:normal;">[BATHROOM COUNT]</strong>-bathroom <strong style="color:#75634a;font-style:normal;">[PROPERTY TYPE]</strong> in <strong style="color:#75634a;font-style:normal;">[NEIGHBORHOOD]</strong>.</p>
+<p style="margin-bottom:0.75rem;font-style:italic;">From the moment you arrive, you will notice <strong style="color:#75634a;font-style:normal;">[FIRST IMPRESSION - e.g., the manicured landscaping, the grand entrance]</strong>.</p>
+<p style="margin-bottom:0.75rem;font-style:italic;">Step inside and you are greeted by <strong style="color:#75634a;font-style:normal;">[MAIN INTERIOR FEATURE - e.g., soaring ceilings, natural light through oversized windows]</strong>.</p>
+<p style="margin-bottom:0.75rem;font-style:italic;">The kitchen is a true showpiece, featuring <strong style="color:#75634a;font-style:normal;">[KITCHEN HIGHLIGHTS - e.g., quartz countertops, stainless steel appliances, center island]</strong>.</p>
+<p style="margin-bottom:0.75rem;font-style:italic;">The primary suite offers <strong style="color:#75634a;font-style:normal;">[PRIMARY SUITE - e.g., spa-like bathroom with dual vanities, walk-in closet, private balcony]</strong>.</p>
+<p style="margin-bottom:0.75rem;font-style:italic;">Step outside to <strong style="color:#75634a;font-style:normal;">[OUTDOOR FEATURES - e.g., landscaped backyard, covered patio, pool and spa]</strong>.</p>
+<p style="margin-bottom:0.75rem;font-style:italic;">Located in <strong style="color:#75634a;font-style:normal;">[NEIGHBORHOOD]</strong>, you are just minutes from <strong style="color:#75634a;font-style:normal;">[NEARBY AMENITIES - e.g., top-rated schools, shopping, dining, parks]</strong>.</p>
+<p style="margin-bottom:0;font-style:italic;">This home is listed at <strong style="color:#75634a;font-style:normal;">[PRICE]</strong>. To schedule a private showing, visit <strong style="color:#75634a;font-style:normal;">[YOUR WEBSITE]</strong>."</p>
 </div>
 
 <p>This template runs about 1,200 to 1,500 characters depending on how much detail you add, which translates to roughly 60 to 90 seconds of audio. That is the sweet spot for Instagram Reels and TikTok.</p>
