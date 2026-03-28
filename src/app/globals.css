@@ -110,13 +110,18 @@ input[type="number"]::-webkit-inner-spin-button {
 /* Scrollable table wrapper for mobile */
 .blog-content table {
   width: 100%;
-  min-width: 600px;
-  border-collapse: collapse;
+  min-width: 500px;
+  border-collapse: separate;
+  border-spacing: 0;
   margin: 1.5rem 0;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid #e5e3de;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-/* Auto-wrap tables in a scrollable container via JS-free CSS trick */
+/* Auto-wrap tables in a scrollable container */
 .blog-content {
   overflow-x: visible;
 }
@@ -127,19 +132,57 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-overflow-scrolling: touch;
 }
 
+.blog-content thead {
+  display: table-header-group;
+}
+
+.blog-content tbody {
+  display: table-row-group;
+}
+
+.blog-content tr {
+  display: table-row;
+}
+
+.blog-content th,
+.blog-content td {
+  display: table-cell;
+}
+
 .blog-content th {
-  background: #f9f8f6;
-  font-weight: 600;
+  background: linear-gradient(180deg, #f9f8f4 0%, #f0ede6 100%);
+  font-weight: 700;
   text-align: left;
-  padding: 0.75rem 1rem;
-  border: 1px solid #e5e3de;
-  color: #1a1a1a;
+  padding: 0.875rem 1rem;
+  border-bottom: 2px solid #ddd8c8;
+  color: #504436;
   white-space: nowrap;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .blog-content td {
-  padding: 0.75rem 1rem;
-  border: 1px solid #e5e3de;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid #f0ede6;
+  color: #374151;
+  vertical-align: top;
+}
+
+.blog-content tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.blog-content tbody tr:hover {
+  background: #faf9f7;
+}
+
+.blog-content tbody tr:nth-child(even) {
+  background: #fdfcfb;
+}
+
+.blog-content tbody tr:nth-child(even):hover {
+  background: #f7f5f2;
 }
 
 /* Pros/Cons styled cards */
@@ -262,12 +305,17 @@ input[type="number"]::-webkit-inner-spin-button {
 
   .blog-content table {
     font-size: 0.8rem;
-    min-width: 500px;
+    min-width: 400px;
+    border-radius: 0.5rem;
   }
 
-  .blog-content th,
+  .blog-content th {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.7rem;
+  }
+
   .blog-content td {
-    padding: 0.5rem 0.625rem;
+    padding: 0.625rem 0.75rem;
   }
 
   .blog-content .pros-card,
