@@ -21,7 +21,7 @@ export const article: BlogPost = {
   ],
   readingTime: 16,
   coverImage:
-    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop&q=80",
+    "/blog/surfer-seo/surfer-seo.png",
   coverImageAlt:
     "Laptop displaying website analytics and SEO performance data for real estate content optimization",
   content: `
@@ -33,11 +33,11 @@ export const article: BlogPost = {
 
 <p>We spent several months using Surfer SEO specifically for real estate content - blog posts, market reports, neighborhood guides, listing descriptions, and lead generation pages. This is our honest, detailed <strong>Surfer SEO review for real estate agents</strong> in 2026.</p>
 
-<img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=1200&h=630&fit=crop&q=80" alt="Person analyzing SEO data on a computer screen with graphs and keyword metrics for real estate content strategy" loading="lazy" />
+<img src="/blog/surfer-seo/surfer-what-is.png" alt="Surfer SEO content optimization platform overview" loading="lazy" />
 
 <h2>What Is Surfer SEO?</h2>
 
-<p><a href="https://surferseo.com" target="_blank" rel="noopener noreferrer">Surfer SEO</a> is a cloud-based content optimization platform that helps you write articles Google actually wants to rank. Instead of guessing what makes a page rank, The platform analyzes the top 10 to 50 results for your target keyword and reverse-engineers the common factors that those winning pages share.</p>
+<p><a href="https://get.surferseo.com/drivabtrwy6x" target="_blank" rel="noopener noreferrer">Surfer SEO</a> is a cloud-based content optimization platform that helps you write articles Google actually wants to rank. Instead of guessing what makes a page rank, The platform analyzes the top 10 to 50 results for your target keyword and reverse-engineers the common factors that those winning pages share.</p>
 
 <p>The result is a data-driven content brief that tells you exactly how to structure your article. You get specific guidance on word count, keyword usage, heading structure, image count, paragraph length, and dozens of other on-page factors. As you write, the software gives you a real-time content score from 0 to 100, and your goal is to hit 80 or above.</p>
 
@@ -107,6 +107,8 @@ export const article: BlogPost = {
 
 <h3>1. Optimizing Blog Posts for Local Keywords</h3>
 
+<img src="/blog/surfer-seo/keyword-planner.png" alt="Surfer SEO keyword research for local real estate blog posts" loading="lazy" />
+
 <p>This is the bread and butter use case. You want to rank for "best neighborhoods in Raleigh NC" or "moving to Charlotte NC" or "homes for sale in Durham." You enter your target keyword into Surfer's Content Editor, and it generates a brief that tells you exactly how to structure your article.</p>
 
 <p>For example, when we tested the keyword "best neighborhoods in Raleigh NC," Surfer told us the top-ranking pages averaged 3,200 words, used 14 headings, included 8 images, and mentioned specific NLP terms like "downtown Raleigh," "Research Triangle," "Wake County," "median home price," and "school district." Without Surfer, you might write a 1,000-word post listing five neighborhoods and wonder why it does not rank. With Surfer, you know from the start that you need a comprehensive, 3,000+ word guide with specific supporting details.</p>
@@ -123,6 +125,8 @@ export const article: BlogPost = {
 
 <h3>3. Writing Listing Descriptions That Rank in Google</h3>
 
+<img src="/blog/surfer-seo/about-property-1.png" alt="SEO-optimized property listing description in Surfer SEO" loading="lazy" />
+
 <p>Most agents do not think about SEO when writing listing descriptions, but they should. A well-optimized property listing page can rank for long-tail keywords like "4 bedroom home with pool in [neighborhood]" or "luxury condo downtown [city]." These are high-intent searches from buyers who are actively looking to purchase.</p>
 
 <p>The platform can help you optimize your listing descriptions by analyzing what top-ranking property pages include. We found that the highest-ranking listing pages tend to have 800 to 1,200 words of description content, include specific details about the neighborhood, mention nearby amenities and schools, and use structured data. Surfer's Content Editor helps you hit all these marks without overthinking it.</p>
@@ -135,11 +139,11 @@ export const article: BlogPost = {
 
 <h3>5. Neighborhood Guide Content Optimization</h3>
 
+<img src="/blog/surfer-seo/map-world.png" alt="Neighborhood guide content optimization with Surfer SEO" loading="lazy" />
+
 <p>Neighborhood guides are the single most effective type of content for real estate SEO. They target location-specific keywords, they provide genuine value to relocating buyers, and they establish you as the local expert. But they also require significant effort to create, which means you want to make sure every guide you publish has the best possible chance of ranking.</p>
 
 <p>Surfer's Content Editor is perfect for this. When you enter a keyword like "living in [neighborhood name]" or "[neighborhood] neighborhood guide," Surfer analyzes what the top-ranking guides include and creates a brief. The best neighborhood guides typically cover cost of living, school information, restaurants and dining, parks and recreation, commute times, housing styles, and community vibe. Surfer ensures you do not miss any of these critical sections.</p>
-
-<img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&h=630&fit=crop&q=80" alt="Real estate agent reviewing content analytics and SEO metrics on a desktop computer screen showing keyword rankings" loading="lazy" />
 
 <h2>Step-by-Step: How to Optimize a Real Estate Blog Post with Surfer SEO</h2>
 
@@ -150,6 +154,8 @@ export const article: BlogPost = {
 <p>Log into Surfer and open the Content Editor. Type your target keyword - in this case, "moving to Raleigh NC" - and select your target country and language. Click "Create" and Surfer will spend about 30 seconds analyzing the top-ranking pages for that keyword.</p>
 
 <p>Surfer pulls data from the current top 10 to 50 search results and builds a comprehensive content brief based on what those pages have in common. The analysis includes word count, heading structure, keyword frequency, NLP entities, image count, and paragraph structure.</p>
+
+<img src="/blog/surfer-seo/review-content.png" alt="Reviewing Surfer SEO content brief for real estate blog post" loading="lazy" />
 
 <h3>Step 2: Review the Content Brief</h3>
 
@@ -169,6 +175,8 @@ export const article: BlogPost = {
 <p>The editor sidebar shows a checklist of keywords with green, yellow, and red indicators. Green means you have used the keyword the right number of times. Yellow means you need more mentions. Red means you have either not used it at all or you have used it too many times, which signals keyword stuffing.</p>
 
 <p>You can also paste in a draft you have already written. Surfer will immediately score it and show you where the gaps are. This is great if you prefer writing in Google Docs or your favorite text editor first and then optimizing afterward.</p>
+
+<img src="/blog/surfer-seo/80-score.png" alt="Surfer SEO content score reaching 80 or above for page one ranking" loading="lazy" />
 
 <h3>Step 4: Hit a Score of 80 or Above</h3>
 
@@ -220,6 +228,8 @@ export const article: BlogPost = {
 
 <h3>Surfer SEO vs Clearscope</h3>
 
+<img src="/blog/surfer-seo/clear-scope.png" alt="Clearscope content optimization platform comparison" loading="lazy" />
+
 <p><a href="https://clearscope.io" target="_blank" rel="noopener noreferrer">Clearscope</a> is Surfer's closest competitor and the tool most often recommended alongside it. Clearscope is excellent at content grading and keyword analysis, and its interface is slightly cleaner and simpler than Surfer's.</p>
 
 <p>However, Clearscope starts at $170 per month for just 10 content reports - nearly double Surfer's price for less than half the volume. For real estate agents who need to optimize multiple blog posts, market reports, and neighborhood guides each month, the cost difference adds up quickly. Clearscope is a premium tool with premium pricing, and for most individual agents, Surfer offers better value.</p>
@@ -227,6 +237,8 @@ export const article: BlogPost = {
 <p><strong>Bottom line:</strong> Clearscope has a slight edge in content grading accuracy, but Surfer wins on value, volume, and the breadth of its feature set. For real estate agents, Surfer is the better choice.</p>
 
 <h3>Surfer SEO vs MarketMuse</h3>
+
+<img src="/blog/surfer-seo/market-muse.png" alt="MarketMuse content strategy platform comparison" loading="lazy" />
 
 <p><a href="https://marketmuse.com" target="_blank" rel="noopener noreferrer">MarketMuse</a> is an enterprise-grade content intelligence platform that goes beyond optimization into full content strategy planning. It uses AI to analyze your entire website, identify content gaps, and build topical authority maps.</p>
 
@@ -236,6 +248,8 @@ export const article: BlogPost = {
 
 <h3>Surfer SEO vs Frase</h3>
 
+<img src="/blog/surfer-seo/ai-visibility-dashboard-overview.png" alt="Frase AI content optimization dashboard overview" loading="lazy" />
+
 <p><a href="https://frase.io" target="_blank" rel="noopener noreferrer">Frase</a> is a budget-friendly content optimization tool that combines AI writing with SEO analysis. It starts at just $15 per month for the Solo plan, making it the most affordable option in this comparison.</p>
 
 <p>Frase is surprisingly capable for its price point. The content optimization scoring is solid, the AI writing is decent, and the research features help you build content briefs quickly. However, Frase's optimization data is less granular than Surfer's, and the SERP analysis is not as deep. For agents who are just starting with content marketing and want to dip their toes in without a major investment, Frase is a solid choice.</p>
@@ -243,6 +257,8 @@ export const article: BlogPost = {
 <p><strong>What stands out:</strong> Frase is the best budget option. If $89 per month for Surfer feels like too much right now, start with Frase at $15 per month and upgrade to Surfer when your content volume and revenue justify the cost.</p>
 
 <h3>Surfer SEO vs NeuronWriter</h3>
+
+<img src="/blog/surfer-seo/neuron-writer.png" alt="NeuronWriter content optimization tool comparison" loading="lazy" />
 
 <p><a href="https://neuronwriter.com" target="_blank" rel="noopener noreferrer">NeuronWriter</a> is a newer entrant that combines content optimization with NLP-driven recommendations and competitor analysis. It offers lifetime deals through AppSumo and similar platforms, which makes it attractive for budget-conscious users.</p>
 

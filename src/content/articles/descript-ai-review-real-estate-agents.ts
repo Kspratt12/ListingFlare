@@ -21,7 +21,7 @@ export const article: BlogPost = {
   ],
   readingTime: 16,
   coverImage:
-    "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&h=630&fit=crop&q=80",
+    "/blog/descript/descript-hero.png",
   coverImageAlt:
     "Professional video editing setup with monitor and camera equipment representing AI-powered video editing for real estate marketing",
   content: `
@@ -33,11 +33,11 @@ export const article: BlogPost = {
 
 <p>We spent several weeks testing Descript specifically for real estate workflows - listing walkthroughs, market updates, social media clips, and property tours. This is our honest, detailed <strong>Descript review for real estate agents</strong> in 2026, covering everything from pricing to step-by-step workflows to whether it actually lives up to the hype.</p>
 
-<img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&h=630&fit=crop&q=80" alt="Professional video editing workspace with monitor displaying editing software and camera equipment for real estate video production" loading="lazy" />
+<img src="/blog/descript/descript1.png" alt="Descript AI video editor platform overview" loading="lazy" />
 
 <h2>What Is Descript?</h2>
 
-<p><a href="https://www.descript.com" target="_blank" rel="noopener noreferrer">Descript</a> is an AI-powered video and audio editing platform that takes an entirely different approach to editing. Instead of working with a traditional drag-and-drop timeline, the platform automatically transcribes your video and lets you edit the footage by editing the transcript text. If you can use a word processor, you can edit video in Descript. It is genuinely that simple.</p>
+<p><a href="https://get.descript.com/dnhbj2ud2ge8" target="_blank" rel="noopener noreferrer">Descript</a> is an AI-powered video and audio editing platform that takes an entirely different approach to editing. Instead of working with a traditional drag-and-drop timeline, the platform automatically transcribes your video and lets you edit the footage by editing the transcript text. If you can use a word processor, you can edit video in Descript. It is genuinely that simple.</p>
 
 <p>The company was founded in 2017 by Andrew Mason (yes, the Groupon founder) and has grown into one of the most popular video editing tools for creators, marketers, podcasters, and businesses. As of 2026, Descript has raised over $100 million in funding and serves millions of users worldwide.</p>
 
@@ -102,6 +102,8 @@ export const article: BlogPost = {
 
 <p>Our recommendation for most real estate agents: start with the <strong>Hobbyist plan at $24/month</strong>. It includes all the AI features you need - filler word removal, Studio Sound, eye contact correction, and watermark-free exports. If you find yourself hitting the 10-hour transcription limit or need Overdub voice cloning, upgrade to Business. Skip the Free plan for actual production work since the watermark and limited exports make it impractical for professional content.</p>
 
+<img src="/blog/descript/real-agent.png" alt="Real estate agent editing listing video in Descript" loading="lazy" />
+
 <h2>How Real Estate Agents Use Descript</h2>
 
 <p>The features list sounds impressive on paper, but how does Descript actually fit into a real estate agent's day-to-day workflow? We tested every major use case. Here is how each feature translates into real value for your business.</p>
@@ -113,6 +115,8 @@ export const article: BlogPost = {
 <p>Say you recorded a 4-minute walkthrough and tripped over your words when describing the primary bathroom. In a traditional editor, you would need to find that exact timestamp, split the clip, delete the segment, and close the gap. In Descript, you highlight the fumbled sentence in the transcript and press delete. Done. The video seamlessly cuts around it.</p>
 
 <p>You can also rearrange sections. If you walked through the backyard before the kitchen but want to reorder them in the final video, just cut and paste the paragraphs in the transcript. The video clips follow. It genuinely feels like editing a document, and for agents who have never touched video editing software, this is a revelation.</p>
+
+<img src="/blog/descript/eye-contact.png" alt="Descript AI eye contact correction feature for real estate videos" loading="lazy" />
 
 <h3>AI Eye Contact Correction</h3>
 
@@ -128,6 +132,8 @@ export const article: BlogPost = {
 
 <p>Descript solves this in about three seconds. After transcription, it highlights every detected filler word in the transcript. Click "Remove filler words" and they all disappear from both the text and the video. The cuts are clean and natural. In our testing, we recorded a deliberately filler-heavy 2-minute walkthrough (23 filler words total) and Descript caught and removed every single one. The resulting video sounded polished and professional with zero manual effort.</p>
 
+<img src="/blog/descript/studio-sound.png" alt="Descript Studio Sound noise removal for real estate recordings" loading="lazy" />
+
 <h3>Studio Sound for Noisy Recordings</h3>
 
 <p>Real estate recordings happen in less-than-ideal audio environments. You are filming at an open house with people chatting in the background. You are standing on a busy street explaining the neighborhood. You are in an empty house with hard floors and echo bouncing everywhere. You are outside and the wind is whipping past the microphone.</p>
@@ -136,8 +142,6 @@ export const article: BlogPost = {
 
 <p>The key limitation is that Studio Sound works best when your voice is the primary audio source. If you are speaking quietly while loud music plays in the background, it will struggle. But for the typical real estate recording scenario - your voice in a somewhat noisy environment - it performs well enough to save you from re-recording.</p>
 
-<img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=630&fit=crop&q=80" alt="Modern real estate property interior representing the type of listing walkthrough videos agents create and edit with Descript" loading="lazy" />
-
 <h3>Screen Recording for Market Update Presentations</h3>
 
 <p>Market update videos are one of the highest-engagement content types for real estate agents on social media. When you share local stats, trends, and insights, you position yourself as the neighborhood expert. But creating a polished market update video usually means recording a screen share, editing it, adding captions, and exporting - a multi-tool process.</p>
@@ -145,6 +149,8 @@ export const article: BlogPost = {
 <p>Descript has built-in screen recording with webcam overlay. You can record your screen (showing charts, MLS data, neighborhood maps, or slides) while your webcam captures you talking in a corner bubble. When you stop recording, the video is automatically transcribed and ready to edit. Delete the part where you pulled up the wrong tab. Remove filler words. Add captions. Export. All without leaving Descript.</p>
 
 <p>This streamlined workflow turns market update videos from a 2-hour production into a 20-minute task. Record for 5 minutes, spend 10 minutes cleaning up the transcript, add captions, and export. That is it.</p>
+
+<img src="/blog/descript/Descript-Overdub.png" alt="Descript Overdub AI voice clone for quick video corrections" loading="lazy" />
 
 <h3>Overdub - AI Voice Clone for Quick Corrections</h3>
 
@@ -170,6 +176,8 @@ export const article: BlogPost = {
 
 <p>Descript also has an AI feature that can automatically identify the most engaging segments of your video and suggest them as potential clips. While the AI suggestions are not always perfect for real estate content (it tends to favor dramatic moments over informational ones), it is a useful starting point.</p>
 
+<img src="/blog/descript/agent-video.png" alt="Creating a listing video with Descript step by step" loading="lazy" />
+
 <h2>Step-by-Step: Creating a Listing Video with Descript</h2>
 
 <p>Here is the exact workflow we recommend for real estate agents creating listing walkthrough videos with Descript. Follow these steps and you will go from raw footage to a polished, captioned video in under 15 minutes.</p>
@@ -189,6 +197,8 @@ export const article: BlogPost = {
 <p>This is where Descript earns its money. Start by clicking the "Remove filler words" button to automatically strip out every um, uh, and like. Then read through the transcript and delete any sentences where you stumbled, repeated yourself, or said something you want to cut. Each deletion automatically removes that segment from the video.</p>
 
 <p>If you want to rearrange sections (maybe you want to start with the kitchen instead of the foyer), simply cut and paste the paragraphs in the transcript. The video follows. Spend about 5 to 7 minutes on this step.</p>
+
+<img src="/blog/descript/word-gap.png" alt="Applying AI enhancements and removing filler words in Descript" loading="lazy" />
 
 <h3>Step 4: Apply AI Enhancements</h3>
 
@@ -241,6 +251,8 @@ export const article: BlogPost = {
 
 <h3>Descript vs CapCut</h3>
 
+<img src="/blog/descript/capcut.png" alt="CapCut free video editor comparison" loading="lazy" />
+
 <p><strong>CapCut</strong> is a free video editor from ByteDance (the company behind TikTok). It has exploded in popularity because it is free, available on mobile and desktop, and packed with trendy effects, transitions, and templates.</p>
 
 <p>For short social media clips, CapCut is excellent. It has a massive library of effects, music, and templates designed specifically for Reels and TikTok. If you are exclusively creating 15 to 60 second vertical videos for social media, CapCut is a strong free option.</p>
@@ -250,6 +262,8 @@ export const article: BlogPost = {
 <p><strong>Verdict:</strong> Use CapCut for quick social media clips when you need trendy effects. Use Descript for anything where you are speaking to the camera and need to edit efficiently.</p>
 
 <h3>Descript vs Adobe Premiere Pro</h3>
+
+<img src="/blog/descript/adobe.png" alt="Adobe Premiere Pro professional video editor comparison" loading="lazy" />
 
 <p><strong>Adobe Premiere Pro</strong> is the industry-standard professional video editor. It can do virtually anything - complex transitions, multi-camera editing, advanced color grading, motion graphics, and more. It is what professional videographers use to create cinematic listing films and brand videos.</p>
 
@@ -261,6 +275,8 @@ export const article: BlogPost = {
 
 <h3>Descript vs Final Cut Pro</h3>
 
+<img src="/blog/descript/final-cut.png" alt="Final Cut Pro Mac video editor comparison" loading="lazy" />
+
 <p><strong>Final Cut Pro</strong> is Apple's professional video editor, available only on Mac. It is a one-time purchase of $299.99 (or $4.99/month subscription) and is known for its performance on Apple hardware. Like Premiere Pro, it is a powerful timeline-based editor with a significant learning curve.</p>
 
 <p>Final Cut Pro is faster and more intuitive than Premiere Pro, and its magnetic timeline makes basic editing easier. But it still requires you to manually scrub through footage, split clips, and arrange them. There is no transcript-based editing, no AI filler word removal, no eye contact correction, and no Studio Sound equivalent.</p>
@@ -268,6 +284,8 @@ export const article: BlogPost = {
 <p><strong>Verdict:</strong> Final Cut Pro is a good value for Mac users who want to learn professional editing. But for agents who want fast, easy editing without a learning curve, Descript wins decisively.</p>
 
 <h3>Descript vs iMovie</h3>
+
+<img src="/blog/descript/i-movie.png" alt="iMovie free video editor comparison for real estate agents" loading="lazy" />
 
 <p><strong>iMovie</strong> is Apple's free video editor that comes pre-installed on every Mac and iPhone. It is the simplest traditional editor available and is perfectly fine for basic cuts and trimming.</p>
 

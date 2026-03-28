@@ -25,7 +25,7 @@ export const article: BlogPost = {
   ],
   readingTime: 18,
   coverImage:
-    "https://images.unsplash.com/photo-1589903308904-1010c2294adc?w=1200&h=630&fit=crop&q=80",
+    "/blog/elevenlabs/eleven-hero.png",
   coverImageAlt:
     "Professional microphone in a recording studio setup representing AI voiceover technology for real estate listing videos",
   content: `
@@ -39,11 +39,11 @@ export const article: BlogPost = {
 
 <p>We spent several weeks testing ElevenLabs specifically for real estate use cases - listing voiceovers, social media content, multilingual presentations, and more. This is our honest, no-fluff <strong>ElevenLabs review for real estate agents</strong> in 2026.</p>
 
-<img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&h=630&fit=crop&q=80" alt="Modern recording studio with professional microphone and audio equipment for creating AI-powered voiceovers" loading="lazy" />
+<img src="/blog/elevenlabs/eleven-what-is.png" alt="ElevenLabs AI voice platform overview for real estate agents" loading="lazy" />
 
 <h2>What Is ElevenLabs?</h2>
 
-<p><a href="https://elevenlabs.io" target="_blank" rel="noopener noreferrer">ElevenLabs</a> is an AI voice generation and text-to-speech platform founded in 2022. It lets you type or paste any text and instantly convert it into hyper-realistic spoken audio. Unlike the robotic text-to-speech tools from a few years ago, ElevenLabs produces voices that sound genuinely human - complete with natural pauses, breathing, intonation, and emphasis.</p>
+<p><a href="https://try.elevenlabs.io/bkxad5z0cuhk" target="_blank" rel="noopener noreferrer">ElevenLabs</a> is an AI voice generation and text-to-speech platform founded in 2022. It lets you type or paste any text and instantly convert it into hyper-realistic spoken audio. Unlike the robotic text-to-speech tools from a few years ago, ElevenLabs produces voices that sound genuinely human - complete with natural pauses, breathing, intonation, and emphasis.</p>
 
 <p>The platform has grown rapidly and is now used by content creators, media companies, podcasters, audiobook publishers, and businesses worldwide. As of 2026, ElevenLabs offers several core features that matter for real estate agents:</p>
 
@@ -80,7 +80,7 @@ export const article: BlogPost = {
 <td><strong>Free</strong></td>
 <td>$0</td>
 <td>10,000</td>
-<td>~10 min</td>
+<td>10 min</td>
 <td>No</td>
 <td>Testing the platform</td>
 </tr>
@@ -88,7 +88,7 @@ export const article: BlogPost = {
 <td><strong>Starter</strong></td>
 <td>$5/mo</td>
 <td>30,000</td>
-<td>~30 min</td>
+<td>30 min</td>
 <td>No</td>
 <td>Agents posting 2-4 listing videos/month</td>
 </tr>
@@ -96,7 +96,7 @@ export const article: BlogPost = {
 <td><strong>Creator</strong></td>
 <td>$22/mo</td>
 <td>100,000</td>
-<td>~100 min</td>
+<td>100 min</td>
 <td>Yes (Professional)</td>
 <td>Active content creators, 8-15 videos/month</td>
 </tr>
@@ -104,7 +104,7 @@ export const article: BlogPost = {
 <td><strong>Pro</strong></td>
 <td>$99/mo</td>
 <td>500,000</td>
-<td>~500 min</td>
+<td>500 min</td>
 <td>Yes (Professional)</td>
 <td>Teams, heavy content producers, podcasters</td>
 </tr>
@@ -112,12 +112,14 @@ export const article: BlogPost = {
 <td><strong>Scale</strong></td>
 <td>$330/mo</td>
 <td>2,000,000</td>
-<td>~2,000 min</td>
+<td>2,000 min</td>
 <td>Yes (Professional)</td>
 <td>Brokerages, enterprise teams</td>
 </tr>
 </tbody>
 </table>
+
+<p><strong>Bottom line:</strong> Most agents need the Creator plan at $22 per month. It covers 30-40 listing videos monthly with voice cloning included.</p>
 
 <p><strong>Our recommendation for most agents:</strong> The <strong>Starter plan at $5 per month</strong> is enough for agents who create a few listing videos and social media clips each month. If you are producing content regularly - say 8 to 15 videos per month with voiceovers - the <strong>Creator plan at $22 per month</strong> gives you plenty of room and unlocks professional voice cloning. The Pro and Scale plans are overkill unless you are running a team or producing daily podcast content.</p>
 
@@ -129,6 +131,8 @@ export const article: BlogPost = {
 
 <h3>1. Property Listing Video Voiceovers</h3>
 
+<img src="/blog/elevenlabs/ElevenLabs-voice-app.png" alt="ElevenLabs voice app generating property listing voiceover" loading="lazy" />
+
 <p>This is the most obvious and highest-impact use case. Instead of recording yourself narrating a property walkthrough - or worse, posting silent slideshows - you write a script and let the software generate a polished, professional voiceover in seconds.</p>
 
 <p>Here is a real example. We wrote this script for a luxury listing and ran it through ElevenLabs:</p>
@@ -137,15 +141,17 @@ export const article: BlogPost = {
 <p>"Welcome to 1847 Grandview Terrace - a stunning 5-bedroom estate nestled in the heart of Westlake Hills. From the moment you step through the custom double doors, you are greeted by soaring 20-foot ceilings, white oak hardwood floors, and walls of glass that frame panoramic views of the Hill Country. The chef's kitchen features a 12-foot waterfall island, Wolf and Sub-Zero appliances, and a butler's pantry that connects seamlessly to the formal dining room. Step outside to your private oasis - a resort-style pool with an infinity edge, an outdoor kitchen with built-in seating for 12, and a fire pit lounge overlooking the greenbelt. This is more than a home. This is the lifestyle you have been searching for. Listed at $3.2 million."</p>
 </blockquote>
 
-<p>The AI-generated audio sounded like a seasoned narrator from a luxury real estate TV show. Warm, confident, and perfectly paced. We paired it with drone footage and property photos in CapCut and had a professional listing video ready in under 20 minutes.</p>
+<p>The AI-generated audio sounded like a seasoned narrator from a luxury real estate TV show. We paired it with drone footage in CapCut and had a professional listing video ready in under 20 minutes.</p>
 
-<p><strong>Pro tip:</strong> Write your scripts with natural speech patterns. Use short sentences. Add commas where you want the voice to pause. Avoid jargon-heavy run-on sentences. The AI handles conversational language much better than formal, stiff copy.</p>
+<p><strong>Pro tip:</strong> Write your scripts with natural speech patterns. Use short sentences and add commas where you want the voice to pause.</p>
 
 <h3>2. Social Media Content at Scale</h3>
 
-<p>Every agent knows that video content performs dramatically better on social media. Instagram Reels with voiceovers get 2 to 3 times more engagement than silent slideshows with text overlays. TikTok property walkthroughs with narration consistently outperform those without. But producing voiceover content manually is slow.</p>
+<img src="/blog/elevenlabs/social-media-eleven.png" alt="Social media content creation at scale with ElevenLabs AI voice" loading="lazy" />
 
-<p>With this tool, you can produce 10 voiceover videos in the time it takes to manually record one. Here is a workflow we tested:</p>
+<p>Instagram Reels with voiceovers get 2 to 3 times more engagement than silent slideshows with text overlays. But producing voiceover content manually is slow. With this tool, you can produce 10 voiceover videos in the time it takes to manually record one.</p>
+
+<p>Here is a workflow we tested:</p>
 
 <ol>
 <li>Write five short scripts (30-60 seconds each) for different listing highlights - one about the kitchen, one about the backyard, one about the neighborhood, one about the master suite, and one "just listed" announcement</li>
@@ -154,33 +160,27 @@ export const article: BlogPost = {
 <li>Export all five videos and schedule them across the week</li>
 </ol>
 
-<p>Total time: about 45 minutes for five professional videos with voiceovers. Doing this manually with self-recorded audio would take 2 to 3 hours minimum. That kind of efficiency compounds over time. If you need inspiration for your social content, check out our guide to <a href="/blog/real-estate-social-media-post-ideas">real estate social media post ideas</a>.</p>
+<p>Total time: about 45 minutes for five professional videos with voiceovers, compared to 2-3 hours manually. If you need inspiration for your social content, check out our guide to <a href="/blog/real-estate-social-media-post-ideas">real estate social media post ideas</a>.</p>
 
-<p><strong>Pro tip:</strong> Pick one ElevenLabs voice and use it across all your content. This creates a consistent brand sound that followers start to recognize and associate with your listings. Consistency builds trust.</p>
-
-<img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&h=630&fit=crop&q=80" alt="Person creating social media video content on a smartphone for real estate marketing with professional lighting setup" loading="lazy" />
+<p><strong>Pro tip:</strong> Pick one ElevenLabs voice and use it across all your content. Consistency builds a recognizable brand sound.</p>
 
 <h3>3. Clone Your Own Voice</h3>
 
-<p>This is the feature that gets the most attention, and for good reason. The platform lets you create a voice clone from as little as a 30-second audio sample. Once cloned, your AI voice can read any script - and it sounds like you. Your cadence, your tone, your unique speaking style.</p>
+<img src="/blog/elevenlabs/clone.png" alt="ElevenLabs voice cloning feature for real estate agents" loading="lazy" />
 
-<p>For real estate agents who have built a personal brand, this is a game-changer. Your followers and clients know your voice. They have heard you on Instagram Stories, at open houses, and on the phone. A generic AI voice would feel disconnected from your brand. But a clone of your own voice? That feels authentic and personal - even though AI generated it.</p>
+<p>The platform lets you create a voice clone from as little as a 30-second audio sample. Once cloned, your AI voice can read any script - and it sounds like you. For agents who have built a personal brand, this keeps your content feeling authentic even at scale.</p>
 
-<p>We tested the voice cloning feature by recording a 60-second sample and then generating several listing voiceovers. The results were remarkably close to the original voice. Not perfect - the clone occasionally missed subtle emotional inflections that the real person would have nailed - but close enough that casual listeners would not notice the difference.</p>
+<p>We tested voice cloning by recording a 60-second sample and generating several listing voiceovers. The results were remarkably close - casual listeners would not notice the difference. Voice cloning is available on the Creator plan ($22/mo) and above.</p>
 
-<p><strong>Important note:</strong> Voice cloning is available on the Creator plan ($22/mo) and above. It is not available on the Free or Starter plans. If voice cloning is your primary reason for using ElevenLabs, budget for at least the Creator tier.</p>
-
-<p><strong>Pro tip:</strong> Record your voice sample in a quiet room with minimal background noise. Speak naturally - do not try to sound overly polished or broadcast-ready. The AI learns best from your natural speaking voice. Read a variety of sentences with different emotions and pacing to give the model a well-rounded sample.</p>
+<p><strong>Pro tip:</strong> Record your sample in a quiet room. Speak naturally and read a variety of sentences with different emotions to give the model a well-rounded sample.</p>
 
 <h3>4. Multilingual Listing Presentations</h3>
 
-<p>This is the use case that most agents overlook, and it might be the most valuable one. ElevenLabs supports over 30 languages, and the quality in non-English languages is genuinely impressive. For agents working in diverse markets - Miami, Los Angeles, New York, Houston, the Bay Area - this is a massive competitive advantage.</p>
+<img src="/blog/elevenlabs/multi-language.png" alt="Multilingual listing presentation in 30 plus languages with ElevenLabs" loading="lazy" />
 
-<p>Imagine this: you have a luxury listing in Miami and you know that a significant percentage of potential buyers are Spanish-speaking. Instead of creating only an English video, you also create a Spanish version with a natural-sounding Spanish voiceover. Same script, same visuals, different language. The Spanish-speaking buyer watching your video feels seen and respected. That emotional connection can be the difference between a lead and a scroll-past.</p>
+<p>ElevenLabs supports over 30 languages, and the quality in non-English languages is genuinely impressive. For agents working in diverse markets - Miami, Los Angeles, New York, Houston - this is a massive competitive advantage. Same script, same visuals, different language.</p>
 
-<p>We tested ElevenLabs with Spanish, Mandarin, and Korean scripts. The Spanish output was excellent - natural pacing, proper pronunciation, and appropriate intonation. The Mandarin output was good, though native speakers noted that the tonal accuracy was not quite perfect on a few words. Korean was solid overall. For marketing purposes, all three were more than good enough to impress international buyers and demonstrate cultural awareness.</p>
-
-<p>Languages you might consider for your market:</p>
+<p>We tested Spanish, Mandarin, and Korean scripts. Spanish was excellent. Mandarin and Korean were solid - more than good enough to impress international buyers and demonstrate cultural awareness. Languages to consider for your market:</p>
 
 <ul>
 <li><strong>Spanish</strong> - Essential in Florida, Texas, California, Arizona, and most major metros</li>
@@ -195,9 +195,9 @@ export const article: BlogPost = {
 
 <h3>5. Market Update Podcasts</h3>
 
-<p>Podcasts are one of the most underused marketing channels in real estate. The barrier has always been the production side - you need a decent microphone, a quiet recording environment, editing software, and the time to sit down and record every week. Most agents start a podcast and quit after three episodes.</p>
+<img src="/blog/elevenlabs/podcast-real-estate.png" alt="AI-generated real estate market update podcast using ElevenLabs" loading="lazy" />
 
-<p>This tool removes most of those barriers. Here is the workflow we tested:</p>
+<p>Podcasts are underused in real estate because the production side is a bottleneck - microphone, quiet room, editing software, weekly time commitment. This tool removes most of those barriers. Here is the workflow we tested:</p>
 
 <ol>
 <li>Write a 5-minute market update script covering this week's local stats, notable closings, interest rate changes, and market outlook (about 4,000-5,000 characters)</li>
@@ -206,15 +206,15 @@ export const article: BlogPost = {
 <li>Upload to Spotify, Apple Podcasts, and Google Podcasts via a free hosting service like Anchor</li>
 </ol>
 
-<p>Total time: about 30 minutes per episode, including writing the script. You can publish weekly market updates consistently without ever stepping in front of a microphone. Over time, this positions you as the go-to local market expert. Clients and prospects start associating your name with market knowledge.</p>
+<p>Total time: about 30 minutes per episode, including writing the script. Over time, this positions you as the go-to local market expert.</p>
 
-<p><strong>Pro tip:</strong> Keep your market update episodes between 5 and 10 minutes. Homebuyers and sellers want quick, actionable insights - not hour-long deep dives. A focused 7-minute episode every week is far more valuable than a sporadic 45-minute ramble.</p>
+<p><strong>Pro tip:</strong> Keep episodes between 5 and 10 minutes. A focused 7-minute episode every week is far more valuable than a sporadic 45-minute ramble.</p>
 
 <h3>6. Professional Voicemail and IVR Greetings</h3>
 
-<p>This is a small but impactful use case. How many times have you called a business and heard a polished, professional greeting? Now compare that to the average real estate agent's voicemail - a rushed recording with background noise and an awkward "uh" in the middle.</p>
+<img src="/blog/elevenlabs/Voicemail-Greeting-Generator.png" alt="Professional voicemail greeting generator for real estate agents" loading="lazy" />
 
-<p>With ElevenLabs, you can create studio-quality voicemail greetings and phone system (IVR) messages in minutes. Write a script, generate the audio, and set it as your voicemail greeting. You sound polished and established. For agents running Google Ads or Facebook lead gen campaigns, you can even create different greetings for different phone numbers so the message matches the campaign.</p>
+<p>Create studio-quality voicemail greetings and phone system (IVR) messages in minutes. Write a script, generate the audio, and set it as your voicemail greeting. You can even create different greetings for different phone numbers so the message matches each campaign.</p>
 
 <p>Example voicemail script:</p>
 
@@ -226,7 +226,9 @@ export const article: BlogPost = {
 
 <h3>7. Open House Audio Tours</h3>
 
-<p>This is the most creative use case we tested, and it genuinely impressed every agent we showed it to. The concept is simple: create a guided audio tour of the property that buyers can listen to on their phones as they walk through the home.</p>
+<img src="/blog/elevenlabs/open-house-1.png" alt="Open house audio tour created with ElevenLabs AI voice" loading="lazy" />
+
+<p>Create a guided audio tour that buyers can listen to on their phones as they walk through the home. This was the most creative use case we tested, and it impressed every agent we showed it to.</p>
 
 <p>Here is how it works:</p>
 
@@ -238,11 +240,33 @@ export const article: BlogPost = {
 <li>Print the QR code and place it on a sign at the front door of the open house with a note: "Scan for a guided audio tour of this home"</li>
 </ol>
 
-<p>Buyers scan the code, pop in their earbuds, and get a narrated walkthrough while they explore at their own pace. It is a unique, memorable experience that differentiates your open house from every other one on the block. It also lets you highlight features that buyers might overlook - like the tankless water heater in the utility room or the custom built-in storage in the garage.</p>
+<p>Buyers scan the code, pop in their earbuds, and get a narrated walkthrough at their own pace. It differentiates your open house and highlights features buyers might overlook.</p>
 
-<p><strong>Pro tip:</strong> Keep the audio tour between 4 and 8 minutes. Include pauses between rooms so buyers can catch up physically. End the tour with a clear call-to-action: "If you would like more information or want to schedule a private showing, visit my website at..."</p>
+<p><strong>Pro tip:</strong> Keep the audio tour between 4 and 8 minutes. Include pauses between rooms and end with a clear call-to-action.</p>
 
-<img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=630&fit=crop&q=80" alt="Modern luxury home interior with open floor plan representing a property listing that could benefit from AI voiceover marketing" loading="lazy" />
+<img src="/blog/elevenlabs/ai-voice-agent.png" alt="ElevenLabs conversational AI voice agent for real estate phone calls" loading="lazy" />
+
+<h2>Bonus: ElevenLabs Conversational Voice Agents (The Game-Changer)</h2>
+
+<p>Everything we have covered so far is about content creation - voiceovers, podcasts, and multilingual audio. But ElevenLabs recently launched something that changes the game entirely for real estate: <strong>Conversational Voice Agents</strong>.</p>
+
+<p>This is an AI receptionist that can answer phone calls in a hyper-realistic human voice. It is not the robotic IVR system you are used to. We are talking about a voice so natural that callers genuinely think they are speaking with a real person.</p>
+
+<p>Here is how it works for a real estate agent:</p>
+
+<ul>
+<li><strong>After-hours call handling</strong> - A buyer calls about your listing at 10 PM. Instead of voicemail, your AI agent picks up, answers questions about the property, captures the caller's name, email, and phone number, and offers to book a showing.</li>
+<li><strong>Overflow call handling</strong> - You are on another call or showing a home. Your AI agent handles the incoming call professionally and captures the lead.</li>
+<li><strong>Knowledge base trained on your listings</strong> - You can upload your website URL and the AI scrapes all your listing details, pricing, and property features. When a buyer asks "How many bedrooms does the house on Oak Street have?", the agent answers accurately from your data.</li>
+<li><strong>Multilingual support</strong> - The agent can detect when a caller starts speaking Spanish (or any of 30+ languages) and seamlessly switch languages mid-conversation. In diverse markets like LA, Miami, or Houston, this is a massive advantage.</li>
+<li><strong>Integration with your business tools</strong> - Connect it to Make.com or Zapier to automatically send lead emails after every call, update your CRM, or trigger follow-up sequences.</li>
+</ul>
+
+<p>The setup process takes about an hour. You create an agent, choose one of their expressive V3 voices (or clone your own), configure the system prompt with your business details, upload your website as a knowledge base, and connect it to a phone number through Twilio.</p>
+
+<p>For real estate agents, the value is clear: every missed call is a potential lost deal. An AI voice agent that picks up instantly and captures contact information means you never lose a lead to a missed call again.</p>
+
+<p><strong>One important note:</strong> ElevenLabs voice agents handle phone calls. <a href="/signup">ListingFlare</a> handles your listing website with a conversational AI that captures leads from web visitors. Together, they ensure every buyer gets an instant response, whether they call or browse online.</p>
 
 <h2>ElevenLabs Pros and Cons for Real Estate</h2>
 
@@ -340,34 +364,24 @@ export const article: BlogPost = {
 
 <p>Murf.ai is the easiest to learn. If you are not particularly tech-savvy and want the simplest possible path from script to finished audio, Murf's interface is slightly more intuitive than ElevenLabs. The trade-off is fewer voices, slightly lower quality, and a higher starting price.</p>
 
+<img src="/blog/elevenlabs/re-marketing.png" alt="Real estate marketing stack combining ElevenLabs with ListingFlare" loading="lazy" />
+
 <h2>How to Combine ElevenLabs with Your Listing Marketing Stack</h2>
 
-<p>Here is the thing most agents get wrong about AI tools: they treat each one as an island. They use one tool for listing descriptions, another for social media, another for voiceovers, and another for lead capture. The result is a fragmented workflow where great content gets created but leads fall through the cracks.</p>
-
-<p>The most effective approach is to think about your marketing stack in two stages:</p>
-
-<ol>
-<li><strong>Content creation</strong> - This is where you attract attention. ElevenLabs lives here. It helps you create professional voiceovers, listing videos, social media content, and audio tours that stop the scroll and get people interested in your listings.</li>
-<li><strong>Lead capture</strong> - This is where you convert that attention into actual leads. This is where <a href="/signup">ListingFlare</a> lives. It creates property-specific websites with AI chatbots that engage visitors, answer their questions, and capture their contact information 24/7.</li>
-</ol>
+<p>The most effective approach is to think about your marketing stack in two stages: <strong>content creation</strong> (where ElevenLabs lives - voiceovers, videos, audio tours) and <strong>lead capture</strong> (where <a href="/signup">ListingFlare</a> lives - property websites with conversational AI that engages visitors and captures contact information 24/7).</p>
 
 <p><strong>ElevenLabs helps you CREATE content. ListingFlare helps you CAPTURE leads from that content.</strong></p>
 
 <p>Here is an example workflow that combines both:</p>
 
 <ol>
-<li><strong>Write a listing script</strong> highlighting the property's best features</li>
-<li><strong>Generate a voiceover with ElevenLabs</strong> - 30 seconds of polished narration</li>
+<li><strong>Generate a voiceover with ElevenLabs</strong> highlighting the property's best features</li>
 <li><strong>Create a video in CapCut or Canva</strong> pairing the voiceover with listing photos and drone footage</li>
-<li><strong>Post the video on Instagram Reels, TikTok, and Facebook</strong> with a call-to-action: "Link in bio for full details and to ask questions about this home"</li>
-<li><strong>The link goes to your ListingFlare property page</strong> - a beautiful, mobile-optimized single-property website</li>
-<li><strong>ListingFlare's AI chatbot engages every visitor</strong>, answers their questions about the property using real listing data, and captures their name, email, and phone number</li>
-<li><strong>You wake up to qualified leads</strong> in your ListingFlare dashboard with full conversation transcripts showing what each buyer cares about</li>
+<li><strong>Post the video on Instagram Reels, TikTok, and Facebook</strong> with a call-to-action linking to your ListingFlare property page</li>
+<li><strong>ListingFlare's conversational AI engages every visitor</strong>, answers their questions, and captures their name, email, and phone number</li>
 </ol>
 
-<p>The voiceover video gets attention. The property website captures the lead. The AI chatbot qualifies the lead while you sleep. That is a complete marketing-to-lead-capture pipeline for about $27 per month in tools ($5 ElevenLabs Starter + ListingFlare).</p>
-
-<p>Without the lead capture piece, you are creating great content that generates views and likes but not leads. Without the content creation piece, you have a lead capture system but no traffic flowing to it. You need both. For a deeper dive into how AI fits into every stage of your real estate business, read our guide on <a href="/blog/ai-for-real-estate-agents">AI for real estate agents</a>.</p>
+<p>That is a complete marketing-to-lead-capture pipeline for about $27 per month in tools ($5 ElevenLabs Starter + ListingFlare). For a deeper dive into how AI fits into every stage of your real estate business, read our guide on <a href="/blog/ai-for-real-estate-agents">AI for real estate agents</a>.</p>
 
 <h2>Step-by-Step: Create Your First Listing Voiceover with ElevenLabs</h2>
 
@@ -375,7 +389,9 @@ export const article: BlogPost = {
 
 <h3>Step 1: Sign Up for ElevenLabs</h3>
 
-<p>Go to <a href="https://elevenlabs.io" target="_blank" rel="noopener noreferrer">elevenlabs.io</a> and create a free account. You do not need a credit card to start. The free plan gives you 10,000 characters per month, which is enough to create your first several voiceovers and test the platform before committing to a paid plan.</p>
+<p>Go to <a href="https://try.elevenlabs.io/bkxad5z0cuhk" target="_blank" rel="noopener noreferrer">elevenlabs.io</a> and create a free account. You do not need a credit card to start. The free plan gives you 10,000 characters per month, which is enough to create your first several voiceovers and test the platform before committing to a paid plan.</p>
+
+<img src="/blog/elevenlabs/property-script.png" alt="Property listing voiceover script template for ElevenLabs" loading="lazy" />
 
 <h3>Step 2: Write Your Property Script</h3>
 
@@ -406,6 +422,8 @@ export const article: BlogPost = {
 </ul>
 
 <p>Preview several voices by clicking the play button next to each one. Pick a voice that matches your brand. Luxury listings call for a deep, polished voice. Starter homes and family neighborhoods work better with a warm, friendly tone. You can also clone your own voice if you are on the Creator plan or above - just click "Add Voice" and follow the cloning instructions.</p>
+
+<img src="/blog/elevenlabs/generate-audio.png" alt="Generating AI audio in ElevenLabs for real estate listing video" loading="lazy" />
 
 <h3>Step 4: Generate the Audio</h3>
 
@@ -440,29 +458,7 @@ export const article: BlogPost = {
 
 <p>The voiceover got their attention. The property page converts them into a lead. That is the complete workflow.</p>
 
-<h2>Bonus: ElevenLabs Conversational Voice Agents (The Game-Changer)</h2>
-
-<p>Everything we have covered so far is about content creation - voiceovers, podcasts, and multilingual audio. But ElevenLabs recently launched something that changes the game entirely for real estate: <strong>Conversational Voice Agents</strong>.</p>
-
-<p>This is an AI receptionist that can answer phone calls in a hyper-realistic human voice. It is not the robotic IVR system you are used to. We are talking about a voice so natural that callers genuinely think they are speaking with a real person. It laughs, clears its throat, pauses naturally, and responds to complex questions in real time.</p>
-
-<p>Here is how it works for a real estate agent:</p>
-
-<ul>
-<li><strong>After-hours call handling</strong> - A buyer calls about your listing at 10 PM. Instead of voicemail, your AI agent picks up, answers questions about the property, captures the caller's name, email, and phone number, and offers to book a showing.</li>
-<li><strong>Overflow call handling</strong> - You are on another call or showing a home. Your AI agent handles the incoming call professionally and captures the lead.</li>
-<li><strong>Knowledge base trained on your listings</strong> - You can upload your website URL and the AI scrapes all your listing details, pricing, and property features. When a buyer asks "How many bedrooms does the house on Oak Street have?", the agent answers accurately from your data.</li>
-<li><strong>Multilingual support</strong> - The agent can detect when a caller starts speaking Spanish (or any of 30+ languages) and seamlessly switch languages mid-conversation. In diverse markets like LA, Miami, or Houston, this is a massive advantage.</li>
-<li><strong>Integration with your business tools</strong> - Connect it to Make.com or Zapier to automatically send lead emails after every call, update your CRM, or trigger follow-up sequences.</li>
-</ul>
-
-<p>The setup process is straightforward. You create an agent in the ElevenLabs platform, choose one of their expressive V3 voices (or clone your own), configure the system prompt with your business details, upload your website as a knowledge base, and connect it to a phone number through Twilio. The whole process takes about an hour.</p>
-
-<p>The expressive V3 model is what makes this feel different from every other AI phone system. It supports audio tags like laughing, sighing, exhaling, and clearing the throat. You can configure it to use filler words like "um" and "you know" to sound more natural. The result is a conversation that feels genuinely human.</p>
-
-<p>For real estate agents, the practical applications are obvious. Every missed call is a potential lost deal. If a buyer calls about your listing and gets voicemail, they move on to the next property. An AI voice agent that picks up instantly, answers questions intelligently, and captures contact information means you never lose a lead to a missed call again.</p>
-
-<p><strong>One important note:</strong> ElevenLabs voice agents handle phone calls. <a href="/signup">ListingFlare</a> handles your listing website with an AI chatbot that captures leads from web visitors. They solve different parts of the same problem - making sure every buyer who reaches out gets an instant response, whether they call or browse online. Together, they create a system where no lead ever falls through the cracks, day or night.</p>
+<img src="/blog/elevenlabs/bart.png" alt="ElevenLabs verdict and recommendation for real estate agents" loading="lazy" />
 
 <h2>Is ElevenLabs Worth It for Real Estate Agents? Our Verdict</h2>
 

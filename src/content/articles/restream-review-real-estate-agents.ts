@@ -21,7 +21,7 @@ export const article: BlogPost = {
   ],
   readingTime: 14,
   coverImage:
-    "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&h=630&fit=crop&q=80",
+    "/blog/restream/restream-hero.png",
   coverImageAlt:
     "Professional live streaming setup with camera and ring light representing multistreaming technology for real estate agents",
   content: `
@@ -33,11 +33,11 @@ export const article: BlogPost = {
 
 <p>We spent several weeks testing Restream specifically for real estate use cases - live open houses, market updates, Q&A sessions, and property walkthroughs. This is our honest, detailed <strong>Restream review for real estate agents</strong> heading into 2026.</p>
 
-<img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=1200&h=630&fit=crop&q=80" alt="Social media platforms on a smartphone screen representing multistreaming to multiple channels simultaneously" loading="lazy" />
+<img src="/blog/restream/studio-stream.png" alt="Restream studio multistreaming platform for real estate live video" loading="lazy" />
 
 <h2>What Is Restream?</h2>
 
-<p><a href="https://restream.io" target="_blank" rel="noopener noreferrer">Restream</a> is a cloud-based multistreaming platform that lets you go live on multiple social media channels at the same time. Instead of logging into YouTube, starting a stream, ending it, then logging into Facebook and doing the whole thing over again, you connect all your accounts to the platform and broadcast once. Your stream goes out to every connected platform in real time.</p>
+<p><a href="https://try.restream.io/tor0vsurj671" target="_blank" rel="noopener noreferrer">Restream</a> is a cloud-based multistreaming platform that lets you go live on multiple social media channels at the same time. Instead of logging into YouTube, starting a stream, ending it, then logging into Facebook and doing the whole thing over again, you connect all your accounts to the platform and broadcast once. Your stream goes out to every connected platform in real time.</p>
 
 <p>Founded in 2015, Restream has grown into one of the most popular live streaming tools for creators, businesses, and marketers. As of 2026, the platform supports over 30 destinations including YouTube, Facebook (profiles, pages, and groups), LinkedIn, TikTok Live, Twitch, X (formerly Twitter), and many more.</p>
 
@@ -108,6 +108,8 @@ export const article: BlogPost = {
 
 <p>Live streaming is not just for tech influencers and gamers. Real estate agents who embrace live video are seeing real, measurable results. Here are the most effective ways agents are using Restream right now.</p>
 
+<img src="/blog/restream/virtual-tour.png" alt="Live virtual open house broadcast on multiple platforms with Restream" loading="lazy" />
+
 <h3>Live Virtual Open Houses</h3>
 
 <p>This is the single most powerful use case for real estate agents on Restream. Instead of hosting a physical open house and hoping people show up, you broadcast a live walkthrough of the property to YouTube, Facebook, LinkedIn, and TikTok simultaneously. Buyers who cannot attend in person get a real-time tour. Out-of-state relocators can watch from their couch. And every viewer is a potential lead.</p>
@@ -122,6 +124,8 @@ export const article: BlogPost = {
 
 <p>A 15 to 20 minute weekly market update is enough. Keep it conversational. Share numbers but make them relatable. "Inventory in the 27615 zip code dropped 12% this month, which means if you are a buyer in North Raleigh, you need to be ready to move fast." That kind of content builds an audience over time.</p>
 
+<img src="/blog/restream/q-a.png" alt="Live Q and A session for real estate buyers and sellers" loading="lazy" />
+
 <h3>Live Q&A Sessions for Buyers and Sellers</h3>
 
 <p>Monthly or bi-weekly Q&A sessions are a goldmine for lead generation. Promote the session in advance on your social channels: "Going live Thursday at 7 PM to answer your real estate questions. Buying, selling, investing - ask me anything." People tune in because they have real questions, and answering those questions on camera positions you as the trusted expert.</p>
@@ -133,6 +137,8 @@ export const article: BlogPost = {
 <p>Not every live stream needs to be from a desk. Grab your phone, connect to Restream Studio via your mobile browser, and walk through a new listing live. Show the kitchen, the backyard, the view from the primary suite. Let viewers experience the home in real time and ask questions as you move through each room.</p>
 
 <p>These walkthrough streams are raw, authentic, and engaging. They do not need to be polished. In fact, the slightly unscripted feel is part of what makes live video so compelling. Viewers feel like they are getting a private showing, and that personal touch drives more engagement than a perfectly edited video tour.</p>
+
+<img src="/blog/restream/agent-intro.png" alt="Real estate agent brand-building livestream on Restream" loading="lazy" />
 
 <h3>Agent Introduction and Brand-Building Streams</h3>
 
@@ -146,15 +152,15 @@ export const article: BlogPost = {
 
 <p>These testimonial streams also serve double duty. After the live session ends, you can download the recording, clip the best moments, and repurpose them as short-form videos for Instagram Reels, TikTok, and YouTube Shorts.</p>
 
-<img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=630&fit=crop&q=80" alt="Modern home exterior representing live virtual open house streaming for real estate agents" loading="lazy" />
-
 <h2>Step-by-Step: How to Go Live with Restream</h2>
 
 <p>Getting started with Restream is straightforward. Here is a step-by-step walkthrough from account creation to your first live stream.</p>
 
 <h3>Step 1: Create Your Account and Connect Channels</h3>
 
-<p>Sign up at <a href="https://restream.io" target="_blank" rel="noopener noreferrer">restream.io</a> and choose your plan. Once you are in the dashboard, click "Add Channel" and connect each platform you want to stream to. The process is simple - you authorize Restream to access each account, and the connection is saved permanently.</p>
+<img src="/blog/restream/channel.png" alt="Connecting social media channels in Restream dashboard" loading="lazy" />
+
+<p>Sign up at <a href="https://try.restream.io/tor0vsurj671" target="_blank" rel="noopener noreferrer">restream.io</a> and choose your plan. Once you are in the dashboard, click "Add Channel" and connect each platform you want to stream to. The process is simple - you authorize Restream to access each account, and the connection is saved permanently.</p>
 
 <p>For real estate agents, the must-have connections are:</p>
 
@@ -181,6 +187,8 @@ export const article: BlogPost = {
 
 <h3>Step 3: Go Live</h3>
 
+<img src="/blog/restream/go-live.png" alt="Going live on multiple platforms simultaneously with Restream" loading="lazy" />
+
 <p>When you are ready, click "Go Live." Restream simultaneously starts broadcasting to every connected channel. You will see a confirmation showing which platforms are active. The chat window on the right side of the studio will begin populating with comments from all platforms as viewers tune in.</p>
 
 <p>Pro tip: Start your stream 2 to 3 minutes early with a "Starting Soon" overlay. This gives the platforms time to push notifications to your followers and lets early viewers settle in before you begin your main content.</p>
@@ -192,6 +200,8 @@ export const article: BlogPost = {
 <p>The aggregated chat in Restream Studio shows every comment with a platform icon next to it, so you always know where each viewer is watching from. This is a huge advantage over going live natively on a single platform.</p>
 
 <h3>Step 5: Wrap Up and Repurpose</h3>
+
+<img src="/blog/restream/wrap-up-studio.png" alt="Repurposing livestream content from Restream studio recording" loading="lazy" />
 
 <p>End your stream with a clear call to action. "If you want to schedule a private showing of this home, drop your email in the chat or visit my website." Then click "End Stream" in Restream Studio.</p>
 
@@ -242,6 +252,8 @@ export const article: BlogPost = {
 
 <h3>Restream vs StreamYard</h3>
 
+<img src="/blog/restream/streamyard.png" alt="StreamYard multistreaming platform comparison" loading="lazy" />
+
 <p><a href="https://streamyard.com" target="_blank" rel="noopener noreferrer">StreamYard</a> is Restream's closest competitor and the comparison most agents ask about. Both are browser-based, both support multistreaming, and both offer overlays and guest invites.</p>
 
 <p>The main differences:</p>
@@ -257,6 +269,8 @@ export const article: BlogPost = {
 
 <h3>Restream vs OBS Studio</h3>
 
+<img src="/blog/restream/obs-studios.png" alt="OBS Studio free streaming software comparison" loading="lazy" />
+
 <p><a href="https://obsproject.com" target="_blank" rel="noopener noreferrer">OBS Studio</a> is a free, open-source streaming application that runs on your desktop. It is incredibly powerful and used by professional streamers, but it comes with a steep learning curve.</p>
 
 <ul>
@@ -269,6 +283,8 @@ export const article: BlogPost = {
 
 <h3>Restream vs Ecamm Live</h3>
 
+<img src="/blog/restream/ecamm.png" alt="Ecamm Live Mac streaming platform comparison" loading="lazy" />
+
 <p><a href="https://www.ecamm.com" target="_blank" rel="noopener noreferrer">Ecamm Live</a> is a Mac-only streaming application that offers a polished, professional streaming experience with advanced features like scene switching, interview mode, and screen sharing.</p>
 
 <ul>
@@ -279,6 +295,8 @@ export const article: BlogPost = {
 </ul>
 
 <p><strong>Verdict:</strong> Ecamm is excellent for Mac users who want a premium streaming experience. But for cross-platform compatibility, ease of use, and maximum multistreaming reach, Restream is the more versatile choice.</p>
+
+<img src="/blog/restream/list-1.png" alt="Restream and ListingFlare integration for live video lead capture" loading="lazy" />
 
 <h2>Restream + ListingFlare: Turn Live Viewers into Captured Leads</h2>
 

@@ -21,7 +21,7 @@ export const article: BlogPost = {
   ],
   readingTime: 14,
   coverImage:
-    "https://images.unsplash.com/photo-1556157382-97eded29296b?w=1200&h=630&fit=crop&q=80",
+    "/blog/aragon-ai/aragon-ai-hero.png",
   coverImageAlt:
     "Professional portrait photography setup with lighting equipment representing AI headshot technology for real estate agents",
   content: `
@@ -37,11 +37,11 @@ export const article: BlogPost = {
 
 <p>But does it actually work well enough for real estate agents, where trust and professionalism are everything? We tested it extensively to find out. This is our honest <strong>Aragon AI review</strong> for real estate professionals in 2026.</p>
 
-<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=1200&h=630&fit=crop&q=80" alt="Professional business portrait of a confident person in a suit representing the type of AI-generated headshot real estate agents can create with Aragon AI" loading="lazy" />
+<img src="/blog/aragon-ai/head-shot-aragon.png" alt="Aragon AI headshot generator results for real estate agent professional photos" loading="lazy" />
 
 <h2>What Is Aragon AI?</h2>
 
-<p><a href="https://www.aragon.ai" target="_blank" rel="noopener noreferrer">Aragon AI</a> is an AI-powered headshot generator that creates professional portrait photos from your selfies. You upload 10 to 15 photos of yourself taken with your phone, and the AI learns your facial features, skin tone, and general appearance. It then generates dozens of polished headshots in various styles, outfits, backgrounds, and lighting setups.</p>
+<p><a href="https://www.aragon.ai/?via=kelvin" target="_blank" rel="noopener noreferrer">Aragon AI</a> is an AI-powered headshot generator that creates professional portrait photos from your selfies. You upload 10 to 15 photos of yourself taken with your phone, and the AI learns your facial features, skin tone, and general appearance. It then generates dozens of polished headshots in various styles, outfits, backgrounds, and lighting setups.</p>
 
 <p>The concept is straightforward: instead of paying a photographer to shoot you in one outfit against one backdrop, AI can place you in virtually any professional scenario. Want a corporate headshot with a neutral gray background? Done. A warm, approachable shot with natural outdoor lighting? Done. A polished look in a navy blazer you do not even own? Also done.</p>
 
@@ -110,6 +110,8 @@ export const article: BlogPost = {
 
 <p>One thing worth noting: Aragon AI's pricing is a one-time payment, not a subscription. If you want to regenerate headshots later - say, after a haircut or style change - you pay again. This is different from some competitors that offer monthly plans. For most agents, paying once or twice a year is perfectly reasonable.</p>
 
+<img src="/blog/aragon-ai/aragon-results.png" alt="Aragon AI headshot results showing multiple professional looks for real estate agents" loading="lazy" />
+
 <h2>How Real Estate Agents Use Aragon AI</h2>
 
 <p>A headshot might sound like a simple thing, but real estate agents use their photos across more touchpoints than almost any other profession. Here are the primary ways agents can put Aragon AI headshots to work:</p>
@@ -148,7 +150,7 @@ export const article: BlogPost = {
 
 <p>Your LinkedIn profile photo is often the first impression you make on referral partners, fellow agents, and potential clients who research you online. Aragon AI can generate LinkedIn-optimized headshots that follow the platform's best practices - head-and-shoulders framing, clean background, professional but approachable expression. The same applies to Facebook, Instagram, X (formerly Twitter), and any other platform where your face represents your brand.</p>
 
-<img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&h=630&fit=crop&q=80" alt="Real estate agent working on a laptop with marketing materials spread on a desk, representing how agents use AI headshots across multiple marketing channels" loading="lazy" />
+<img src="/blog/aragon-ai/headshot-professional.png" alt="Step-by-step guide to getting professional AI headshots with Aragon" loading="lazy" />
 
 <h2>Step-by-Step: How to Get Your Aragon AI Headshots</h2>
 
@@ -238,17 +240,23 @@ export const article: BlogPost = {
 
 <h3>Aragon AI vs HeadshotPro</h3>
 
+<img src="/blog/aragon-ai/headshot-pro.png" alt="HeadshotPro AI headshot platform comparison" loading="lazy" />
+
 <p><a href="https://www.headshotpro.com" target="_blank" rel="noopener noreferrer">HeadshotPro</a> is Aragon AI's closest direct competitor. It follows a very similar model - upload selfies, get AI headshots - but with a few differences. HeadshotPro tends to price slightly higher, starting around $29 for fewer images. The quality is comparable, though some users report that HeadshotPro produces slightly more natural skin tones while Aragon AI offers more variety in backgrounds and styles.</p>
 
 <p>For real estate agents, both platforms deliver strong results. The deciding factor often comes down to which platform generates better results for your specific face and preferences. Since both are affordable, it might be worth trying both and comparing outputs.</p>
 
 <h3>Aragon AI vs ProfilePicture.AI</h3>
 
+<img src="/blog/aragon-ai/profile-picture.png" alt="ProfilePicture AI headshot generator comparison" loading="lazy" />
+
 <p><a href="https://www.profilepicture.ai" target="_blank" rel="noopener noreferrer">ProfilePicture.AI</a> takes a broader approach, offering not just professional headshots but also creative and artistic styles. You can generate headshots that look like paintings, cartoons, or stylized illustrations in addition to realistic photos.</p>
 
 <p>For real estate agents who need strictly professional headshots, ProfilePicture.AI's breadth of creative options is unnecessary. Its professional headshot results are decent but generally a step below Aragon AI's in terms of realism and polish. Where ProfilePicture.AI shines is for agents who want fun, attention-grabbing social media profile pictures in addition to their professional shots.</p>
 
 <h3>Aragon AI vs Try It On AI</h3>
+
+<img src="/blog/aragon-ai/Try_it_on_AI_screenshot.png" alt="Try It On AI headshot platform screenshot comparison" loading="lazy" />
 
 <p><a href="https://www.tryitonai.com" target="_blank" rel="noopener noreferrer">Try It On AI</a> is another popular option that produces quality results at a competitive price point. It offers a similar upload-and-wait workflow with turnaround times of about two hours. Try It On AI is known for its particularly good results with diverse skin tones and features, which has made it popular among agents in multicultural markets.</p>
 
@@ -270,9 +278,9 @@ export const article: BlogPost = {
 <tr>
 <td><strong>Starting Price</strong></td>
 <td>$29</td>
-<td>~$29</td>
-<td>~$19</td>
-<td>~$29</td>
+<td>$29</td>
+<td>$19</td>
+<td>$29</td>
 </tr>
 <tr>
 <td><strong>Headshots Included</strong></td>
@@ -286,7 +294,7 @@ export const article: BlogPost = {
 <td>1-2 hours</td>
 <td>1-2 hours</td>
 <td>1-2 hours</td>
-<td>~2 hours</td>
+<td>2 hours</td>
 </tr>
 <tr>
 <td><strong>Realism Quality</strong></td>
@@ -343,7 +351,7 @@ export const article: BlogPost = {
 
 <p>For more ways to integrate AI tools into your real estate marketing, check out our complete guide to the <a href="/blog/best-ai-tools-real-estate-marketing">best AI tools for real estate marketing in 2026</a>.</p>
 
-<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=630&fit=crop&q=80" alt="Modern home exterior with professional real estate signage representing how agents use headshots across listing marketing materials" loading="lazy" />
+<img src="/blog/aragon-ai/ai-results.png" alt="Aragon AI final verdict and recommendation for real estate agents" loading="lazy" />
 
 <h2>Verdict: Is Aragon AI Worth It for Real Estate Agents?</h2>
 

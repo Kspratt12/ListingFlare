@@ -21,7 +21,7 @@ export const article: BlogPost = {
   ],
   readingTime: 18,
   coverImage:
-    "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&h=630&fit=crop&q=80",
+    "/blog/manychat/manychat-hero.png",
   coverImageAlt:
     "Smartphone showing Instagram and social media messaging apps representing automated DM lead generation for real estate agents",
   content: `
@@ -33,11 +33,11 @@ export const article: BlogPost = {
 
 <p>We spent several weeks testing ManyChat specifically for real estate use cases - lead magnets, qualification flows, open house signups, listing inquiries, and follow-up sequences. This is our honest, detailed <strong>ManyChat review for real estate agents</strong> heading into 2026.</p>
 
-<img src="https://images.unsplash.com/photo-1563986768609-322da13575f2?w=1200&h=630&fit=crop&q=80" alt="Real estate agent using smartphone to respond to social media messages and manage leads on the go" loading="lazy" />
+<img src="/blog/manychat/manychat-1.png" alt="ManyChat automation platform for real estate lead generation" loading="lazy" />
 
 <h2>What Is ManyChat?</h2>
 
-<p><a href="https://manychat.com" target="_blank" rel="noopener noreferrer">ManyChat</a> is a chat automation platform that lets you build automated conversations - often called "flows" - for Instagram DMs, Facebook Messenger, WhatsApp, Telegram, and SMS. Founded in 2015, it has grown into the most popular chatbot builder for small businesses and creators, with over 1 million businesses using the platform worldwide.</p>
+<p><a href="https://manychat.partnerlinks.io/01x6zkowpzw1" target="_blank" rel="noopener noreferrer">ManyChat</a> is a chat automation platform that lets you build automated conversations - often called "flows" - for Instagram DMs, Facebook Messenger, WhatsApp, Telegram, and SMS. Founded in 2015, it has grown into the most popular chatbot builder for small businesses and creators, with over 1 million businesses using the platform worldwide.</p>
 
 <p>At its core, ManyChat works like this: someone interacts with your social media content (comments a keyword, replies to a Story, clicks a link, sends you a DM), and ManyChat automatically sends them a personalized message or series of messages based on rules you set up. No coding required.</p>
 
@@ -157,6 +157,8 @@ export const article: BlogPost = {
 
 <h3>1. Auto-DM Lead Magnets (The "Comment Trigger" Strategy)</h3>
 
+<img src="/blog/manychat/comments.png" alt="Instagram comment trigger automation with ManyChat for real estate agents" loading="lazy" />
+
 <p>This is the single most effective ManyChat strategy for real estate agents, and it is the one you should set up first.</p>
 
 <p>Here is how it works: You create a piece of valuable content - a Reel, a carousel, or a static post. In the caption, you include a CTA like "Comment GUIDE below and I will DM you our free Relocation Guide to [Your City]." When someone comments "GUIDE" (or any variation - ManyChat can match partial keywords), two things happen automatically:</p>
@@ -180,6 +182,8 @@ export const article: BlogPost = {
 <p>The beauty of this strategy is that every lead magnet request is also a public comment on your post, which increases visibility in the algorithm. It is a self-reinforcing cycle - more comments lead to more reach, which leads to more comments.</p>
 
 <h3>2. Lead Qualification Flows</h3>
+
+<img src="/blog/manychat/many-auto.png" alt="ManyChat automated lead qualification flow for real estate" loading="lazy" />
 
 <p>Getting a DM is one thing. Knowing whether that person is a serious lead or just casually browsing is another. The software lets you build qualification flows that ask the right questions automatically.</p>
 
@@ -225,6 +229,8 @@ export const article: BlogPost = {
 
 <h3>5. Automated Follow-Up Sequences</h3>
 
+<img src="/blog/manychat/many-testing.png" alt="ManyChat automated follow-up sequence testing for realtors" loading="lazy" />
+
 <p>The fortune is in the follow-up, and most agents are terrible at it. Studies show that it takes an average of 5 to 12 contacts before a lead converts. It lets you set up timed follow-up sequences that keep you top of mind without you lifting a finger.</p>
 
 <p>Here is an example follow-up sequence for a buyer lead:</p>
@@ -258,7 +264,7 @@ export const article: BlogPost = {
 
 <p>The key with Story triggers is that they feel organic. The person interacted with your content, and they get a relevant follow-up. It does not feel like spam because it is contextual and timely.</p>
 
-<img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=630&fit=crop&q=80" alt="Modern home exterior at dusk with warm interior lighting representing a real estate listing being promoted through social media automation" loading="lazy" />
+<img src="/blog/manychat/many-setup.png" alt="Step-by-step ManyChat setup guide for real estate agents" loading="lazy" />
 
 <h2>Step-by-Step: Setting Up ManyChat for Real Estate</h2>
 
@@ -266,7 +272,7 @@ export const article: BlogPost = {
 
 <h3>Step 1: Create Your ManyChat Account</h3>
 
-<p>Go to <a href="https://manychat.com" target="_blank" rel="noopener noreferrer">manychat.com</a> and sign up with your Facebook account. ManyChat requires a Facebook Business Page to connect. Once signed in, connect your Instagram Professional account (it must be a Business or Creator account, not a personal one).</p>
+<p>Go to <a href="https://manychat.partnerlinks.io/01x6zkowpzw1" target="_blank" rel="noopener noreferrer">manychat.com</a> and sign up with your Facebook account. ManyChat requires a Facebook Business Page to connect. Once signed in, connect your Instagram Professional account (it must be a Business or Creator account, not a personal one).</p>
 
 <h3>Step 2: Connect Your Instagram Account</h3>
 
@@ -346,6 +352,8 @@ export const article: BlogPost = {
 
 <p>ManyChat is the market leader for social media chatbot automation, but there are alternatives worth knowing about. Here is a quick comparison:</p>
 
+<img src="/blog/manychat/chat-fuel.png" alt="ManyChat vs Chatfuel comparison for real estate marketing" loading="lazy" />
+
 <h3>ManyChat vs Chatfuel</h3>
 
 <p><a href="https://chatfuel.com" target="_blank" rel="noopener noreferrer">Chatfuel</a> is ManyChat's closest competitor. It offers similar flow-building capabilities for Instagram and Facebook Messenger. The key differences: Chatfuel's free plan is more limited (50 conversations/mo vs. ManyChat's 1,000 contacts). Chatfuel's paid plans start at $19.99/mo, which is more expensive than ManyChat Pro. Chatfuel has invested more heavily in AI-powered responses, which can be helpful for handling unexpected questions. However, ManyChat's interface is more polished and its Instagram comment automation is more robust. For most real estate agents, ManyChat is the better choice.</p>
@@ -359,6 +367,8 @@ export const article: BlogPost = {
 <p>If you are technically inclined, you could build custom automations directly through Meta's Messenger and Instagram APIs. However, this requires significant development time and ongoing maintenance. ManyChat abstracts all of that complexity into a user-friendly interface for $15/mo. Unless you have very specific needs that ManyChat cannot handle, building your own is rarely worth the effort.</p>
 
 <p>The bottom line: ManyChat is the best all-around option for real estate agents who want to automate social media lead capture. It has the largest community, the most templates, the best Instagram integration, and the most affordable pricing.</p>
+
+<img src="/blog/manychat/list-1.png" alt="ManyChat and ListingFlare integration for real estate lead capture" loading="lazy" />
 
 <h2>How ManyChat and ListingFlare Work Together</h2>
 

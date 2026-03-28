@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Ensure pages scroll to top on navigation
+  experimental: {
+    scrollRestoration: true,
+  },
   // Security + caching headers
   async headers() {
     // Security headers applied to all routes
