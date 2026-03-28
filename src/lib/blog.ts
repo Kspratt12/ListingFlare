@@ -57,6 +57,9 @@ import { article as surferSeoReview } from "@/content/articles/surfer-seo-review
 import { article as restreamReview } from "@/content/articles/restream-review-real-estate-agents";
 import { article as castmagicReview } from "@/content/articles/castmagic-review-real-estate-agents";
 import { article as descriptReview } from "@/content/articles/descript-ai-review-real-estate-agents";
+import { article as aiIsaTools } from "@/content/articles/best-ai-isa-tools-real-estate";
+import { article as followUpBossAlts } from "@/content/articles/follow-up-boss-alternatives";
+import { article as aiVirtualStaging } from "@/content/articles/best-ai-virtual-staging-software";
 
 const allPosts: BlogPost[] = [
   howToGetLeads,
@@ -102,6 +105,9 @@ const allPosts: BlogPost[] = [
   restreamReview,
   castmagicReview,
   descriptReview,
+  aiIsaTools,
+  followUpBossAlts,
+  aiVirtualStaging,
 ];
 
 // Sort by date descending
