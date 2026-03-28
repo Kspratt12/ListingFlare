@@ -122,7 +122,7 @@ export const article: BlogPost = {
 
 <p>Our recommendation for most real estate agents: start with the <strong>Hobbyist plan at $24/month</strong>. It includes all the AI features you need - filler word removal, Studio Sound, eye contact correction, and watermark-free exports. If you find yourself hitting the 10-hour transcription limit or need Overdub voice cloning, upgrade to Business. Skip the Free plan for actual production work since the watermark and limited exports make it impractical for professional content.</p>
 
-<a href="https://get.descript.com/dnhbj2ud2ge8" target="_blank" rel="noopener noreferrer" class="cta-button">Try Descript Free</a>
+<a href="https://get.descript.com/dnhbj2ud2ge8" target="_blank" rel="noopener noreferrer" class="cta-button">Try Descript Free &rarr;</a>
 
 <img src="/blog/descript/real-agent.png" alt="Real estate agent editing listing video in Descript" loading="lazy" />
 
@@ -350,7 +350,7 @@ export const article: BlogPost = {
 
 <p>For more tools and strategies to level up your listing marketing, check out our guide to the <a href="/blog/best-ai-tools-real-estate-marketing">best AI tools for real estate marketing</a> and our collection of <a href="/blog/real-estate-social-media-post-ideas">real estate social media post ideas</a> to keep your content calendar full.</p>
 
-<a href="https://get.descript.com/dnhbj2ud2ge8" target="_blank" rel="noopener noreferrer" class="cta-button">Try Descript Free</a>
+<a href="https://get.descript.com/dnhbj2ud2ge8" target="_blank" rel="noopener noreferrer" class="cta-button">Try Descript Free &rarr;</a>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

@@ -101,7 +101,7 @@ export const article: BlogPost = {
 
 <p><strong>Is the price justified?</strong> If you are a solo agent or a team of two, Trainual is overkill. But if you run a brokerage with 5 or more agents and regularly bring on new hires, the math works in your favor. Losing a single agent due to poor onboarding costs you recruiting time, lost deals, and replacement costs. One retained agent easily covers a full year of Trainual.</p>
 
-<a href="https://start.trainual.com/ue0y83lnu9xg" target="_blank" rel="noopener noreferrer" class="cta-button">Get a Trainual Demo</a>
+<a href="https://start.trainual.com/ue0y83lnu9xg" target="_blank" rel="noopener noreferrer" class="cta-button">Get a Trainual Demo &rarr;</a>
 
 <h2>How Real Estate Brokerages Use Trainual</h2>
 
@@ -344,7 +344,7 @@ export const article: BlogPost = {
 
 <p>Either way, stop winging it. The brokerages that win the next decade will be the ones that treat training as a competitive advantage - not a box to check. Your agents deserve a real system, and your retention numbers will thank you for building one.</p>
 
-<a href="https://start.trainual.com/ue0y83lnu9xg" target="_blank" rel="noopener noreferrer" class="cta-button">Get a Trainual Demo</a>
+<a href="https://start.trainual.com/ue0y83lnu9xg" target="_blank" rel="noopener noreferrer" class="cta-button">Get a Trainual Demo &rarr;</a>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions About Trainual for Real Estate</h2>

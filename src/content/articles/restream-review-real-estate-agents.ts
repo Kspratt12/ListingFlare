@@ -107,7 +107,7 @@ export const article: BlogPost = {
 
 <p>One thing to note: the software is billed annually if you want the best rates. The monthly billing option is slightly higher. If you commit to using live streaming as part of your marketing strategy (and you should), the annual plan saves you roughly 20%.</p>
 
-<a href="https://try.restream.io/tor0vsurj671" target="_blank" rel="noopener noreferrer" class="cta-button">Try Restream Free</a>
+<a href="https://try.restream.io/tor0vsurj671" target="_blank" rel="noopener noreferrer" class="cta-button">Try Restream Free &rarr;</a>
 
 <h2>How Real Estate Agents Use Restream</h2>
 
@@ -338,7 +338,7 @@ export const article: BlogPost = {
 
 <p>Live video is not the future of real estate marketing. It is the present. Restream makes it practical, professional, and scalable.</p>
 
-<a href="https://try.restream.io/tor0vsurj671" target="_blank" rel="noopener noreferrer" class="cta-button">Try Restream Free</a>
+<a href="https://try.restream.io/tor0vsurj671" target="_blank" rel="noopener noreferrer" class="cta-button">Try Restream Free &rarr;</a>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

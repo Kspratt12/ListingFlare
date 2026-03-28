@@ -116,7 +116,7 @@ export const article: BlogPost = {
 
 <p>One thing worth noting: Aragon AI's pricing is a one-time payment, not a subscription. If you want to regenerate headshots later - say, after a haircut or style change - you pay again. This is different from some competitors that offer monthly plans. For most agents, paying once or twice a year is perfectly reasonable.</p>
 
-<a href="https://www.aragon.ai/?via=kelvin" target="_blank" rel="noopener noreferrer" class="cta-button">Try Aragon AI</a>
+<a href="https://www.aragon.ai/?via=kelvin" target="_blank" rel="noopener noreferrer" class="cta-button">Try Aragon AI &rarr;</a>
 
 <img src="/blog/aragon-ai/aragon-results.png" alt="Aragon AI headshot results showing multiple professional looks for real estate agents" loading="lazy" />
 
@@ -383,7 +383,7 @@ export const article: BlogPost = {
 
 <p>Combine Aragon AI headshots with a strong listing marketing platform like <a href="/signup">ListingFlare</a>, and you have a professional, trust-building presence on every property page you create. Your headshot is your brand. Make sure it is working for you, not against you.</p>
 
-<a href="https://www.aragon.ai/?via=kelvin" target="_blank" rel="noopener noreferrer" class="cta-button">Try Aragon AI</a>
+<a href="https://www.aragon.ai/?via=kelvin" target="_blank" rel="noopener noreferrer" class="cta-button">Try Aragon AI &rarr;</a>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions About Aragon AI for Real Estate Agents</h2>

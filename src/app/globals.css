@@ -216,36 +216,27 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* Affiliate CTA button */
 .blog-content .cta-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+  display: block;
+  width: fit-content;
+  margin: 1.5rem auto;
   padding: 0.875rem 2rem;
   background: linear-gradient(135deg, #9a8866 0%, #75634a 100%);
-  color: #ffffff;
+  color: #ffffff !important;
   font-weight: 600;
   font-size: 0.95rem;
   border-radius: 9999px;
-  text-decoration: none;
+  text-decoration: none !important;
+  text-align: center;
   transition: all 0.2s;
   box-shadow: 0 4px 14px rgba(154, 136, 102, 0.3);
-  margin: 1.5rem 0;
 }
 
 .blog-content .cta-button:hover {
   background: linear-gradient(135deg, #75634a 0%, #504436 100%);
-  color: #ffffff;
+  color: #ffffff !important;
   box-shadow: 0 6px 20px rgba(154, 136, 102, 0.4);
   transform: translateY(-1px);
-  text-decoration: none;
-}
-
-.blog-content .cta-button::after {
-  content: "\\2192";
-  transition: transform 0.2s;
-}
-
-.blog-content .cta-button:hover::after {
-  transform: translateX(4px);
+  text-decoration: none !important;
 }
 
 /* Mobile responsive overrides */

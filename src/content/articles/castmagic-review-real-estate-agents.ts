@@ -109,7 +109,7 @@ export const article: BlogPost = {
 
 <p>All plans include AI-generated outputs, custom templates, and the ability to create your own content workflows. The main differentiator between tiers is upload hours and priority processing speed.</p>
 
-<a href="https://get.castmagic.io/nrxry3kwbzkj" target="_blank" rel="noopener noreferrer" class="cta-button">Try Castmagic Free</a>
+<a href="https://get.castmagic.io/nrxry3kwbzkj" target="_blank" rel="noopener noreferrer" class="cta-button">Try Castmagic Free &rarr;</a>
 
 <img src="/blog/castmagic/agent-casting.png" alt="Real estate agent using Castmagic to repurpose content" loading="lazy" />
 
@@ -379,7 +379,7 @@ export const article: BlogPost = {
 
 <p>Start with the Castmagic Hobby plan at $29 per month (or $21/mo annually). Record your first market update. Generate a week of content in 20 minutes. Once you see the time savings, you will wonder how you ever created content the old way.</p>
 
-<a href="https://get.castmagic.io/nrxry3kwbzkj" target="_blank" rel="noopener noreferrer" class="cta-button">Try Castmagic Free</a>
+<a href="https://get.castmagic.io/nrxry3kwbzkj" target="_blank" rel="noopener noreferrer" class="cta-button">Try Castmagic Free &rarr;</a>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions About Castmagic for Real Estate</h2>
