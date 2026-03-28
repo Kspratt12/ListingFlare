@@ -397,7 +397,7 @@ export const article: BlogPost = {
 
 <p>With most builders, here is what happens: the buyer looks at photos, reads the description, maybe swipes through the gallery. Then they leave. Maybe they fill out a form. You get an email notification the next morning. By then, the buyer has already reached out to two other agents who responded faster.</p>
 
-<p>The National Association of Realtors reports that 78% of buyers work with the first agent who responds to their inquiry. Not the best agent. Not the most experienced agent. The first one who picks up the phone or replies to the message. Speed wins.</p>
+<p>Research consistently shows that buyers tend to work with the first agent who responds to their inquiry. Not the best agent. Not the most experienced agent. The first one who picks up the phone or replies to the message. Speed wins.</p>
 
 <p>The difference with a platform like ListingFlare is that the page is working while you are not. A buyer visits at 10:47 PM, asks the chatbot if the kitchen was recently renovated, gets an instant answer, and then the chatbot says, &ldquo;Want to schedule a showing? I can set that up for you.&rdquo; The buyer gives their name and number. You wake up to a qualified lead with full context.</p>
 
