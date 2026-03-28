@@ -69,8 +69,7 @@ export const article: BlogPost = {
 <tr>
 <th>Plan</th>
 <th>Price</th>
-<th>Credits/Month</th>
-<th>Key Features</th>
+<th>Credits</th>
 <th>Best For</th>
 </tr>
 </thead>
@@ -78,47 +77,43 @@ export const article: BlogPost = {
 <tr>
 <td><strong>Free</strong></td>
 <td>$0/mo</td>
-<td>10,000 credits</td>
-<td>Text to Speech, Speech to Text, Sound Effects, Voice Design, 3 Projects</td>
+<td>10,000/mo</td>
 <td>Testing the platform</td>
 </tr>
 <tr>
 <td><strong>Starter</strong></td>
 <td>$5/mo</td>
-<td>30,000 credits</td>
-<td>Commercial License, Instant Voice Cloning, 20 Projects, Dubbing Studio</td>
+<td>30,000/mo</td>
 <td>Solo agents getting started</td>
 </tr>
 <tr>
 <td><strong>Creator</strong></td>
-<td>$22/mo (first month $11)</td>
-<td>100,000 credits</td>
-<td>Professional Voice Cloning, 192kbps audio, Additional Credits</td>
+<td>$22/mo</td>
+<td>100,000/mo</td>
 <td>Most real estate agents</td>
 </tr>
 <tr>
 <td><strong>Pro</strong></td>
 <td>$99/mo</td>
-<td>500,000 credits</td>
-<td>44.1kHz PCM audio via API</td>
-<td>High-volume content creators</td>
+<td>500,000/mo</td>
+<td>High-volume creators</td>
 </tr>
 <tr>
 <td><strong>Scale</strong></td>
 <td>$330/mo</td>
-<td>2,000,000 credits</td>
-<td>3 Workspace seats, Team Collaboration</td>
+<td>2,000,000/mo</td>
 <td>Teams and brokerages</td>
 </tr>
 <tr>
 <td><strong>Business</strong></td>
 <td>$1,320/mo</td>
-<td>11,000,000 credits</td>
-<td>Low-latency TTS, 3 Pro Voice Clones, 5 seats</td>
+<td>11,000,000/mo</td>
 <td>Large organizations</td>
 </tr>
 </tbody>
 </table>
+
+<p><strong>All paid plans include:</strong> Commercial license, instant voice cloning, 20+ projects, dubbing studio. Creator ($22/mo) adds professional voice cloning and 192kbps audio. Pro and above add API access.</p>
 
 <p><strong>ElevenLabs Agents pricing:</strong> Free plan includes 15 minutes of calls. Paid plans start at $0.09-$0.10 per minute with 50-13,750 prepaid minutes depending on tier. All plans include Workflow Builder, Tool Calling, Knowledge Base, and Multilingual support.</p>
 
@@ -310,10 +305,9 @@ export const article: BlogPost = {
 <thead>
 <tr>
 <th>Platform</th>
-<th>Starting Price</th>
-<th>Voice Quality</th>
-<th>Voice Cloning</th>
-<th>Languages</th>
+<th>Price</th>
+<th>Quality</th>
+<th>Cloning</th>
 <th>Best For</th>
 </tr>
 </thead>
@@ -322,41 +316,36 @@ export const article: BlogPost = {
 <td><strong>ElevenLabs</strong></td>
 <td>$5/mo</td>
 <td>Excellent</td>
-<td>Yes (Creator+)</td>
-<td>30+</td>
-<td>Best overall voice quality and multilingual support</td>
+<td>Yes</td>
+<td>Best overall quality</td>
 </tr>
 <tr>
 <td><strong>Murf.ai</strong></td>
 <td>$23/mo</td>
 <td>Very Good</td>
 <td>No</td>
-<td>20+</td>
-<td>Simpler UI, good for beginners who want easy voiceovers</td>
+<td>Simplest UI for beginners</td>
 </tr>
 <tr>
 <td><strong>Play.ht</strong></td>
 <td>$31/mo</td>
 <td>Very Good</td>
 <td>Yes</td>
-<td>140+</td>
-<td>Widest language support, slightly higher price</td>
+<td>140+ languages</td>
 </tr>
 <tr>
 <td><strong>Descript</strong></td>
 <td>$24/mo</td>
 <td>Good</td>
 <td>Yes</td>
-<td>Limited</td>
-<td>Agents who want video editing AND voiceover in one tool</td>
+<td>Video editing + voiceover</td>
 </tr>
 <tr>
 <td><strong>Lovo.ai</strong></td>
 <td>$25/mo</td>
 <td>Good</td>
 <td>Yes</td>
-<td>100+</td>
-<td>Budget-friendly option with decent quality</td>
+<td>Budget-friendly option</td>
 </tr>
 </tbody>
 </table>

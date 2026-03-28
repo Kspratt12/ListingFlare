@@ -70,41 +70,31 @@ export const article: BlogPost = {
 <th>Price</th>
 <th>Headshots</th>
 <th>Generation Time</th>
-<th>Attires</th>
-<th>Backgrounds</th>
-<th>Resolution</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Basic</strong></td>
 <td>$35</td>
-<td>40 headshots</td>
+<td>40</td>
 <td>45 minutes</td>
-<td>1 attire</td>
-<td>1 background</td>
-<td>Standard</td>
 </tr>
 <tr>
 <td><strong>Standard (83% pick this)</strong></td>
 <td>$45</td>
-<td>60 headshots</td>
+<td>60</td>
 <td>30 minutes</td>
-<td>2 attires</td>
-<td>2 backgrounds</td>
-<td>Standard</td>
 </tr>
 <tr>
 <td><strong>Executive (Best Value)</strong></td>
 <td>$75</td>
-<td>100 headshots</td>
+<td>100</td>
 <td>15 minutes</td>
-<td>All attires</td>
-<td>All backgrounds</td>
-<td>Enhanced</td>
 </tr>
 </tbody>
 </table>
+
+<p><strong>All plans include:</strong> Multiple attire and background options. Standard plans include standard resolution. Executive includes enhanced resolution with all attires and backgrounds.</p>
 
 <p><strong>Teams pricing:</strong> Starts at $45/person for Teams Basic with admin dashboard, invite links, and custom backgrounds. Teams Pro offers custom pricing with higher resolution, unlimited storage, API integration, and SSO.</p>
 

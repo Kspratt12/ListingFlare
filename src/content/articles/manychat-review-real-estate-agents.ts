@@ -66,7 +66,6 @@ export const article: BlogPost = {
 <th>Plan</th>
 <th>Price</th>
 <th>Contacts</th>
-<th>Key Features</th>
 <th>Best For</th>
 </tr>
 </thead>
@@ -75,32 +74,30 @@ export const article: BlogPost = {
 <td><strong>Free</strong></td>
 <td>$0/mo</td>
 <td>Up to 1,000</td>
-<td>Instagram DMs, Facebook Messenger, TikTok (Beta), Unlimited custom flows, 10 Tags, 3 Keywords</td>
 <td>Getting started</td>
 </tr>
 <tr>
 <td><strong>Pro</strong></td>
 <td>$15/mo+</td>
-<td>Unlimited (scales with contacts)</td>
-<td>All channels (+ WhatsApp, SMS, Email), Unlimited Tags/Keywords/Growth Tools, Analytics, No branding, Integrations</td>
+<td>Unlimited</td>
 <td>Growing agents</td>
 </tr>
 <tr>
 <td><strong>Pro + AI</strong></td>
-<td>+$29/mo add-on</td>
+<td>+$29/mo</td>
 <td>Same as Pro</td>
-<td>AI Step, Intention Recognition, Flow Builder Assistant, Text Improver</td>
-<td>AI-powered automation</td>
+<td>AI automation</td>
 </tr>
 <tr>
 <td><strong>Elite</strong></td>
-<td>Custom pricing</td>
 <td>Custom</td>
-<td>Dedicated onboarding, Strategic CSM, Priority support, Expert automations</td>
+<td>Custom</td>
 <td>Teams and agencies</td>
 </tr>
 </tbody>
 </table>
+
+<p><strong>Free includes:</strong> Instagram DMs, Facebook Messenger, TikTok (Beta), unlimited flows, 10 tags, 3 keywords. <strong>Pro adds:</strong> WhatsApp, SMS, Email, unlimited tags/keywords, analytics, no branding, and CRM integrations. <strong>Pro + AI adds:</strong> AI Step, Intention Recognition, Flow Builder Assistant, and Text Improver for $29/mo extra.</p>
 
 <p><strong>Our recommendation:</strong> Start with the Free plan to learn the interface and build your first flow. The moment you want comment automation on Instagram (which is the biggest lead generation feature), upgrade to Pro. At $15 per month, ManyChat Pro is one of the cheapest lead generation tools available to real estate agents. If it helps you capture even one extra lead per month, it pays for itself many times over.</p>
 

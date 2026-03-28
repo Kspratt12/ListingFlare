@@ -63,10 +63,9 @@ export const article: BlogPost = {
 <thead>
 <tr>
 <th>Plan</th>
-<th>Monthly Price</th>
-<th>Annual Price</th>
+<th>Monthly</th>
+<th>Annual</th>
 <th>Channels</th>
-<th>Key Features</th>
 </tr>
 </thead>
 <tbody>
@@ -74,32 +73,30 @@ export const article: BlogPost = {
 <td><strong>Free</strong></td>
 <td>$0</td>
 <td>$0</td>
-<td>2 channels</td>
-<td>Multistreaming, Restream branding</td>
+<td>2</td>
 </tr>
 <tr>
 <td><strong>Standard</strong></td>
 <td>$19/mo</td>
 <td>$16/mo</td>
-<td>3 channels</td>
-<td>No branding, Guest channels, 50 Clips</td>
+<td>3</td>
 </tr>
 <tr>
 <td><strong>Professional</strong></td>
 <td>$49/mo</td>
 <td>$39/mo</td>
-<td>5 channels</td>
-<td>Full HD 1080p, 4K recording, Dual format, 100 Clips</td>
+<td>5</td>
 </tr>
 <tr>
 <td><strong>Business</strong></td>
 <td>$239/mo</td>
 <td>$199/mo</td>
-<td>8 channels</td>
-<td>Website player (1000 viewers), 2 team seats, Co-producer mode, Workspaces, 250 Clips</td>
+<td>8</td>
 </tr>
 </tbody>
 </table>
+
+<p><strong>Standard adds:</strong> No branding, guest channels, 50 clips. <strong>Professional adds:</strong> Full HD 1080p streaming, 4K recording, dual format, 100 clips. <strong>Business adds:</strong> Website player (1000 viewers), 2 team seats, co-producer mode, workspaces, 250 clips.</p>
 
 <p>For most individual real estate agents, the <strong>Standard plan at $16 per month annually ($19 monthly)</strong> is the sweet spot. It removes the watermark (which looks unprofessional on a listing stream), gives you 3 channels, and includes guest channels and 50 clips. That is less than the cost of a single Zillow zip code for a month, and the ROI from just one lead captured during a live stream can pay for years of the subscription.</p>
 

@@ -65,11 +65,9 @@ export const article: BlogPost = {
 <thead>
 <tr>
 <th>Plan</th>
-<th>Monthly Price</th>
-<th>Annual Price</th>
+<th>Monthly</th>
+<th>Annual</th>
 <th>Media Hours</th>
-<th>AI Credits</th>
-<th>Key Features</th>
 </tr>
 </thead>
 <tbody>
@@ -78,43 +76,35 @@ export const article: BlogPost = {
 <td>$0</td>
 <td>$0</td>
 <td>Limited</td>
-<td>Limited</td>
-<td>Text-based editing, Basic AI tools</td>
 </tr>
 <tr>
 <td><strong>Hobbyist</strong></td>
 <td>$24/mo</td>
 <td>$16/mo</td>
 <td>10 hrs/mo</td>
-<td>400/mo</td>
-<td>1080p export, Underlord AI co-editor, Studio Sound, Filler Word Removal, AI Speech with voice clones</td>
 </tr>
 <tr>
 <td><strong>Creator (Most Popular)</strong></td>
 <td>$35/mo</td>
 <td>$24/mo</td>
-<td>30 hrs/mo (+5 bonus)</td>
-<td>800/mo (+500 bonus)</td>
-<td>4K export, 20+ AI tools, Latest AI models, Royalty-free stock library</td>
+<td>30 hrs/mo</td>
 </tr>
 <tr>
 <td><strong>Business</strong></td>
 <td>$65/mo</td>
 <td>$50/mo</td>
-<td>40 hrs/mo (+10 bonus)</td>
-<td>1,500/mo (+1000 bonus)</td>
-<td>Brand Studio, 30+ language dubbing, Custom avatars, Priority support</td>
+<td>40 hrs/mo</td>
 </tr>
 <tr>
 <td><strong>Enterprise</strong></td>
 <td>Custom</td>
 <td>Custom</td>
 <td>Custom</td>
-<td>Custom</td>
-<td>SSO/SCIM, Granular brand controls, Custom terms, Flexible licensing</td>
 </tr>
 </tbody>
 </table>
+
+<p><strong>All paid plans include:</strong> Filler word removal, Studio Sound, and AI eye contact correction. Hobbyist includes 400 AI credits/mo and 1080p export. Creator adds 800+ AI credits/mo, 4K export, and royalty-free stock library. Business adds Brand Studio, 1,500+ AI credits/mo, 30+ language dubbing, and custom avatars.</p>
 
 <p>To put this in perspective for a typical real estate agent. If you record one 5-minute listing walkthrough video per week, that is roughly 20 minutes of raw footage per month (accounting for mistakes and re-takes). Add a couple of market update videos and some quick social media clips, and you are looking at maybe 2 to 3 hours of total transcription time per month. The Hobbyist plan at $24/month covers that easily with room to spare.</p>
 

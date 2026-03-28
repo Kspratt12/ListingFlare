@@ -311,80 +311,61 @@ export const article: BlogPost = {
 <thead>
 <tr>
 <th>Platform</th>
-<th>Approx. Monthly Cost</th>
-<th>Standalone or Platform</th>
-<th>Text</th>
-<th>Email</th>
-<th>Phone</th>
-<th>CRM Integration</th>
+<th>Price</th>
+<th>Standalone?</th>
+<th>Channels</th>
 <th>Best For</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Ylopo (Raiya)</strong></td>
-<td>$500-2,000+</td>
+<td>$500-2,000+/mo</td>
 <td>Platform</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>No</td>
-<td>Built-in</td>
-<td>Teams wanting integrated lead gen + AI</td>
+<td>Text, Email</td>
+<td>Integrated lead gen + AI</td>
 </tr>
 <tr>
 <td><strong>Structurely</strong></td>
-<td>$200-400</td>
-<td>Standalone</td>
+<td>$200-400/mo</td>
 <td>Yes</td>
-<td>Yes</td>
-<td>No</td>
-<td>Most major CRMs</td>
-<td>Adding AI ISA to existing CRM</td>
+<td>Text, Email</td>
+<td>Add AI ISA to existing CRM</td>
 </tr>
 <tr>
 <td><strong>Lofty</strong></td>
-<td>$499+</td>
+<td>$499+/mo</td>
 <td>Platform</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>No</td>
-<td>Built-in</td>
-<td>All-in-one CRM + AI teams</td>
+<td>Text, Email</td>
+<td>All-in-one CRM + AI</td>
 </tr>
 <tr>
 <td><strong>Conversica</strong></td>
-<td>$2,000+</td>
-<td>Standalone</td>
-<td>Limited</td>
+<td>$2,000+/mo</td>
 <td>Yes</td>
-<td>No</td>
-<td>Major CRMs + API</td>
+<td>Email, Limited Text</td>
 <td>Large brokerages at scale</td>
 </tr>
 <tr>
 <td><strong>Real Geeks (Geek AI)</strong></td>
-<td>$300-600</td>
+<td>$300-600/mo</td>
 <td>Platform</td>
-<td>Yes</td>
-<td>Limited</td>
-<td>No</td>
-<td>Built-in</td>
+<td>Text, Limited Email</td>
 <td>Teams on Real Geeks IDX</td>
 </tr>
 <tr>
 <td><strong>Follow Up Boss + AI</strong></td>
-<td>$69-833+ (plus AI tool)</td>
+<td>$69-833+/mo</td>
 <td>CRM + Integrations</td>
 <td>Via integration</td>
-<td>Via integration</td>
-<td>Via integration</td>
-<td>N/A (is the CRM)</td>
-<td>Flexible, build-your-own stack</td>
+<td>Flexible, build-your-own</td>
 </tr>
 </tbody>
 </table>
 
-<p>A few patterns jump out from this comparison. None of these platforms currently offer strong AI phone call capabilities, which remains the biggest gap in AI ISA technology. The pricing sweet spot for most small to mid-size teams is the $200 to $500 per month range, where Structurely, Lofty, and Real Geeks compete. And the choice between standalone and platform often comes down to how happy you are with your current tech stack - if you love your CRM, go standalone; if you are ready for a change, a platform solution simplifies your life.</p>
+<p><strong>Note:</strong> None of these platforms currently offer strong AI phone call capabilities. All platform-based tools (Ylopo, Lofty, Real Geeks) include a built-in CRM. Standalone tools (Structurely, Conversica) integrate with most major real estate CRMs. Follow Up Boss requires third-party AI tools added via API or Zapier.</p>
+
+<p>The pricing sweet spot for most small to mid-size teams is the $200 to $500 per month range, where Structurely, Lofty, and Real Geeks compete. The choice between standalone and platform often comes down to how happy you are with your current tech stack - if you love your CRM, go standalone; if you are ready for a change, a platform solution simplifies your life.</p>
 
 <h2>What About Listing-Specific Leads? The AI ISA Gap Most Agents Miss</h2>
 

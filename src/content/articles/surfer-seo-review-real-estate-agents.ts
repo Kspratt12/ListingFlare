@@ -62,11 +62,9 @@ export const article: BlogPost = {
 <thead>
 <tr>
 <th>Plan</th>
-<th>Monthly Price</th>
-<th>Annual Price</th>
+<th>Monthly</th>
+<th>Annual</th>
 <th>Documents</th>
-<th>AI Prompts</th>
-<th>Key Features</th>
 </tr>
 </thead>
 <tbody>
@@ -74,28 +72,24 @@ export const article: BlogPost = {
 <td><strong>Standard</strong></td>
 <td>$119/mo</td>
 <td>$99/mo</td>
-<td>30/mo (360 annual)</td>
-<td>25 prompts, weekly refresh</td>
-<td>1-click optimization, Brand Knowledge, Team Collaboration, Plagiarism Checker</td>
+<td>30/mo</td>
 </tr>
 <tr>
 <td><strong>Pro (Recommended)</strong></td>
 <td>$219/mo</td>
 <td>$182/mo</td>
-<td>30/mo (360 annual)</td>
-<td>50 prompts, daily refresh</td>
-<td>Everything in Standard + 5 Brand Workspaces, Internal Linking, Content Ideas, Templates, Rank Drop Detection, Cannibalization Report</td>
+<td>30/mo</td>
 </tr>
 <tr>
 <td><strong>Peace of Mind</strong></td>
 <td>$359/mo</td>
 <td>$299/mo</td>
 <td>Unlimited</td>
-<td>100 prompts, daily refresh</td>
-<td>Everything in Pro + Unlimited Brand Workspaces, Advanced SERP Analysis, Personalized Onboarding, Dedicated Success Manager, API Access</td>
 </tr>
 </tbody>
 </table>
+
+<p><strong>All plans include:</strong> Content Editor, SERP Analyzer, Keyword Research, Brand Knowledge, and Plagiarism Checker. Pro adds internal linking, content ideas, and rank drop detection. Peace of Mind adds unlimited documents, dedicated success manager, and API access.</p>
 
 <p>For most real estate agents, the <strong>Standard plan at $99 per month (billed annually, or $119 monthly)</strong> is the right starting point. If you are publishing two to four blog posts per month - which is a solid cadence for a local real estate blog - 30 documents per month gives you plenty of room to optimize your content, run audits on existing pages, and experiment with different keywords.</p>
 

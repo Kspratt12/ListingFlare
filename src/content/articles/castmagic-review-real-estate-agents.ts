@@ -62,12 +62,10 @@ export const article: BlogPost = {
 <thead>
 <tr>
 <th>Plan</th>
-<th>Monthly Price</th>
-<th>Annual Price</th>
-<th>Hours/Month</th>
+<th>Monthly</th>
+<th>Annual</th>
+<th>Hours</th>
 <th>Seats</th>
-<th>Storage</th>
-<th>Key Features</th>
 </tr>
 </thead>
 <tbody>
@@ -75,31 +73,27 @@ export const article: BlogPost = {
 <td><strong>Hobby</strong></td>
 <td>$29/mo</td>
 <td>$21/mo</td>
-<td>5 hours</td>
-<td>5 seats</td>
-<td>10GB</td>
-<td>AI transcription, 60+ languages, Custom prompts, Magic Chat, Media clipping, Audiograms</td>
+<td>5 hrs</td>
+<td>5</td>
 </tr>
 <tr>
 <td><strong>Starter</strong></td>
 <td>$99/mo</td>
 <td>$79/mo</td>
-<td>20 hours</td>
-<td>10 seats</td>
-<td>100GB</td>
-<td>Everything in Hobby + Live chat support</td>
+<td>20 hrs</td>
+<td>10</td>
 </tr>
 <tr>
 <td><strong>Business</strong></td>
 <td>$999/mo</td>
 <td>$790/mo</td>
-<td>80 hours</td>
-<td>20 seats</td>
-<td>1TB</td>
-<td>Everything in Starter + Onboarding call, Workspace customization</td>
+<td>80 hrs</td>
+<td>20</td>
 </tr>
 </tbody>
 </table>
+
+<p><strong>All plans include:</strong> AI transcription, 60+ languages, custom prompts, Magic Chat, media clipping, audiograms, and integrations with Zoom, Google Drive, YouTube, and Zapier. Starter adds live chat support. Business adds onboarding call and workspace customization.</p>
 
 <p>For most solo real estate agents, the <strong>Hobby plan at $29 per month</strong> (or $21/mo billed annually) is more than enough. Five hours of upload time translates to roughly 60 individual recordings at 5 minutes each. If you record one market update per week and one listing walkthrough, that is only 40 to 50 minutes of content per month - well within the Hobby limit.</p>
 

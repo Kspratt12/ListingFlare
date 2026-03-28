@@ -302,10 +302,9 @@ export const article: BlogPost = {
 <thead>
 <tr>
 <th>Tool</th>
-<th>Pricing</th>
+<th>Price</th>
 <th>Speed</th>
-<th>Quality Rating</th>
-<th>Styles Available</th>
+<th>Quality</th>
 <th>Best For</th>
 </tr>
 </thead>
@@ -313,25 +312,22 @@ export const article: BlogPost = {
 <tr>
 <td><strong>REimagineHome</strong></td>
 <td>\$29-99/mo</td>
-<td>30-90 seconds</td>
+<td>30-90 sec</td>
 <td>High</td>
-<td>15+</td>
 <td>Versatile design options</td>
 </tr>
 <tr>
 <td><strong>Virtual Staging AI</strong></td>
 <td>\$16-35/photo</td>
-<td>1-3 minutes</td>
+<td>1-3 min</td>
 <td>Very High</td>
-<td>20+</td>
 <td>Pay-per-use quality</td>
 </tr>
 <tr>
 <td><strong>Collov AI</strong></td>
 <td>Free - \$29/mo</td>
-<td>1-2 minutes</td>
+<td>1-2 min</td>
 <td>Good</td>
-<td>12+</td>
 <td>Budget-friendly start</td>
 </tr>
 <tr>
@@ -339,15 +335,13 @@ export const article: BlogPost = {
 <td>\$10-25/photo</td>
 <td>1-2 min + editing</td>
 <td>Good</td>
-<td>10+</td>
 <td>Manual furniture control</td>
 </tr>
 <tr>
 <td><strong>BoxBrownie</strong></td>
 <td>\$24-32/photo</td>
-<td>24-48 hours</td>
+<td>24-48 hrs</td>
 <td>Excellent</td>
-<td>15+</td>
 <td>Guaranteed quality</td>
 </tr>
 <tr>
@@ -355,15 +349,13 @@ export const article: BlogPost = {
 <td>\$19-49/mo</td>
 <td>30 sec - 2 min</td>
 <td>Good</td>
-<td>10+</td>
 <td>High-volume staging</td>
 </tr>
 <tr>
 <td><strong>Styldod</strong></td>
 <td>\$16-25/photo</td>
-<td>1-3 minutes</td>
+<td>1-3 min</td>
 <td>Good</td>
-<td>12+</td>
 <td>All-in-one visual marketing</td>
 </tr>
 </tbody>
