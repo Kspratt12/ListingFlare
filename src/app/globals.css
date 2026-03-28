@@ -114,7 +114,7 @@ input[type="number"]::-webkit-inner-spin-button {
   border-collapse: separate;
   border-spacing: 0;
   margin: 1.5rem 0;
-  font-size: 0.875rem;
+  font-size: 0.95rem;
   border-radius: 0.75rem;
   overflow: hidden;
   border: 1px solid #e5e3de;
@@ -153,17 +153,17 @@ input[type="number"]::-webkit-inner-spin-button {
   background: linear-gradient(180deg, #f9f8f4 0%, #f0ede6 100%);
   font-weight: 700;
   text-align: left;
-  padding: 0.875rem 1rem;
+  padding: 1rem 1.25rem;
   border-bottom: 2px solid #ddd8c8;
   color: #504436;
   white-space: nowrap;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
 .blog-content td {
-  padding: 0.875rem 1rem;
+  padding: 1rem 1.25rem;
   border-bottom: 1px solid #f0ede6;
   color: #374151;
   vertical-align: top;
@@ -304,18 +304,18 @@ input[type="number"]::-webkit-inner-spin-button {
   }
 
   .blog-content table {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     min-width: 400px;
     border-radius: 0.5rem;
   }
 
   .blog-content th {
-    padding: 0.625rem 0.75rem;
-    font-size: 0.7rem;
+    padding: 0.75rem 0.875rem;
+    font-size: 0.75rem;
   }
 
   .blog-content td {
-    padding: 0.625rem 0.75rem;
+    padding: 0.75rem 0.875rem;
   }
 
   .blog-content .pros-card,
