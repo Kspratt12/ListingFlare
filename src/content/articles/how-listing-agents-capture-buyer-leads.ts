@@ -185,7 +185,7 @@ export const article: BlogPost = {
 
 <p>The beauty of automated follow-up is that no lead falls through the cracks. Whether you capture five leads in a week or fifty, every single one gets a timely, relevant response. You are never the agent who "never got back to me." You are the agent who responded in two minutes at 10 PM on a Sunday.</p>
 
-<p>ListingFlare's built-in follow-up system sends instant emails to every lead captured through your property pages and chatbot. You get notified immediately so you can jump in when it matters, and the automation handles the rest. No separate email tool needed. No manual follow-up tasks to forget. The system works for you 24/7.</p>
+<p>ListingFlare's built-in follow-up system sends instant emails to every lead captured through your property pages and chatbot. You get notified immediately so you can jump in when it matters, and the automation handles the rest. No separate email tool needed. No manual follow-up tasks to forget. The system works for you 24/7. If you want to go further with automated lead qualification, check out our comparison of the <a href="/blog/best-ai-isa-tools-real-estate">best AI ISA platforms for real estate teams</a>.</p>
 
 <h2>Putting It All Together - A Complete Lead Capture System</h2>
 

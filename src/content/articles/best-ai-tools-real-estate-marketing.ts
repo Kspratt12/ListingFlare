@@ -283,7 +283,7 @@ export const article: BlogPost = {
 
 <p><strong>Pricing:</strong> Starts at $299 per month (all features included, no tier restrictions). Additional users at $39 per month each.</p>
 
-<p><strong>Best for:</strong> Agents and teams who need robust marketing automation and CRM capabilities beyond what a basic contact manager provides. Pairs well with ListingFlare for lead capture (ListingFlare captures the leads, Keap nurtures them through the pipeline).</p>
+<p><strong>Best for:</strong> Agents and teams who need robust marketing automation and CRM capabilities beyond what a basic contact manager provides. Pairs well with ListingFlare for lead capture (ListingFlare captures the leads, Keap nurtures them through the pipeline). For a deeper comparison of AI tools that handle lead qualification and follow-up automatically, see our guide to the <a href="/blog/best-ai-isa-tools-real-estate">best AI ISA tools for real estate</a>.</p>
 
 <h2>The Complete AI Marketing Stack for Real Estate Agents</h2>
 

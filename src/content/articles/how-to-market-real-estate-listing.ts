@@ -32,7 +32,7 @@ export const article: BlogPost = {
 
 <p>Hire a professional real estate photographer who understands wide-angle composition, HDR blending, and twilight shots for higher-end properties. Budget \$150–\$400 per shoot, and treat it as a non-negotiable line item on every listing. Make sure the home is staged and cleaned before the photographer arrives. Deliver the photos within 24 hours of the shoot so you can launch your marketing immediately.</p>
 
-<p><strong>Pro tip:</strong> Order aerial drone photos for properties with large lots, scenic views, or unique positioning. Drone shots add a "wow factor" that static ground-level images simply can't match.</p>
+<p><strong>Pro tip:</strong> Order aerial drone photos for properties with large lots, scenic views, or unique positioning. Drone shots add a "wow factor" that static ground-level images simply can't match. For a detailed comparison of AI staging platforms with pricing and quality ratings, check out our <a href="/blog/best-ai-virtual-staging-software">AI virtual staging software guide</a>.</p>
 
 <h2>2. Single-Property Websites</h2>
 
