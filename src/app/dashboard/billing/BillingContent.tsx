@@ -104,7 +104,7 @@ export default function BillingContent() {
       icon: CheckCircle,
     },
     trialing: {
-      label: `Trial — ${trialDaysLeft} days left`,
+      label: `Trial - ${trialDaysLeft} days left`,
       color: "bg-blue-50 text-blue-700 border-blue-200",
       icon: Clock,
     },

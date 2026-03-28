@@ -533,7 +533,7 @@ export default async function BlogPostPage({ params }: Props) {
           </h2>
           <p className="mt-3 text-gray-600">
             ListingFlare creates stunning single-property websites with AI
-            chatbot, lead capture, and instant follow-up — so you never miss a
+            chatbot, lead capture, and instant follow-up - so you never miss a
             buyer.
           </p>
           <div className="mt-6 flex items-center justify-center gap-4">

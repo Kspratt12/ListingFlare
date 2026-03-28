@@ -157,7 +157,7 @@ export default function DashboardLayout({
             <div className="flex items-center gap-2">
               <Sparkles className="h-4 w-4 flex-shrink-0 text-brand-500" />
               <p className="text-sm text-brand-800">
-                <span className="font-semibold">Free trial</span> — {limits.trialDaysLeft} day{limits.trialDaysLeft !== 1 ? "s" : ""} left.
+                <span className="font-semibold">Free trial</span> - {limits.trialDaysLeft} day{limits.trialDaysLeft !== 1 ? "s" : ""} left.
                 Upgrade for unlimited listings, videos, lead replies & more.
               </p>
             </div>

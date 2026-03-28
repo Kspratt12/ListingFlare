@@ -19,7 +19,7 @@ const SUGGESTIONS = [
 export default function AssistantPage() {
   const [messages, setMessages] = useState<ChatMessage[]>([{
     role: "assistant",
-    text: "Hey! I have access to all your listings, leads, and analytics. Ask me anything — performance stats, follow-up messages, marketing copy, strategy advice. What do you need?",
+    text: "Hey! I have access to all your listings, leads, and analytics. Ask me anything - performance stats, follow-up messages, marketing copy, strategy advice. What do you need?",
   }]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);

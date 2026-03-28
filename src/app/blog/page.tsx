@@ -172,7 +172,7 @@ export default async function BlogIndexPage({ searchParams }: Props) {
           </h2>
           <p className="mt-3 text-gray-600">
             The exact 23-step checklist top agents use to market every listing.
-            From photography to closing — never miss a step.
+            From photography to closing - never miss a step.
           </p>
           <form
             action="https://www.listingflare.com/signup"
