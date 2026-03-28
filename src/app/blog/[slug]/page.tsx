@@ -419,10 +419,14 @@ export default async function BlogPostPage({ params }: Props) {
       {/* Author Bio - E-E-A-T signal */}
       <section className="border-t border-gray-100 bg-white py-10">
         <div className="mx-auto max-w-3xl px-6">
-          <div className="flex items-start gap-5 rounded-xl border border-gray-200 bg-gray-50 p-6">
-            <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-brand-100 font-serif text-2xl font-bold text-brand-700">
-              KS
-            </div>
+          <div className="flex flex-col items-center gap-4 rounded-xl border border-gray-200 bg-gray-50 p-6 text-center sm:flex-row sm:items-start sm:gap-5 sm:text-left">
+            <Image
+              src="/kelvin-spratt.jpg"
+              alt="Kelvin Spratt, Founder and CEO of ListingFlare"
+              width={64}
+              height={64}
+              className="h-16 w-16 flex-shrink-0 rounded-full object-cover"
+            />
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider text-brand-500">
                 Written by

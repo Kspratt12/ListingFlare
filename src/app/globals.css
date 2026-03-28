@@ -125,7 +125,6 @@ input[type="number"]::-webkit-inner-spin-button {
   display: block;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  white-space: nowrap;
 }
 
 .blog-content th {
@@ -213,6 +212,74 @@ input[type="number"]::-webkit-inner-spin-button {
   left: 0;
   color: #ef4444;
   font-weight: 700;
+}
+
+/* Mobile responsive overrides */
+@media (max-width: 640px) {
+  .blog-content h2 {
+    font-size: 1.375rem;
+    margin-top: 2rem;
+  }
+
+  .blog-content h3 {
+    font-size: 1.125rem;
+    margin-top: 1.5rem;
+  }
+
+  .blog-content p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+
+  .blog-content li {
+    font-size: 0.95rem;
+  }
+
+  .blog-content table {
+    font-size: 0.8rem;
+    min-width: 500px;
+  }
+
+  .blog-content th,
+  .blog-content td {
+    padding: 0.5rem 0.625rem;
+  }
+
+  .blog-content .pros-card,
+  .blog-content .cons-card {
+    flex: 1 1 100%;
+    padding: 1rem;
+  }
+
+  .blog-content .pros-card li,
+  .blog-content .cons-card li {
+    font-size: 0.85rem;
+  }
+
+  .blog-content .faq-section summary {
+    font-size: 0.95rem;
+    padding: 0.875rem 2.5rem 0.875rem 1rem;
+  }
+
+  .blog-content .faq-section summary::after {
+    right: 0.875rem;
+    font-size: 1.125rem;
+  }
+
+  .blog-content .faq-section details p {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .blog-content img {
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+  }
+
+  .blog-content video {
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+  }
 }
 
 /* Video embeds */

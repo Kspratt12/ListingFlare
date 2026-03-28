@@ -369,95 +369,93 @@ Your browser does not support the video tag.
 
 <h2>Rela Alternatives Comparison Table</h2>
 
-<div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1.5rem 0;">
-<table style="width:100%;min-width:700px;border-collapse:collapse;font-size:0.9rem;">
+<table>
 <thead>
-<tr style="background:#f9f8f6;">
-<th style="text-align:left;padding:0.75rem 1rem;border:1px solid #e5e3de;font-weight:700;white-space:nowrap;">Platform</th>
-<th style="text-align:left;padding:0.75rem 1rem;border:1px solid #e5e3de;font-weight:700;white-space:nowrap;">Price</th>
-<th style="text-align:center;padding:0.75rem 1rem;border:1px solid #e5e3de;font-weight:700;white-space:nowrap;">AI Chatbot</th>
-<th style="text-align:center;padding:0.75rem 1rem;border:1px solid #e5e3de;font-weight:700;white-space:nowrap;">Lead Capture</th>
-<th style="text-align:center;padding:0.75rem 1rem;border:1px solid #e5e3de;font-weight:700;white-space:nowrap;">Auto Follow-Up</th>
-<th style="text-align:center;padding:0.75rem 1rem;border:1px solid #e5e3de;font-weight:700;white-space:nowrap;">Unlimited</th>
-<th style="text-align:left;padding:0.75rem 1rem;border:1px solid #e5e3de;font-weight:700;white-space:nowrap;">Best Feature</th>
+<tr>
+<th>Platform</th>
+<th>Price</th>
+<th style="text-align:center;">AI Chatbot</th>
+<th style="text-align:center;">Lead Capture</th>
+<th style="text-align:center;">Auto Follow-Up</th>
+<th style="text-align:center;">Unlimited</th>
+<th>Best Feature</th>
 </tr>
 </thead>
 <tbody>
 <tr style="background:#f0fdf4;">
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;font-weight:700;"><a href="/signup" style="color:#166534;">ListingFlare</a></td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;">$150/mo</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#22c55e;font-weight:700;">&#10003;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#22c55e;font-weight:700;">&#10003;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#22c55e;font-weight:700;">&#10003;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#22c55e;font-weight:700;">&#10003;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;">Per-listing AI chatbot</td>
+<td><strong><a href="/signup" style="color:#166534;">ListingFlare</a></strong></td>
+<td>$150/mo</td>
+<td style="text-align:center;color:#22c55e;font-weight:700;">&#10003;</td>
+<td style="text-align:center;color:#22c55e;font-weight:700;">&#10003;</td>
+<td style="text-align:center;color:#22c55e;font-weight:700;">&#10003;</td>
+<td style="text-align:center;color:#22c55e;font-weight:700;">&#10003;</td>
+<td>Per-listing AI chatbot</td>
 </tr>
 <tr>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;font-weight:600;">Rela</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;">$24-99/mo</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#ef4444;">&#10007;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;">Basic form</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#ef4444;">&#10007;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;">1-15</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;">Premium templates</td>
+<td><strong>Rela</strong></td>
+<td>$24-99/mo</td>
+<td style="text-align:center;color:#ef4444;">&#10007;</td>
+<td style="text-align:center;">Basic form</td>
+<td style="text-align:center;color:#ef4444;">&#10007;</td>
+<td style="text-align:center;">1-15</td>
+<td>Premium templates</td>
 </tr>
 <tr>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;font-weight:600;">CribFlyer</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;">$7-25/mo</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#ef4444;">&#10007;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;">Basic form</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#ef4444;">&#10007;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;">Plan dependent</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;">Low cost</td>
+<td><strong>CribFlyer</strong></td>
+<td>$7-25/mo</td>
+<td style="text-align:center;color:#ef4444;">&#10007;</td>
+<td style="text-align:center;">Basic form</td>
+<td style="text-align:center;color:#ef4444;">&#10007;</td>
+<td style="text-align:center;">Plan dependent</td>
+<td>Low cost</td>
 </tr>
 <tr>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;font-weight:600;">SinglePropertySites</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;">$0.50+/listing</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#ef4444;">&#10007;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;">Basic form</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#ef4444;">&#10007;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;">Enterprise</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;">Volume pricing</td>
+<td><strong>SinglePropertySites</strong></td>
+<td>$0.50+/listing</td>
+<td style="text-align:center;color:#ef4444;">&#10007;</td>
+<td style="text-align:center;">Basic form</td>
+<td style="text-align:center;color:#ef4444;">&#10007;</td>
+<td style="text-align:center;">Enterprise</td>
+<td>Volume pricing</td>
 </tr>
 <tr>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;font-weight:600;">Listings Unlimited</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;">$24.95/mo</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#ef4444;">&#10007;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;">Basic form</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#ef4444;">&#10007;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#22c55e;font-weight:700;">&#10003;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;">Video builder</td>
+<td><strong>Listings Unlimited</strong></td>
+<td>$24.95/mo</td>
+<td style="text-align:center;color:#ef4444;">&#10007;</td>
+<td style="text-align:center;">Basic form</td>
+<td style="text-align:center;color:#ef4444;">&#10007;</td>
+<td style="text-align:center;color:#22c55e;font-weight:700;">&#10003;</td>
+<td>Video builder</td>
 </tr>
 <tr>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;font-weight:600;">PhotoUp</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;">~$9/site</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#ef4444;">&#10007;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;">Basic form</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#ef4444;">&#10007;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#ef4444;">&#10007;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;">Photo editing bundle</td>
+<td><strong>PhotoUp</strong></td>
+<td>$9/site</td>
+<td style="text-align:center;color:#ef4444;">&#10007;</td>
+<td style="text-align:center;">Basic form</td>
+<td style="text-align:center;color:#ef4444;">&#10007;</td>
+<td style="text-align:center;color:#ef4444;">&#10007;</td>
+<td>Photo editing bundle</td>
 </tr>
 <tr>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;font-weight:600;">Modobay</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;">Contact sales</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#ef4444;">&#10007;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;">Basic form</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#ef4444;">&#10007;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;">Varies</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;">Auto SEO</td>
+<td><strong>Modobay</strong></td>
+<td>Contact sales</td>
+<td style="text-align:center;color:#ef4444;">&#10007;</td>
+<td style="text-align:center;">Basic form</td>
+<td style="text-align:center;color:#ef4444;">&#10007;</td>
+<td style="text-align:center;">Varies</td>
+<td>Auto SEO</td>
 </tr>
 <tr>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;font-weight:600;">RealBird</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;">Free+</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#ef4444;">&#10007;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;">Basic form</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;color:#ef4444;">&#10007;</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;text-align:center;">Varies</td>
-<td style="padding:0.75rem 1rem;border:1px solid #e5e3de;">Portal syndication</td>
+<td><strong>RealBird</strong></td>
+<td>Free+</td>
+<td style="text-align:center;color:#ef4444;">&#10007;</td>
+<td style="text-align:center;">Basic form</td>
+<td style="text-align:center;color:#ef4444;">&#10007;</td>
+<td style="text-align:center;">Varies</td>
+<td>Portal syndication</td>
 </tr>
 </tbody>
 </table>
-</div>
 
 <p>The pattern is clear. ListingFlare is the only platform that combines AI chatbot engagement, automated lead follow-up, and detailed analytics in a single property website builder. Every other alternative on this list, including Rela, relies on static contact forms and manual follow-up.</p>
 
