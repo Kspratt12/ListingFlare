@@ -311,9 +311,9 @@ export const article: BlogPost = {
 
 <ul>
 <li><strong>ListingFlare:</strong> $150/mo (unlimited listings)</li>
-<li><strong>Rela:</strong> ~$29/listing/mo</li>
+<li><strong>Rela:</strong> about $29/listing/mo</li>
 <li><strong>CribFlyer:</strong> Free plan, then $15/listing/mo</li>
-<li><strong>Spiro:</strong> ~$10/property</li>
+<li><strong>Spiro:</strong> about $10/property</li>
 <li><strong>SPS:</strong> $25-50/listing</li>
 <li><strong>HDphotohub:</strong> $15/property one-time</li>
 <li><strong>Placester:</strong> $99+/mo (full site)</li>
@@ -383,10 +383,10 @@ export const article: BlogPost = {
 
 <ul>
 <li><strong>ListingFlare:</strong> $150/mo</li>
-<li><strong>Rela:</strong> ~$145/mo</li>
-<li><strong>CribFlyer:</strong> ~$75/mo</li>
-<li><strong>Spiro:</strong> ~$50</li>
-<li><strong>SPS:</strong> ~$125-250/mo</li>
+<li><strong>Rela:</strong> about $145/mo</li>
+<li><strong>CribFlyer:</strong> about $75/mo</li>
+<li><strong>Spiro:</strong> about $50</li>
+<li><strong>SPS:</strong> about $125-250/mo</li>
 <li><strong>HDphotohub:</strong> $75 one-time</li>
 <li><strong>Placester:</strong> $99+/mo</li>
 </ul>
