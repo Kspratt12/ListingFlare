@@ -802,13 +802,19 @@ export default function LandingPage() {
               <>
                 <Link
                   href="/login"
+                  className="rounded-full bg-gray-950 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-gray-800 sm:hidden sm:px-5 sm:text-sm"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/login"
                   className="hidden text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 sm:block"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/signup"
-                  className="rounded-full bg-gray-950 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-gray-800 sm:px-5 sm:text-sm"
+                  className="hidden rounded-full bg-gray-950 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800 sm:inline-block sm:px-5"
                 >
                   Start Free Trial
                 </Link>
