@@ -19,7 +19,7 @@ export const article: BlogPost = {
   ],
   readingTime: 16,
   coverImage:
-    "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=630&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1585914924626-15adac1e6402?w=1200&h=630&fit=crop&q=80",
   coverImageAlt:
     "Real estate agent reviewing property listings on a tablet representing buyer lead capture strategies for listing agents",
   content: `

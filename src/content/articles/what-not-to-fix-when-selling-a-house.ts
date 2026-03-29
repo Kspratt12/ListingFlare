@@ -17,7 +17,7 @@ export const article: BlogPost = {
   ],
   readingTime: 8,
   coverImage:
-    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&h=630&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1200&h=630&fit=crop&q=80",
   coverImageAlt:
     "Home exterior showing what not to fix when selling a house to save money on repairs",
   content: `

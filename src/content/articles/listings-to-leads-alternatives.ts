@@ -18,7 +18,7 @@ export const article: BlogPost = {
   ],
   readingTime: 13,
   coverImage:
-    "https://images.unsplash.com/photo-1560520031-3a4dc4e9de0c?w=1200&h=630&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&h=630&fit=crop&q=80",
   coverImageAlt:
     "Real estate agent reviewing listing marketing software options on a laptop in a modern office",
   content: `

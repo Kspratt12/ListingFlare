@@ -21,7 +21,7 @@ export const article: BlogPost = {
   ],
   readingTime: 18,
   coverImage:
-    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1556155092-490a1ba16284?w=1200&h=630&fit=crop&q=80",
   coverImageAlt:
     "Real estate CRM dashboard showing lead management and follow-up tools as Follow Up Boss alternatives",
   content: `
