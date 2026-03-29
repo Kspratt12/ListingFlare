@@ -586,6 +586,7 @@ function HowItWorks() {
 
 export default function LandingPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
 
   const [buyLoading, setBuyLoading] = useState(false);
 
@@ -593,6 +594,7 @@ export default function LandingPage() {
     const supabase = createClient();
     supabase.auth.getUser().then(({ data: { user } }) => {
       setIsLoggedIn(!!user);
+      setAuthChecked(true);
     });
   }, []);
 
@@ -789,7 +791,9 @@ export default function LandingPage() {
             >
               Pricing
             </Link>
-            {isLoggedIn ? (
+            {!authChecked ? (
+              <div className="h-9 w-24 rounded-full bg-gray-100 animate-pulse" />
+            ) : isLoggedIn ? (
               <Link
                 href="/dashboard"
                 className="flex items-center gap-2 rounded-full bg-gray-950 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800"
