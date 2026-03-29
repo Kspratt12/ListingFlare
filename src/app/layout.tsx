@@ -44,6 +44,9 @@ export const metadata: Metadata = {
     "real estate marketing software",
     "real estate agent tools",
     "real estate technology",
+    "realtor ai",
+    "ai for realtors",
+    "real estate ai tools",
     "property website for realtors",
   ],
   alternates: {

@@ -60,6 +60,7 @@ import { article as descriptReview } from "@/content/articles/descript-ai-review
 import { article as aiIsaTools } from "@/content/articles/best-ai-isa-tools-real-estate";
 import { article as followUpBossAlts } from "@/content/articles/follow-up-boss-alternatives";
 import { article as aiVirtualStaging } from "@/content/articles/best-ai-virtual-staging-software";
+import { article as aiToolsRealtors } from "@/content/articles/best-ai-tools-for-realtors";
 
 const allPosts: BlogPost[] = [
   howToGetLeads,
@@ -108,6 +109,7 @@ const allPosts: BlogPost[] = [
   aiIsaTools,
   followUpBossAlts,
   aiVirtualStaging,
+  aiToolsRealtors,
 ];
 
 // Sort by date descending
