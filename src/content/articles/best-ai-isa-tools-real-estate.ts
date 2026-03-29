@@ -21,7 +21,7 @@ export const article: BlogPost = {
   ],
   readingTime: 18,
   coverImage:
-    "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&h=630&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=630&fit=crop&q=80",
   coverImageAlt:
     "AI-powered inside sales agent tools for real estate lead follow-up and qualification",
   content: `
