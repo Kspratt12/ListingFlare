@@ -100,6 +100,22 @@ export default function PricingPage() {
           </div>
         </div>
 
+        {/* Teams */}
+        <div className="mt-12 rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-8 text-center">
+          <p className="text-xs font-semibold uppercase tracking-wider text-brand-600">Coming Soon</p>
+          <h2 className="mt-2 font-serif text-2xl font-bold text-gray-900">Team Plans</h2>
+          <p className="mx-auto mt-3 max-w-lg text-sm text-gray-600">
+            Plans for teams of 5, 10, and 25 agents with shared dashboards, team analytics,
+            and centralized billing. If you need a team plan now, reach out and we will set you up.
+          </p>
+          <a
+            href="mailto:kelvin@listingflare.com?subject=Team%20Plan%20Inquiry"
+            className="mt-5 inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"
+          >
+            Contact Us About Teams
+          </a>
+        </div>
+
         {/* FAQ-style objection handling */}
         <div className="mt-16 space-y-6">
           <h2 className="font-serif text-2xl font-bold text-gray-900 text-center">
