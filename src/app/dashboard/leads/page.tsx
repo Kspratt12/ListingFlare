@@ -6,10 +6,12 @@ import type { Lead, AgentProfile } from "@/lib/types";
 import {
   MessageSquare, Mail, Phone, Calendar, Home, ChevronDown,
   X, Send, Loader2, ArrowUpDown, Paperclip, Image as ImageIcon, Lock, Trash2, Pencil, Sparkles,
+  LayoutList, Columns3,
 } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import Link from "next/link";
+import LeadPipeline from "@/components/LeadPipeline";
 
 const LEAD_STATUSES = [
   { value: "new", label: "New", color: "bg-blue-50 text-blue-700 border-blue-300" },
@@ -47,6 +49,7 @@ export default function LeadsPage() {
   const [editPhone, setEditPhone] = useState("");
   const [deleteConfirm, setDeleteConfirm] = useState(false);
   const [generatingDraft, setGeneratingDraft] = useState(false);
+  const [viewMode, setViewMode] = useState<"list" | "pipeline">("list");
   const limits = getSubscriptionLimits(profile);
   const supabase = createClient();
 
@@ -203,8 +206,38 @@ export default function LeadsPage() {
 
   return (
     <div>
-      <h1 className="font-serif text-2xl font-bold text-gray-900 md:text-3xl">Leads</h1>
-      <p className="mt-1 text-gray-500">Contact form submissions from your listing pages.</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="font-serif text-2xl font-bold text-gray-900 md:text-3xl">Leads</h1>
+          <p className="mt-1 text-gray-500">Contact form submissions from your listing pages.</p>
+        </div>
+        {leads.length > 0 && (
+          <div className="flex items-center rounded-lg border border-gray-200 bg-white p-0.5">
+            <button
+              onClick={() => setViewMode("list")}
+              className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+                viewMode === "list"
+                  ? "bg-gray-900 text-white"
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              <LayoutList className="h-3.5 w-3.5" />
+              List
+            </button>
+            <button
+              onClick={() => setViewMode("pipeline")}
+              className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+                viewMode === "pipeline"
+                  ? "bg-gray-900 text-white"
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              <Columns3 className="h-3.5 w-3.5" />
+              Pipeline
+            </button>
+          </div>
+        )}
+      </div>
 
       {leads.length > 0 && (
         <div className="mt-6 flex flex-wrap gap-2">
@@ -248,6 +281,12 @@ export default function LeadsPage() {
           <h3 className="mt-4 font-serif text-xl font-semibold text-gray-900">No leads yet</h3>
           <p className="mt-2 text-gray-500">When visitors submit the contact form on your listings, they&apos;ll show up here.</p>
         </div>
+      ) : viewMode === "pipeline" ? (
+        <LeadPipeline
+          leads={leads}
+          onSelectLead={openLead}
+          onUpdateStatus={updateLeadStatus}
+        />
       ) : (
         <>
           {/* Desktop table */}

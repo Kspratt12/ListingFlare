@@ -139,6 +139,13 @@ export async function POST(req: NextRequest) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ leadId }),
         }).catch((err) => console.error("Auto-reply trigger error:", err));
+
+        // Schedule drip follow-up sequence (non-blocking)
+        fetch(`${appUrl}/api/follow-ups/schedule`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ leadId, listingId, agentId, sequenceType: "inquiry" }),
+        }).catch((err) => console.error("Follow-up schedule error:", err));
       }
 
       return NextResponse.json({ ok: true, emailed: true });
@@ -152,6 +159,13 @@ export async function POST(req: NextRequest) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ leadId }),
       }).catch((err) => console.error("Auto-reply trigger error:", err));
+
+      // Schedule drip follow-up sequence (non-blocking)
+      fetch(`${appUrl}/api/follow-ups/schedule`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ leadId, listingId, agentId, sequenceType: "inquiry" }),
+      }).catch((err) => console.error("Follow-up schedule error:", err));
     }
 
     return NextResponse.json({ ok: true, emailed: false });

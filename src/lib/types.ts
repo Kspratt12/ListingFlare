@@ -74,3 +74,38 @@ export interface Lead {
   // joined fields
   listing?: Pick<Listing, "street" | "city" | "state">;
 }
+
+export interface Showing {
+  id: string;
+  lead_id: string;
+  listing_id: string;
+  agent_id: string;
+  showing_date: string;
+  showing_time: string;
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  status: "confirmed" | "completed" | "canceled" | "no_show";
+  reminder_sent: boolean;
+  created_at: string;
+  updated_at: string;
+  // joined fields
+  listing?: Pick<Listing, "street" | "city" | "state">;
+  lead?: Pick<Lead, "name" | "email" | "phone">;
+}
+
+export interface FollowUp {
+  id: string;
+  lead_id: string;
+  agent_id: string;
+  listing_id: string;
+  day_number: number;
+  sequence_type: "inquiry" | "showing";
+  subject: string;
+  body: string;
+  status: "pending" | "sent" | "skipped" | "failed";
+  scheduled_at: string;
+  sent_at: string | null;
+  created_at: string;
+}

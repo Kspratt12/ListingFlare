@@ -7,7 +7,7 @@ import HeroSlideshow from "@/components/HeroSlideshow";
 import PropertyDetails from "@/components/PropertyDetails";
 import PhotoGallery from "@/components/PhotoGallery";
 import AgentBranding from "@/components/AgentBranding";
-import LiveLeadForm from "@/components/LiveLeadForm";
+import ShowingScheduler from "@/components/ShowingScheduler";
 import Footer from "@/components/Footer";
 import type { PropertyListing } from "@/lib/demo-data";
 import { formatPhone, formatLotSize } from "@/lib/formatters";
@@ -149,7 +149,7 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
       )}
 
       <AgentBranding agent={propertyData.agent} agentId={listing.agent_id} />
-      <LiveLeadForm listingId={listing.id} agentId={listing.agent_id} />
+      <ShowingScheduler listingId={listing.id} agentId={listing.agent_id} />
       <ListingChat
         listing={{
           street: listing.street,
