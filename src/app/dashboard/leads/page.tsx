@@ -252,7 +252,14 @@ export default function LeadsPage() {
         <>
           {/* Desktop table */}
           <div className="mt-6 hidden overflow-hidden rounded-xl border border-gray-200 bg-white md:block">
-            <table className="w-full">
+            <table className="w-full table-fixed">
+              <colgroup>
+                <col className="w-[28%]" />
+                <col className="w-[18%]" />
+                <col className="w-[28%]" />
+                <col className="w-[12%]" />
+                <col className="w-[14%]" />
+              </colgroup>
               <thead>
                 <tr className="border-b border-gray-100 bg-gray-50/50">
                   <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
@@ -276,34 +283,45 @@ export default function LeadsPage() {
                     className={`group cursor-pointer transition-colors hover:bg-gray-50 ${!lead.is_read ? "bg-brand-50/30" : ""}`}
                   >
                     <td className="px-5 py-4">
-                      <div className="flex items-center gap-3">
-                        {!lead.is_read && <span className="h-2 w-2 flex-shrink-0 rounded-full bg-brand-500" />}
-                        <div>
+                      <div className="flex items-start gap-3">
+                        {!lead.is_read && <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-brand-500" />}
+                        <div className="min-w-0 flex-1">
                           <div className="flex items-center gap-2">
-                            <p className="font-medium text-gray-900">{lead.name}</p>
+                            <p className="truncate font-medium text-gray-900">{lead.name}</p>
                             {lead.auto_reply_draft && (
-                              <span className="flex items-center gap-0.5 rounded-full bg-brand-50 border border-brand-200 px-1.5 py-0.5 text-[10px] font-medium text-brand-600">
-                                <Sparkles className="h-2.5 w-2.5" /> AI Draft
+                              <span className="flex flex-shrink-0 items-center gap-0.5 rounded-full border border-brand-200 bg-brand-50 px-1.5 py-0.5 text-[10px] font-medium text-brand-600">
+                                <Sparkles className="h-2.5 w-2.5" /> AI
                               </span>
                             )}
                           </div>
-                          <div className="mt-0.5 flex items-center gap-3 text-sm text-gray-500">
-                            <span className="flex items-center gap-1"><Mail className="h-3 w-3" />{lead.email}</span>
-                            {lead.phone && <span className="flex items-center gap-1"><Phone className="h-3 w-3" />{formatPhone(lead.phone)}</span>}
+                          <div className="mt-1 flex min-w-0 items-center gap-1 text-xs text-gray-500">
+                            <Mail className="h-3 w-3 flex-shrink-0" />
+                            <span className="truncate">{lead.email}</span>
                           </div>
+                          {lead.phone && (
+                            <div className="mt-0.5 flex items-center gap-1 whitespace-nowrap text-xs text-gray-500">
+                              <Phone className="h-3 w-3 flex-shrink-0" />
+                              {formatPhone(lead.phone)}
+                            </div>
+                          )}
                         </div>
                       </div>
                     </td>
                     <td className="px-5 py-4">
                       {lead.listing && (
-                        <span className="flex items-center gap-1.5 text-sm text-gray-600">
-                          <Home className="h-3.5 w-3.5 text-gray-400" />
-                          {lead.listing.street}, {lead.listing.city}
-                        </span>
+                        <div className="flex items-center gap-1.5 text-sm text-gray-600">
+                          <Home className="h-3.5 w-3.5 flex-shrink-0 text-gray-400" />
+                          <span className="truncate">{lead.listing.street}</span>
+                        </div>
+                      )}
+                      {lead.listing && (
+                        <div className="mt-0.5 truncate pl-5 text-xs text-gray-400">
+                          {lead.listing.city}, {lead.listing.state}
+                        </div>
                       )}
                     </td>
-                    <td className="max-w-xs px-5 py-4">
-                      <p className="truncate text-sm text-gray-600">{lead.message || "—"}</p>
+                    <td className="px-5 py-4">
+                      <p className="line-clamp-2 text-sm text-gray-600">{lead.message || "—"}</p>
                     </td>
                     <td className="px-5 py-4" onClick={(e) => e.stopPropagation()}>
                       <div className="relative">
@@ -319,8 +337,9 @@ export default function LeadsPage() {
                     </td>
                     <td className="whitespace-nowrap px-5 py-4">
                       <div className="flex items-center gap-3">
-                        <span className="flex items-center gap-1.5 text-sm text-gray-500">
-                          <Calendar className="h-3.5 w-3.5" />{formatDate(lead.created_at)}
+                        <span className="flex items-center gap-1.5 text-xs text-gray-500">
+                          <Calendar className="h-3.5 w-3.5 flex-shrink-0" />
+                          {new Date(lead.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
                         </span>
                         {limits.isPaid && (
                           <div className="flex items-center gap-0.5 opacity-0 transition-opacity group-hover:opacity-100" onClick={(e) => e.stopPropagation()}>
