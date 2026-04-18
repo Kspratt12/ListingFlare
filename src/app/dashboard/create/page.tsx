@@ -725,9 +725,10 @@ export default function CreateListingPage() {
                     )}
                     <button
                       onClick={() => removePhoto(i)}
-                      className="absolute right-2 top-2 rounded-full bg-red-500 p-1 text-white opacity-0 transition-opacity group-hover:opacity-100"
+                      aria-label="Remove photo"
+                      className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-red-500 text-white opacity-100 transition-opacity hover:bg-red-600 active:scale-95 md:opacity-0 md:group-hover:opacity-100"
                     >
-                      <X className="h-3 w-3" />
+                      <X className="h-4 w-4" />
                     </button>
                     {i !== 0 && (
                       <button
@@ -791,7 +792,7 @@ export default function CreateListingPage() {
               {videos.map((video, i) => (
                 <div key={i} className="group relative overflow-hidden rounded-lg border border-gray-200 bg-black">
                   <video src={video.src} className="aspect-video w-full object-contain" controls preload="metadata" />
-                  <button onClick={() => removeVideo(i)} className="absolute right-2 top-2 rounded-full bg-red-500 p-1 text-white opacity-0 transition-opacity group-hover:opacity-100"><X className="h-3 w-3" /></button>
+                  <button onClick={() => removeVideo(i)} aria-label="Remove video" className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-red-500 text-white opacity-100 transition-opacity hover:bg-red-600 active:scale-95 md:opacity-0 md:group-hover:opacity-100"><X className="h-4 w-4" /></button>
                 </div>
               ))}
             </div>

@@ -144,7 +144,8 @@ export default function LeadPipeline({ leads, onSelectLead, onUpdateStatus }: Pr
                           onChange={(e) =>
                             onUpdateStatus(lead.id, e.target.value)
                           }
-                          className="appearance-none rounded-md border border-gray-200 bg-gray-50 py-0.5 pl-2 pr-5 text-[10px] font-medium text-gray-600 transition-colors hover:bg-gray-100"
+                          className="appearance-none rounded-md border border-gray-200 bg-gray-50 py-1 pl-2.5 pr-6 text-[11px] font-medium text-gray-600 transition-colors hover:bg-gray-100"
+                          aria-label="Change lead status"
                         >
                           {PIPELINE_STAGES.map((s) => (
                             <option key={s.value} value={s.value}>
@@ -153,7 +154,7 @@ export default function LeadPipeline({ leads, onSelectLead, onUpdateStatus }: Pr
                           ))}
                           <option value="lost">Lost</option>
                         </select>
-                        <ChevronDown className="pointer-events-none absolute right-1 top-1/2 h-2.5 w-2.5 -translate-y-1/2 text-gray-400" />
+                        <ChevronDown className="pointer-events-none absolute right-1.5 top-1/2 h-3 w-3 -translate-y-1/2 text-gray-400" />
                       </div>
                     </div>
                   </div>

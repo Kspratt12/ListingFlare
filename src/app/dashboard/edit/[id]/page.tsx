@@ -736,9 +736,10 @@ export default function EditListingPage() {
                     )}
                     <button
                       onClick={() => removePhoto(i)}
-                      className="absolute right-2 top-2 rounded-full bg-red-500 p-1 text-white opacity-0 transition-opacity group-hover:opacity-100"
+                      aria-label="Remove photo"
+                      className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-red-500 text-white opacity-100 transition-opacity hover:bg-red-600 active:scale-95 md:opacity-0 md:group-hover:opacity-100"
                     >
-                      <X className="h-3 w-3" />
+                      <X className="h-4 w-4" />
                     </button>
                     {i !== 0 && (
                       <button
@@ -825,9 +826,10 @@ export default function EditListingPage() {
                   />
                   <button
                     onClick={() => removeVideo(i)}
-                    className="absolute right-2 top-2 rounded-full bg-red-500 p-1 text-white opacity-0 transition-opacity group-hover:opacity-100"
+                    aria-label="Remove video"
+                    className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-red-500 text-white opacity-100 transition-opacity hover:bg-red-600 active:scale-95 md:opacity-0 md:group-hover:opacity-100"
                   >
-                    <X className="h-3 w-3" />
+                    <X className="h-4 w-4" />
                   </button>
                 </div>
               ))}
@@ -930,7 +932,7 @@ export default function EditListingPage() {
             <button
               onClick={() => handleSave(currentStatus === "published" ? "published" : "draft")}
               disabled={saving || publishing}
-              className="flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-emerald-700 disabled:opacity-50"
+              className="flex items-center justify-center gap-2 rounded-lg bg-gray-950 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800 disabled:opacity-50"
             >
               {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
               Save Changes

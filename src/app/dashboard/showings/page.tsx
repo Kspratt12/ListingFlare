@@ -92,6 +92,7 @@ function ShowingEditModal({ showing, listings, mode, onClose, onSaved }: Showing
   const [listingId, setListingId] = useState(showing?.listing_id || listings[0]?.id || "");
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [confirmingDelete, setConfirmingDelete] = useState(false);
   const [error, setError] = useState("");
 
   const handleSave = async () => {
@@ -146,7 +147,7 @@ function ShowingEditModal({ showing, listings, mode, onClose, onSaved }: Showing
   };
 
   const handleDelete = async () => {
-    if (!showing || !confirm("Delete this showing? This cannot be undone.")) return;
+    if (!showing) return;
     setDeleting(true);
     try {
       const supabase = createClient();
@@ -261,30 +262,52 @@ function ShowingEditModal({ showing, listings, mode, onClose, onSaved }: Showing
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-2 border-t border-gray-100 bg-gray-50 px-6 py-3">
+        {confirmingDelete && (
+          <div className="border-t border-red-100 bg-red-50 px-6 py-3">
+            <p className="text-sm font-medium text-red-900">
+              Delete this showing? This cannot be undone.
+            </p>
+            <div className="mt-2 flex gap-2">
+              <button
+                onClick={() => setConfirmingDelete(false)}
+                className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDelete}
+                disabled={deleting}
+                className="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700 disabled:opacity-50"
+              >
+                {deleting ? "Deleting…" : "Delete Permanently"}
+              </button>
+            </div>
+          </div>
+        )}
+
+        <div className="flex flex-col-reverse gap-2 border-t border-gray-100 bg-gray-50 px-6 py-3 sm:flex-row sm:items-center sm:justify-between">
           {mode === "edit" && showing ? (
             <button
-              onClick={handleDelete}
-              disabled={deleting}
-              className="flex items-center gap-1 rounded-lg border border-red-200 bg-white px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50 disabled:opacity-50"
+              onClick={() => setConfirmingDelete(true)}
+              className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-red-200 bg-white px-3 py-2 text-xs font-medium text-red-600 hover:bg-red-50"
             >
-              <Trash2 className="h-3 w-3" />
-              {deleting ? "Deleting…" : "Delete"}
+              <Trash2 className="h-3.5 w-3.5" />
+              Delete
             </button>
           ) : <div />}
           <div className="flex gap-2">
             <button
               onClick={onClose}
-              className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
+              className="flex-1 rounded-lg border border-gray-200 bg-white px-4 py-2 text-xs font-medium text-gray-700 hover:bg-gray-50 sm:flex-initial"
             >
               Cancel
             </button>
             <button
               onClick={handleSave}
               disabled={saving}
-              className="flex items-center gap-1 rounded-lg bg-gray-950 px-3 py-1.5 text-xs font-medium text-white hover:bg-gray-800 disabled:opacity-50"
+              className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-gray-950 px-4 py-2 text-xs font-medium text-white hover:bg-gray-800 disabled:opacity-50 sm:flex-initial"
             >
-              {saving ? <Loader2 className="h-3 w-3 animate-spin" /> : <Save className="h-3 w-3" />}
+              {saving ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Save className="h-3.5 w-3.5" />}
               {saving ? "Saving…" : mode === "edit" ? "Save Changes" : "Create Showing"}
             </button>
           </div>
@@ -566,11 +589,11 @@ export default function ShowingsPage() {
                           </div>
                           <button
                             onClick={() => setEditingShowing(showing)}
-                            className="rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-700"
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-700"
                             title="Edit showing"
                             aria-label="Edit showing"
                           >
-                            <Pencil className="h-3.5 w-3.5" />
+                            <Pencil className="h-4 w-4" />
                           </button>
                         </div>
                       </div>

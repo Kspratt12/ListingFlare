@@ -50,6 +50,7 @@ export default function LeadsPage() {
   const [viewMode, setViewMode] = useState<"list" | "pipeline">("list");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLeadIds, setSelectedLeadIds] = useState<Set<string>>(new Set());
+  const [bulkDeleteConfirm, setBulkDeleteConfirm] = useState(false);
   const limits = getSubscriptionLimits(profile);
   const supabase = createClient();
 
@@ -145,12 +146,10 @@ export default function LeadsPage() {
   const bulkDelete = async () => {
     const ids = Array.from(selectedLeadIds);
     if (ids.length === 0) return;
-    if (!confirm(`Delete ${ids.length} lead${ids.length !== 1 ? "s" : ""}? This cannot be undone.`)) {
-      return;
-    }
     await supabase.from("leads").delete().in("id", ids);
     setLeads((prev) => prev.filter((l) => !ids.includes(l.id)));
     setSelectedLeadIds(new Set());
+    setBulkDeleteConfirm(false);
   };
 
   const exportToCSV = () => {
@@ -330,41 +329,65 @@ export default function LeadsPage() {
 
           {/* Bulk action bar */}
           {selectedLeadIds.size > 0 && (
-            <div className="mt-3 flex flex-wrap items-center gap-3 rounded-lg border border-brand-200 bg-brand-50 px-4 py-2.5">
-              <span className="text-xs font-medium text-brand-700">
-                {selectedLeadIds.size} selected
-              </span>
-              <div className="relative">
-                <select
-                  onChange={(e) => {
-                    if (e.target.value) {
-                      bulkUpdateStatus(e.target.value);
-                      e.target.value = "";
-                    }
-                  }}
-                  defaultValue=""
-                  className="appearance-none rounded-md border border-gray-200 bg-white py-1 pl-3 pr-7 text-xs font-medium text-gray-700 hover:bg-gray-50"
+            <div className="mt-3 space-y-2">
+              <div className="flex flex-wrap items-center gap-2 rounded-lg border border-brand-200 bg-brand-50 px-4 py-2.5">
+                <span className="text-xs font-medium text-brand-700">
+                  {selectedLeadIds.size} selected
+                </span>
+                <div className="relative">
+                  <select
+                    onChange={(e) => {
+                      if (e.target.value) {
+                        bulkUpdateStatus(e.target.value);
+                        e.target.value = "";
+                      }
+                    }}
+                    defaultValue=""
+                    className="appearance-none rounded-md border border-gray-200 bg-white py-1.5 pl-3 pr-8 text-xs font-medium text-gray-700 hover:bg-gray-50"
+                    aria-label="Change status for selected leads"
+                  >
+                    <option value="">Change status…</option>
+                    {LEAD_STATUSES.map((s) => (
+                      <option key={s.value} value={s.value}>{s.label}</option>
+                    ))}
+                  </select>
+                  <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 text-gray-400" />
+                </div>
+                <button
+                  onClick={() => setBulkDeleteConfirm(true)}
+                  className="inline-flex items-center gap-1 rounded-md border border-red-200 bg-white px-2.5 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50"
                 >
-                  <option value="">Change status…</option>
-                  {LEAD_STATUSES.map((s) => (
-                    <option key={s.value} value={s.value}>{s.label}</option>
-                  ))}
-                </select>
-                <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 text-gray-400" />
+                  <Trash2 className="h-3.5 w-3.5" />
+                  Delete
+                </button>
+                <button
+                  onClick={() => setSelectedLeadIds(new Set())}
+                  className="ml-auto rounded-md px-2 py-1 text-[11px] text-gray-500 hover:bg-white hover:text-gray-700"
+                >
+                  Clear
+                </button>
               </div>
-              <button
-                onClick={bulkDelete}
-                className="flex items-center gap-1 rounded-md border border-red-200 bg-white px-2.5 py-1 text-xs font-medium text-red-600 hover:bg-red-50"
-              >
-                <Trash2 className="h-3 w-3" />
-                Delete
-              </button>
-              <button
-                onClick={() => setSelectedLeadIds(new Set())}
-                className="ml-auto text-[11px] text-gray-500 hover:text-gray-700"
-              >
-                Clear
-              </button>
+
+              {/* Inline bulk delete confirmation */}
+              {bulkDeleteConfirm && (
+                <div className="flex flex-wrap items-center gap-3 rounded-lg border border-red-200 bg-red-50 px-4 py-3">
+                  <p className="flex-1 text-xs font-medium text-red-900">
+                    Permanently delete {selectedLeadIds.size} lead{selectedLeadIds.size !== 1 ? "s" : ""}? This cannot be undone.
+                  </p>
+                  <button
+                    onClick={() => setBulkDeleteConfirm(false)}
+                    className="rounded-md border border-red-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={bulkDelete}
+                    className="rounded-md bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700"
+                  >
+                    Delete Permanently
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </>
@@ -535,20 +558,22 @@ export default function LeadsPage() {
                           {new Date(lead.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
                         </span>
                         {limits.isPaid && (
-                          <div className="flex items-center gap-0.5 opacity-0 transition-opacity group-hover:opacity-100" onClick={(e) => e.stopPropagation()}>
+                          <div className="flex items-center gap-1 opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100" onClick={(e) => e.stopPropagation()}>
                             <button
                               onClick={() => openLead(lead)}
-                              className="rounded p-1 text-gray-300 hover:bg-gray-100 hover:text-gray-600"
+                              aria-label="Edit lead"
+                              className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-700"
                               title="Edit lead"
                             >
-                              <Pencil className="h-3.5 w-3.5" />
+                              <Pencil className="h-4 w-4" />
                             </button>
                             <button
                               onClick={() => { openLead(lead); setTimeout(() => setDeleteConfirm(true), 100); }}
-                              className="rounded p-1 text-gray-300 hover:bg-red-50 hover:text-red-500"
+                              aria-label="Delete lead"
+                              className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-red-50 hover:text-red-500"
                               title="Delete lead"
                             >
-                              <Trash2 className="h-3.5 w-3.5" />
+                              <Trash2 className="h-4 w-4" />
                             </button>
                           </div>
                         )}
@@ -622,14 +647,16 @@ export default function LeadsPage() {
                   <>
                     <button
                       onClick={() => setEditingLead(!editingLead)}
-                      className={`rounded-lg p-1.5 transition-colors ${editingLead ? "bg-brand-50 text-brand-600" : "text-gray-400 hover:bg-gray-100 hover:text-gray-600"}`}
+                      aria-label="Edit lead"
+                      className={`inline-flex h-9 w-9 items-center justify-center rounded-lg transition-colors ${editingLead ? "bg-brand-50 text-brand-600" : "text-gray-400 hover:bg-gray-100 hover:text-gray-700"}`}
                       title="Edit lead"
                     >
                       <Pencil className="h-4 w-4" />
                     </button>
                     <button
                       onClick={() => setDeleteConfirm(true)}
-                      className="rounded-lg p-1.5 text-gray-400 hover:bg-red-50 hover:text-red-500"
+                      aria-label="Delete lead"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-red-50 hover:text-red-500"
                       title="Delete lead"
                     >
                       <Trash2 className="h-4 w-4" />

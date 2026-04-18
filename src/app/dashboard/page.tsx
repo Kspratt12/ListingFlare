@@ -435,7 +435,8 @@ export default function MyListingsPage() {
                         setListings((prev) => prev.map((l) => l.id === listing.id ? { ...l, status: newStatus as Listing["status"] } : l));
                       }}
                       onClick={(e) => e.stopPropagation()}
-                      className={`appearance-none rounded-full border py-0.5 pl-2.5 pr-6 text-[11px] font-medium capitalize cursor-pointer ${statusBadge(listing.status)}`}
+                      aria-label="Change listing status"
+                      className={`appearance-none rounded-full border py-1 pl-3 pr-7 text-xs font-medium capitalize cursor-pointer ${statusBadge(listing.status)}`}
                     >
                       <option value="published">Published</option>
                       <option value="pending">Pending</option>
@@ -478,36 +479,42 @@ export default function MyListingsPage() {
                       <span className="text-xs font-medium">Edit</span>
                     </Link>
                     {listing.status !== "archived" && (
-                      <span
+                      <button
+                        type="button"
                         onClick={async (e) => {
                           e.stopPropagation();
                           await supabase.from("listings").update({ status: "archived" }).eq("id", listing.id);
                           setListings((prev) => prev.map((l) => l.id === listing.id ? { ...l, status: "archived" as Listing["status"] } : l));
                         }}
-                        className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-amber-50 hover:text-amber-600 cursor-pointer"
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-amber-50 hover:text-amber-600"
                         title="Archive listing"
+                        aria-label="Archive listing"
                       >
                         <Archive className="h-4 w-4" />
-                      </span>
+                      </button>
                     )}
-                    <span
+                    <button
+                      type="button"
                       onClick={(e) => handleDuplicate(e, listing)}
-                      className={`rounded-lg p-2 text-gray-400 transition-colors hover:bg-blue-50 hover:text-blue-600 cursor-pointer ${duplicating === listing.id ? "opacity-50 pointer-events-none" : ""}`}
+                      className={`inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-blue-50 hover:text-blue-600 ${duplicating === listing.id ? "opacity-50 pointer-events-none" : ""}`}
                       title="Duplicate listing"
+                      aria-label="Duplicate listing"
                     >
                       {duplicating === listing.id ? (
                         <Loader2 className="h-4 w-4 animate-spin" />
                       ) : (
                         <Copy className="h-4 w-4" />
                       )}
-                    </span>
-                    <span
+                    </button>
+                    <button
+                      type="button"
                       onClick={(e) => { e.stopPropagation(); setDeleteConfirm(listing.id); }}
-                      className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-red-50 hover:text-red-500 cursor-pointer"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-red-50 hover:text-red-500"
                       title="Delete listing"
+                      aria-label="Delete listing"
                     >
                       <Trash2 className="h-4 w-4" />
-                    </span>
+                    </button>
                   </div>
                 </div>
               </div>
