@@ -254,11 +254,11 @@ export default function LeadsPage() {
           <div className="mt-6 hidden overflow-hidden rounded-xl border border-gray-200 bg-white md:block">
             <table className="w-full table-fixed">
               <colgroup>
-                <col className="w-[28%]" />
-                <col className="w-[18%]" />
-                <col className="w-[28%]" />
-                <col className="w-[12%]" />
-                <col className="w-[14%]" />
+                <col className="w-[26%]" />
+                <col className="w-[17%]" />
+                <col className="w-[24%]" />
+                <col className="w-[17%]" />
+                <col className="w-[16%]" />
               </colgroup>
               <thead>
                 <tr className="border-b border-gray-100 bg-gray-50/50">
@@ -323,12 +323,12 @@ export default function LeadsPage() {
                     <td className="px-5 py-4">
                       <p className="line-clamp-2 text-sm text-gray-600">{lead.message || "—"}</p>
                     </td>
-                    <td className="px-5 py-4" onClick={(e) => e.stopPropagation()}>
-                      <div className="relative">
+                    <td className="px-3 py-4" onClick={(e) => e.stopPropagation()}>
+                      <div className="relative inline-block max-w-full">
                         <select
                           value={lead.status}
                           onChange={(e) => updateLeadStatus(lead.id, e.target.value)}
-                          className={`appearance-none rounded-full border py-1 pl-3 pr-7 text-xs font-medium cursor-pointer ${getStatusStyle(lead.status)}`}
+                          className={`block max-w-full appearance-none truncate rounded-full border py-1 pl-3 pr-7 text-xs font-medium cursor-pointer ${getStatusStyle(lead.status)}`}
                         >
                           {LEAD_STATUSES.map((s) => (<option key={s.value} value={s.value}>{s.label}</option>))}
                         </select>

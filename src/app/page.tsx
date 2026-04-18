@@ -829,7 +829,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="relative overflow-hidden pt-32 pb-20 md:pt-44 md:pb-32">
+      <section className="relative overflow-hidden pt-16 pb-14 md:pt-24 md:pb-20">
         {/* Subtle gradient bg */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-50/50 to-white" />
         <div className="absolute left-1/2 top-0 -z-10 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-brand-100/30 blur-3xl" />
@@ -851,10 +851,10 @@ export default function LandingPage() {
               <br />
               your listing. You lost them.
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-500 md:text-xl">
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-gray-500 md:text-xl">
               10:43 PM. Question about the backyard. No answer. Gone. ListingFlare would have answered, captured their info, and booked the showing. You would have woken up to a new lead.
             </p>
-            <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link
                 href="/signup"
                 className="group flex items-center gap-2 rounded-full bg-gray-950 px-8 py-4 text-base font-medium text-white transition-all hover:bg-gray-800 hover:shadow-xl hover:shadow-gray-950/10"
@@ -870,7 +870,7 @@ export default function LandingPage() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
-            <p className="mt-6 text-sm font-medium text-gray-400">
+            <p className="mt-5 text-sm font-medium text-gray-400">
               In real estate, the fastest response wins. That is not an opinion. It is how deals close.
             </p>
           </motion.div>
@@ -881,7 +881,7 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-20"
+            className="mt-12"
           >
             <div className="relative mx-auto max-w-4xl">
               {/* Browser chrome */}
