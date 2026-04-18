@@ -6,7 +6,7 @@ import type { Listing, AgentProfile } from "@/lib/types";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import UpgradePrompt from "@/components/UpgradePrompt";
 import Link from "next/link";
-import { PlusCircle, Eye, Pencil, Share2, Loader2, Trash2, Lock, ArrowUpDown, Archive } from "lucide-react";
+import { PlusCircle, Eye, Pencil, Share2, Loader2, Trash2, Lock, ArrowUpDown, Archive, Search, Copy } from "lucide-react";
 import UpcomingShowings from "@/components/UpcomingShowings";
 import ActivityFeed from "@/components/ActivityFeed";
 import SpeedToLead from "@/components/SpeedToLead";
@@ -22,6 +22,8 @@ export default function MyListingsPage() {
   const [sortBy, setSortBy] = useState<"newest" | "city" | "state" | "price">("newest");
   const [priceDir, setPriceDir] = useState<"desc" | "asc">("desc");
   const [showArchived, setShowArchived] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [duplicating, setDuplicating] = useState<string | null>(null);
   const supabase = createClient();
   const limits = getSubscriptionLimits(profile);
 
@@ -144,8 +146,58 @@ export default function MyListingsPage() {
     return styles[status] || styles.draft;
   };
 
-  const filteredListings = showArchived ? listings : listings.filter((l) => l.status !== "archived");
+  const matchesSearch = (listing: Listing) => {
+    if (!searchQuery.trim()) return true;
+    const q = searchQuery.trim().toLowerCase();
+    return (
+      (listing.street || "").toLowerCase().includes(q) ||
+      (listing.city || "").toLowerCase().includes(q) ||
+      (listing.state || "").toLowerCase().includes(q) ||
+      String(listing.price || "").includes(q)
+    );
+  };
+
+  const filteredListings = (showArchived ? listings : listings.filter((l) => l.status !== "archived"))
+    .filter(matchesSearch);
   const archivedCount = listings.filter((l) => l.status === "archived").length;
+
+  const handleDuplicate = async (e: React.MouseEvent, listing: Listing) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDuplicating(listing.id);
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+      const { data: newListing, error } = await supabase.from("listings").insert({
+        agent_id: user.id,
+        status: "draft",
+        street: listing.street ? `${listing.street} (copy)` : "",
+        city: listing.city,
+        state: listing.state,
+        zip: listing.zip,
+        price: listing.price,
+        beds: listing.beds,
+        baths: listing.baths,
+        sqft: listing.sqft,
+        year_built: listing.year_built,
+        lot_size: listing.lot_size,
+        description: listing.description,
+        features: listing.features,
+        photos: listing.photos,
+        videos: listing.videos,
+        virtual_tour_url: listing.virtual_tour_url,
+      }).select("*").single();
+
+      if (error) throw error;
+      if (newListing) {
+        setListings((prev) => [newListing as Listing, ...prev]);
+      }
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Failed to duplicate");
+    } finally {
+      setDuplicating(null);
+    }
+  };
 
   const sortedListings = [...filteredListings].sort((a, b) => {
     if (sortBy === "city") return (a.city || "").localeCompare(b.city || "");
@@ -265,6 +317,20 @@ export default function MyListingsPage() {
           )}
         </div>
       </div>
+
+      {/* Search */}
+      {!loading && listings.length > 3 && (
+        <div className="mt-5 relative max-w-md">
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-gray-400" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search by address, city, state, price…"
+            className="w-full rounded-lg border border-gray-200 bg-white pl-9 pr-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+          />
+        </div>
+      )}
 
       {loading ? (
         <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
@@ -424,6 +490,17 @@ export default function MyListingsPage() {
                         <Archive className="h-4 w-4" />
                       </span>
                     )}
+                    <span
+                      onClick={(e) => handleDuplicate(e, listing)}
+                      className={`rounded-lg p-2 text-gray-400 transition-colors hover:bg-blue-50 hover:text-blue-600 cursor-pointer ${duplicating === listing.id ? "opacity-50 pointer-events-none" : ""}`}
+                      title="Duplicate listing"
+                    >
+                      {duplicating === listing.id ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <Copy className="h-4 w-4" />
+                      )}
+                    </span>
                     <span
                       onClick={(e) => { e.stopPropagation(); setDeleteConfirm(listing.id); }}
                       className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-red-50 hover:text-red-500 cursor-pointer"

@@ -6,7 +6,7 @@ import type { Lead, AgentProfile } from "@/lib/types";
 import {
   MessageSquare, Mail, Phone, Calendar, Home, ChevronDown,
   X, Loader2, ArrowUpDown, Lock, Trash2, Pencil, Sparkles,
-  LayoutList, Columns3,
+  LayoutList, Columns3, Search, Download,
 } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
 import { getSubscriptionLimits } from "@/lib/subscription";
@@ -48,6 +48,8 @@ export default function LeadsPage() {
   const [deleteConfirm, setDeleteConfirm] = useState(false);
   const [generatingDraft, setGeneratingDraft] = useState(false);
   const [viewMode, setViewMode] = useState<"list" | "pipeline">("list");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedLeadIds, setSelectedLeadIds] = useState<Set<string>>(new Set());
   const limits = getSubscriptionLimits(profile);
   const supabase = createClient();
 
@@ -111,7 +113,85 @@ export default function LeadsPage() {
     }
   };
 
+  const toggleSelectLead = (id: string) => {
+    setSelectedLeadIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const toggleSelectAll = (ids: string[]) => {
+    setSelectedLeadIds((prev) => {
+      const allSelected = ids.length > 0 && ids.every((id) => prev.has(id));
+      if (allSelected) return new Set();
+      return new Set(ids);
+    });
+  };
+
+  const bulkUpdateStatus = async (status: string) => {
+    const ids = Array.from(selectedLeadIds);
+    if (ids.length === 0) return;
+    await supabase.from("leads").update({ status, is_read: true }).in("id", ids);
+    setLeads((prev) =>
+      prev.map((l) =>
+        ids.includes(l.id) ? { ...l, status: status as Lead["status"], is_read: true } : l
+      )
+    );
+    setSelectedLeadIds(new Set());
+  };
+
+  const bulkDelete = async () => {
+    const ids = Array.from(selectedLeadIds);
+    if (ids.length === 0) return;
+    if (!confirm(`Delete ${ids.length} lead${ids.length !== 1 ? "s" : ""}? This cannot be undone.`)) {
+      return;
+    }
+    await supabase.from("leads").delete().in("id", ids);
+    setLeads((prev) => prev.filter((l) => !ids.includes(l.id)));
+    setSelectedLeadIds(new Set());
+  };
+
+  const exportToCSV = () => {
+    const rows = filteredLeads.map((l) => ({
+      name: l.name,
+      email: l.email,
+      phone: l.phone,
+      status: l.status,
+      message: l.message,
+      listing: l.listing ? `${l.listing.street}, ${l.listing.city}, ${l.listing.state}` : "",
+      created_at: l.created_at,
+    }));
+    if (rows.length === 0) return;
+    const headers = Object.keys(rows[0]);
+    const csv = [
+      headers.join(","),
+      ...rows.map((r) =>
+        headers
+          .map((h) => {
+            const v = String((r as Record<string, unknown>)[h] ?? "").replace(/"/g, '""');
+            return `"${v}"`;
+          })
+          .join(",")
+      ),
+    ].join("\n");
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `leads-${new Date().toISOString().split("T")[0]}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   const generateDraft = async (lead: Lead) => {
+    // Warn if overwriting existing draft
+    if (lead.auto_reply_draft) {
+      if (!confirm("Generate a new AI draft? This will replace the existing draft.")) {
+        return;
+      }
+    }
     setGeneratingDraft(true);
     try {
       const res = await fetch("/api/leads/auto-reply", {
@@ -146,7 +226,29 @@ export default function LeadsPage() {
       month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit",
     });
 
-  const filteredLeads = filterStatus === "all" ? leads : leads.filter((l) => l.status === filterStatus);
+  // Read ?status=X from URL on mount so Analytics can deep-link here
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get("status");
+    if (status) setFilterStatus(status);
+  }, []);
+
+  const matchesSearch = (lead: Lead) => {
+    if (!searchQuery.trim()) return true;
+    const q = searchQuery.trim().toLowerCase();
+    return (
+      lead.name.toLowerCase().includes(q) ||
+      lead.email.toLowerCase().includes(q) ||
+      (lead.phone || "").toLowerCase().includes(q) ||
+      (lead.message || "").toLowerCase().includes(q) ||
+      (lead.listing?.street || "").toLowerCase().includes(q) ||
+      (lead.listing?.city || "").toLowerCase().includes(q)
+    );
+  };
+
+  const filteredLeads = (filterStatus === "all" ? leads : leads.filter((l) => l.status === filterStatus))
+    .filter(matchesSearch);
 
   const sortedLeads = [...filteredLeads].sort((a, b) => {
     const dir = sortDir === "asc" ? 1 : -1;
@@ -203,7 +305,73 @@ export default function LeadsPage() {
       </div>
 
       {leads.length > 0 && (
-        <div className="mt-6 flex flex-wrap gap-2">
+        <>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+            {/* Search */}
+            <div className="relative flex-1 max-w-md">
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-gray-400" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search by name, email, phone, listing…"
+                className="w-full rounded-lg border border-gray-200 bg-white pl-9 pr-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+              />
+            </div>
+            <button
+              onClick={exportToCSV}
+              disabled={filteredLeads.length === 0}
+              className="flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+            >
+              <Download className="h-3.5 w-3.5" />
+              Export CSV
+            </button>
+          </div>
+
+          {/* Bulk action bar */}
+          {selectedLeadIds.size > 0 && (
+            <div className="mt-3 flex flex-wrap items-center gap-3 rounded-lg border border-brand-200 bg-brand-50 px-4 py-2.5">
+              <span className="text-xs font-medium text-brand-700">
+                {selectedLeadIds.size} selected
+              </span>
+              <div className="relative">
+                <select
+                  onChange={(e) => {
+                    if (e.target.value) {
+                      bulkUpdateStatus(e.target.value);
+                      e.target.value = "";
+                    }
+                  }}
+                  defaultValue=""
+                  className="appearance-none rounded-md border border-gray-200 bg-white py-1 pl-3 pr-7 text-xs font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  <option value="">Change status…</option>
+                  {LEAD_STATUSES.map((s) => (
+                    <option key={s.value} value={s.value}>{s.label}</option>
+                  ))}
+                </select>
+                <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 text-gray-400" />
+              </div>
+              <button
+                onClick={bulkDelete}
+                className="flex items-center gap-1 rounded-md border border-red-200 bg-white px-2.5 py-1 text-xs font-medium text-red-600 hover:bg-red-50"
+              >
+                <Trash2 className="h-3 w-3" />
+                Delete
+              </button>
+              <button
+                onClick={() => setSelectedLeadIds(new Set())}
+                className="ml-auto text-[11px] text-gray-500 hover:text-gray-700"
+              >
+                Clear
+              </button>
+            </div>
+          )}
+        </>
+      )}
+
+      {leads.length > 0 && (
+        <div className="mt-4 flex flex-wrap gap-2">
           <button
             onClick={() => setFilterStatus("all")}
             className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
@@ -256,14 +424,27 @@ export default function LeadsPage() {
           <div className="mt-6 hidden overflow-hidden rounded-xl border border-gray-200 bg-white md:block">
             <table className="w-full table-fixed">
               <colgroup>
-                <col className="w-[26%]" />
-                <col className="w-[17%]" />
+                <col className="w-[4%]" />
                 <col className="w-[24%]" />
+                <col className="w-[16%]" />
+                <col className="w-[23%]" />
                 <col className="w-[17%]" />
                 <col className="w-[16%]" />
               </colgroup>
               <thead>
                 <tr className="border-b border-gray-100 bg-gray-50/50">
+                  <th className="px-3 py-3.5">
+                    <input
+                      type="checkbox"
+                      aria-label="Select all"
+                      checked={
+                        sortedLeads.length > 0 &&
+                        sortedLeads.every((l) => selectedLeadIds.has(l.id))
+                      }
+                      onChange={() => toggleSelectAll(sortedLeads.map((l) => l.id))}
+                      className="h-3.5 w-3.5 rounded border-gray-300 text-brand-500 focus:ring-brand-400"
+                    />
+                  </th>
                   <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
                     <SortButton field="name" label="Contact" />
                   </th>
@@ -282,8 +463,17 @@ export default function LeadsPage() {
                   <tr
                     key={lead.id}
                     onClick={() => openLead(lead)}
-                    className={`group cursor-pointer transition-colors hover:bg-gray-50 ${!lead.is_read ? "bg-brand-50/30" : ""}`}
+                    className={`group cursor-pointer transition-colors hover:bg-gray-50 ${!lead.is_read ? "bg-brand-50/30" : ""} ${selectedLeadIds.has(lead.id) ? "bg-brand-50/40" : ""}`}
                   >
+                    <td className="px-3 py-4" onClick={(e) => e.stopPropagation()}>
+                      <input
+                        type="checkbox"
+                        aria-label={`Select ${lead.name}`}
+                        checked={selectedLeadIds.has(lead.id)}
+                        onChange={() => toggleSelectLead(lead.id)}
+                        className="h-3.5 w-3.5 rounded border-gray-300 text-brand-500 focus:ring-brand-400"
+                      />
+                    </td>
                     <td className="px-5 py-4">
                       <div className="flex items-start gap-3">
                         {!lead.is_read && <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-brand-500" />}

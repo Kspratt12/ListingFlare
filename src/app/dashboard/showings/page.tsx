@@ -3,7 +3,7 @@
 import { useEffect, useState, useMemo } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
-import type { Showing } from "@/lib/types";
+import type { Showing, Listing } from "@/lib/types";
 import {
   CalendarDays,
   Clock,
@@ -14,6 +14,12 @@ import {
   ChevronDown,
   Home,
   Loader2,
+  Search,
+  Pencil,
+  Plus,
+  X,
+  Save,
+  Trash2,
 } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
 
@@ -62,36 +68,273 @@ function groupByDate(showings: ShowingWithListing[]) {
   return Object.entries(groups).sort(([a], [b]) => a.localeCompare(b));
 }
 
+const TIME_SLOTS = [
+  "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
+  "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM",
+  "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM", "6:00 PM",
+];
+
+interface ShowingEditModalProps {
+  showing: ShowingWithListing | null;
+  listings: Pick<Listing, "id" | "street" | "city" | "state">[];
+  mode: "edit" | "create";
+  onClose: () => void;
+  onSaved: () => void;
+}
+
+function ShowingEditModal({ showing, listings, mode, onClose, onSaved }: ShowingEditModalProps) {
+  const [date, setDate] = useState(showing?.showing_date || new Date().toISOString().split("T")[0]);
+  const [time, setTime] = useState(showing?.showing_time || "10:00 AM");
+  const [name, setName] = useState(showing?.name || "");
+  const [email, setEmail] = useState(showing?.email || "");
+  const [phone, setPhone] = useState(showing?.phone || "");
+  const [message, setMessage] = useState(showing?.message || "");
+  const [listingId, setListingId] = useState(showing?.listing_id || listings[0]?.id || "");
+  const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSave = async () => {
+    if (!name || !date || !time || !listingId) {
+      setError("Name, date, time, and listing are required");
+      return;
+    }
+    setSaving(true);
+    setError("");
+
+    try {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error("Not authenticated");
+
+      if (mode === "edit" && showing) {
+        await supabase
+          .from("showings")
+          .update({
+            showing_date: date,
+            showing_time: time,
+            name,
+            email,
+            phone,
+            message,
+            listing_id: listingId,
+            reminder_24h_sent: false,
+            reminder_1h_sent: false,
+          })
+          .eq("id", showing.id);
+      } else {
+        await supabase.from("showings").insert({
+          agent_id: user.id,
+          listing_id: listingId,
+          lead_id: showing?.lead_id || null,
+          showing_date: date,
+          showing_time: time,
+          name,
+          email,
+          phone,
+          message,
+          status: "confirmed",
+        });
+      }
+      onSaved();
+      onClose();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Save failed");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!showing || !confirm("Delete this showing? This cannot be undone.")) return;
+    setDeleting(true);
+    try {
+      const supabase = createClient();
+      await supabase.from("showings").delete().eq("id", showing.id);
+      onSaved();
+      onClose();
+    } finally {
+      setDeleting(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" onClick={onClose}>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-2xl max-h-[90vh] overflow-y-auto"
+      >
+        <div className="flex items-center justify-between border-b border-gray-100 bg-gray-50 px-6 py-4">
+          <h3 className="font-serif text-lg font-bold text-gray-900">
+            {mode === "edit" ? "Edit Showing" : "Add Showing"}
+          </h3>
+          <button onClick={onClose} className="rounded-lg p-1.5 text-gray-400 hover:bg-gray-100" aria-label="Close">
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        <div className="space-y-4 px-6 py-5">
+          {error && (
+            <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+              {error}
+            </div>
+          )}
+
+          <div>
+            <label className="mb-1 block text-xs font-medium text-gray-600">Property</label>
+            <select
+              value={listingId}
+              onChange={(e) => setListingId(e.target.value)}
+              className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+            >
+              {listings.length === 0 && <option value="">No listings available</option>}
+              {listings.map((l) => (
+                <option key={l.id} value={l.id}>
+                  {l.street}, {l.city}, {l.state}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="grid gap-3 grid-cols-2">
+            <div>
+              <label className="mb-1 block text-xs font-medium text-gray-600">Date</label>
+              <input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+              />
+            </div>
+            <div>
+              <label className="mb-1 block text-xs font-medium text-gray-600">Time</label>
+              <select
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
+                className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+              >
+                {TIME_SLOTS.map((t) => (<option key={t} value={t}>{t}</option>))}
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label className="mb-1 block text-xs font-medium text-gray-600">Buyer Name</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+            />
+          </div>
+
+          <div className="grid gap-3 grid-cols-1 sm:grid-cols-2">
+            <div>
+              <label className="mb-1 block text-xs font-medium text-gray-600">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+              />
+            </div>
+            <div>
+              <label className="mb-1 block text-xs font-medium text-gray-600">Phone</label>
+              <input
+                type="tel"
+                value={formatPhone(phone)}
+                onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
+                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="mb-1 block text-xs font-medium text-gray-600">Notes</label>
+            <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              rows={2}
+              className="w-full resize-none rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+            />
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between gap-2 border-t border-gray-100 bg-gray-50 px-6 py-3">
+          {mode === "edit" && showing ? (
+            <button
+              onClick={handleDelete}
+              disabled={deleting}
+              className="flex items-center gap-1 rounded-lg border border-red-200 bg-white px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50 disabled:opacity-50"
+            >
+              <Trash2 className="h-3 w-3" />
+              {deleting ? "Deleting…" : "Delete"}
+            </button>
+          ) : <div />}
+          <div className="flex gap-2">
+            <button
+              onClick={onClose}
+              className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleSave}
+              disabled={saving}
+              className="flex items-center gap-1 rounded-lg bg-gray-950 px-3 py-1.5 text-xs font-medium text-white hover:bg-gray-800 disabled:opacity-50"
+            >
+              {saving ? <Loader2 className="h-3 w-3 animate-spin" /> : <Save className="h-3 w-3" />}
+              {saving ? "Saving…" : mode === "edit" ? "Save Changes" : "Create Showing"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ShowingsPage() {
   const [showings, setShowings] = useState<ShowingWithListing[]>([]);
+  const [myListings, setMyListings] = useState<Pick<Listing, "id" | "street" | "city" | "state">[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<"upcoming" | "past" | "all">("upcoming");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [editingShowing, setEditingShowing] = useState<ShowingWithListing | null>(null);
+  const [creatingShowing, setCreatingShowing] = useState(false);
 
-  useEffect(() => {
-    let active = true;
-    async function load() {
-      const supabase = createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) {
-        if (active) setLoading(false);
-        return;
-      }
-
-      const { data } = await supabase
+  const reload = async () => {
+    const supabase = createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      setLoading(false);
+      return;
+    }
+    const [showingsRes, listingsRes] = await Promise.all([
+      supabase
         .from("showings")
         .select(`*, listing:listings(street, city, state)`)
         .eq("agent_id", user.id)
         .order("showing_date", { ascending: true })
-        .order("showing_time", { ascending: true });
+        .order("showing_time", { ascending: true }),
+      supabase
+        .from("listings")
+        .select("id, street, city, state")
+        .eq("agent_id", user.id)
+        .in("status", ["published", "pending", "draft"])
+        .order("created_at", { ascending: false }),
+    ]);
+    setShowings((showingsRes.data as ShowingWithListing[]) || []);
+    setMyListings(listingsRes.data || []);
+    setLoading(false);
+  };
 
-      if (active) {
-        setShowings((data as ShowingWithListing[]) || []);
-        setLoading(false);
-      }
-    }
-    load();
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      if (!active) return;
+      await reload();
+    })();
     return () => {
       active = false;
     };
@@ -107,17 +350,31 @@ export default function ShowingsPage() {
 
   const today = new Date().toISOString().split("T")[0];
 
+  const matchesSearch = (s: ShowingWithListing) => {
+    if (!searchQuery.trim()) return true;
+    const q = searchQuery.trim().toLowerCase();
+    return (
+      s.name.toLowerCase().includes(q) ||
+      (s.email || "").toLowerCase().includes(q) ||
+      (s.phone || "").toLowerCase().includes(q) ||
+      (s.listing?.street || "").toLowerCase().includes(q) ||
+      (s.listing?.city || "").toLowerCase().includes(q)
+    );
+  };
+
   const filtered = useMemo(() => {
+    let base: ShowingWithListing[];
     if (filter === "upcoming") {
-      return showings.filter((s) => s.showing_date >= today && s.status === "confirmed");
+      base = showings.filter((s) => s.showing_date >= today && s.status === "confirmed");
+    } else if (filter === "past") {
+      base = showings.filter((s) => s.showing_date < today || s.status !== "confirmed");
+      base = [...base].reverse();
+    } else {
+      base = showings;
     }
-    if (filter === "past") {
-      return showings
-        .filter((s) => s.showing_date < today || s.status !== "confirmed")
-        .reverse();
-    }
-    return showings;
-  }, [showings, filter, today]);
+    return base.filter(matchesSearch);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showings, filter, today, searchQuery]);
 
   const grouped = useMemo(() => groupByDate(filtered), [filtered]);
 
@@ -131,7 +388,7 @@ export default function ShowingsPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h1 className="font-serif text-2xl font-bold text-gray-900 md:text-3xl">
             Showings
@@ -140,10 +397,32 @@ export default function ShowingsPage() {
             Every property showing booked through your listings.
           </p>
         </div>
+        <button
+          onClick={() => setCreatingShowing(true)}
+          disabled={myListings.length === 0}
+          className="flex items-center justify-center gap-1.5 rounded-lg bg-gray-950 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-50"
+        >
+          <Plus className="h-4 w-4" />
+          Add Showing
+        </button>
       </div>
 
+      {/* Search */}
+      {showings.length > 0 && (
+        <div className="mt-5 relative max-w-md">
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-gray-400" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search by buyer, property, email, phone…"
+            className="w-full rounded-lg border border-gray-200 bg-white pl-9 pr-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+          />
+        </div>
+      )}
+
       {/* Filter tabs */}
-      <div className="mt-6 flex flex-wrap gap-2">
+      <div className="mt-4 flex flex-wrap gap-2">
         <button
           onClick={() => setFilter("upcoming")}
           className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
@@ -269,20 +548,30 @@ export default function ShowingsPage() {
                           )}
                         </div>
 
-                        {/* Status */}
-                        <div className="relative">
-                          <select
-                            value={showing.status}
-                            onChange={(e) => updateStatus(showing.id, e.target.value)}
-                            className={`cursor-pointer appearance-none rounded-full border py-1 pl-3 pr-7 text-xs font-medium ${getStatusStyle(showing.status)}`}
+                        {/* Status + Edit */}
+                        <div className="flex items-center gap-2">
+                          <div className="relative">
+                            <select
+                              value={showing.status}
+                              onChange={(e) => updateStatus(showing.id, e.target.value)}
+                              className={`cursor-pointer appearance-none rounded-full border py-1 pl-3 pr-7 text-xs font-medium ${getStatusStyle(showing.status)}`}
+                            >
+                              {STATUS_OPTIONS.map((s) => (
+                                <option key={s.value} value={s.value}>
+                                  {s.label}
+                                </option>
+                              ))}
+                            </select>
+                            <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 opacity-50" />
+                          </div>
+                          <button
+                            onClick={() => setEditingShowing(showing)}
+                            className="rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-700"
+                            title="Edit showing"
+                            aria-label="Edit showing"
                           >
-                            {STATUS_OPTIONS.map((s) => (
-                              <option key={s.value} value={s.value}>
-                                {s.label}
-                              </option>
-                            ))}
-                          </select>
-                          <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 opacity-50" />
+                            <Pencil className="h-3.5 w-3.5" />
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -292,6 +581,26 @@ export default function ShowingsPage() {
             </div>
           ))}
         </div>
+      )}
+
+      {/* Edit/Add modals */}
+      {editingShowing && (
+        <ShowingEditModal
+          showing={editingShowing}
+          listings={myListings}
+          mode="edit"
+          onClose={() => setEditingShowing(null)}
+          onSaved={reload}
+        />
+      )}
+      {creatingShowing && (
+        <ShowingEditModal
+          showing={null}
+          listings={myListings}
+          mode="create"
+          onClose={() => setCreatingShowing(false)}
+          onSaved={reload}
+        />
       )}
     </div>
   );

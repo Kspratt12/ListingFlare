@@ -147,7 +147,7 @@ export default function AnalyticsPage() {
                   if (count === 0) return null;
                   const pct = ((count / totalLeads) * 100).toFixed(0);
                   return (
-                    <Link key={s.key} href="/dashboard/leads" className="flex items-center gap-2 rounded-lg border border-gray-100 bg-gray-50 px-4 py-3 transition-all hover:shadow-sm hover:border-gray-200 hover:bg-white">
+                    <Link key={s.key} href={`/dashboard/leads?status=${s.key}`} className="flex items-center gap-2 rounded-lg border border-gray-100 bg-gray-50 px-4 py-3 transition-all hover:shadow-sm hover:border-gray-200 hover:bg-white">
                       <span className={`h-2.5 w-2.5 rounded-full ${s.color}`} />
                       <div>
                         <p className="text-sm font-medium text-gray-900">{count} {s.label}</p>
