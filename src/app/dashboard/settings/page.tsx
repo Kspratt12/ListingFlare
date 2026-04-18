@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/client";
 import type { AgentProfile } from "@/lib/types";
 import { Loader2, Upload, CheckCircle } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
+import GoogleCalendarConnect from "@/components/GoogleCalendarConnect";
 
 export default function SettingsPage() {
   const supabase = createClient();
@@ -433,6 +434,17 @@ export default function SettingsPage() {
             <p className="mt-1.5 text-xs text-gray-400">
               Don&apos;t have Calendly? <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">Sign up free</a> — it takes 2 minutes.
             </p>
+          </div>
+        </section>
+
+        {/* Integrations */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <h2 className="font-serif text-lg font-semibold text-gray-900">Integrations</h2>
+          <p className="mt-1 text-sm text-gray-500">
+            Connect external tools to level up your workflow.
+          </p>
+          <div className="mt-4">
+            <GoogleCalendarConnect />
           </div>
         </section>
 

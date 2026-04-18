@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { formatPhone } from "@/lib/formatters";
 import { generateShowingICS, icsToBase64 } from "@/lib/ics";
+import {
+  createCalendarEvent,
+  refreshAccessToken,
+  isGoogleConfigured,
+} from "@/lib/google/oauth";
 
 export const dynamic = "force-dynamic";
 
@@ -270,6 +275,79 @@ export async function POST(req: NextRequest) {
           }),
         }),
       ]);
+    }
+
+    // Create Google Calendar event on agent's calendar if connected
+    if (isGoogleConfigured()) {
+      try {
+        const { data: fullAgent } = await db
+          .from("agent_profiles")
+          .select("google_access_token, google_refresh_token, google_token_expires_at")
+          .eq("id", agentId)
+          .single();
+
+        if (fullAgent?.google_access_token) {
+          let accessToken = fullAgent.google_access_token;
+          const expiresAt = fullAgent.google_token_expires_at
+            ? new Date(fullAgent.google_token_expires_at)
+            : null;
+
+          // Refresh token if expired/expiring soon
+          if (expiresAt && expiresAt < new Date() && fullAgent.google_refresh_token) {
+            const refreshed = await refreshAccessToken(fullAgent.google_refresh_token);
+            if (refreshed) {
+              accessToken = refreshed.access_token;
+              const newExpiresAt = new Date(
+                Date.now() + (refreshed.expires_in - 60) * 1000
+              ).toISOString();
+              await db
+                .from("agent_profiles")
+                .update({
+                  google_access_token: accessToken,
+                  google_token_expires_at: newExpiresAt,
+                })
+                .eq("id", agentId);
+            }
+          }
+
+          // Parse showing time to ISO strings
+          const timeMatch = String(showingTime).match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+          if (timeMatch) {
+            let hour = parseInt(timeMatch[1], 10);
+            const minute = parseInt(timeMatch[2], 10);
+            if (timeMatch[3].toUpperCase() === "PM" && hour !== 12) hour += 12;
+            if (timeMatch[3].toUpperCase() === "AM" && hour === 12) hour = 0;
+            const [yStr, mStr, dStr] = showingDate.split("-");
+            const startDate = new Date(
+              parseInt(yStr),
+              parseInt(mStr) - 1,
+              parseInt(dStr),
+              hour,
+              minute
+            );
+            const endDate = new Date(startDate.getTime() + 30 * 60 * 1000);
+
+            await createCalendarEvent(accessToken, {
+              summary: `Showing — ${listingAddress}`,
+              description: [
+                `Buyer: ${name}`,
+                phone ? `Phone: ${formatPhone(phone)}` : null,
+                message ? `Notes: ${message}` : null,
+              ]
+                .filter(Boolean)
+                .join("\n"),
+              location: listingAddress,
+              startISO: startDate.toISOString(),
+              endISO: endDate.toISOString(),
+              attendeeName: name,
+              attendeeEmail: email,
+            });
+          }
+        }
+      } catch (err) {
+        console.error("Google Calendar event creation failed:", err);
+        // Non-fatal — booking still succeeds
+      }
     }
 
     // Schedule follow-up drip sequence
