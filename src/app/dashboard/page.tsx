@@ -7,6 +7,7 @@ import { getSubscriptionLimits } from "@/lib/subscription";
 import UpgradePrompt from "@/components/UpgradePrompt";
 import Link from "next/link";
 import { PlusCircle, Eye, Pencil, Share2, Loader2, Trash2, Lock, ArrowUpDown, Archive } from "lucide-react";
+import UpcomingShowings from "@/components/UpcomingShowings";
 
 export default function MyListingsPage() {
   const [listings, setListings] = useState<Listing[]>([]);
@@ -162,6 +163,11 @@ export default function MyListingsPage() {
           <Link href="/dashboard/billing" className="flex-shrink-0 rounded-full bg-red-600 px-4 py-2 text-xs font-semibold text-white hover:bg-red-700">
             Upgrade Now
           </Link>
+        </div>
+      )}
+      {!loading && (
+        <div className="mb-6">
+          <UpcomingShowings limit={3} />
         </div>
       )}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

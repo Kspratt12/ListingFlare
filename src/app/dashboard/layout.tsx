@@ -19,12 +19,14 @@ import {
   ArrowRight,
   BarChart3,
   Bot,
+  CalendarDays,
 } from "lucide-react";
 
 const navItems = [
   { href: "/dashboard", label: "My Listings", icon: LayoutGrid },
   { href: "/dashboard/create", label: "New Listing", icon: PlusCircle },
   { href: "/dashboard/leads", label: "Leads", icon: MessageSquare },
+  { href: "/dashboard/showings", label: "Showings", icon: CalendarDays },
   { href: "/dashboard/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/dashboard/assistant", label: "AI Assistant", icon: Bot },
   { href: "/dashboard/billing", label: "Billing", icon: CreditCard },
