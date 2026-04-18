@@ -458,7 +458,7 @@ function HowItWorks() {
   }, [nextStep]);
 
   return (
-    <section className="bg-gray-50 py-20 md:py-28">
+    <section className="bg-gray-50 py-14 md:py-20">
       <div className="mx-auto max-w-6xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -976,7 +976,7 @@ export default function LandingPage() {
       </section>
 
       {/* Before / After — Zillow vs ListingFlare */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1203,7 +1203,7 @@ export default function LandingPage() {
       </section>
 
       {/* Urgency Section */}
-      <section className="bg-gray-950 py-16 md:py-20">
+      <section className="bg-gray-950 py-12 md:py-16">
         <div className="mx-auto max-w-3xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1226,7 +1226,7 @@ export default function LandingPage() {
       </section>
 
       {/* Why Agents Switch From Zillow */}
-      <section className="bg-white py-16 md:py-20">
+      <section className="bg-white py-12 md:py-16">
         <div className="mx-auto max-w-4xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1296,7 +1296,7 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works While You Sleep */}
-      <section className="bg-gray-50 py-20 md:py-28">
+      <section className="bg-gray-50 py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1370,7 +1370,7 @@ export default function LandingPage() {
       </section>
 
       {/* Real Moment */}
-      <section className="bg-white py-16 md:py-20">
+      <section className="bg-white py-12 md:py-16">
         <div className="mx-auto max-w-2xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1406,7 +1406,7 @@ export default function LandingPage() {
       </section>
 
       {/* What Happens When a Buyer Is Interested */}
-      <section className="bg-gray-50 py-20 md:py-28">
+      <section className="bg-gray-50 py-14 md:py-20">
         <div className="mx-auto max-w-4xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1549,7 +1549,7 @@ export default function LandingPage() {
       </section>
 
       {/* Features */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1600,7 +1600,7 @@ export default function LandingPage() {
       <HowItWorks />
 
       {/* Pricing */}
-      <section className="bg-gray-950 py-20 md:py-28">
+      <section className="bg-gray-950 py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1687,7 +1687,7 @@ export default function LandingPage() {
       </section>
 
       {/* Latest from the Blog */}
-      <section className="bg-gray-50 py-20 md:py-28">
+      <section className="bg-gray-50 py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1752,7 +1752,7 @@ export default function LandingPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-14 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1794,7 +1794,7 @@ export default function LandingPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="bg-gray-50 py-20 md:py-28">
+      <section className="bg-gray-50 py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
