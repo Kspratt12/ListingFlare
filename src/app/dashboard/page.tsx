@@ -8,6 +8,8 @@ import UpgradePrompt from "@/components/UpgradePrompt";
 import Link from "next/link";
 import { PlusCircle, Eye, Pencil, Share2, Loader2, Trash2, Lock, ArrowUpDown, Archive } from "lucide-react";
 import UpcomingShowings from "@/components/UpcomingShowings";
+import ActivityFeed from "@/components/ActivityFeed";
+import SpeedToLead from "@/components/SpeedToLead";
 
 export default function MyListingsPage() {
   const [listings, setListings] = useState<Listing[]>([]);
@@ -166,8 +168,16 @@ export default function MyListingsPage() {
         </div>
       )}
       {!loading && (
-        <div className="mb-6">
-          <UpcomingShowings limit={3} />
+        <div className="mb-6 grid gap-4 lg:grid-cols-3">
+          <div className="lg:col-span-1">
+            <SpeedToLead />
+          </div>
+          <div className="lg:col-span-2">
+            <UpcomingShowings limit={3} />
+          </div>
+          <div className="lg:col-span-3">
+            <ActivityFeed />
+          </div>
         </div>
       )}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

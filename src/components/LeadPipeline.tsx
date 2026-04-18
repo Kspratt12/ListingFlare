@@ -4,6 +4,8 @@ import { useMemo } from "react";
 import type { Lead } from "@/lib/types";
 import { Mail, Phone, Home, Clock, ChevronDown, Sparkles } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
+import HotLeadBadge from "@/components/HotLeadBadge";
+import { calculateHotScore } from "@/lib/hotScore";
 
 const PIPELINE_STAGES = [
   { value: "new", label: "New", color: "border-blue-400", bg: "bg-blue-50", dot: "bg-blue-400" },
@@ -95,6 +97,7 @@ export default function LeadPipeline({ leads, onSelectLead, onUpdateStatus }: Pr
                           <p className="truncate text-sm font-semibold text-gray-900">
                             {lead.name}
                           </p>
+                          <HotLeadBadge tier={calculateHotScore({ lead }).tier} compact showLabel={false} />
                           {lead.auto_reply_draft && (
                             <Sparkles className="h-3 w-3 flex-shrink-0 text-brand-500" />
                           )}

@@ -151,7 +151,7 @@ Write a brief, personalized follow-up email (3-4 sentences max). Guidelines:
         if (emailRes.ok) {
           await db
             .from("leads")
-            .update({ status: "contacted" })
+            .update({ status: "contacted", first_response_at: new Date().toISOString() })
             .eq("id", leadId);
         } else {
           console.error("Auto-reply email failed:", await emailRes.text().catch(() => "unknown"));

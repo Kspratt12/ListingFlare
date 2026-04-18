@@ -20,6 +20,10 @@ export interface AgentProfile {
   weekly_emails: boolean;
   calendly_url: string;
   ai_approval_mode: boolean;
+  google_access_token: string | null;
+  google_refresh_token: string | null;
+  google_calendar_id: string | null;
+  google_token_expires_at: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -71,9 +75,40 @@ export interface Lead {
   is_read: boolean;
   status: "new" | "contacted" | "showing_scheduled" | "offer_made" | "under_contract" | "closed" | "lost";
   auto_reply_draft: string | null;
+  first_response_at: string | null;
+  hot_score: number;
   created_at: string;
   // joined fields
   listing?: Pick<Listing, "street" | "city" | "state">;
+}
+
+export interface ShowingFeedback {
+  id: string;
+  showing_id: string;
+  agent_id: string;
+  lead_id: string | null;
+  rating: number | null;
+  notes: string;
+  interest_level: "very_interested" | "maybe" | "not_interested" | null;
+  token: string;
+  request_sent_at: string | null;
+  submitted_at: string | null;
+  created_at: string;
+}
+
+export interface Testimonial {
+  id: string;
+  agent_id: string;
+  lead_id: string | null;
+  author_name: string;
+  rating: number | null;
+  quote: string;
+  approved: boolean;
+  featured: boolean;
+  token: string;
+  request_sent_at: string | null;
+  submitted_at: string | null;
+  created_at: string;
 }
 
 export interface Showing {

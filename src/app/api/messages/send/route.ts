@@ -128,14 +128,22 @@ export async function POST(req: NextRequest) {
         .map((f) => ({ filename: f.name })),
     });
 
-    // Auto-update lead status if still new
+    // Auto-update lead status + record first response time
     const { data: currentLead } = await db
       .from("leads")
-      .select("status")
+      .select("status, first_response_at")
       .eq("id", leadId)
       .single();
+    const updates: Record<string, unknown> = {};
     if (currentLead?.status === "new") {
-      await db.from("leads").update({ status: "contacted", is_read: true }).eq("id", leadId);
+      updates.status = "contacted";
+      updates.is_read = true;
+    }
+    if (!currentLead?.first_response_at) {
+      updates.first_response_at = new Date().toISOString();
+    }
+    if (Object.keys(updates).length > 0) {
+      await db.from("leads").update(updates).eq("id", leadId);
     }
 
     return NextResponse.json({ ok: true });

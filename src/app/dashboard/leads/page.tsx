@@ -13,6 +13,8 @@ import { getSubscriptionLimits } from "@/lib/subscription";
 import Link from "next/link";
 import LeadPipeline from "@/components/LeadPipeline";
 import LeadMessageThread from "@/components/LeadMessageThread";
+import HotLeadBadge from "@/components/HotLeadBadge";
+import { calculateHotScore } from "@/lib/hotScore";
 
 const LEAD_STATUSES = [
   { value: "new", label: "New", color: "bg-blue-50 text-blue-700 border-blue-300" },
@@ -288,6 +290,7 @@ export default function LeadsPage() {
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center gap-2">
                             <p className="truncate font-medium text-gray-900">{lead.name}</p>
+                            <HotLeadBadge tier={calculateHotScore({ lead }).tier} compact />
                             {lead.auto_reply_draft && (
                               <span className="flex flex-shrink-0 items-center gap-0.5 rounded-full border border-brand-200 bg-brand-50 px-1.5 py-0.5 text-[10px] font-medium text-brand-600">
                                 <Sparkles className="h-2.5 w-2.5" /> AI
