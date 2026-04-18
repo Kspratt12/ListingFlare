@@ -19,6 +19,7 @@ export interface AgentProfile {
   setup_fee_paid: boolean;
   weekly_emails: boolean;
   calendly_url: string;
+  ai_approval_mode: boolean;
   created_at: string;
   updated_at: string;
 }

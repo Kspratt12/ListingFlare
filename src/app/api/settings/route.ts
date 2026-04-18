@@ -27,7 +27,7 @@ export async function PUT(req: NextRequest) {
       name, title, brokerage, phone, email,
       headshot_url, instagram, linkedin, zillow,
       realtor_com, facebook, website, weekly_emails,
-      calendly_url,
+      calendly_url, ai_approval_mode,
     } = body;
 
     // Step 2: Use admin client to bypass RLS and guarantee the update works
@@ -48,6 +48,7 @@ export async function PUT(req: NextRequest) {
       website: website || "",
       weekly_emails: weekly_emails !== false,
       calendly_url: calendly_url || "",
+      ai_approval_mode: ai_approval_mode === true,
       updated_at: new Date().toISOString(),
     };
 
@@ -58,8 +59,9 @@ export async function PUT(req: NextRequest) {
       .eq("id", user.id);
 
     if (updateError) {
-      // Retry without calendly_url in case column doesn't exist yet
+      // Retry without newer optional columns in case migration hasn't run
       delete profileData.calendly_url;
+      delete profileData.ai_approval_mode;
       const { error: retryError } = await db
         .from("agent_profiles")
         .update(profileData)

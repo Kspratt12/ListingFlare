@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
     // Fetch agent info
     const { data: agent } = await db
       .from("agent_profiles")
-      .select("name, phone, email, brokerage")
+      .select("name, phone, email, brokerage, ai_approval_mode")
       .eq("id", lead.agent_id)
       .single();
 
@@ -102,9 +102,10 @@ Write a brief, personalized follow-up email (3-4 sentences max). Guidelines:
         .update({ auto_reply_draft: draft })
         .eq("id", leadId);
 
-      // Auto-send the reply to the buyer via Resend
+      // Auto-send the reply to the buyer via Resend — UNLESS agent has approval mode ON
       const resendKey = process.env.RESEND_API_KEY;
-      if (resendKey && lead.email) {
+      const approvalMode = agent.ai_approval_mode === true;
+      if (resendKey && lead.email && !approvalMode) {
         const listingAddress = listing
           ? `${listing.street}, ${listing.city}, ${listing.state}`
           : "your inquiry";

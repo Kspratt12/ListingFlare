@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, ShieldCheck } from "lucide-react";
+import RoiCalculator from "@/components/RoiCalculator";
 
 export const metadata: Metadata = {
   title: "Pricing - ListingFlare",
@@ -85,6 +86,19 @@ export default function PricingPage() {
             </div>
           </div>
 
+          {/* Money-back guarantee badge */}
+          <div className="mt-6 flex items-start gap-3 rounded-xl border border-emerald-200 bg-emerald-50/50 p-4">
+            <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+            <div>
+              <p className="text-sm font-semibold text-emerald-900">
+                30-day money-back guarantee
+              </p>
+              <p className="mt-0.5 text-xs text-emerald-800">
+                If ListingFlare doesn&apos;t help you book a showing in your first 30 days, email us and we&apos;ll refund 100% of your first month. No hoops.
+              </p>
+            </div>
+          </div>
+
           <hr className="my-8 border-brand-200" />
 
           <p className="text-sm font-semibold uppercase tracking-wider text-gray-500">
@@ -99,6 +113,9 @@ export default function PricingPage() {
             ))}
           </div>
         </div>
+
+        {/* ROI Calculator */}
+        <RoiCalculator />
 
         {/* Teams */}
         <div className="mt-12 rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-8 text-center">

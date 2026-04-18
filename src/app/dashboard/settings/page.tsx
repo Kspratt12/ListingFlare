@@ -30,6 +30,7 @@ export default function SettingsPage() {
   const [website, setWebsite] = useState("");
   const [weeklyEmails, setWeeklyEmails] = useState(true);
   const [calendlyUrl, setCalendlyUrl] = useState("");
+  const [aiApprovalMode, setAiApprovalMode] = useState(false);
 
   useEffect(() => {
     async function fetchProfile() {
@@ -60,6 +61,7 @@ export default function SettingsPage() {
         setWebsite(profile.website || "");
         setWeeklyEmails(profile.weekly_emails !== false);
         setCalendlyUrl(profile.calendly_url || "");
+        setAiApprovalMode(profile.ai_approval_mode === true);
       }
       setLoading(false);
     }
@@ -130,6 +132,7 @@ export default function SettingsPage() {
           website,
           weekly_emails: weeklyEmails,
           calendly_url: calendlyUrl,
+          ai_approval_mode: aiApprovalMode,
         }),
       });
 
@@ -430,6 +433,34 @@ export default function SettingsPage() {
             <p className="mt-1.5 text-xs text-gray-400">
               Don&apos;t have Calendly? <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">Sign up free</a> — it takes 2 minutes.
             </p>
+          </div>
+        </section>
+
+        {/* AI Automation */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <h2 className="font-serif text-lg font-semibold text-gray-900">AI Automation</h2>
+          <p className="mt-1 text-sm text-gray-500">
+            Control how AI handles your leads on your behalf.
+          </p>
+          <div className="mt-4">
+            <label className="flex cursor-pointer items-start justify-between gap-4 rounded-lg border border-gray-200 p-4 transition-colors hover:bg-gray-50">
+              <div>
+                <p className="font-medium text-gray-900">Approval Mode</p>
+                <p className="mt-0.5 text-sm text-gray-500">
+                  When ON: AI drafts replies but waits for you to review and send. When OFF: AI auto-sends replies to new leads within seconds (recommended for max response speed).
+                </p>
+              </div>
+              <div className="relative mt-1 flex-shrink-0">
+                <input
+                  type="checkbox"
+                  checked={aiApprovalMode}
+                  onChange={(e) => setAiApprovalMode(e.target.checked)}
+                  className="peer sr-only"
+                />
+                <div className="h-6 w-11 rounded-full bg-gray-200 transition-colors peer-checked:bg-brand-500" />
+                <div className="absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform peer-checked:translate-x-5" />
+              </div>
+            </label>
           </div>
         </section>
 

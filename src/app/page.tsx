@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 import { getAllPosts } from "@/lib/blog";
+import LiveStats from "@/components/LiveStats";
 import {
   Sparkles,
   Globe,
@@ -26,6 +27,7 @@ import {
   CalendarCheck,
   UserPlus,
   BellRing,
+  X,
 } from "lucide-react";
 
 const features = [
@@ -584,6 +586,31 @@ function HowItWorks() {
   );
 }
 
+function ComparisonCell({ value, highlight = false }: { value: boolean | string; highlight?: boolean }) {
+  if (value === true) {
+    return (
+      <span className={`inline-flex h-6 w-6 items-center justify-center rounded-full ${highlight ? "bg-brand-500" : "bg-emerald-500"}`}>
+        <Check className="h-3.5 w-3.5 text-white" strokeWidth={3} />
+      </span>
+    );
+  }
+  if (value === false) {
+    return (
+      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-100">
+        <X className="h-3.5 w-3.5 text-gray-400" strokeWidth={2.5} />
+      </span>
+    );
+  }
+  if (value === "partial") {
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-700">
+        Limited
+      </span>
+    );
+  }
+  return <span className={`text-xs font-medium ${highlight ? "text-brand-700" : "text-gray-500"}`}>{value}</span>;
+}
+
 export default function LandingPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
@@ -937,6 +964,9 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Live Stats - hides until real data exists */}
+      <LiveStats />
+
       {/* Social Proof */}
       <section className="border-y border-gray-100 bg-white py-12">
         <div className="mx-auto max-w-6xl px-6">
@@ -1199,6 +1229,91 @@ export default function LandingPage() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Comparison Table */}
+      <section className="bg-gray-50 py-14 md:py-20">
+        <div className="mx-auto max-w-5xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <p className="text-sm font-semibold uppercase tracking-widest text-brand-500">
+              The Honest Comparison
+            </p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
+              How we stack up
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-base text-gray-500">
+              Not marketing spin. What each tool actually does for a solo listing agent.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mt-10 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm"
+          >
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-sm">
+                <thead>
+                  <tr className="border-b border-gray-200 bg-gray-50/80">
+                    <th className="px-4 py-4 font-medium text-gray-500 sm:px-6">Feature</th>
+                    <th className="px-4 py-4 sm:px-6">
+                      <div className="font-serif text-base font-bold text-gray-900">ListingFlare</div>
+                      <div className="mt-0.5 text-xs font-normal text-brand-600">$150/mo</div>
+                    </th>
+                    <th className="px-4 py-4 sm:px-6">
+                      <div className="text-base font-semibold text-gray-900">Zillow Premier</div>
+                      <div className="mt-0.5 text-xs font-normal text-gray-500">$300+/mo</div>
+                    </th>
+                    <th className="px-4 py-4 sm:px-6">
+                      <div className="text-base font-semibold text-gray-900">kvCORE</div>
+                      <div className="mt-0.5 text-xs font-normal text-gray-500">$499+/mo</div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {[
+                    { feature: "Branded listing page you own", us: true, zillow: false, kv: "partial" },
+                    { feature: "AI chat that answers buyer questions 24/7", us: true, zillow: false, kv: false },
+                    { feature: "Instant auto-reply to new leads", us: true, zillow: false, kv: true },
+                    { feature: "Built-in showing scheduler (no Calendly needed)", us: true, zillow: false, kv: false },
+                    { feature: "Calendar invite (.ics) in confirmation emails", us: true, zillow: false, kv: false },
+                    { feature: "Automated 1/3/7-day follow-up sequence", us: true, zillow: false, kv: true },
+                    { feature: "Showing reminders (24hr + 1hr before)", us: true, zillow: false, kv: "partial" },
+                    { feature: "Re-engage past leads when you list a similar home", us: true, zillow: false, kv: true },
+                    { feature: "Leads belong to YOU (not sold to other agents)", us: true, zillow: false, kv: true },
+                    { feature: "Setup time", us: "5 min", zillow: "—", kv: "Multi-week onboarding" },
+                    { feature: "Forces you onto their platform's rules", us: false, zillow: true, kv: true },
+                  ].map((row, i) => (
+                    <tr key={i} className="hover:bg-gray-50/50">
+                      <td className="px-4 py-3.5 text-gray-700 sm:px-6">{row.feature}</td>
+                      <td className="px-4 py-3.5 sm:px-6">
+                        <ComparisonCell value={row.us} highlight />
+                      </td>
+                      <td className="px-4 py-3.5 sm:px-6">
+                        <ComparisonCell value={row.zillow} />
+                      </td>
+                      <td className="px-4 py-3.5 sm:px-6">
+                        <ComparisonCell value={row.kv} />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
+
+          <p className="mt-6 text-center text-sm text-gray-400">
+            Pricing and features as of {new Date().getFullYear()}. Competitor info from public pricing pages.
+          </p>
         </div>
       </section>
 
