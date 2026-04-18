@@ -60,10 +60,10 @@ export default async function CityPage({ params }: Props) {
 
   const db = getAdminClient();
 
-  // Query published listings in this city
+  // Query published listings in this city WITH agent attribution
   const { data: listings } = await db
     .from("listings")
-    .select("id, slug, street, city, state, price, beds, baths, sqft, photos, description")
+    .select("id, slug, agent_id, street, city, state, price, beds, baths, sqft, photos, description, agent:agent_profiles(name, title, brokerage, headshot_url)")
     .eq("status", "published")
     .ilike("city", city)
     .ilike("state", state)
@@ -145,6 +145,7 @@ export default async function CityPage({ params }: Props) {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {listings.map((listing) => {
               const photo = listing.photos?.[0];
+              const agent = Array.isArray(listing.agent) ? listing.agent[0] : listing.agent;
               return (
                 <Link
                   key={listing.id}
@@ -177,6 +178,33 @@ export default async function CityPage({ params }: Props) {
                     <p className="mt-1 text-sm text-gray-500">
                       {listing.street}, {listing.city}, {listing.state}
                     </p>
+                    {agent?.name && (
+                      <div className="mt-3 flex items-center gap-2 border-t border-gray-100 pt-3">
+                        {agent.headshot_url ? (
+                          <Image
+                            src={agent.headshot_url}
+                            alt={agent.name}
+                            width={28}
+                            height={28}
+                            className="h-7 w-7 rounded-full object-cover"
+                          />
+                        ) : (
+                          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 text-xs font-semibold text-gray-500">
+                            {agent.name.charAt(0)}
+                          </div>
+                        )}
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-xs font-medium text-gray-700">
+                            Listed by {agent.name}
+                          </p>
+                          {agent.brokerage && (
+                            <p className="truncate text-[10px] text-gray-500">
+                              {agent.brokerage}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </Link>
               );

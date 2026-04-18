@@ -201,21 +201,34 @@ Rules:
 
   const processed = results.filter((r) => r.status === "fulfilled" && r.value === true).length;
 
-  // Also trigger showing reminders in the same cron run (Hobby plan 2-cron limit)
-  let reminderStats: unknown = null;
-  try {
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
-    const reminderRes = await fetch(`${appUrl}/api/showings/reminders`, {
-      headers: {
-        Authorization: `Bearer ${process.env.CRON_SECRET || ""}`,
-      },
-    });
-    if (reminderRes.ok) {
-      reminderStats = await reminderRes.json().catch(() => null);
-    }
-  } catch (err) {
-    console.error("Reminder trigger error:", err);
+  // Chain other daily jobs to stay under Hobby plan 2-cron limit
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
+  const authHeaders = {
+    Authorization: `Bearer ${process.env.CRON_SECRET || ""}`,
+  };
+
+  const [reminderRes, feedbackRes, testimonialRes] = await Promise.allSettled([
+    fetch(`${appUrl}/api/showings/reminders`, { headers: authHeaders }),
+    fetch(`${appUrl}/api/feedback/request`, { headers: authHeaders }),
+    fetch(`${appUrl}/api/testimonials/request`, { headers: authHeaders }),
+  ]);
+
+  async function safeJson(res: PromiseSettledResult<Response>): Promise<unknown> {
+    if (res.status !== "fulfilled" || !res.value.ok) return null;
+    return res.value.json().catch(() => null);
   }
 
-  return NextResponse.json({ ok: true, processed, reminders: reminderStats });
+  const [reminders, feedback, testimonials] = await Promise.all([
+    safeJson(reminderRes),
+    safeJson(feedbackRes),
+    safeJson(testimonialRes),
+  ]);
+
+  return NextResponse.json({
+    ok: true,
+    processed,
+    reminders,
+    feedback,
+    testimonials,
+  });
 }
