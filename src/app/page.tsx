@@ -480,7 +480,7 @@ function HowItWorks() {
         </motion.div>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-[340px_1fr] lg:gap-8">
-          {/* Steps — only show active step on mobile, all on desktop */}
+          {/* Steps - only show active step on mobile, all on desktop */}
           <div>
             {/* Mobile: show only active step */}
             <div className="lg:hidden">
@@ -923,7 +923,7 @@ export default function LandingPage() {
                     listingflare.com/listing/1847-grandview
                   </div>
                 </div>
-                {/* Screenshot placeholder — hero image */}
+                {/* Screenshot placeholder - hero image */}
                 <div className="relative aspect-[16/9] overflow-hidden bg-gray-900">
                   <Image
                     src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&h=1080&fit=crop&q=85&auto=format"
@@ -1005,7 +1005,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Before / After — Zillow vs ListingFlare */}
+      {/* Before / After - Zillow vs ListingFlare */}
       <section className="bg-white py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
           <motion.div
@@ -1711,7 +1711,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* How It Works — Animated Walkthrough */}
+      {/* How It Works - Animated Walkthrough */}
       <HowItWorks />
 
       {/* Pricing */}
@@ -1790,7 +1790,7 @@ export default function LandingPage() {
                 disabled={buyLoading}
                 className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-6 py-4 font-medium text-white transition-all hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-500/20 disabled:opacity-50"
               >
-                {buyLoading ? "Loading..." : "Buy Now — $150/mo"}
+                {buyLoading ? "Loading..." : "Buy Now $150/mo"}
                 {!buyLoading && <ArrowRight className="h-4 w-4" />}
               </button>
               <p className="mt-6 text-center text-xs text-gray-500">

@@ -155,24 +155,25 @@ export default function DashboardLayout({
 
         {/* Trial banner */}
         {profile && limits.isTrialing && !bannerDismissed && (
-          <div className="flex items-center justify-between gap-3 border-b border-brand-200 bg-gradient-to-r from-brand-50 to-brand-100/50 px-4 py-2.5 sm:px-6">
+          <div className="flex items-center justify-between gap-3 border-b-2 border-emerald-300 bg-gradient-to-r from-emerald-50 to-emerald-100 px-4 py-2.5 sm:px-6">
             <div className="flex items-center gap-2">
-              <Sparkles className="h-4 w-4 flex-shrink-0 text-brand-500" />
-              <p className="text-sm text-brand-800">
-                <span className="font-semibold">Free trial</span> - {limits.trialDaysLeft} day{limits.trialDaysLeft !== 1 ? "s" : ""} left.
+              <Sparkles className="h-4 w-4 flex-shrink-0 text-emerald-600" />
+              <p className="text-sm text-emerald-900">
+                <span className="font-semibold">Free trial</span>: {limits.trialDaysLeft} day{limits.trialDaysLeft !== 1 ? "s" : ""} left.
                 Upgrade for unlimited listings, videos, lead replies & more.
               </p>
             </div>
             <div className="flex items-center gap-2">
               <Link
                 href="/dashboard/billing"
-                className="flex items-center gap-1 rounded-full bg-brand-500 px-4 py-1.5 text-xs font-semibold text-white hover:bg-brand-600 whitespace-nowrap"
+                className="flex items-center gap-1 rounded-full bg-emerald-600 px-4 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700 whitespace-nowrap"
               >
                 Upgrade Now <ArrowRight className="h-3 w-3" />
               </Link>
               <button
                 onClick={() => setBannerDismissed(true)}
-                className="rounded p-0.5 text-brand-400 hover:text-brand-600"
+                aria-label="Dismiss trial banner"
+                className="rounded p-1 text-emerald-700 hover:bg-emerald-200 hover:text-emerald-900"
               >
                 <X className="h-4 w-4" />
               </button>

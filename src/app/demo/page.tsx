@@ -20,7 +20,7 @@ export default function DemoPage() {
 
   return (
     <main className="relative">
-      {/* Demo banner — sits above the navbar */}
+      {/* Demo banner - sits above the navbar */}
       <AnimatePresence>
         {bannerVisible && (
           <motion.div
