@@ -432,7 +432,7 @@ export default function SettingsPage() {
               placeholder="https://calendly.com/your-name"
             />
             <p className="mt-1.5 text-xs text-gray-400">
-              Don&apos;t have Calendly? <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">Sign up free</a> — it takes 2 minutes.
+              Don&apos;t have Calendly? <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">Sign up free</a>. It takes 2 minutes.
             </p>
           </div>
         </section>

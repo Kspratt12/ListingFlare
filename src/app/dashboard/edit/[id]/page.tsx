@@ -475,7 +475,7 @@ export default function EditListingPage() {
             Edit Listing
           </h1>
           <p className="mt-1 text-gray-500">
-            {street || "Untitled"} &middot;{" "}
+            {street || "Untitled"} &bull;{" "}
             <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium capitalize ${
               currentStatus === "published"
                 ? "bg-green-50 text-green-700"

@@ -537,7 +537,7 @@ export default function LeadsPage() {
                       )}
                     </td>
                     <td className="px-5 py-4">
-                      <p className="line-clamp-2 text-sm text-gray-600">{lead.message || "—"}</p>
+                      <p className="line-clamp-2 text-sm text-gray-600">{lead.message || "-"}</p>
                     </td>
                     <td className="px-3 py-4" onClick={(e) => e.stopPropagation()}>
                       <div className="relative inline-block max-w-full">

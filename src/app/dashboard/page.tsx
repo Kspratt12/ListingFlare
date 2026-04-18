@@ -24,6 +24,7 @@ export default function MyListingsPage() {
   const [showArchived, setShowArchived] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [duplicating, setDuplicating] = useState<string | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: "error" | "success" } | null>(null);
   const supabase = createClient();
   const limits = getSubscriptionLimits(profile);
 
@@ -94,7 +95,8 @@ export default function MyListingsPage() {
       a.click();
       URL.revokeObjectURL(url);
     } catch (err) {
-      alert(err instanceof Error ? err.message : "Failed to generate social posts");
+      setToast({ message: err instanceof Error ? err.message : "Failed to generate social posts", type: "error" });
+      setTimeout(() => setToast(null), 5000);
     } finally {
       setGeneratingPosts(null);
     }
@@ -193,7 +195,8 @@ export default function MyListingsPage() {
         setListings((prev) => [newListing as Listing, ...prev]);
       }
     } catch (err) {
-      alert(err instanceof Error ? err.message : "Failed to duplicate");
+      setToast({ message: err instanceof Error ? err.message : "Failed to duplicate listing", type: "error" });
+      setTimeout(() => setToast(null), 5000);
     } finally {
       setDuplicating(null);
     }
@@ -208,6 +211,23 @@ export default function MyListingsPage() {
 
   return (
     <div>
+      {/* Toast */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 rounded-lg px-4 py-3 shadow-lg ${
+          toast.type === "error"
+            ? "border border-red-200 bg-red-50 text-red-800"
+            : "border border-emerald-200 bg-emerald-50 text-emerald-800"
+        }`}>
+          <p className="text-sm font-medium">{toast.message}</p>
+          <button
+            onClick={() => setToast(null)}
+            aria-label="Dismiss"
+            className="ml-2 text-current opacity-60 hover:opacity-100"
+          >
+            ×
+          </button>
+        </div>
+      )}
       {!loading && limits.isExpired && listings.length > 0 && (
         <div className="mb-6 flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 p-4">
           <Lock className="h-5 w-5 flex-shrink-0 text-red-500" />
