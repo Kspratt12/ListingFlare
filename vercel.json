@@ -7,10 +7,6 @@
     {
       "path": "/api/follow-ups/process",
       "schedule": "0 14 * * *"
-    },
-    {
-      "path": "/api/showings/reminders",
-      "schedule": "*/30 * * * *"
     }
   ]
 }

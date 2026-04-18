@@ -201,5 +201,21 @@ Rules:
 
   const processed = results.filter((r) => r.status === "fulfilled" && r.value === true).length;
 
-  return NextResponse.json({ ok: true, processed });
+  // Also trigger showing reminders in the same cron run (Hobby plan 2-cron limit)
+  let reminderStats: unknown = null;
+  try {
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
+    const reminderRes = await fetch(`${appUrl}/api/showings/reminders`, {
+      headers: {
+        Authorization: `Bearer ${process.env.CRON_SECRET || ""}`,
+      },
+    });
+    if (reminderRes.ok) {
+      reminderStats = await reminderRes.json().catch(() => null);
+    }
+  } catch (err) {
+    console.error("Reminder trigger error:", err);
+  }
+
+  return NextResponse.json({ ok: true, processed, reminders: reminderStats });
 }
