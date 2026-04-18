@@ -405,6 +405,15 @@ export default function EditListingPage() {
 
       if (updateError) throw updateError;
 
+      // If transitioning to published from a non-published state, notify past leads (non-blocking)
+      if (status === "published" && currentStatus !== "published") {
+        fetch("/api/listings/notify-past-leads", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ listingId }),
+        }).catch(() => {});
+      }
+
       setCurrentStatus(status);
       setCurrentSlug(slug);
       setHasUnsavedChanges(false);

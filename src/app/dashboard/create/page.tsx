@@ -377,6 +377,15 @@ export default function CreateListingPage() {
         await supabase.from("listings").update({ slug }).eq("id", newListing.id);
       }
 
+      // If publishing, notify past leads in the same city (non-blocking)
+      if (publish && newListing?.id) {
+        fetch("/api/listings/notify-past-leads", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ listingId: newListing.id }),
+        }).catch(() => {});
+      }
+
       localStorage.removeItem("listingflare_draft");
       router.push("/dashboard");
       router.refresh();

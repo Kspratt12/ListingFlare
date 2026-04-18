@@ -1,17 +1,18 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Lead, AgentProfile } from "@/lib/types";
 import {
   MessageSquare, Mail, Phone, Calendar, Home, ChevronDown,
-  X, Send, Loader2, ArrowUpDown, Paperclip, Image as ImageIcon, Lock, Trash2, Pencil, Sparkles,
+  X, Loader2, ArrowUpDown, Lock, Trash2, Pencil, Sparkles,
   LayoutList, Columns3,
 } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import Link from "next/link";
 import LeadPipeline from "@/components/LeadPipeline";
+import LeadMessageThread from "@/components/LeadMessageThread";
 
 const LEAD_STATUSES = [
   { value: "new", label: "New", color: "bg-blue-50 text-blue-700 border-blue-300" },
@@ -37,11 +38,6 @@ export default function LeadsPage() {
   const [sortField, setSortField] = useState<SortField>("created_at");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
-  const [replyMessage, setReplyMessage] = useState("");
-  const [replySending, setReplySending] = useState(false);
-  const [replySent, setReplySent] = useState(false);
-  const [attachments, setAttachments] = useState<File[]>([]);
-  const attachRef = useRef<HTMLInputElement>(null);
   const [profile, setProfile] = useState<AgentProfile | null>(null);
   const [editingLead, setEditingLead] = useState(false);
   const [editName, setEditName] = useState("");
@@ -81,37 +77,6 @@ export default function LeadsPage() {
     }
   };
 
-  const handleReply = async () => {
-    if (!selectedLead || !replyMessage.trim()) return;
-    setReplySending(true);
-
-    try {
-      const formData = new FormData();
-      formData.append("leadId", selectedLead.id);
-      formData.append("leadEmail", selectedLead.email);
-      formData.append("leadName", selectedLead.name);
-      formData.append("message", replyMessage);
-      formData.append("listingAddress", selectedLead.listing ? `${selectedLead.listing.street}, ${selectedLead.listing.city}` : "your inquiry");
-      attachments.forEach((file) => formData.append("attachments", file));
-
-      const res = await fetch("/api/leads/reply", { method: "POST", body: formData });
-      if (!res.ok) throw new Error("Failed to send");
-
-      setReplySent(true);
-      setReplyMessage("");
-      setAttachments([]);
-      // Auto-update status to contacted if still new
-      if (selectedLead.status === "new") {
-        updateLeadStatus(selectedLead.id, "contacted");
-      }
-      setTimeout(() => setReplySent(false), 3000);
-    } catch {
-      alert("Failed to send reply. Please try again.");
-    } finally {
-      setReplySending(false);
-    }
-  };
-
   const deleteLead = async (id: string) => {
     await supabase.from("leads").delete().eq("id", id);
     setLeads((prev) => prev.filter((l) => l.id !== id));
@@ -133,9 +98,6 @@ export default function LeadsPage() {
 
   const openLead = (lead: Lead) => {
     setSelectedLead(lead);
-    setReplyMessage("");
-    setReplySent(false);
-    setAttachments([]);
     setEditingLead(false);
     setDeleteConfirm(false);
     setEditName(lead.name);
@@ -160,7 +122,6 @@ export default function LeadsPage() {
       if (draft) {
         setLeads((prev) => prev.map((l) => l.id === lead.id ? { ...l, auto_reply_draft: draft } : l));
         setSelectedLead((prev) => prev?.id === lead.id ? { ...prev, auto_reply_draft: draft } : prev);
-        setReplyMessage(draft);
       }
     } catch {
       // Silently fail
@@ -539,54 +500,36 @@ export default function LeadsPage() {
               </div>
             </div>
 
-            {/* Their Message */}
+            {/* Conversation Thread */}
             <div className="px-6 py-4">
-              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Their Message</p>
-              <p className="mt-2 text-gray-700">{selectedLead.message || "No message provided."}</p>
-            </div>
-
-            {/* AI Draft */}
-            {limits.canReplyToLeads && (
-              <div className="border-t border-gray-100 px-6 py-4">
-                <div className="flex items-center justify-between">
-                  <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-brand-500">
-                    <Sparkles className="h-3.5 w-3.5" />
-                    AI-Drafted Reply
-                  </p>
-                  {selectedLead.auto_reply_draft && !replyMessage && (
-                    <button
-                      onClick={() => setReplyMessage(selectedLead.auto_reply_draft || "")}
-                      className="rounded-lg bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700 hover:bg-brand-100 transition-colors"
-                    >
-                      Use This Draft
-                    </button>
-                  )}
-                </div>
-                {selectedLead.auto_reply_draft ? (
-                  <p className="mt-2 rounded-lg bg-brand-50/50 border border-brand-100 px-4 py-3 text-sm leading-relaxed text-gray-700 italic">
-                    {selectedLead.auto_reply_draft}
-                  </p>
-                ) : (
+              <div className="flex items-center justify-between mb-3">
+                <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Conversation</p>
+                {limits.canReplyToLeads && !selectedLead.auto_reply_draft && (
                   <button
                     onClick={() => generateDraft(selectedLead)}
                     disabled={generatingDraft}
-                    className="mt-2 flex items-center gap-1.5 rounded-lg border border-brand-200 bg-brand-50/50 px-3 py-2 text-xs font-medium text-brand-700 transition-colors hover:bg-brand-100 disabled:opacity-50"
+                    className="flex items-center gap-1 rounded-md bg-brand-50 px-2.5 py-1 text-[11px] font-medium text-brand-700 hover:bg-brand-100 disabled:opacity-50"
                   >
                     {generatingDraft ? (
-                      <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                      <Loader2 className="h-3 w-3 animate-spin" />
                     ) : (
-                      <Sparkles className="h-3.5 w-3.5" />
+                      <Sparkles className="h-3 w-3" />
                     )}
-                    {generatingDraft ? "Generating..." : "Generate AI Reply"}
+                    {generatingDraft ? "Generating..." : "AI Draft"}
                   </button>
                 )}
               </div>
-            )}
-
-            {/* Reply */}
-            <div className="border-t border-gray-100 px-6 py-4">
-              {!limits.canReplyToLeads ? (
-                <div className="flex items-center gap-3 rounded-lg border border-brand-200 bg-brand-50 p-4">
+              <LeadMessageThread
+                lead={selectedLead}
+                canReply={limits.canReplyToLeads}
+                onSent={() => {
+                  if (selectedLead.status === "new") {
+                    updateLeadStatus(selectedLead.id, "contacted");
+                  }
+                }}
+              />
+              {!limits.canReplyToLeads && (
+                <div className="mt-3 flex items-center gap-3 rounded-lg border border-brand-200 bg-brand-50 p-4">
                   <Lock className="h-5 w-5 flex-shrink-0 text-brand-500" />
                   <div className="flex-1">
                     <p className="text-sm font-medium text-gray-900">Upgrade to reply to leads</p>
@@ -596,67 +539,9 @@ export default function LeadsPage() {
                     Upgrade
                   </Link>
                 </div>
-              ) : (
-              <>
-              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Reply via Email</p>
-              {replySent && (
-                <div className="mt-2 rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-700">
-                  Reply sent successfully!
-                </div>
-              )}
-              <textarea
-                value={replyMessage}
-                onChange={(e) => setReplyMessage(e.target.value)}
-                rows={4}
-                placeholder="Type your reply..."
-                className="mt-2 w-full resize-none rounded-lg border border-gray-200 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-              />
-              {/* Attachments */}
-              {attachments.length > 0 && (
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {attachments.map((file, i) => (
-                    <span key={i} className="flex items-center gap-1 rounded-full bg-gray-100 px-2.5 py-1 text-xs text-gray-600">
-                      {file.type.startsWith("image/") ? <ImageIcon className="h-3 w-3" /> : <Paperclip className="h-3 w-3" />}
-                      {file.name.length > 20 ? file.name.slice(0, 17) + "..." : file.name}
-                      <button onClick={() => setAttachments((prev) => prev.filter((_, j) => j !== i))} className="ml-1 text-gray-400 hover:text-gray-600">
-                        <X className="h-3 w-3" />
-                      </button>
-                    </span>
-                  ))}
-                </div>
-              )}
-              <div className="mt-3 flex items-center justify-between">
-                <button
-                  type="button"
-                  onClick={() => attachRef.current?.click()}
-                  className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-brand-600"
-                >
-                  <Paperclip className="h-4 w-4" />
-                  Attach
-                </button>
-                <input
-                  ref={attachRef}
-                  type="file"
-                  multiple
-                  accept="image/*,video/*,.pdf,.doc,.docx"
-                  className="hidden"
-                  onChange={(e) => {
-                    if (e.target.files) setAttachments((prev) => [...prev, ...Array.from(e.target.files!)]);
-                    e.target.value = "";
-                  }}
-                />
-                <button
-                  onClick={handleReply}
-                  disabled={replySending || !replyMessage.trim()}
-                  className="flex items-center gap-2 rounded-lg bg-gray-950 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800 disabled:opacity-50"
-                >
-                  {replySending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
-                  {replySending ? "Sending..." : "Send Reply"}
-                </button>
-              </div>
-              </>
               )}
             </div>
+
           </div>
         </div>
       )}

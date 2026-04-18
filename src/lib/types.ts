@@ -95,6 +95,19 @@ export interface Showing {
   lead?: Pick<Lead, "name" | "email" | "phone">;
 }
 
+export interface Message {
+  id: string;
+  lead_id: string;
+  agent_id: string;
+  direction: "outbound" | "inbound";
+  subject: string;
+  body: string;
+  provider_message_id: string | null;
+  in_reply_to: string | null;
+  attachments: Array<{ filename: string; url?: string }>;
+  created_at: string;
+}
+
 export interface FollowUp {
   id: string;
   lead_id: string;
