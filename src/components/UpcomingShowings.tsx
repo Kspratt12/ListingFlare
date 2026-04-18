@@ -76,7 +76,7 @@ export default function UpcomingShowings({ limit = 5, compact = false }: Props) 
 
   if (loading) {
     return (
-      <div className="rounded-xl border border-gray-200 bg-white p-5">
+      <div className="flex h-full flex-col rounded-xl border border-gray-200 bg-white p-5">
         <div className="flex items-center gap-2 mb-3">
           <CalendarDays className="h-4 w-4 text-brand-500" />
           <h3 className="text-sm font-semibold text-gray-900">Upcoming Showings</h3>
@@ -113,14 +113,16 @@ export default function UpcomingShowings({ limit = 5, compact = false }: Props) 
       </div>
 
       {showings.length === 0 ? (
-        <div className="py-6 text-center">
-          <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-gray-50">
-            <CalendarDays className="h-5 w-5 text-gray-300" />
+        <div className="flex items-center gap-3 rounded-lg bg-gray-50/60 p-3">
+          <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white">
+            <CalendarDays className="h-4 w-4 text-gray-300" />
           </div>
-          <p className="mt-2 text-xs text-gray-400">No showings booked yet</p>
-          <p className="mt-0.5 text-[11px] text-gray-400">
-            Buyers can book from your listing pages
-          </p>
+          <div className="min-w-0">
+            <p className="text-xs font-medium text-gray-500">No showings booked yet</p>
+            <p className="text-[11px] text-gray-400">
+              Buyers can book from your listing pages
+            </p>
+          </div>
         </div>
       ) : (
         <div className="space-y-2">

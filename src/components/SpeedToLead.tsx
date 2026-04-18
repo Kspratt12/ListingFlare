@@ -40,7 +40,7 @@ export default function SpeedToLead() {
 
   if (loading) {
     return (
-      <div className="rounded-xl border border-gray-200 bg-gradient-to-br from-brand-50 to-white p-5">
+      <div className="flex h-full flex-col rounded-xl border border-gray-200 bg-gradient-to-br from-brand-50 to-white p-5">
         <div className="h-20 animate-pulse rounded-lg bg-gray-100" />
       </div>
     );
@@ -48,14 +48,23 @@ export default function SpeedToLead() {
 
   if (!stats || stats.count === 0) {
     return (
-      <div className="rounded-xl border border-gray-200 bg-gradient-to-br from-brand-50 to-white p-5">
+      <div className="flex h-full flex-col rounded-xl border border-gray-200 bg-gradient-to-br from-brand-50 to-white p-5">
         <div className="flex items-center gap-2">
           <Zap className="h-4 w-4 text-brand-500" />
           <h3 className="text-sm font-semibold text-gray-900">Speed to Lead</h3>
         </div>
-        <p className="mt-3 text-sm text-gray-500">
-          Your first lead response will unlock this metric. Industry avg: <span className="font-semibold text-gray-700">47 minutes</span>.
-        </p>
+        <div className="mt-3 flex flex-1 flex-col justify-center">
+          <p className="font-serif text-2xl font-bold text-gray-900 md:text-3xl">
+            Waiting for lead #1
+          </p>
+          <p className="mt-1 text-xs text-gray-500">
+            Industry avg response:{" "}
+            <span className="font-semibold text-gray-700">47 minutes</span>
+          </p>
+          <p className="mt-2 rounded-lg border border-emerald-200 bg-emerald-50/70 px-3 py-1.5 text-[11px] font-medium text-emerald-800">
+            Your AI auto-replies in &lt;15 seconds
+          </p>
+        </div>
       </div>
     );
   }
@@ -65,7 +74,7 @@ export default function SpeedToLead() {
   const timesFaster = Math.round(stats.industryAvgSeconds / Math.max(avg, 1));
 
   return (
-    <div className="rounded-xl border border-gray-200 bg-gradient-to-br from-brand-50 to-white p-5">
+    <div className="flex h-full flex-col rounded-xl border border-gray-200 bg-gradient-to-br from-brand-50 to-white p-5">
       <div className="flex items-center gap-2">
         <Zap className="h-4 w-4 text-brand-500" />
         <h3 className="text-sm font-semibold text-gray-900">Speed to Lead</h3>

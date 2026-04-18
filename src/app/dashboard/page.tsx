@@ -10,6 +10,7 @@ import { PlusCircle, Eye, Pencil, Share2, Loader2, Trash2, Lock, ArrowUpDown, Ar
 import UpcomingShowings from "@/components/UpcomingShowings";
 import ActivityFeed from "@/components/ActivityFeed";
 import SpeedToLead from "@/components/SpeedToLead";
+import GettingStarted from "@/components/GettingStarted";
 
 export default function MyListingsPage() {
   const [listings, setListings] = useState<Listing[]>([]);
@@ -168,16 +169,22 @@ export default function MyListingsPage() {
         </div>
       )}
       {!loading && (
-        <div className="mb-6 grid gap-4 lg:grid-cols-3">
-          <div className="lg:col-span-1">
-            <SpeedToLead />
+        <div className="mb-6 space-y-4">
+          {/* Getting Started — auto-hides when complete */}
+          <GettingStarted />
+
+          {/* Top row: equal-height cards */}
+          <div className="grid gap-4 lg:grid-cols-3">
+            <div className="lg:col-span-1">
+              <SpeedToLead />
+            </div>
+            <div className="lg:col-span-2">
+              <UpcomingShowings limit={3} />
+            </div>
           </div>
-          <div className="lg:col-span-2">
-            <UpcomingShowings limit={3} />
-          </div>
-          <div className="lg:col-span-3">
-            <ActivityFeed />
-          </div>
+
+          {/* Activity feed */}
+          <ActivityFeed />
         </div>
       )}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

@@ -95,11 +95,11 @@ export default function ActivityFeed() {
       </div>
 
       {items.length === 0 ? (
-        <div className="py-6 text-center">
-          <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-gray-50">
-            <Zap className="h-5 w-5 text-gray-300" />
+        <div className="flex items-center gap-3 rounded-lg bg-gray-50/60 p-3">
+          <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white">
+            <Zap className="h-4 w-4 text-gray-300" />
           </div>
-          <p className="mt-2 text-xs text-gray-400">
+          <p className="text-xs text-gray-500">
             No automated activity yet. It&apos;ll kick in as leads come through.
           </p>
         </div>
