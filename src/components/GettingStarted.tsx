@@ -24,9 +24,21 @@ interface Task {
   action?: { label: string; href: string; external?: boolean };
 }
 
+const DISMISS_KEY = "lf_getting_started_dismissed";
+
 export default function GettingStarted() {
   const [tasks, setTasks] = useState<Task[] | null>(null);
-  const [dismissed, setDismissed] = useState(false);
+  const [dismissed, setDismissed] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return localStorage.getItem(DISMISS_KEY) === "true";
+  });
+
+  const handleDismiss = () => {
+    setDismissed(true);
+    if (typeof window !== "undefined") {
+      localStorage.setItem(DISMISS_KEY, "true");
+    }
+  };
 
   useEffect(() => {
     let active = true;
@@ -169,7 +181,7 @@ export default function GettingStarted() {
           </div>
 
           <button
-            onClick={() => setDismissed(true)}
+            onClick={handleDismiss}
             className="text-[11px] text-gray-400 hover:text-gray-600"
             aria-label="Dismiss getting started"
           >
