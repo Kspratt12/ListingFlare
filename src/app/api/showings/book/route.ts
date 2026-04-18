@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { formatPhone } from "@/lib/formatters";
+import { generateShowingICS, icsToBase64 } from "@/lib/ics";
 
 export const dynamic = "force-dynamic";
 
@@ -146,6 +147,11 @@ export async function POST(req: NextRequest) {
                 </tr>
               </table>
             </div>
+            <div style="background: #fef3c7; border: 1px solid #fde68a; border-radius: 8px; padding: 12px 16px; margin: 0 0 16px;">
+              <p style="margin: 0; color: #92400e; font-size: 13px;">
+                📅 <strong>Add to calendar:</strong> Open the attached <code>showing.ics</code> file to add this to Google Calendar, Apple Calendar, or Outlook in one tap.
+              </p>
+            </div>
             <p style="color: #6b7280; font-size: 14px; margin: 0;">
               Need to reschedule? Reply to this email or call ${agent.phone ? formatPhone(agent.phone) : "your agent"}.
             </p>
@@ -207,7 +213,32 @@ export async function POST(req: NextRequest) {
         </div>
       `;
 
-      // Send both emails in parallel
+      // Build calendar invite (.ics) so recipients can add to their calendar in one click
+      const icsString = generateShowingICS({
+        uid: showing?.id || `${Date.now()}-${finalLeadId}`,
+        date: showingDate,
+        time: showingTime,
+        durationMinutes: 30,
+        summary: `Property Showing — ${listingAddress}`,
+        description: [
+          `Showing with ${name}`,
+          agent.phone ? `Agent: ${agent.name} (${formatPhone(agent.phone)})` : `Agent: ${agent.name}`,
+          phone ? `Buyer phone: ${formatPhone(phone)}` : null,
+          message ? `Notes: ${message}` : null,
+        ].filter(Boolean).join("\n"),
+        location: listingAddress,
+        organizerName: agent.name || "Listing Agent",
+        organizerEmail: agent.email,
+        attendeeName: name,
+        attendeeEmail: email,
+      });
+      const icsAttachment = {
+        filename: "showing.ics",
+        content: icsToBase64(icsString),
+        contentType: "text/calendar",
+      };
+
+      // Send both emails in parallel — with calendar invite attached
       await Promise.all([
         fetch("https://api.resend.com/emails", {
           method: "POST",
@@ -221,6 +252,7 @@ export async function POST(req: NextRequest) {
             replyTo: agent.email,
             subject: `Showing Confirmed — ${listingAddress} on ${formattedDate}`,
             html: buyerHtml,
+            attachments: [icsAttachment],
           }),
         }),
         fetch("https://api.resend.com/emails", {
@@ -234,6 +266,7 @@ export async function POST(req: NextRequest) {
             to: agent.email,
             subject: `Showing booked — ${name} for ${listingAddress}`,
             html: agentHtml,
+            attachments: [icsAttachment],
           }),
         }),
       ]);
