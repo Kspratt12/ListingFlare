@@ -61,6 +61,7 @@ export default function ShowingScheduler({ listingId, agentId }: Props) {
   const [calYear, setCalYear] = useState(today.getFullYear());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState("");
+  const [phoneValue, setPhoneValue] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const supabase = createClient();
@@ -289,8 +290,10 @@ export default function ShowingScheduler({ listingId, agentId }: Props) {
                   >
                     <div className="mb-4 flex items-center justify-between">
                       <button
+                        type="button"
                         onClick={prevMonth}
                         disabled={!canGoPrev}
+                        aria-label="Previous month"
                         className="rounded-lg p-2 text-gray-400 hover:bg-gray-800 hover:text-white disabled:opacity-30"
                       >
                         <ChevronLeft className="h-5 w-5" />
@@ -299,7 +302,9 @@ export default function ShowingScheduler({ listingId, agentId }: Props) {
                         {MONTHS[calMonth]} {calYear}
                       </h3>
                       <button
+                        type="button"
                         onClick={nextMonth}
+                        aria-label="Next month"
                         className="rounded-lg p-2 text-gray-400 hover:bg-gray-800 hover:text-white"
                       >
                         <ChevronRight className="h-5 w-5" />
@@ -452,9 +457,8 @@ export default function ShowingScheduler({ listingId, agentId }: Props) {
                             id="showing-phone"
                             name="phone"
                             required
-                            onChange={(e) => {
-                              e.target.value = formatPhone(e.target.value);
-                            }}
+                            value={phoneValue}
+                            onChange={(e) => setPhoneValue(formatPhone(e.target.value))}
                             className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-white placeholder-gray-500 transition-colors focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                             placeholder="555-000-0000"
                           />

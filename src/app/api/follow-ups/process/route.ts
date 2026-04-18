@@ -50,9 +50,8 @@ export async function GET(req: NextRequest) {
   }
 
   const anthropic = new Anthropic({ apiKey });
-  let processed = 0;
 
-  for (const followUp of followUps) {
+  const results = await Promise.allSettled(followUps.map(async (followUp) => {
     try {
       // Check if lead has been marked as closed/lost — skip if so
       const { data: lead } = await db
@@ -66,7 +65,7 @@ export async function GET(req: NextRequest) {
           .from("follow_ups")
           .update({ status: "skipped" })
           .eq("id", followUp.id);
-        continue;
+        return false;
       }
 
       // Fetch agent
@@ -78,17 +77,17 @@ export async function GET(req: NextRequest) {
 
       if (!agent) {
         await db.from("follow_ups").update({ status: "skipped" }).eq("id", followUp.id);
-        continue;
+        return false;
       }
 
       // Skip if agent's subscription is expired
       const isPaid = agent.subscription_status === "active";
       const isTrialing = agent.subscription_status === "trialing";
-      const trialEnd = new Date(agent.trial_ends_at);
-      const isExpired = isTrialing && trialEnd < new Date();
+      const trialEnd = agent.trial_ends_at ? new Date(agent.trial_ends_at) : null;
+      const isExpired = isTrialing && trialEnd !== null && trialEnd < new Date();
       if (isExpired && !isPaid) {
         await db.from("follow_ups").update({ status: "skipped" }).eq("id", followUp.id);
-        continue;
+        return false;
       }
 
       // Fetch listing
@@ -144,7 +143,7 @@ Rules:
 
       if (!body) {
         await db.from("follow_ups").update({ status: "failed" }).eq("id", followUp.id);
-        continue;
+        return false;
       }
 
       // Send the email
@@ -187,16 +186,20 @@ Rules:
           .from("follow_ups")
           .update({ status: "sent", body, sent_at: new Date().toISOString() })
           .eq("id", followUp.id);
-        processed++;
+        return true;
       } else {
         console.error("Follow-up email failed:", await emailRes.text().catch(() => "unknown"));
         await db.from("follow_ups").update({ status: "failed", body }).eq("id", followUp.id);
+        return false;
       }
     } catch (err) {
       console.error("Follow-up processing error:", err);
       await db.from("follow_ups").update({ status: "failed" }).eq("id", followUp.id);
+      return false;
     }
-  }
+  }));
+
+  const processed = results.filter((r) => r.status === "fulfilled" && r.value === true).length;
 
   return NextResponse.json({ ok: true, processed });
 }

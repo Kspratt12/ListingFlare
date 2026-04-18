@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import dynamic from "next/dynamic";
 import type { Listing, AgentProfile } from "@/lib/types";
 import Navbar from "@/components/Navbar";
 import HeroSlideshow from "@/components/HeroSlideshow";
@@ -11,8 +12,11 @@ import ShowingScheduler from "@/components/ShowingScheduler";
 import Footer from "@/components/Footer";
 import type { PropertyListing } from "@/lib/demo-data";
 import { formatPhone, formatLotSize } from "@/lib/formatters";
-import ListingChat from "@/components/ListingChat";
 import VirtualTourEmbed from "@/components/VirtualTourEmbed";
+
+const ListingChat = dynamic(() => import("@/components/ListingChat"), {
+  ssr: false,
+});
 import Link from "next/link";
 import { ArrowLeft, Pencil } from "lucide-react";
 

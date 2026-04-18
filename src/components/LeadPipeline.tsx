@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import type { Lead } from "@/lib/types";
 import { Mail, Phone, Home, Clock, ChevronDown, Sparkles } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
@@ -35,10 +36,19 @@ function formatTimeAgo(date: string) {
 }
 
 export default function LeadPipeline({ leads, onSelectLead, onUpdateStatus }: Props) {
+  const leadsByStage = useMemo(() => {
+    const map: Record<string, Lead[]> = {};
+    for (const stage of PIPELINE_STAGES) map[stage.value] = [];
+    for (const lead of leads) {
+      if (map[lead.status]) map[lead.status].push(lead);
+    }
+    return map;
+  }, [leads]);
+
   return (
     <div className="mt-6 flex gap-4 overflow-x-auto pb-4">
       {PIPELINE_STAGES.map((stage) => {
-        const stageLeads = leads.filter((l) => l.status === stage.value);
+        const stageLeads = leadsByStage[stage.value] || [];
         return (
           <div
             key={stage.value}
