@@ -64,7 +64,13 @@ export default function MortgageCalculator({ listingPrice, state }: Props) {
     <section className="bg-white py-10 md:py-14">
       <div className="mx-auto max-w-4xl px-6">
         <div className="text-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-700">
+          <div
+            className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em]"
+            style={{
+              backgroundColor: "color-mix(in srgb, var(--agent-brand, #b8965a) 12%, white)",
+              color: "var(--agent-brand, #b8965a)",
+            }}
+          >
             <Calculator className="h-3.5 w-3.5" />
             Monthly Payment
           </div>
@@ -120,20 +126,31 @@ export default function MortgageCalculator({ listingPrice, state }: Props) {
               <div>
                 <label className="mb-1 block text-xs font-medium text-gray-600">Loan term</label>
                 <div className="flex gap-2">
-                  {[15, 20, 30].map((yrs) => (
-                    <button
-                      key={yrs}
-                      type="button"
-                      onClick={() => setTerm(yrs)}
-                      className={`flex-1 rounded-md border px-2 py-2 text-xs font-medium transition-colors ${
-                        term === yrs
-                          ? "border-brand-400 bg-brand-50 text-brand-700"
-                          : "border-gray-300 bg-white text-gray-600 hover:border-gray-400"
-                      }`}
-                    >
-                      {yrs} yr
-                    </button>
-                  ))}
+                  {[15, 20, 30].map((yrs) => {
+                    const selected = term === yrs;
+                    return (
+                      <button
+                        key={yrs}
+                        type="button"
+                        onClick={() => setTerm(yrs)}
+                        className={`flex-1 rounded-md border px-2 py-2 text-xs font-semibold transition-colors ${
+                          selected ? "" : "border-gray-300 bg-white text-gray-600 hover:border-gray-400"
+                        }`}
+                        style={
+                          selected
+                            ? {
+                                backgroundColor:
+                                  "color-mix(in srgb, var(--agent-brand, #b8965a) 15%, white)",
+                                borderColor: "var(--agent-brand, #b8965a)",
+                                color: "var(--agent-brand, #b8965a)",
+                              }
+                            : undefined
+                        }
+                      >
+                        {yrs} yr
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -177,42 +194,46 @@ export default function MortgageCalculator({ listingPrice, state }: Props) {
             </div>
           </div>
 
-          {/* Output */}
+          {/* Output - background is brand-color-tinted but always dark enough
+              for white text to stay readable (mixed with black via color-mix). */}
           <div
-            className="md:col-span-2 flex flex-col gap-3 rounded-2xl border border-gray-950 p-6 text-white"
-            style={{ backgroundColor: "var(--agent-brand, #0f172a)" }}
+            className="md:col-span-2 flex flex-col gap-3 rounded-2xl p-6 text-white shadow-lg"
+            style={{
+              background:
+                "linear-gradient(135deg, color-mix(in srgb, var(--agent-brand, #0f172a) 55%, #0a0a0a) 0%, color-mix(in srgb, var(--agent-brand, #0f172a) 35%, #0a0a0a) 100%)",
+            }}
           >
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-300">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70">
               Estimated monthly
             </p>
             <div className="flex items-baseline gap-1">
               <span className="font-serif text-4xl font-bold md:text-5xl">
                 ${formatMoney(Math.round(totalMonthly))}
               </span>
-              <span className="text-sm text-gray-400">/ mo</span>
+              <span className="text-sm text-white/60">/ mo</span>
             </div>
-            <div className="my-3 h-px w-full bg-white/10" />
-            <div className="space-y-1.5 text-xs text-gray-300">
+            <div className="my-3 h-px w-full bg-white/20" />
+            <div className="space-y-1.5 text-xs text-white/80">
               <div className="flex justify-between">
                 <span>Principal + Interest</span>
-                <span className="font-medium text-white">${formatMoney(Math.round(monthlyPI))}</span>
+                <span className="font-semibold text-white">${formatMoney(Math.round(monthlyPI))}</span>
               </div>
               <div className="flex justify-between">
                 <span>Property tax</span>
-                <span className="font-medium text-white">${formatMoney(Math.round(monthlyTax))}</span>
+                <span className="font-semibold text-white">${formatMoney(Math.round(monthlyTax))}</span>
               </div>
               <div className="flex justify-between">
                 <span>Insurance</span>
-                <span className="font-medium text-white">${formatMoney(Math.round(monthlyInsurance))}</span>
+                <span className="font-semibold text-white">${formatMoney(Math.round(monthlyInsurance))}</span>
               </div>
               {monthlyHoa > 0 && (
                 <div className="flex justify-between">
                   <span>HOA</span>
-                  <span className="font-medium text-white">${formatMoney(monthlyHoa)}</span>
+                  <span className="font-semibold text-white">${formatMoney(monthlyHoa)}</span>
                 </div>
               )}
             </div>
-            <p className="mt-3 text-[10px] leading-relaxed text-gray-500">
+            <p className="mt-3 text-[10px] leading-relaxed text-white/60">
               Estimate only. Your actual payment depends on your credit, PMI, and exact tax/insurance quotes.
             </p>
           </div>

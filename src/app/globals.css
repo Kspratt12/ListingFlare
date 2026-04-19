@@ -563,9 +563,22 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* Additional opacity variants used by virtual tour + photo gallery
    play buttons and various shadow helpers. */
+.agent-brand-override .bg-brand-500\/5 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 5%, transparent) !important; }
+.agent-brand-override .bg-brand-500\/30 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 30%, transparent) !important; }
+.agent-brand-override .bg-brand-500\/50 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 50%, transparent) !important; }
 .agent-brand-override .bg-brand-500\/60 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 60%, transparent) !important; }
 .agent-brand-override .bg-brand-500\/70 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 70%, transparent) !important; }
 .agent-brand-override .bg-brand-500\/80 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 80%, transparent) !important; }
 .agent-brand-override .bg-brand-500\/90 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 90%, transparent) !important; }
+.agent-brand-override .bg-brand-50\/30 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 3%, transparent) !important; }
+.agent-brand-override .bg-brand-50\/50 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 6%, transparent) !important; }
+.agent-brand-override .bg-brand-50\/70 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 8%, transparent) !important; }
 .agent-brand-override .shadow-brand-500\/30,
 .agent-brand-override .shadow-brand-500\/40 { --tw-shadow-color: var(--agent-brand, #b8965a) !important; }
+/* Hover variants for the dashboard (Upcoming Showings row hover, etc.) */
+.agent-brand-override .hover\:border-brand-200:hover,
+.agent-brand-override .hover\:border-brand-300:hover { border-color: var(--agent-brand, #b8965a) !important; }
+.agent-brand-override .hover\:bg-brand-50\/30:hover { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 4%, transparent) !important; }
+.agent-brand-override .hover\:text-brand-600:hover,
+.agent-brand-override .hover\:text-brand-700:hover { color: var(--agent-brand, #b8965a) !important; filter: brightness(0.85); }
+.agent-brand-override .hover\:bg-brand-600:hover { background-color: var(--agent-brand, #b8965a) !important; filter: brightness(0.9); }

@@ -8,6 +8,7 @@ import { createClient } from "@/lib/supabase/client";
 import { getAllPosts } from "@/lib/blog";
 import LiveStats from "@/components/LiveStats";
 import ProductTestimonials from "@/components/ProductTestimonials";
+import PipelineAnimation from "@/components/PipelineAnimation";
 import {
   Sparkles,
   Globe,
@@ -1674,6 +1675,11 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Pipeline animation - shows a lead card flowing through
+          the kanban in real time. Visual payoff for the "we track
+          every lead" claim. */}
+      <PipelineAnimation />
+
       {/* Real Moment */}
       <section className="bg-white py-12 md:py-16">
         <div className="mx-auto max-w-2xl px-6">
@@ -1698,11 +1704,11 @@ export default function LandingPage() {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="mt-10 space-y-3 text-center"
           >
-            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-600">10:42 PM.</span> A buyer opens your listing.</p>
-            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-600">10:43 PM.</span> They ask about the backyard.</p>
-            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-600">10:43 PM.</span> They get an answer.</p>
-            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-600">10:44 PM.</span> They book a showing for Saturday.</p>
-            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-600">10:45 PM.</span> Their contact info hits your dashboard.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-gray-500">10:42 PM.</span> A buyer opens your listing.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-emerald-400">10:43 PM.</span> They ask about the backyard.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-emerald-500">10:43 PM.</span> They get an answer.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-emerald-600">10:44 PM.</span> They book a showing for Saturday.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-emerald-700">10:45 PM.</span> Their contact info hits your dashboard.</p>
             <p className="mt-6 font-serif text-xl font-semibold text-gray-900">
               You were asleep the entire time.
             </p>

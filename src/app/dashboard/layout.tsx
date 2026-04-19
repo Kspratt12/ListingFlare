@@ -23,6 +23,8 @@ import {
   Bot,
   CalendarDays,
   Home,
+  Palette,
+  ChevronDown,
 } from "lucide-react";
 
 const navItems = [
@@ -47,6 +49,7 @@ export default function DashboardLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [profile, setProfile] = useState<AgentProfile | null>(null);
   const [bannerDismissed, setBannerDismissed] = useState(false);
+  const [themeOpen, setThemeOpen] = useState(false); // collapsed by default so the picker isn't visual clutter
   const limits = getSubscriptionLimits(profile);
 
   useEffect(() => {
@@ -133,35 +136,59 @@ export default function DashboardLayout({
 
       {/* Logout */}
       <div className="border-t border-white/10 px-3 py-4">
-        {/* Quick color picker */}
+        {/* Collapsible theme picker. Defaults to closed so it's not an
+            eyesore after the agent has picked their color - just a
+            thin "Theme" row with the current swatch. Clicking expands
+            to show all 8 choices. */}
         {profile && (
-          <div className="mb-3">
-            <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-wider text-gray-500">Theme</p>
-            <div className="flex flex-wrap gap-1.5 px-3">
-              {["#b8965a", "#0f172a", "#0ea5e9", "#10b981", "#ef4444", "#f59e0b", "#8b5cf6", "#ec4899"].map((c) => (
-                <button
-                  key={c}
-                  type="button"
-                  onClick={async () => {
-                    document.documentElement.style.setProperty("--agent-brand", c);
-                    setProfile((p) => (p ? { ...p, brand_color: c } : p));
-                    const supabase = createClient();
-                    const { data: { user } } = await supabase.auth.getUser();
-                    if (user) {
-                      await supabase.from("agent_profiles").update({ brand_color: c }).eq("id", user.id);
-                    }
-                  }}
-                  aria-label={`Theme color ${c}`}
-                  title={c}
-                  style={{ backgroundColor: c }}
-                  className={`h-5 w-5 rounded-full border transition-transform hover:scale-125 ${
-                    (profile?.brand_color || "#b8965a").toLowerCase() === c.toLowerCase()
-                      ? "border-white ring-1 ring-white"
-                      : "border-white/30"
-                  }`}
+          <div className="mb-2">
+            <button
+              type="button"
+              onClick={() => setThemeOpen((v) => !v)}
+              className="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-400 transition-colors hover:bg-white/5 hover:text-white"
+              aria-expanded={themeOpen}
+            >
+              <span className="flex items-center gap-3">
+                <Palette className="h-5 w-5" />
+                <span>Theme</span>
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span
+                  className="h-3.5 w-3.5 rounded-full border border-white/40"
+                  style={{ backgroundColor: profile.brand_color || "#b8965a" }}
                 />
-              ))}
-            </div>
+                <ChevronDown
+                  className={`h-3.5 w-3.5 transition-transform ${themeOpen ? "rotate-180" : ""}`}
+                />
+              </span>
+            </button>
+            {themeOpen && (
+              <div className="mt-2 flex flex-wrap gap-1.5 px-3 pb-1">
+                {["#b8965a", "#0f172a", "#0ea5e9", "#10b981", "#ef4444", "#f59e0b", "#8b5cf6", "#ec4899"].map((c) => (
+                  <button
+                    key={c}
+                    type="button"
+                    onClick={async () => {
+                      document.documentElement.style.setProperty("--agent-brand", c);
+                      setProfile((p) => (p ? { ...p, brand_color: c } : p));
+                      const supabase = createClient();
+                      const { data: { user } } = await supabase.auth.getUser();
+                      if (user) {
+                        await supabase.from("agent_profiles").update({ brand_color: c }).eq("id", user.id);
+                      }
+                    }}
+                    aria-label={`Theme color ${c}`}
+                    title={c}
+                    style={{ backgroundColor: c }}
+                    className={`h-5 w-5 rounded-full border transition-transform hover:scale-125 ${
+                      (profile?.brand_color || "#b8965a").toLowerCase() === c.toLowerCase()
+                        ? "border-white ring-1 ring-white"
+                        : "border-white/30"
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
 
@@ -289,8 +316,11 @@ export default function DashboardLayout({
           </div>
         )}
 
-        {/* Page content */}
-        <main className="flex-1 overflow-y-auto p-6 md:p-8">{children}</main>
+        {/* Page content - agent-brand-override lets every brand-tinted
+            widget inside the dashboard (Activity feed buttons, phone
+            alerts, Speed to Lead, Upcoming Showings, etc.) pick up the
+            agent's chosen theme color via the CSS variable. */}
+        <main className="agent-brand-override flex-1 overflow-y-auto p-6 md:p-8">{children}</main>
       </div>
       <LiveLeadAlerts />
       <CommandPalette />
