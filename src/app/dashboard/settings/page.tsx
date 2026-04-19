@@ -34,6 +34,11 @@ export default function SettingsPage() {
   const [calendlyUrl, setCalendlyUrl] = useState("");
   const [aiApprovalMode, setAiApprovalMode] = useState(false);
   const [aiSavedAt, setAiSavedAt] = useState<number | null>(null);
+  const [handle, setHandle] = useState("");
+  const [brandColor, setBrandColor] = useState("#b8965a");
+  const [handleStatus, setHandleStatus] = useState<
+    { state: "idle" | "checking" | "ok" | "taken" | "invalid"; reason?: string }
+  >({ state: "idle" });
 
   const toggleAiApproval = async (checked: boolean) => {
     setAiApprovalMode(checked);
@@ -79,6 +84,8 @@ export default function SettingsPage() {
         setWeeklyEmails(profile.weekly_emails !== false);
         setCalendlyUrl(profile.calendly_url || "");
         setAiApprovalMode(profile.ai_approval_mode === true);
+        setHandle(profile.handle || "");
+        setBrandColor(profile.brand_color || "#b8965a");
       }
       setLoading(false);
     }
@@ -153,6 +160,8 @@ export default function SettingsPage() {
           weekly_emails: weeklyEmails,
           calendly_url: calendlyUrl,
           ai_approval_mode: aiApprovalMode,
+          handle: handle || null,
+          brand_color: brandColor || null,
         }),
       });
 
@@ -188,6 +197,8 @@ export default function SettingsPage() {
           setWebsite(p.website || "");
           setWeeklyEmails(p.weekly_emails !== false);
           setCalendlyUrl(p.calendly_url || "");
+          setHandle(p.handle || "");
+          setBrandColor(p.brand_color || "#b8965a");
         }
       }
 
@@ -428,6 +439,96 @@ export default function SettingsPage() {
                   className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                   placeholder="https://yourwebsite.com"
                 />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Your Subdomain + Brand */}
+        <section className="rounded-xl border border-brand-200 bg-gradient-to-br from-brand-50/50 via-white to-amber-50/40 p-6">
+          <h2 className="font-serif text-lg font-semibold text-gray-900">Your Subdomain & Brand</h2>
+          <p className="mt-1 text-sm text-gray-600">
+            Pick a handle and your listings live at <span className="font-mono font-semibold text-brand-700">yourhandle.listingflare.com</span>. Choose a brand color and it tints buttons and accents on every listing so the whole experience feels like yours.
+          </p>
+
+          <div className="mt-5 grid gap-5 md:grid-cols-2">
+            {/* Handle */}
+            <div>
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">Your handle</label>
+              <div className="flex rounded-lg border border-gray-300 bg-white focus-within:border-brand-400 focus-within:ring-1 focus-within:ring-brand-400">
+                <input
+                  type="text"
+                  value={handle}
+                  onChange={async (e) => {
+                    const v = e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, 32);
+                    setHandle(v);
+                    if (!v) {
+                      setHandleStatus({ state: "idle" });
+                      return;
+                    }
+                    setHandleStatus({ state: "checking" });
+                    try {
+                      const res = await fetch(`/api/settings/handle-check?handle=${encodeURIComponent(v)}`);
+                      const data = await res.json();
+                      if (data.available) setHandleStatus({ state: "ok" });
+                      else setHandleStatus({ state: data.reason === "Already taken" ? "taken" : "invalid", reason: data.reason });
+                    } catch {
+                      setHandleStatus({ state: "idle" });
+                    }
+                  }}
+                  placeholder="kelvin"
+                  className="flex-1 rounded-l-lg bg-transparent px-3 py-2.5 text-sm text-gray-900 focus:outline-none"
+                />
+                <span className="flex items-center rounded-r-lg border-l border-gray-200 bg-gray-50 px-3 text-xs font-medium text-gray-500">
+                  .listingflare.com
+                </span>
+              </div>
+              <div className="mt-1.5 min-h-[18px] text-xs">
+                {handleStatus.state === "checking" && <span className="text-gray-500">Checking...</span>}
+                {handleStatus.state === "ok" && <span className="font-medium text-emerald-600">Available</span>}
+                {handleStatus.state === "taken" && <span className="font-medium text-red-600">Already taken</span>}
+                {handleStatus.state === "invalid" && <span className="text-amber-700">{handleStatus.reason || "Invalid handle"}</span>}
+                {handleStatus.state === "idle" && handle.length === 0 && (
+                  <span className="text-gray-400">3-32 chars, lowercase, numbers, hyphens</span>
+                )}
+              </div>
+            </div>
+
+            {/* Brand color */}
+            <div>
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">Brand color</label>
+              <div className="flex items-center gap-3">
+                <input
+                  type="color"
+                  value={brandColor}
+                  onChange={(e) => setBrandColor(e.target.value)}
+                  className="h-10 w-16 cursor-pointer rounded-md border border-gray-300 bg-white p-1"
+                />
+                <input
+                  type="text"
+                  value={brandColor}
+                  onChange={(e) => {
+                    const v = e.target.value;
+                    if (/^#?[0-9a-fA-F]*$/.test(v)) {
+                      setBrandColor(v.startsWith("#") ? v : `#${v}`);
+                    }
+                  }}
+                  maxLength={7}
+                  placeholder="#b8965a"
+                  className="flex-1 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-mono text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                />
+              </div>
+              <div className="mt-2 flex gap-1.5">
+                {["#b8965a", "#0f172a", "#0ea5e9", "#10b981", "#ef4444", "#f59e0b", "#8b5cf6", "#ec4899"].map((c) => (
+                  <button
+                    key={c}
+                    type="button"
+                    onClick={() => setBrandColor(c)}
+                    style={{ backgroundColor: c }}
+                    className="h-7 w-7 rounded-md border border-gray-200 transition-transform hover:scale-110"
+                    aria-label={`Use ${c}`}
+                  />
+                ))}
               </div>
             </div>
           </div>

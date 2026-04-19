@@ -1,4 +1,4 @@
-import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
 import type { Listing, AgentProfile } from "@/lib/types";
 import type { Metadata } from "next";
@@ -13,39 +13,47 @@ interface Props {
   params: { id: string };
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const supabase = createServerSupabaseClient();
-  const { data } = await supabase
-    .from("agent_profiles")
-    .select("name, brokerage")
-    .eq("id", params.id)
-    .single();
+function getAdminClient() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+}
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+// Look up an agent by either a UUID id or a handle (subdomain slug).
+async function findAgent(idOrHandle: string) {
+  const db = getAdminClient();
+  if (UUID_RE.test(idOrHandle)) {
+    return db.from("agent_profiles").select("*").eq("id", idOrHandle).maybeSingle();
+  }
+  return db.from("agent_profiles").select("*").ilike("handle", idOrHandle).maybeSingle();
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { data } = await findAgent(params.id);
   if (!data) return { title: "Agent Not Found" };
 
   return {
-    title: `${data.name} - ${data.brokerage} | ListingFlare`,
+    title: `${data.name || "Agent"} - ${data.brokerage || ""} | ListingFlare`,
     description: `View all property listings by ${data.name} at ${data.brokerage}.`,
   };
 }
 
 export default async function AgentProfilePage({ params }: Props) {
-  const supabase = createServerSupabaseClient();
-
-  const { data: agent } = await supabase
-    .from("agent_profiles")
-    .select("*")
-    .eq("id", params.id)
-    .single();
+  const { data: agent } = await findAgent(params.id);
 
   if (!agent) notFound();
 
   const typedAgent = agent as AgentProfile;
+  const agentId = typedAgent.id;
+  const supabase = getAdminClient();
 
   const { data: listings } = await supabase
     .from("listings")
     .select("*")
-    .eq("agent_id", params.id)
+    .eq("agent_id", agentId)
     .eq("status", "published")
     .order("created_at", { ascending: false });
 
@@ -55,7 +63,7 @@ export default async function AgentProfilePage({ params }: Props) {
   const { data: testimonialsData } = await supabase
     .from("testimonials")
     .select("id, author_name, rating, quote, created_at")
-    .eq("agent_id", params.id)
+    .eq("agent_id", agentId)
     .eq("approved", true)
     .not("quote", "eq", "")
     .order("featured", { ascending: false })

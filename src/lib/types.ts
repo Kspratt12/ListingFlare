@@ -1,4 +1,6 @@
 export interface AgentProfile {
+  handle?: string | null;
+  brand_color?: string | null;
   id: string;
   name: string;
   title: string;

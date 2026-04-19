@@ -128,7 +128,7 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
   };
 
   return (
-    <main>
+    <main className={agent.brand_color ? "agent-brand-override" : undefined}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -153,6 +153,21 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
             </Link>
           </div>
         </div>
+      )}
+      {agent.brand_color && (
+        <style>{`
+          :root { --agent-brand: ${agent.brand_color}; }
+          .agent-brand-override .bg-brand-500 { background-color: var(--agent-brand) !important; }
+          .agent-brand-override .bg-brand-600 { background-color: var(--agent-brand) !important; filter: brightness(0.92); }
+          .agent-brand-override .text-brand-500,
+          .agent-brand-override .text-brand-600,
+          .agent-brand-override .text-brand-700 { color: var(--agent-brand) !important; }
+          .agent-brand-override .border-brand-200,
+          .agent-brand-override .border-brand-300,
+          .agent-brand-override .border-brand-400 { border-color: var(--agent-brand) !important; }
+          .agent-brand-override .ring-brand-400 { --tw-ring-color: var(--agent-brand) !important; }
+          .agent-brand-override .focus\\:border-brand-400:focus { border-color: var(--agent-brand) !important; }
+        `}</style>
       )}
       <Navbar
         shareTitle={`${listing.street}, ${listing.city}`}
