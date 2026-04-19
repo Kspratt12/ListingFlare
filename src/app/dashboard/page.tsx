@@ -47,59 +47,204 @@ export default function MyListingsPage() {
       if (!res.ok) throw new Error("Failed to get listing data");
       const data = await res.json();
 
+      const brand = data.brandColor || "#b8965a";
+
+      // Kick off the AI caption in parallel with image rendering so the
+      // agent doesn't wait twice. Fallback caption if the endpoint fails.
+      const captionPromise = fetch("/api/ai/social-caption", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          street: data.street,
+          city: data.city,
+          state: data.state,
+          price: data.price,
+          beds: data.beds,
+          baths: data.baths,
+          sqft: data.sqft,
+          features: data.features,
+          description: data.description,
+          publicUrl: data.publicUrl,
+          agentName: data.agentName,
+        }),
+      })
+        .then(async (r) => (r.ok ? (await r.json()).caption : ""))
+        .catch(() => "");
+
       const html2canvas = (await import("html2canvas-pro")).default;
       const JSZip = (await import("jszip")).default;
-
-      const sizes = [
-        { name: "instagram_post", w: 1080, h: 1080 },
-        { name: "facebook_post", w: 1200, h: 630 },
-        { name: "instagram_story", w: 1080, h: 1920 },
-      ];
-
       const zip = new JSZip();
 
-      for (const size of sizes) {
-        const container = document.createElement("div");
-        container.style.cssText = `position:fixed;left:-9999px;top:0;width:${size.w}px;height:${size.h}px;overflow:hidden;`;
-        container.innerHTML = `
-          <div style="width:${size.w}px;height:${size.h}px;position:relative;background:#000;">
-            <img src="${data.heroUrl}" crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />
-            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.7) 70%,rgba(0,0,0,0.9) 100%);"></div>
-            <div style="position:absolute;top:20px;left:30px;font-family:serif;font-size:${Math.round(24 * size.w / 1080)}px;font-weight:bold;color:#b8965a;">ListingFlare</div>
-            <div style="position:absolute;bottom:${Math.round(40 * size.h / 1080)}px;left:30px;right:30px;color:white;">
-              <div style="font-size:${Math.round(56 * size.w / 1080)}px;font-weight:bold;font-family:sans-serif;">${data.price}</div>
-              <div style="font-size:${Math.round(26 * size.w / 1080)}px;margin-top:8px;">${data.street}</div>
-              <div style="font-size:${Math.round(20 * size.w / 1080)}px;opacity:0.8;margin-top:4px;">${data.cityState}</div>
-              <div style="font-size:${Math.round(20 * size.w / 1080)}px;color:#b8965a;font-weight:bold;margin-top:16px;">${data.details}</div>
-              <div style="border-top:1px solid rgba(184,150,90,0.4);margin-top:16px;padding-top:12px;">
-                <div style="font-size:${Math.round(18 * size.w / 1080)}px;">${data.agentName}</div>
-                <div style="font-size:${Math.round(16 * size.w / 1080)}px;opacity:0.7;margin-top:2px;">${[data.agentPhone, data.brokerage].filter(Boolean).join("  |  ")}</div>
-              </div>
+      const esc = (s: string) =>
+        String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+      // Photo overlay template — used as the base for hero slides. Dark
+      // bottom gradient keeps text readable over any photo.
+      const photoSlide = (w: number, h: number, photoUrl: string, ribbonText: string) => `
+        <div style="width:${w}px;height:${h}px;position:relative;background:#000;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+          <img src="${esc(photoUrl)}" crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.55) 65%,rgba(0,0,0,0.9) 100%);"></div>
+          ${ribbonText ? `
+            <div style="position:absolute;top:${Math.round(40 * w / 1080)}px;left:${Math.round(40 * w / 1080)}px;background:${brand};color:white;padding:${Math.round(10 * w / 1080)}px ${Math.round(22 * w / 1080)}px;font-size:${Math.round(22 * w / 1080)}px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:999px;">
+              ${esc(ribbonText)}
             </div>
+          ` : ""}
+          <div style="position:absolute;bottom:${Math.round(48 * h / 1080)}px;left:${Math.round(48 * w / 1080)}px;right:${Math.round(48 * w / 1080)}px;color:white;">
+            <div style="font-size:${Math.round(68 * w / 1080)}px;font-weight:800;font-family:Georgia,serif;line-height:1;">${esc(data.price)}</div>
+            <div style="font-size:${Math.round(32 * w / 1080)}px;margin-top:${Math.round(14 * w / 1080)}px;font-weight:600;">${esc(data.street)}</div>
+            <div style="font-size:${Math.round(24 * w / 1080)}px;opacity:0.85;margin-top:${Math.round(6 * w / 1080)}px;">${esc(data.cityState)}</div>
+            <div style="font-size:${Math.round(22 * w / 1080)}px;color:${brand};font-weight:700;margin-top:${Math.round(18 * w / 1080)}px;letter-spacing:1px;">${esc(data.details)}</div>
           </div>
-        `;
+        </div>
+      `;
+
+      // Dark brand-tinted solid slide used for price, stats, CTA cards.
+      const brandSlide = (w: number, h: number, inner: string) => `
+        <div style="width:${w}px;height:${h}px;position:relative;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:white;background:linear-gradient(135deg, ${brand} 0%, rgba(0,0,0,0.85) 100%),${brand};overflow:hidden;">
+          <div style="position:absolute;inset:0;background:radial-gradient(circle at 75% 20%, rgba(255,255,255,0.12) 0%, transparent 55%);"></div>
+          <div style="position:absolute;top:${Math.round(36 * w / 1080)}px;left:${Math.round(40 * w / 1080)}px;font-family:Georgia,serif;font-size:${Math.round(26 * w / 1080)}px;font-weight:700;color:white;opacity:0.9;">
+            <span style="color:white;">Listing</span><span style="color:rgba(255,255,255,0.7);">Flare</span>
+          </div>
+          <div style="position:relative;padding:${Math.round(140 * h / 1080)}px ${Math.round(70 * w / 1080)}px;height:100%;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;">
+            ${inner}
+          </div>
+        </div>
+      `;
+
+      const footer = (w: number) => `
+        <div style="position:absolute;bottom:${Math.round(40 * w / 1080)}px;left:${Math.round(40 * w / 1080)}px;right:${Math.round(40 * w / 1080)}px;border-top:1px solid rgba(255,255,255,0.25);padding-top:${Math.round(14 * w / 1080)}px;">
+          <div style="font-size:${Math.round(22 * w / 1080)}px;font-weight:600;">${esc(data.agentName)}</div>
+          <div style="font-size:${Math.round(18 * w / 1080)}px;opacity:0.8;margin-top:${Math.round(2 * w / 1080)}px;">${esc([data.agentPhone, data.brokerage].filter(Boolean).join("  |  "))}</div>
+        </div>
+      `;
+
+      const priceSlideInner = (w: number) => `
+        <div style="font-size:${Math.round(24 * w / 1080)}px;letter-spacing:4px;text-transform:uppercase;opacity:0.8;">Asking</div>
+        <div style="font-family:Georgia,serif;font-size:${Math.round(150 * w / 1080)}px;font-weight:800;line-height:1;margin-top:${Math.round(20 * w / 1080)}px;">${esc(data.price)}</div>
+        <div style="font-size:${Math.round(32 * w / 1080)}px;margin-top:${Math.round(40 * w / 1080)}px;font-weight:600;">${esc(data.street)}</div>
+        <div style="font-size:${Math.round(24 * w / 1080)}px;opacity:0.8;margin-top:${Math.round(8 * w / 1080)}px;">${esc(data.cityState)}</div>
+      `;
+
+      const statsSlideInner = (w: number) => `
+        <div style="font-size:${Math.round(24 * w / 1080)}px;letter-spacing:4px;text-transform:uppercase;opacity:0.8;">The Home</div>
+        <div style="margin-top:${Math.round(50 * w / 1080)}px;display:flex;gap:${Math.round(60 * w / 1080)}px;flex-wrap:wrap;">
+          <div>
+            <div style="font-family:Georgia,serif;font-size:${Math.round(100 * w / 1080)}px;font-weight:800;line-height:1;">${data.beds}</div>
+            <div style="font-size:${Math.round(22 * w / 1080)}px;opacity:0.8;margin-top:${Math.round(6 * w / 1080)}px;text-transform:uppercase;letter-spacing:2px;">Bedrooms</div>
+          </div>
+          <div>
+            <div style="font-family:Georgia,serif;font-size:${Math.round(100 * w / 1080)}px;font-weight:800;line-height:1;">${data.baths}</div>
+            <div style="font-size:${Math.round(22 * w / 1080)}px;opacity:0.8;margin-top:${Math.round(6 * w / 1080)}px;text-transform:uppercase;letter-spacing:2px;">Bathrooms</div>
+          </div>
+          <div>
+            <div style="font-family:Georgia,serif;font-size:${Math.round(100 * w / 1080)}px;font-weight:800;line-height:1;">${Number(data.sqft || 0).toLocaleString()}</div>
+            <div style="font-size:${Math.round(22 * w / 1080)}px;opacity:0.8;margin-top:${Math.round(6 * w / 1080)}px;text-transform:uppercase;letter-spacing:2px;">Sq Ft</div>
+          </div>
+        </div>
+        ${Array.isArray(data.features) && data.features.length > 0 ? `
+          <div style="margin-top:${Math.round(50 * w / 1080)}px;font-size:${Math.round(22 * w / 1080)}px;opacity:0.85;">
+            ${data.features.slice(0, 3).map((f: string) => `<span style="display:inline-block;padding:${Math.round(8 * w / 1080)}px ${Math.round(18 * w / 1080)}px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:999px;margin-right:${Math.round(10 * w / 1080)}px;margin-top:${Math.round(10 * w / 1080)}px;">${esc(f)}</span>`).join("")}
+          </div>
+        ` : ""}
+      `;
+
+      const ctaSlideInner = (w: number) => `
+        <div style="font-size:${Math.round(24 * w / 1080)}px;letter-spacing:4px;text-transform:uppercase;opacity:0.8;">See More</div>
+        <div style="font-family:Georgia,serif;font-size:${Math.round(76 * w / 1080)}px;font-weight:800;line-height:1.1;margin-top:${Math.round(24 * w / 1080)}px;">
+          Tour this home<br/>in seconds.
+        </div>
+        <div style="margin-top:${Math.round(40 * w / 1080)}px;font-size:${Math.round(22 * w / 1080)}px;opacity:0.85;">
+          Full walk-through, mortgage calc, and instant showing booking at:
+        </div>
+        <div style="margin-top:${Math.round(20 * w / 1080)}px;display:inline-block;padding:${Math.round(18 * w / 1080)}px ${Math.round(32 * w / 1080)}px;background:white;color:#111;border-radius:12px;font-size:${Math.round(22 * w / 1080)}px;font-weight:700;word-break:break-all;">
+          ${esc((data.publicUrl || "").replace(/^https?:\/\//, ""))}
+        </div>
+      `;
+
+      // Full slide deck. Every slide shares the footer/agent info.
+      const slides: { name: string; w: number; h: number; html: string }[] = [
+        // IG carousel (1:1). Hero first, then price/stats/CTA cards.
+        {
+          name: "instagram_carousel_1_hero.png",
+          w: 1080, h: 1080,
+          html: photoSlide(1080, 1080, data.heroUrl, "Just Listed"),
+        },
+        {
+          name: "instagram_carousel_2_price.png",
+          w: 1080, h: 1080,
+          html: `<div style="position:relative;width:1080px;height:1080px;">${brandSlide(1080, 1080, priceSlideInner(1080))}${footer(1080)}</div>`,
+        },
+        {
+          name: "instagram_carousel_3_stats.png",
+          w: 1080, h: 1080,
+          html: `<div style="position:relative;width:1080px;height:1080px;">${brandSlide(1080, 1080, statsSlideInner(1080))}${footer(1080)}</div>`,
+        },
+        {
+          name: "instagram_carousel_4_cta.png",
+          w: 1080, h: 1080,
+          html: `<div style="position:relative;width:1080px;height:1080px;">${brandSlide(1080, 1080, ctaSlideInner(1080))}${footer(1080)}</div>`,
+        },
+        // IG Story (9:16)
+        {
+          name: "instagram_story.png",
+          w: 1080, h: 1920,
+          html: photoSlide(1080, 1920, data.heroUrl, "Just Listed"),
+        },
+        // FB landscape post
+        {
+          name: "facebook_post.png",
+          w: 1200, h: 630,
+          html: photoSlide(1200, 630, data.heroUrl, "Just Listed"),
+        },
+      ];
+
+      for (const slide of slides) {
+        const container = document.createElement("div");
+        container.style.cssText = `position:fixed;left:-9999px;top:0;width:${slide.w}px;height:${slide.h}px;overflow:hidden;`;
+        container.innerHTML = slide.html;
         document.body.appendChild(container);
 
-        // Wait for image to load
-        const img = container.querySelector("img");
-        if (img && !img.complete) {
-          await new Promise((resolve) => { img.onload = resolve; img.onerror = resolve; });
-        }
+        // Wait for any <img> inside the container to finish loading
+        const imgs = Array.from(container.querySelectorAll("img"));
+        await Promise.all(
+          imgs.map((im) =>
+            im.complete
+              ? Promise.resolve()
+              : new Promise<void>((res) => {
+                  im.onload = () => res();
+                  im.onerror = () => res();
+                })
+          )
+        );
 
-        const canvas = await html2canvas(container, { width: size.w, height: size.h, scale: 1, useCORS: true });
+        const canvas = await html2canvas(container, { width: slide.w, height: slide.h, scale: 1, useCORS: true });
         document.body.removeChild(container);
 
         const blob = await new Promise<Blob>((resolve) => canvas.toBlob((b) => resolve(b!), "image/png"));
-        zip.file(`${size.name}.png`, blob);
+        zip.file(slide.name, blob);
+      }
+
+      const caption = await captionPromise;
+      if (caption) {
+        zip.file("caption.txt", caption);
+      } else {
+        // Fallback caption so agents always have something to paste
+        zip.file(
+          "caption.txt",
+          `✨ Just Listed ✨\n${data.street}, ${data.cityState}\n${data.price} | ${data.details}\n\nSchedule a showing and see the full tour: ${data.publicUrl || ""}\n\n#justlisted #realestate #dreamhome #newlisting`
+        );
       }
 
       const zipBlob = await zip.generateAsync({ type: "blob" });
       const url = URL.createObjectURL(zipBlob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "social_posts.zip";
+      a.download = `social_pack_${(data.street || "listing").replace(/\s+/g, "_").toLowerCase()}.zip`;
       a.click();
       URL.revokeObjectURL(url);
+
+      setToast({ message: "Social Media Pack downloaded. Includes 4-slide carousel, IG Story, FB post, and caption.", type: "success" });
+      setTimeout(() => setToast(null), 5000);
     } catch (err) {
       setToast({ message: err instanceof Error ? err.message : "Failed to generate social posts", type: "error" });
       setTimeout(() => setToast(null), 5000);

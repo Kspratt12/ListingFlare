@@ -31,21 +31,43 @@ export async function POST(req: NextRequest) {
 
     const { data: agent } = await supabase
       .from("agent_profiles")
-      .select("name, phone, brokerage")
+      .select("name, phone, brokerage, brand_color, handle")
       .eq("id", user.id)
       .single();
 
     const photos = (listing.photos as { src: string; alt: string }[]) || [];
+    const features = Array.isArray(listing.features) ? listing.features.slice(0, 4) : [];
+
+    // Build the public listing URL so carousel CTA slides can show
+    // where buyers should go. Handle-subdomain if set; fall back to
+    // path URL on the main domain.
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
+    const listingPath = listing.slug ? `/listing/${listing.slug}` : `/listing/${listing.id}`;
+    const publicUrl = agent?.handle
+      ? `https://${agent.handle}.listingflare.com${listingPath}`
+      : `${appUrl}${listingPath}`;
 
     return NextResponse.json({
       heroUrl: photos[0]?.src || "",
+      photos: photos.slice(0, 4).map((p) => p.src),
       price: listing.price ? `$${Number(listing.price).toLocaleString("en-US")}` : "",
+      priceRaw: Number(listing.price) || 0,
       street: listing.street,
+      city: listing.city,
+      state: listing.state,
+      zip: listing.zip,
       cityState: `${listing.city}, ${listing.state} ${listing.zip}`,
+      beds: Number(listing.beds) || 0,
+      baths: Number(listing.baths) || 0,
+      sqft: Number(listing.sqft) || 0,
       details: `${listing.beds} Bed | ${listing.baths} Bath | ${Number(listing.sqft).toLocaleString()} Sq Ft`,
+      features,
       agentName: agent?.name || "",
       agentPhone: agent?.phone ? formatPhone(agent.phone) : "",
       brokerage: agent?.brokerage || "",
+      brandColor: listing.brand_color || agent?.brand_color || "#b8965a",
+      publicUrl,
+      description: listing.description || "",
     });
   } catch (err) {
     console.error("Social post data error:", err);

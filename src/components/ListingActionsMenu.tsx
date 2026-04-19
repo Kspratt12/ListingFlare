@@ -162,7 +162,7 @@ export default function ListingActionsMenu({
                   ) : (
                     <Share2 className="h-4 w-4 text-purple-500" />
                   )}
-                  Social Media Posts
+                  Social Media Pack
                 </button>
               ) : (
                 <Link
