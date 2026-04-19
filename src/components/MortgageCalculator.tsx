@@ -194,49 +194,100 @@ export default function MortgageCalculator({ listingPrice, state }: Props) {
             </div>
           </div>
 
-          {/* Output - background is brand-color-tinted but always dark enough
-              for white text to stay readable (mixed with black via color-mix). */}
-          <div
-            className="md:col-span-2 flex flex-col gap-3 rounded-2xl p-6 text-white shadow-lg"
-            style={{
-              background:
-                "linear-gradient(135deg, color-mix(in srgb, var(--agent-brand, #0f172a) 55%, #0a0a0a) 0%, color-mix(in srgb, var(--agent-brand, #0f172a) 35%, #0a0a0a) 100%)",
-            }}
-          >
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70">
-              Estimated monthly
-            </p>
-            <div className="flex items-baseline gap-1">
-              <span className="font-serif text-4xl font-bold md:text-5xl">
-                ${formatMoney(Math.round(totalMonthly))}
-              </span>
-              <span className="text-sm text-white/60">/ mo</span>
-            </div>
-            <div className="my-3 h-px w-full bg-white/20" />
-            <div className="space-y-1.5 text-xs text-white/80">
-              <div className="flex justify-between">
-                <span>Principal + Interest</span>
-                <span className="font-semibold text-white">${formatMoney(Math.round(monthlyPI))}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Property tax</span>
-                <span className="font-semibold text-white">${formatMoney(Math.round(monthlyTax))}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Insurance</span>
-                <span className="font-semibold text-white">${formatMoney(Math.round(monthlyInsurance))}</span>
-              </div>
-              {monthlyHoa > 0 && (
-                <div className="flex justify-between">
-                  <span>HOA</span>
-                  <span className="font-semibold text-white">${formatMoney(monthlyHoa)}</span>
+          {(() => {
+            // Donut chart segments, computed inline so they always
+            // reflect the live slider values. P&I gets the brand
+            // color; tax/insurance/HOA step down through muted whites
+            // so the breakdown reads at a glance without a legend table.
+            const SEG_COLORS = ["var(--agent-brand, #b8965a)", "rgba(255,255,255,0.65)", "rgba(255,255,255,0.4)", "rgba(255,255,255,0.22)"] as const;
+            const SEG_LABELS = ["Principal + Interest", "Property tax", "Insurance", "HOA"] as const;
+            const values = [monthlyPI, monthlyTax, monthlyInsurance, monthlyHoa];
+            const total = values.reduce((a, b) => a + b, 0) || 1;
+            const r = 42;
+            const C = 2 * Math.PI * r; // circumference
+            let cumulative = 0;
+            const segments = values.map((v, i) => {
+              const pct = v / total;
+              const length = pct * C;
+              const offset = cumulative * C;
+              cumulative += pct;
+              return { length, offset, color: SEG_COLORS[i], label: SEG_LABELS[i], value: v, pct };
+            });
+
+            return (
+              <div
+                className="md:col-span-2 flex flex-col gap-3 rounded-2xl p-6 text-white shadow-lg"
+                style={{
+                  background:
+                    "linear-gradient(135deg, color-mix(in srgb, var(--agent-brand, #0f172a) 55%, #0a0a0a) 0%, color-mix(in srgb, var(--agent-brand, #0f172a) 35%, #0a0a0a) 100%)",
+                }}
+              >
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70">
+                  Estimated monthly
+                </p>
+
+                {/* Headline number + donut side by side */}
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <div className="flex items-baseline gap-1">
+                      <span className="font-serif text-4xl font-bold md:text-5xl">
+                        ${formatMoney(Math.round(totalMonthly))}
+                      </span>
+                      <span className="text-sm text-white/60">/ mo</span>
+                    </div>
+                  </div>
+                  <svg viewBox="0 0 120 120" className="h-24 w-24 flex-shrink-0">
+                    {/* Track */}
+                    <circle cx="60" cy="60" r={r} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="14" />
+                    {/* Segments — rotated so they start at 12 o'clock */}
+                    {segments.map((seg, i) =>
+                      seg.length > 0 ? (
+                        <circle
+                          key={i}
+                          cx="60"
+                          cy="60"
+                          r={r}
+                          fill="none"
+                          stroke={seg.color}
+                          strokeWidth="14"
+                          strokeDasharray={`${seg.length} ${C}`}
+                          strokeDashoffset={-seg.offset}
+                          transform="rotate(-90 60 60)"
+                          style={{ transition: "stroke-dasharray 0.3s ease, stroke-dashoffset 0.3s ease" }}
+                        />
+                      ) : null
+                    )}
+                  </svg>
                 </div>
-              )}
-            </div>
-            <p className="mt-3 text-[10px] leading-relaxed text-white/60">
-              Estimate only. Your actual payment depends on your credit, PMI, and exact tax/insurance quotes.
-            </p>
-          </div>
+
+                <div className="my-1 h-px w-full bg-white/20" />
+
+                <div className="space-y-1.5 text-xs text-white/80">
+                  {segments.map((seg) => {
+                    if (seg.value <= 0 && seg.label === "HOA") return null;
+                    return (
+                      <div key={seg.label} className="flex items-center justify-between gap-3">
+                        <span className="flex min-w-0 items-center gap-2">
+                          <span
+                            aria-hidden="true"
+                            className="h-2.5 w-2.5 flex-shrink-0 rounded-full"
+                            style={{ backgroundColor: seg.color }}
+                          />
+                          <span className="truncate">{seg.label}</span>
+                        </span>
+                        <span className="flex-shrink-0 font-semibold text-white">
+                          ${formatMoney(Math.round(seg.value))}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+                <p className="mt-3 text-[10px] leading-relaxed text-white/60">
+                  Estimate only. Your actual payment depends on your credit, PMI, and exact tax/insurance quotes.
+                </p>
+              </div>
+            );
+          })()}
         </div>
       </div>
     </section>

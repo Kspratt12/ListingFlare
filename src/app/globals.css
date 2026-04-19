@@ -582,3 +582,20 @@ input[type="number"]::-webkit-inner-spin-button {
 .agent-brand-override .hover\:text-brand-600:hover,
 .agent-brand-override .hover\:text-brand-700:hover { color: var(--agent-brand, #b8965a) !important; filter: brightness(0.85); }
 .agent-brand-override .hover\:bg-brand-600:hover { background-color: var(--agent-brand, #b8965a) !important; filter: brightness(0.9); }
+
+/* Range input thumb/track override. `accent-color` on the input works
+   in modern browsers but lags on some webkit builds, so we force the
+   thumb + progress styles with the explicit pseudo-elements to match
+   the brand color. */
+.agent-brand-override input[type="range"] { accent-color: var(--agent-brand, #b8965a); }
+.agent-brand-override input[type="range"]::-webkit-slider-thumb {
+  background: var(--agent-brand, #b8965a) !important;
+  border-color: var(--agent-brand, #b8965a) !important;
+}
+.agent-brand-override input[type="range"]::-moz-range-thumb {
+  background: var(--agent-brand, #b8965a) !important;
+  border-color: var(--agent-brand, #b8965a) !important;
+}
+.agent-brand-override input[type="range"]::-moz-range-progress {
+  background: var(--agent-brand, #b8965a) !important;
+}
