@@ -48,13 +48,26 @@ export default function DemoColorSwitcher({ topOffset = false }: { topOffset?: b
         topOffset ? "top-28" : "top-24"
       }`}
     >
+      <style>{`
+        @keyframes rainbowPulse {
+          0%   { box-shadow: 0 0 0 0 rgba(184, 150, 90, 0.7); }
+          15%  { box-shadow: 0 0 0 10px rgba(139, 92, 246, 0); }
+          30%  { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7); }
+          45%  { box-shadow: 0 0 0 10px rgba(14, 165, 233, 0); }
+          60%  { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+          75%  { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+          90%  { box-shadow: 0 0 0 0 rgba(184, 150, 90, 0.6); }
+          100% { box-shadow: 0 0 0 0 rgba(184, 150, 90, 0); }
+        }
+        .demo-palette-pulse { animation: rainbowPulse 2.5s ease-in-out 2; }
+      `}</style>
       <div className="rounded-full border border-white/40 bg-white/60 p-1.5 shadow-md backdrop-blur-md">
         <div className="flex items-center gap-1.5">
           <button
             type="button"
             onClick={() => setExpanded((v) => !v)}
             aria-label="Toggle color picker"
-            className="flex h-8 w-8 items-center justify-center rounded-full text-gray-700 transition-colors hover:bg-white/60"
+            className="demo-palette-pulse flex h-8 w-8 items-center justify-center rounded-full text-gray-700 transition-colors hover:bg-white/60"
             title={expanded ? "Hide colors" : "Try a color"}
           >
             <Palette className="h-4 w-4" />

@@ -133,6 +133,38 @@ export default function DashboardLayout({
 
       {/* Logout */}
       <div className="border-t border-white/10 px-3 py-4">
+        {/* Quick color picker */}
+        {profile && (
+          <div className="mb-3">
+            <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-wider text-gray-500">Theme</p>
+            <div className="flex flex-wrap gap-1.5 px-3">
+              {["#b8965a", "#0f172a", "#0ea5e9", "#10b981", "#ef4444", "#f59e0b", "#8b5cf6", "#ec4899"].map((c) => (
+                <button
+                  key={c}
+                  type="button"
+                  onClick={async () => {
+                    document.documentElement.style.setProperty("--agent-brand", c);
+                    setProfile((p) => (p ? { ...p, brand_color: c } : p));
+                    const supabase = createClient();
+                    const { data: { user } } = await supabase.auth.getUser();
+                    if (user) {
+                      await supabase.from("agent_profiles").update({ brand_color: c }).eq("id", user.id);
+                    }
+                  }}
+                  aria-label={`Theme color ${c}`}
+                  title={c}
+                  style={{ backgroundColor: c }}
+                  className={`h-5 w-5 rounded-full border transition-transform hover:scale-125 ${
+                    (profile?.brand_color || "#b8965a").toLowerCase() === c.toLowerCase()
+                      ? "border-white ring-1 ring-white"
+                      : "border-white/30"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
         <button
           onClick={handleLogout}
           className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-400 transition-colors hover:bg-white/5 hover:text-white"
@@ -147,7 +179,12 @@ export default function DashboardLayout({
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Desktop sidebar */}
-      <aside className="hidden w-64 flex-col bg-gray-950 lg:flex">
+      <aside
+        className="hidden w-64 flex-col lg:flex"
+        style={{
+          background: `linear-gradient(180deg, color-mix(in srgb, var(--agent-brand, #b8965a) 7%, #030712) 0%, #030712 55%, color-mix(in srgb, var(--agent-brand, #b8965a) 5%, #030712) 100%)`,
+        }}
+      >
         <SidebarContent />
       </aside>
 
@@ -161,9 +198,12 @@ export default function DashboardLayout({
 
       {/* Mobile sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-gray-950 transition-transform duration-300 lg:hidden ${
+        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col transition-transform duration-300 lg:hidden ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
+        style={{
+          background: `linear-gradient(180deg, color-mix(in srgb, var(--agent-brand, #b8965a) 7%, #030712) 0%, #030712 55%, color-mix(in srgb, var(--agent-brand, #b8965a) 5%, #030712) 100%)`,
+        }}
       >
         <button
           onClick={() => setSidebarOpen(false)}
