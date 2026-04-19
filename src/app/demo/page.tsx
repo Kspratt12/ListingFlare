@@ -17,6 +17,7 @@ import PropertyAttributes from "@/components/PropertyAttributes";
 import ListingAlertSignup from "@/components/ListingAlertSignup";
 import ListingStatsBar from "@/components/ListingStatsBar";
 import LiveViewerCounter from "@/components/LiveViewerCounter";
+import DemoColorSwitcher from "@/components/DemoColorSwitcher";
 import Link from "next/link";
 import { ArrowRight, X } from "lucide-react";
 import { useState } from "react";
@@ -26,7 +27,11 @@ export default function DemoPage() {
   const [bannerVisible, setBannerVisible] = useState(true);
 
   return (
-    <main className="relative">
+    <main className="agent-brand-override relative">
+      {/* Initialize the --agent-brand CSS variable so tinted elements render with a default before user picks */}
+      <style>{`:root { --agent-brand: #b8965a; }`}</style>
+
+      <DemoColorSwitcher topOffset={bannerVisible} />
       {/* Demo banner - sits above the navbar */}
       <AnimatePresence>
         {bannerVisible && (
