@@ -13,6 +13,10 @@ import Footer from "@/components/Footer";
 import type { PropertyListing } from "@/lib/demo-data";
 import { formatPhone, formatLotSize } from "@/lib/formatters";
 import VirtualTourEmbed from "@/components/VirtualTourEmbed";
+import MortgageCalculator from "@/components/MortgageCalculator";
+import NeighborhoodInfo from "@/components/NeighborhoodInfo";
+import ShareListingButton from "@/components/ShareListingButton";
+import OtherListings from "@/components/OtherListings";
 
 const ListingChat = dynamic(() => import("@/components/ListingChat"), {
   ssr: false,
@@ -152,8 +156,27 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
         <VirtualTourEmbed src={listing.virtual_tour_url} />
       )}
 
+      {listing.price > 0 && (
+        <MortgageCalculator listingPrice={listing.price} state={listing.state} />
+      )}
+
+      {listing.street && listing.city && listing.state && (
+        <NeighborhoodInfo
+          street={listing.street}
+          city={listing.city}
+          state={listing.state}
+          zip={listing.zip || ""}
+        />
+      )}
+
       <AgentBranding agent={propertyData.agent} agentId={listing.agent_id} />
       <ShowingScheduler listingId={listing.id} agentId={listing.agent_id} />
+
+      <OtherListings
+        agentId={listing.agent_id}
+        currentListingId={listing.id}
+        agentName={agent.name || ""}
+      />
       <ListingChat
         listing={{
           street: listing.street,
@@ -176,6 +199,11 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
         calendlyUrl={agent.calendly_url || undefined}
       />
       <Footer />
+
+      <ShareListingButton
+        title={`${listing.street}, ${listing.city}`}
+        url={listing.slug ? `/listing/${listing.slug}` : `/listing/${listing.id}`}
+      />
     </main>
   );
 }
