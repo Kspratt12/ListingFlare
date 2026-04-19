@@ -117,10 +117,15 @@ function DraggableCard({
     data: { lead },
   });
 
+  // Entire card is draggable. A simple tap (no movement) fires onSelect.
+  // Movement > 6px = drag (handled by PointerSensor activationConstraint on parent).
   return (
     <div
       ref={setNodeRef}
-      className={`group relative rounded-lg border bg-white shadow-sm transition-all ${
+      {...attributes}
+      {...listeners}
+      onClick={() => onSelect(lead)}
+      className={`group relative cursor-grab touch-none rounded-lg border bg-white shadow-sm transition-all active:cursor-grabbing ${
         isDragging ? "opacity-30" : "hover:border-brand-200 hover:shadow-md"
       } ${
         !lead.is_read
@@ -128,26 +133,20 @@ function DraggableCard({
           : "border-gray-200"
       }`}
     >
-      {/* Drag handle area (top-left corner, always visible) */}
-      <button
-        {...attributes}
-        {...listeners}
-        type="button"
-        aria-label="Drag lead"
-        className="absolute left-1 top-1/2 -translate-y-1/2 flex h-8 w-6 cursor-grab items-center justify-center text-gray-300 opacity-0 transition-opacity group-hover:opacity-100 touch-none active:cursor-grabbing"
-      >
-        <GripVertical className="h-4 w-4" />
-      </button>
+      {/* Subtle grip indicator (top-right, decorative only) */}
+      <div className="absolute right-2 top-2 text-gray-300 opacity-0 transition-opacity group-hover:opacity-100">
+        <GripVertical className="h-3.5 w-3.5" />
+      </div>
 
-      {/* Clickable card body */}
-      <div
-        onClick={() => onSelect(lead)}
-        className="cursor-pointer p-4 pl-7"
-      >
+      <div className="p-4">
         <LeadCardContent lead={lead} />
 
-        {/* Status dropdown (for mobile / non-drag users) */}
-        <div className="mt-2 flex justify-end" onClick={(e) => e.stopPropagation()}>
+        {/* Status dropdown - not draggable; stops propagation */}
+        <div
+          className="mt-2 flex justify-end"
+          onPointerDown={(e) => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="relative">
             <select
               value={lead.status}
