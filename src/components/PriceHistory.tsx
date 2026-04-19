@@ -104,8 +104,8 @@ function PriceTrajectoryChart({
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ aspectRatio: `${W} / ${H}` }}>
         <defs>
           <linearGradient id="priceArea" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="var(--agent-brand, #b8965a)" stopOpacity="0.28" />
-            <stop offset="100%" stopColor="var(--agent-brand, #b8965a)" stopOpacity="0" />
+            <stop offset="0%" style={{ stopColor: "var(--agent-brand, #b8965a)", stopOpacity: 0.28 }} />
+            <stop offset="100%" style={{ stopColor: "var(--agent-brand, #b8965a)", stopOpacity: 0 }} />
           </linearGradient>
         </defs>
 
@@ -133,10 +133,10 @@ function PriceTrajectoryChart({
         <path
           d={pathD}
           fill="none"
-          stroke="var(--agent-brand, #b8965a)"
           strokeWidth={2.5}
           strokeLinecap="round"
           strokeLinejoin="round"
+          style={{ stroke: "var(--agent-brand, #b8965a)" }}
         />
 
         {/* Point markers. Pointer events unify mouse + touch cleanly —
@@ -164,10 +164,13 @@ function PriceTrajectoryChart({
               cx={p.x}
               cy={p.y}
               r={hoverIdx === i ? 8 : 6}
-              fill={hoverIdx === i ? "var(--agent-brand, #b8965a)" : "white"}
-              stroke="var(--agent-brand, #b8965a)"
               strokeWidth={3}
-              style={{ transition: "r 0.15s ease, fill 0.15s ease", pointerEvents: "none" }}
+              style={{
+                fill: hoverIdx === i ? "var(--agent-brand, #b8965a)" : "white",
+                stroke: "var(--agent-brand, #b8965a)",
+                transition: "r 0.15s ease, fill 0.15s ease",
+                pointerEvents: "none",
+              }}
             />
           </g>
         ))}

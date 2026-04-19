@@ -91,19 +91,56 @@ export default function MortgageCalculator({ listingPrice, state }: Props) {
             </div>
 
             <div>
-              <div className="flex items-baseline justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <label className="text-xs font-medium text-gray-600">Down payment</label>
-                <span className="text-sm font-semibold text-gray-900">${formatMoney(downAmount)} ({downPct}%)</span>
+                {/* Inline editable chips — users can either drag the slider
+                    or type an exact % or $ amount. Both inputs drive the
+                    same shared percentage state, kept in sync. */}
+                <div className="flex items-center gap-1.5">
+                  <div className="flex items-center rounded-md border border-gray-300 bg-white px-2 py-0.5 focus-within:border-brand-400 focus-within:ring-1 focus-within:ring-brand-400">
+                    <span className="text-xs text-gray-400">$</span>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      aria-label="Down payment dollars"
+                      value={downAmount > 0 ? formatMoney(downAmount) : ""}
+                      onChange={(e) => {
+                        const raw = Number(e.target.value.replace(/[^0-9]/g, ""));
+                        const pct = listingPrice > 0 ? Math.min(100, (raw / listingPrice) * 100) : 0;
+                        setDownPct(pct.toFixed(2).replace(/\.?0+$/, ""));
+                      }}
+                      className="w-24 bg-transparent text-right text-sm font-semibold text-gray-900 focus:outline-none"
+                      placeholder="0"
+                    />
+                  </div>
+                  <div className="flex items-center rounded-md border border-gray-300 bg-white px-2 py-0.5 focus-within:border-brand-400 focus-within:ring-1 focus-within:ring-brand-400">
+                    <input
+                      type="text"
+                      inputMode="decimal"
+                      aria-label="Down payment percent"
+                      value={downPct}
+                      onChange={(e) => {
+                        const raw = e.target.value.replace(/[^0-9.]/g, "");
+                        const num = Number(raw);
+                        if (raw === "" || (num >= 0 && num <= 100)) {
+                          setDownPct(raw);
+                        }
+                      }}
+                      className="w-10 bg-transparent text-right text-sm font-semibold text-gray-900 focus:outline-none"
+                      placeholder="20"
+                    />
+                    <span className="text-xs text-gray-400">%</span>
+                  </div>
+                </div>
               </div>
               <input
                 type="range"
                 min="0"
                 max="50"
                 step="1"
-                value={downPct}
+                value={Math.min(50, Math.max(0, Number(downPct) || 0))}
                 onChange={(e) => setDownPct(e.target.value)}
-                className="mt-2 h-1.5 w-full cursor-pointer appearance-none rounded-full bg-gray-200"
-                style={{ accentColor: "var(--agent-brand, #b8965a)" }}
+                className="brand-slider mt-3 h-1.5 w-full cursor-pointer appearance-none rounded-full bg-gray-200"
               />
               <div className="mt-1 flex justify-between text-[10px] text-gray-400">
                 <span>0%</span>

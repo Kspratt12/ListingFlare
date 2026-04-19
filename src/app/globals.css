@@ -584,18 +584,44 @@ input[type="number"]::-webkit-inner-spin-button {
 .agent-brand-override .hover\:bg-brand-600:hover { background-color: var(--agent-brand, #b8965a) !important; filter: brightness(0.9); }
 
 /* Range input thumb/track override. `accent-color` on the input works
-   in modern browsers but lags on some webkit builds, so we force the
-   thumb + progress styles with the explicit pseudo-elements to match
-   the brand color. */
+   in modern browsers but lags on mobile webkit, so we force the thumb
+   styles with explicit pseudo-elements. Scoped to `.brand-slider`
+   rather than `.agent-brand-override` so it works everywhere a brand
+   slider is rendered, even in sections that don't have the override
+   wrapper (e.g. the mortgage calculator inside /listing/[id] when no
+   per-listing color is set). */
+.brand-slider { accent-color: var(--agent-brand, #b8965a); }
+.brand-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: var(--agent-brand, #b8965a) !important;
+  border: 2px solid white !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+.brand-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: var(--agent-brand, #b8965a) !important;
+  border: 2px solid white !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+.brand-slider::-moz-range-progress {
+  background: var(--agent-brand, #b8965a) !important;
+  height: 6px;
+  border-radius: 9999px;
+}
+.brand-slider::-webkit-slider-runnable-track,
+.brand-slider::-moz-range-track {
+  height: 6px;
+  border-radius: 9999px;
+}
+
+/* Keep the old override-wrapper rules as a fallback for any other
+   range inputs still using the class scope. */
 .agent-brand-override input[type="range"] { accent-color: var(--agent-brand, #b8965a); }
-.agent-brand-override input[type="range"]::-webkit-slider-thumb {
-  background: var(--agent-brand, #b8965a) !important;
-  border-color: var(--agent-brand, #b8965a) !important;
-}
-.agent-brand-override input[type="range"]::-moz-range-thumb {
-  background: var(--agent-brand, #b8965a) !important;
-  border-color: var(--agent-brand, #b8965a) !important;
-}
-.agent-brand-override input[type="range"]::-moz-range-progress {
-  background: var(--agent-brand, #b8965a) !important;
-}

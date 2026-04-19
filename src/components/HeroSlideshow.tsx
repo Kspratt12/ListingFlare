@@ -87,8 +87,11 @@ export default function HeroSlideshow({ listing, priceReduction }: Props) {
         <ChevronRight className="h-6 w-6 text-white" />
       </button>
 
-      {/* Slide indicators */}
-      <div className="absolute bottom-32 left-1/2 z-20 flex -translate-x-1/2 gap-2">
+      {/* Slide indicators. Mobile: pinned to the top just under the
+          navbar so they don't collide with the price + beds/baths block
+          that stacks tall at the bottom. Desktop: original bottom-32
+          position where the hero content is horizontally offset. */}
+      <div className="absolute left-1/2 top-20 z-20 flex -translate-x-1/2 gap-2 md:top-auto md:bottom-32">
         {photos.map((_, i) => (
           <button
             key={i}

@@ -22,6 +22,9 @@ const COLORS = [
 export default function DemoColorSwitcher({ topOffset = false }: { topOffset?: boolean }) {
   const [active, setActive] = useState(COLORS[0].hex);
   const [expanded, setExpanded] = useState(false); // start collapsed; rainbow pulse draws attention until clicked
+  // The "Demo only" pill appears briefly for reassurance, then fades so
+  // the icon can live quietly in the corner without a permanent badge.
+  const [showDemoBadge, setShowDemoBadge] = useState(true);
 
   useEffect(() => {
     document.documentElement.style.setProperty("--agent-brand", active);
@@ -40,6 +43,13 @@ export default function DemoColorSwitcher({ topOffset = false }: { topOffset?: b
   // No scroll auto-collapse — the agent explicitly wants the picker to
   // stay where they left it as they scroll the listing. The Palette
   // toggle button is always the way in or out.
+
+  // Auto-fade the "Demo only" pill after 5 seconds. The palette icon +
+  // rainbow pulse stay so visitors can still discover the feature.
+  useEffect(() => {
+    const t = setTimeout(() => setShowDemoBadge(false), 5000);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <div
@@ -71,12 +81,18 @@ export default function DemoColorSwitcher({ topOffset = false }: { topOffset?: b
           >
             <Palette className="h-4 w-4" />
           </button>
-          {/* Always-visible "Demo only" pill. Shows on mobile AND desktop
-              so agents never wonder whether this floating palette will
-              show up on their actual listings. */}
-          <span className="rounded-full bg-gray-900/80 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white whitespace-nowrap">
-            Demo only
-          </span>
+          {/* "Demo only" pill — visible briefly on first load, then fades
+              out. The palette icon itself keeps pulsing so visitors can
+              still find the color picker; we just don't need the badge
+              sitting there permanently once the point is made. */}
+          {showDemoBadge && (
+            <span
+              className="rounded-full bg-gray-900/80 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white whitespace-nowrap transition-opacity duration-700"
+              style={{ opacity: showDemoBadge ? 1 : 0 }}
+            >
+              Demo only
+            </span>
+          )}
           {expanded && (
             <>
               <span className="hidden pr-1 text-[11px] font-medium text-gray-700 sm:inline">
