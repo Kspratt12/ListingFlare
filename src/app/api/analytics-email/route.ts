@@ -57,9 +57,46 @@ export async function GET(req: NextRequest) {
       .eq("agent_id", agent.id)
       .gte("created_at", sevenDaysAgo);
 
+    // YTD commission attribution
+    const startOfYear = new Date(new Date().getFullYear(), 0, 1).toISOString();
+    const { data: closedLeads } = await supabase
+      .from("leads")
+      .select("commission_amount, closed_at")
+      .eq("agent_id", agent.id)
+      .eq("status", "closed")
+      .gte("closed_at", startOfYear)
+      .not("commission_amount", "is", null);
+
+    const ytdCommission = (closedLeads || []).reduce((sum, l) => sum + (l.commission_amount || 0), 0);
+    const ytdClosedCount = (closedLeads || []).length;
+
+    // Automation summary (last 7 days)
+    const [{ count: followUpsSent }, { count: repliesSent }, { count: showingsBooked }] = await Promise.all([
+      supabase
+        .from("follow_ups")
+        .select("id", { count: "exact", head: true })
+        .eq("agent_id", agent.id)
+        .eq("status", "sent")
+        .gte("sent_at", sevenDaysAgo),
+      supabase
+        .from("messages")
+        .select("id", { count: "exact", head: true })
+        .eq("agent_id", agent.id)
+        .eq("direction", "outbound")
+        .gte("created_at", sevenDaysAgo),
+      supabase
+        .from("showings")
+        .select("id", { count: "exact", head: true })
+        .eq("agent_id", agent.id)
+        .gte("created_at", sevenDaysAgo),
+    ]);
+
     const totalViews = listings.reduce((sum, l) => sum + (l.view_count || 0), 0);
     const topListing = listings.sort((a, b) => (b.view_count || 0) - (a.view_count || 0))[0];
     const leadCount = newLeads?.length || 0;
+
+    const formatMoney = (n: number) =>
+      new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n);
 
     // Build email
     const listingRows = listings.map((l) => `
@@ -101,6 +138,32 @@ export async function GET(req: NextRequest) {
               <div style="font-size: 28px; font-weight: 700; color: #1e40af;">${listings.length}</div>
               <div style="font-size: 13px; color: #1e40af;">Active Listings</div>
             </div>
+          </div>
+
+          ${ytdCommission > 0 ? `
+          <div style="background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 100%); border: 1px solid #86efac; border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+            <p style="margin: 0; font-size: 12px; color: #166534; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Your YTD Earnings via ListingFlare</p>
+            <p style="margin: 8px 0 4px; font-size: 36px; font-weight: 700; color: #111827;">${formatMoney(ytdCommission)}</p>
+            <p style="margin: 0; font-size: 14px; color: #166534;">From ${ytdClosedCount} closed deal${ytdClosedCount !== 1 ? "s" : ""} attributed to ListingFlare</p>
+          </div>
+          ` : ""}
+
+          <div style="background: #f9fafb; border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+            <p style="margin: 0 0 12px; font-size: 12px; color: #6b7280; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">What ListingFlare Did For You This Week</p>
+            <table style="width: 100%; font-size: 14px;">
+              <tr>
+                <td style="padding: 4px 0; color: #374151;">- Auto-replies and replies sent</td>
+                <td style="padding: 4px 0; text-align: right; font-weight: 600; color: #111827;">${repliesSent || 0}</td>
+              </tr>
+              <tr>
+                <td style="padding: 4px 0; color: #374151;">- Drip follow-ups delivered</td>
+                <td style="padding: 4px 0; text-align: right; font-weight: 600; color: #111827;">${followUpsSent || 0}</td>
+              </tr>
+              <tr>
+                <td style="padding: 4px 0; color: #374151;">- Showings booked</td>
+                <td style="padding: 4px 0; text-align: right; font-weight: 600; color: #111827;">${showingsBooked || 0}</td>
+              </tr>
+            </table>
           </div>
 
           ${topListing ? `

@@ -869,8 +869,8 @@ export default function LandingPage() {
             transition={{ duration: 0.8 }}
             className="mx-auto max-w-3xl text-center"
           >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-sm font-medium text-brand-700">
-              <Sparkles className="h-3.5 w-3.5" />
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-4 py-1.5 text-sm font-semibold text-emerald-800 shadow-sm shadow-emerald-200/40">
+              <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
               14-day free trial. No credit card required.
             </div>
             <h1 className="font-serif text-4xl font-bold leading-tight text-gray-900 md:text-display">
@@ -1899,7 +1899,8 @@ export default function LandingPage() {
               <p className="mt-2 text-gray-400">
                 Cancel anytime. No contracts.
               </p>
-              <div className="mt-1 inline-flex items-center rounded-full bg-brand-500/10 px-3 py-1 text-sm font-medium text-brand-400">
+              <div className="mt-1 inline-flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-3 py-1 text-sm font-semibold text-emerald-300">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                 14-day free trial included
               </div>
 
