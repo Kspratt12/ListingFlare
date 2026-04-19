@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { rateLimit } from "@/lib/rateLimit";
 
 export const dynamic = "force-dynamic";
 
@@ -10,6 +12,25 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         { error: "Anthropic API key not configured" },
         { status: 500 }
+      );
+    }
+
+    // Dashboard-only - require auth
+    const authClient = createServerSupabaseClient();
+    const { data: { user } } = await authClient.auth.getUser();
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const limited = rateLimit({
+      key: `ai-generate:${user.id}`,
+      limit: 20,
+      windowMs: 10 * 60_000,
+    });
+    if (!limited.ok) {
+      return NextResponse.json(
+        { error: "Slow down - too many requests. Try again in a minute." },
+        { status: 429 }
       );
     }
 

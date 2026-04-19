@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
+import { rateLimit, getClientIp } from "@/lib/rateLimit";
 
 export const dynamic = "force-dynamic";
 
@@ -10,10 +11,26 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "AI not configured" }, { status: 500 });
     }
 
+    // Public endpoint (buyer chatbot) - rate limit by IP to prevent cost-bomb abuse.
+    // 20 messages per 5 min is plenty for a real conversation.
+    const ip = getClientIp(req);
+    const limited = rateLimit({ key: `ai-chat:${ip}`, limit: 20, windowMs: 5 * 60_000 });
+    if (!limited.ok) {
+      return NextResponse.json(
+        { error: "Too many messages. Please wait a moment." },
+        { status: 429 }
+      );
+    }
+
     const { message, listing, history, calendlyUrl } = await req.json();
 
     if (!message || !listing) {
       return NextResponse.json({ error: "Missing message or listing" }, { status: 400 });
+    }
+
+    // Cap inputs so a single abusive call can't burn through tokens
+    if (typeof message !== "string" || message.length > 2000) {
+      return NextResponse.json({ error: "Message too long" }, { status: 400 });
     }
 
     const listingContext = [

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import Anthropic from "@anthropic-ai/sdk";
+import { rateLimit } from "@/lib/rateLimit";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,19 @@ export async function POST(req: NextRequest) {
       data: { user },
     } = await authClient.auth.getUser();
     if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+    // Heavier endpoint - tighter limit
+    const limited = rateLimit({
+      key: `ai-presentation:${user.id}`,
+      limit: 10,
+      windowMs: 10 * 60_000,
+    });
+    if (!limited.ok) {
+      return NextResponse.json(
+        { error: "Slow down - too many requests. Try again in a minute." },
+        { status: 429 }
+      );
+    }
 
     const { listingId } = await req.json();
     if (!listingId) return NextResponse.json({ error: "Missing listingId" }, { status: 400 });
