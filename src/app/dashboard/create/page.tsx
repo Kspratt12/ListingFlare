@@ -65,6 +65,54 @@ export default function CreateListingPage() {
   const [generatingFeatures, setGeneratingFeatures] = useState(false);
   const [generatingCaptions, setGeneratingCaptions] = useState(false);
 
+  // MLS paste feature - auto-fills form fields from a pasted description
+  const [pasteText, setPasteText] = useState("");
+  const [extracting, setExtracting] = useState(false);
+  const [extractSuccess, setExtractSuccess] = useState(false);
+
+  const autoFillFromPaste = async () => {
+    if (!pasteText.trim()) return;
+    setExtracting(true);
+    setError("");
+    setExtractSuccess(false);
+    try {
+      const res = await fetch("/api/ai/extract-listing", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: pasteText }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || "Could not extract listing details. Try pasting more detail.");
+        return;
+      }
+      const f = data.fields || {};
+      if (f.street) setStreet(String(f.street));
+      if (f.city) setCity(String(f.city));
+      if (f.state && typeof f.state === "string" && f.state.length === 2) {
+        setState(f.state.toUpperCase());
+      }
+      if (f.zip) setZip(String(f.zip));
+      if (f.price != null) setPrice(String(f.price));
+      if (f.beds != null) setBeds(String(f.beds));
+      if (f.baths != null) setBaths(String(f.baths));
+      if (f.sqft != null) setSqft(String(f.sqft));
+      if (f.yearBuilt != null) setYearBuilt(String(f.yearBuilt));
+      if (f.lotSize) setLotSize(String(f.lotSize));
+      if (f.description) setDescription(String(f.description));
+      if (Array.isArray(f.features) && f.features.length > 0) {
+        setFeaturesText(f.features.map((x: unknown) => String(x)).join("\n"));
+      }
+      setExtractSuccess(true);
+      // Auto-clear the paste area after 2 seconds so the success message shows
+      setTimeout(() => setPasteText(""), 2000);
+    } catch {
+      setError("Something went wrong extracting the listing. Try again.");
+    } finally {
+      setExtracting(false);
+    }
+  };
+
   const limits = getSubscriptionLimits(profile);
 
   // Unsaved changes warning
@@ -419,6 +467,55 @@ export default function CreateListingPage() {
       )}
 
       <div className="mt-8 space-y-8">
+        {/* MLS Paste - auto-fill shortcut */}
+        <section className="relative overflow-hidden rounded-xl border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-emerald-50 p-6">
+          <div className="flex items-start gap-3">
+            <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500">
+              <Sparkles className="h-4 w-4 text-white" />
+            </div>
+            <div className="flex-1">
+              <h2 className="font-serif text-lg font-semibold text-gray-900">
+                Skip the retyping. Paste your MLS description.
+              </h2>
+              <p className="mt-1 text-sm text-gray-600">
+                Copy the description from your MLS (Matrix, Flexmls, Zillow, anywhere) and paste it below. We&apos;ll auto-fill the form for you.
+              </p>
+              <textarea
+                value={pasteText}
+                onChange={(e) => setPasteText(e.target.value)}
+                rows={5}
+                placeholder="Paste your MLS description here. Include beds, baths, sqft, price, and any details you have. The more context, the better the extraction."
+                className="mt-3 w-full resize-y rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
+              />
+              <div className="mt-3 flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={autoFillFromPaste}
+                  disabled={extracting || !pasteText.trim()}
+                  className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-emerald-600 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {extracting ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      Extracting...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="h-4 w-4" />
+                      Auto-fill from description
+                    </>
+                  )}
+                </button>
+                {extractSuccess && (
+                  <span className="text-sm font-medium text-emerald-700">
+                    Fields filled. Review and edit below.
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Address */}
         <section className="rounded-xl border border-gray-200 bg-white p-6">
           <h2 className="font-serif text-lg font-semibold text-gray-900">

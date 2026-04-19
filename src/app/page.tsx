@@ -1853,6 +1853,47 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Click-to-Text Callout */}
+      <section className="bg-white py-14 md:py-20">
+        <div className="mx-auto max-w-5xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="relative overflow-hidden rounded-3xl border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-emerald-50 p-8 md:p-12"
+          >
+            <div className="grid gap-8 md:grid-cols-[auto,1fr] md:items-center md:gap-10">
+              <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-emerald-500 shadow-lg shadow-emerald-500/30">
+                <MessageCircle className="h-10 w-10 text-white" />
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">
+                  No Second Phone Needed
+                </p>
+                <h2 className="mt-2 font-serif text-2xl font-bold text-gray-900 md:text-3xl">
+                  Text leads straight from your dashboard.
+                </h2>
+                <p className="mt-3 text-base text-gray-600">
+                  Tap the Text button on any lead and Messages opens on your phone with their number and a ready-to-send note. Texts go from <span className="font-semibold text-gray-900">your real number</span>, so replies land where you already live. No Twilio, no rental numbers, no 10DLC headache. Just click and send.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-800">
+                    Works on iPhone
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-800">
+                    Works on Android
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-800">
+                    Zero setup
+                  </span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* How It Works - Animated Walkthrough */}
       <HowItWorks />
 
