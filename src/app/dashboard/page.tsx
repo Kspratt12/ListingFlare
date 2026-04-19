@@ -6,13 +6,14 @@ import type { Listing, AgentProfile } from "@/lib/types";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import UpgradePrompt from "@/components/UpgradePrompt";
 import Link from "next/link";
-import { PlusCircle, Eye, Pencil, Share2, Loader2, Trash2, Lock, ArrowUpDown, Archive, Search, Copy, Link2, QrCode, Check, FileText } from "lucide-react";
+import { PlusCircle, Eye, Pencil, ArrowUpDown, Archive, Search, Lock } from "lucide-react";
 import UpcomingShowings from "@/components/UpcomingShowings";
 import ActivityFeed from "@/components/ActivityFeed";
 import SpeedToLead from "@/components/SpeedToLead";
 import GettingStarted from "@/components/GettingStarted";
 import DailyBriefing from "@/components/DailyBriefing";
 import RevenueStat from "@/components/RevenueStat";
+import ListingActionsMenu from "@/components/ListingActionsMenu";
 
 export default function MyListingsPage() {
   const [listings, setListings] = useState<Listing[]>([]);
@@ -206,6 +207,19 @@ export default function MyListingsPage() {
     } finally {
       setGeneratingQR(null);
     }
+  };
+
+  const handleArchive = async (e: React.MouseEvent, listingId: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    await supabase.from("listings").update({ status: "archived" }).eq("id", listingId);
+    setListings((prev) => prev.map((l) => l.id === listingId ? { ...l, status: "archived" as Listing["status"] } : l));
+  };
+
+  const handleDeleteRequest = (e: React.MouseEvent, listingId: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDeleteConfirm(listingId);
   };
 
   const handleDuplicate = async (e: React.MouseEvent, listing: Listing) => {
@@ -543,116 +557,29 @@ export default function MyListingsPage() {
                     </select>
                   </div>
                   <div className="flex items-center gap-1">
-                    {listing.status !== "archived" && listing.status !== "draft" && (
-                      <>
-                        <Link
-                          href={`/reports/${listing.id}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-indigo-50 hover:text-indigo-600"
-                          title="Seller Report"
-                          aria-label="Generate seller report"
-                        >
-                          <FileText className="h-4 w-4" />
-                        </Link>
-                        <button
-                          type="button"
-                          onClick={(e) => handleCopyLink(e, listing)}
-                          className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-brand-50 hover:text-brand-600"
-                          title="Copy public listing URL"
-                          aria-label="Copy listing URL"
-                        >
-                          {copiedId === listing.id ? (
-                            <Check className="h-4 w-4 text-emerald-500" />
-                          ) : (
-                            <Link2 className="h-4 w-4" />
-                          )}
-                        </button>
-                        <button
-                          type="button"
-                          onClick={(e) => handleDownloadQR(e, listing)}
-                          className={`inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-700 ${generatingQR === listing.id ? "opacity-50 pointer-events-none" : ""}`}
-                          title="Download QR code"
-                          aria-label="Download QR code"
-                        >
-                          {generatingQR === listing.id ? (
-                            <Loader2 className="h-4 w-4 animate-spin" />
-                          ) : (
-                            <QrCode className="h-4 w-4" />
-                          )}
-                        </button>
-                      </>
-                    )}
-                    {listing.status === "published" && listing.photos.length > 0 && limits.canGenerateSocialPosts && (
-                      <span
-                        onClick={(e) => handleGenerateSocialPosts(e, listing.id)}
-                        className="flex items-center gap-1 rounded-lg px-2 py-1.5 text-gray-400 transition-colors hover:bg-purple-50 hover:text-purple-600 cursor-pointer"
-                        title="Generate Social Posts"
-                      >
-                        {generatingPosts === listing.id ? (
-                          <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                        ) : (
-                          <Share2 className="h-3.5 w-3.5" />
-                        )}
-                        <span className="text-xs font-medium">Social</span>
-                      </span>
-                    )}
-                    {listing.status === "published" && listing.photos.length > 0 && !limits.canGenerateSocialPosts && (
-                      <Link
-                        href="/dashboard/billing"
-                        className="flex items-center gap-1 rounded-lg px-2 py-1.5 text-gray-300 transition-colors hover:bg-gray-50 cursor-pointer"
-                        title="Upgrade to generate social posts"
-                      >
-                        <Lock className="h-3.5 w-3.5" />
-                        <span className="text-xs font-medium">Social</span>
-                      </Link>
-                    )}
                     <Link
                       href={`/dashboard/edit/${listing.id}`}
-                      className="flex items-center gap-1 rounded-lg px-2 py-1.5 text-brand-500 transition-colors hover:bg-brand-50 hover:text-brand-600"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-brand-50 px-3 py-1.5 text-xs font-medium text-brand-700 transition-colors hover:bg-brand-100"
                       title="Edit listing"
                     >
                       <Pencil className="h-3.5 w-3.5" />
-                      <span className="text-xs font-medium">Edit</span>
+                      Edit
                     </Link>
-                    {listing.status !== "archived" && (
-                      <button
-                        type="button"
-                        onClick={async (e) => {
-                          e.stopPropagation();
-                          await supabase.from("listings").update({ status: "archived" }).eq("id", listing.id);
-                          setListings((prev) => prev.map((l) => l.id === listing.id ? { ...l, status: "archived" as Listing["status"] } : l));
-                        }}
-                        className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-amber-50 hover:text-amber-600"
-                        title="Archive listing"
-                        aria-label="Archive listing"
-                      >
-                        <Archive className="h-4 w-4" />
-                      </button>
-                    )}
-                    <button
-                      type="button"
-                      onClick={(e) => handleDuplicate(e, listing)}
-                      className={`inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-blue-50 hover:text-blue-600 ${duplicating === listing.id ? "opacity-50 pointer-events-none" : ""}`}
-                      title="Duplicate listing"
-                      aria-label="Duplicate listing"
-                    >
-                      {duplicating === listing.id ? (
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                      ) : (
-                        <Copy className="h-4 w-4" />
-                      )}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={(e) => { e.stopPropagation(); setDeleteConfirm(listing.id); }}
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-red-50 hover:text-red-500"
-                      title="Delete listing"
-                      aria-label="Delete listing"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </button>
+                    <ListingActionsMenu
+                      listing={listing}
+                      canGenerateSocialPosts={limits.canGenerateSocialPosts}
+                      copiedId={copiedId}
+                      generatingQR={generatingQR}
+                      duplicating={duplicating}
+                      generatingPosts={generatingPosts}
+                      onCopyLink={handleCopyLink}
+                      onDownloadQR={handleDownloadQR}
+                      onDuplicate={handleDuplicate}
+                      onGenerateSocialPosts={handleGenerateSocialPosts}
+                      onArchive={handleArchive}
+                      onDelete={handleDeleteRequest}
+                    />
                   </div>
                 </div>
               </div>
