@@ -38,14 +38,17 @@ export default function OpenHouseSignIn() {
 
     const formData = new FormData(e.currentTarget);
 
+    const workingWithAgent = formData.get("working_with_agent") === "yes";
     const { data: leadData } = await supabase.from("leads").insert({
       listing_id: listingId,
       agent_id: listing.agent_id,
       name: formData.get("name") as string,
       email: formData.get("email") as string,
       phone: phone,
-      message: `[Open House Sign-In] ${formData.get("working_with_agent") === "yes" ? "Working with an agent" : "Not working with an agent"}`,
+      message: `[Open House Sign-In] ${workingWithAgent ? "Working with an agent" : "Not working with an agent"}`,
       status: "new",
+      source: "open_house",
+      has_agent: workingWithAgent ? "yes" : "no",
     }).select("id").single();
 
     // Fire notification

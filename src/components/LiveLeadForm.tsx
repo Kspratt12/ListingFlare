@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { motion } from "framer-motion";
 import { Send, CheckCircle, Loader2 } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
+import { detectSource } from "@/lib/detectSource";
 
 interface Props {
   listingId: string;
@@ -15,7 +16,12 @@ export default function LiveLeadForm({ listingId, agentId }: Props) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [source, setSource] = useState<string>("direct");
   const supabase = createClient();
+
+  useEffect(() => {
+    setSource(detectSource());
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,6 +42,7 @@ export default function LiveLeadForm({ listingId, agentId }: Props) {
       email: leadEmail,
       phone: leadPhone,
       message: leadMessage,
+      source,
     });
 
     // Fetch the lead ID separately (RLS can block .select() after insert)

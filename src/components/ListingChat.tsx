@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Loader2, User, Sparkles } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { motion, AnimatePresence } from "framer-motion";
+import { detectSource } from "@/lib/detectSource";
 
 interface ChatMessage {
   role: "user" | "assistant";
@@ -141,6 +142,7 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
         email: leadEmail,
         phone: leadPhone,
         message: chatMessage,
+        source: detectSource(),
       });
 
       if (insertError) throw insertError;

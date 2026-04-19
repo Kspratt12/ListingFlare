@@ -13,34 +13,7 @@ import {
   Send,
 } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
-
-// Detect the source of this visitor for lead attribution
-function detectSource(): string {
-  if (typeof window === "undefined") return "direct";
-  // Check URL ?src= override first
-  const params = new URLSearchParams(window.location.search);
-  const srcParam = params.get("src") || params.get("utm_source");
-  if (srcParam) return srcParam.toLowerCase().slice(0, 32);
-
-  // Fall back to referrer domain
-  const ref = document.referrer;
-  if (!ref) return "direct";
-  try {
-    const host = new URL(ref).hostname.toLowerCase();
-    if (host.includes("instagram")) return "instagram";
-    if (host.includes("facebook") || host.includes("fb.com")) return "facebook";
-    if (host.includes("zillow")) return "zillow";
-    if (host.includes("realtor")) return "realtor";
-    if (host.includes("google")) return "google";
-    if (host.includes("tiktok")) return "tiktok";
-    if (host.includes("linkedin")) return "linkedin";
-    if (host.includes("twitter") || host.includes("x.com")) return "twitter";
-    if (host.includes("listingflare")) return "direct";
-    return host.replace(/^www\./, "").split(".")[0].slice(0, 32);
-  } catch {
-    return "direct";
-  }
-}
+import { detectSource } from "@/lib/detectSource";
 
 interface Props {
   listingId: string;

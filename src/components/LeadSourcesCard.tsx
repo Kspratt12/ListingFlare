@@ -21,6 +21,7 @@ function formatSource(source: string): string {
   if (s === "qr") return "QR Code";
   if (s === "email") return "Email Link";
   if (s === "sms") return "SMS / Text";
+  if (s === "open_house") return "Open House";
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
@@ -38,6 +39,7 @@ function sourceColor(source: string): string {
     direct: "bg-gray-400",
     qr: "bg-emerald-500",
     email: "bg-purple-500",
+    open_house: "bg-orange-500",
   };
   return palette[s] || "bg-gray-400";
 }

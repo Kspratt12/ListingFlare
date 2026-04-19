@@ -43,6 +43,7 @@ function formatSource(source: string): string {
   if (s === "qr") return "QR Code";
   if (s === "email") return "Email";
   if (s === "sms") return "SMS / Text";
+  if (s === "open_house") return "Open House";
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
