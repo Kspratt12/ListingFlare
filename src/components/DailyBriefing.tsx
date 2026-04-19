@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Sparkles, CalendarClock, Flame, ArrowRight, Bell, Bot } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
+import { Sparkles, CalendarClock, Flame, ArrowRight, Bell, Bot, Loader2 } from "lucide-react";
 
 interface Briefing {
   firstName: string;
@@ -30,6 +31,30 @@ function getClientGreeting(): string {
 export default function DailyBriefing() {
   const [data, setData] = useState<Briefing | null>(null);
   const [loading, setLoading] = useState(true);
+  const [togglingAi, setTogglingAi] = useState(false);
+
+  const toggleAiMode = async () => {
+    if (!data || togglingAi) return;
+    const newValue = !data.aiApprovalMode;
+    // Optimistic update
+    setData({ ...data, aiApprovalMode: newValue });
+    setTogglingAi(true);
+    try {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error("Not authenticated");
+      const { error } = await supabase
+        .from("agent_profiles")
+        .update({ ai_approval_mode: newValue })
+        .eq("id", user.id);
+      if (error) throw error;
+    } catch {
+      // Revert on failure
+      setData((prev) => (prev ? { ...prev, aiApprovalMode: !newValue } : prev));
+    } finally {
+      setTogglingAi(false);
+    }
+  };
 
   useEffect(() => {
     let active = true;
@@ -73,18 +98,27 @@ export default function DailyBriefing() {
             {getClientGreeting()}, {data.firstName}
           </h3>
         </div>
-        <Link
-          href="/dashboard/settings"
-          className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-colors ${
+        <button
+          type="button"
+          onClick={toggleAiMode}
+          disabled={togglingAi}
+          title={data.aiApprovalMode
+            ? "AI drafts replies but waits for your review. Click to switch to instant Auto-Reply."
+            : "AI auto-sends replies instantly. Click to switch to Review Mode."}
+          className={`group inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-all disabled:opacity-60 ${
             data.aiApprovalMode
               ? "border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100"
               : "border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
           }`}
-          title="Manage AI settings"
         >
-          <Bot className="h-3 w-3" />
+          {togglingAi ? (
+            <Loader2 className="h-3 w-3 animate-spin" />
+          ) : (
+            <Bot className="h-3 w-3" />
+          )}
           AI {data.aiApprovalMode ? "Review Mode" : "Auto-Reply ON"}
-        </Link>
+          <span className="text-[9px] opacity-60 group-hover:opacity-100">click to toggle</span>
+        </button>
       </div>
 
       {!hasBriefing && (
