@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { TrendingDown, TrendingUp, Tag, Clock } from "lucide-react";
 import type { PriceHistoryEntry } from "@/lib/types";
 
@@ -45,20 +46,22 @@ function PriceTrajectoryChart({
 }: {
   chronological: PriceHistoryEntry[];
 }) {
+  const [hoverIdx, setHoverIdx] = useState<number | null>(null);
+
   if (chronological.length < 2) return null;
 
   const W = 800;
-  const H = 180;
+  const H = 200;
   const PAD_X = 30;
-  const PAD_TOP = 24;
-  const PAD_BOTTOM = 36;
+  const PAD_TOP = 32;
+  const PAD_BOTTOM = 40;
   const innerW = W - PAD_X * 2;
   const innerH = H - PAD_TOP - PAD_BOTTOM;
 
   const prices = chronological.map((e) => e.price);
   const maxPrice = Math.max(...prices);
   const minPrice = Math.min(...prices);
-  const priceRange = Math.max(maxPrice - minPrice, 1); // avoid divide-by-zero
+  const priceRange = Math.max(maxPrice - minPrice, 1);
 
   const times = chronological.map((e) => new Date(e.date).getTime());
   const minTime = Math.min(...times);
@@ -75,8 +78,9 @@ function PriceTrajectoryChart({
     .map((p, i) => `${i === 0 ? "M" : "L"} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`)
     .join(" ");
 
-  // Build the filled area under the line for a Zillow-style shaded curve
   const areaD = `${pathD} L ${points[points.length - 1].x.toFixed(1)} ${PAD_TOP + innerH} L ${points[0].x.toFixed(1)} ${PAD_TOP + innerH} Z`;
+
+  const hover = hoverIdx != null ? points[hoverIdx] : null;
 
   return (
     <div className="mt-8 overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 shadow-sm shadow-gray-200/40 md:p-6">
@@ -90,7 +94,7 @@ function PriceTrajectoryChart({
           {new Date(maxTime).toLocaleDateString("en-US", { month: "short", year: "numeric" })}
         </p>
       </div>
-      <svg viewBox={`0 0 ${W} ${H}`} className="h-44 w-full md:h-52" preserveAspectRatio="none">
+      <svg viewBox={`0 0 ${W} ${H}`} className="h-48 w-full md:h-56" preserveAspectRatio="none">
         <defs>
           <linearGradient id="priceArea" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="var(--agent-brand, #b8965a)" stopOpacity="0.28" />
@@ -98,7 +102,6 @@ function PriceTrajectoryChart({
           </linearGradient>
         </defs>
 
-        {/* Horizontal guide lines — min, mid, max */}
         {[0, 0.5, 1].map((t) => (
           <line
             key={t}
@@ -112,7 +115,6 @@ function PriceTrajectoryChart({
           />
         ))}
 
-        {/* Min / Max labels */}
         <text x={PAD_X} y={PAD_TOP - 8} fontSize="10" fill="#9ca3af" fontWeight="600">
           ${Math.round(maxPrice).toLocaleString()}
         </text>
@@ -120,10 +122,7 @@ function PriceTrajectoryChart({
           ${Math.round(minPrice).toLocaleString()}
         </text>
 
-        {/* Shaded area under the line */}
         <path d={areaD} fill="url(#priceArea)" />
-
-        {/* Trend line */}
         <path
           d={pathD}
           fill="none"
@@ -133,20 +132,70 @@ function PriceTrajectoryChart({
           strokeLinejoin="round"
         />
 
-        {/* Point markers */}
+        {/* Point markers — larger + brand fill on hover */}
         {points.map((p, i) => (
           <g key={i}>
+            {/* Transparent larger hit target — makes hover forgiving on small dots */}
             <circle
               cx={p.x}
               cy={p.y}
-              r={5}
-              fill="white"
+              r={16}
+              fill="transparent"
+              className="cursor-pointer"
+              onMouseEnter={() => setHoverIdx(i)}
+              onMouseLeave={() => setHoverIdx(null)}
+            />
+            <circle
+              cx={p.x}
+              cy={p.y}
+              r={hoverIdx === i ? 7 : 5}
+              fill={hoverIdx === i ? "var(--agent-brand, #b8965a)" : "white"}
               stroke="var(--agent-brand, #b8965a)"
               strokeWidth={2.5}
+              style={{ transition: "r 0.15s ease, fill 0.15s ease" }}
             />
           </g>
         ))}
+
+        {/* Tooltip */}
+        {hover && (
+          <g pointerEvents="none">
+            {(() => {
+              const tooltipW = 150;
+              const tooltipH = 44;
+              // Keep tooltip inside chart bounds
+              const tx = Math.min(Math.max(hover.x - tooltipW / 2, PAD_X), W - PAD_X - tooltipW);
+              const ty = Math.max(hover.y - tooltipH - 14, 2);
+              return (
+                <>
+                  <rect
+                    x={tx}
+                    y={ty}
+                    width={tooltipW}
+                    height={tooltipH}
+                    rx={8}
+                    fill="#0a0a0a"
+                    opacity={0.92}
+                  />
+                  <text x={tx + 12} y={ty + 18} fontSize="12" fill="white" fontWeight="700">
+                    ${Math.round(hover.price).toLocaleString()}
+                  </text>
+                  <text x={tx + 12} y={ty + 34} fontSize="10" fill="rgba(255,255,255,0.7)">
+                    {new Date(hover.date).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </text>
+                </>
+              );
+            })()}
+          </g>
+        )}
       </svg>
+      <p className="mt-2 text-center text-[10px] text-gray-400">
+        Hover or tap any point to see the exact price and date
+      </p>
     </div>
   );
 }

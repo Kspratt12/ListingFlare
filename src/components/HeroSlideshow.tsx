@@ -2,15 +2,28 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, TrendingDown } from "lucide-react";
 import { formatPrice } from "@/lib/demo-data";
 import type { PropertyListing } from "@/lib/demo-data";
 
 interface Props {
   listing: PropertyListing;
+  // Optional reduction summary computed by the parent from price_history.
+  // When provided, renders a prominent "Price improved" badge next to the
+  // price — like Zillow's price-cut label but derived from the agent's
+  // actual saved price changes, no separate entry required.
+  priceReduction?: {
+    originalPrice: number;
+    amountOff: number;
+    pctOff: number;
+  } | null;
 }
 
-export default function HeroSlideshow({ listing }: Props) {
+function formatMoney(n: number): string {
+  return `$${Math.round(n).toLocaleString()}`;
+}
+
+export default function HeroSlideshow({ listing, priceReduction }: Props) {
   const [current, setCurrent] = useState(0);
   const photos = listing.photos.slice(0, 5); // Use first 5 for hero
 
@@ -105,11 +118,26 @@ export default function HeroSlideshow({ listing }: Props) {
             {listing.address.city}, {listing.address.state}{" "}
             {listing.address.zip}
           </p>
-          <div className="mt-6 flex flex-wrap items-center gap-6 text-white/90">
-            <span className="font-serif text-3xl font-semibold md:text-4xl">
-              {formatPrice(listing.price)}
-            </span>
-            <span className="h-8 w-px bg-white/30" />
+          <div className="mt-6 flex flex-wrap items-center gap-4 text-white/90 md:gap-6">
+            <div className="flex flex-col">
+              {priceReduction && (
+                <span className="mb-1 text-sm text-white/60 line-through decoration-white/40">
+                  {formatMoney(priceReduction.originalPrice)}
+                </span>
+              )}
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="font-serif text-3xl font-semibold md:text-4xl">
+                  {formatPrice(listing.price)}
+                </span>
+                {priceReduction && (
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/95 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-emerald-500/30">
+                    <TrendingDown className="h-3 w-3" />
+                    Price Improved · Save {formatMoney(priceReduction.amountOff)} ({priceReduction.pctOff.toFixed(1)}%)
+                  </span>
+                )}
+              </div>
+            </div>
+            <span className="hidden h-8 w-px bg-white/30 sm:block" />
             <span>{listing.beds} Beds</span>
             <span>{listing.baths} Baths</span>
             <span>{listing.sqft.toLocaleString()} Sq Ft</span>

@@ -177,7 +177,30 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
 
       <LiveViewerCounter listingId={listing.id} />
 
-      <HeroSlideshow listing={propertyData} />
+      {/* Compute the price-reduction summary from price_history so the
+          hero can show a Zillow-style "Price improved" badge automatically.
+          Uses the earliest "listed" or "relisted" event as the baseline;
+          falls back to the oldest event in the history. Only shown when
+          the current price is meaningfully lower (>$1). */}
+      {(() => {
+        const history = listing.price_history || [];
+        if (history.length < 2 || !(listing.price > 0)) return (
+          <HeroSlideshow listing={propertyData} />
+        );
+        const chron = [...history].sort(
+          (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+        );
+        const baseline =
+          chron.find((h) => h.event === "listed" || h.event === "relisted") || chron[0];
+        const originalPrice = baseline?.price || 0;
+        const amountOff = originalPrice - listing.price;
+        const pctOff = originalPrice > 0 ? (amountOff / originalPrice) * 100 : 0;
+        const reduction =
+          amountOff > 1 && originalPrice > 0
+            ? { originalPrice, amountOff, pctOff }
+            : null;
+        return <HeroSlideshow listing={propertyData} priceReduction={reduction} />;
+      })()}
       <ListingStatsBar
         price={listing.price}
         sqft={listing.sqft}
