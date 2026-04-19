@@ -16,6 +16,8 @@ import VirtualTourEmbed from "@/components/VirtualTourEmbed";
 import MortgageCalculator from "@/components/MortgageCalculator";
 import NeighborhoodInfo from "@/components/NeighborhoodInfo";
 import OtherListings from "@/components/OtherListings";
+import PriceHistory from "@/components/PriceHistory";
+import PropertyAttributes from "@/components/PropertyAttributes";
 
 const ListingChat = dynamic(() => import("@/components/ListingChat"), {
   ssr: false,
@@ -158,6 +160,33 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
         <VirtualTourEmbed src={listing.virtual_tour_url} />
       )}
 
+      <PropertyAttributes
+        propertySubtype={listing.property_subtype}
+        architecturalStyle={listing.architectural_style}
+        yearBuilt={listing.year_built}
+        stories={listing.stories}
+        lotSize={listing.lot_size}
+        county={listing.county}
+        subdivision={listing.subdivision}
+        mlsId={listing.mls_id}
+        parkingSpaces={listing.parking_spaces}
+        propertyTaxAnnual={listing.property_tax_annual}
+        hoaRequired={listing.hoa_required}
+        hoaFeeMonthly={listing.hoa_fee_monthly}
+        heatingType={listing.heating_type}
+        coolingType={listing.cooling_type}
+        waterSource={listing.water_source}
+        sewerType={listing.sewer_type}
+        roofType={listing.roof_type}
+        constructionMaterial={listing.construction_material}
+        foundationType={listing.foundation_type}
+        appliances={listing.appliances_included}
+      />
+
+      {listing.price_history && listing.price_history.length > 0 && (
+        <PriceHistory history={listing.price_history} currentPrice={listing.price} />
+      )}
+
       {listing.price > 0 && (
         <MortgageCalculator listingPrice={listing.price} state={listing.state} />
       )}
@@ -168,6 +197,9 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
           city={listing.city}
           state={listing.state}
           zip={listing.zip || ""}
+          schoolElementary={listing.school_elementary}
+          schoolMiddle={listing.school_middle}
+          schoolHigh={listing.school_high}
         />
       )}
 

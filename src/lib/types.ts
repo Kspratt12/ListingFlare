@@ -33,6 +33,12 @@ export interface ListingPhoto {
   alt: string;
 }
 
+export interface PriceHistoryEntry {
+  date: string; // ISO string
+  price: number;
+  event: "listed" | "reduced" | "increased" | "pending" | "sold" | "relisted";
+}
+
 export interface Listing {
   id: string;
   agent_id: string;
@@ -56,6 +62,29 @@ export interface Listing {
   view_count: number;
   created_at: string;
   updated_at: string;
+  // MLS-parity fields (all optional)
+  price_history?: PriceHistoryEntry[];
+  mls_id?: string | null;
+  county?: string | null;
+  subdivision?: string | null;
+  architectural_style?: string | null;
+  property_subtype?: string | null;
+  stories?: number | null;
+  parking_spaces?: number | null;
+  property_tax_annual?: number | null;
+  hoa_required?: boolean;
+  hoa_fee_monthly?: number | null;
+  heating_type?: string | null;
+  cooling_type?: string | null;
+  water_source?: string | null;
+  sewer_type?: string | null;
+  roof_type?: string | null;
+  construction_material?: string | null;
+  foundation_type?: string | null;
+  appliances_included?: string[];
+  school_elementary?: string | null;
+  school_middle?: string | null;
+  school_high?: string | null;
 }
 
 export interface ListingVideo {

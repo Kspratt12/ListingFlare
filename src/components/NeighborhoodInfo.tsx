@@ -7,9 +7,21 @@ interface Props {
   city: string;
   state: string;
   zip: string;
+  schoolElementary?: string | null;
+  schoolMiddle?: string | null;
+  schoolHigh?: string | null;
 }
 
-export default function NeighborhoodInfo({ street, city, state, zip }: Props) {
+export default function NeighborhoodInfo({
+  street,
+  city,
+  state,
+  zip,
+  schoolElementary,
+  schoolMiddle,
+  schoolHigh,
+}: Props) {
+  const hasNamedSchools = Boolean(schoolElementary || schoolMiddle || schoolHigh);
   const fullAddress = `${street}, ${city}, ${state} ${zip}`;
   const encoded = encodeURIComponent(fullAddress);
 
@@ -85,26 +97,66 @@ export default function NeighborhoodInfo({ street, city, state, zip }: Props) {
               </span>
             </a>
 
-            <a
-              href={greatSchoolsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col gap-3 rounded-2xl border border-gray-200 bg-white p-5 transition-shadow hover:shadow-md"
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-                <GraduationCap className="h-5 w-5" />
+            {hasNamedSchools ? (
+              <div className="flex flex-col gap-3 rounded-2xl border border-gray-200 bg-white p-5">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                  <GraduationCap className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-lg font-semibold text-gray-900">Schools</h3>
+                  <ul className="mt-2 space-y-1 text-sm text-gray-700">
+                    {schoolElementary && (
+                      <li className="flex items-start gap-2">
+                        <span className="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-gray-400">Elem</span>
+                        <span>{schoolElementary}</span>
+                      </li>
+                    )}
+                    {schoolMiddle && (
+                      <li className="flex items-start gap-2">
+                        <span className="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-gray-400">Mid</span>
+                        <span>{schoolMiddle}</span>
+                      </li>
+                    )}
+                    {schoolHigh && (
+                      <li className="flex items-start gap-2">
+                        <span className="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-gray-400">High</span>
+                        <span>{schoolHigh}</span>
+                      </li>
+                    )}
+                  </ul>
+                </div>
+                <a
+                  href={greatSchoolsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto inline-flex items-center gap-1 text-xs font-medium text-brand-700 hover:underline"
+                >
+                  See ratings on GreatSchools
+                  <ExternalLink className="h-3 w-3" />
+                </a>
               </div>
-              <div>
-                <h3 className="font-serif text-lg font-semibold text-gray-900">Schools</h3>
-                <p className="mt-1 text-sm text-gray-500">
-                  See elementary, middle, and high school ratings near this address on GreatSchools.
-                </p>
-              </div>
-              <span className="mt-auto inline-flex items-center gap-1 text-xs font-medium text-brand-700 group-hover:underline">
-                Open GreatSchools
-                <ExternalLink className="h-3 w-3" />
-              </span>
-            </a>
+            ) : (
+              <a
+                href={greatSchoolsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col gap-3 rounded-2xl border border-gray-200 bg-white p-5 transition-shadow hover:shadow-md"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                  <GraduationCap className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-lg font-semibold text-gray-900">Schools</h3>
+                  <p className="mt-1 text-sm text-gray-500">
+                    See elementary, middle, and high school ratings near this address on GreatSchools.
+                  </p>
+                </div>
+                <span className="mt-auto inline-flex items-center gap-1 text-xs font-medium text-brand-700 group-hover:underline">
+                  Open GreatSchools
+                  <ExternalLink className="h-3 w-3" />
+                </span>
+              </a>
+            )}
           </div>
         </div>
       </div>

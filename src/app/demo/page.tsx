@@ -12,6 +12,8 @@ import VirtualTourEmbed from "@/components/VirtualTourEmbed";
 import Footer from "@/components/Footer";
 import MortgageCalculator from "@/components/MortgageCalculator";
 import NeighborhoodInfo from "@/components/NeighborhoodInfo";
+import PriceHistory from "@/components/PriceHistory";
+import PropertyAttributes from "@/components/PropertyAttributes";
 import Link from "next/link";
 import { ArrowRight, X } from "lucide-react";
 import { useState } from "react";
@@ -73,6 +75,44 @@ export default function DemoPage() {
 
       <VirtualTourEmbed src="https://my.matterport.com/show?play=1&lang=en-US&m=d7Kai9ZKt4D&hl=0&ts=0&brand=0" />
 
+      <PropertyAttributes
+        propertySubtype="Single Family Residence"
+        architecturalStyle="Contemporary"
+        yearBuilt={demoListing.yearBuilt}
+        stories={2}
+        lotSize={demoListing.lotSize}
+        county="Los Angeles"
+        subdivision="Palisades Highlands"
+        mlsId="LA-2026-0048321"
+        parkingSpaces={3}
+        propertyTaxAnnual={35625}
+        hoaRequired={false}
+        heatingType="Forced Air, Zoned"
+        coolingType="Central Air, Zoned"
+        waterSource="Public"
+        sewerType="Public Sewer"
+        roofType="Standing Seam Metal"
+        constructionMaterial="Stucco, Stone"
+        foundationType="Slab"
+        appliances={[
+          "Gaggenau Refrigerator",
+          "Wolf Range",
+          "Miele Dishwasher",
+          "Sub-Zero Wine Fridge",
+          "Double Oven",
+          "Washer/Dryer",
+        ]}
+      />
+
+      <PriceHistory
+        currentPrice={demoListing.price}
+        history={[
+          { date: "2026-02-14T12:00:00Z", price: 5100000, event: "listed" },
+          { date: "2026-03-22T12:00:00Z", price: 4900000, event: "reduced" },
+          { date: "2026-04-11T12:00:00Z", price: 4750000, event: "reduced" },
+        ]}
+      />
+
       <MortgageCalculator
         listingPrice={demoListing.price}
         state={demoListing.address.state}
@@ -83,6 +123,9 @@ export default function DemoPage() {
         city={demoListing.address.city}
         state={demoListing.address.state}
         zip={demoListing.address.zip}
+        schoolElementary="Palisades Charter Elementary"
+        schoolMiddle="Paul Revere Middle School"
+        schoolHigh="Palisades Charter High School"
       />
 
       <AgentBranding agent={demoListing.agent} agentId="demo" />
