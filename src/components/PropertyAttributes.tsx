@@ -60,16 +60,18 @@ function Section({
   const visible = rows.filter((r) => r.value);
   if (visible.length === 0) return null;
   return (
-    <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
-      <div className="flex items-center gap-2 border-b border-gray-100 bg-gray-50/50 px-5 py-3">
-        <Icon className="h-4 w-4 text-brand-600" />
-        <h3 className="text-sm font-semibold text-gray-900">{title}</h3>
+    <div className="group snap-start overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-white via-white to-gray-50/40 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-gray-200/40">
+      <div className="flex items-center gap-3 border-b border-gray-100 bg-gradient-to-r from-gray-50/80 via-white to-gray-50/40 px-5 py-4">
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-100">
+          <Icon className="h-4 w-4" />
+        </div>
+        <h3 className="font-serif text-base font-semibold text-gray-900">{title}</h3>
       </div>
       <dl className="divide-y divide-gray-100">
         {visible.map((row) => (
-          <div key={row.label} className="flex items-start justify-between gap-4 px-5 py-3">
-            <dt className="text-xs font-medium uppercase tracking-wider text-gray-500">{row.label}</dt>
-            <dd className="text-right text-sm font-medium text-gray-900">{row.value}</dd>
+          <div key={row.label} className="flex items-start justify-between gap-4 px-5 py-3 transition-colors hover:bg-gray-50/50">
+            <dt className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">{row.label}</dt>
+            <dd className="text-right text-sm font-semibold text-gray-900">{row.value}</dd>
           </div>
         ))}
       </dl>
@@ -143,13 +145,16 @@ export default function PropertyAttributes(props: Props) {
           </h2>
         </div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-2">
-          <Section title="General" icon={Home} rows={generalRows} />
-          <Section title="Costs" icon={Info} rows={costRows} />
-          <Section title="Interior" icon={Sofa} rows={interiorRows} />
-          <Section title="Systems" icon={Thermometer} rows={systemsRows} />
-          <Section title="Construction" icon={Hammer} rows={constructionRows} />
+        {/* Mobile: horizontal swipe carousel with snap-scroll.
+            Desktop: 2-column grid. */}
+        <div className="mt-8 -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-6 pb-4 md:mx-0 md:grid md:snap-none md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <div className="w-[85%] flex-shrink-0 md:w-auto"><Section title="General" icon={Home} rows={generalRows} /></div>
+          <div className="w-[85%] flex-shrink-0 md:w-auto"><Section title="Costs" icon={Info} rows={costRows} /></div>
+          <div className="w-[85%] flex-shrink-0 md:w-auto"><Section title="Interior" icon={Sofa} rows={interiorRows} /></div>
+          <div className="w-[85%] flex-shrink-0 md:w-auto"><Section title="Systems" icon={Thermometer} rows={systemsRows} /></div>
+          <div className="w-[85%] flex-shrink-0 md:w-auto"><Section title="Construction" icon={Hammer} rows={constructionRows} /></div>
         </div>
+        <p className="mt-2 text-center text-[11px] text-gray-400 md:hidden">Swipe to see all details →</p>
 
         {appliances && (
           <div className="mt-4 overflow-hidden rounded-2xl border border-gray-200 bg-white">

@@ -553,3 +553,10 @@ input[type="number"]::-webkit-inner-spin-button {
 /* Gradients that reference brand colors via Tailwind's from-brand / to-brand */
 .agent-brand-override .from-brand-50 { --tw-gradient-from: color-mix(in srgb, var(--agent-brand, #b8965a) 12%, white) !important; }
 .agent-brand-override .to-brand-500 { --tw-gradient-to: var(--agent-brand, #b8965a) !important; }
+
+/* Tailwind opacity suffix classes (e.g. bg-brand-500/20) compile to
+   escaped-slash class names and bake the alpha into the background.
+   Override them for common opacities used in the ShowingScheduler. */
+.agent-brand-override .bg-brand-500\/10 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 10%, transparent) !important; }
+.agent-brand-override .bg-brand-500\/20 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 20%, transparent) !important; }
+.agent-brand-override .bg-brand-500\/40 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 40%, transparent) !important; }
