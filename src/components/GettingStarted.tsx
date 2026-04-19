@@ -57,9 +57,10 @@ export default function GettingStarted() {
           .single(),
         supabase
           .from("listings")
-          .select("id, slug, status")
+          .select("id, slug, status, view_count")
           .eq("agent_id", user.id)
           .eq("status", "published")
+          .order("created_at", { ascending: false })
           .limit(1),
         supabase
           .from("leads")
@@ -78,6 +79,7 @@ export default function GettingStarted() {
         profile?.name && profile?.phone && (profile?.brokerage || profile?.headshot_url)
       );
       const hasPublishedListing = Boolean(firstListing);
+      const hasViews = (firstListing?.view_count || 0) > 0;
       const hasLead = (leadsResult.count || 0) > 0;
       const hasShowing = (showingsResult.count || 0) > 0;
       const googleConnected = Boolean(profile?.google_access_token);
@@ -104,10 +106,16 @@ export default function GettingStarted() {
         {
           id: "share",
           title: "Share your listing URL",
-          description: "Drop the link in your Zillow bio, Instagram, email signature, text blasts, or on a sign rider.",
+          description: "Drop the link in your Zillow bio, Instagram, email signature, text blasts, or on a sign rider. You'll know it worked when views come in.",
           icon: Share2,
-          done: hasLead,
-          action: { label: "See My Listings", href: "/dashboard" },
+          done: hasViews || hasLead,
+          action: hasPublishedListing && firstListing
+            ? {
+                label: "View My Listing",
+                href: firstListing.slug ? `/listing/${firstListing.slug}` : `/listing/${firstListing.id}`,
+                external: true,
+              }
+            : undefined,
         },
         {
           id: "lead",
