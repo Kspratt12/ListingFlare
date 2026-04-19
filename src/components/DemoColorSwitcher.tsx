@@ -27,6 +27,16 @@ export default function DemoColorSwitcher({ topOffset = false }: { topOffset?: b
     document.documentElement.style.setProperty("--agent-brand", active);
   }, [active]);
 
+  // On unmount (visitor navigates away from /demo), clear the CSS
+  // variable so the demo color choice can't bleed into the dashboard,
+  // other agents' listings, or any other page. Each page that cares
+  // about the brand color sets its own value on mount.
+  useEffect(() => {
+    return () => {
+      document.documentElement.style.removeProperty("--agent-brand");
+    };
+  }, []);
+
   // Auto-collapse when the user starts scrolling so the swatches don't
   // compete with content. They can click the palette icon to re-expand.
   useEffect(() => {
