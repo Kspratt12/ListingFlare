@@ -68,7 +68,10 @@ function LeadCardContent({ lead, dragging }: { lead: Lead; dragging?: boolean })
             )}
           </div>
           {lead.listing && (
-            <p className="mt-0.5 flex items-center gap-1 truncate text-xs text-gray-500">
+            <p
+              title={`${lead.listing.street}, ${lead.listing.city}, ${lead.listing.state}`}
+              className="mt-0.5 flex items-center gap-1 truncate text-xs text-gray-500"
+            >
               <Home className="h-3 w-3 flex-shrink-0" />
               {lead.listing.street}
             </p>

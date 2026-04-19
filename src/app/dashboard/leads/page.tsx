@@ -614,13 +614,19 @@ export default function LeadsPage() {
                     </td>
                     <td className="px-5 py-4">
                       {lead.listing && (
-                        <div className="flex items-center gap-1.5 text-sm text-gray-600">
+                        <div
+                          title={`${lead.listing.street}, ${lead.listing.city}, ${lead.listing.state}`}
+                          className="flex items-center gap-1.5 text-sm text-gray-600"
+                        >
                           <Home className="h-3.5 w-3.5 flex-shrink-0 text-gray-400" />
                           <span className="truncate">{lead.listing.street}</span>
                         </div>
                       )}
                       {lead.listing && (
-                        <div className="mt-0.5 truncate pl-5 text-xs text-gray-400">
+                        <div
+                          title={`${lead.listing.street}, ${lead.listing.city}, ${lead.listing.state}`}
+                          className="mt-0.5 truncate pl-5 text-xs text-gray-400"
+                        >
                           {lead.listing.city}, {lead.listing.state}
                         </div>
                       )}
