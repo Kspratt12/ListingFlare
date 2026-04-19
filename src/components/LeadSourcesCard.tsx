@@ -43,10 +43,11 @@ function sourceColor(source: string): string {
 }
 
 export default function LeadSourcesCard({ leads }: Props) {
-  // Count leads by source
+  // Only count leads with a REAL source set (null = predates attribution, skip it)
   const counts = new Map<string, { total: number; hot: number }>();
   for (const lead of leads) {
-    const source = lead.source || "direct";
+    if (!lead.source) continue;
+    const source = lead.source;
     const entry = counts.get(source) || { total: 0, hot: 0 };
     entry.total++;
     // "Hot" = pre-approved or cash buyer or showing/offer/contract status
@@ -58,9 +59,11 @@ export default function LeadSourcesCard({ leads }: Props) {
     counts.set(source, entry);
   }
 
-  // Need at least 3 leads with sources for this card to be useful
-  const totalWithSource = Array.from(counts.values()).reduce((sum, c) => sum + c.total, 0);
-  if (totalWithSource < 3) return null;
+  // Hide until there's real source variety — one bar at 100% is useless.
+  // Need 2+ distinct sources OR any non-direct source to be insightful.
+  const distinctSources = counts.size;
+  const hasNonDirect = Array.from(counts.keys()).some((s) => s.toLowerCase() !== "direct");
+  if (distinctSources < 2 && !hasNonDirect) return null;
 
   // Sort by total descending
   const sorted = Array.from(counts.entries()).sort(([, a], [, b]) => b.total - a.total);
