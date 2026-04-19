@@ -23,6 +23,7 @@ import AddressAutocomplete from "@/components/AddressAutocomplete";
 import { formatNumber, parseNumber, formatLotSize } from "@/lib/formatters";
 import { validateUpload } from "@/lib/validateUpload";
 import { getSubscriptionLimits } from "@/lib/subscription";
+import SellerPortalCard from "@/components/SellerPortalCard";
 // UpgradePrompt available if needed for future gating
 
 const US_STATES = [
@@ -864,6 +865,9 @@ export default function EditListingPage() {
             </div>
           )}
         </section>
+
+        {/* Seller Portal */}
+        <SellerPortalCard listingId={listingId} />
 
         {/* Actions */}
         <div className="flex flex-col gap-3 border-t border-gray-200 pb-10 pt-6 sm:flex-row sm:items-center sm:justify-between">
