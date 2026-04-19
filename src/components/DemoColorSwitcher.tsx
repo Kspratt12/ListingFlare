@@ -37,20 +37,9 @@ export default function DemoColorSwitcher({ topOffset = false }: { topOffset?: b
     };
   }, []);
 
-  // Auto-collapse when the user starts scrolling so the swatches don't
-  // compete with content. They can click the palette icon to re-expand.
-  useEffect(() => {
-    let lastY = window.scrollY;
-    const onScroll = () => {
-      const y = window.scrollY;
-      if (Math.abs(y - lastY) > 40) {
-        setExpanded(false);
-      }
-      lastY = y;
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  // No scroll auto-collapse — the agent explicitly wants the picker to
+  // stay where they left it as they scroll the listing. The Palette
+  // toggle button is always the way in or out.
 
   return (
     <div

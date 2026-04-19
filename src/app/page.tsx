@@ -2086,23 +2086,36 @@ export default function LandingPage() {
             </h2>
           </motion.div>
 
-          <div className="mt-14 space-y-6">
+          {/* Native details/summary for zero-JS, SEO-friendly, accessible
+              accordion. The first item is open by default so the section
+              doesn't feel like an empty wall of closed rows. */}
+          <div className="mt-14 space-y-4">
             {faqs.map((faq, i) => (
-              <motion.div
+              <motion.details
                 key={i}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="rounded-xl border border-gray-200 bg-gray-50/50 p-6"
+                {...(i === 0 ? { open: true } : {})}
+                className="group overflow-hidden rounded-xl border border-gray-200 bg-gray-50/50 transition-colors hover:border-brand-300"
               >
-                <h3 className="font-serif text-lg font-bold text-gray-900">
-                  {faq.question}
-                </h3>
-                <p className="mt-3 leading-relaxed text-gray-600">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-serif text-lg font-bold text-gray-900 [&::-webkit-details-marker]:hidden">
+                  <span className="flex-1">{faq.question}</span>
+                  <span
+                    aria-hidden="true"
+                    className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-gray-300 text-gray-500 transition-all group-open:rotate-45 group-open:border-brand-400 group-open:text-brand-600"
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </span>
+                </summary>
+                <p className="px-6 pb-6 leading-relaxed text-gray-600">
                   {faq.answer}
                 </p>
-              </motion.div>
+              </motion.details>
             ))}
           </div>
         </div>
