@@ -10,6 +10,9 @@ import DemoLeadForm from "@/components/DemoLeadForm";
 import ListingChat from "@/components/ListingChat";
 import VirtualTourEmbed from "@/components/VirtualTourEmbed";
 import Footer from "@/components/Footer";
+import MortgageCalculator from "@/components/MortgageCalculator";
+import NeighborhoodInfo from "@/components/NeighborhoodInfo";
+import ShareListingButton from "@/components/ShareListingButton";
 import Link from "next/link";
 import { ArrowRight, X } from "lucide-react";
 import { useState } from "react";
@@ -67,6 +70,18 @@ export default function DemoPage() {
 
       <VirtualTourEmbed src="https://my.matterport.com/show?play=1&lang=en-US&m=d7Kai9ZKt4D&hl=0&ts=0&brand=0" />
 
+      <MortgageCalculator
+        listingPrice={demoListing.price}
+        state={demoListing.address.state}
+      />
+
+      <NeighborhoodInfo
+        street={demoListing.address.street}
+        city={demoListing.address.city}
+        state={demoListing.address.state}
+        zip={demoListing.address.zip}
+      />
+
       <AgentBranding agent={demoListing.agent} agentId="demo" />
       <DemoLeadForm />
       <ListingChat
@@ -91,6 +106,11 @@ export default function DemoPage() {
         isDemo
       />
       <Footer />
+
+      <ShareListingButton
+        title={`${demoListing.address.street}, ${demoListing.address.city}`}
+        url="/demo"
+      />
     </main>
   );
 }
