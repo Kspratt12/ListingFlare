@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, X, Share2, Check, Link2, Mail, MessageSquare } from "lucide-react";
+import { Menu, X, Share2, Check, Link2, Mail, MessageSquare, Printer } from "lucide-react";
 import Link from "next/link";
 
 const links = [
@@ -16,9 +16,10 @@ interface NavbarProps {
   topOffset?: boolean;
   shareTitle?: string;
   shareUrl?: string;
+  showPrint?: boolean;
 }
 
-export default function Navbar({ topOffset = false, shareTitle, shareUrl }: NavbarProps) {
+export default function Navbar({ topOffset = false, shareTitle, shareUrl, showPrint = false }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [shareMenuOpen, setShareMenuOpen] = useState(false);
@@ -96,6 +97,15 @@ export default function Navbar({ topOffset = false, shareTitle, shareUrl }: Navb
               {link.label}
             </a>
           ))}
+          {showPrint && (
+            <button
+              onClick={() => window.print()}
+              aria-label="Print this listing"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/80 transition-colors hover:border-white/40 hover:text-white"
+            >
+              <Printer className="h-4 w-4" />
+            </button>
+          )}
           {canShare && (
             <div className="relative">
               <button
@@ -178,6 +188,18 @@ export default function Navbar({ topOffset = false, shareTitle, shareUrl }: Navb
               >
                 <Share2 className="h-4 w-4" />
                 Share
+              </button>
+            )}
+            {showPrint && (
+              <button
+                onClick={() => {
+                  setMobileOpen(false);
+                  setTimeout(() => window.print(), 300);
+                }}
+                className="flex items-center gap-2 rounded-lg px-4 py-3 text-left text-sm font-medium uppercase tracking-wider text-white/70 hover:bg-white/5 hover:text-white"
+              >
+                <Printer className="h-4 w-4" />
+                Print
               </button>
             )}
             <a

@@ -456,3 +456,58 @@ input[type="number"]::-webkit-inner-spin-button {
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 }
+
+/* ============================================================
+   Print stylesheet for listing pages.
+   Strips UI chrome (nav, forms, chat) and produces a clean
+   buyer-ready fact sheet.
+   ============================================================ */
+@media print {
+  /* Hide all floating + interactive chrome */
+  nav,
+  .print-hide,
+  iframe,
+  video,
+  form,
+  button,
+  [aria-label="Toggle menu"],
+  [aria-label="Share this listing"],
+  [aria-label="Print this listing"] {
+    display: none !important;
+  }
+
+  /* Force white backgrounds and dark text for print */
+  body, section, div, main {
+    background: #ffffff !important;
+    color: #111827 !important;
+    box-shadow: none !important;
+  }
+
+  /* Preserve photo grid but shrink it */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid;
+  }
+
+  /* Avoid breaking sections across pages */
+  section {
+    page-break-inside: avoid;
+    padding: 1rem 0 !important;
+  }
+
+  /* Tighter fonts for print */
+  h1 { font-size: 24px !important; }
+  h2 { font-size: 18px !important; }
+  h3 { font-size: 14px !important; }
+
+  /* Remove decorative background images/gradients */
+  [style*="background-image"] {
+    background-image: none !important;
+  }
+
+  /* Remove margins and paddings from containers */
+  .mx-auto {
+    max-width: 100% !important;
+  }
+}

@@ -510,6 +510,33 @@ export default function EditListingPage() {
       setPriceHistory(nextHistory);
       setLoadedPrice(newPrice);
 
+      // Fire subscriber alerts if the price changed or a major status transition happened
+      const didAddHistory = nextHistory.length > priceHistory.length;
+      if (didAddHistory) {
+        const latest = nextHistory[nextHistory.length - 1];
+        const mapEventToAlert: Record<string, string | null> = {
+          listed: null, // Don't email on initial listing - subscribers don't exist yet
+          reduced: "reduced",
+          increased: "increased",
+          pending: "pending",
+          sold: "sold",
+          relisted: "relisted",
+        };
+        const alertEvent = mapEventToAlert[latest.event];
+        if (alertEvent) {
+          fetch("/api/listings/alerts/fire", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              listingId,
+              event: alertEvent,
+              oldPrice: loadedPrice,
+              newPrice,
+            }),
+          }).catch((err) => console.error("Alert fire error:", err));
+        }
+      }
+
       // If transitioning to published from a non-published state, notify past leads (non-blocking)
       if (status === "published" && currentStatus !== "published") {
         fetch("/api/listings/notify-past-leads", {

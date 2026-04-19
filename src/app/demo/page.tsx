@@ -67,6 +67,7 @@ export default function DemoPage() {
         topOffset={bannerVisible}
         shareTitle={`${demoListing.address.street}, ${demoListing.address.city}`}
         shareUrl="/demo"
+        showPrint
       />
 
       <HeroSlideshow listing={demoListing} />

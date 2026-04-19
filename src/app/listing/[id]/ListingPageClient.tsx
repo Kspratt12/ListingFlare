@@ -18,6 +18,7 @@ import NeighborhoodInfo from "@/components/NeighborhoodInfo";
 import OtherListings from "@/components/OtherListings";
 import PriceHistory from "@/components/PriceHistory";
 import PropertyAttributes from "@/components/PropertyAttributes";
+import ListingAlertSignup from "@/components/ListingAlertSignup";
 
 const ListingChat = dynamic(() => import("@/components/ListingChat"), {
   ssr: false,
@@ -151,6 +152,7 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
       <Navbar
         shareTitle={`${listing.street}, ${listing.city}`}
         shareUrl={listing.slug ? `/listing/${listing.slug}` : `/listing/${listing.id}`}
+        showPrint
       />
       <HeroSlideshow listing={propertyData} />
       <PropertyDetails listing={propertyData} />
@@ -202,6 +204,11 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
           schoolHigh={listing.school_high}
         />
       )}
+
+      <ListingAlertSignup
+        listingId={listing.id}
+        listingAddress={`${listing.street}, ${listing.city}, ${listing.state}`}
+      />
 
       <AgentBranding agent={propertyData.agent} agentId={listing.agent_id} />
       <ShowingScheduler listingId={listing.id} agentId={listing.agent_id} />
