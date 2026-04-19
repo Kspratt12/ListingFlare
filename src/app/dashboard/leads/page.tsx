@@ -365,7 +365,7 @@ export default function LeadsPage() {
                 onClick={() => setViewMode("pipeline")}
                 className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
                   viewMode === "pipeline"
-                    ? "bg-gray-900 text-white"
+                    ? "bg-orange-500 text-white"
                     : "text-gray-500 hover:text-gray-700"
                 }`}
               >
