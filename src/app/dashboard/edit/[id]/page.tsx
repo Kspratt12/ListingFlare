@@ -116,6 +116,8 @@ export default function EditListingPage() {
   const [fireplaceCount, setFireplaceCount] = useState("");
   const [laundryLocation, setLaundryLocation] = useState("");
   const [basementType, setBasementType] = useState("");
+  const [launchDate, setLaunchDate] = useState("");
+  const [videoIntroUrl, setVideoIntroUrl] = useState("");
   // Track previous price + history so we can auto-log price changes
   const [loadedPrice, setLoadedPrice] = useState<number | null>(null);
   const [priceHistory, setPriceHistory] = useState<Array<{ date: string; price: number; event: string }>>([]);
@@ -292,6 +294,8 @@ export default function EditListingPage() {
       setFireplaceCount(data.fireplace_count ? String(data.fireplace_count) : "");
       setLaundryLocation(data.laundry_location || "");
       setBasementType(data.basement_type || "");
+      setLaunchDate(data.launch_date ? new Date(data.launch_date).toISOString().slice(0, 16) : "");
+      setVideoIntroUrl(data.video_intro_url || "");
       setLoadedPrice(data.price || null);
       setPriceHistory(Array.isArray(data.price_history) ? data.price_history : []);
       setHasUnsavedChanges(false);
@@ -512,6 +516,8 @@ export default function EditListingPage() {
           fireplace_count: fireplaceCount ? parseInt(fireplaceCount) : null,
           laundry_location: laundryLocation || null,
           basement_type: basementType || null,
+          launch_date: launchDate ? new Date(launchDate).toISOString() : null,
+          video_intro_url: videoIntroUrl || null,
           price_history: nextHistory,
           updated_at: new Date().toISOString(),
         })
@@ -1007,6 +1013,35 @@ export default function EditListingPage() {
           )}
         </section>
 
+        {/* Video Intro (personal touch) */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <h2 className="font-serif text-lg font-semibold text-gray-900">Your Video Intro (optional)</h2>
+          <p className="mt-1 text-sm text-gray-500">A 30-second phone video welcoming buyers. Record one on your phone, upload to YouTube (unlisted) or paste a direct MP4 link. Appears above the photo gallery and kills the cold Zillow feel.</p>
+          <input
+            type="url"
+            value={videoIntroUrl}
+            onChange={(e) => { setVideoIntroUrl(e.target.value); setHasUnsavedChanges(true); }}
+            className="mt-4 w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+            placeholder="https://youtu.be/... or direct .mp4 URL"
+          />
+        </section>
+
+        {/* Coming Soon launch date */}
+        {currentStatus === "coming_soon" && (
+          <section className="rounded-xl border border-brand-200 bg-gradient-to-br from-brand-50/60 to-white p-6">
+            <h2 className="font-serif text-lg font-semibold text-gray-900">Launch Date</h2>
+            <p className="mt-1 text-sm text-gray-600">
+              When does this listing go live on MLS? Buyers subscribing from the coming-soon page get an email when you change the status to Published.
+            </p>
+            <input
+              type="datetime-local"
+              value={launchDate}
+              onChange={(e) => { setLaunchDate(e.target.value); setHasUnsavedChanges(true); }}
+              className="mt-4 w-full max-w-md rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+            />
+          </section>
+        )}
+
         {/* Full property details (optional) - collapsible */}
         <section className="rounded-xl border border-gray-200 bg-white p-6">
           <button
@@ -1390,6 +1425,7 @@ export default function EditListingPage() {
                   onChange={(e) => handleSave(e.target.value)}
                   className="rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 cursor-pointer"
                 >
+                  <option value="coming_soon">Coming Soon</option>
                   <option value="published">Published</option>
                   <option value="pending">Pending</option>
                   <option value="closed">Closed</option>

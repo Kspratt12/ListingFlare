@@ -20,6 +20,10 @@ import PriceHistory from "@/components/PriceHistory";
 import PropertyAttributes from "@/components/PropertyAttributes";
 import ListingAlertSignup from "@/components/ListingAlertSignup";
 import ListingStatsBar from "@/components/ListingStatsBar";
+import ComingSoonBanner from "@/components/ComingSoonBanner";
+import LiveViewerCounter from "@/components/LiveViewerCounter";
+import AgentVideoIntro from "@/components/AgentVideoIntro";
+import TestimonialShowcase from "@/components/TestimonialShowcase";
 
 const ListingChat = dynamic(() => import("@/components/ListingChat"), {
   ssr: false,
@@ -155,6 +159,17 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
         shareUrl={listing.slug ? `/listing/${listing.slug}` : `/listing/${listing.id}`}
         showPrint
       />
+
+      {listing.status === "coming_soon" ? (
+        <ComingSoonBanner
+          listingId={listing.id}
+          listingAddress={`${listing.street}, ${listing.city}, ${listing.state}`}
+          launchDate={listing.launch_date || null}
+        />
+      ) : null}
+
+      <LiveViewerCounter listingId={listing.id} />
+
       <HeroSlideshow listing={propertyData} />
       <ListingStatsBar
         price={listing.price}
@@ -164,6 +179,16 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
         createdAt={listing.created_at}
       />
       <PropertyDetails listing={propertyData} />
+
+      {listing.video_intro_url && (
+        <AgentVideoIntro
+          videoUrl={listing.video_intro_url}
+          agentName={agent.name || ""}
+          agentHeadshot={agent.headshot_url}
+          listingAddress={`${listing.street}, ${listing.city}`}
+        />
+      )}
+
       <PhotoGallery photos={propertyData.photos} videos={listing.videos} />
 
       {listing.virtual_tour_url && (
@@ -223,6 +248,8 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
         listingId={listing.id}
         listingAddress={`${listing.street}, ${listing.city}, ${listing.state}`}
       />
+
+      <TestimonialShowcase agentId={listing.agent_id} />
 
       <AgentBranding agent={propertyData.agent} agentId={listing.agent_id} />
       <ShowingScheduler listingId={listing.id} agentId={listing.agent_id} />

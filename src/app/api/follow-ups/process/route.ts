@@ -34,7 +34,18 @@ export async function GET(req: NextRequest) {
   }
 
   const db = getAdminClient();
-  const now = new Date().toISOString();
+  const nowDate = new Date();
+  const now = nowDate.toISOString();
+
+  // If today is the 1st of the month, also fire monthly ROI summary emails.
+  // Chained here because Vercel Hobby plan caps us at 2 cron jobs.
+  if (nowDate.getUTCDate() === 1) {
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
+    fetch(`${appUrl}/api/cron/monthly-roi`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${process.env.CRON_SECRET}` },
+    }).catch((err) => console.error("Monthly ROI cron chain error:", err));
+  }
 
   // Fetch pending follow-ups that are due
   const { data: followUps, error: fetchErr } = await db

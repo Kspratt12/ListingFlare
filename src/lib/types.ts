@@ -42,7 +42,9 @@ export interface PriceHistoryEntry {
 export interface Listing {
   id: string;
   agent_id: string;
-  status: "draft" | "published" | "pending" | "closed" | "archived";
+  status: "draft" | "published" | "pending" | "closed" | "archived" | "coming_soon";
+  launch_date?: string | null;
+  video_intro_url?: string | null;
   slug: string;
   street: string;
   city: string;

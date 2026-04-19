@@ -16,6 +16,7 @@ import PriceHistory from "@/components/PriceHistory";
 import PropertyAttributes from "@/components/PropertyAttributes";
 import ListingAlertSignup from "@/components/ListingAlertSignup";
 import ListingStatsBar from "@/components/ListingStatsBar";
+import LiveViewerCounter from "@/components/LiveViewerCounter";
 import Link from "next/link";
 import { ArrowRight, X } from "lucide-react";
 import { useState } from "react";
@@ -73,6 +74,7 @@ export default function DemoPage() {
       />
 
       <HeroSlideshow listing={demoListing} />
+      <LiveViewerCounter listingId="demo" />
       <ListingStatsBar
         price={demoListing.price}
         sqft={demoListing.sqft}
