@@ -167,3 +167,41 @@ export interface FollowUp {
   sent_at: string | null;
   created_at: string;
 }
+
+export type SellerProspectSource =
+  | "referral"
+  | "door_knock"
+  | "expired_listing"
+  | "farming"
+  | "open_house"
+  | "past_client"
+  | "online"
+  | "other";
+
+export type SellerProspectStage =
+  | "prospect"
+  | "met"
+  | "presentation"
+  | "listed"
+  | "sold"
+  | "dropped";
+
+export interface SellerProspect {
+  id: string;
+  agent_id: string;
+  name: string;
+  street: string | null;
+  city: string | null;
+  state: string | null;
+  zip: string | null;
+  phone: string | null;
+  email: string | null;
+  source: SellerProspectSource;
+  stage: SellerProspectStage;
+  estimated_value: number | null;
+  notes: string | null;
+  follow_up_date: string | null;
+  last_contacted_at: string | null;
+  created_at: string;
+  updated_at: string;
+}

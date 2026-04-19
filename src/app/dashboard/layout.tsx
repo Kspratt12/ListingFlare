@@ -22,6 +22,7 @@ import {
   BarChart3,
   Bot,
   CalendarDays,
+  Home,
 } from "lucide-react";
 
 const navItems = [
@@ -29,6 +30,7 @@ const navItems = [
   { href: "/dashboard/create", label: "New Listing", icon: PlusCircle },
   { href: "/dashboard/leads", label: "Leads", icon: MessageSquare },
   { href: "/dashboard/showings", label: "Showings", icon: CalendarDays },
+  { href: "/dashboard/seller-prospects", label: "Seller Prospects", icon: Home },
   { href: "/dashboard/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/dashboard/assistant", label: "AI Assistant", icon: Bot },
   { href: "/dashboard/billing", label: "Billing", icon: CreditCard },
