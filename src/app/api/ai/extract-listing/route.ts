@@ -174,7 +174,11 @@ export async function POST(req: NextRequest) {
   "appliances": array of short strings or empty (e.g. ["Refrigerator", "Dishwasher", "Washer", "Dryer"]),
   "schoolElementary": string or null,
   "schoolMiddle": string or null,
-  "schoolHigh": string or null
+  "schoolHigh": string or null,
+  "parcelNumber": string or null (also called APN),
+  "fireplaceCount": number or null,
+  "laundryLocation": string or null (e.g. "Laundry Room, Main Level"),
+  "basementType": string or null (e.g. "Finished", "Unfinished", "None", "Crawl Space")
 }
 
 Rules:

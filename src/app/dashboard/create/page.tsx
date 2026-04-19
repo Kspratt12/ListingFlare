@@ -88,6 +88,10 @@ export default function CreateListingPage() {
   const [schoolElementary, setSchoolElementary] = useState("");
   const [schoolMiddle, setSchoolMiddle] = useState("");
   const [schoolHigh, setSchoolHigh] = useState("");
+  const [parcelNumber, setParcelNumber] = useState("");
+  const [fireplaceCount, setFireplaceCount] = useState("");
+  const [laundryLocation, setLaundryLocation] = useState("");
+  const [basementType, setBasementType] = useState("");
 
   // MLS paste feature - auto-fills form fields from a pasted description
   const [pasteText, setPasteText] = useState("");
@@ -151,6 +155,10 @@ export default function CreateListingPage() {
       if (f.schoolElementary) setSchoolElementary(String(f.schoolElementary));
       if (f.schoolMiddle) setSchoolMiddle(String(f.schoolMiddle));
       if (f.schoolHigh) setSchoolHigh(String(f.schoolHigh));
+      if (f.parcelNumber) setParcelNumber(String(f.parcelNumber));
+      if (f.fireplaceCount != null) setFireplaceCount(String(f.fireplaceCount));
+      if (f.laundryLocation) setLaundryLocation(String(f.laundryLocation));
+      if (f.basementType) setBasementType(String(f.basementType));
       // If we got an advanced field, pop the section open so the agent sees what filled in
       const gotAdvanced = f.mlsId || f.county || f.subdivision || f.architecturalStyle || f.propertyTaxAnnual != null || f.hoaFeeMonthly != null || f.heatingType || f.coolingType || f.schoolElementary;
       if (gotAdvanced) setAdvancedOpen(true);
@@ -504,6 +512,10 @@ export default function CreateListingPage() {
         school_elementary: schoolElementary || null,
         school_middle: schoolMiddle || null,
         school_high: schoolHigh || null,
+        parcel_number: parcelNumber || null,
+        fireplace_count: fireplaceCount ? parseInt(fireplaceCount) : null,
+        laundry_location: laundryLocation || null,
+        basement_type: basementType || null,
         price_history: initialHistory,
       }).select("id").single();
 
@@ -1119,6 +1131,29 @@ export default function CreateListingPage() {
               <div>
                 <label className="mb-1.5 block text-sm font-medium text-gray-700">Appliances Included (one per line)</label>
                 <textarea value={appliancesText} onChange={(e) => setAppliancesText(e.target.value)} rows={3} placeholder={"Refrigerator\nDishwasher\nRange / Oven\nWasher\nDryer"} className="w-full resize-y rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+              </div>
+
+              {/* Interior Details */}
+              <div>
+                <h3 className="mb-3 text-sm font-semibold text-gray-900">Interior Details</h3>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Fireplaces</label>
+                    <input type="number" value={fireplaceCount} onChange={(e) => setFireplaceCount(e.target.value)} placeholder="0" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Laundry</label>
+                    <input type="text" value={laundryLocation} onChange={(e) => setLaundryLocation(e.target.value)} placeholder="Laundry Room, Main Level" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Basement</label>
+                    <input type="text" value={basementType} onChange={(e) => setBasementType(e.target.value)} placeholder="Finished, Unfinished, None..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                  <div className="sm:col-span-3">
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Parcel Number (APN)</label>
+                    <input type="text" value={parcelNumber} onChange={(e) => setParcelNumber(e.target.value)} placeholder="e.g. 4412-018-024" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                </div>
               </div>
 
               {/* Schools */}

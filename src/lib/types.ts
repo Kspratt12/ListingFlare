@@ -85,6 +85,11 @@ export interface Listing {
   school_elementary?: string | null;
   school_middle?: string | null;
   school_high?: string | null;
+  parcel_number?: string | null;
+  fireplace_count?: number | null;
+  laundry_location?: string | null;
+  basement_type?: string | null;
+  published_at?: string | null;
 }
 
 export interface ListingVideo {

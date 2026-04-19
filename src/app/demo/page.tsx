@@ -15,6 +15,7 @@ import NeighborhoodInfo from "@/components/NeighborhoodInfo";
 import PriceHistory from "@/components/PriceHistory";
 import PropertyAttributes from "@/components/PropertyAttributes";
 import ListingAlertSignup from "@/components/ListingAlertSignup";
+import ListingStatsBar from "@/components/ListingStatsBar";
 import Link from "next/link";
 import { ArrowRight, X } from "lucide-react";
 import { useState } from "react";
@@ -72,6 +73,12 @@ export default function DemoPage() {
       />
 
       <HeroSlideshow listing={demoListing} />
+      <ListingStatsBar
+        price={demoListing.price}
+        sqft={demoListing.sqft}
+        viewCount={1247}
+        publishedAt="2026-02-14T12:00:00Z"
+      />
       <PropertyDetails listing={demoListing} />
       <PhotoGallery photos={demoListing.photos} videos={demoListing.videos} />
 
@@ -86,7 +93,10 @@ export default function DemoPage() {
         county="Los Angeles"
         subdivision="Palisades Highlands"
         mlsId="LA-2026-0048321"
+        parcelNumber="4412-018-024"
         parkingSpaces={3}
+        sqft={demoListing.sqft}
+        pricePerSqft={Math.round(demoListing.price / demoListing.sqft)}
         propertyTaxAnnual={35625}
         hoaRequired={false}
         heatingType="Forced Air, Zoned"
@@ -96,6 +106,9 @@ export default function DemoPage() {
         roofType="Standing Seam Metal"
         constructionMaterial="Stucco, Stone"
         foundationType="Slab"
+        fireplaceCount={2}
+        laundryLocation="Laundry Room, Upper Level"
+        basementType="None"
         appliances={[
           "Gaggenau Refrigerator",
           "Wolf Range",

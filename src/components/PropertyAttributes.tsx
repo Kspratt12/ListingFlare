@@ -13,6 +13,10 @@ interface Props {
   subdivision?: string | null;
   mlsId?: string | null;
   parkingSpaces?: number | null;
+  parcelNumber?: string | null;
+  // Price per sqft (computed in caller)
+  pricePerSqft?: number | null;
+  sqft?: number | null;
   // Costs
   propertyTaxAnnual?: number | null;
   hoaRequired?: boolean;
@@ -26,6 +30,10 @@ interface Props {
   roofType?: string | null;
   constructionMaterial?: string | null;
   foundationType?: string | null;
+  // Interior
+  fireplaceCount?: number | null;
+  laundryLocation?: string | null;
+  basementType?: string | null;
   // Appliances
   appliances?: string[];
 }
@@ -81,10 +89,12 @@ export default function PropertyAttributes(props: Props) {
     { label: "County", value: props.county || null },
     { label: "Subdivision", value: props.subdivision || null },
     { label: "MLS ID", value: props.mlsId || null },
+    { label: "Parcel Number", value: props.parcelNumber || null },
     { label: "Parking Spaces", value: props.parkingSpaces ? String(props.parkingSpaces) : null },
   ];
 
   const costRows: Row[] = [
+    { label: "Price per Sqft", value: props.pricePerSqft ? `$${props.pricePerSqft.toLocaleString()}` : null },
     { label: "Annual Property Tax", value: formatMoney(props.propertyTaxAnnual) },
     {
       label: "HOA",
@@ -95,6 +105,12 @@ export default function PropertyAttributes(props: Props) {
             ? `${formatMoney(props.hoaFeeMonthly)}/mo`
             : null,
     },
+  ];
+
+  const interiorRows: Row[] = [
+    { label: "Fireplaces", value: props.fireplaceCount ? String(props.fireplaceCount) : null },
+    { label: "Laundry", value: props.laundryLocation || null },
+    { label: "Basement", value: props.basementType || null },
   ];
 
   const systemsRows: Row[] = [
@@ -110,7 +126,7 @@ export default function PropertyAttributes(props: Props) {
     { label: "Foundation", value: props.foundationType || null },
   ];
 
-  const allRows = [...generalRows, ...costRows, ...systemsRows, ...constructionRows];
+  const allRows = [...generalRows, ...costRows, ...systemsRows, ...constructionRows, ...interiorRows];
   if (allRows.every((r) => !r.value)) return null;
 
   const appliances = props.appliances && props.appliances.length > 0;
@@ -129,9 +145,10 @@ export default function PropertyAttributes(props: Props) {
 
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           <Section title="General" icon={Home} rows={generalRows} />
-          <Section title="Taxes & HOA" icon={Info} rows={costRows} />
+          <Section title="Costs" icon={Info} rows={costRows} />
           <Section title="Systems" icon={Thermometer} rows={systemsRows} />
           <Section title="Construction" icon={Hammer} rows={constructionRows} />
+          <Section title="Interior" icon={Home} rows={interiorRows} />
         </div>
 
         {appliances && (

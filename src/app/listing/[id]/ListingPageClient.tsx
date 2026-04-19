@@ -19,6 +19,7 @@ import OtherListings from "@/components/OtherListings";
 import PriceHistory from "@/components/PriceHistory";
 import PropertyAttributes from "@/components/PropertyAttributes";
 import ListingAlertSignup from "@/components/ListingAlertSignup";
+import ListingStatsBar from "@/components/ListingStatsBar";
 
 const ListingChat = dynamic(() => import("@/components/ListingChat"), {
   ssr: false,
@@ -155,6 +156,13 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
         showPrint
       />
       <HeroSlideshow listing={propertyData} />
+      <ListingStatsBar
+        price={listing.price}
+        sqft={listing.sqft}
+        viewCount={listing.view_count}
+        publishedAt={listing.published_at}
+        createdAt={listing.created_at}
+      />
       <PropertyDetails listing={propertyData} />
       <PhotoGallery photos={propertyData.photos} videos={listing.videos} />
 
@@ -171,7 +179,10 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
         county={listing.county}
         subdivision={listing.subdivision}
         mlsId={listing.mls_id}
+        parcelNumber={listing.parcel_number}
         parkingSpaces={listing.parking_spaces}
+        sqft={listing.sqft}
+        pricePerSqft={listing.price > 0 && listing.sqft > 0 ? Math.round(listing.price / listing.sqft) : null}
         propertyTaxAnnual={listing.property_tax_annual}
         hoaRequired={listing.hoa_required}
         hoaFeeMonthly={listing.hoa_fee_monthly}
@@ -182,6 +193,9 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
         roofType={listing.roof_type}
         constructionMaterial={listing.construction_material}
         foundationType={listing.foundation_type}
+        fireplaceCount={listing.fireplace_count}
+        laundryLocation={listing.laundry_location}
+        basementType={listing.basement_type}
         appliances={listing.appliances_included}
       />
 

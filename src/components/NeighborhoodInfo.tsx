@@ -1,6 +1,6 @@
 "use client";
 
-import { MapPin, Footprints, GraduationCap, ExternalLink } from "lucide-react";
+import { MapPin, Footprints, GraduationCap, ExternalLink, Eye } from "lucide-react";
 
 interface Props {
   street: string;
@@ -31,6 +31,7 @@ export default function NeighborhoodInfo({
   const walkScoreUrl = `https://www.walkscore.com/score/${encoded}`;
   const greatSchoolsUrl = `https://www.greatschools.org/search/search.page?q=${encoded}`;
   const googleDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encoded}`;
+  const streetViewUrl = `https://www.google.com/maps/@?api=1&map_action=pano&query=${encoded}`;
 
   return (
     <section className="bg-gray-50 py-16 md:py-20">
@@ -62,15 +63,26 @@ export default function NeighborhoodInfo({
                 <MapPin className="h-4 w-4 flex-shrink-0 text-gray-400" />
                 <p className="truncate text-sm text-gray-700">{fullAddress}</p>
               </div>
-              <a
-                href={googleDirectionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-shrink-0 inline-flex items-center gap-1 rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-gray-800"
-              >
-                Directions
-                <ExternalLink className="h-3 w-3" />
-              </a>
+              <div className="flex flex-shrink-0 items-center gap-2">
+                <a
+                  href={streetViewUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  <Eye className="h-3 w-3" />
+                  Street View
+                </a>
+                <a
+                  href={googleDirectionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-gray-800"
+                >
+                  Directions
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
             </div>
           </div>
 

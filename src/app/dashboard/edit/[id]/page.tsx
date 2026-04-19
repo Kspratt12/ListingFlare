@@ -112,6 +112,10 @@ export default function EditListingPage() {
   const [schoolElementary, setSchoolElementary] = useState("");
   const [schoolMiddle, setSchoolMiddle] = useState("");
   const [schoolHigh, setSchoolHigh] = useState("");
+  const [parcelNumber, setParcelNumber] = useState("");
+  const [fireplaceCount, setFireplaceCount] = useState("");
+  const [laundryLocation, setLaundryLocation] = useState("");
+  const [basementType, setBasementType] = useState("");
   // Track previous price + history so we can auto-log price changes
   const [loadedPrice, setLoadedPrice] = useState<number | null>(null);
   const [priceHistory, setPriceHistory] = useState<Array<{ date: string; price: number; event: string }>>([]);
@@ -284,6 +288,10 @@ export default function EditListingPage() {
       setSchoolElementary(data.school_elementary || "");
       setSchoolMiddle(data.school_middle || "");
       setSchoolHigh(data.school_high || "");
+      setParcelNumber(data.parcel_number || "");
+      setFireplaceCount(data.fireplace_count ? String(data.fireplace_count) : "");
+      setLaundryLocation(data.laundry_location || "");
+      setBasementType(data.basement_type || "");
       setLoadedPrice(data.price || null);
       setPriceHistory(Array.isArray(data.price_history) ? data.price_history : []);
       setHasUnsavedChanges(false);
@@ -500,6 +508,10 @@ export default function EditListingPage() {
           school_elementary: schoolElementary || null,
           school_middle: schoolMiddle || null,
           school_high: schoolHigh || null,
+          parcel_number: parcelNumber || null,
+          fireplace_count: fireplaceCount ? parseInt(fireplaceCount) : null,
+          laundry_location: laundryLocation || null,
+          basement_type: basementType || null,
           price_history: nextHistory,
           updated_at: new Date().toISOString(),
         })
@@ -1228,6 +1240,53 @@ export default function EditListingPage() {
                   placeholder={"Refrigerator\nDishwasher\nRange / Oven\nWasher\nDryer"}
                   className="w-full resize-y rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 />
+              </div>
+
+              {/* Interior / Other */}
+              <div>
+                <h3 className="mb-3 text-sm font-semibold text-gray-900">Interior Details</h3>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Fireplaces</label>
+                    <input
+                      type="number"
+                      value={fireplaceCount}
+                      onChange={(e) => { setFireplaceCount(e.target.value); setHasUnsavedChanges(true); }}
+                      placeholder="0"
+                      className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Laundry</label>
+                    <input
+                      type="text"
+                      value={laundryLocation}
+                      onChange={(e) => { setLaundryLocation(e.target.value); setHasUnsavedChanges(true); }}
+                      placeholder="Laundry Room, Main Level"
+                      className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Basement</label>
+                    <input
+                      type="text"
+                      value={basementType}
+                      onChange={(e) => { setBasementType(e.target.value); setHasUnsavedChanges(true); }}
+                      placeholder="Finished, Unfinished, None..."
+                      className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                    />
+                  </div>
+                  <div className="sm:col-span-3">
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Parcel Number (APN)</label>
+                    <input
+                      type="text"
+                      value={parcelNumber}
+                      onChange={(e) => { setParcelNumber(e.target.value); setHasUnsavedChanges(true); }}
+                      placeholder="e.g. 4412-018-024"
+                      className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                    />
+                  </div>
+                </div>
               </div>
 
               {/* Schools */}
