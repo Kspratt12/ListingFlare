@@ -362,7 +362,7 @@ export default function SettingsPage() {
                   value={licenseNumber}
                   onChange={(e) => setLicenseNumber(e.target.value)}
                   className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-                  placeholder="e.g. NC-300120"
+                  placeholder="e.g. 300120"
                 />
               </div>
             </div>

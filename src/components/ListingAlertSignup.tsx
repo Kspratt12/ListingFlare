@@ -47,29 +47,61 @@ export default function ListingAlertSignup({ listingId, listingAddress, isDemo =
   };
 
   return (
-    <section className="bg-gray-50 py-12 md:py-14">
-      <div className="mx-auto max-w-2xl px-6">
-        <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-brand-50/60 via-white to-amber-50/50 p-6 md:p-8">
-          <div className="flex items-start gap-4">
-            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-brand-500 text-white">
-              <Bell className="h-5 w-5" />
+    <section className="bg-gray-50 py-14 md:py-16">
+      <div className="mx-auto max-w-3xl px-6">
+        {/* Dark brand-tinted card matches the Property Details section
+            so the "stay informed" CTA reads as premium rather than a
+            generic newsletter signup. */}
+        <div
+          className="relative overflow-hidden rounded-2xl border border-white/10 p-7 shadow-2xl shadow-black/20 md:p-10"
+          style={{
+            background:
+              "linear-gradient(135deg, color-mix(in srgb, var(--agent-brand, #0f172a) 55%, #0a0a0a) 0%, color-mix(in srgb, var(--agent-brand, #0f172a) 30%, #0a0a0a) 100%)",
+          }}
+        >
+          {/* Soft brand glow in the top-right */}
+          <div
+            className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full opacity-30 blur-3xl"
+            style={{ backgroundColor: "var(--agent-brand, #b8965a)" }}
+          />
+          {/* Brand accent stripe along the top */}
+          <div
+            className="absolute left-0 right-0 top-0 h-px"
+            style={{
+              background: "linear-gradient(90deg, transparent 0%, var(--agent-brand, #b8965a) 20%, var(--agent-brand, #b8965a) 80%, transparent 100%)",
+            }}
+          />
+
+          <div className="relative flex items-start gap-4 md:gap-5">
+            <div
+              className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl border border-white/15 text-white md:h-14 md:w-14"
+              style={{
+                background: "color-mix(in srgb, var(--agent-brand, #b8965a) 35%, transparent)",
+              }}
+            >
+              <Bell className="h-5 w-5 md:h-6 md:w-6" />
             </div>
-            <div className="flex-1">
-              <h3 className="font-serif text-xl font-semibold text-gray-900 md:text-2xl">
+            <div className="flex-1 min-w-0">
+              <p
+                className="text-[10px] font-semibold uppercase tracking-[0.3em]"
+                style={{ color: "color-mix(in srgb, var(--agent-brand, #b8965a) 60%, white)" }}
+              >
+                Stay in the loop
+              </p>
+              <h3 className="mt-1 font-serif text-2xl font-bold text-white md:text-3xl">
                 Get notified about {listingAddress.split(",")[0]}
               </h3>
-              <p className="mt-1 text-sm text-gray-600">
-                Price changes. Status updates. No spam, no marketing. Unsubscribe anytime.
+              <p className="mt-2 text-sm text-white/65">
+                Price changes, status updates, and open house times delivered straight to your inbox. No spam, no marketing. Unsubscribe anytime.
               </p>
 
               {state === "done" ? (
-                <div className="mt-5 flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700">
+                <div className="mt-5 inline-flex items-center gap-2 rounded-lg border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm font-medium text-emerald-300 backdrop-blur-sm">
                   <Check className="h-4 w-4" />
                   Subscribed. Check your email to confirm.
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="mt-5">
-                  {/* Honeypot */}
                   <input
                     type="text"
                     name="_hp"
@@ -87,19 +119,22 @@ export default function ListingAlertSignup({ listingId, listingAddress, isDemo =
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@email.com"
-                      className="flex-1 rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                      className="flex-1 rounded-lg border border-white/15 bg-white/10 px-4 py-3 text-sm text-white placeholder-white/40 backdrop-blur-sm transition-colors focus:border-white/40 focus:bg-white/15 focus:outline-none"
                     />
                     <button
                       type="submit"
                       disabled={state === "submitting" || !email}
-                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-gray-950 px-5 py-3 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-50"
+                      className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:brightness-110 disabled:opacity-50 disabled:hover:brightness-100"
+                      style={{
+                        background: "var(--agent-brand, #b8965a)",
+                      }}
                     >
                       {state === "submitting" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Bell className="h-4 w-4" />}
-                      Notify Me
+                      {state === "submitting" ? "Subscribing…" : "Notify Me"}
                     </button>
                   </div>
                   {state === "error" && errorMsg && (
-                    <p className="mt-2 text-xs text-red-600">{errorMsg}</p>
+                    <p className="mt-2 text-xs text-red-300">{errorMsg}</p>
                   )}
                 </form>
               )}

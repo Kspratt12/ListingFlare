@@ -1103,7 +1103,7 @@ export default function CreateListingPage() {
               <label className="mb-1 block text-xs font-medium text-gray-600">License #</label>
               <input type="text" value={coAgentLicense} onChange={(e) => setCoAgentLicense(e.target.value)}
                 className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-                placeholder="NC-300XXX" />
+                placeholder="e.g. 300XXX" />
             </div>
             <div>
               <label className="mb-1 block text-xs font-medium text-gray-600">Phone</label>

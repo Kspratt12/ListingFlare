@@ -50,6 +50,7 @@ export default function LeadsPage() {
   const [sortField, setSortField] = useState<SortField>("created_at");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
+  const [regenerateConfirm, setRegenerateConfirm] = useState<Lead | null>(null);
   const [profile, setProfile] = useState<AgentProfile | null>(null);
   const [editingLead, setEditingLead] = useState(false);
   const [editName, setEditName] = useState("");
@@ -204,13 +205,10 @@ export default function LeadsPage() {
     URL.revokeObjectURL(url);
   };
 
-  const generateDraft = async (lead: Lead) => {
-    // Warn if overwriting existing draft
-    if (lead.auto_reply_draft) {
-      if (!confirm("Generate a new AI draft? This will replace the existing draft.")) {
-        return;
-      }
-    }
+  // Runs the AI draft request without prompting. generateDraft wraps
+  // this with an overwrite-confirmation modal when there's an existing
+  // draft so we don't silently clobber work in progress.
+  const runGenerateDraft = async (lead: Lead) => {
     setGeneratingDraft(true);
     try {
       const res = await fetch("/api/leads/auto-reply", {
@@ -230,6 +228,14 @@ export default function LeadsPage() {
     } finally {
       setGeneratingDraft(false);
     }
+  };
+
+  const generateDraft = async (lead: Lead) => {
+    if (lead.auto_reply_draft) {
+      setRegenerateConfirm(lead);
+      return;
+    }
+    await runGenerateDraft(lead);
   };
 
   const handleSort = (field: SortField) => {
@@ -961,6 +967,42 @@ export default function LeadsPage() {
             setTimeout(() => setToast(null), 4000);
           }}
         />
+      )}
+
+      {/* Regenerate draft confirmation — styled modal instead of
+          browser confirm() so it matches the rest of the dashboard. */}
+      {regenerateConfirm && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          onClick={() => setRegenerateConfirm(null)}
+        >
+          <div onClick={(e) => e.stopPropagation()} className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+            <h3 className="font-serif text-lg font-bold text-gray-900">Replace the existing draft?</h3>
+            <p className="mt-2 text-sm text-gray-500">
+              There&apos;s already an AI draft for {regenerateConfirm.name || "this lead"}. Generating a new one will overwrite it.
+            </p>
+            <div className="mt-5 flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => setRegenerateConfirm(null)}
+                className="rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                Keep existing
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  const lead = regenerateConfirm;
+                  setRegenerateConfirm(null);
+                  runGenerateDraft(lead);
+                }}
+                className="rounded-lg bg-gray-950 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+              >
+                Generate new draft
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

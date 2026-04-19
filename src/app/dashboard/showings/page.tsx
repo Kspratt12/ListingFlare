@@ -481,8 +481,10 @@ export default function ShowingsPage() {
       </div>
 
       {loading ? (
-        <div className="mt-8 flex items-center justify-center py-12">
-          <Loader2 className="h-5 w-5 animate-spin text-gray-400" />
+        <div className="mt-8 space-y-3">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="h-24 animate-pulse rounded-xl border border-gray-200 bg-white" />
+          ))}
         </div>
       ) : filtered.length === 0 ? (
         <div className="mt-16 text-center">

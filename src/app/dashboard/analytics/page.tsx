@@ -66,11 +66,19 @@ export default function AnalyticsPage() {
       <p className="mt-1 text-gray-500">Track performance across all your listings.</p>
 
       {loading ? (
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="h-28 animate-pulse rounded-xl border border-gray-200 bg-white" />
-          ))}
-        </div>
+        <>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="h-28 animate-pulse rounded-xl border border-gray-200 bg-white" />
+            ))}
+          </div>
+          <div className="mt-8 h-64 animate-pulse rounded-2xl border border-gray-200 bg-white" />
+          <div className="mt-6 space-y-3">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="h-20 animate-pulse rounded-xl border border-gray-200 bg-white" />
+            ))}
+          </div>
+        </>
       ) : totalViews === 0 && totalLeads === 0 ? (
         <div className="mt-10 rounded-2xl border border-dashed border-brand-200 bg-brand-50/40 p-10 text-center">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-white">

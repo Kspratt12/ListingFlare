@@ -358,8 +358,16 @@ export default function MyListingsPage() {
   const handleArchive = async (e: React.MouseEvent, listingId: string) => {
     e.preventDefault();
     e.stopPropagation();
-    await supabase.from("listings").update({ status: "archived" }).eq("id", listingId);
-    setListings((prev) => prev.map((l) => l.id === listingId ? { ...l, status: "archived" as Listing["status"] } : l));
+    const prev = listings;
+    setListings((p) => p.map((l) => l.id === listingId ? { ...l, status: "archived" as Listing["status"] } : l));
+    const { error } = await supabase.from("listings").update({ status: "archived" }).eq("id", listingId);
+    if (error) {
+      setListings(prev);
+      setToast({ message: "Couldn't archive listing. Try again.", type: "error" });
+    } else {
+      setToast({ message: "Listing archived. Restore from the Archived tab.", type: "success" });
+    }
+    setTimeout(() => setToast(null), 4000);
   };
 
   // Opposite of archive — flip back to draft so the agent can republish
@@ -703,8 +711,14 @@ export default function MyListingsPage() {
                       value={listing.status}
                       onChange={async (e) => {
                         const newStatus = e.target.value;
-                        await supabase.from("listings").update({ status: newStatus }).eq("id", listing.id);
-                        setListings((prev) => prev.map((l) => l.id === listing.id ? { ...l, status: newStatus as Listing["status"] } : l));
+                        const prev = listings;
+                        setListings((p) => p.map((l) => l.id === listing.id ? { ...l, status: newStatus as Listing["status"] } : l));
+                        const { error } = await supabase.from("listings").update({ status: newStatus }).eq("id", listing.id);
+                        if (error) {
+                          setListings(prev);
+                          setToast({ message: "Couldn't update status. Try again.", type: "error" });
+                          setTimeout(() => setToast(null), 4000);
+                        }
                       }}
                       onClick={(e) => e.stopPropagation()}
                       aria-label="Change listing status"
@@ -818,10 +832,18 @@ export default function MyListingsPage() {
               </button>
               <button
                 onClick={async () => {
-                  await supabase.from("listings").delete().eq("id", deleteConfirm);
-                  setListings((prev) => prev.filter((l) => l.id !== deleteConfirm));
+                  const prev = listings;
+                  setListings((p) => p.filter((l) => l.id !== deleteConfirm));
                   setHasEverCreated(true);
                   setDeleteConfirm(null);
+                  const { error } = await supabase.from("listings").delete().eq("id", deleteConfirm);
+                  if (error) {
+                    setListings(prev);
+                    setToast({ message: "Couldn't delete listing. Try again.", type: "error" });
+                  } else {
+                    setToast({ message: "Listing deleted permanently.", type: "success" });
+                  }
+                  setTimeout(() => setToast(null), 4000);
                 }}
                 className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
               >
