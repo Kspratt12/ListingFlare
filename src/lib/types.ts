@@ -77,6 +77,8 @@ export interface Lead {
   auto_reply_draft: string | null;
   first_response_at: string | null;
   hot_score: number;
+  notes: string;
+  tags: string[];
   created_at: string;
   // joined fields
   listing?: Pick<Listing, "street" | "city" | "state">;

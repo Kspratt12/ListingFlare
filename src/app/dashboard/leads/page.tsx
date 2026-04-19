@@ -13,6 +13,7 @@ import { getSubscriptionLimits } from "@/lib/subscription";
 import Link from "next/link";
 import LeadPipeline from "@/components/LeadPipeline";
 import LeadMessageThread from "@/components/LeadMessageThread";
+import LeadNotesTags, { getTagStyle, getTagLabel } from "@/components/LeadNotesTags";
 import HotLeadBadge from "@/components/HotLeadBadge";
 import { calculateHotScore } from "@/lib/hotScore";
 
@@ -529,6 +530,21 @@ export default function LeadsPage() {
                               </span>
                             )}
                           </div>
+                          {lead.tags && lead.tags.length > 0 && (
+                            <div className="mt-1 flex flex-wrap gap-1">
+                              {lead.tags.slice(0, 3).map((tag) => (
+                                <span
+                                  key={tag}
+                                  className={`inline-block rounded-full border px-1.5 py-0.5 text-[9px] font-medium ${getTagStyle(tag)}`}
+                                >
+                                  {getTagLabel(tag)}
+                                </span>
+                              ))}
+                              {lead.tags.length > 3 && (
+                                <span className="text-[9px] text-gray-400">+{lead.tags.length - 3}</span>
+                              )}
+                            </div>
+                          )}
                           <div className="mt-1 flex min-w-0 items-center gap-1 text-xs text-gray-500">
                             <Mail className="h-3 w-3 flex-shrink-0" />
                             <span className="truncate">{lead.email}</span>
@@ -758,8 +774,23 @@ export default function LeadsPage() {
               </div>
             </div>
 
+            {/* Notes + Tags (paid only) */}
+            {limits.canReplyToLeads && (
+              <div className="border-t border-gray-100 px-6 py-4">
+                <LeadNotesTags
+                  lead={selectedLead}
+                  onUpdate={(updates) => {
+                    setLeads((prev) =>
+                      prev.map((l) => (l.id === selectedLead.id ? { ...l, ...updates } : l))
+                    );
+                    setSelectedLead((prev) => (prev ? { ...prev, ...updates } : null));
+                  }}
+                />
+              </div>
+            )}
+
             {/* Conversation Thread */}
-            <div className="px-6 py-4">
+            <div className="border-t border-gray-100 px-6 py-4">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Conversation</p>
                 {limits.canReplyToLeads && !selectedLead.auto_reply_draft && (

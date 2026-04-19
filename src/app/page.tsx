@@ -70,14 +70,15 @@ const features = [
 ];
 
 const included = [
-  "Unlimited listing websites",
-  "24/7 AI chat assistant on every listing",
-  "Lead capture with AI-drafted replies",
-  "Virtual tour embeds (Matterport, Kuula)",
-  "AI-powered descriptions & photo captions",
-  "Analytics dashboard & weekly reports",
-  "Social media posts & open house flyers",
-  "Custom agent branding on every page",
+  "Unlimited listing websites with your branding",
+  "AI chat answers buyer questions 24/7",
+  "Instant AI auto-reply to every new lead (under 15 seconds)",
+  "Built-in showing scheduler synced to your Google Calendar",
+  "Day 1, 3, and 7 AI follow-up sequences sent for you",
+  "Hot Lead scoring + drag-and-drop pipeline view",
+  "24-hour showing reminders, auto-feedback, testimonial requests",
+  "Social posts, open house flyers, QR sign-in, analytics",
+  "One plan. Everything included. No add-ons.",
 ];
 
 const walkthrough = [
@@ -1874,7 +1875,7 @@ export default function LandingPage() {
               than this costs in ten years.
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-lg text-gray-400">
-              Unlimited listing pages, AI chat, lead capture, automated follow-up, and analytics. One plan. Everything included.
+              40+ features across listing pages, AI, lead management, showing scheduler, and automation. One plan. Everything included.
             </p>
             <p className="mt-3 text-sm font-medium text-brand-400/80">
               One closed deal from a buyer you would have lost pays for this ten times over.

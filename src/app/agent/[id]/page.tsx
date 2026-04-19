@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import type { Listing, AgentProfile } from "@/lib/types";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Star, Quote } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
 import Footer from "@/components/Footer";
 
@@ -51,6 +51,25 @@ export default async function AgentProfilePage({ params }: Props) {
 
   const typedListings = (listings || []) as Listing[];
 
+  // Fetch approved testimonials
+  const { data: testimonialsData } = await supabase
+    .from("testimonials")
+    .select("id, author_name, rating, quote, created_at")
+    .eq("agent_id", params.id)
+    .eq("approved", true)
+    .not("quote", "eq", "")
+    .order("featured", { ascending: false })
+    .order("created_at", { ascending: false })
+    .limit(6);
+
+  const testimonials = testimonialsData || [];
+
+  // Average rating for display
+  const ratedTestimonials = testimonials.filter((t) => t.rating);
+  const avgRating = ratedTestimonials.length > 0
+    ? ratedTestimonials.reduce((sum, t) => sum + (t.rating || 0), 0) / ratedTestimonials.length
+    : 0;
+
   const formatPrice = (price: number) =>
     new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -85,6 +104,21 @@ export default async function AgentProfilePage({ params }: Props) {
           </h1>
           <p className="mt-1 text-lg text-brand-400">{typedAgent.title}</p>
           <p className="mt-1 text-gray-400">{typedAgent.brokerage}</p>
+          {avgRating > 0 && (
+            <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-4 py-1.5">
+              <div className="flex">
+                {[1, 2, 3, 4, 5].map((n) => (
+                  <Star
+                    key={n}
+                    className={`h-4 w-4 ${n <= Math.round(avgRating) ? "fill-amber-400 text-amber-400" : "text-amber-400/30"}`}
+                  />
+                ))}
+              </div>
+              <span className="text-sm font-medium text-amber-100">
+                {avgRating.toFixed(1)} from {ratedTestimonials.length} review{ratedTestimonials.length !== 1 ? "s" : ""}
+              </span>
+            </div>
+          )}
           <div className="mt-5 flex flex-wrap items-center justify-center gap-4">
             {typedAgent.phone && (
               <a
@@ -105,6 +139,49 @@ export default async function AgentProfilePage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Testimonials */}
+      {testimonials.length > 0 && (
+        <section className="bg-gray-50 py-16">
+          <div className="mx-auto max-w-5xl px-6">
+            <div className="text-center">
+              <p className="text-sm font-semibold uppercase tracking-widest text-brand-500">
+                What clients say
+              </p>
+              <h2 className="mt-3 font-serif text-2xl font-bold text-gray-900 md:text-3xl">
+                Real words from real clients
+              </h2>
+            </div>
+
+            <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {testimonials.map((t) => (
+                <div
+                  key={t.id}
+                  className="relative rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
+                >
+                  <Quote className="absolute right-4 top-4 h-6 w-6 text-brand-200" />
+                  {t.rating && (
+                    <div className="flex gap-0.5">
+                      {[1, 2, 3, 4, 5].map((n) => (
+                        <Star
+                          key={n}
+                          className={`h-4 w-4 ${n <= (t.rating ?? 0) ? "fill-amber-400 text-amber-400" : "text-gray-200"}`}
+                        />
+                      ))}
+                    </div>
+                  )}
+                  <p className="mt-3 text-sm italic leading-relaxed text-gray-700">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+                  <p className="mt-4 text-sm font-semibold text-gray-900">
+                    {t.author_name || "Verified client"}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Listings */}
       <section className="py-16">
