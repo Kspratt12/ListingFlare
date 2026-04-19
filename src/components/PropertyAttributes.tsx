@@ -60,18 +60,39 @@ function Section({
   const visible = rows.filter((r) => r.value);
   if (visible.length === 0) return null;
   return (
-    <div className="group snap-start overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-white via-white to-gray-50/40 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-gray-200/40">
-      <div className="flex items-center gap-3 border-b border-gray-100 bg-gradient-to-r from-gray-50/80 via-white to-gray-50/40 px-5 py-4">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-100">
-          <Icon className="h-4 w-4" />
+    <div className="group relative snap-start overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm shadow-gray-200/60 transition-all duration-500 hover:-translate-y-1 hover:border-brand-300 hover:shadow-2xl hover:shadow-gray-300/50">
+      {/* Top accent stripe in brand color */}
+      <div
+        className="h-1 w-full"
+        style={{ background: "linear-gradient(90deg, transparent 0%, var(--agent-brand, #b8965a) 20%, var(--agent-brand, #b8965a) 80%, transparent 100%)" }}
+      />
+      {/* Subtle corner glow in brand color */}
+      <div
+        className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-20"
+        style={{ backgroundColor: "var(--agent-brand, #b8965a)" }}
+      />
+
+      <div className="relative flex items-center gap-4 border-b border-gray-100 px-6 py-5">
+        <div
+          className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl shadow-inner transition-transform duration-500 group-hover:scale-110"
+          style={{
+            background: "linear-gradient(135deg, color-mix(in srgb, var(--agent-brand, #b8965a) 14%, white) 0%, color-mix(in srgb, var(--agent-brand, #b8965a) 22%, white) 100%)",
+          }}
+        >
+          <Icon className="h-5 w-5" style={{ color: "var(--agent-brand, #b8965a)" }} />
         </div>
-        <h3 className="font-serif text-base font-semibold text-gray-900">{title}</h3>
+        <div className="min-w-0 flex-1">
+          <h3 className="font-serif text-lg font-semibold leading-tight text-gray-900">{title}</h3>
+          <p className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.2em] text-gray-400">
+            {visible.length} {visible.length === 1 ? "detail" : "details"}
+          </p>
+        </div>
       </div>
-      <dl className="divide-y divide-gray-100">
+      <dl className="divide-y divide-gray-100 bg-gradient-to-b from-white to-gray-50/40">
         {visible.map((row) => (
-          <div key={row.label} className="flex items-start justify-between gap-4 px-5 py-3 transition-colors hover:bg-gray-50/50">
-            <dt className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">{row.label}</dt>
-            <dd className="text-right text-sm font-semibold text-gray-900">{row.value}</dd>
+          <div key={row.label} className="flex items-start justify-between gap-4 px-6 py-3.5 transition-colors hover:bg-white">
+            <dt className="text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-500">{row.label}</dt>
+            <dd className="text-right text-sm font-bold text-gray-900">{row.value}</dd>
           </div>
         ))}
       </dl>
@@ -134,15 +155,29 @@ export default function PropertyAttributes(props: Props) {
   const appliances = props.appliances && props.appliances.length > 0;
 
   return (
-    <section className="bg-gray-50 py-14 md:py-20">
-      <div className="mx-auto max-w-5xl px-6">
+    <section className="relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 py-14 md:py-20">
+      {/* Decorative backdrop tinted by the brand color */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage: "radial-gradient(ellipse at top, var(--agent-brand, #b8965a) 0%, transparent 60%)",
+        }}
+      />
+      <div className="relative mx-auto max-w-5xl px-6">
         <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-700">
+          <div
+            className="mx-auto mb-4 h-px w-20"
+            style={{ background: "linear-gradient(90deg, transparent, var(--agent-brand, #b8965a), transparent)" }}
+          />
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
             The Details
           </p>
-          <h2 className="mt-2 font-serif text-2xl font-bold text-gray-900 md:text-3xl">
+          <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-4xl">
             Full property details
           </h2>
+          <p className="mx-auto mt-3 max-w-md text-sm text-gray-500">
+            Everything you&apos;d find on the MLS sheet, laid out cleanly.
+          </p>
         </div>
 
         {/* Mobile: horizontal swipe carousel with snap-scroll.

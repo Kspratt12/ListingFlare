@@ -21,7 +21,7 @@ const COLORS = [
 // MY color can be on MY listings."
 export default function DemoColorSwitcher({ topOffset = false }: { topOffset?: boolean }) {
   const [active, setActive] = useState(COLORS[0].hex);
-  const [expanded, setExpanded] = useState(true); // start expanded so swatches are immediately visible
+  const [expanded, setExpanded] = useState(false); // start collapsed; rainbow pulse draws attention until clicked
 
   useEffect(() => {
     document.documentElement.style.setProperty("--agent-brand", active);
@@ -69,7 +69,7 @@ export default function DemoColorSwitcher({ topOffset = false }: { topOffset?: b
           90%  { box-shadow: 0 0 0 0 rgba(184, 150, 90, 0.6); }
           100% { box-shadow: 0 0 0 0 rgba(184, 150, 90, 0); }
         }
-        .demo-palette-pulse { animation: rainbowPulse 2.5s ease-in-out 2; }
+        .demo-palette-pulse { animation: rainbowPulse 2.8s ease-in-out 4; }
       `}</style>
       <div className="rounded-full border border-white/40 bg-white/60 p-1.5 shadow-md backdrop-blur-md">
         <div className="flex items-center gap-1.5">
