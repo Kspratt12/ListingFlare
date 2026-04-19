@@ -16,6 +16,8 @@ import LeadMessageThread from "@/components/LeadMessageThread";
 import LeadNotesTags, { getTagStyle, getTagLabel } from "@/components/LeadNotesTags";
 import LeadTimeline from "@/components/LeadTimeline";
 import CommissionModal from "@/components/CommissionModal";
+import LeadIntel from "@/components/LeadIntel";
+import LeadSourcesCard from "@/components/LeadSourcesCard";
 import HotLeadBadge from "@/components/HotLeadBadge";
 import { calculateHotScore } from "@/lib/hotScore";
 
@@ -376,6 +378,13 @@ export default function LeadsPage() {
           </div>
         )}
       </div>
+
+      {/* Lead source breakdown - auto-hides until 3+ leads with sources */}
+      {leads.length >= 3 && (
+        <div className="mt-6">
+          <LeadSourcesCard leads={leads} />
+        </div>
+      )}
 
       {leads.length > 0 && (
         <>
@@ -837,6 +846,11 @@ export default function LeadsPage() {
                   <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 opacity-50" />
                 </div>
               </div>
+            </div>
+
+            {/* Lead Intel - qualification + source */}
+            <div className="border-t border-gray-100 px-6 py-4">
+              <LeadIntel lead={selectedLead} />
             </div>
 
             {/* Timeline */}

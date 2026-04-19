@@ -30,6 +30,10 @@ export async function POST(req: NextRequest) {
       email,
       phone,
       message,
+      preApproved,
+      timeline,
+      hasAgent,
+      source,
     } = body;
 
     if (!listingId || !agentId || !showingDate || !showingTime || !name || !email) {
@@ -63,10 +67,26 @@ export async function POST(req: NextRequest) {
             phone: phone || "",
             message: message || `Showing requested for ${showingDate} at ${showingTime}`,
             status: "showing_scheduled",
+            pre_approved: preApproved || null,
+            timeline: timeline || null,
+            has_agent: hasAgent || null,
+            source: source || "direct",
           })
           .select("id")
           .single();
         finalLeadId = newLead?.id;
+      }
+    }
+
+    // If lead already existed, still update qualification/source if they were provided and not yet set
+    if (finalLeadId && (preApproved || timeline || hasAgent || source)) {
+      const updates: Record<string, string> = {};
+      if (preApproved) updates.pre_approved = preApproved;
+      if (timeline) updates.timeline = timeline;
+      if (hasAgent) updates.has_agent = hasAgent;
+      if (source) updates.source = source;
+      if (Object.keys(updates).length > 0) {
+        await db.from("leads").update(updates).eq("id", finalLeadId);
       }
     }
 

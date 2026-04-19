@@ -82,6 +82,10 @@ export interface Lead {
   closed_price: number | null;
   commission_amount: number | null;
   closed_at: string | null;
+  pre_approved: "yes" | "working_on_it" | "no" | "cash" | "not_specified" | null;
+  timeline: "asap" | "30_90" | "3_6_months" | "just_looking" | "not_specified" | null;
+  has_agent: "yes" | "no" | "not_specified" | null;
+  source: string | null;
   created_at: string;
   // joined fields
   listing?: Pick<Listing, "street" | "city" | "state">;

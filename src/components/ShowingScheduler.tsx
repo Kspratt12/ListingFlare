@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -13,6 +13,34 @@ import {
   Send,
 } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
+
+// Detect the source of this visitor for lead attribution
+function detectSource(): string {
+  if (typeof window === "undefined") return "direct";
+  // Check URL ?src= override first
+  const params = new URLSearchParams(window.location.search);
+  const srcParam = params.get("src") || params.get("utm_source");
+  if (srcParam) return srcParam.toLowerCase().slice(0, 32);
+
+  // Fall back to referrer domain
+  const ref = document.referrer;
+  if (!ref) return "direct";
+  try {
+    const host = new URL(ref).hostname.toLowerCase();
+    if (host.includes("instagram")) return "instagram";
+    if (host.includes("facebook") || host.includes("fb.com")) return "facebook";
+    if (host.includes("zillow")) return "zillow";
+    if (host.includes("realtor")) return "realtor";
+    if (host.includes("google")) return "google";
+    if (host.includes("tiktok")) return "tiktok";
+    if (host.includes("linkedin")) return "linkedin";
+    if (host.includes("twitter") || host.includes("x.com")) return "twitter";
+    if (host.includes("listingflare")) return "direct";
+    return host.replace(/^www\./, "").split(".")[0].slice(0, 32);
+  } catch {
+    return "direct";
+  }
+}
 
 interface Props {
   listingId: string;
@@ -62,9 +90,18 @@ export default function ShowingScheduler({ listingId, agentId }: Props) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
+  const [preApproved, setPreApproved] = useState<string>("not_specified");
+  const [timeline, setTimeline] = useState<string>("not_specified");
+  const [hasAgent, setHasAgent] = useState<string>("not_specified");
+  const [source, setSource] = useState<string>("direct");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const supabase = createClient();
+
+  // Capture source on mount (once)
+  useEffect(() => {
+    setSource(detectSource());
+  }, []);
 
   const calendarDays = useMemo(
     () => getCalendarDays(calYear, calMonth),
@@ -124,7 +161,7 @@ export default function ShowingScheduler({ listingId, agentId }: Props) {
     // Format date as YYYY-MM-DD
     const dateStr = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, "0")}-${String(selectedDate.getDate()).padStart(2, "0")}`;
 
-    // First, insert as a lead
+    // First, insert as a lead with qualification + source
     const { error: leadErr } = await supabase.from("leads").insert({
       listing_id: listingId,
       agent_id: agentId,
@@ -133,6 +170,10 @@ export default function ShowingScheduler({ listingId, agentId }: Props) {
       phone,
       message: message || `Showing requested for ${formatSelectedDate()} at ${selectedTime}`,
       status: "showing_scheduled",
+      pre_approved: preApproved,
+      timeline,
+      has_agent: hasAgent,
+      source,
     });
 
     if (leadErr) {
@@ -153,13 +194,17 @@ export default function ShowingScheduler({ listingId, agentId }: Props) {
 
     const leadId = found?.id;
 
-    // Book the showing via API
+    // Book the showing via API (with qualification + source for lead enrichment)
     const res = await fetch("/api/showings/book", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         leadId: leadId || undefined,
         listingId,
+        preApproved,
+        timeline,
+        hasAgent,
+        source,
         agentId,
         showingDate: dateStr,
         showingTime: selectedTime,
@@ -480,6 +525,61 @@ export default function ShowingScheduler({ listingId, agentId }: Props) {
                           placeholder="john@example.com"
                         />
                       </div>
+                      {/* Quick qualifying questions - helps the agent respond faster */}
+                      <div className="rounded-lg border border-gray-700 bg-gray-800/40 p-4">
+                        <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
+                          A few quick questions (optional)
+                        </p>
+                        <div className="space-y-3">
+                          <div>
+                            <label className="mb-1 block text-xs text-gray-400">
+                              Are you pre-approved for financing?
+                            </label>
+                            <select
+                              value={preApproved}
+                              onChange={(e) => setPreApproved(e.target.value)}
+                              className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                            >
+                              <option value="not_specified">Prefer not to say</option>
+                              <option value="yes">Yes, pre-approved</option>
+                              <option value="working_on_it">Working on it</option>
+                              <option value="no">Not yet</option>
+                              <option value="cash">Cash buyer</option>
+                            </select>
+                          </div>
+                          <div>
+                            <label className="mb-1 block text-xs text-gray-400">
+                              When are you looking to move?
+                            </label>
+                            <select
+                              value={timeline}
+                              onChange={(e) => setTimeline(e.target.value)}
+                              className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                            >
+                              <option value="not_specified">Prefer not to say</option>
+                              <option value="asap">ASAP (under 30 days)</option>
+                              <option value="30_90">30-90 days</option>
+                              <option value="3_6_months">3-6 months</option>
+                              <option value="just_looking">Just exploring</option>
+                            </select>
+                          </div>
+                          <div>
+                            <label className="mb-1 block text-xs text-gray-400">
+                              Are you already working with another agent?
+                            </label>
+                            <select
+                              value={hasAgent}
+                              onChange={(e) => setHasAgent(e.target.value)}
+                              className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                            >
+                              <option value="not_specified">Prefer not to say</option>
+                              <option value="no">No</option>
+                              <option value="yes">Yes</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
                       <div>
                         <label
                           htmlFor="showing-message"
