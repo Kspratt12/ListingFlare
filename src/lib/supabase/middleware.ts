@@ -29,7 +29,7 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Protected routes — redirect to login if not authenticated
+  // Protected routes. Redirect to login if not authenticated.
   if (
     !user &&
     request.nextUrl.pathname.startsWith("/dashboard")

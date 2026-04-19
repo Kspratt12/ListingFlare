@@ -48,7 +48,7 @@ export default function ClickToTextAnnouncement() {
             Text leads straight from your dashboard
           </p>
           <p className="mt-1 text-xs text-gray-600">
-            Tap the green <span className="font-semibold text-emerald-700">Text</span> button on any lead — your iPhone or Android will open Messages with their number and a ready-to-send note. The text sends from <span className="font-semibold">your real number</span>, so replies land on your phone. Works best on mobile.
+            Tap the green <span className="font-semibold text-emerald-700">Text</span> button on any lead and your iPhone or Android will open Messages with their number and a ready-to-send note. The text sends from <span className="font-semibold">your real number</span>, so replies land on your phone. Works best on mobile.
           </p>
         </div>
       </div>

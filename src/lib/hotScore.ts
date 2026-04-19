@@ -1,7 +1,7 @@
 import type { Lead } from "./types";
 
-// Rules-based hot lead scoring — no AI call needed
-// Score 0-100 mapped to 🔥 Hot (70+), 🟡 Warm (30-69), ⚪ Cold (<30)
+// Rules-based hot lead scoring. No AI call needed.
+// Score 0-100 mapped to Hot (70+), Warm (30-69), Cold (<30).
 
 export interface HotScoreInputs {
   lead: Pick<Lead, "status" | "phone" | "message" | "created_at" | "auto_reply_draft" | "first_response_at" | "is_read">;
@@ -59,7 +59,7 @@ export function calculateHotScore(inputs: HotScoreInputs): { score: number; tier
     score += 5;
   }
 
-  // Recency — drop score for cold leads
+  // Recency. Drop score for cold leads.
   const ageHours = (Date.now() - new Date(lead.created_at).getTime()) / (1000 * 60 * 60);
   if (ageHours < 24) {
     score += 10;

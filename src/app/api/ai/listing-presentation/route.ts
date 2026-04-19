@@ -71,9 +71,9 @@ Property being pitched:
 
 Generate 3 short paragraphs for a listing presentation. Each paragraph is 2-3 sentences max:
 
-1. **Why this home stands out** — what makes this specific property compelling to buyers (based on the address/type/size)
-2. **My marketing plan** — a confident summary of how ${agent.name} will market this home (mention: dedicated branded listing website, 24/7 AI chat answering buyer questions, instant lead follow-up, automated showing scheduling)
-3. **Why choose me** — a confident, warm close from the agent's perspective (${agent.name}) to the seller
+1. **Why this home stands out**: what makes this specific property compelling to buyers (based on the address/type/size)
+2. **My marketing plan**: a confident summary of how ${agent.name} will market this home (mention: dedicated branded listing website, 24/7 AI chat answering buyer questions, instant lead follow-up, automated showing scheduling)
+3. **Why choose me**: a confident, warm close from the agent's perspective (${agent.name}) to the seller
 
 Rules:
 - No em-dashes

@@ -61,7 +61,7 @@ export default function LeadSourcesCard({ leads }: Props) {
     counts.set(source, entry);
   }
 
-  // Hide until there's real source variety — one bar at 100% is useless.
+  // Hide until there's real source variety. One bar at 100% is useless.
   // Need 2+ distinct sources OR any non-direct source to be insightful.
   const distinctSources = counts.size;
   const hasNonDirect = Array.from(counts.keys()).some((s) => s.toLowerCase() !== "direct");
