@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import {
   Check,
   ArrowRight,
-  ShieldCheck,
   Globe,
   Sparkles,
   MessageSquare,
@@ -159,19 +158,6 @@ export default function PricingPage() {
               </Link>
               <p className="text-center text-xs text-gray-400">
                 14-day free trial. No credit card required.
-              </p>
-            </div>
-          </div>
-
-          {/* Money-back guarantee badge */}
-          <div className="mt-6 flex items-start gap-3 rounded-xl border border-emerald-200 bg-emerald-50/50 p-4">
-            <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
-            <div>
-              <p className="text-sm font-semibold text-emerald-900">
-                30-day money-back guarantee
-              </p>
-              <p className="mt-0.5 text-xs text-emerald-800">
-                If ListingFlare doesn&apos;t help you book a showing in your first 30 days, email us and we&apos;ll refund 100% of your first month. No hoops.
               </p>
             </div>
           </div>
