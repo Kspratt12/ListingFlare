@@ -47,7 +47,7 @@ export default function ListingAlertSignup({ listingId, listingAddress, isDemo =
   };
 
   return (
-    <section className="bg-white py-12 md:py-14">
+    <section className="bg-gray-50 py-12 md:py-14">
       <div className="mx-auto max-w-2xl px-6">
         <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-brand-50/60 via-white to-amber-50/50 p-6 md:p-8">
           <div className="flex items-start gap-4">

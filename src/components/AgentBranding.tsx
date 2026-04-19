@@ -31,12 +31,12 @@ export default function AgentBranding({ agent, agentId }: Props) {
             {/* Headshot */}
             <div className="relative">
               {profileLink ? (
-                <Link href={profileLink} className="block h-40 w-40 overflow-hidden rounded-full border-4 border-brand-100 shadow-lg transition-transform hover:scale-105">
+                <Link href={profileLink} className="block h-40 w-40 overflow-hidden rounded-full border-2 border-brand-200 shadow-lg transition-transform hover:scale-105">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={agent.headshotUrl} alt={agent.name} loading="lazy" className="h-full w-full object-cover" />
                 </Link>
               ) : (
-                <div className="h-40 w-40 overflow-hidden rounded-full border-4 border-brand-100 shadow-lg">
+                <div className="h-40 w-40 overflow-hidden rounded-full border-2 border-brand-200 shadow-lg">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={agent.headshotUrl} alt={agent.name} loading="lazy" className="h-full w-full object-cover" />
                 </div>

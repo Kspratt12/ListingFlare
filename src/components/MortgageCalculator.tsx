@@ -96,7 +96,8 @@ export default function MortgageCalculator({ listingPrice, state }: Props) {
                 step="1"
                 value={downPct}
                 onChange={(e) => setDownPct(e.target.value)}
-                className="mt-2 h-1.5 w-full cursor-pointer appearance-none rounded-full bg-gray-200 accent-brand-500"
+                className="mt-2 h-1.5 w-full cursor-pointer appearance-none rounded-full bg-gray-200"
+                style={{ accentColor: "var(--agent-brand, #b8965a)" }}
               />
               <div className="mt-1 flex justify-between text-[10px] text-gray-400">
                 <span>0%</span>
@@ -177,7 +178,10 @@ export default function MortgageCalculator({ listingPrice, state }: Props) {
           </div>
 
           {/* Output */}
-          <div className="md:col-span-2 flex flex-col gap-3 rounded-2xl border border-gray-950 bg-gray-950 p-6 text-white">
+          <div
+            className="md:col-span-2 flex flex-col gap-3 rounded-2xl border border-gray-950 p-6 text-white"
+            style={{ backgroundColor: "var(--agent-brand, #0f172a)" }}
+          >
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-300">
               Estimated monthly
             </p>

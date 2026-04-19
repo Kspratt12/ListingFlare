@@ -560,3 +560,12 @@ input[type="number"]::-webkit-inner-spin-button {
 .agent-brand-override .bg-brand-500\/10 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 10%, transparent) !important; }
 .agent-brand-override .bg-brand-500\/20 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 20%, transparent) !important; }
 .agent-brand-override .bg-brand-500\/40 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 40%, transparent) !important; }
+
+/* Additional opacity variants used by virtual tour + photo gallery
+   play buttons and various shadow helpers. */
+.agent-brand-override .bg-brand-500\/60 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 60%, transparent) !important; }
+.agent-brand-override .bg-brand-500\/70 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 70%, transparent) !important; }
+.agent-brand-override .bg-brand-500\/80 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 80%, transparent) !important; }
+.agent-brand-override .bg-brand-500\/90 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 90%, transparent) !important; }
+.agent-brand-override .shadow-brand-500\/30,
+.agent-brand-override .shadow-brand-500\/40 { --tw-shadow-color: var(--agent-brand, #b8965a) !important; }
