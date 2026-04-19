@@ -22,6 +22,7 @@ import HotLeadBadge from "@/components/HotLeadBadge";
 import { calculateHotScore } from "@/lib/hotScore";
 import ContactButtons from "@/components/ContactButtons";
 import { firstName } from "@/lib/contactLinks";
+import ClickToTextAnnouncement from "@/components/ClickToTextAnnouncement";
 
 const LEAD_STATUSES = [
   { value: "new", label: "New", color: "bg-blue-50 text-blue-700 border-blue-300" },
@@ -297,6 +298,7 @@ export default function LeadsPage() {
 
   return (
     <div>
+      <ClickToTextAnnouncement />
       {/* Toast */}
       {toast && (
         <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 rounded-lg px-4 py-3 shadow-lg ${
@@ -842,6 +844,7 @@ export default function LeadsPage() {
                   emailSubject="Following up"
                   emailBody={`Hi ${firstName(selectedLead.name)},\n\nThanks for reaching out. I'd love to chat whenever you have a minute.\n\n${profile?.name || ""}`}
                   showLabels
+                  showHint
                 />
               </div>
               )}

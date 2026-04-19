@@ -17,6 +17,8 @@ interface Props {
   showLabels?: boolean;
   // Allow caller to stop event bubbling when used inside clickable rows
   stopPropagation?: boolean;
+  // Show a small hint under the buttons (useful on desktop where sms: is inert)
+  showHint?: boolean;
 }
 
 export default function ContactButtons({
@@ -28,12 +30,15 @@ export default function ContactButtons({
   size = "md",
   showLabels = false,
   stopPropagation = false,
+  showHint = false,
 }: Props) {
   const callLink = buildCallLink(phone);
   const smsLink = buildSmsLink(phone, smsBody);
   const emailLink = buildEmailLink(email, emailSubject, emailBody);
 
   if (!callLink && !smsLink && !emailLink) return null;
+
+  const hasPhoneAction = Boolean(callLink || smsLink);
 
   const handleClick = (e: React.MouseEvent) => {
     if (stopPropagation) e.stopPropagation();
@@ -43,6 +48,7 @@ export default function ContactButtons({
   const pad = size === "sm" ? "px-2 py-1 text-[11px]" : "px-3 py-1.5 text-xs";
 
   return (
+    <div className="space-y-1.5">
     <div className="flex items-center gap-1.5">
       {callLink && (
         <a
@@ -77,6 +83,12 @@ export default function ContactButtons({
           {showLabels && <span>Email</span>}
         </a>
       )}
+    </div>
+    {showHint && hasPhoneAction && (
+      <p className="text-[10px] text-gray-400">
+        Call and Text open your phone&apos;s apps. Best used on mobile.
+      </p>
+    )}
     </div>
   );
 }
