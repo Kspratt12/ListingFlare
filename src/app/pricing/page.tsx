@@ -55,6 +55,7 @@ const featureGroups = [
     title: "Lead Management That Feels Like a Real CRM",
     items: [
       "Two-way threaded conversation inbox",
+      "Text leads with one tap - sends from your real phone number",
       "Pipeline kanban view with drag-and-drop",
       "Hot Lead scoring (hot, warm, cold)",
       "Speed-to-Lead tracker vs 47-minute industry avg",
@@ -89,6 +90,18 @@ const featureGroups = [
       "Weekly performance email (views, leads, conversions)",
       "Hot visitor alerts when buyers keep coming back",
       "All automation runs in the background with no setup",
+    ],
+  },
+  {
+    icon: Sparkles,
+    title: "Keep Your Sellers Obsessed",
+    items: [
+      "Private real-time dashboard for each seller (no login required)",
+      "Seller sees live views, inquiries, showings, and AI chats",
+      "Branded with your name, headshot, and click-to-text / call",
+      "Anonymized activity (your buyer privacy stays protected)",
+      "Magic-link invite email with your brand, sent with one click",
+      "Visit tracking so you know when your seller checks in",
     ],
   },
   {

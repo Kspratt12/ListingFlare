@@ -81,6 +81,8 @@ const included = [
   "Instant AI auto-reply to every new lead (under 15 seconds)",
   "Built-in showing scheduler synced to your Google Calendar",
   "Day 1, 3, and 7 AI follow-up sequences sent for you",
+  "Text leads with one tap from your real phone number",
+  "Seller transparency portal so your clients watch their listing live",
   "Hot Lead scoring + drag-and-drop pipeline view",
   "24-hour showing reminders, auto-feedback, testimonial requests",
   "Social posts, open house flyers, QR sign-in, analytics",
