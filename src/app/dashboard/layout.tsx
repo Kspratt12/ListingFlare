@@ -88,29 +88,45 @@ export default function DashboardLayout({
 
       {/* Navigation */}
       <nav className="mt-4 flex-1 px-3">
-        {navItems.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            onClick={() => setSidebarOpen(false)}
-            className={`mb-1 flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-              isActive(item.href)
-                ? "text-white"
-                : "text-gray-400 hover:bg-white/5 hover:text-white"
-            }`}
-            style={
-              isActive(item.href)
-                ? { backgroundColor: profile?.brand_color ? `${profile.brand_color}30` : "rgba(255,255,255,0.1)" }
-                : undefined
-            }
-          >
-            <item.icon
-              className="h-5 w-5"
-              style={isActive(item.href) && profile?.brand_color ? { color: profile.brand_color } : undefined}
-            />
-            {item.label}
-          </Link>
-        ))}
+        {navItems.map((item) => {
+          const active = isActive(item.href);
+          const color = profile?.brand_color || null;
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setSidebarOpen(false)}
+              className={`group relative mb-1 flex items-center gap-3 overflow-hidden rounded-lg px-3 py-2.5 text-sm font-medium transition-all ${
+                active
+                  ? "text-white"
+                  : "text-gray-400 hover:bg-white/5 hover:text-white"
+              }`}
+              style={
+                active
+                  ? { backgroundColor: color ? `${color}22` : "rgba(255,255,255,0.08)" }
+                  : undefined
+              }
+            >
+              {/* Left accent bar on active item */}
+              {active && (
+                <span
+                  aria-hidden="true"
+                  className="absolute left-0 top-1/2 h-7 w-1 -translate-y-1/2 rounded-r-full"
+                  style={{ backgroundColor: color || "#b8965a" }}
+                />
+              )}
+              <item.icon
+                className="h-5 w-5 transition-colors"
+                style={{
+                  color: active
+                    ? color || "#b8965a"
+                    : undefined,
+                }}
+              />
+              {item.label}
+            </Link>
+          );
+        })}
       </nav>
 
       {/* Logout */}
