@@ -78,22 +78,45 @@ export default function MyListingsPage() {
       const esc = (s: string) =>
         String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-      // Photo overlay template — used as the base for hero slides. Dark
-      // bottom gradient keeps text readable over any photo.
+      // Hero photo slide — full address + price block + details.
+      // Used as the flagship first slide and for the Story/FB cut.
       const photoSlide = (w: number, h: number, photoUrl: string, ribbonText: string) => `
         <div style="width:${w}px;height:${h}px;position:relative;background:#000;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
           <img src="${esc(photoUrl)}" crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />
-          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.55) 65%,rgba(0,0,0,0.9) 100%);"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.6) 60%,rgba(0,0,0,0.92) 100%);"></div>
           ${ribbonText ? `
-            <div style="position:absolute;top:${Math.round(40 * w / 1080)}px;left:${Math.round(40 * w / 1080)}px;background:${brand};color:white;padding:${Math.round(10 * w / 1080)}px ${Math.round(22 * w / 1080)}px;font-size:${Math.round(22 * w / 1080)}px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:999px;">
+            <div style="position:absolute;top:${Math.round(40 * w / 1080)}px;left:${Math.round(40 * w / 1080)}px;background:${brand};color:white;padding:${Math.round(12 * w / 1080)}px ${Math.round(24 * w / 1080)}px;font-size:${Math.round(22 * w / 1080)}px;font-weight:800;letter-spacing:3px;text-transform:uppercase;border-radius:999px;box-shadow:0 4px 20px rgba(0,0,0,0.3);">
               ${esc(ribbonText)}
             </div>
           ` : ""}
-          <div style="position:absolute;bottom:${Math.round(48 * h / 1080)}px;left:${Math.round(48 * w / 1080)}px;right:${Math.round(48 * w / 1080)}px;color:white;">
-            <div style="font-size:${Math.round(68 * w / 1080)}px;font-weight:800;font-family:Georgia,serif;line-height:1;">${esc(data.price)}</div>
-            <div style="font-size:${Math.round(32 * w / 1080)}px;margin-top:${Math.round(14 * w / 1080)}px;font-weight:600;">${esc(data.street)}</div>
-            <div style="font-size:${Math.round(24 * w / 1080)}px;opacity:0.85;margin-top:${Math.round(6 * w / 1080)}px;">${esc(data.cityState)}</div>
-            <div style="font-size:${Math.round(22 * w / 1080)}px;color:${brand};font-weight:700;margin-top:${Math.round(18 * w / 1080)}px;letter-spacing:1px;">${esc(data.details)}</div>
+          <div style="position:absolute;bottom:${Math.round(52 * h / 1080)}px;left:${Math.round(52 * w / 1080)}px;right:${Math.round(52 * w / 1080)}px;color:white;">
+            <div style="font-size:${Math.round(20 * w / 1080)}px;letter-spacing:4px;text-transform:uppercase;opacity:0.75;margin-bottom:${Math.round(14 * w / 1080)}px;">Asking</div>
+            <div style="font-size:${Math.round(76 * w / 1080)}px;font-weight:800;font-family:Georgia,serif;line-height:1;">${esc(data.price)}</div>
+            <div style="font-size:${Math.round(34 * w / 1080)}px;margin-top:${Math.round(22 * w / 1080)}px;font-weight:700;font-family:Georgia,serif;">${esc(data.street)}</div>
+            <div style="font-size:${Math.round(22 * w / 1080)}px;opacity:0.8;margin-top:${Math.round(4 * w / 1080)}px;">${esc(data.cityState)}</div>
+            <div style="width:${Math.round(60 * w / 1080)}px;height:2px;background:${brand};margin-top:${Math.round(20 * w / 1080)}px;"></div>
+            <div style="font-size:${Math.round(20 * w / 1080)}px;color:${brand};font-weight:700;margin-top:${Math.round(20 * w / 1080)}px;letter-spacing:2px;">${esc(data.details)}</div>
+          </div>
+        </div>
+      `;
+
+      // Gallery-style photo slide — minimal overlay, just the address
+      // pill on top. Used between hero + stats so the carousel reads
+      // like a real-estate photo reel instead of 4 straight text cards.
+      const galleryPhotoSlide = (w: number, h: number, photoUrl: string, labelTop: string, labelBottom: string) => `
+        <div style="width:${w}px;height:${h}px;position:relative;background:#000;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;overflow:hidden;">
+          <img src="${esc(photoUrl)}" crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />
+          <div style="position:absolute;top:0;left:0;right:0;height:30%;background:linear-gradient(to bottom,rgba(0,0,0,0.55),transparent);"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;height:30%;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);"></div>
+          <div style="position:absolute;top:${Math.round(40 * w / 1080)}px;left:${Math.round(40 * w / 1080)}px;right:${Math.round(40 * w / 1080)}px;color:white;">
+            <div style="display:inline-block;font-size:${Math.round(18 * w / 1080)}px;letter-spacing:3px;text-transform:uppercase;background:rgba(0,0,0,0.4);backdrop-filter:blur(10px);padding:${Math.round(8 * w / 1080)}px ${Math.round(18 * w / 1080)}px;border-radius:999px;border:1px solid rgba(255,255,255,0.2);font-weight:700;">
+              ${esc(labelTop)}
+            </div>
+          </div>
+          <div style="position:absolute;bottom:${Math.round(48 * w / 1080)}px;left:${Math.round(40 * w / 1080)}px;right:${Math.round(40 * w / 1080)}px;color:white;">
+            <div style="font-family:Georgia,serif;font-size:${Math.round(42 * w / 1080)}px;font-weight:700;line-height:1.1;text-shadow:0 2px 12px rgba(0,0,0,0.5);">
+              ${esc(labelBottom)}
+            </div>
           </div>
         </div>
       `;
@@ -118,12 +141,8 @@ export default function MyListingsPage() {
         </div>
       `;
 
-      const priceSlideInner = (w: number) => `
-        <div style="font-size:${Math.round(24 * w / 1080)}px;letter-spacing:4px;text-transform:uppercase;opacity:0.8;">Asking</div>
-        <div style="font-family:Georgia,serif;font-size:${Math.round(150 * w / 1080)}px;font-weight:800;line-height:1;margin-top:${Math.round(20 * w / 1080)}px;">${esc(data.price)}</div>
-        <div style="font-size:${Math.round(32 * w / 1080)}px;margin-top:${Math.round(40 * w / 1080)}px;font-weight:600;">${esc(data.street)}</div>
-        <div style="font-size:${Math.round(24 * w / 1080)}px;opacity:0.8;margin-top:${Math.round(8 * w / 1080)}px;">${esc(data.cityState)}</div>
-      `;
+      // priceSlideInner was dropped in the redesign — the hero photo
+      // slide now carries the price so we don't need a text-only duplicate.
 
       const statsSlideInner = (w: number) => `
         <div style="font-size:${Math.round(24 * w / 1080)}px;letter-spacing:4px;text-transform:uppercase;opacity:0.8;">The Home</div>
@@ -161,40 +180,63 @@ export default function MyListingsPage() {
         </div>
       `;
 
-      // Full slide deck. Every slide shares the footer/agent info.
+      // Full slide deck. Uses up to 3 different photos from the listing
+      // so the carousel looks like a real-estate gallery, not 4 text
+      // cards. Photos array falls back to hero if fewer available.
+      const photos = Array.isArray(data.photos) && data.photos.length > 0 ? data.photos : [data.heroUrl];
+      const photo2 = photos[1] || photos[0];
+      const photo3 = photos[2] || photos[1] || photos[0];
+      const photo4 = photos[3] || photos[0];
+
       const slides: { name: string; w: number; h: number; html: string }[] = [
-        // IG carousel (1:1). Hero first, then price/stats/CTA cards.
+        // 1. Hero photo with "Just Listed" + price + address block
         {
           name: "instagram_carousel_1_hero.png",
           w: 1080, h: 1080,
-          html: photoSlide(1080, 1080, data.heroUrl, "Just Listed"),
+          html: photoSlide(1080, 1080, photos[0], "Just Listed"),
         },
+        // 2. Gallery photo #2 — minimal "Interior" label
         {
-          name: "instagram_carousel_2_price.png",
+          name: "instagram_carousel_2_interior.png",
           w: 1080, h: 1080,
-          html: `<div style="position:relative;width:1080px;height:1080px;">${brandSlide(1080, 1080, priceSlideInner(1080))}${footer(1080)}</div>`,
+          html: galleryPhotoSlide(1080, 1080, photo2, "Step inside", data.street || ""),
         },
+        // 3. Stats card (beds / baths / sqft + feature pills)
         {
           name: "instagram_carousel_3_stats.png",
           w: 1080, h: 1080,
           html: `<div style="position:relative;width:1080px;height:1080px;">${brandSlide(1080, 1080, statsSlideInner(1080))}${footer(1080)}</div>`,
         },
+        // 4. Gallery photo #3 — "Book a showing" invite
         {
-          name: "instagram_carousel_4_cta.png",
+          name: "instagram_carousel_4_showing.png",
+          w: 1080, h: 1080,
+          html: galleryPhotoSlide(1080, 1080, photo3, "Private showings", "Schedule your private tour."),
+        },
+        // 5. CTA card with the listing URL
+        {
+          name: "instagram_carousel_5_cta.png",
           w: 1080, h: 1080,
           html: `<div style="position:relative;width:1080px;height:1080px;">${brandSlide(1080, 1080, ctaSlideInner(1080))}${footer(1080)}</div>`,
         },
-        // IG Story (9:16)
+        // IG Story (9:16) — hero photo with overlay
         {
           name: "instagram_story.png",
           w: 1080, h: 1920,
-          html: photoSlide(1080, 1920, data.heroUrl, "Just Listed"),
+          html: photoSlide(1080, 1920, photos[0], "Just Listed"),
         },
-        // FB landscape post
+        // FB landscape post — use a gallery photo if available for variety
         {
           name: "facebook_post.png",
           w: 1200, h: 630,
-          html: photoSlide(1200, 630, data.heroUrl, "Just Listed"),
+          html: photoSlide(1200, 630, photos[0], "Just Listed"),
+        },
+        // Bonus: secondary hero using photo #4 so the pack includes a
+        // backup asset for Reels covers or additional posts.
+        {
+          name: "instagram_bonus_alt_hero.png",
+          w: 1080, h: 1080,
+          html: photoSlide(1080, 1080, photo4, ""),
         },
       ];
 

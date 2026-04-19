@@ -103,7 +103,12 @@ export default function DemoColorSwitcher({ topOffset = false }: { topOffset?: b
                   <button
                     key={c.hex}
                     type="button"
-                    onClick={() => setActive(c.hex)}
+                    onClick={() => {
+                      setActive(c.hex);
+                      // Collapse back to the icon after picking so the row
+                      // isn't sitting there blocking content.
+                      setTimeout(() => setExpanded(false), 350);
+                    }}
                     aria-label={c.label}
                     title={c.label}
                     style={{ backgroundColor: c.hex }}

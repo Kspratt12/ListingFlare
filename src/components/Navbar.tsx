@@ -83,7 +83,8 @@ export default function Navbar({ topOffset = false, shareTitle, shareUrl, showPr
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
         {/* Logo - always links home */}
         <Link href="/" className="font-serif text-xl font-bold text-white">
-          Listing<span className="text-brand-400">Flare</span>
+          Listing
+          <span style={{ color: "var(--agent-brand, #b8965a)" }}>Flare</span>
         </Link>
 
         {/* Desktop links */}

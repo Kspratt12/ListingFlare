@@ -286,7 +286,7 @@ export default function DashboardLayout({
             <Menu className="h-5 w-5" />
           </button>
           <span className="font-serif text-lg font-bold text-gray-900">
-            Listing<span className="text-brand-400">Flare</span>
+            Listing<span style={{ color: "var(--agent-brand, #b8965a)" }}>Flare</span>
           </span>
         </header>
 

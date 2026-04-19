@@ -750,13 +750,16 @@ export default function LeadsPage() {
 
       {/* Lead Detail / Reply Panel */}
       {selectedLead && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" onClick={() => setSelectedLead(null)}>
+        <div
+          className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-0 sm:items-center sm:p-4"
+          onClick={() => setSelectedLead(null)}
+        >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-2xl"
+            className="relative flex max-h-[92vh] w-full max-w-lg flex-col overflow-hidden rounded-t-2xl bg-white shadow-2xl sm:max-h-[85vh] sm:rounded-2xl"
           >
-            {/* Header */}
-            <div className="flex items-center justify-between border-b border-gray-100 bg-gray-50 px-6 py-4">
+            {/* Header - sticky so it stays visible while scrolling the body */}
+            <div className="sticky top-0 z-10 flex flex-shrink-0 items-center justify-between border-b border-gray-100 bg-gray-50 px-6 py-4">
               <div>
                 <h3 className="font-serif text-lg font-bold text-gray-900">{selectedLead.name}</h3>
                 {selectedLead.listing && (
@@ -789,6 +792,10 @@ export default function LeadsPage() {
                 </button>
               </div>
             </div>
+
+            {/* Scrollable body so on mobile the Save / action buttons
+                stay reachable no matter how long the content gets. */}
+            <div className="flex-1 overflow-y-auto">
 
             {/* Delete confirmation */}
             {deleteConfirm && (
@@ -950,6 +957,8 @@ export default function LeadsPage() {
               )}
             </div>
 
+            </div>
+            {/* end scrollable body */}
           </div>
         </div>
       )}

@@ -228,7 +228,10 @@ export default function LeadPipeline({ leads, onSelectLead, onUpdateStatus }: Pr
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
-    useSensor(TouchSensor, { activationConstraint: { delay: 200, tolerance: 6 } }),
+    // Longer hold + larger tolerance on touch so a normal tap opens the
+    // lead detail cleanly and a deliberate long-press is what triggers
+    // drag. Prior 200ms felt like a hair-trigger on phones.
+    useSensor(TouchSensor, { activationConstraint: { delay: 450, tolerance: 10 } }),
     useSensor(KeyboardSensor)
   );
 
