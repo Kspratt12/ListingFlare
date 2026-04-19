@@ -381,13 +381,39 @@ export default function MyListingsPage() {
               <p className="mt-2 text-gray-500">
                 Create your first property listing website to get started.
               </p>
-              <Link
-                href="/dashboard/create"
-                className="mt-6 inline-flex items-center gap-2 rounded-lg bg-gray-950 px-5 py-3 text-sm font-medium text-white hover:bg-gray-800"
-              >
-                <PlusCircle className="h-4 w-4" />
-                Create Listing
-              </Link>
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                <Link
+                  href="/dashboard/create"
+                  className="inline-flex items-center gap-2 rounded-lg bg-gray-950 px-5 py-3 text-sm font-medium text-white hover:bg-gray-800"
+                >
+                  <PlusCircle className="h-4 w-4" />
+                  Create Listing
+                </Link>
+                <button
+                  onClick={async () => {
+                    try {
+                      const res = await fetch("/api/demo/seed", { method: "POST" });
+                      if (!res.ok) {
+                        const j = await res.json().catch(() => ({}));
+                        throw new Error(j.error || "Failed");
+                      }
+                      const { listing } = await res.json();
+                      setListings((prev) => [listing, ...prev]);
+                      setToast({ message: "Demo listing loaded. Click Edit to make it yours.", type: "success" });
+                      setTimeout(() => setToast(null), 4000);
+                    } catch (err) {
+                      setToast({ message: err instanceof Error ? err.message : "Failed to load demo", type: "error" });
+                      setTimeout(() => setToast(null), 4000);
+                    }
+                  }}
+                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  Try with demo data
+                </button>
+              </div>
+              <p className="mt-3 text-xs text-gray-400">
+                Load a sample property so you can see the full product in 30 seconds.
+              </p>
             </>
           )}
         </div>
