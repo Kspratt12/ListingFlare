@@ -58,9 +58,11 @@ function DetailRow({ row }: { row: Row }) {
   );
 }
 
-// Section inside the single stat sheet — small icon + title on the left,
-// rows flowing in a 2-column layout on the right. Each section is
-// separated by a hairline divider, no individual card wrappers.
+// Section inside the single stat sheet — small inline header bar, then
+// rows flowing in a 2-column layout below that uses the full width.
+// Previous sidebar-style header created dead space and cramped the
+// value column (made long values like "Single Family Residence" wrap
+// into two lines).
 function StatSection({
   title,
   icon: Icon,
@@ -74,22 +76,21 @@ function StatSection({
   if (visible.length === 0) return null;
   return (
     <div className="border-t border-gray-200 first:border-t-0">
-      <div className="grid gap-6 px-6 py-6 md:grid-cols-[200px_1fr] md:gap-10 md:px-8 md:py-8">
-        <div className="flex items-center gap-3 md:flex-col md:items-start md:gap-2">
+      <div className="px-6 py-6 md:px-8 md:py-8">
+        {/* Section header — small horizontal bar, not a sidebar */}
+        <div className="mb-4 flex items-center gap-3">
           <div
-            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg"
+            className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg"
             style={{
               background: "color-mix(in srgb, var(--agent-brand, #b8965a) 14%, white)",
             }}
           >
             <Icon className="h-4 w-4" style={{ color: "var(--agent-brand, #b8965a)" }} />
           </div>
-          <div>
-            <h3 className="font-serif text-base font-semibold text-gray-900 md:text-lg">{title}</h3>
-            <p className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.2em] text-gray-400">
-              {visible.length} {visible.length === 1 ? "detail" : "details"}
-            </p>
-          </div>
+          <h3 className="font-serif text-base font-semibold text-gray-900 md:text-lg">{title}</h3>
+          <span className="ml-auto text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400">
+            {visible.length} {visible.length === 1 ? "detail" : "details"}
+          </span>
         </div>
         <dl className="md:columns-2 md:gap-10">
           {visible.map((row) => (
