@@ -98,6 +98,17 @@ export interface Listing {
   // Per-listing AI chat toggle. True by default — set to false to hide
   // the AI chat bubble on that specific listing.
   ai_chat_enabled?: boolean;
+  comparable_sales?: ComparableSale[];
+}
+
+export interface ComparableSale {
+  address: string;
+  soldPrice: number;
+  soldDate: string; // ISO date
+  beds?: number | null;
+  baths?: number | null;
+  sqft?: number | null;
+  note?: string | null;
 }
 
 export interface ListingVideo {

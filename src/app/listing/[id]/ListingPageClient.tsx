@@ -18,6 +18,7 @@ import NeighborhoodInfo from "@/components/NeighborhoodInfo";
 import OtherListings from "@/components/OtherListings";
 import PriceHistory from "@/components/PriceHistory";
 import PropertyAttributes from "@/components/PropertyAttributes";
+import ComparableSales from "@/components/ComparableSales";
 import ListingAlertSignup from "@/components/ListingAlertSignup";
 import ListingStatsBar from "@/components/ListingStatsBar";
 import ComingSoonBanner from "@/components/ComingSoonBanner";
@@ -233,6 +234,14 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
       {listing.price_history && listing.price_history.length > 0 && (
         <PriceHistory history={listing.price_history} currentPrice={listing.price} />
       )}
+
+      {/* Agent-curated comparable sales — context buyers expect from
+          Zillow, but curated by the listing agent rather than an AVM. */}
+      <ComparableSales
+        comps={listing.comparable_sales}
+        thisPrice={listing.price}
+        thisSqft={listing.sqft}
+      />
 
       {listing.price > 0 && (
         <MortgageCalculator listingPrice={listing.price} state={listing.state} />

@@ -13,7 +13,7 @@ import {
   Video,
   Lock,
 } from "lucide-react";
-import type { ListingPhoto, ListingVideo, AgentProfile } from "@/lib/types";
+import type { ListingPhoto, ListingVideo, AgentProfile, ComparableSale } from "@/lib/types";
 import Link from "next/link";
 import AddressAutocomplete from "@/components/AddressAutocomplete";
 import { formatNumber, parseNumber, formatLotSize } from "@/lib/formatters";
@@ -95,6 +95,7 @@ export default function CreateListingPage() {
   const [basementType, setBasementType] = useState("");
   const [brandColor, setBrandColor] = useState("");
   const [aiChatEnabled, setAiChatEnabled] = useState(true); // default on — the AI chat is the core conversion engine
+  const [comps, setComps] = useState<ComparableSale[]>([]);
 
   // MLS paste feature - auto-fills form fields from a pasted description
   const [pasteText, setPasteText] = useState("");
@@ -521,6 +522,7 @@ export default function CreateListingPage() {
         basement_type: basementType || null,
         brand_color: brandColor || null,
         ai_chat_enabled: aiChatEnabled,
+        comparable_sales: comps.filter((c) => c.address && c.soldPrice > 0 && c.soldDate),
         price_history: initialHistory,
       }).select("id").single();
 
@@ -1054,6 +1056,124 @@ export default function CreateListingPage() {
                 }`}
               />
             </button>
+          </div>
+        </section>
+
+        {/* Comparable sales — agent-curated list of recently sold nearby
+            homes. Optional; just paste 3-5 to give buyers market context. */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <h2 className="font-serif text-lg font-semibold text-gray-900">Comparable sales (optional)</h2>
+          <p className="mt-1 text-sm text-gray-500">
+            Add 3-5 recently sold nearby homes so buyers see how this one is priced. Shows up as its own section on the listing page with an average-price comparison to this home.
+          </p>
+
+          <div className="mt-4 space-y-3">
+            {comps.map((c, i) => (
+              <div key={i} className="rounded-lg border border-gray-200 bg-gray-50/50 p-4">
+                <div className="mb-2 flex items-center justify-between">
+                  <span className="text-xs font-semibold text-gray-600">Comp {i + 1}</span>
+                  <button
+                    type="button"
+                    onClick={() => setComps(comps.filter((_, idx) => idx !== i))}
+                    className="text-xs font-medium text-red-600 hover:text-red-700"
+                  >
+                    Remove
+                  </button>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="sm:col-span-2">
+                    <label className="mb-1 block text-xs font-medium text-gray-600">Address</label>
+                    <input
+                      type="text"
+                      value={c.address}
+                      onChange={(e) => {
+                        const next = [...comps]; next[i] = { ...c, address: e.target.value }; setComps(next);
+                      }}
+                      className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                      placeholder="123 Nearby Lane, City, ST"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-xs font-medium text-gray-600">Sold price</label>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      value={c.soldPrice ? formatNumber(String(c.soldPrice)) : ""}
+                      onChange={(e) => {
+                        const n = parseNumber(e.target.value);
+                        const next = [...comps]; next[i] = { ...c, soldPrice: n ? parseInt(n) : 0 }; setComps(next);
+                      }}
+                      className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                      placeholder="850,000"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-xs font-medium text-gray-600">Sold date</label>
+                    <input
+                      type="date"
+                      value={c.soldDate || ""}
+                      onChange={(e) => {
+                        const next = [...comps]; next[i] = { ...c, soldDate: e.target.value }; setComps(next);
+                      }}
+                      className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-xs font-medium text-gray-600">Beds</label>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      value={c.beds ?? ""}
+                      onChange={(e) => {
+                        const v = e.target.value.replace(/[^0-9]/g, "");
+                        const next = [...comps]; next[i] = { ...c, beds: v ? parseInt(v) : null }; setComps(next);
+                      }}
+                      className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                      placeholder="3"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-xs font-medium text-gray-600">Baths</label>
+                    <input
+                      type="text"
+                      inputMode="decimal"
+                      value={c.baths ?? ""}
+                      onChange={(e) => {
+                        const v = e.target.value.replace(/[^0-9.]/g, "");
+                        const next = [...comps]; next[i] = { ...c, baths: v ? parseFloat(v) : null }; setComps(next);
+                      }}
+                      className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                      placeholder="2.5"
+                    />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className="mb-1 block text-xs font-medium text-gray-600">Sqft (optional)</label>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      value={c.sqft ? formatNumber(String(c.sqft)) : ""}
+                      onChange={(e) => {
+                        const n = parseNumber(e.target.value);
+                        const next = [...comps]; next[i] = { ...c, sqft: n ? parseInt(n) : null }; setComps(next);
+                      }}
+                      className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                      placeholder="2,400"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+            {comps.length < 6 && (
+              <button
+                type="button"
+                onClick={() =>
+                  setComps([...comps, { address: "", soldPrice: 0, soldDate: "", beds: null, baths: null, sqft: null }])
+                }
+                className="w-full rounded-lg border-2 border-dashed border-gray-300 px-4 py-3 text-sm font-medium text-gray-600 hover:border-brand-400 hover:text-brand-600"
+              >
+                + Add {comps.length === 0 ? "first" : "another"} comparable sale
+              </button>
+            )}
           </div>
         </section>
 

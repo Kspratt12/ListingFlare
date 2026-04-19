@@ -17,7 +17,7 @@ import {
   QrCode,
   Lock,
 } from "lucide-react";
-import type { ListingPhoto, ListingVideo, AgentProfile } from "@/lib/types";
+import type { ListingPhoto, ListingVideo, AgentProfile, ComparableSale } from "@/lib/types";
 import Link from "next/link";
 import AddressAutocomplete from "@/components/AddressAutocomplete";
 import { formatNumber, parseNumber, formatLotSize } from "@/lib/formatters";
@@ -121,6 +121,7 @@ export default function EditListingPage() {
   const [videoIntroUrl, setVideoIntroUrl] = useState("");
   const [brandColor, setBrandColor] = useState("");
   const [aiChatEnabled, setAiChatEnabled] = useState(true); // default on; falls back to true for pre-migration listings
+  const [comps, setComps] = useState<ComparableSale[]>([]);
   // Track previous price + history so we can auto-log price changes
   const [loadedPrice, setLoadedPrice] = useState<number | null>(null);
   const [priceHistory, setPriceHistory] = useState<Array<{ date: string; price: number; event: string }>>([]);
@@ -301,6 +302,7 @@ export default function EditListingPage() {
       setVideoIntroUrl(data.video_intro_url || "");
       setBrandColor(data.brand_color || "");
       setAiChatEnabled(data.ai_chat_enabled !== false);
+      setComps(Array.isArray(data.comparable_sales) ? data.comparable_sales : []);
       setLoadedPrice(data.price || null);
       setPriceHistory(Array.isArray(data.price_history) ? data.price_history : []);
       setHasUnsavedChanges(false);
@@ -525,6 +527,7 @@ export default function EditListingPage() {
           video_intro_url: videoIntroUrl || null,
           brand_color: brandColor || null,
           ai_chat_enabled: aiChatEnabled,
+          comparable_sales: comps.filter((c) => c.address && c.soldPrice > 0 && c.soldDate),
           price_history: nextHistory,
           updated_at: new Date().toISOString(),
         })
@@ -1060,6 +1063,124 @@ export default function EditListingPage() {
                 }`}
               />
             </button>
+          </div>
+        </section>
+
+        {/* Comparable sales — agent-curated list. Optional. */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <h2 className="font-serif text-lg font-semibold text-gray-900">Comparable sales (optional)</h2>
+          <p className="mt-1 text-sm text-gray-500">
+            Add 3-5 recently sold nearby homes so buyers see how this one is priced. Shows up as its own section on the listing page with an average-price comparison.
+          </p>
+
+          <div className="mt-4 space-y-3">
+            {comps.map((c, i) => (
+              <div key={i} className="rounded-lg border border-gray-200 bg-gray-50/50 p-4">
+                <div className="mb-2 flex items-center justify-between">
+                  <span className="text-xs font-semibold text-gray-600">Comp {i + 1}</span>
+                  <button
+                    type="button"
+                    onClick={() => { setComps(comps.filter((_, idx) => idx !== i)); setHasUnsavedChanges(true); }}
+                    className="text-xs font-medium text-red-600 hover:text-red-700"
+                  >
+                    Remove
+                  </button>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="sm:col-span-2">
+                    <label className="mb-1 block text-xs font-medium text-gray-600">Address</label>
+                    <input
+                      type="text"
+                      value={c.address}
+                      onChange={(e) => {
+                        const next = [...comps]; next[i] = { ...c, address: e.target.value }; setComps(next); setHasUnsavedChanges(true);
+                      }}
+                      className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                      placeholder="123 Nearby Lane, City, ST"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-xs font-medium text-gray-600">Sold price</label>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      value={c.soldPrice ? formatNumber(String(c.soldPrice)) : ""}
+                      onChange={(e) => {
+                        const n = parseNumber(e.target.value);
+                        const next = [...comps]; next[i] = { ...c, soldPrice: n ? parseInt(n) : 0 }; setComps(next); setHasUnsavedChanges(true);
+                      }}
+                      className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                      placeholder="850,000"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-xs font-medium text-gray-600">Sold date</label>
+                    <input
+                      type="date"
+                      value={c.soldDate || ""}
+                      onChange={(e) => {
+                        const next = [...comps]; next[i] = { ...c, soldDate: e.target.value }; setComps(next); setHasUnsavedChanges(true);
+                      }}
+                      className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-xs font-medium text-gray-600">Beds</label>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      value={c.beds ?? ""}
+                      onChange={(e) => {
+                        const v = e.target.value.replace(/[^0-9]/g, "");
+                        const next = [...comps]; next[i] = { ...c, beds: v ? parseInt(v) : null }; setComps(next); setHasUnsavedChanges(true);
+                      }}
+                      className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                      placeholder="3"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-xs font-medium text-gray-600">Baths</label>
+                    <input
+                      type="text"
+                      inputMode="decimal"
+                      value={c.baths ?? ""}
+                      onChange={(e) => {
+                        const v = e.target.value.replace(/[^0-9.]/g, "");
+                        const next = [...comps]; next[i] = { ...c, baths: v ? parseFloat(v) : null }; setComps(next); setHasUnsavedChanges(true);
+                      }}
+                      className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                      placeholder="2.5"
+                    />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className="mb-1 block text-xs font-medium text-gray-600">Sqft (optional)</label>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      value={c.sqft ? formatNumber(String(c.sqft)) : ""}
+                      onChange={(e) => {
+                        const n = parseNumber(e.target.value);
+                        const next = [...comps]; next[i] = { ...c, sqft: n ? parseInt(n) : null }; setComps(next); setHasUnsavedChanges(true);
+                      }}
+                      className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                      placeholder="2,400"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+            {comps.length < 6 && (
+              <button
+                type="button"
+                onClick={() => {
+                  setComps([...comps, { address: "", soldPrice: 0, soldDate: "", beds: null, baths: null, sqft: null }]);
+                  setHasUnsavedChanges(true);
+                }}
+                className="w-full rounded-lg border-2 border-dashed border-gray-300 px-4 py-3 text-sm font-medium text-gray-600 hover:border-brand-400 hover:text-brand-600"
+              >
+                + Add {comps.length === 0 ? "first" : "another"} comparable sale
+              </button>
+            )}
           </div>
         </section>
 
