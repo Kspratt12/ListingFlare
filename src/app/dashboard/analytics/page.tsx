@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Listing, Lead } from "@/lib/types";
-import { Eye, Users, TrendingUp, Home, BarChart3 } from "lucide-react";
+import { Eye, Users, TrendingUp, Home, BarChart3, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 export default function AnalyticsPage() {
@@ -70,6 +70,32 @@ export default function AnalyticsPage() {
           {[1, 2, 3, 4].map((i) => (
             <div key={i} className="h-28 animate-pulse rounded-xl border border-gray-200 bg-white" />
           ))}
+        </div>
+      ) : totalViews === 0 && totalLeads === 0 ? (
+        <div className="mt-10 rounded-2xl border border-dashed border-brand-200 bg-brand-50/40 p-10 text-center">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-white">
+            <Sparkles className="h-5 w-5 text-brand-500" />
+          </div>
+          <h2 className="mt-4 font-serif text-xl font-bold text-gray-900">
+            Your stats will light up here
+          </h2>
+          <p className="mx-auto mt-2 max-w-md text-sm text-gray-600">
+            Once you publish a listing and share the link, you&apos;ll see views, leads, conversion rates, and per-listing performance right here.
+          </p>
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="/dashboard/create"
+              className="inline-flex items-center gap-2 rounded-lg bg-gray-950 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+            >
+              Create Your First Listing
+            </Link>
+            <Link
+              href="/dashboard"
+              className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              View My Listings
+            </Link>
+          </div>
         </div>
       ) : (
         <>

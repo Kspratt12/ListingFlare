@@ -216,18 +216,17 @@ export default function PricingPage() {
         <RoiCalculator />
 
         {/* Teams */}
-        <div className="mt-12 rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-8 text-center">
-          <p className="text-xs font-semibold uppercase tracking-wider text-brand-600">Coming Soon</p>
-          <h2 className="mt-2 font-serif text-2xl font-bold text-gray-900">Team Plans</h2>
+        <div className="mt-12 rounded-2xl border border-gray-200 bg-gray-50 p-8 text-center">
+          <h2 className="font-serif text-2xl font-bold text-gray-900">Running a team or brokerage?</h2>
           <p className="mx-auto mt-3 max-w-lg text-sm text-gray-600">
-            Plans for teams of 5, 10, and 25 agents with shared dashboards, team analytics,
-            and centralized billing. If you need a team plan now, reach out and we will set you up.
+            Shared dashboards, team analytics, centralized billing, and volume pricing for 5, 10, or 25+ agents. Email us and we&apos;ll put something together.
           </p>
           <a
             href="mailto:kelvin@listingflare.com?subject=Team%20Plan%20Inquiry"
-            className="mt-5 inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"
+            className="mt-5 inline-flex items-center gap-2 rounded-full bg-gray-950 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-gray-800"
           >
-            Contact Us About Teams
+            Get Team Pricing
+            <ArrowRight className="h-4 w-4" />
           </a>
         </div>
 

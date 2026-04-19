@@ -44,13 +44,12 @@ export default function LoginPage() {
         </Link>
         <div>
           <p className="font-serif text-display-sm font-bold leading-tight text-white">
-            Beautiful listing
+            Your listings
             <br />
-            websites, in minutes.
+            deserve better.
           </p>
           <p className="mt-4 max-w-md text-lg text-gray-400">
-            Create stunning single-property websites that impress sellers and
-            attract buyers. No design skills required.
+            Premium listing websites with AI chat, instant lead capture, and automated follow-up. Every buyer, captured.
           </p>
         </div>
         <p className="text-sm text-gray-600">

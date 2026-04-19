@@ -105,8 +105,7 @@ function SignupForm() {
             deserve better.
           </p>
           <p className="mt-4 max-w-md text-lg text-gray-400">
-            Join hundreds of agents using ListingFlare to win more listings
-            and impress their clients.
+            Premium listing websites with AI chat, instant lead capture, and automated follow-up. Every buyer, captured.
           </p>
         </div>
         <p className="text-sm text-gray-600">
