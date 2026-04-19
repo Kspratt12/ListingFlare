@@ -24,6 +24,7 @@ import ContactButtons from "@/components/ContactButtons";
 import { firstName } from "@/lib/contactLinks";
 import ClickToTextAnnouncement from "@/components/ClickToTextAnnouncement";
 import LeadDocuments from "@/components/LeadDocuments";
+import ConvertToProspectButton from "@/components/ConvertToProspectButton";
 
 const LEAD_STATUSES = [
   { value: "new", label: "New", color: "bg-blue-50 text-blue-700 border-blue-300" },
@@ -867,6 +868,9 @@ export default function LeadsPage() {
             {/* Lead Intel - qualification + source */}
             <div className="border-t border-gray-100 px-6 py-4">
               <LeadIntel lead={selectedLead} />
+              <div className="mt-3">
+                <ConvertToProspectButton lead={selectedLead} />
+              </div>
             </div>
 
             {/* Timeline */}
