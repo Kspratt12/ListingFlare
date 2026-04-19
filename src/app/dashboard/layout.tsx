@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import type { AgentProfile } from "@/lib/types";
+import LiveLeadAlerts from "@/components/LiveLeadAlerts";
 import {
   LayoutGrid,
   PlusCircle,
@@ -184,6 +185,7 @@ export default function DashboardLayout({
         {/* Page content */}
         <main className="flex-1 overflow-y-auto p-6 md:p-8">{children}</main>
       </div>
+      <LiveLeadAlerts />
     </div>
   );
 }

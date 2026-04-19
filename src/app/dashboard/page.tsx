@@ -6,7 +6,7 @@ import type { Listing, AgentProfile } from "@/lib/types";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import UpgradePrompt from "@/components/UpgradePrompt";
 import Link from "next/link";
-import { PlusCircle, Eye, Pencil, Share2, Loader2, Trash2, Lock, ArrowUpDown, Archive, Search, Copy } from "lucide-react";
+import { PlusCircle, Eye, Pencil, Share2, Loader2, Trash2, Lock, ArrowUpDown, Archive, Search, Copy, Link2, QrCode, Check } from "lucide-react";
 import UpcomingShowings from "@/components/UpcomingShowings";
 import ActivityFeed from "@/components/ActivityFeed";
 import SpeedToLead from "@/components/SpeedToLead";
@@ -25,6 +25,8 @@ export default function MyListingsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [duplicating, setDuplicating] = useState<string | null>(null);
   const [toast, setToast] = useState<{ message: string; type: "error" | "success" } | null>(null);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [generatingQR, setGeneratingQR] = useState<string | null>(null);
   const supabase = createClient();
   const limits = getSubscriptionLimits(profile);
 
@@ -162,6 +164,47 @@ export default function MyListingsPage() {
   const filteredListings = (showArchived ? listings : listings.filter((l) => l.status !== "archived"))
     .filter(matchesSearch);
   const archivedCount = listings.filter((l) => l.status === "archived").length;
+
+  const handleCopyLink = async (e: React.MouseEvent, listing: Listing) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const url = `${window.location.origin}/listing/${listing.slug || listing.id}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopiedId(listing.id);
+      setTimeout(() => setCopiedId(null), 2000);
+    } catch {
+      setToast({ message: "Couldn't copy. Try again.", type: "error" });
+      setTimeout(() => setToast(null), 3000);
+    }
+  };
+
+  const handleDownloadQR = async (e: React.MouseEvent, listing: Listing) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setGeneratingQR(listing.id);
+    try {
+      const QRCode = (await import("qrcode")).default;
+      const url = `${window.location.origin}/listing/${listing.slug || listing.id}`;
+      const dataUrl = await QRCode.toDataURL(url, {
+        width: 800,
+        margin: 2,
+        color: { dark: "#0f172a", light: "#ffffff" },
+      });
+      const a = document.createElement("a");
+      a.href = dataUrl;
+      const slug = (listing.slug || listing.street || "listing").replace(/[^a-z0-9]+/gi, "-").toLowerCase();
+      a.download = `qr-${slug}.png`;
+      a.click();
+      setToast({ message: "QR code downloaded.", type: "success" });
+      setTimeout(() => setToast(null), 3000);
+    } catch {
+      setToast({ message: "QR generation failed.", type: "error" });
+      setTimeout(() => setToast(null), 3000);
+    } finally {
+      setGeneratingQR(null);
+    }
+  };
 
   const handleDuplicate = async (e: React.MouseEvent, listing: Listing) => {
     e.preventDefault();
@@ -492,6 +535,36 @@ export default function MyListingsPage() {
                     </select>
                   </div>
                   <div className="flex items-center gap-1">
+                    {listing.status !== "archived" && listing.status !== "draft" && (
+                      <>
+                        <button
+                          type="button"
+                          onClick={(e) => handleCopyLink(e, listing)}
+                          className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-brand-50 hover:text-brand-600"
+                          title="Copy public listing URL"
+                          aria-label="Copy listing URL"
+                        >
+                          {copiedId === listing.id ? (
+                            <Check className="h-4 w-4 text-emerald-500" />
+                          ) : (
+                            <Link2 className="h-4 w-4" />
+                          )}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={(e) => handleDownloadQR(e, listing)}
+                          className={`inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-700 ${generatingQR === listing.id ? "opacity-50 pointer-events-none" : ""}`}
+                          title="Download QR code"
+                          aria-label="Download QR code"
+                        >
+                          {generatingQR === listing.id ? (
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                          ) : (
+                            <QrCode className="h-4 w-4" />
+                          )}
+                        </button>
+                      </>
+                    )}
                     {listing.status === "published" && listing.photos.length > 0 && limits.canGenerateSocialPosts && (
                       <span
                         onClick={(e) => handleGenerateSocialPosts(e, listing.id)}

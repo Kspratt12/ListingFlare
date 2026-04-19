@@ -476,6 +476,38 @@ export default function SettingsPage() {
           </div>
         </section>
 
+        {/* Notifications */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <h2 className="font-serif text-lg font-semibold text-gray-900">Notifications</h2>
+          <p className="mt-1 text-sm text-gray-500">
+            Alert when a new lead, showing, or reply comes in while you&apos;re logged in.
+          </p>
+          <div className="mt-4">
+            <label className="flex cursor-pointer items-start justify-between gap-4 rounded-lg border border-gray-200 p-4 transition-colors hover:bg-gray-50">
+              <div>
+                <p className="font-medium text-gray-900">Sound alerts</p>
+                <p className="mt-0.5 text-sm text-gray-500">
+                  Play a short sound when a new lead, showing, or buyer reply comes in.
+                </p>
+              </div>
+              <div className="relative mt-1 flex-shrink-0">
+                <input
+                  type="checkbox"
+                  defaultChecked={typeof window !== "undefined" ? localStorage.getItem("lf_sound_alerts_enabled") !== "false" : true}
+                  onChange={(e) => {
+                    if (typeof window !== "undefined") {
+                      localStorage.setItem("lf_sound_alerts_enabled", e.target.checked ? "true" : "false");
+                    }
+                  }}
+                  className="peer sr-only"
+                />
+                <div className="h-6 w-11 rounded-full bg-gray-200 transition-colors peer-checked:bg-brand-500" />
+                <div className="absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform peer-checked:translate-x-5" />
+              </div>
+            </label>
+          </div>
+        </section>
+
         {/* Email Preferences */}
         <section className="rounded-xl border border-gray-200 bg-white p-6">
           <h2 className="font-serif text-lg font-semibold text-gray-900">Email Preferences</h2>
