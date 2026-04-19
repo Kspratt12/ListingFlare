@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { formatPhone } from "@/lib/formatters";
+import { escapeHtml } from "@/lib/escapeHtml";
 
 export const dynamic = "force-dynamic";
 
@@ -79,6 +80,14 @@ export async function POST(req: NextRequest) {
     // Send email via Resend if API key is configured
     const resendKey = process.env.RESEND_API_KEY;
     if (resendKey) {
+      // Escape every lead-provided field before embedding in HTML
+      const safeName = escapeHtml(lead.name);
+      const safeEmail = escapeHtml(lead.email);
+      const safePhone = escapeHtml(lead.phone);
+      const safeMessage = escapeHtml(lead.message);
+      const safeStreet = escapeHtml(listing?.street || "your listing");
+      const safeCityState = listing ? escapeHtml(`, ${listing.city}, ${listing.state}`) : "";
+
       const emailHtml = `
         <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto;">
           <div style="background: #0f172a; padding: 24px 32px; border-radius: 12px 12px 0 0;">
@@ -87,24 +96,24 @@ export async function POST(req: NextRequest) {
           <div style="background: #ffffff; padding: 32px; border: 1px solid #e5e7eb; border-top: 0; border-radius: 0 0 12px 12px;">
             <h2 style="margin: 0 0 8px; color: #111827;">New Lead Received!</h2>
             <p style="color: #6b7280; margin: 0 0 24px;">
-              Someone is interested in <strong>${listing?.street || "your listing"}</strong>${listing ? `, ${listing.city}, ${listing.state}` : ""}.
+              Someone is interested in <strong>${safeStreet}</strong>${safeCityState}.
             </p>
             <table style="width: 100%; border-collapse: collapse;">
               <tr>
                 <td style="padding: 8px 0; color: #6b7280; font-size: 14px; width: 100px;">Name</td>
-                <td style="padding: 8px 0; color: #111827; font-weight: 600;">${lead.name}</td>
+                <td style="padding: 8px 0; color: #111827; font-weight: 600;">${safeName}</td>
               </tr>
               <tr>
                 <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Email</td>
-                <td style="padding: 8px 0;"><a href="mailto:${lead.email}" style="color: #b8965a;">${lead.email}</a></td>
+                <td style="padding: 8px 0;"><a href="mailto:${safeEmail}" style="color: #b8965a;">${safeEmail}</a></td>
               </tr>
               ${lead.phone ? `<tr>
                 <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Phone</td>
-                <td style="padding: 8px 0;"><a href="tel:${lead.phone}" style="color: #b8965a;">${formatPhone(lead.phone)}</a></td>
+                <td style="padding: 8px 0;"><a href="tel:${safePhone}" style="color: #b8965a;">${formatPhone(lead.phone)}</a></td>
               </tr>` : ""}
               ${lead.message ? `<tr>
                 <td style="padding: 8px 0; color: #6b7280; font-size: 14px; vertical-align: top;">Message</td>
-                <td style="padding: 8px 0; color: #111827;">${lead.message}</td>
+                <td style="padding: 8px 0; color: #111827;">${safeMessage}</td>
               </tr>` : ""}
             </table>
             <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #e5e7eb;">

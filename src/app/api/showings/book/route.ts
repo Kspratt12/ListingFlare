@@ -8,6 +8,7 @@ import {
   isGoogleConfigured,
 } from "@/lib/google/oauth";
 import { checkHoneypotAndTiming, checkRateLimits } from "@/lib/antiSpam";
+import { escapeHtml } from "@/lib/escapeHtml";
 
 export const dynamic = "force-dynamic";
 
@@ -168,6 +169,20 @@ export async function POST(req: NextRequest) {
 
     const resendKey = process.env.RESEND_API_KEY;
     if (resendKey && agent) {
+      // Escape every user-provided field before it lands in an HTML email.
+      // A lead can put arbitrary text in name/email/message - without escaping
+      // they could smuggle links or markup into the agent's inbox.
+      const safeName = escapeHtml(name);
+      const safeFirstName = escapeHtml(String(name).split(" ")[0]);
+      const safeEmail = escapeHtml(email);
+      const safePhone = escapeHtml(phone);
+      const safeMessage = escapeHtml(message);
+      const safeListingAddress = escapeHtml(listingAddress);
+      const safeAgentName = escapeHtml(agent.name);
+      const safeAgentEmail = escapeHtml(agent.email);
+      // formattedDate + showingTime are server-generated, agent.phone is server-stored
+      // and goes through formatPhone() which strips non-digits - no escape needed.
+
       // 1. Send confirmation to buyer
       const buyerHtml = `
         <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto;">
@@ -177,13 +192,13 @@ export async function POST(req: NextRequest) {
           <div style="background: #ffffff; padding: 32px; border: 1px solid #e5e7eb; border-top: 0; border-radius: 0 0 12px 12px;">
             <h2 style="margin: 0 0 8px; color: #111827;">Your Showing is Confirmed!</h2>
             <p style="color: #6b7280; margin: 0 0 24px; font-size: 15px;">
-              Hi ${name.split(" ")[0]}, your showing has been scheduled. Here are the details:
+              Hi ${safeFirstName}, your showing has been scheduled. Here are the details:
             </p>
             <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin: 0 0 24px;">
               <table style="width: 100%; border-collapse: collapse;">
                 <tr>
                   <td style="padding: 8px 0; color: #6b7280; font-size: 14px; width: 100px;">Property</td>
-                  <td style="padding: 8px 0; color: #111827; font-weight: 600;">${listingAddress}</td>
+                  <td style="padding: 8px 0; color: #111827; font-weight: 600;">${safeListingAddress}</td>
                 </tr>
                 <tr>
                   <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Date</td>
@@ -195,7 +210,7 @@ export async function POST(req: NextRequest) {
                 </tr>
                 <tr>
                   <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Agent</td>
-                  <td style="padding: 8px 0; color: #111827; font-weight: 600;">${agent.name}</td>
+                  <td style="padding: 8px 0; color: #111827; font-weight: 600;">${safeAgentName}</td>
                 </tr>
               </table>
             </div>
@@ -208,9 +223,9 @@ export async function POST(req: NextRequest) {
               Need to reschedule? Reply to this email or call ${agent.phone ? formatPhone(agent.phone) : "your agent"}.
             </p>
             <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #e5e7eb;">
-              <p style="margin: 0; font-weight: 600; color: #111827;">${agent.name}</p>
+              <p style="margin: 0; font-weight: 600; color: #111827;">${safeAgentName}</p>
               ${agent.phone ? `<p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${formatPhone(agent.phone)}</p>` : ""}
-              <p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${agent.email}</p>
+              <p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${safeAgentEmail}</p>
             </div>
           </div>
         </div>
@@ -225,21 +240,21 @@ export async function POST(req: NextRequest) {
           <div style="background: #ffffff; padding: 32px; border: 1px solid #e5e7eb; border-top: 0; border-radius: 0 0 12px 12px;">
             <h2 style="margin: 0 0 8px; color: #111827;">New Showing Booked!</h2>
             <p style="color: #6b7280; margin: 0 0 24px; font-size: 15px;">
-              A buyer has scheduled a showing for <strong>${listingAddress}</strong>.
+              A buyer has scheduled a showing for <strong>${safeListingAddress}</strong>.
             </p>
             <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin: 0 0 24px;">
               <table style="width: 100%; border-collapse: collapse;">
                 <tr>
                   <td style="padding: 8px 0; color: #6b7280; font-size: 14px; width: 100px;">Buyer</td>
-                  <td style="padding: 8px 0; color: #111827; font-weight: 600;">${name}</td>
+                  <td style="padding: 8px 0; color: #111827; font-weight: 600;">${safeName}</td>
                 </tr>
                 <tr>
                   <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Email</td>
-                  <td style="padding: 8px 0;"><a href="mailto:${email}" style="color: #b8965a;">${email}</a></td>
+                  <td style="padding: 8px 0;"><a href="mailto:${safeEmail}" style="color: #b8965a;">${safeEmail}</a></td>
                 </tr>
                 ${phone ? `<tr>
                   <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Phone</td>
-                  <td style="padding: 8px 0;"><a href="tel:${phone}" style="color: #b8965a;">${formatPhone(phone)}</a></td>
+                  <td style="padding: 8px 0;"><a href="tel:${safePhone}" style="color: #b8965a;">${formatPhone(phone)}</a></td>
                 </tr>` : ""}
                 <tr>
                   <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Date</td>
@@ -251,7 +266,7 @@ export async function POST(req: NextRequest) {
                 </tr>
                 ${message ? `<tr>
                   <td style="padding: 8px 0; color: #6b7280; font-size: 14px; vertical-align: top;">Notes</td>
-                  <td style="padding: 8px 0; color: #111827;">${message}</td>
+                  <td style="padding: 8px 0; color: #111827;">${safeMessage}</td>
                 </tr>` : ""}
               </table>
             </div>

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { formatPhone } from "@/lib/formatters";
+import { escapeHtml } from "@/lib/escapeHtml";
 
 export const dynamic = "force-dynamic";
 
@@ -56,6 +57,11 @@ export async function POST(req: NextRequest) {
     const listingAddress = listing
       ? `${listing.street}, ${listing.city}, ${listing.state}`
       : "your inquiry";
+    const safeAddress = escapeHtml(listingAddress);
+    const safeFirstName = escapeHtml(String(lead.name).split(" ")[0]);
+    const safeMessage = escapeHtml(message);
+    const safeAgentName = escapeHtml(agent.name);
+    const safeAgentEmail = escapeHtml(agent.email);
     const subject = `Re: ${listingAddress}`;
 
     const emailHtml = `
@@ -64,13 +70,13 @@ export async function POST(req: NextRequest) {
           <h1 style="color: #b8965a; margin: 0; font-size: 20px;">ListingFlare</h1>
         </div>
         <div style="background: #ffffff; padding: 32px; border: 1px solid #e5e7eb; border-top: 0; border-radius: 0 0 12px 12px;">
-          <p style="color: #6b7280; margin: 0 0 8px; font-size: 14px;">Re: ${listingAddress}</p>
-          <p style="color: #111827; margin: 0 0 16px; font-size: 14px;">Hi ${lead.name.split(" ")[0]},</p>
-          <div style="color: #111827; font-size: 15px; line-height: 1.7; white-space: pre-wrap;">${message}</div>
+          <p style="color: #6b7280; margin: 0 0 8px; font-size: 14px;">Re: ${safeAddress}</p>
+          <p style="color: #111827; margin: 0 0 16px; font-size: 14px;">Hi ${safeFirstName},</p>
+          <div style="color: #111827; font-size: 15px; line-height: 1.7; white-space: pre-wrap;">${safeMessage}</div>
           <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e5e7eb;">
-            <p style="margin: 0; font-weight: 600; color: #111827;">${agent.name}</p>
+            <p style="margin: 0; font-weight: 600; color: #111827;">${safeAgentName}</p>
             ${agent.phone ? `<p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${formatPhone(agent.phone)}</p>` : ""}
-            <p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${agent.email}</p>
+            <p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${safeAgentEmail}</p>
           </div>
         </div>
       </div>

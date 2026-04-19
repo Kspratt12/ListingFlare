@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { rateLimit } from "@/lib/rateLimit";
+import { hasActiveSubscription } from "@/lib/subscriptionGate";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +16,13 @@ export async function POST(req: NextRequest) {
       data: { user },
     } = await authClient.auth.getUser();
     if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+    if (!(await hasActiveSubscription(user.id))) {
+      return NextResponse.json(
+        { error: "Subscription required. Upgrade to continue using AI features." },
+        { status: 402 }
+      );
+    }
 
     // Heavier endpoint - tighter limit
     const limited = rateLimit({

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { rateLimit } from "@/lib/rateLimit";
+import { hasActiveSubscription } from "@/lib/subscriptionGate";
 
 export const dynamic = "force-dynamic";
 
@@ -20,6 +21,13 @@ export async function POST(req: NextRequest) {
     const { data: { user } } = await authClient.auth.getUser();
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    if (!(await hasActiveSubscription(user.id))) {
+      return NextResponse.json(
+        { error: "Subscription required. Upgrade to continue using AI features." },
+        { status: 402 }
+      );
     }
 
     // 30 caption requests per 10 min per user - covers any realistic editing session
