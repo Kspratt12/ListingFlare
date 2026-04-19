@@ -11,6 +11,7 @@ import UpcomingShowings from "@/components/UpcomingShowings";
 import ActivityFeed from "@/components/ActivityFeed";
 import SpeedToLead from "@/components/SpeedToLead";
 import GettingStarted from "@/components/GettingStarted";
+import DailyBriefing from "@/components/DailyBriefing";
 
 export default function MyListingsPage() {
   const [listings, setListings] = useState<Listing[]>([]);
@@ -287,6 +288,9 @@ export default function MyListingsPage() {
         <div className="mb-6 space-y-4">
           {/* Getting Started - auto-hides when complete */}
           <GettingStarted />
+
+          {/* Daily briefing - auto-hides when nothing to report */}
+          <DailyBriefing />
 
           {/* Top row: equal-height cards */}
           <div className="grid gap-4 lg:grid-cols-3">

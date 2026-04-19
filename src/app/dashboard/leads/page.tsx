@@ -14,6 +14,7 @@ import Link from "next/link";
 import LeadPipeline from "@/components/LeadPipeline";
 import LeadMessageThread from "@/components/LeadMessageThread";
 import LeadNotesTags, { getTagStyle, getTagLabel } from "@/components/LeadNotesTags";
+import LeadTimeline from "@/components/LeadTimeline";
 import HotLeadBadge from "@/components/HotLeadBadge";
 import { calculateHotScore } from "@/lib/hotScore";
 
@@ -772,6 +773,11 @@ export default function LeadsPage() {
                   <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 opacity-50" />
                 </div>
               </div>
+            </div>
+
+            {/* Timeline */}
+            <div className="border-t border-gray-100 px-6 py-4">
+              <LeadTimeline leadId={selectedLead.id} />
             </div>
 
             {/* Notes + Tags (paid only) */}
