@@ -36,15 +36,134 @@ function eventLabel(event: PriceHistoryEntry["event"]): string {
   }
 }
 
+// Tiny SVG line chart that plots the price-over-time trajectory of a
+// listing. Only rendered when there are 2+ price events; a single data
+// point doesn't make a meaningful line. Pure SVG so there's no chart
+// library weight — all scaling and pathing is computed inline.
+function PriceTrajectoryChart({
+  chronological,
+}: {
+  chronological: PriceHistoryEntry[];
+}) {
+  if (chronological.length < 2) return null;
+
+  const W = 800;
+  const H = 180;
+  const PAD_X = 30;
+  const PAD_TOP = 24;
+  const PAD_BOTTOM = 36;
+  const innerW = W - PAD_X * 2;
+  const innerH = H - PAD_TOP - PAD_BOTTOM;
+
+  const prices = chronological.map((e) => e.price);
+  const maxPrice = Math.max(...prices);
+  const minPrice = Math.min(...prices);
+  const priceRange = Math.max(maxPrice - minPrice, 1); // avoid divide-by-zero
+
+  const times = chronological.map((e) => new Date(e.date).getTime());
+  const minTime = Math.min(...times);
+  const maxTime = Math.max(...times);
+  const timeRange = Math.max(maxTime - minTime, 1);
+
+  const points = chronological.map((e) => {
+    const x = PAD_X + ((new Date(e.date).getTime() - minTime) / timeRange) * innerW;
+    const y = PAD_TOP + (1 - (e.price - minPrice) / priceRange) * innerH;
+    return { x, y, price: e.price, date: e.date, event: e.event };
+  });
+
+  const pathD = points
+    .map((p, i) => `${i === 0 ? "M" : "L"} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`)
+    .join(" ");
+
+  // Build the filled area under the line for a Zillow-style shaded curve
+  const areaD = `${pathD} L ${points[points.length - 1].x.toFixed(1)} ${PAD_TOP + innerH} L ${points[0].x.toFixed(1)} ${PAD_TOP + innerH} Z`;
+
+  return (
+    <div className="mt-8 overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 shadow-sm shadow-gray-200/40 md:p-6">
+      <div className="mb-3 flex items-baseline justify-between">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500">
+          Price trajectory
+        </p>
+        <p className="text-[10px] text-gray-400">
+          {new Date(minTime).toLocaleDateString("en-US", { month: "short", year: "numeric" })}
+          {" – "}
+          {new Date(maxTime).toLocaleDateString("en-US", { month: "short", year: "numeric" })}
+        </p>
+      </div>
+      <svg viewBox={`0 0 ${W} ${H}`} className="h-44 w-full md:h-52" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="priceArea" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="var(--agent-brand, #b8965a)" stopOpacity="0.28" />
+            <stop offset="100%" stopColor="var(--agent-brand, #b8965a)" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+
+        {/* Horizontal guide lines — min, mid, max */}
+        {[0, 0.5, 1].map((t) => (
+          <line
+            key={t}
+            x1={PAD_X}
+            x2={W - PAD_X}
+            y1={PAD_TOP + innerH * t}
+            y2={PAD_TOP + innerH * t}
+            stroke="#e5e7eb"
+            strokeWidth={1}
+            strokeDasharray="2 4"
+          />
+        ))}
+
+        {/* Min / Max labels */}
+        <text x={PAD_X} y={PAD_TOP - 8} fontSize="10" fill="#9ca3af" fontWeight="600">
+          ${Math.round(maxPrice).toLocaleString()}
+        </text>
+        <text x={PAD_X} y={PAD_TOP + innerH + 16} fontSize="10" fill="#9ca3af" fontWeight="600">
+          ${Math.round(minPrice).toLocaleString()}
+        </text>
+
+        {/* Shaded area under the line */}
+        <path d={areaD} fill="url(#priceArea)" />
+
+        {/* Trend line */}
+        <path
+          d={pathD}
+          fill="none"
+          stroke="var(--agent-brand, #b8965a)"
+          strokeWidth={2.5}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+
+        {/* Point markers */}
+        {points.map((p, i) => (
+          <g key={i}>
+            <circle
+              cx={p.x}
+              cy={p.y}
+              r={5}
+              fill="white"
+              stroke="var(--agent-brand, #b8965a)"
+              strokeWidth={2.5}
+            />
+          </g>
+        ))}
+      </svg>
+    </div>
+  );
+}
+
 export default function PriceHistory({ history, currentPrice }: Props) {
   if (!history || history.length === 0) return null;
 
-  // Sort newest first for display. Data is stored oldest-first but we flip here.
+  // Chronological (oldest-first) for the trajectory chart.
+  const chronological = [...history].sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+  );
+
+  // Sort newest first for the list display below.
   const sorted = [...history].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   // Calculate initial listing price vs current for the summary
-  const initialEntry = [...history].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())[0];
-  const initialPrice = initialEntry?.price || currentPrice;
+  const initialPrice = chronological[0]?.price || currentPrice;
   const totalChange = currentPrice - initialPrice;
   const pctChange = initialPrice > 0 ? (totalChange / initialPrice) * 100 : 0;
   const reduced = totalChange < 0;
@@ -95,7 +214,10 @@ export default function PriceHistory({ history, currentPrice }: Props) {
           )}
         </div>
 
-        <ol className="mt-8 space-y-3">
+        {/* Zillow-style trajectory chart — hidden when only 1 entry */}
+        <PriceTrajectoryChart chronological={chronological} />
+
+        <ol className="mt-6 space-y-3">
           {sorted.map((entry, i) => {
             const prev = sorted[i + 1]; // next-older entry
             const diff = prev ? entry.price - prev.price : 0;
