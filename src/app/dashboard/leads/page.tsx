@@ -51,6 +51,7 @@ export default function LeadsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLeadIds, setSelectedLeadIds] = useState<Set<string>>(new Set());
   const [bulkDeleteConfirm, setBulkDeleteConfirm] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: "error" | "success" } | null>(null);
   const limits = getSubscriptionLimits(profile);
   const supabase = createClient();
 
@@ -205,7 +206,8 @@ export default function LeadsPage() {
         setSelectedLead((prev) => prev?.id === lead.id ? { ...prev, auto_reply_draft: draft } : prev);
       }
     } catch {
-      // Silently fail
+      setToast({ message: "Couldn't generate draft. Try again.", type: "error" });
+      setTimeout(() => setToast(null), 4000);
     } finally {
       setGeneratingDraft(false);
     }
@@ -270,6 +272,23 @@ export default function LeadsPage() {
 
   return (
     <div>
+      {/* Toast */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 rounded-lg px-4 py-3 shadow-lg ${
+          toast.type === "error"
+            ? "border border-red-200 bg-red-50 text-red-800"
+            : "border border-emerald-200 bg-emerald-50 text-emerald-800"
+        }`}>
+          <p className="text-sm font-medium">{toast.message}</p>
+          <button
+            onClick={() => setToast(null)}
+            aria-label="Dismiss"
+            className="ml-2 text-current opacity-60 hover:opacity-100"
+          >
+            ×
+          </button>
+        </div>
+      )}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="font-serif text-2xl font-bold text-gray-900 md:text-3xl">Leads</h1>

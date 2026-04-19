@@ -44,6 +44,7 @@ export default function LeadMessageThread({ lead, canReply, onSent }: Props) {
   const [replyText, setReplyText] = useState("");
   const [sending, setSending] = useState(false);
   const [attachments, setAttachments] = useState<File[]>([]);
+  const [sendError, setSendError] = useState<string | null>(null);
   const attachRef = useRef<HTMLInputElement>(null);
   const threadRef = useRef<HTMLDivElement>(null);
 
@@ -113,7 +114,8 @@ export default function LeadMessageThread({ lead, canReply, onSent }: Props) {
       setAttachments([]);
       onSent?.();
     } catch {
-      alert("Failed to send. Please try again.");
+      setSendError("Couldn't send your message. Please try again.");
+      setTimeout(() => setSendError(null), 5000);
     } finally {
       setSending(false);
     }
@@ -218,6 +220,12 @@ export default function LeadMessageThread({ lead, canReply, onSent }: Props) {
       {/* Reply composer */}
       {canReply && (
         <div className="mt-3 rounded-xl border border-gray-200 bg-white">
+          {/* Error banner */}
+          {sendError && (
+            <div className="border-b border-red-100 bg-red-50 px-3 py-2 text-xs font-medium text-red-700">
+              {sendError}
+            </div>
+          )}
           {/* AI Draft prompt */}
           {lead.auto_reply_draft && !replyText && (
             <div className="flex items-center justify-between border-b border-gray-100 px-3 py-2">
