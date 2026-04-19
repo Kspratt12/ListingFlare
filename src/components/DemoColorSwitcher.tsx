@@ -21,11 +21,26 @@ const COLORS = [
 // MY color can be on MY listings."
 export default function DemoColorSwitcher({ topOffset = false }: { topOffset?: boolean }) {
   const [active, setActive] = useState(COLORS[0].hex);
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true); // start expanded so swatches are immediately visible
 
   useEffect(() => {
     document.documentElement.style.setProperty("--agent-brand", active);
   }, [active]);
+
+  // Auto-collapse when the user starts scrolling so the swatches don't
+  // compete with content. They can click the palette icon to re-expand.
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (Math.abs(y - lastY) > 40) {
+        setExpanded(false);
+      }
+      lastY = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <div
