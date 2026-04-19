@@ -65,12 +65,18 @@ export default function DemoColorSwitcher({ topOffset = false }: { topOffset?: b
           <button
             type="button"
             onClick={() => setExpanded((v) => !v)}
-            aria-label="Toggle color picker"
+            aria-label="Toggle color picker (demo only — real listings will not show this)"
             className="demo-palette-pulse flex h-8 w-8 items-center justify-center rounded-full text-gray-700 transition-colors hover:bg-white/60"
-            title={expanded ? "Hide colors" : "Try a color"}
+            title="Demo only — your real listings will not show this picker"
           >
             <Palette className="h-4 w-4" />
           </button>
+          {/* Always-visible "Demo" pill so agents don't wonder whether
+              this floating palette will show up on their actual
+              listings. Reassures them before they become customers. */}
+          <span className="hidden rounded-full bg-gray-900/80 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white sm:inline">
+            Demo
+          </span>
           {expanded && (
             <>
               <span className="hidden pr-1 text-[11px] font-medium text-gray-700 sm:inline">

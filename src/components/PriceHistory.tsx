@@ -50,11 +50,14 @@ function PriceTrajectoryChart({
 
   if (chronological.length < 2) return null;
 
-  const W = 800;
-  const H = 200;
-  const PAD_X = 30;
-  const PAD_TOP = 32;
-  const PAD_BOTTOM = 40;
+  // Slightly tighter aspect (2.4:1 vs 4:1) so the chart keeps body on
+  // mobile when it scales to narrow widths. Padding scaled up so the
+  // min/max price labels don't feel cramped.
+  const W = 600;
+  const H = 250;
+  const PAD_X = 40;
+  const PAD_TOP = 38;
+  const PAD_BOTTOM = 48;
   const innerW = W - PAD_X * 2;
   const innerH = H - PAD_TOP - PAD_BOTTOM;
 
@@ -94,7 +97,11 @@ function PriceTrajectoryChart({
           {new Date(maxTime).toLocaleDateString("en-US", { month: "short", year: "numeric" })}
         </p>
       </div>
-      <svg viewBox={`0 0 ${W} ${H}`} className="h-48 w-full md:h-56" preserveAspectRatio="none">
+      {/* Uniform scaling (default preserveAspectRatio) means the chart
+          keeps its proportions on every screen size — dots stay round,
+          text stays readable, strokes stay the right weight. Fixed
+          aspect ratio on the container prevents layout shift. */}
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ aspectRatio: `${W} / ${H}` }}>
         <defs>
           <linearGradient id="priceArea" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="var(--agent-brand, #b8965a)" stopOpacity="0.28" />
@@ -115,10 +122,10 @@ function PriceTrajectoryChart({
           />
         ))}
 
-        <text x={PAD_X} y={PAD_TOP - 8} fontSize="10" fill="#9ca3af" fontWeight="600">
+        <text x={PAD_X} y={PAD_TOP - 10} fontSize="14" fill="#9ca3af" fontWeight="600">
           ${Math.round(maxPrice).toLocaleString()}
         </text>
-        <text x={PAD_X} y={PAD_TOP + innerH + 16} fontSize="10" fill="#9ca3af" fontWeight="600">
+        <text x={PAD_X} y={PAD_TOP + innerH + 22} fontSize="14" fill="#9ca3af" fontWeight="600">
           ${Math.round(minPrice).toLocaleString()}
         </text>
 
@@ -132,27 +139,30 @@ function PriceTrajectoryChart({
           strokeLinejoin="round"
         />
 
-        {/* Point markers — larger + brand fill on hover */}
+        {/* Point markers — larger + brand fill on hover. onTouchStart
+            handler makes the tooltip work on mobile where hover is
+            absent; touch-action:manipulation prevents the 300ms delay. */}
         {points.map((p, i) => (
           <g key={i}>
-            {/* Transparent larger hit target — makes hover forgiving on small dots */}
             <circle
               cx={p.x}
               cy={p.y}
-              r={16}
+              r={20}
               fill="transparent"
-              className="cursor-pointer"
+              style={{ cursor: "pointer", touchAction: "manipulation" }}
               onMouseEnter={() => setHoverIdx(i)}
               onMouseLeave={() => setHoverIdx(null)}
+              onTouchStart={() => setHoverIdx(i)}
+              onClick={() => setHoverIdx(hoverIdx === i ? null : i)}
             />
             <circle
               cx={p.x}
               cy={p.y}
-              r={hoverIdx === i ? 7 : 5}
+              r={hoverIdx === i ? 8 : 6}
               fill={hoverIdx === i ? "var(--agent-brand, #b8965a)" : "white"}
               stroke="var(--agent-brand, #b8965a)"
-              strokeWidth={2.5}
-              style={{ transition: "r 0.15s ease, fill 0.15s ease" }}
+              strokeWidth={3}
+              style={{ transition: "r 0.15s ease, fill 0.15s ease", pointerEvents: "none" }}
             />
           </g>
         ))}
@@ -161,9 +171,8 @@ function PriceTrajectoryChart({
         {hover && (
           <g pointerEvents="none">
             {(() => {
-              const tooltipW = 150;
-              const tooltipH = 44;
-              // Keep tooltip inside chart bounds
+              const tooltipW = 170;
+              const tooltipH = 54;
               const tx = Math.min(Math.max(hover.x - tooltipW / 2, PAD_X), W - PAD_X - tooltipW);
               const ty = Math.max(hover.y - tooltipH - 14, 2);
               return (
@@ -177,10 +186,10 @@ function PriceTrajectoryChart({
                     fill="#0a0a0a"
                     opacity={0.92}
                   />
-                  <text x={tx + 12} y={ty + 18} fontSize="12" fill="white" fontWeight="700">
+                  <text x={tx + 14} y={ty + 22} fontSize="16" fill="white" fontWeight="700">
                     ${Math.round(hover.price).toLocaleString()}
                   </text>
-                  <text x={tx + 12} y={ty + 34} fontSize="10" fill="rgba(255,255,255,0.7)">
+                  <text x={tx + 14} y={ty + 42} fontSize="12" fill="rgba(255,255,255,0.7)">
                     {new Date(hover.date).toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
