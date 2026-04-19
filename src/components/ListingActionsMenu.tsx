@@ -11,8 +11,6 @@ import {
   Copy,
   Archive,
   Trash2,
-  Share2,
-  Lock,
   Check,
   Loader2,
   Presentation,
@@ -20,30 +18,24 @@ import {
 
 interface Props {
   listing: Listing;
-  canGenerateSocialPosts: boolean;
   copiedId: string | null;
   generatingQR: string | null;
   duplicating: string | null;
-  generatingPosts: string | null;
   onCopyLink: (e: React.MouseEvent, listing: Listing) => void;
   onDownloadQR: (e: React.MouseEvent, listing: Listing) => void;
   onDuplicate: (e: React.MouseEvent, listing: Listing) => void;
-  onGenerateSocialPosts: (e: React.MouseEvent, listingId: string) => void;
   onArchive: (e: React.MouseEvent, listingId: string) => void;
   onDelete: (e: React.MouseEvent, listingId: string) => void;
 }
 
 export default function ListingActionsMenu({
   listing,
-  canGenerateSocialPosts,
   copiedId,
   generatingQR,
   duplicating,
-  generatingPosts,
   onCopyLink,
   onDownloadQR,
   onDuplicate,
-  onGenerateSocialPosts,
   onArchive,
   onDelete,
 }: Props) {
@@ -145,35 +137,8 @@ export default function ListingActionsMenu({
               </>
             )}
 
-            {listing.status === "published" &&
-              listing.photos.length > 0 &&
-              (canGenerateSocialPosts ? (
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    onGenerateSocialPosts(e, listing.id);
-                    setOpen(false);
-                  }}
-                  disabled={generatingPosts === listing.id}
-                  className="flex w-full items-center gap-2.5 px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-700 disabled:opacity-50"
-                >
-                  {generatingPosts === listing.id ? (
-                    <Loader2 className="h-4 w-4 animate-spin text-purple-500" />
-                  ) : (
-                    <Share2 className="h-4 w-4 text-purple-500" />
-                  )}
-                  Social Media Pack
-                </button>
-              ) : (
-                <Link
-                  href="/dashboard/billing"
-                  onClick={() => setOpen(false)}
-                  className="flex items-center gap-2.5 px-3 py-2 text-sm text-gray-400 hover:bg-gray-50"
-                >
-                  <Lock className="h-4 w-4" />
-                  Social Posts (Upgrade)
-                </Link>
-              ))}
+            {/* Social Media Pack now lives as a prominent button on the
+                listing card itself — not duplicated here in the menu. */}
 
             <button
               type="button"

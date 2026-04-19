@@ -6,7 +6,7 @@ import type { Listing, AgentProfile } from "@/lib/types";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import UpgradePrompt from "@/components/UpgradePrompt";
 import Link from "next/link";
-import { PlusCircle, Eye, Pencil, ArrowUpDown, Archive, Search, Lock } from "lucide-react";
+import { PlusCircle, Eye, Pencil, ArrowUpDown, Archive, Search, Lock, Share2, Loader2 } from "lucide-react";
 import UpcomingShowings from "@/components/UpcomingShowings";
 import ActivityFeed from "@/components/ActivityFeed";
 import SpeedToLead from "@/components/SpeedToLead";
@@ -726,17 +726,46 @@ export default function MyListingsPage() {
                       <Pencil className="h-3.5 w-3.5" />
                       Edit
                     </Link>
+                    {/* Prominent Social Media Pack button — visible on
+                        every published listing with photos. Replaces the
+                        previously-hidden 3-dot menu item so agents
+                        actually discover the feature. */}
+                    {listing.status === "published" && listing.photos.length > 0 && (
+                      limits.canGenerateSocialPosts ? (
+                        <button
+                          type="button"
+                          onClick={(e) => handleGenerateSocialPosts(e, listing.id)}
+                          disabled={generatingPosts === listing.id}
+                          title="Generate Instagram carousel, Story, FB post, and caption"
+                          className="inline-flex items-center gap-1.5 rounded-lg bg-purple-50 px-3 py-1.5 text-xs font-medium text-purple-700 transition-colors hover:bg-purple-100 disabled:opacity-60"
+                        >
+                          {generatingPosts === listing.id ? (
+                            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                          ) : (
+                            <Share2 className="h-3.5 w-3.5" />
+                          )}
+                          {generatingPosts === listing.id ? "Building..." : "Social Pack"}
+                        </button>
+                      ) : (
+                        <Link
+                          href="/dashboard/billing"
+                          onClick={(e) => e.stopPropagation()}
+                          title="Upgrade to generate Social Media Pack"
+                          className="inline-flex items-center gap-1.5 rounded-lg bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-500 transition-colors hover:bg-gray-200"
+                        >
+                          <Lock className="h-3.5 w-3.5" />
+                          Social Pack
+                        </Link>
+                      )
+                    )}
                     <ListingActionsMenu
                       listing={listing}
-                      canGenerateSocialPosts={limits.canGenerateSocialPosts}
                       copiedId={copiedId}
                       generatingQR={generatingQR}
                       duplicating={duplicating}
-                      generatingPosts={generatingPosts}
                       onCopyLink={handleCopyLink}
                       onDownloadQR={handleDownloadQR}
                       onDuplicate={handleDuplicate}
-                      onGenerateSocialPosts={handleGenerateSocialPosts}
                       onArchive={handleArchive}
                       onDelete={handleDeleteRequest}
                     />
