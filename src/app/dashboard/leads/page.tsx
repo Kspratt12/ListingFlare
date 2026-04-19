@@ -23,6 +23,7 @@ import { calculateHotScore } from "@/lib/hotScore";
 import ContactButtons from "@/components/ContactButtons";
 import { firstName } from "@/lib/contactLinks";
 import ClickToTextAnnouncement from "@/components/ClickToTextAnnouncement";
+import LeadDocuments from "@/components/LeadDocuments";
 
 const LEAD_STATUSES = [
   { value: "new", label: "New", color: "bg-blue-50 text-blue-700 border-blue-300" },
@@ -887,6 +888,11 @@ export default function LeadsPage() {
                 />
               </div>
             )}
+
+            {/* Documents */}
+            <div className="border-t border-gray-100 px-6 py-4">
+              <LeadDocuments leadId={selectedLead.id} />
+            </div>
 
             {/* Conversation Thread */}
             <div className="border-t border-gray-100 px-6 py-4">
