@@ -24,12 +24,7 @@ import {
   CalendarDays,
 } from "lucide-react";
 
-const navItems: Array<{
-  href: string;
-  label: string;
-  icon: typeof LayoutGrid;
-  badge?: string;
-}> = [
+const navItems = [
   { href: "/dashboard", label: "My Listings", icon: LayoutGrid },
   { href: "/dashboard/create", label: "New Listing", icon: PlusCircle },
   { href: "/dashboard/leads", label: "Leads", icon: MessageSquare },
@@ -37,7 +32,7 @@ const navItems: Array<{
   { href: "/dashboard/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/dashboard/assistant", label: "AI Assistant", icon: Bot },
   { href: "/dashboard/billing", label: "Billing", icon: CreditCard },
-  { href: "/dashboard/settings", label: "Settings", icon: Settings, badge: "AI" },
+  { href: "/dashboard/settings", label: "Settings", icon: Settings },
 ];
 
 export default function DashboardLayout({
@@ -97,16 +92,7 @@ export default function DashboardLayout({
             }`}
           >
             <item.icon className="h-5 w-5" />
-            <span className="flex-1">{item.label}</span>
-            {item.badge && (
-              <span
-                className="inline-flex items-center gap-0.5 rounded-full border border-emerald-400/40 bg-emerald-400/15 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-emerald-300"
-                title="Controls your AI automation"
-              >
-                <span className="h-1 w-1 rounded-full bg-emerald-400 animate-pulse" />
-                {item.badge}
-              </span>
-            )}
+            {item.label}
           </Link>
         ))}
       </nav>
