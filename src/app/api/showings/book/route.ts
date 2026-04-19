@@ -9,6 +9,7 @@ import {
 } from "@/lib/google/oauth";
 import { checkHoneypotAndTiming, checkRateLimits } from "@/lib/antiSpam";
 import { escapeHtml } from "@/lib/escapeHtml";
+import { sendPushToAgent } from "@/lib/sendPush";
 
 export const dynamic = "force-dynamic";
 
@@ -424,6 +425,14 @@ export async function POST(req: NextRequest) {
         sequenceType: "showing",
       }),
     }).catch((err) => console.error("Follow-up schedule error:", err));
+
+    // Push notification - agent's phone buzzes with the booking (non-blocking)
+    sendPushToAgent(agentId, {
+      title: "New showing booked",
+      body: `${name} booked ${formattedDate} at ${showingTime}. Tap to view.`,
+      url: "/dashboard/showings",
+      tag: `showing-${showing?.id}`,
+    }).catch((err) => console.error("Push error:", err));
 
     return NextResponse.json({ ok: true, showingId: showing?.id });
   } catch (err) {

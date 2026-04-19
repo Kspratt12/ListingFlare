@@ -5,6 +5,7 @@ import {
   checkRateLimits,
   DUPLICATE_WINDOW_MS,
 } from "@/lib/antiSpam";
+import { sendPushToAgent } from "@/lib/sendPush";
 
 export const dynamic = "force-dynamic";
 
@@ -148,6 +149,14 @@ export async function POST(req: NextRequest) {
           leadMessage: message,
         }),
       }).catch((err) => console.error("Notify error:", err));
+
+      // Push notification - phone buzz for the agent (non-blocking)
+      sendPushToAgent(listing.agent_id, {
+        title: "New lead",
+        body: `${name} just inquired. Tap to view.`,
+        url: "/dashboard/leads",
+        tag: `lead-${newLead.id}`,
+      }).catch((err) => console.error("Push error:", err));
     }
 
     return NextResponse.json({ ok: true, leadId: newLead.id });

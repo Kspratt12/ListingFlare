@@ -12,6 +12,7 @@ import ActivityFeed from "@/components/ActivityFeed";
 import SpeedToLead from "@/components/SpeedToLead";
 import GettingStarted from "@/components/GettingStarted";
 import DailyBriefing from "@/components/DailyBriefing";
+import PushNotificationPrompt from "@/components/PushNotificationPrompt";
 import RevenueStat from "@/components/RevenueStat";
 import ListingActionsMenu from "@/components/ListingActionsMenu";
 
@@ -301,6 +302,9 @@ export default function MyListingsPage() {
       )}
       {!loading && (
         <div className="mb-6 space-y-4">
+          {/* Push notifications opt-in - auto-hides when granted+dismissed or unsupported */}
+          <PushNotificationPrompt />
+
           {/* Getting Started - auto-hides when complete */}
           <GettingStarted />
 
