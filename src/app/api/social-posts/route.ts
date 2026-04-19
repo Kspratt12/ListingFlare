@@ -60,7 +60,11 @@ export async function POST(req: NextRequest) {
       beds: Number(listing.beds) || 0,
       baths: Number(listing.baths) || 0,
       sqft: Number(listing.sqft) || 0,
-      details: `${listing.beds} Bed | ${listing.baths} Bath | ${Number(listing.sqft).toLocaleString()} Sq Ft`,
+      details: [
+        Number(listing.beds) > 0 ? `${listing.beds} Bed` : null,
+        Number(listing.baths) > 0 ? `${listing.baths} Bath` : null,
+        Number(listing.sqft) > 0 ? `${Number(listing.sqft).toLocaleString()} Sq Ft` : null,
+      ].filter(Boolean).join(" | "),
       features,
       agentName: agent?.name || "",
       agentPhone: agent?.phone ? formatPhone(agent.phone) : "",

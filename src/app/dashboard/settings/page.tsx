@@ -7,6 +7,7 @@ import { Loader2, Upload, CheckCircle } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
 import { validateUpload } from "@/lib/validateUpload";
 import GoogleCalendarConnect from "@/components/GoogleCalendarConnect";
+import PushNotificationSettings from "@/components/PushNotificationSettings";
 
 export default function SettingsPage() {
   const supabase = createClient();
@@ -691,6 +692,10 @@ export default function SettingsPage() {
             </label>
           </div>
         </section>
+
+        {/* Phone Alerts (push notifications). Mirrors the dashboard
+            banner so agents can re-enable if they dismissed it. */}
+        <PushNotificationSettings />
 
         {/* Email Preferences */}
         <section className="rounded-xl border border-gray-200 bg-white p-6">

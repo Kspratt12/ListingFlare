@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import type { Offer, Listing } from "@/lib/types";
-import { HandshakeIcon, PlusCircle, X, DollarSign } from "lucide-react";
+import { HandshakeIcon, PlusCircle, X, DollarSign, Pencil, Trash2 } from "lucide-react";
 
 type OfferWithListing = Offer & {
   listing?: Pick<Listing, "street" | "city" | "state" | "id"> | null;
@@ -44,11 +44,19 @@ function formatDate(iso: string): string {
 
 export default function OffersPage() {
   const [offers, setOffers] = useState<OfferWithListing[]>([]);
-  const [listings, setListings] = useState<Pick<Listing, "id" | "street" | "city" | "state" | "price">[]>([]);
+  const [listings, setListings] = useState<Pick<Listing, "id" | "street" | "city" | "state" | "price" | "status">[]>([]);
   const [loading, setLoading] = useState(true);
   const [showNewModal, setShowNewModal] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null); // null = creating, uuid = editing
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
   const [filterStatus, setFilterStatus] = useState<Offer["status"] | "all">("all");
   const supabase = createClient();
+
+  const showToast = (message: string, type: "success" | "error" = "success") => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 4000);
+  };
 
   // New offer form state
   const [nListing, setNListing] = useState("");
@@ -77,6 +85,9 @@ export default function OffersPage() {
         return;
       }
 
+      // Pull ALL non-archived listings for the listPrice lookup so offers
+      // on closed/sold listings still show the % delta vs list price.
+      // The "Log New Offer" dropdown below filters down to active-only.
       const [offersRes, listingsRes] = await Promise.all([
         supabase
           .from("offers")
@@ -85,9 +96,9 @@ export default function OffersPage() {
           .order("received_at", { ascending: false }),
         supabase
           .from("listings")
-          .select("id, street, city, state, price")
+          .select("id, street, city, state, price, status")
           .eq("agent_id", user.id)
-          .in("status", ["published", "pending"])
+          .neq("status", "archived")
           .order("created_at", { ascending: false }),
       ]);
 
@@ -104,51 +115,109 @@ export default function OffersPage() {
   }, []);
 
   const updateStatus = async (offerId: string, next: Offer["status"]) => {
-    await supabase.from("offers").update({ status: next }).eq("id", offerId);
+    const prevOffers = offers;
     setOffers((prev) => prev.map((o) => (o.id === offerId ? { ...o, status: next } : o)));
+    const { error } = await supabase.from("offers").update({ status: next }).eq("id", offerId);
+    if (error) {
+      setOffers(prevOffers); // revert
+      showToast("Couldn't update status. Try again.", "error");
+    } else {
+      showToast(`Offer marked ${next}.`);
+    }
   };
 
-  const submitNewOffer = async () => {
+  const resetForm = () => {
+    setEditingId(null);
+    setNListing(""); setNBuyerName(""); setNBuyerEmail(""); setNBuyerPhone("");
+    setNBuyerAgent(""); setNBuyerAgentBrokerage(""); setNBuyerAgentPhone("");
+    setNOfferPrice(""); setNEarnest(""); setNClosingDate("");
+    setNFinancing("conventional"); setNContingencies([]); setNNotes("");
+  };
+
+  const openEditModal = (o: OfferWithListing) => {
+    setEditingId(o.id);
+    setNListing(o.listing_id);
+    setNBuyerName(o.buyer_name);
+    setNBuyerEmail(o.buyer_email || "");
+    setNBuyerPhone(o.buyer_phone || "");
+    setNBuyerAgent(o.buyer_agent_name || "");
+    setNBuyerAgentBrokerage(o.buyer_agent_brokerage || "");
+    setNBuyerAgentPhone(o.buyer_agent_phone || "");
+    setNOfferPrice(String(o.offer_price));
+    setNEarnest(o.earnest_money != null ? String(o.earnest_money) : "");
+    setNClosingDate(o.closing_date || "");
+    setNFinancing(o.financing_type || "conventional");
+    setNContingencies(o.contingencies || []);
+    setNNotes(o.notes || "");
+    setShowNewModal(true);
+  };
+
+  const deleteOffer = async (offerId: string) => {
+    const prevOffers = offers;
+    setOffers((prev) => prev.filter((o) => o.id !== offerId));
+    setDeleteConfirm(null);
+    const { error } = await supabase.from("offers").delete().eq("id", offerId);
+    if (error) {
+      setOffers(prevOffers); // revert
+      showToast("Couldn't delete offer. Try again.", "error");
+    } else {
+      showToast("Offer deleted.");
+    }
+  };
+
+  const submitOffer = async () => {
     if (!nListing || !nBuyerName || !nOfferPrice) return;
     setSubmitting(true);
     try {
       const {
         data: { user },
       } = await supabase.auth.getUser();
-      if (!user) return;
+      if (!user) {
+        showToast("You're not signed in.", "error");
+        return;
+      }
 
-      const { data, error } = await supabase
-        .from("offers")
-        .insert({
-          listing_id: nListing,
-          agent_id: user.id,
-          buyer_name: nBuyerName,
-          buyer_email: nBuyerEmail || null,
-          buyer_phone: nBuyerPhone || null,
-          buyer_agent_name: nBuyerAgent || null,
-          buyer_agent_brokerage: nBuyerAgentBrokerage || null,
-          buyer_agent_phone: nBuyerAgentPhone || null,
-          offer_price: parseInt(nOfferPrice.replace(/[^0-9]/g, "")) || 0,
-          earnest_money: nEarnest ? parseInt(nEarnest.replace(/[^0-9]/g, "")) : null,
-          closing_date: nClosingDate || null,
-          financing_type: nFinancing,
-          contingencies: nContingencies,
-          notes: nNotes || null,
-        })
-        .select(`*, listing:listings(id, street, city, state)`)
-        .single();
+      const payload = {
+        listing_id: nListing,
+        buyer_name: nBuyerName,
+        buyer_email: nBuyerEmail || null,
+        buyer_phone: nBuyerPhone || null,
+        buyer_agent_name: nBuyerAgent || null,
+        buyer_agent_brokerage: nBuyerAgentBrokerage || null,
+        buyer_agent_phone: nBuyerAgentPhone || null,
+        offer_price: parseInt(nOfferPrice.replace(/[^0-9]/g, "")) || 0,
+        earnest_money: nEarnest ? parseInt(nEarnest.replace(/[^0-9]/g, "")) : null,
+        closing_date: nClosingDate || null,
+        financing_type: nFinancing,
+        contingencies: nContingencies,
+        notes: nNotes || null,
+      };
 
-      if (error) throw error;
-
-      setOffers((prev) => [data as OfferWithListing, ...prev]);
+      if (editingId) {
+        const { data, error } = await supabase
+          .from("offers")
+          .update(payload)
+          .eq("id", editingId)
+          .select(`*, listing:listings(id, street, city, state)`)
+          .single();
+        if (error) throw error;
+        setOffers((prev) => prev.map((o) => (o.id === editingId ? (data as OfferWithListing) : o)));
+        showToast("Offer updated.");
+      } else {
+        const { data, error } = await supabase
+          .from("offers")
+          .insert({ ...payload, agent_id: user.id })
+          .select(`*, listing:listings(id, street, city, state)`)
+          .single();
+        if (error) throw error;
+        setOffers((prev) => [data as OfferWithListing, ...prev]);
+        showToast("Offer logged.");
+      }
       setShowNewModal(false);
-      // Reset form
-      setNListing(""); setNBuyerName(""); setNBuyerEmail(""); setNBuyerPhone("");
-      setNBuyerAgent(""); setNBuyerAgentBrokerage(""); setNBuyerAgentPhone("");
-      setNOfferPrice(""); setNEarnest(""); setNClosingDate("");
-      setNFinancing("conventional"); setNContingencies([]); setNNotes("");
+      resetForm();
     } catch (err) {
-      console.error("Create offer error:", err);
+      console.error("Save offer error:", err);
+      showToast(err instanceof Error ? err.message : "Couldn't save offer. Try again.", "error");
     } finally {
       setSubmitting(false);
     }
@@ -343,6 +412,25 @@ export default function OffersPage() {
                       <option value="withdrawn">Withdrawn</option>
                       <option value="expired">Expired</option>
                     </select>
+                    <div className="flex gap-1">
+                      <button
+                        type="button"
+                        onClick={() => openEditModal(o)}
+                        title="Edit offer"
+                        className="flex flex-1 items-center justify-center gap-1 rounded-md border border-gray-200 bg-white px-2 py-1 text-xs text-gray-600 hover:bg-gray-50"
+                      >
+                        <Pencil className="h-3 w-3" />
+                        Edit
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setDeleteConfirm(o.id)}
+                        title="Delete offer"
+                        className="flex items-center justify-center rounded-md border border-gray-200 bg-white px-2 py-1 text-xs text-red-600 hover:bg-red-50 hover:border-red-200"
+                      >
+                        <Trash2 className="h-3 w-3" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -351,15 +439,20 @@ export default function OffersPage() {
         </div>
       )}
 
-      {/* New offer modal */}
+      {/* New / Edit offer modal */}
       {showNewModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setShowNewModal(false)}>
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          onClick={() => { setShowNewModal(false); resetForm(); }}
+        >
           <div onClick={(e) => e.stopPropagation()} className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-2xl">
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-100 bg-white px-6 py-4">
-              <h2 className="font-serif text-lg font-semibold text-gray-900">Log a new offer</h2>
+              <h2 className="font-serif text-lg font-semibold text-gray-900">
+                {editingId ? "Edit offer" : "Log a new offer"}
+              </h2>
               <button
                 type="button"
-                onClick={() => setShowNewModal(false)}
+                onClick={() => { setShowNewModal(false); resetForm(); }}
                 className="rounded-md p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
               >
                 <X className="h-5 w-5" />
@@ -375,11 +468,13 @@ export default function OffersPage() {
                   required
                 >
                   <option value="">Select a listing…</option>
-                  {listings.map((l) => (
-                    <option key={l.id} value={l.id}>
-                      {l.street}, {l.city}, {l.state} {l.price ? `· ${formatMoney(l.price)}` : ""}
-                    </option>
-                  ))}
+                  {listings
+                    .filter((l) => editingId || l.status === "published" || l.status === "pending")
+                    .map((l) => (
+                      <option key={l.id} value={l.id}>
+                        {l.street}, {l.city}, {l.state} {l.price ? `· ${formatMoney(l.price)}` : ""}
+                      </option>
+                    ))}
                 </select>
               </div>
 
@@ -483,21 +578,62 @@ export default function OffersPage() {
             <div className="sticky bottom-0 flex items-center justify-end gap-2 border-t border-gray-100 bg-white px-6 py-4">
               <button
                 type="button"
-                onClick={() => setShowNewModal(false)}
+                onClick={() => { setShowNewModal(false); resetForm(); }}
                 className="rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
               >
                 Cancel
               </button>
               <button
                 type="button"
-                onClick={submitNewOffer}
+                onClick={submitOffer}
                 disabled={submitting || !nListing || !nBuyerName || !nOfferPrice}
                 className="rounded-lg bg-gray-950 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-50"
               >
-                {submitting ? "Saving…" : "Save offer"}
+                {submitting ? "Saving…" : editingId ? "Save changes" : "Save offer"}
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Delete confirmation modal */}
+      {deleteConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setDeleteConfirm(null)}>
+          <div onClick={(e) => e.stopPropagation()} className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+            <h3 className="font-serif text-lg font-bold text-gray-900">Delete this offer?</h3>
+            <p className="mt-2 text-sm text-gray-500">
+              The offer record will be permanently removed. This can&apos;t be undone.
+            </p>
+            <div className="mt-5 flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => setDeleteConfirm(null)}
+                className="rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={() => deleteOffer(deleteConfirm)}
+                className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+              >
+                Delete offer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Toast */}
+      {toast && (
+        <div
+          className={`fixed bottom-6 left-1/2 z-[60] -translate-x-1/2 rounded-lg px-4 py-2.5 text-sm font-medium shadow-lg ${
+            toast.type === "error"
+              ? "border border-red-200 bg-red-50 text-red-800"
+              : "border border-emerald-200 bg-emerald-50 text-emerald-800"
+          }`}
+        >
+          {toast.message}
         </div>
       )}
     </div>
