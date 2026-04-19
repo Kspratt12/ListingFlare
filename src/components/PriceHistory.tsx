@@ -51,10 +51,31 @@ export default function PriceHistory({ history, currentPrice }: Props) {
   const raised = totalChange > 0;
 
   return (
-    <section className="bg-white py-14 md:py-16">
-      <div className="mx-auto max-w-4xl px-6">
+    <section className="relative overflow-hidden py-14 md:py-16">
+      {/* Subtle brand-tinted light backdrop so this section reads as part
+          of the same premium set as the dark Property Details stat sheet
+          without being as heavy (two dark sections in a row = too much). */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, var(--agent-brand, #b8965a) 5%, #f9fafb) 40%, color-mix(in srgb, var(--agent-brand, #b8965a) 7%, #f9fafb) 100%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            "radial-gradient(ellipse at top right, var(--agent-brand, #b8965a) 0%, transparent 55%)",
+        }}
+      />
+      <div className="relative mx-auto max-w-4xl px-6">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
+            <div
+              className="mb-3 h-px w-16"
+              style={{ background: "linear-gradient(90deg, transparent, var(--agent-brand, #b8965a), transparent)" }}
+            />
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-700">
               Price History
             </p>
@@ -83,7 +104,7 @@ export default function PriceHistory({ history, currentPrice }: Props) {
             return (
               <li
                 key={`${entry.date}-${i}`}
-                className="flex items-center justify-between gap-4 rounded-xl border border-gray-200 bg-white p-4 transition-shadow hover:shadow-sm"
+                className="group flex items-center justify-between gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm shadow-gray-200/40 transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md"
               >
                 <div className="flex items-center gap-3">
                   <div className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full ${
