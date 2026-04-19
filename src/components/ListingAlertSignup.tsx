@@ -47,13 +47,12 @@ export default function ListingAlertSignup({ listingId, listingAddress, isDemo =
   };
 
   return (
-    <section className="bg-gray-50 py-14 md:py-16">
-      <div className="mx-auto max-w-3xl px-6">
-        {/* Dark brand-tinted card matches the Property Details section
-            so the "stay informed" CTA reads as premium rather than a
-            generic newsletter signup. */}
+    <section className="bg-gray-50 py-12 md:py-14">
+      <div className="mx-auto max-w-2xl px-6">
+        {/* Dark brand-tinted card, tightened padding so content doesn't
+            swim in empty space. Matches the Property Details aesthetic. */}
         <div
-          className="relative overflow-hidden rounded-2xl border border-white/10 p-7 shadow-2xl shadow-black/20 md:p-10"
+          className="relative overflow-hidden rounded-2xl border border-white/10 p-6 shadow-2xl shadow-black/20 md:p-8"
           style={{
             background:
               "linear-gradient(135deg, color-mix(in srgb, var(--agent-brand, #0f172a) 55%, #0a0a0a) 0%, color-mix(in srgb, var(--agent-brand, #0f172a) 30%, #0a0a0a) 100%)",
@@ -72,14 +71,14 @@ export default function ListingAlertSignup({ listingId, listingAddress, isDemo =
             }}
           />
 
-          <div className="relative flex items-start gap-4 md:gap-5">
+          <div className="relative flex items-start gap-4">
             <div
-              className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl border border-white/15 text-white md:h-14 md:w-14"
+              className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-white/15 text-white"
               style={{
                 background: "color-mix(in srgb, var(--agent-brand, #b8965a) 35%, transparent)",
               }}
             >
-              <Bell className="h-5 w-5 md:h-6 md:w-6" />
+              <Bell className="h-5 w-5" />
             </div>
             <div className="flex-1 min-w-0">
               <p
@@ -88,11 +87,11 @@ export default function ListingAlertSignup({ listingId, listingAddress, isDemo =
               >
                 Stay in the loop
               </p>
-              <h3 className="mt-1 font-serif text-2xl font-bold text-white md:text-3xl">
+              <h3 className="mt-1 font-serif text-xl font-bold text-white md:text-2xl">
                 Get notified about {listingAddress.split(",")[0]}
               </h3>
-              <p className="mt-2 text-sm text-white/65">
-                Price changes, status updates, and open house times delivered straight to your inbox. No spam, no marketing. Unsubscribe anytime.
+              <p className="mt-1.5 text-sm text-white/65">
+                Price changes, status updates, and open house times. No spam, no marketing. Unsubscribe anytime.
               </p>
 
               {state === "done" ? (
@@ -124,10 +123,7 @@ export default function ListingAlertSignup({ listingId, listingAddress, isDemo =
                     <button
                       type="submit"
                       disabled={state === "submitting" || !email}
-                      className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:brightness-110 disabled:opacity-50 disabled:hover:brightness-100"
-                      style={{
-                        background: "var(--agent-brand, #b8965a)",
-                      }}
+                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-lg transition-all hover:bg-gray-50 disabled:opacity-50"
                     >
                       {state === "submitting" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Bell className="h-4 w-4" />}
                       {state === "submitting" ? "Subscribing…" : "Notify Me"}

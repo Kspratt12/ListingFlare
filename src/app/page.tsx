@@ -1,14 +1,19 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 import { getAllPosts } from "@/lib/blog";
 import LiveStats from "@/components/LiveStats";
-import ProductTestimonials from "@/components/ProductTestimonials";
-import PipelineAnimation from "@/components/PipelineAnimation";
+
+// Below-the-fold sections lazy-loaded so the initial homepage JS
+// payload stays small and LCP doesn't pay for code visitors may never
+// scroll to. ssr:true keeps the HTML for SEO.
+const ProductTestimonials = dynamic(() => import("@/components/ProductTestimonials"), { ssr: true });
+const PipelineAnimation = dynamic(() => import("@/components/PipelineAnimation"), { ssr: true });
 import {
   Sparkles,
   Globe,
