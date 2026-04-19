@@ -48,20 +48,22 @@ interface Row {
   value: string | null | undefined;
 }
 
-// One row (label → value). Rows flow inside a CSS columns layout so the
-// column breaks are even without us having to balance by hand.
+// One row (label → value). White-on-dark styling to match the dark
+// brand-tinted panel — same treatment as the mortgage "Estimated
+// monthly" card.
 function DetailRow({ row }: { row: Row }) {
   return (
     <div className="flex items-baseline justify-between gap-4 break-inside-avoid py-2.5">
-      <dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500">{row.label}</dt>
-      <dd className="text-right text-sm font-semibold text-gray-900">{row.value}</dd>
+      <dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/55">{row.label}</dt>
+      <dd className="text-right text-sm font-semibold text-white">{row.value}</dd>
     </div>
   );
 }
 
 // Section inside the single stat sheet — small icon + title on the left,
-// rows flowing in a 2-column layout on the right. Each section is
-// separated by a hairline divider, no individual card wrappers.
+// rows flowing in a 2-column layout on the right. Sections separated by
+// hairline dividers in white/10 to keep the dark panel feeling like one
+// continuous sheet.
 function StatSection({
   title,
   icon: Icon,
@@ -74,20 +76,20 @@ function StatSection({
   const visible = rows.filter((r) => r.value);
   if (visible.length === 0) return null;
   return (
-    <div className="border-t border-gray-200 first:border-t-0">
+    <div className="border-t border-white/10 first:border-t-0">
       <div className="grid gap-6 px-6 py-6 md:grid-cols-[200px_1fr] md:gap-10 md:px-8 md:py-8">
         <div className="flex items-center gap-3 md:flex-col md:items-start md:gap-2">
           <div
-            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg"
+            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border border-white/15"
             style={{
-              background: "color-mix(in srgb, var(--agent-brand, #b8965a) 14%, white)",
+              background: "color-mix(in srgb, var(--agent-brand, #b8965a) 35%, transparent)",
             }}
           >
-            <Icon className="h-4 w-4" style={{ color: "var(--agent-brand, #b8965a)" }} />
+            <Icon className="h-4 w-4 text-white" />
           </div>
           <div>
-            <h3 className="font-serif text-base font-semibold text-gray-900 md:text-lg">{title}</h3>
-            <p className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.2em] text-gray-400">
+            <h3 className="font-serif text-base font-semibold text-white md:text-lg">{title}</h3>
+            <p className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.2em] text-white/45">
               {visible.length} {visible.length === 1 ? "detail" : "details"}
             </p>
           </div>
@@ -184,33 +186,57 @@ export default function PropertyAttributes(props: Props) {
           </p>
         </div>
 
-        {/* Single stat sheet — one elegant panel, sections separated by
-            hairline dividers. No more orphan-card awkwardness, no more
-            dashboard-widget feel. Top and bottom edges get a subtle
-            brand-tinted accent line to give it a premium brochure feel. */}
-        <div className="mt-10 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm shadow-gray-200/40">
+        {/* Single stat sheet — one elegant dark panel, sections
+            separated by hairline dividers. Background is the brand
+            color mixed deep with black so white text stays readable on
+            every theme choice — identical treatment to the mortgage
+            "Estimated monthly" card. A soft brand-glow at the top and
+            a brand-color accent stripe give it a premium brochure feel. */}
+        <div
+          className="relative mt-10 overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/20"
+          style={{
+            background:
+              "linear-gradient(155deg, color-mix(in srgb, var(--agent-brand, #0f172a) 50%, #0a0a0a) 0%, color-mix(in srgb, var(--agent-brand, #0f172a) 28%, #0a0a0a) 55%, color-mix(in srgb, var(--agent-brand, #0f172a) 38%, #0a0a0a) 100%)",
+          }}
+        >
+          {/* Brand-colored glow in the top-right for a luxury sheen */}
           <div
-            className="h-1 w-full"
+            className="pointer-events-none absolute -right-32 -top-32 h-80 w-80 rounded-full opacity-30 blur-3xl"
+            style={{ backgroundColor: "var(--agent-brand, #b8965a)" }}
+          />
+          <div
+            className="relative h-1 w-full"
             style={{
               background:
                 "linear-gradient(90deg, transparent 0%, var(--agent-brand, #b8965a) 20%, var(--agent-brand, #b8965a) 80%, transparent 100%)",
             }}
           />
-          <StatSection title="General" icon={Home} rows={generalRows} />
-          <StatSection title="Costs" icon={Info} rows={costRows} />
-          <StatSection title="Interior" icon={Sofa} rows={interiorRows} />
-          <StatSection title="Systems" icon={Thermometer} rows={systemsRows} />
-          <StatSection title="Construction" icon={Hammer} rows={constructionRows} />
+          <div className="relative">
+            <StatSection title="General" icon={Home} rows={generalRows} />
+            <StatSection title="Costs" icon={Info} rows={costRows} />
+            <StatSection title="Interior" icon={Sofa} rows={interiorRows} />
+            <StatSection title="Systems" icon={Thermometer} rows={systemsRows} />
+            <StatSection title="Construction" icon={Hammer} rows={constructionRows} />
+          </div>
         </div>
 
         {appliances && (
-          <div className="mt-6 overflow-hidden rounded-2xl border border-gray-200 bg-white">
-            <div className="border-b border-gray-100 bg-gray-50/50 px-6 py-3">
-              <h3 className="text-sm font-semibold text-gray-900">Appliances Included</h3>
+          <div
+            className="relative mt-6 overflow-hidden rounded-2xl border border-white/10 shadow-xl shadow-black/10"
+            style={{
+              background:
+                "linear-gradient(135deg, color-mix(in srgb, var(--agent-brand, #0f172a) 45%, #0a0a0a) 0%, color-mix(in srgb, var(--agent-brand, #0f172a) 28%, #0a0a0a) 100%)",
+            }}
+          >
+            <div className="border-b border-white/10 px-6 py-3">
+              <h3 className="text-sm font-semibold text-white">Appliances Included</h3>
             </div>
             <div className="flex flex-wrap gap-2 px-6 py-4">
               {props.appliances!.map((a) => (
-                <span key={a} className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700">
+                <span
+                  key={a}
+                  className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-white/90 backdrop-blur-sm"
+                >
                   {a}
                 </span>
               ))}
