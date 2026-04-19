@@ -158,20 +158,20 @@ export default function DashboardLayout({
         {/* Trial banner - urgency styling at 3 days or less */}
         {profile && limits.isTrialing && !bannerDismissed && (
           <div
-            className={`flex items-center justify-between gap-3 border-b-2 px-4 py-2.5 sm:px-6 ${
+            className={`flex flex-wrap items-center justify-between gap-2 border-b-2 px-4 py-2 sm:px-6 sm:py-2.5 ${
               limits.trialDaysLeft <= 3
                 ? "border-red-400 bg-gradient-to-r from-red-50 to-red-100"
                 : "border-emerald-300 bg-gradient-to-r from-emerald-50 to-emerald-100"
             }`}
           >
-            <div className="flex items-center gap-2">
+            <div className="flex min-w-0 flex-1 items-center gap-2">
               <Sparkles
                 className={`h-4 w-4 flex-shrink-0 ${
                   limits.trialDaysLeft <= 3 ? "text-red-600" : "text-emerald-600"
                 }`}
               />
               <p
-                className={`text-sm ${
+                className={`min-w-0 truncate text-xs sm:text-sm ${
                   limits.trialDaysLeft <= 3 ? "text-red-900" : "text-emerald-900"
                 }`}
               >
@@ -180,23 +180,25 @@ export default function DashboardLayout({
                     ? "Trial ending today"
                     : limits.trialDaysLeft <= 3
                       ? `Only ${limits.trialDaysLeft} day${limits.trialDaysLeft !== 1 ? "s" : ""} left`
-                      : "Free trial"}
+                      : `Free trial: ${limits.trialDaysLeft} days left`}
                 </span>
-                {limits.trialDaysLeft > 3
-                  ? `: ${limits.trialDaysLeft} days left. Upgrade for unlimited listings, videos, lead replies & more.`
-                  : ". Upgrade now to keep your listings active and your automations running."}
+                <span className="hidden sm:inline">
+                  {limits.trialDaysLeft > 3
+                    ? ". Upgrade for unlimited listings, videos, lead replies & more."
+                    : ". Upgrade to keep your listings active."}
+                </span>
               </p>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-shrink-0 items-center gap-1">
               <Link
                 href="/dashboard/billing"
-                className={`flex items-center gap-1 rounded-full px-4 py-1.5 text-xs font-semibold text-white whitespace-nowrap ${
+                className={`flex items-center gap-1 rounded-full px-3 py-1 text-[11px] font-semibold text-white whitespace-nowrap sm:px-4 sm:py-1.5 sm:text-xs ${
                   limits.trialDaysLeft <= 3
                     ? "bg-red-600 hover:bg-red-700"
                     : "bg-emerald-600 hover:bg-emerald-700"
                 }`}
               >
-                Upgrade Now <ArrowRight className="h-3 w-3" />
+                Upgrade <ArrowRight className="h-3 w-3" />
               </Link>
               <button
                 onClick={() => setBannerDismissed(true)}
