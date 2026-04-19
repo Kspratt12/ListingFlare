@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Share2, Check, Link2, Mail, MessageSquare } from "lucide-react";
 import Link from "next/link";
 
 const links = [
@@ -14,17 +14,57 @@ const links = [
 
 interface NavbarProps {
   topOffset?: boolean;
+  shareTitle?: string;
+  shareUrl?: string;
 }
 
-export default function Navbar({ topOffset = false }: NavbarProps) {
+export default function Navbar({ topOffset = false, shareTitle, shareUrl }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [shareMenuOpen, setShareMenuOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const fullUrl =
+    shareUrl && typeof window !== "undefined" && shareUrl.startsWith("/")
+      ? `${window.location.origin}${shareUrl}`
+      : shareUrl || "";
+  const shareText = shareTitle ? `${shareTitle} - take a look at this listing:` : "";
+
+  const handleShareClick = async () => {
+    if (!shareUrl || !shareTitle) return;
+    if (typeof navigator !== "undefined" && navigator.share) {
+      try {
+        await navigator.share({ title: shareTitle, text: shareText, url: fullUrl });
+        return;
+      } catch {
+        // user cancelled - fall through to menu
+      }
+    }
+    setShareMenuOpen((v) => !v);
+  };
+
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(fullUrl);
+      setCopied(true);
+      setTimeout(() => {
+        setCopied(false);
+        setShareMenuOpen(false);
+      }, 1500);
+    } catch {
+      // noop
+    }
+  };
+
+  const smsHref = `sms:?body=${encodeURIComponent(`${shareText} ${fullUrl}`)}`;
+  const mailHref = `mailto:?subject=${encodeURIComponent(shareTitle || "")}&body=${encodeURIComponent(`${shareText}\n\n${fullUrl}`)}`;
+  const canShare = Boolean(shareUrl && shareTitle);
 
   return (
     <motion.nav
@@ -56,6 +96,42 @@ export default function Navbar({ topOffset = false }: NavbarProps) {
               {link.label}
             </a>
           ))}
+          {canShare && (
+            <div className="relative">
+              <button
+                onClick={handleShareClick}
+                aria-label="Share this listing"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/80 transition-colors hover:border-white/40 hover:text-white"
+              >
+                <Share2 className="h-4 w-4" />
+              </button>
+              {shareMenuOpen && (
+                <div className="absolute right-0 top-full mt-2 flex min-w-[180px] flex-col gap-0.5 rounded-xl border border-gray-200 bg-white p-1.5 shadow-xl">
+                  <button
+                    onClick={copyLink}
+                    className="flex items-center gap-2 rounded-md px-3 py-2 text-left text-xs font-medium text-gray-700 hover:bg-gray-100"
+                  >
+                    {copied ? <Check className="h-3.5 w-3.5 text-emerald-600" /> : <Link2 className="h-3.5 w-3.5" />}
+                    {copied ? "Copied!" : "Copy link"}
+                  </button>
+                  <a
+                    href={smsHref}
+                    className="flex items-center gap-2 rounded-md px-3 py-2 text-left text-xs font-medium text-gray-700 hover:bg-gray-100"
+                  >
+                    <MessageSquare className="h-3.5 w-3.5" />
+                    Send via text
+                  </a>
+                  <a
+                    href={mailHref}
+                    className="flex items-center gap-2 rounded-md px-3 py-2 text-left text-xs font-medium text-gray-700 hover:bg-gray-100"
+                  >
+                    <Mail className="h-3.5 w-3.5" />
+                    Email it
+                  </a>
+                </div>
+              )}
+            </div>
+          )}
           <a
             href="#contact"
             className="rounded-full bg-brand-500 px-5 py-2 text-sm font-medium text-white transition-all hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-500/20"
@@ -92,6 +168,18 @@ export default function Navbar({ topOffset = false }: NavbarProps) {
                 {link.label}
               </a>
             ))}
+            {canShare && (
+              <button
+                onClick={() => {
+                  setMobileOpen(false);
+                  handleShareClick();
+                }}
+                className="flex items-center gap-2 rounded-lg px-4 py-3 text-left text-sm font-medium uppercase tracking-wider text-white/70 hover:bg-white/5 hover:text-white"
+              >
+                <Share2 className="h-4 w-4" />
+                Share
+              </button>
+            )}
             <a
               href="#contact"
               onClick={() => setMobileOpen(false)}

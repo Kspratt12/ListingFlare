@@ -79,14 +79,9 @@ export default function MortgageCalculator({ listingPrice, state }: Props) {
         <div className="mt-10 grid gap-6 md:grid-cols-5 md:gap-8">
           {/* Inputs */}
           <div className="md:col-span-3 space-y-4 rounded-2xl border border-gray-200 bg-gray-50/50 p-5 md:p-6">
-            <div>
-              <div className="flex items-baseline justify-between">
-                <label className="text-xs font-medium text-gray-600">Home price</label>
-                <span className="text-sm font-semibold text-gray-900">${formatMoney(listingPrice)}</span>
-              </div>
-              <div className="mt-2 h-1.5 w-full rounded-full bg-gray-200">
-                <div className="h-full w-full rounded-full bg-brand-500" />
-              </div>
+            <div className="flex items-baseline justify-between border-b border-gray-200 pb-3">
+              <label className="text-xs font-medium text-gray-600">Home price</label>
+              <span className="font-serif text-lg font-semibold text-gray-900">${formatMoney(listingPrice)}</span>
             </div>
 
             <div>

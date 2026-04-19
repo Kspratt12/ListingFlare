@@ -38,7 +38,7 @@ const unsplash = (id: string, w = 3840, h = 2560) =>
 
 export const demoListing: PropertyListing = {
   address: {
-    street: "1847 Grandview Terrace",
+    street: "1287 Chautauqua Blvd",
     city: "Pacific Palisades",
     state: "CA",
     zip: "90272",

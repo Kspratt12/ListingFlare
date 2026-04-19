@@ -865,7 +865,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="relative overflow-hidden pt-16 pb-14 md:pt-24 md:pb-20">
+      <section className="relative overflow-hidden pt-28 pb-14 md:pt-24 md:pb-20">
         {/* Subtle gradient bg */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-50/50 to-white" />
         <div className="absolute left-1/2 top-0 -z-10 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-brand-100/30 blur-3xl" />
@@ -1262,63 +1262,102 @@ export default function LandingPage() {
             </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-10 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm"
-          >
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm">
-                <thead>
-                  <tr className="border-b border-gray-200 bg-gray-50/80">
-                    <th className="px-4 py-4 font-medium text-gray-500 sm:px-6">Feature</th>
-                    <th className="px-4 py-4 sm:px-6">
+          {(() => {
+            const rows: Array<{ feature: string; us: boolean | string; zillow: boolean | string; kv: boolean | string }> = [
+              { feature: "Branded listing page you own", us: true, zillow: false, kv: "partial" },
+              { feature: "AI chat that answers buyer questions 24/7", us: true, zillow: false, kv: false },
+              { feature: "Instant auto-reply to new leads", us: true, zillow: false, kv: true },
+              { feature: "Built-in showing scheduler (no Calendly needed)", us: true, zillow: false, kv: false },
+              { feature: "Calendar invite (.ics) in confirmation emails", us: true, zillow: false, kv: false },
+              { feature: "Automated 1/3/7-day follow-up sequence", us: true, zillow: false, kv: true },
+              { feature: "Showing reminders (24hr + 1hr before)", us: true, zillow: false, kv: "partial" },
+              { feature: "Re-engage past leads when you list a similar home", us: true, zillow: false, kv: true },
+              { feature: "Leads belong to YOU (not sold to other agents)", us: true, zillow: false, kv: true },
+              { feature: "Setup time", us: "5 min", zillow: "N/A", kv: "Multi-week onboarding" },
+              { feature: "Forces you onto their platform's rules", us: false, zillow: true, kv: true },
+            ];
+            return (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mt-10"
+              >
+                {/* Desktop table - hidden on mobile */}
+                <div className="hidden overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm md:block">
+                  <table className="w-full text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-gray-200 bg-gray-50/80">
+                        <th className="px-6 py-4 font-medium text-gray-500">Feature</th>
+                        <th className="px-6 py-4">
+                          <div className="font-serif text-base font-bold text-gray-900">ListingFlare</div>
+                          <div className="mt-0.5 text-xs font-normal text-brand-600">$150/mo</div>
+                        </th>
+                        <th className="px-6 py-4">
+                          <div className="text-base font-semibold text-gray-900">Zillow Premier</div>
+                          <div className="mt-0.5 text-xs font-normal text-gray-500">$300+/mo</div>
+                        </th>
+                        <th className="px-6 py-4">
+                          <div className="text-base font-semibold text-gray-900">kvCORE</div>
+                          <div className="mt-0.5 text-xs font-normal text-gray-500">$499+/mo</div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {rows.map((row, i) => (
+                        <tr key={i} className="hover:bg-gray-50/50">
+                          <td className="px-6 py-3.5 text-gray-700">{row.feature}</td>
+                          <td className="px-6 py-3.5"><ComparisonCell value={row.us} highlight /></td>
+                          <td className="px-6 py-3.5"><ComparisonCell value={row.zillow} /></td>
+                          <td className="px-6 py-3.5"><ComparisonCell value={row.kv} /></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Mobile cards - one card per feature, three mini-pills */}
+                <div className="space-y-3 md:hidden">
+                  <div className="flex items-center justify-between rounded-xl border border-brand-200 bg-gradient-to-r from-brand-50 to-white px-4 py-3">
+                    <div>
                       <div className="font-serif text-base font-bold text-gray-900">ListingFlare</div>
-                      <div className="mt-0.5 text-xs font-normal text-brand-600">$150/mo</div>
-                    </th>
-                    <th className="px-4 py-4 sm:px-6">
-                      <div className="text-base font-semibold text-gray-900">Zillow Premier</div>
-                      <div className="mt-0.5 text-xs font-normal text-gray-500">$300+/mo</div>
-                    </th>
-                    <th className="px-4 py-4 sm:px-6">
-                      <div className="text-base font-semibold text-gray-900">kvCORE</div>
-                      <div className="mt-0.5 text-xs font-normal text-gray-500">$499+/mo</div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {[
-                    { feature: "Branded listing page you own", us: true, zillow: false, kv: "partial" },
-                    { feature: "AI chat that answers buyer questions 24/7", us: true, zillow: false, kv: false },
-                    { feature: "Instant auto-reply to new leads", us: true, zillow: false, kv: true },
-                    { feature: "Built-in showing scheduler (no Calendly needed)", us: true, zillow: false, kv: false },
-                    { feature: "Calendar invite (.ics) in confirmation emails", us: true, zillow: false, kv: false },
-                    { feature: "Automated 1/3/7-day follow-up sequence", us: true, zillow: false, kv: true },
-                    { feature: "Showing reminders (24hr + 1hr before)", us: true, zillow: false, kv: "partial" },
-                    { feature: "Re-engage past leads when you list a similar home", us: true, zillow: false, kv: true },
-                    { feature: "Leads belong to YOU (not sold to other agents)", us: true, zillow: false, kv: true },
-                    { feature: "Setup time", us: "5 min", zillow: "N/A", kv: "Multi-week onboarding" },
-                    { feature: "Forces you onto their platform's rules", us: false, zillow: true, kv: true },
-                  ].map((row, i) => (
-                    <tr key={i} className="hover:bg-gray-50/50">
-                      <td className="px-4 py-3.5 text-gray-700 sm:px-6">{row.feature}</td>
-                      <td className="px-4 py-3.5 sm:px-6">
-                        <ComparisonCell value={row.us} highlight />
-                      </td>
-                      <td className="px-4 py-3.5 sm:px-6">
-                        <ComparisonCell value={row.zillow} />
-                      </td>
-                      <td className="px-4 py-3.5 sm:px-6">
-                        <ComparisonCell value={row.kv} />
-                      </td>
-                    </tr>
+                      <div className="text-xs text-brand-600">$150/mo</div>
+                    </div>
+                    <div className="flex gap-3 text-center">
+                      <div>
+                        <div className="text-sm font-semibold text-gray-700">Zillow</div>
+                        <div className="text-[10px] text-gray-400">$300+</div>
+                      </div>
+                      <div>
+                        <div className="text-sm font-semibold text-gray-700">kvCORE</div>
+                        <div className="text-[10px] text-gray-400">$499+</div>
+                      </div>
+                    </div>
+                  </div>
+                  {rows.map((row, i) => (
+                    <div key={i} className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+                      <p className="text-sm font-medium text-gray-800">{row.feature}</p>
+                      <div className="mt-3 grid grid-cols-3 gap-2">
+                        <div className="flex flex-col items-center rounded-lg bg-brand-50/60 p-2">
+                          <span className="text-[10px] font-medium uppercase tracking-wider text-brand-700">Us</span>
+                          <div className="mt-1"><ComparisonCell value={row.us} highlight /></div>
+                        </div>
+                        <div className="flex flex-col items-center rounded-lg bg-gray-50 p-2">
+                          <span className="text-[10px] font-medium uppercase tracking-wider text-gray-500">Zillow</span>
+                          <div className="mt-1"><ComparisonCell value={row.zillow} /></div>
+                        </div>
+                        <div className="flex flex-col items-center rounded-lg bg-gray-50 p-2">
+                          <span className="text-[10px] font-medium uppercase tracking-wider text-gray-500">kvCORE</span>
+                          <div className="mt-1"><ComparisonCell value={row.kv} /></div>
+                        </div>
+                      </div>
+                    </div>
                   ))}
-                </tbody>
-              </table>
-            </div>
-          </motion.div>
+                </div>
+              </motion.div>
+            );
+          })()}
 
           <p className="mt-6 text-center text-sm text-gray-400">
             Pricing and features as of {new Date().getFullYear()}. Competitor info from public pricing pages.

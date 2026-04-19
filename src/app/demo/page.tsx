@@ -12,7 +12,6 @@ import VirtualTourEmbed from "@/components/VirtualTourEmbed";
 import Footer from "@/components/Footer";
 import MortgageCalculator from "@/components/MortgageCalculator";
 import NeighborhoodInfo from "@/components/NeighborhoodInfo";
-import ShareListingButton from "@/components/ShareListingButton";
 import Link from "next/link";
 import { ArrowRight, X } from "lucide-react";
 import { useState } from "react";
@@ -62,7 +61,11 @@ export default function DemoPage() {
       </AnimatePresence>
 
       {/* Navbar pushed down when banner is visible */}
-      <Navbar topOffset={bannerVisible} />
+      <Navbar
+        topOffset={bannerVisible}
+        shareTitle={`${demoListing.address.street}, ${demoListing.address.city}`}
+        shareUrl="/demo"
+      />
 
       <HeroSlideshow listing={demoListing} />
       <PropertyDetails listing={demoListing} />
@@ -106,11 +109,6 @@ export default function DemoPage() {
         isDemo
       />
       <Footer />
-
-      <ShareListingButton
-        title={`${demoListing.address.street}, ${demoListing.address.city}`}
-        url="/demo"
-      />
     </main>
   );
 }

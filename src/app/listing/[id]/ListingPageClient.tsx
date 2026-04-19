@@ -15,7 +15,6 @@ import { formatPhone, formatLotSize } from "@/lib/formatters";
 import VirtualTourEmbed from "@/components/VirtualTourEmbed";
 import MortgageCalculator from "@/components/MortgageCalculator";
 import NeighborhoodInfo from "@/components/NeighborhoodInfo";
-import ShareListingButton from "@/components/ShareListingButton";
 import OtherListings from "@/components/OtherListings";
 
 const ListingChat = dynamic(() => import("@/components/ListingChat"), {
@@ -147,7 +146,10 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
           </div>
         </div>
       )}
-      <Navbar />
+      <Navbar
+        shareTitle={`${listing.street}, ${listing.city}`}
+        shareUrl={listing.slug ? `/listing/${listing.slug}` : `/listing/${listing.id}`}
+      />
       <HeroSlideshow listing={propertyData} />
       <PropertyDetails listing={propertyData} />
       <PhotoGallery photos={propertyData.photos} videos={listing.videos} />
@@ -199,11 +201,6 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
         calendlyUrl={agent.calendly_url || undefined}
       />
       <Footer />
-
-      <ShareListingButton
-        title={`${listing.street}, ${listing.city}`}
-        url={listing.slug ? `/listing/${listing.slug}` : `/listing/${listing.id}`}
-      />
     </main>
   );
 }
