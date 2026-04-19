@@ -908,7 +908,7 @@ export default function LeadsPage() {
             <div className="border-t border-gray-100 px-6 py-4">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Conversation</p>
-                {limits.canReplyToLeads && !selectedLead.auto_reply_draft && (
+                {limits.canReplyToLeads && (
                   <button
                     onClick={() => generateDraft(selectedLead)}
                     disabled={generatingDraft}
@@ -919,7 +919,11 @@ export default function LeadsPage() {
                     ) : (
                       <Sparkles className="h-3 w-3" />
                     )}
-                    {generatingDraft ? "Generating..." : "AI Draft"}
+                    {generatingDraft
+                      ? "Generating…"
+                      : selectedLead.auto_reply_draft
+                      ? "Regenerate"
+                      : "AI Draft"}
                   </button>
                 )}
               </div>

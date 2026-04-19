@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { hasActiveSubscription } from "@/lib/subscriptionGate";
 import { formatPhone } from "@/lib/formatters";
 
 export const dynamic = "force-dynamic";
@@ -16,6 +17,16 @@ export async function POST(req: NextRequest) {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    // Paywall: Social Media Pack is a paid feature. The client-side UI
+    // already gates it, but a trial user could POST directly from devtools
+    // — enforce on the server too so the price isn't honor-system.
+    if (!(await hasActiveSubscription(user.id))) {
+      return NextResponse.json(
+        { error: "Subscription required to generate Social Media Pack." },
+        { status: 402 }
+      );
     }
 
     const { data: listing } = await supabase
