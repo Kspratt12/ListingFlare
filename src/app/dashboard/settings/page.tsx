@@ -32,6 +32,21 @@ export default function SettingsPage() {
   const [weeklyEmails, setWeeklyEmails] = useState(true);
   const [calendlyUrl, setCalendlyUrl] = useState("");
   const [aiApprovalMode, setAiApprovalMode] = useState(false);
+  const [aiSavedAt, setAiSavedAt] = useState<number | null>(null);
+
+  const toggleAiApproval = async (checked: boolean) => {
+    setAiApprovalMode(checked);
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+      await supabase.from("agent_profiles").update({ ai_approval_mode: checked }).eq("id", user.id);
+      setAiSavedAt(Date.now());
+      setTimeout(() => setAiSavedAt(null), 2000);
+    } catch {
+      // Revert on failure
+      setAiApprovalMode(!checked);
+    }
+  };
 
   useEffect(() => {
     async function fetchProfile() {
@@ -449,8 +464,16 @@ export default function SettingsPage() {
         </section>
 
         {/* AI Automation */}
-        <section className="rounded-xl border border-gray-200 bg-white p-6">
-          <h2 className="font-serif text-lg font-semibold text-gray-900">AI Automation</h2>
+        <section className="rounded-xl border border-brand-200 bg-gradient-to-br from-brand-50/40 to-white p-6">
+          <div className="flex items-center justify-between">
+            <h2 className="font-serif text-lg font-semibold text-gray-900">AI Automation</h2>
+            {aiSavedAt && (
+              <span className="flex items-center gap-1 text-[11px] font-medium text-emerald-600">
+                <CheckCircle className="h-3 w-3" />
+                Saved
+              </span>
+            )}
+          </div>
           <p className="mt-1 text-sm text-gray-500">
             Control how AI handles your leads on your behalf.
           </p>
@@ -466,7 +489,7 @@ export default function SettingsPage() {
                 <input
                   type="checkbox"
                   checked={aiApprovalMode}
-                  onChange={(e) => setAiApprovalMode(e.target.checked)}
+                  onChange={(e) => toggleAiApproval(e.target.checked)}
                   className="peer sr-only"
                 />
                 <div className="h-6 w-11 rounded-full bg-gray-200 transition-colors peer-checked:bg-brand-500" />
@@ -474,6 +497,9 @@ export default function SettingsPage() {
               </div>
             </label>
           </div>
+          <p className="mt-2 text-[11px] text-gray-400">
+            Saves instantly. Also toggleable from the dashboard.
+          </p>
         </section>
 
         {/* Notifications */}
