@@ -15,6 +15,7 @@ import LeadPipeline from "@/components/LeadPipeline";
 import LeadMessageThread from "@/components/LeadMessageThread";
 import LeadNotesTags, { getTagStyle, getTagLabel } from "@/components/LeadNotesTags";
 import LeadTimeline from "@/components/LeadTimeline";
+import CommissionModal from "@/components/CommissionModal";
 import HotLeadBadge from "@/components/HotLeadBadge";
 import { calculateHotScore } from "@/lib/hotScore";
 
@@ -54,6 +55,7 @@ export default function LeadsPage() {
   const [selectedLeadIds, setSelectedLeadIds] = useState<Set<string>>(new Set());
   const [bulkDeleteConfirm, setBulkDeleteConfirm] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: "error" | "success" } | null>(null);
+  const [commissionLead, setCommissionLead] = useState<Lead | null>(null);
   const limits = getSubscriptionLimits(profile);
   const supabase = createClient();
 
@@ -82,6 +84,13 @@ export default function LeadsPage() {
     );
     if (selectedLead?.id === id) {
       setSelectedLead((prev) => prev ? { ...prev, status: status as Lead["status"], is_read: true } : null);
+    }
+    // If marked closed, prompt to log commission
+    if (status === "closed") {
+      const lead = leads.find((l) => l.id === id) || selectedLead;
+      if (lead && !lead.commission_amount) {
+        setCommissionLead({ ...lead, status: "closed" } as Lead);
+      }
     }
   };
 
@@ -839,6 +848,25 @@ export default function LeadsPage() {
 
           </div>
         </div>
+      )}
+
+      {/* Commission modal - prompts when marking lead as closed */}
+      {commissionLead && (
+        <CommissionModal
+          lead={commissionLead}
+          onClose={() => setCommissionLead(null)}
+          onSaved={(closedPrice, commission) => {
+            setLeads((prev) =>
+              prev.map((l) =>
+                l.id === commissionLead.id
+                  ? { ...l, closed_price: closedPrice, commission_amount: commission, closed_at: new Date().toISOString() }
+                  : l
+              )
+            );
+            setToast({ message: `Nice. $${commission.toLocaleString()} logged.`, type: "success" });
+            setTimeout(() => setToast(null), 4000);
+          }}
+        />
       )}
     </div>
   );

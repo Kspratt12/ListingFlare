@@ -79,6 +79,9 @@ export interface Lead {
   hot_score: number;
   notes: string;
   tags: string[];
+  closed_price: number | null;
+  commission_amount: number | null;
+  closed_at: string | null;
   created_at: string;
   // joined fields
   listing?: Pick<Listing, "street" | "city" | "state">;

@@ -12,6 +12,7 @@ import ActivityFeed from "@/components/ActivityFeed";
 import SpeedToLead from "@/components/SpeedToLead";
 import GettingStarted from "@/components/GettingStarted";
 import DailyBriefing from "@/components/DailyBriefing";
+import RevenueStat from "@/components/RevenueStat";
 
 export default function MyListingsPage() {
   const [listings, setListings] = useState<Listing[]>([]);
@@ -291,6 +292,9 @@ export default function MyListingsPage() {
 
           {/* Daily briefing - auto-hides when nothing to report */}
           <DailyBriefing />
+
+          {/* Revenue stat - hides if no commission logged yet */}
+          <RevenueStat />
 
           {/* Top row: equal-height cards */}
           <div className="grid gap-4 lg:grid-cols-3">
