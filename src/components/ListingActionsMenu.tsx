@@ -15,6 +15,7 @@ import {
   Lock,
   Check,
   Loader2,
+  Presentation,
 } from "lucide-react";
 
 interface Props {
@@ -85,6 +86,16 @@ export default function ListingActionsMenu({
           <div className="py-1">
             {isPublic && (
               <>
+                <Link
+                  href={`/dashboard/presentation/${listing.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-2.5 px-3 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+                >
+                  <Presentation className="h-4 w-4 text-brand-500" />
+                  AI Listing Presentation
+                </Link>
                 <Link
                   href={`/reports/${listing.id}`}
                   target="_blank"

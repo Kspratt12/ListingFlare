@@ -6,7 +6,7 @@ import type { Lead, AgentProfile } from "@/lib/types";
 import {
   MessageSquare, Mail, Phone, Calendar, Home, ChevronDown,
   X, Loader2, ArrowUpDown, Lock, Trash2, Pencil, Sparkles,
-  LayoutList, Columns3, Search, Download,
+  LayoutList, Columns3, Search, Download, Inbox, UserCheck,
 } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
 import { getSubscriptionLimits } from "@/lib/subscription";
@@ -51,6 +51,7 @@ export default function LeadsPage() {
   const [deleteConfirm, setDeleteConfirm] = useState(false);
   const [generatingDraft, setGeneratingDraft] = useState(false);
   const [viewMode, setViewMode] = useState<"list" | "pipeline">("list");
+  const [leadScope, setLeadScope] = useState<"all" | "buyers">("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLeadIds, setSelectedLeadIds] = useState<Set<string>>(new Set());
   const [bulkDeleteConfirm, setBulkDeleteConfirm] = useState(false);
@@ -238,12 +239,14 @@ export default function LeadsPage() {
       month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit",
     });
 
-  // Read ?status=X from URL on mount so Analytics can deep-link here
+  // Read ?status=X or ?view=buyers from URL on mount
   useEffect(() => {
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
     const status = params.get("status");
     if (status) setFilterStatus(status);
+    const view = params.get("view");
+    if (view === "buyers") setLeadScope("buyers");
   }, []);
 
   const matchesSearch = (lead: Lead) => {
@@ -259,7 +262,14 @@ export default function LeadsPage() {
     );
   };
 
-  const filteredLeads = (filterStatus === "all" ? leads : leads.filter((l) => l.status === filterStatus))
+  const BUYER_STATUSES = ["contacted", "showing_scheduled", "offer_made", "under_contract"];
+  const isActiveBuyer = (l: Lead) =>
+    BUYER_STATUSES.includes(l.status) ||
+    (l.tags || []).some((t) => ["serious_buyer", "pre_approved", "investor"].includes(t));
+
+  const scopedLeads = leadScope === "buyers" ? leads.filter(isActiveBuyer) : leads;
+
+  const filteredLeads = (filterStatus === "all" ? scopedLeads : scopedLeads.filter((l) => l.status === filterStatus))
     .filter(matchesSearch);
 
   const sortedLeads = [...filteredLeads].sort((a, b) => {
@@ -300,35 +310,69 @@ export default function LeadsPage() {
           </button>
         </div>
       )}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="font-serif text-2xl font-bold text-gray-900 md:text-3xl">Leads</h1>
-          <p className="mt-1 text-gray-500">Contact form submissions from your listing pages.</p>
+          <h1 className="font-serif text-2xl font-bold text-gray-900 md:text-3xl">
+            {leadScope === "buyers" ? "Active Buyers" : "Leads"}
+          </h1>
+          <p className="mt-1 text-gray-500">
+            {leadScope === "buyers"
+              ? "Leads you're actively working with. Serious buyers, pre-approved, in pipeline."
+              : "Contact form submissions from your listing pages."}
+          </p>
         </div>
         {leads.length > 0 && (
-          <div className="flex items-center rounded-lg border border-gray-200 bg-white p-0.5">
-            <button
-              onClick={() => setViewMode("list")}
-              className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-                viewMode === "list"
-                  ? "bg-gray-900 text-white"
-                  : "text-gray-500 hover:text-gray-700"
-              }`}
-            >
-              <LayoutList className="h-3.5 w-3.5" />
-              List
-            </button>
-            <button
-              onClick={() => setViewMode("pipeline")}
-              className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-                viewMode === "pipeline"
-                  ? "bg-gray-900 text-white"
-                  : "text-gray-500 hover:text-gray-700"
-              }`}
-            >
-              <Columns3 className="h-3.5 w-3.5" />
-              Pipeline
-            </button>
+          <div className="flex flex-wrap gap-2">
+            {/* Scope toggle: All vs Buyers */}
+            <div className="flex items-center rounded-lg border border-gray-200 bg-white p-0.5">
+              <button
+                onClick={() => setLeadScope("all")}
+                className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+                  leadScope === "all"
+                    ? "bg-gray-900 text-white"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                <Inbox className="h-3.5 w-3.5" />
+                All Leads
+              </button>
+              <button
+                onClick={() => setLeadScope("buyers")}
+                className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+                  leadScope === "buyers"
+                    ? "bg-emerald-600 text-white"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                <UserCheck className="h-3.5 w-3.5" />
+                Active Buyers
+              </button>
+            </div>
+            {/* View mode: List vs Pipeline */}
+            <div className="flex items-center rounded-lg border border-gray-200 bg-white p-0.5">
+              <button
+                onClick={() => setViewMode("list")}
+                className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+                  viewMode === "list"
+                    ? "bg-gray-900 text-white"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                <LayoutList className="h-3.5 w-3.5" />
+                List
+              </button>
+              <button
+                onClick={() => setViewMode("pipeline")}
+                className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+                  viewMode === "pipeline"
+                    ? "bg-gray-900 text-white"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                <Columns3 className="h-3.5 w-3.5" />
+                Pipeline
+              </button>
+            </div>
           </div>
         )}
       </div>
@@ -467,7 +511,7 @@ export default function LeadsPage() {
         </div>
       ) : viewMode === "pipeline" ? (
         <LeadPipeline
-          leads={leads}
+          leads={scopedLeads}
           onSelectLead={openLead}
           onUpdateStatus={updateLeadStatus}
         />
