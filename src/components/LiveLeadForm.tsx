@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Send, CheckCircle, Loader2 } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
@@ -9,18 +8,20 @@ import { detectSource } from "@/lib/detectSource";
 
 interface Props {
   listingId: string;
-  agentId: string;
+  // agentId kept optional for backward compat - server derives from listingId
+  agentId?: string;
 }
 
-export default function LiveLeadForm({ listingId, agentId }: Props) {
+export default function LiveLeadForm({ listingId }: Props) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [source, setSource] = useState<string>("direct");
-  const supabase = createClient();
+  const formStartedAtRef = useRef<number>(0);
 
   useEffect(() => {
     setSource(detectSource());
+    formStartedAtRef.current = Date.now();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -34,52 +35,31 @@ export default function LiveLeadForm({ listingId, agentId }: Props) {
     const leadEmail = formData.get("email") as string;
     const leadPhone = formData.get("phone") as string;
     const leadMessage = formData.get("message") as string;
+    const honeypot = formData.get("_hp") as string;
 
-    const { error: insertError } = await supabase.from("leads").insert({
-      listing_id: listingId,
-      agent_id: agentId,
-      name: leadName,
-      email: leadEmail,
-      phone: leadPhone,
-      message: leadMessage,
-      source,
+    const res = await fetch("/api/leads/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        listingId,
+        name: leadName,
+        email: leadEmail,
+        phone: leadPhone,
+        message: leadMessage,
+        source,
+        honeypot,
+        formStartedAt: formStartedAtRef.current,
+      }),
     });
 
-    // Fetch the lead ID separately (RLS can block .select() after insert)
-    let leadId: string | null = null;
-    if (!insertError) {
-      const { data: found } = await supabase
-        .from("leads")
-        .select("id")
-        .eq("listing_id", listingId)
-        .eq("email", leadEmail)
-        .order("created_at", { ascending: false })
-        .limit(1)
-        .single();
-      leadId = found?.id || null;
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      setError(data.error || "Something went wrong. Please try again.");
+      setSubmitting(false);
+      return;
     }
 
-    if (insertError) {
-      console.error("Lead insert error:", insertError);
-      setError(`Something went wrong: ${insertError.message}`);
-      setSubmitting(false);
-    } else {
-      setSubmitted(true);
-      // Fire email notification
-      fetch("/api/leads/notify", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          leadId: leadId || null,
-          listingId,
-          agentId,
-          leadName,
-          leadEmail,
-          leadPhone,
-          leadMessage,
-        }),
-      }).catch((err) => console.error("Notify error:", err));
-    }
+    setSubmitted(true);
   };
 
   return (
@@ -134,6 +114,14 @@ export default function LiveLeadForm({ listingId, agentId }: Props) {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="mt-12 space-y-5">
+              <input
+                type="text"
+                name="_hp"
+                tabIndex={-1}
+                autoComplete="off"
+                className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                aria-hidden="true"
+              />
               {error && (
                 <div className="rounded-lg border border-red-800/30 bg-red-900/20 px-4 py-3 text-sm text-red-300">
                   {error}

@@ -16,6 +16,7 @@ export default function OpenHouseSignIn() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [phone, setPhone] = useState("");
+  const [formStartedAt] = useState<number>(() => Date.now());
 
   useEffect(() => {
     async function fetchListing() {
@@ -39,26 +40,24 @@ export default function OpenHouseSignIn() {
     const formData = new FormData(e.currentTarget);
 
     const workingWithAgent = formData.get("working_with_agent") === "yes";
-    const { data: leadData } = await supabase.from("leads").insert({
-      listing_id: listingId,
-      agent_id: listing.agent_id,
-      name: formData.get("name") as string,
-      email: formData.get("email") as string,
-      phone: phone,
-      message: `[Open House Sign-In] ${workingWithAgent ? "Working with an agent" : "Not working with an agent"}`,
-      status: "new",
-      source: "open_house",
-      has_agent: workingWithAgent ? "yes" : "no",
-    }).select("id").single();
+    const honeypot = formData.get("_hp") as string;
 
-    // Fire notification
-    if (leadData?.id) {
-      fetch("/api/leads/notify", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ leadId: leadData.id, listingId, agentId: listing.agent_id }),
-      }).catch(() => {});
-    }
+    await fetch("/api/leads/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        listingId,
+        name: formData.get("name") as string,
+        email: formData.get("email") as string,
+        phone,
+        message: `[Open House Sign-In] ${workingWithAgent ? "Working with an agent" : "Not working with an agent"}`,
+        status: "new",
+        source: "open_house",
+        has_agent: workingWithAgent ? "yes" : "no",
+        honeypot,
+        formStartedAt,
+      }),
+    }).catch(() => {});
 
     setSubmitted(true);
   };
@@ -123,6 +122,14 @@ export default function OpenHouseSignIn() {
             </p>
 
             <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+              <input
+                type="text"
+                name="_hp"
+                tabIndex={-1}
+                autoComplete="off"
+                className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                aria-hidden="true"
+              />
               <div>
                 <label className="mb-1.5 block text-sm font-medium text-gray-300">Full Name *</label>
                 <input

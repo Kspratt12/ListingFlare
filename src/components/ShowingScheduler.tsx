@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   CalendarDays,
@@ -17,7 +16,8 @@ import { detectSource } from "@/lib/detectSource";
 
 interface Props {
   listingId: string;
-  agentId: string;
+  // agentId kept optional for backward compat - server now derives it from listing
+  agentId?: string;
 }
 
 const TIME_SLOTS = [
@@ -55,7 +55,7 @@ function getCalendarDays(year: number, month: number) {
   return days;
 }
 
-export default function ShowingScheduler({ listingId, agentId }: Props) {
+export default function ShowingScheduler({ listingId }: Props) {
   const today = new Date();
   const [step, setStep] = useState<"date" | "time" | "info" | "done">("date");
   const [calMonth, setCalMonth] = useState(today.getMonth());
@@ -69,11 +69,12 @@ export default function ShowingScheduler({ listingId, agentId }: Props) {
   const [source, setSource] = useState<string>("direct");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const supabase = createClient();
+  const formStartedAtRef = useRef<number>(0);
 
-  // Capture source on mount (once)
+  // Capture source + form start time on mount (once)
   useEffect(() => {
     setSource(detectSource());
+    formStartedAtRef.current = Date.now();
   }, []);
 
   const calendarDays = useMemo(
@@ -130,61 +131,30 @@ export default function ShowingScheduler({ listingId, agentId }: Props) {
     const email = formData.get("email") as string;
     const phone = formData.get("phone") as string;
     const message = formData.get("message") as string;
+    const honeypot = formData.get("_hp") as string;
 
     // Format date as YYYY-MM-DD
     const dateStr = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, "0")}-${String(selectedDate.getDate()).padStart(2, "0")}`;
 
-    // First, insert as a lead with qualification + source
-    const { error: leadErr } = await supabase.from("leads").insert({
-      listing_id: listingId,
-      agent_id: agentId,
-      name,
-      email,
-      phone,
-      message: message || `Showing requested for ${formatSelectedDate()} at ${selectedTime}`,
-      status: "showing_scheduled",
-      pre_approved: preApproved,
-      timeline,
-      has_agent: hasAgent,
-      source,
-    });
-
-    if (leadErr) {
-      setError("Something went wrong. Please try again.");
-      setSubmitting(false);
-      return;
-    }
-
-    // Get the lead ID
-    const { data: found } = await supabase
-      .from("leads")
-      .select("id")
-      .eq("listing_id", listingId)
-      .eq("email", email)
-      .order("created_at", { ascending: false })
-      .limit(1)
-      .single();
-
-    const leadId = found?.id;
-
-    // Book the showing via API (with qualification + source for lead enrichment)
+    // Book the showing via API - server derives agent_id from listing,
+    // creates the lead with qualification + source, and handles spam checks
     const res = await fetch("/api/showings/book", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        leadId: leadId || undefined,
         listingId,
         preApproved,
         timeline,
         hasAgent,
         source,
-        agentId,
         showingDate: dateStr,
         showingTime: selectedTime,
         name,
         email,
         phone,
-        message,
+        message: message || `Showing requested for ${formatSelectedDate()} at ${selectedTime}`,
+        honeypot,
+        formStartedAt: formStartedAtRef.current,
       }),
     });
 
@@ -446,6 +416,15 @@ export default function ShowingScheduler({ listingId, agentId }: Props) {
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
+                      {/* Honeypot - humans leave empty, bots fill it */}
+                      <input
+                        type="text"
+                        name="_hp"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                        aria-hidden="true"
+                      />
                       <div className="grid gap-4 sm:grid-cols-2">
                         <div>
                           <label

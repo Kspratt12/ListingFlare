@@ -7,6 +7,7 @@ import {
   refreshAccessToken,
   isGoogleConfigured,
 } from "@/lib/google/oauth";
+import { checkHoneypotAndTiming, checkRateLimits } from "@/lib/antiSpam";
 
 export const dynamic = "force-dynamic";
 
@@ -23,7 +24,6 @@ export async function POST(req: NextRequest) {
     const {
       leadId,
       listingId,
-      agentId,
       showingDate,
       showingTime,
       name,
@@ -34,13 +34,40 @@ export async function POST(req: NextRequest) {
       timeline,
       hasAgent,
       source,
+      honeypot,
+      formStartedAt,
     } = body;
 
-    if (!listingId || !agentId || !showingDate || !showingTime || !name || !email) {
+    if (!listingId || !showingDate || !showingTime || !name || !email) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
+    // Cheap spam filters - fail fast before hitting DB
+    const cheap = checkHoneypotAndTiming({ honeypot, formStartedAt, listingId, email });
+    if (!cheap.ok) {
+      // Silent success so bots don't learn the honeypot works
+      return NextResponse.json({ ok: true });
+    }
+
     const db = getAdminClient();
+
+    // Derive agentId from the listing - never trust client-sent agentId
+    const { data: ownerLookup } = await db
+      .from("listings")
+      .select("id, agent_id")
+      .eq("id", listingId)
+      .single();
+
+    if (!ownerLookup) {
+      return NextResponse.json({ error: "Listing not found" }, { status: 404 });
+    }
+    const agentId = ownerLookup.agent_id;
+
+    // DB-backed rate limits
+    const limited = await checkRateLimits(db, { listingId, email });
+    if (!limited.ok) {
+      return NextResponse.json({ error: limited.reason }, { status: 429 });
+    }
 
     // If no leadId was provided, find or create the lead
     let finalLeadId = leadId;

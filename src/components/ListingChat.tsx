@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Loader2, User, Sparkles } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
 import { motion, AnimatePresence } from "framer-motion";
 import { detectSource } from "@/lib/detectSource";
 
@@ -31,12 +30,13 @@ interface ListingContext {
 interface Props {
   listing: ListingContext;
   listingId: string;
-  agentId: string;
+  // agentId kept optional for backward compat - server derives from listingId
+  agentId?: string;
   isDemo?: boolean;
   calendlyUrl?: string;
 }
 
-export default function ListingChat({ listing, listingId, agentId, isDemo = false, calendlyUrl }: Props) {
+export default function ListingChat({ listing, listingId, isDemo = false, calendlyUrl }: Props) {
   const [open, setOpen] = useState(false);
   const [showHint, setShowHint] = useState(true);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -127,7 +127,6 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
     }
 
     try {
-      const supabase = createClient();
       const chatSummary = messages
         .filter((m) => m.role === "user")
         .map((m) => m.text)
@@ -135,29 +134,23 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
 
       const chatMessage = `[Chat] ${chatSummary}`;
 
-      const { error: insertError } = await supabase.from("leads").insert({
-        listing_id: listingId,
-        agent_id: agentId,
-        name: leadName,
-        email: leadEmail,
-        phone: leadPhone,
-        message: chatMessage,
-        source: detectSource(),
+      const res = await fetch("/api/leads/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          listingId,
+          name: leadName,
+          email: leadEmail,
+          phone: leadPhone,
+          message: chatMessage,
+          source: detectSource(),
+          // Chat widget opens separately from page load, so skip the
+          // time-based bot check here - honeypot still catches bots.
+          honeypot: "",
+        }),
       });
 
-      if (insertError) throw insertError;
-
-      // Fetch lead ID separately (RLS can block .select() after insert)
-      let leadId: string | null = null;
-      const { data: found } = await supabase
-        .from("leads")
-        .select("id")
-        .eq("listing_id", listingId)
-        .eq("email", leadEmail)
-        .order("created_at", { ascending: false })
-        .limit(1)
-        .single();
-      leadId = found?.id || null;
+      if (!res.ok) throw new Error("Lead create failed");
 
       setLeadCaptured(true);
       setShowLeadCapture(false);
@@ -165,21 +158,6 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
         role: "assistant",
         text: `Thanks ${leadName.split(" ")[0]}! I've let ${listing.agentName} know you're interested. They'll reach out to you shortly!`,
       }]);
-
-      // Trigger notification + auto-reply - always send, with fallback lead details
-      fetch("/api/leads/notify", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          leadId: leadId || null,
-          listingId,
-          agentId,
-          leadName,
-          leadEmail,
-          leadPhone,
-          leadMessage: chatMessage,
-        }),
-      }).catch((err) => console.error("Notify error:", err));
     } catch {
       setMessages((prev) => [...prev, {
         role: "assistant",
