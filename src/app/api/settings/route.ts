@@ -24,7 +24,7 @@ export async function PUT(req: NextRequest) {
 
     const body = await req.json();
     const {
-      name, title, brokerage, phone, email,
+      name, title, brokerage, license_number, phone, email,
       headshot_url, instagram, linkedin, zillow,
       realtor_com, facebook, website, weekly_emails,
       calendly_url, ai_approval_mode,
@@ -58,6 +58,7 @@ export async function PUT(req: NextRequest) {
       name: name || "",
       title: title || "Real Estate Agent",
       brokerage: brokerage || "",
+      license_number: typeof license_number === "string" && license_number.trim().length > 0 ? license_number.trim() : null,
       phone: phone || "",
       email: email || "",
       headshot_url: headshot_url || null,

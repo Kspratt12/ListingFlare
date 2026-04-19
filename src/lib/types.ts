@@ -26,6 +26,7 @@ export interface AgentProfile {
   google_refresh_token: string | null;
   google_calendar_id: string | null;
   google_token_expires_at: string | null;
+  license_number?: string | null;
   created_at: string;
   updated_at: string;
 }

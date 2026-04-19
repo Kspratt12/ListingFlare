@@ -51,7 +51,12 @@ export default function AgentBranding({ agent, agentId }: Props) {
                 ) : agent.name}
               </h3>
               <p className="mt-1 text-lg text-brand-500">{agent.title}</p>
-              <p className="mt-1 text-gray-500">{agent.brokerage}</p>
+              <p className="mt-1 text-gray-500">
+                {agent.brokerage}
+                {agent.license_number && (
+                  <span className="ml-2 text-xs text-gray-400">· Lic #{agent.license_number}</span>
+                )}
+              </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:gap-6">
                 <a
                   href={`tel:${agent.phone}`}

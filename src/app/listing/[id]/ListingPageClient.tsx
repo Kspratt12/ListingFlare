@@ -62,6 +62,7 @@ function toPropertyListing(listing: Listing, agent: AgentProfile): PropertyListi
       phone: formatPhone(agent.phone),
       email: agent.email,
       headshotUrl: agent.headshot_url || "",
+      license_number: agent.license_number || null,
       instagram: agent.instagram,
       linkedin: agent.linkedin,
       zillow: agent.zillow,
@@ -323,7 +324,12 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
           calendlyUrl={agent.calendly_url || undefined}
         />
       )}
-      <Footer />
+      <Footer
+        agentName={agent.name}
+        brokerage={agent.brokerage}
+        licenseNumber={agent.license_number}
+        state={listing.state}
+      />
     </main>
   );
 }

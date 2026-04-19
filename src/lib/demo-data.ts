@@ -23,6 +23,7 @@ export interface PropertyListing {
     email: string;
     headshotUrl: string;
     logoUrl?: string;
+    license_number?: string | null;
     instagram?: string;
     linkedin?: string;
     zillow?: string;

@@ -21,6 +21,7 @@ export default function SettingsPage() {
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
   const [brokerage, setBrokerage] = useState("");
+  const [licenseNumber, setLicenseNumber] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [headshotUrl, setHeadshotUrl] = useState<string | null>(null);
@@ -91,6 +92,7 @@ export default function SettingsPage() {
         setName(profile.name);
         setTitle(profile.title);
         setBrokerage(profile.brokerage);
+        setLicenseNumber(profile.license_number || "");
         setPhone(profile.phone);
         setEmail(profile.email);
         setHeadshotUrl(profile.headshot_url);
@@ -167,6 +169,7 @@ export default function SettingsPage() {
           name,
           title,
           brokerage,
+          license_number: licenseNumber || null,
           phone,
           email,
           headshot_url: headshotUrl || null,
@@ -205,6 +208,7 @@ export default function SettingsPage() {
           setName(p.name);
           setTitle(p.title);
           setBrokerage(p.brokerage);
+          setLicenseNumber(p.license_number || "");
           setPhone(p.phone);
           setEmail(p.email);
           setHeadshotUrl(p.headshot_url);
@@ -332,17 +336,34 @@ export default function SettingsPage() {
                 />
               </div>
             </div>
-            <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
-                Brokerage
-              </label>
-              <input
-                type="text"
-                value={brokerage}
-                onChange={(e) => setBrokerage(e.target.value)}
-                className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-                placeholder="Westside Luxury Realty"
-              />
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                  Brokerage
+                </label>
+                <input
+                  type="text"
+                  value={brokerage}
+                  onChange={(e) => setBrokerage(e.target.value)}
+                  className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                  placeholder="Westside Luxury Realty"
+                />
+              </div>
+              <div>
+                <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                  License #
+                  <span className="ml-1 text-xs font-normal text-gray-500">
+                    (required in most states)
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  value={licenseNumber}
+                  onChange={(e) => setLicenseNumber(e.target.value)}
+                  className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                  placeholder="e.g. NC-300120"
+                />
+              </div>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <div>

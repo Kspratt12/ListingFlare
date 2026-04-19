@@ -6,7 +6,7 @@ import type { Listing, AgentProfile } from "@/lib/types";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import UpgradePrompt from "@/components/UpgradePrompt";
 import Link from "next/link";
-import { PlusCircle, Eye, Pencil, ArrowUpDown, Archive, Search, Lock, Share2, Loader2 } from "lucide-react";
+import { PlusCircle, Eye, Pencil, ArrowUpDown, Archive, ArchiveRestore, Search, Lock, Share2, Loader2 } from "lucide-react";
 import UpcomingShowings from "@/components/UpcomingShowings";
 import ActivityFeed from "@/components/ActivityFeed";
 import SpeedToLead from "@/components/SpeedToLead";
@@ -360,6 +360,17 @@ export default function MyListingsPage() {
     e.stopPropagation();
     await supabase.from("listings").update({ status: "archived" }).eq("id", listingId);
     setListings((prev) => prev.map((l) => l.id === listingId ? { ...l, status: "archived" as Listing["status"] } : l));
+  };
+
+  // Opposite of archive — flip back to draft so the agent can republish
+  // or edit. One click from the Archived view, no menu dive.
+  const handleRestore = async (e: React.MouseEvent, listingId: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    await supabase.from("listings").update({ status: "draft" }).eq("id", listingId);
+    setListings((prev) => prev.map((l) => l.id === listingId ? { ...l, status: "draft" as Listing["status"] } : l));
+    setToast({ message: "Listing restored to Draft. Edit or publish from the listing card.", type: "success" });
+    setTimeout(() => setToast(null), 4000);
   };
 
   const handleDeleteRequest = (e: React.MouseEvent, listingId: string) => {
@@ -717,15 +728,27 @@ export default function MyListingsPage() {
                     </div>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Link
-                      href={`/dashboard/edit/${listing.id}`}
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1.5 rounded-lg bg-brand-50 px-3 py-1.5 text-xs font-medium text-brand-700 transition-colors hover:bg-brand-100"
-                      title="Edit listing"
-                    >
-                      <Pencil className="h-3.5 w-3.5" />
-                      Edit
-                    </Link>
+                    {listing.status === "archived" ? (
+                      <button
+                        type="button"
+                        onClick={(e) => handleRestore(e, listing.id)}
+                        title="Restore to Draft"
+                        className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-50 px-3 py-1.5 text-xs font-medium text-emerald-700 transition-colors hover:bg-emerald-100"
+                      >
+                        <ArchiveRestore className="h-3.5 w-3.5" />
+                        Restore
+                      </button>
+                    ) : (
+                      <Link
+                        href={`/dashboard/edit/${listing.id}`}
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-1.5 rounded-lg bg-brand-50 px-3 py-1.5 text-xs font-medium text-brand-700 transition-colors hover:bg-brand-100"
+                        title="Edit listing"
+                      >
+                        <Pencil className="h-3.5 w-3.5" />
+                        Edit
+                      </Link>
+                    )}
                     {/* Prominent Social Media Pack button — visible on
                         every published listing with photos. Replaces the
                         previously-hidden 3-dot menu item so agents
