@@ -579,9 +579,14 @@ export default function LeadsPage() {
                             <p className="truncate font-medium text-gray-900">{lead.name}</p>
                             <HotLeadBadge tier={calculateHotScore({ lead }).tier} compact />
                             {lead.auto_reply_draft && (
-                              <span className="flex flex-shrink-0 items-center gap-0.5 rounded-full border border-brand-200 bg-brand-50 px-1.5 py-0.5 text-[10px] font-medium text-brand-600">
+                              <Link
+                                href="/dashboard/settings"
+                                onClick={(e) => e.stopPropagation()}
+                                title="AI drafted this reply. Click to manage AI settings."
+                                className="flex flex-shrink-0 items-center gap-0.5 rounded-full border border-brand-200 bg-brand-50 px-1.5 py-0.5 text-[10px] font-medium text-brand-600 hover:bg-brand-100"
+                              >
                                 <Sparkles className="h-2.5 w-2.5" /> AI
-                              </span>
+                              </Link>
                             )}
                           </div>
                           {lead.tags && lead.tags.length > 0 && (

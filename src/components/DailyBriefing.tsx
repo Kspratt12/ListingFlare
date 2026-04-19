@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Sparkles, CalendarClock, Flame, ArrowRight, Bell } from "lucide-react";
+import { Sparkles, CalendarClock, Flame, ArrowRight, Bell, Bot } from "lucide-react";
 
 interface Briefing {
   firstName: string;
+  aiApprovalMode: boolean;
   overnightLeads: number;
   todayShowings: Array<{ id: string; time: string; name: string; address: string }>;
   unreadLeads: number;
@@ -63,16 +64,36 @@ export default function DailyBriefing() {
     data.unreadLeads > 0 ||
     data.hottestLead;
 
-  if (!hasBriefing) return null;
-
   return (
     <div className="rounded-xl border border-gray-200 bg-gradient-to-br from-brand-50/60 via-white to-brand-50/20 p-5">
-      <div className="flex items-center gap-2">
-        <Sparkles className="h-4 w-4 text-brand-500" />
-        <h3 className="text-sm font-semibold text-gray-900">
-          {getClientGreeting()}, {data.firstName}
-        </h3>
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <Sparkles className="h-4 w-4 text-brand-500" />
+          <h3 className="text-sm font-semibold text-gray-900">
+            {getClientGreeting()}, {data.firstName}
+          </h3>
+        </div>
+        <Link
+          href="/dashboard/settings"
+          className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-colors ${
+            data.aiApprovalMode
+              ? "border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100"
+              : "border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
+          }`}
+          title="Manage AI settings"
+        >
+          <Bot className="h-3 w-3" />
+          AI {data.aiApprovalMode ? "Review Mode" : "Auto-Reply ON"}
+        </Link>
       </div>
+
+      {!hasBriefing && (
+        <p className="mt-3 text-sm text-gray-500">
+          Nothing pressing right now. Your AI is{" "}
+          {data.aiApprovalMode ? "drafting replies for your review" : "auto-replying to new leads in under 15 seconds"}
+          . New activity will show up here as it happens.
+        </p>
+      )}
 
       <div className="mt-3 space-y-2">
         {data.overnightLeads > 0 && (

@@ -23,7 +23,7 @@ export async function GET() {
     { data: allLeads },
     { data: unreadCount },
   ] = await Promise.all([
-    authClient.from("agent_profiles").select("name").eq("id", user.id).single(),
+    authClient.from("agent_profiles").select("name, ai_approval_mode").eq("id", user.id).single(),
     authClient
       .from("leads")
       .select("id")
@@ -89,9 +89,11 @@ export async function GET() {
 
   // Return agent's first name. Greeting text is computed client-side using browser time zone.
   const firstName = agent?.name?.split(" ")[0] || "there";
+  const aiApprovalMode = agent?.ai_approval_mode === true;
 
   return NextResponse.json({
     firstName,
+    aiApprovalMode,
     overnightLeads: (overnightLeads || []).length,
     todayShowings: (todayShowings || []).map((s) => {
       const listing = Array.isArray(s.listing) ? s.listing[0] : s.listing;
