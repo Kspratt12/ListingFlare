@@ -1,6 +1,16 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Check, ArrowRight, ShieldCheck } from "lucide-react";
+import {
+  Check,
+  ArrowRight,
+  ShieldCheck,
+  Globe,
+  Sparkles,
+  MessageSquare,
+  CalendarDays,
+  BarChart3,
+  Zap,
+} from "lucide-react";
 import RoiCalculator from "@/components/RoiCalculator";
 
 export const metadata: Metadata = {
@@ -12,21 +22,88 @@ export const metadata: Metadata = {
   },
 };
 
-const features = [
-  "Unlimited listing websites",
-  "AI chatbot on every listing page",
-  "Lead capture with instant notifications",
-  "AI-drafted follow-up emails",
-  "Virtual tour embeds (Matterport, Kuula)",
-  "Analytics dashboard with weekly reports",
-  "Social media post generation",
-  "Open house flyer creation",
-  "Custom agent branding on every page",
-  "AI listing description writer",
-  "AI photo captions",
-  "QR code generation",
-  "Mobile-optimized listing pages",
-  "Calendly integration for showing booking",
+const featureGroups = [
+  {
+    icon: Globe,
+    title: "Premium Listing Pages",
+    items: [
+      "Unlimited branded listing websites",
+      "Custom agent branding on every page",
+      "Mobile-optimized layouts",
+      "Virtual tour embeds (Matterport, Kuula, 360)",
+      "Photo gallery with drag-to-reorder",
+      "Video uploads (10 per listing)",
+      "Auto-generated SEO metadata and sitemaps",
+      "Public city directory pages (listingflare.com/homes/your-city)",
+    ],
+  },
+  {
+    icon: Sparkles,
+    title: "AI That Works While You Sleep",
+    items: [
+      "AI chatbot answers buyer questions 24/7",
+      "Instant AI auto-reply to every new lead",
+      "AI Approval Mode (review before sending)",
+      "Day 1, 3, and 7 follow-up sequences written by AI",
+      "AI business assistant (analyzes your listings and leads)",
+      "AI listing description writer",
+      "AI photo captions",
+      "AI-drafted replies to buyer emails",
+    ],
+  },
+  {
+    icon: MessageSquare,
+    title: "Lead Management That Feels Like a Real CRM",
+    items: [
+      "Two-way threaded conversation inbox",
+      "Pipeline kanban view with drag-and-drop",
+      "Hot Lead scoring (hot, warm, cold)",
+      "Speed-to-Lead tracker vs 47-minute industry avg",
+      "Bulk status updates and bulk delete",
+      "CSV export of filtered leads",
+      "Full lead search across name, email, phone, address",
+      "Hot visitor alerts (3+ views flags a returning buyer)",
+    ],
+  },
+  {
+    icon: CalendarDays,
+    title: "Built-In Showing Scheduler",
+    items: [
+      "3-step date, time, and info flow (no Calendly needed)",
+      "Automatic .ics calendar invites in confirmations",
+      "24-hour reminder emails to buyers",
+      "Google Calendar 2-way sync (optional)",
+      "Manual showing creation for phone or text bookings",
+      "Edit, reschedule, or cancel any showing",
+      "Showings page grouped by date",
+      "Auto-feedback request 2 hours after every showing",
+    ],
+  },
+  {
+    icon: Zap,
+    title: "Automation That Never Sleeps",
+    items: [
+      "New listing goes live, past leads in same city auto-notified",
+      "Testimonial requests sent after closed deals",
+      "Open house QR sign-in with instant drip enrollment",
+      "Agent activity feed (see what the AI did for you today)",
+      "Weekly performance email (views, leads, conversions)",
+      "Hot visitor alerts when buyers keep coming back",
+      "All automation runs in the background with no setup",
+    ],
+  },
+  {
+    icon: BarChart3,
+    title: "Analytics and Growth Tools",
+    items: [
+      "Full analytics dashboard (views, leads, conversions)",
+      "Per-listing performance breakdown",
+      "Lead pipeline stats with click-to-filter",
+      "Social media post generator (Instagram, Facebook, Stories)",
+      "Open house flyer generator (PDF with QR)",
+      "QR code generator for every listing",
+    ],
+  },
 ];
 
 export default function PricingPage() {
@@ -104,13 +181,34 @@ export default function PricingPage() {
           <p className="text-sm font-semibold uppercase tracking-wider text-gray-500">
             Everything included
           </p>
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            {features.map((feature) => (
-              <div key={feature} className="flex items-start gap-2.5">
-                <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-500" />
-                <span className="text-sm text-gray-700">{feature}</span>
-              </div>
-            ))}
+          <p className="mt-1 text-xs text-gray-500">
+            {featureGroups.reduce((sum, g) => sum + g.items.length, 0)} features across every piece of your workflow.
+          </p>
+
+          <div className="mt-6 space-y-6">
+            {featureGroups.map((group) => {
+              const Icon = group.icon;
+              return (
+                <div key={group.title}>
+                  <div className="flex items-center gap-2">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-500/10">
+                      <Icon className="h-4 w-4 text-brand-600" />
+                    </div>
+                    <h3 className="font-serif text-base font-bold text-gray-900">
+                      {group.title}
+                    </h3>
+                  </div>
+                  <div className="mt-3 grid gap-2 pl-1 sm:grid-cols-2">
+                    {group.items.map((item) => (
+                      <div key={item} className="flex items-start gap-2">
+                        <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-500" />
+                        <span className="text-sm text-gray-700">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 

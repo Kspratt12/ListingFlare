@@ -1484,6 +1484,147 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Your Dashboard Section */}
+      <section className="bg-white py-14 md:py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <p className="text-sm font-semibold uppercase tracking-widest text-brand-500">
+              Your Command Center
+            </p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
+              Log in and see what ListingFlare did for you
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-base text-gray-500">
+              Every response time, every showing booked, every follow-up sent. Visible in one place so you actually know your software is working.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="mt-12 grid gap-4 md:grid-cols-3"
+          >
+            {/* Speed to Lead mockup */}
+            <div className="rounded-xl border border-gray-200 bg-gradient-to-br from-brand-50 to-white p-5">
+              <div className="flex items-center gap-2">
+                <Zap className="h-4 w-4 text-brand-500" />
+                <h3 className="text-sm font-semibold text-gray-900">Speed to Lead</h3>
+              </div>
+              <div className="mt-3 flex items-baseline gap-2">
+                <p className="font-serif text-3xl font-bold text-gray-900">14s</p>
+                <p className="text-xs text-gray-500">avg response</p>
+              </div>
+              <div className="mt-3 flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50/70 px-3 py-2">
+                <p className="text-xs font-medium text-emerald-800">
+                  201x faster than industry avg
+                </p>
+              </div>
+            </div>
+
+            {/* Upcoming Showings mockup */}
+            <div className="rounded-xl border border-gray-200 bg-white p-5">
+              <div className="flex items-center gap-2">
+                <CalendarCheck className="h-4 w-4 text-brand-500" />
+                <h3 className="text-sm font-semibold text-gray-900">Upcoming Showings</h3>
+                <span className="rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-medium text-brand-700">3</span>
+              </div>
+              <div className="mt-3 space-y-2">
+                <div className="rounded-lg border border-gray-100 p-3">
+                  <span className="inline-flex items-center gap-1 rounded-md bg-brand-50 px-2 py-0.5 text-[11px] font-semibold text-brand-700">
+                    Tomorrow · 10:00 AM
+                  </span>
+                  <p className="mt-1 text-sm font-medium text-gray-900">Sarah Thompson</p>
+                  <p className="text-xs text-gray-500">604 Homeland Ave</p>
+                </div>
+                <div className="rounded-lg border border-gray-100 p-3">
+                  <span className="inline-flex items-center gap-1 rounded-md bg-brand-50 px-2 py-0.5 text-[11px] font-semibold text-brand-700">
+                    Friday · 2:30 PM
+                  </span>
+                  <p className="mt-1 text-sm font-medium text-gray-900">Mike Johnson</p>
+                  <p className="text-xs text-gray-500">1230 Barn Cat Way</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Activity Feed mockup */}
+            <div className="rounded-xl border border-gray-200 bg-white p-5">
+              <div className="flex items-center gap-2">
+                <Zap className="h-4 w-4 text-brand-500" />
+                <h3 className="text-sm font-semibold text-gray-900">What ListingFlare did today</h3>
+              </div>
+              <div className="mt-3 space-y-2.5">
+                {[
+                  { icon: Check, text: "Auto-replied to Sarah in 12s", color: "text-emerald-600 bg-emerald-50" },
+                  { icon: Send, text: "Sent Day-3 follow-up to Mike", color: "text-brand-600 bg-brand-50" },
+                  { icon: CalendarCheck, text: "Showing confirmed with 2 buyers", color: "text-emerald-600 bg-emerald-50" },
+                  { icon: UserPlus, text: "Notified 4 past leads about new listing", color: "text-sky-600 bg-sky-50" },
+                ].map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={i} className="flex items-start gap-2">
+                      <div className={`flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full ${item.color.split(" ")[1]}`}>
+                        <Icon className={`h-3 w-3 ${item.color.split(" ")[0]}`} />
+                      </div>
+                      <p className="text-xs text-gray-700">{item.text}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Lead Pipeline mockup */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="mt-4 rounded-xl border border-gray-200 bg-white p-5"
+          >
+            <div className="mb-4 flex items-center gap-2">
+              <BarChart3 className="h-4 w-4 text-brand-500" />
+              <h3 className="text-sm font-semibold text-gray-900">Lead Pipeline</h3>
+              <span className="ml-auto text-xs text-gray-500">Drag to update status</span>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-4">
+              {[
+                { label: "New", count: 4, color: "border-blue-400 bg-blue-50" },
+                { label: "Contacted", count: 7, color: "border-purple-400 bg-purple-50" },
+                { label: "Showing", count: 3, color: "border-orange-400 bg-orange-50" },
+                { label: "Closed", count: 2, color: "border-emerald-400 bg-emerald-50" },
+              ].map((col) => (
+                <div key={col.label} className={`rounded-lg border-l-4 ${col.color} px-3 py-2.5`}>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold text-gray-900">{col.label}</span>
+                    <span className="rounded-full bg-white px-2 py-0.5 text-[10px] font-medium text-gray-700">
+                      {col.count}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          <div className="mt-8 text-center">
+            <Link
+              href="/signup"
+              className="group inline-flex items-center gap-2 rounded-full bg-gray-950 px-6 py-3 text-sm font-medium text-white hover:bg-gray-800"
+            >
+              Get Your Dashboard
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Real Moment */}
       <section className="bg-white py-12 md:py-16">
         <div className="mx-auto max-w-2xl px-6">
