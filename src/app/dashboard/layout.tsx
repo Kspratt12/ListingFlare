@@ -171,6 +171,7 @@ export default function DashboardLayout({
                     onClick={async () => {
                       document.documentElement.style.setProperty("--agent-brand", c);
                       setProfile((p) => (p ? { ...p, brand_color: c } : p));
+                      setThemeOpen(false); // auto-collapse after picking — they saw the color apply, no need to stare at swatches
                       const supabase = createClient();
                       const { data: { user } } = await supabase.auth.getUser();
                       if (user) {

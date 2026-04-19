@@ -11,10 +11,10 @@ import { Mail, Phone, Calendar, Trophy } from "lucide-react";
 // feature without needing a live dashboard.
 
 const STAGES = [
-  { id: "new", label: "New Lead", color: "#3b82f6", bg: "bg-blue-50", text: "text-blue-700", border: "border-blue-200", dot: "bg-blue-500", icon: Mail },
-  { id: "contacted", label: "Contacted", color: "#a855f7", bg: "bg-purple-50", text: "text-purple-700", border: "border-purple-200", dot: "bg-purple-500", icon: Phone },
-  { id: "showing", label: "Showing Booked", color: "#f97316", bg: "bg-orange-50", text: "text-orange-700", border: "border-orange-200", dot: "bg-orange-500", icon: Calendar },
-  { id: "closed", label: "Closed", color: "#10b981", bg: "bg-emerald-50", text: "text-emerald-700", border: "border-emerald-200", dot: "bg-emerald-500", icon: Trophy },
+  { id: "new", label: "New Lead", shortLabel: "New", color: "#3b82f6", bg: "bg-blue-50", text: "text-blue-700", border: "border-blue-200", dot: "bg-blue-500", icon: Mail },
+  { id: "contacted", label: "Contacted", shortLabel: "Contact", color: "#a855f7", bg: "bg-purple-50", text: "text-purple-700", border: "border-purple-200", dot: "bg-purple-500", icon: Phone },
+  { id: "showing", label: "Showing Booked", shortLabel: "Showing", color: "#f97316", bg: "bg-orange-50", text: "text-orange-700", border: "border-orange-200", dot: "bg-orange-500", icon: Calendar },
+  { id: "closed", label: "Closed", shortLabel: "Closed", color: "#10b981", bg: "bg-emerald-50", text: "text-emerald-700", border: "border-emerald-200", dot: "bg-emerald-500", icon: Trophy },
 ];
 
 export default function PipelineAnimation() {
@@ -31,7 +31,7 @@ export default function PipelineAnimation() {
   const StageIcon = currentStage.icon;
 
   return (
-    <section className="bg-white py-14 md:py-20">
+    <section className="bg-gray-50 py-14 md:py-20">
       <div className="mx-auto max-w-5xl px-6">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
@@ -45,19 +45,22 @@ export default function PipelineAnimation() {
           </p>
         </div>
 
-        <div className="mt-12 overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-b from-gray-50 to-white p-4 shadow-sm md:p-8">
+        <div className="mt-12 overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-b from-white to-gray-50 p-2.5 shadow-sm md:p-8">
           {/* Kanban columns */}
           <div className="grid grid-cols-4 gap-2 md:gap-4">
             {STAGES.map((stage, idx) => (
               <div key={stage.id} className="flex min-h-[180px] flex-col md:min-h-[220px]">
-                <div className="mb-3 flex items-center justify-between gap-1 px-1 md:gap-2">
-                  <div className="flex items-center gap-1.5 md:gap-2">
+                <div className="mb-2 flex items-center justify-between gap-1 px-0.5 md:mb-3 md:gap-2 md:px-1">
+                  <div className="flex min-w-0 items-center gap-1 md:gap-2">
                     <span className={`h-1.5 w-1.5 flex-shrink-0 rounded-full md:h-2 md:w-2 ${stage.dot}`} />
-                    <span className="truncate text-[10px] font-semibold uppercase tracking-wider text-gray-500 md:text-xs">
-                      {stage.label}
+                    {/* Short label on mobile so "Showing Booked" doesn't
+                        truncate to "SHOWING..." in the ~68px column. */}
+                    <span className="truncate text-[9px] font-semibold uppercase tracking-wide text-gray-500 md:tracking-wider md:text-xs">
+                      <span className="md:hidden">{stage.shortLabel}</span>
+                      <span className="hidden md:inline">{stage.label}</span>
                     </span>
                   </div>
-                  <span className="flex-shrink-0 text-[10px] font-bold text-gray-400 md:text-xs">
+                  <span className="hidden flex-shrink-0 text-[10px] font-bold text-gray-400 md:inline md:text-xs">
                     {idx === stageIndex ? "1" : "0"}
                   </span>
                 </div>
@@ -75,29 +78,47 @@ export default function PipelineAnimation() {
                           opacity: { duration: 0.3 },
                           scale: { duration: 0.3 },
                         }}
-                        className="group relative overflow-hidden rounded-lg border border-gray-200 bg-white p-2.5 shadow-sm md:p-3"
+                        className="group relative overflow-hidden rounded-lg border border-gray-200 bg-white p-2 shadow-sm md:p-3"
                       >
-                        <div className="flex items-center gap-1.5 md:gap-2">
+                        {/* Mobile: compact stacked card (icon on top, first
+                            name below) — 4 columns on a phone is tight, so
+                            we ditch the address + pill and shrink the chip. */}
+                        <div className="flex flex-col items-center gap-1 text-center md:hidden">
                           <div
-                            className={`flex h-6 w-6 items-center justify-center rounded-full ${stage.bg} ${stage.text} md:h-7 md:w-7`}
+                            className={`flex h-7 w-7 items-center justify-center rounded-full ${stage.bg} ${stage.text}`}
                           >
-                            <StageIcon className="h-3 w-3 md:h-3.5 md:w-3.5" />
+                            <StageIcon className="h-3.5 w-3.5" />
                           </div>
-                          <div className="min-w-0 flex-1">
-                            <p className="truncate text-[11px] font-semibold text-gray-900 md:text-sm">
-                              Sarah Morgan
-                            </p>
-                            <p className="truncate text-[9px] text-gray-500 md:text-xs">
-                              521 Oak Lane
-                            </p>
-                          </div>
+                          <p className="truncate w-full text-[10px] font-semibold text-gray-900">
+                            Sarah
+                          </p>
                         </div>
-                        <div className="mt-2 hidden md:block">
-                          <span
-                            className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-medium ${stage.bg} ${stage.text} ${stage.border}`}
-                          >
-                            {stage.label}
-                          </span>
+
+                        {/* Desktop: richer horizontal card with full name,
+                            address, and status pill. */}
+                        <div className="hidden md:block">
+                          <div className="flex items-center gap-2">
+                            <div
+                              className={`flex h-7 w-7 items-center justify-center rounded-full ${stage.bg} ${stage.text}`}
+                            >
+                              <StageIcon className="h-3.5 w-3.5" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <p className="truncate text-sm font-semibold text-gray-900">
+                                Sarah Morgan
+                              </p>
+                              <p className="truncate text-xs text-gray-500">
+                                521 Oak Lane
+                              </p>
+                            </div>
+                          </div>
+                          <div className="mt-2">
+                            <span
+                              className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-medium ${stage.bg} ${stage.text} ${stage.border}`}
+                            >
+                              {stage.label}
+                            </span>
+                          </div>
                         </div>
                       </motion.div>
                     )}
