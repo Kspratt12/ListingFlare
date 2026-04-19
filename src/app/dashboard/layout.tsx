@@ -63,14 +63,20 @@ export default function DashboardLayout({
   }, []);
 
   // Keep the --agent-brand CSS variable in sync with whatever's loaded from
-  // the profile. The Settings page can override this in real-time by calling
-  // setProperty on document.documentElement; this layout then picks up the
-  // new color for the sidebar accents without needing a refresh.
+  // the profile. Only runs when the profile has actually loaded — while
+  // loading, we leave the value that the root-layout inline script already
+  // restored from localStorage, so there's no gold-flash-then-your-color.
+  // Also persist the current choice to localStorage for next visit.
   useEffect(() => {
-    if (typeof document === "undefined") return;
-    const color = profile?.brand_color || "#b8965a";
+    if (typeof document === "undefined" || !profile) return;
+    const color = profile.brand_color || "#b8965a";
     document.documentElement.style.setProperty("--agent-brand", color);
-  }, [profile?.brand_color]);
+    try {
+      localStorage.setItem("listingflare:brand-color", color);
+    } catch {
+      // private-mode / quota — ignore
+    }
+  }, [profile]);
 
   const handleLogout = async () => {
     const supabase = createClient();

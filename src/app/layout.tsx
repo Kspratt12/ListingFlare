@@ -92,6 +92,15 @@ export default function RootLayout({
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://pvnsirpfofxklqgxwdiz.supabase.co" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        {/* Restore the agent's theme color synchronously before React
+            mounts, so the dashboard never flashes gold → selected color
+            on load. The dashboard layout writes the latest choice to
+            localStorage; this script reads it back on first paint. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var c=localStorage.getItem('listingflare:brand-color');if(c)document.documentElement.style.setProperty('--agent-brand',c);}catch(e){}})();`,
+          }}
+        />
       </head>
       <body className="font-sans antialiased">
         {/* Skip to main content for accessibility */}

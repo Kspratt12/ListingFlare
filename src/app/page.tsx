@@ -1705,10 +1705,10 @@ export default function LandingPage() {
             className="mt-10 space-y-3 text-center"
           >
             <p className="text-lg text-gray-600"><span className="font-semibold text-brand-500">10:42 PM.</span> A buyer opens your listing.</p>
-            <p className="text-lg text-gray-600"><span className="font-semibold text-emerald-400">10:43 PM.</span> They ask about the backyard.</p>
-            <p className="text-lg text-gray-600"><span className="font-semibold text-emerald-500">10:43 PM.</span> They get an answer.</p>
-            <p className="text-lg text-gray-600"><span className="font-semibold text-emerald-600">10:44 PM.</span> They book a showing for Saturday.</p>
-            <p className="text-lg text-gray-600"><span className="font-semibold text-emerald-700">10:45 PM.</span> Their contact info hits your dashboard.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-500">10:43 PM.</span> They ask about the backyard.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-500">10:43 PM.</span> They get an answer.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-500">10:44 PM.</span> They book a showing for Saturday.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-500">10:45 PM.</span> Their contact info hits your dashboard.</p>
             <p className="mt-6 font-serif text-xl font-semibold text-gray-900">
               You were asleep the entire time.
             </p>
