@@ -47,6 +47,7 @@ export default function SettingsPage() {
   const [handleStatus, setHandleStatus] = useState<
     { state: "idle" | "checking" | "ok" | "taken" | "invalid"; reason?: string }
   >({ state: "idle" });
+  const [themeSectionOpen, setThemeSectionOpen] = useState(false);
 
   const toggleAiApproval = async (checked: boolean) => {
     setAiApprovalMode(checked);
@@ -452,14 +453,26 @@ export default function SettingsPage() {
           </div>
         </section>
 
-        {/* Your Subdomain + Brand */}
-        <section className="rounded-xl border border-brand-200 bg-gradient-to-br from-brand-50/50 via-white to-amber-50/40 p-6">
-          <h2 className="font-serif text-lg font-semibold text-gray-900">Your Subdomain & Brand</h2>
-          <p className="mt-1 text-sm text-gray-600">
-            Pick a handle and your listings live at <span className="font-mono font-semibold text-brand-700">yourhandle.listingflare.com</span>. Choose a brand color and it tints buttons and accents on every listing so the whole experience feels like yours.
-          </p>
+        {/* Your Subdomain + Brand - collapsible */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <button
+            type="button"
+            onClick={() => setThemeSectionOpen((v) => !v)}
+            className="flex w-full items-center justify-between gap-3 text-left"
+          >
+            <div>
+              <h2 className="font-serif text-lg font-semibold text-gray-900">Your Subdomain & Brand</h2>
+              <p className="mt-0.5 text-xs text-gray-500">
+                Pick a handle and a brand color. Tints your listing pages and dashboard.
+              </p>
+            </div>
+            <span className="flex-shrink-0 rounded-md border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-600">
+              {themeSectionOpen ? "Hide" : "Open"}
+            </span>
+          </button>
 
-          <div className="mt-5 grid gap-5 md:grid-cols-2">
+          {themeSectionOpen && (
+          <div className="mt-5 grid gap-5 border-t border-gray-100 pt-5 md:grid-cols-2">
             {/* Handle */}
             <div>
               <label className="mb-1.5 block text-sm font-medium text-gray-700">Your handle</label>
@@ -540,6 +553,7 @@ export default function SettingsPage() {
               </div>
             </div>
           </div>
+          )}
         </section>
 
         {/* Scheduling */}

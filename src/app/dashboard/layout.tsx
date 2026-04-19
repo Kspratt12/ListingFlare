@@ -109,7 +109,7 @@ export default function DashboardLayout({
               }`}
               style={
                 active
-                  ? { backgroundColor: "color-mix(in srgb, var(--agent-brand, #b8965a) 20%, transparent)" }
+                  ? { backgroundColor: "color-mix(in srgb, var(--agent-brand, #b8965a) 38%, transparent)" }
                   : undefined
               }
             >
@@ -182,7 +182,7 @@ export default function DashboardLayout({
       <aside
         className="hidden w-64 flex-col lg:flex"
         style={{
-          background: `linear-gradient(180deg, color-mix(in srgb, var(--agent-brand, #b8965a) 7%, #030712) 0%, #030712 55%, color-mix(in srgb, var(--agent-brand, #b8965a) 5%, #030712) 100%)`,
+          background: `linear-gradient(180deg, color-mix(in srgb, var(--agent-brand, #b8965a) 22%, #0a0a0a) 0%, color-mix(in srgb, var(--agent-brand, #b8965a) 12%, #0a0a0a) 45%, color-mix(in srgb, var(--agent-brand, #b8965a) 8%, #0a0a0a) 75%, color-mix(in srgb, var(--agent-brand, #b8965a) 14%, #0a0a0a) 100%)`,
         }}
       >
         <SidebarContent />
@@ -202,7 +202,7 @@ export default function DashboardLayout({
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
         style={{
-          background: `linear-gradient(180deg, color-mix(in srgb, var(--agent-brand, #b8965a) 7%, #030712) 0%, #030712 55%, color-mix(in srgb, var(--agent-brand, #b8965a) 5%, #030712) 100%)`,
+          background: `linear-gradient(180deg, color-mix(in srgb, var(--agent-brand, #b8965a) 22%, #0a0a0a) 0%, color-mix(in srgb, var(--agent-brand, #b8965a) 12%, #0a0a0a) 45%, color-mix(in srgb, var(--agent-brand, #b8965a) 8%, #0a0a0a) 75%, color-mix(in srgb, var(--agent-brand, #b8965a) 14%, #0a0a0a) 100%)`,
         }}
       >
         <button
