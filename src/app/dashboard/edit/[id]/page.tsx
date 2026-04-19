@@ -25,6 +25,7 @@ import { validateUpload } from "@/lib/validateUpload";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import SellerPortalCard from "@/components/SellerPortalCard";
 import JustSoldBlast from "@/components/JustSoldBlast";
+import BrandColorPicker from "@/components/BrandColorPicker";
 // UpgradePrompt available if needed for future gating
 
 const US_STATES = [
@@ -118,6 +119,7 @@ export default function EditListingPage() {
   const [basementType, setBasementType] = useState("");
   const [launchDate, setLaunchDate] = useState("");
   const [videoIntroUrl, setVideoIntroUrl] = useState("");
+  const [brandColor, setBrandColor] = useState("");
   // Track previous price + history so we can auto-log price changes
   const [loadedPrice, setLoadedPrice] = useState<number | null>(null);
   const [priceHistory, setPriceHistory] = useState<Array<{ date: string; price: number; event: string }>>([]);
@@ -296,6 +298,7 @@ export default function EditListingPage() {
       setBasementType(data.basement_type || "");
       setLaunchDate(data.launch_date ? new Date(data.launch_date).toISOString().slice(0, 16) : "");
       setVideoIntroUrl(data.video_intro_url || "");
+      setBrandColor(data.brand_color || "");
       setLoadedPrice(data.price || null);
       setPriceHistory(Array.isArray(data.price_history) ? data.price_history : []);
       setHasUnsavedChanges(false);
@@ -518,6 +521,7 @@ export default function EditListingPage() {
           basement_type: basementType || null,
           launch_date: launchDate ? new Date(launchDate).toISOString() : null,
           video_intro_url: videoIntroUrl || null,
+          brand_color: brandColor || null,
           price_history: nextHistory,
           updated_at: new Date().toISOString(),
         })
@@ -1011,6 +1015,22 @@ export default function EditListingPage() {
               </div>
             </div>
           )}
+        </section>
+
+        {/* Brand color for this listing (optional) */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <h2 className="font-serif text-lg font-semibold text-gray-900">Brand color for this listing</h2>
+          <p className="mt-1 text-sm text-gray-500">
+            Pick a color that matches this home&apos;s vibe. Tints buttons and accents on this listing only. Leave blank to use your agent brand color from Settings.
+          </p>
+          <div className="mt-4 max-w-md">
+            <BrandColorPicker
+              value={brandColor}
+              onChange={(c) => { setBrandColor(c); setHasUnsavedChanges(true); }}
+              label=""
+              fallbackLabel="Leave blank to use your agent brand color from Settings"
+            />
+          </div>
         </section>
 
         {/* Video Intro (personal touch) */}

@@ -18,6 +18,7 @@ import Link from "next/link";
 import AddressAutocomplete from "@/components/AddressAutocomplete";
 import { formatNumber, parseNumber, formatLotSize } from "@/lib/formatters";
 import { validateUpload } from "@/lib/validateUpload";
+import BrandColorPicker from "@/components/BrandColorPicker";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import UpgradePrompt from "@/components/UpgradePrompt";
 
@@ -92,6 +93,7 @@ export default function CreateListingPage() {
   const [fireplaceCount, setFireplaceCount] = useState("");
   const [laundryLocation, setLaundryLocation] = useState("");
   const [basementType, setBasementType] = useState("");
+  const [brandColor, setBrandColor] = useState("");
 
   // MLS paste feature - auto-fills form fields from a pasted description
   const [pasteText, setPasteText] = useState("");
@@ -516,6 +518,7 @@ export default function CreateListingPage() {
         fireplace_count: fireplaceCount ? parseInt(fireplaceCount) : null,
         laundry_location: laundryLocation || null,
         basement_type: basementType || null,
+        brand_color: brandColor || null,
         price_history: initialHistory,
       }).select("id").single();
 
@@ -1006,6 +1009,22 @@ export default function CreateListingPage() {
             className="mt-4 w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
             placeholder="https://my.matterport.com/show/?m=..."
           />
+        </section>
+
+        {/* Brand color for this listing (optional) */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <h2 className="font-serif text-lg font-semibold text-gray-900">Brand color for this listing</h2>
+          <p className="mt-1 text-sm text-gray-500">
+            Pick a color that matches this home&apos;s vibe (beach house = teal, luxury = black, warm cottage = amber). Tints buttons and accents on this listing only.
+          </p>
+          <div className="mt-4 max-w-md">
+            <BrandColorPicker
+              value={brandColor}
+              onChange={setBrandColor}
+              label=""
+              fallbackLabel="Leave blank to use your agent brand color from Settings"
+            />
+          </div>
         </section>
 
         {/* Full property details (optional) - collapsible */}

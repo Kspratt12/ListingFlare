@@ -34,7 +34,7 @@ export default function NeighborhoodInfo({
   const streetViewUrl = `https://www.google.com/maps/@?api=1&map_action=pano&query=${encoded}`;
 
   return (
-    <section className="bg-gray-50 py-16 md:py-20">
+    <section className="bg-gray-50 py-10 md:py-14">
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-700">

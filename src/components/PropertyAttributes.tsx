@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, Thermometer, Hammer, Info } from "lucide-react";
+import { Home, Thermometer, Hammer, Info, Sofa } from "lucide-react";
 
 interface Props {
   // General
@@ -146,9 +146,9 @@ export default function PropertyAttributes(props: Props) {
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           <Section title="General" icon={Home} rows={generalRows} />
           <Section title="Costs" icon={Info} rows={costRows} />
+          <Section title="Interior" icon={Sofa} rows={interiorRows} />
           <Section title="Systems" icon={Thermometer} rows={systemsRows} />
           <Section title="Construction" icon={Hammer} rows={constructionRows} />
-          <Section title="Interior" icon={Home} rows={interiorRows} />
         </div>
 
         {appliances && (

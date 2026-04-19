@@ -47,6 +47,7 @@ export interface Listing {
   status: "draft" | "published" | "pending" | "closed" | "archived" | "coming_soon";
   launch_date?: string | null;
   video_intro_url?: string | null;
+  brand_color?: string | null;
   slug: string;
   street: string;
   city: string;

@@ -15,7 +15,7 @@ export default function AgentBranding({ agent, agentId }: Props) {
   const isDemo = agentId === "demo";
   const profileLink = agentId ? (isDemo ? "/signup" : `/agent/${agentId}`) : null;
   return (
-    <section id="agent" className="bg-white py-20 md:py-28">
+    <section id="agent" className="bg-white py-12 md:py-20">
       <div className="mx-auto max-w-4xl px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

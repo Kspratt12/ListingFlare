@@ -61,7 +61,7 @@ export default function MortgageCalculator({ listingPrice, state }: Props) {
   const totalMonthly = monthlyPI + monthlyTax + monthlyInsurance + monthlyHoa;
 
   return (
-    <section className="bg-white py-16 md:py-20">
+    <section className="bg-white py-10 md:py-14">
       <div className="mx-auto max-w-4xl px-6">
         <div className="text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-700">

@@ -127,8 +127,11 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
     floorSize: listing.sqft ? { "@type": "QuantitativeValue", value: listing.sqft, unitCode: "FTK" } : undefined,
   };
 
+  // Per-listing color overrides the agent's default color
+  const effectiveBrandColor = listing.brand_color || agent.brand_color || null;
+
   return (
-    <main className={agent.brand_color ? "agent-brand-override" : undefined}>
+    <main className={effectiveBrandColor ? "agent-brand-override" : undefined}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -154,9 +157,9 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
           </div>
         </div>
       )}
-      {agent.brand_color && (
+      {effectiveBrandColor && (
         <style>{`
-          :root { --agent-brand: ${agent.brand_color}; }
+          :root { --agent-brand: ${effectiveBrandColor}; }
           .agent-brand-override .bg-brand-500 { background-color: var(--agent-brand) !important; }
           .agent-brand-override .bg-brand-600 { background-color: var(--agent-brand) !important; filter: brightness(0.92); }
           .agent-brand-override .text-brand-500,
