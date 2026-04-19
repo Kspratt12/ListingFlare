@@ -152,14 +152,38 @@ export async function POST(req: NextRequest) {
   "yearBuilt": number or null,
   "lotSize": string or null (keep format like "0.25 acres" or "10,890 sqft"),
   "features": array of short strings (max 10, each under 80 chars),
-  "description": string (a cleaned, readable version, 2 to 4 paragraphs, no bullet lists, no em-dashes)
+  "description": string (a cleaned, readable version, 2 to 4 paragraphs, no bullet lists, no em-dashes),
+
+  "mlsId": string or null (MLS listing number if mentioned),
+  "county": string or null,
+  "subdivision": string or null (neighborhood name),
+  "architecturalStyle": string or null (e.g. "Colonial", "Ranch", "Craftsman", "Contemporary"),
+  "propertySubtype": string or null (e.g. "Single Family Residence", "Condo", "Townhouse"),
+  "stories": number or null,
+  "parkingSpaces": number or null (garage spaces),
+  "propertyTaxAnnual": number or null (dollars/year, no commas),
+  "hoaRequired": boolean or null,
+  "hoaFeeMonthly": number or null (monthly dollars, no commas),
+  "heatingType": string or null,
+  "coolingType": string or null,
+  "waterSource": string or null (e.g. "Public", "Well"),
+  "sewerType": string or null (e.g. "Public Sewer", "Septic Tank"),
+  "roofType": string or null,
+  "constructionMaterial": string or null,
+  "foundationType": string or null,
+  "appliances": array of short strings or empty (e.g. ["Refrigerator", "Dishwasher", "Washer", "Dryer"]),
+  "schoolElementary": string or null,
+  "schoolMiddle": string or null,
+  "schoolHigh": string or null
 }
 
 Rules:
-- If a field isn't mentioned, use null (or [] for features).
+- If a field isn't mentioned, use null (or [] for arrays).
 - Never invent data. If the source doesn't say "4 bedrooms" don't guess.
 - The input may be raw webpage text with navigation and junk mixed in. Ignore non-listing content.
 - For description, rewrite for clarity and flow. Keep factual claims only.
+- Convert HOA / taxes to numbers without dollar signs or commas.
+- If HOA is explicitly "no HOA" or "0", set hoaRequired to false. If a monthly fee is mentioned, set hoaRequired to true.
 - No em-dashes anywhere. Use periods or colons.
 - Do not include any text outside the JSON.`;
 

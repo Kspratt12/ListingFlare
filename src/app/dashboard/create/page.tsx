@@ -65,6 +65,30 @@ export default function CreateListingPage() {
   const [generatingFeatures, setGeneratingFeatures] = useState(false);
   const [generatingCaptions, setGeneratingCaptions] = useState(false);
 
+  // MLS-parity fields - all optional, collapsed by default
+  const [advancedOpen, setAdvancedOpen] = useState(false);
+  const [mlsId, setMlsId] = useState("");
+  const [county, setCounty] = useState("");
+  const [subdivision, setSubdivision] = useState("");
+  const [architecturalStyle, setArchitecturalStyle] = useState("");
+  const [propertySubtype, setPropertySubtype] = useState("");
+  const [stories, setStories] = useState("");
+  const [parkingSpaces, setParkingSpaces] = useState("");
+  const [propertyTaxAnnual, setPropertyTaxAnnual] = useState("");
+  const [hoaRequired, setHoaRequired] = useState(false);
+  const [hoaFeeMonthly, setHoaFeeMonthly] = useState("");
+  const [heatingType, setHeatingType] = useState("");
+  const [coolingType, setCoolingType] = useState("");
+  const [waterSource, setWaterSource] = useState("");
+  const [sewerType, setSewerType] = useState("");
+  const [roofType, setRoofType] = useState("");
+  const [constructionMaterial, setConstructionMaterial] = useState("");
+  const [foundationType, setFoundationType] = useState("");
+  const [appliancesText, setAppliancesText] = useState("");
+  const [schoolElementary, setSchoolElementary] = useState("");
+  const [schoolMiddle, setSchoolMiddle] = useState("");
+  const [schoolHigh, setSchoolHigh] = useState("");
+
   // MLS paste feature - auto-fills form fields from a pasted description
   const [pasteText, setPasteText] = useState("");
   const [extracting, setExtracting] = useState(false);
@@ -103,6 +127,33 @@ export default function CreateListingPage() {
       if (Array.isArray(f.features) && f.features.length > 0) {
         setFeaturesText(f.features.map((x: unknown) => String(x)).join("\n"));
       }
+      // MLS-parity fields: auto-fill if the AI extracted them
+      if (f.mlsId) setMlsId(String(f.mlsId));
+      if (f.county) setCounty(String(f.county));
+      if (f.subdivision) setSubdivision(String(f.subdivision));
+      if (f.architecturalStyle) setArchitecturalStyle(String(f.architecturalStyle));
+      if (f.propertySubtype) setPropertySubtype(String(f.propertySubtype));
+      if (f.stories != null) setStories(String(f.stories));
+      if (f.parkingSpaces != null) setParkingSpaces(String(f.parkingSpaces));
+      if (f.propertyTaxAnnual != null) setPropertyTaxAnnual(String(f.propertyTaxAnnual));
+      if (typeof f.hoaRequired === "boolean") setHoaRequired(f.hoaRequired);
+      if (f.hoaFeeMonthly != null) setHoaFeeMonthly(String(f.hoaFeeMonthly));
+      if (f.heatingType) setHeatingType(String(f.heatingType));
+      if (f.coolingType) setCoolingType(String(f.coolingType));
+      if (f.waterSource) setWaterSource(String(f.waterSource));
+      if (f.sewerType) setSewerType(String(f.sewerType));
+      if (f.roofType) setRoofType(String(f.roofType));
+      if (f.constructionMaterial) setConstructionMaterial(String(f.constructionMaterial));
+      if (f.foundationType) setFoundationType(String(f.foundationType));
+      if (Array.isArray(f.appliances) && f.appliances.length > 0) {
+        setAppliancesText(f.appliances.map((x: unknown) => String(x)).join("\n"));
+      }
+      if (f.schoolElementary) setSchoolElementary(String(f.schoolElementary));
+      if (f.schoolMiddle) setSchoolMiddle(String(f.schoolMiddle));
+      if (f.schoolHigh) setSchoolHigh(String(f.schoolHigh));
+      // If we got an advanced field, pop the section open so the agent sees what filled in
+      const gotAdvanced = f.mlsId || f.county || f.subdivision || f.architecturalStyle || f.propertyTaxAnnual != null || f.hoaFeeMonthly != null || f.heatingType || f.coolingType || f.schoolElementary;
+      if (gotAdvanced) setAdvancedOpen(true);
       setExtractSuccess(true);
       // Auto-clear the paste area after 2 seconds so the success message shows
       setTimeout(() => setPasteText(""), 2000);
@@ -400,6 +451,19 @@ export default function CreateListingPage() {
         .map((f) => f.trim())
         .filter(Boolean);
 
+      const appliances = appliancesText
+        .split("\n")
+        .map((a) => a.trim())
+        .filter(Boolean);
+
+      const priceNum = parseInt(price) || 0;
+
+      // Initialize price history with a "listed" entry when publishing from scratch.
+      // Drafts don't get one until they go public.
+      const initialHistory = publish && priceNum > 0
+        ? [{ date: new Date().toISOString(), price: priceNum, event: "listed" }]
+        : [];
+
       const { data: newListing, error: insertError } = await supabase.from("listings").insert({
         agent_id: user.id,
         status: publish ? "published" : "draft",
@@ -407,7 +471,7 @@ export default function CreateListingPage() {
         city,
         state,
         zip,
-        price: parseInt(price) || 0,
+        price: priceNum,
         beds: parseInt(beds) || 0,
         baths: parseFloat(baths) || 0,
         sqft: parseInt(sqft) || 0,
@@ -418,6 +482,29 @@ export default function CreateListingPage() {
         photos,
         videos,
         virtual_tour_url: virtualTourUrl,
+        // MLS-parity fields (null when empty)
+        mls_id: mlsId || null,
+        county: county || null,
+        subdivision: subdivision || null,
+        architectural_style: architecturalStyle || null,
+        property_subtype: propertySubtype || null,
+        stories: stories ? parseInt(stories) : null,
+        parking_spaces: parkingSpaces ? parseInt(parkingSpaces) : null,
+        property_tax_annual: propertyTaxAnnual ? Number(propertyTaxAnnual) : null,
+        hoa_required: hoaRequired,
+        hoa_fee_monthly: hoaFeeMonthly ? Number(hoaFeeMonthly) : null,
+        heating_type: heatingType || null,
+        cooling_type: coolingType || null,
+        water_source: waterSource || null,
+        sewer_type: sewerType || null,
+        roof_type: roofType || null,
+        construction_material: constructionMaterial || null,
+        foundation_type: foundationType || null,
+        appliances_included: appliances,
+        school_elementary: schoolElementary || null,
+        school_middle: schoolMiddle || null,
+        school_high: schoolHigh || null,
+        price_history: initialHistory,
       }).select("id").single();
 
       if (insertError) throw insertError;
@@ -907,6 +994,153 @@ export default function CreateListingPage() {
             className="mt-4 w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
             placeholder="https://my.matterport.com/show/?m=..."
           />
+        </section>
+
+        {/* Full property details (optional) - collapsible */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <button
+            type="button"
+            onClick={() => setAdvancedOpen(!advancedOpen)}
+            className="flex w-full items-center justify-between gap-3"
+          >
+            <div className="text-left">
+              <h2 className="font-serif text-lg font-semibold text-gray-900">
+                Full property details
+              </h2>
+              <p className="mt-0.5 text-xs text-gray-500">
+                County, HOA, taxes, schools, heating/cooling, construction. All optional. Shows up on your listing page as a polished MLS-style table. Buyers expect this.
+              </p>
+            </div>
+            <span className="flex-shrink-0 rounded-md border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-600">
+              {advancedOpen ? "Hide" : "Open"}
+            </span>
+          </button>
+
+          {advancedOpen && (
+            <div className="mt-6 space-y-6 border-t border-gray-100 pt-6">
+              {/* Identifiers */}
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label className="mb-1.5 block text-sm font-medium text-gray-700">MLS ID</label>
+                  <input type="text" value={mlsId} onChange={(e) => setMlsId(e.target.value)} placeholder="e.g. 10153182" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                </div>
+                <div>
+                  <label className="mb-1.5 block text-sm font-medium text-gray-700">County</label>
+                  <input type="text" value={county} onChange={(e) => setCounty(e.target.value)} placeholder="e.g. Wake" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                </div>
+                <div>
+                  <label className="mb-1.5 block text-sm font-medium text-gray-700">Subdivision / Neighborhood</label>
+                  <input type="text" value={subdivision} onChange={(e) => setSubdivision(e.target.value)} placeholder="e.g. Pleasant Grove" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                </div>
+                <div>
+                  <label className="mb-1.5 block text-sm font-medium text-gray-700">Property Type</label>
+                  <input type="text" value={propertySubtype} onChange={(e) => setPropertySubtype(e.target.value)} placeholder="Single Family Residence" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                </div>
+                <div>
+                  <label className="mb-1.5 block text-sm font-medium text-gray-700">Architectural Style</label>
+                  <input type="text" value={architecturalStyle} onChange={(e) => setArchitecturalStyle(e.target.value)} placeholder="Colonial, Ranch, Craftsman..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Stories</label>
+                    <input type="number" value={stories} onChange={(e) => setStories(e.target.value)} placeholder="2" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Parking</label>
+                    <input type="number" value={parkingSpaces} onChange={(e) => setParkingSpaces(e.target.value)} placeholder="2" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Taxes + HOA */}
+              <div>
+                <h3 className="mb-3 text-sm font-semibold text-gray-900">Taxes & HOA</h3>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Annual Property Tax ($)</label>
+                    <input type="text" inputMode="numeric" value={propertyTaxAnnual} onChange={(e) => setPropertyTaxAnnual(e.target.value.replace(/[^0-9.]/g, ""))} placeholder="2196" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                  <div className="flex items-end">
+                    <label className="flex items-center gap-2 pb-2">
+                      <input type="checkbox" checked={hoaRequired} onChange={(e) => setHoaRequired(e.target.checked)} className="h-4 w-4 rounded border-gray-300 text-brand-500 focus:ring-brand-400" />
+                      <span className="text-sm text-gray-700">Has HOA</span>
+                    </label>
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">HOA ($/mo)</label>
+                    <input type="text" inputMode="numeric" value={hoaFeeMonthly} onChange={(e) => setHoaFeeMonthly(e.target.value.replace(/[^0-9.]/g, ""))} placeholder="0" disabled={!hoaRequired} className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400 disabled:bg-gray-100 disabled:text-gray-400" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Systems */}
+              <div>
+                <h3 className="mb-3 text-sm font-semibold text-gray-900">Systems</h3>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Heating</label>
+                    <input type="text" value={heatingType} onChange={(e) => setHeatingType(e.target.value)} placeholder="Forced Air, Heat Pump, Electric..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Cooling</label>
+                    <input type="text" value={coolingType} onChange={(e) => setCoolingType(e.target.value)} placeholder="Central Air, Zoned..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Water Source</label>
+                    <input type="text" value={waterSource} onChange={(e) => setWaterSource(e.target.value)} placeholder="Public, Well..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Sewer</label>
+                    <input type="text" value={sewerType} onChange={(e) => setSewerType(e.target.value)} placeholder="Public Sewer, Septic..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Construction */}
+              <div>
+                <h3 className="mb-3 text-sm font-semibold text-gray-900">Construction</h3>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Roof</label>
+                    <input type="text" value={roofType} onChange={(e) => setRoofType(e.target.value)} placeholder="Shingle, Metal..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Construction Material</label>
+                    <input type="text" value={constructionMaterial} onChange={(e) => setConstructionMaterial(e.target.value)} placeholder="Brick, Stucco, Vinyl..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Foundation</label>
+                    <input type="text" value={foundationType} onChange={(e) => setFoundationType(e.target.value)} placeholder="Slab, Crawl, Basement..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Appliances */}
+              <div>
+                <label className="mb-1.5 block text-sm font-medium text-gray-700">Appliances Included (one per line)</label>
+                <textarea value={appliancesText} onChange={(e) => setAppliancesText(e.target.value)} rows={3} placeholder={"Refrigerator\nDishwasher\nRange / Oven\nWasher\nDryer"} className="w-full resize-y rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+              </div>
+
+              {/* Schools */}
+              <div>
+                <h3 className="mb-3 text-sm font-semibold text-gray-900">Schools</h3>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Elementary</label>
+                    <input type="text" value={schoolElementary} onChange={(e) => setSchoolElementary(e.target.value)} className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Middle</label>
+                    <input type="text" value={schoolMiddle} onChange={(e) => setSchoolMiddle(e.target.value)} className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">High</label>
+                    <input type="text" value={schoolHigh} onChange={(e) => setSchoolHigh(e.target.value)} className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </section>
 
         {/* Actions */}

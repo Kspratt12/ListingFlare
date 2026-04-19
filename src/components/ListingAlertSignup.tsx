@@ -6,9 +6,10 @@ import { Bell, Check, Loader2 } from "lucide-react";
 interface Props {
   listingId: string;
   listingAddress: string;
+  isDemo?: boolean;
 }
 
-export default function ListingAlertSignup({ listingId, listingAddress }: Props) {
+export default function ListingAlertSignup({ listingId, listingAddress, isDemo = false }: Props) {
   const [email, setEmail] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [state, setState] = useState<"idle" | "submitting" | "done" | "error">("idle");
@@ -19,6 +20,13 @@ export default function ListingAlertSignup({ listingId, listingAddress }: Props)
     if (!email) return;
     setState("submitting");
     setErrorMsg("");
+
+    // Demo mode: fake-succeed without hitting the API (listing isn't in DB)
+    if (isDemo) {
+      setTimeout(() => setState("done"), 400);
+      return;
+    }
+
     try {
       const res = await fetch("/api/listings/alerts/subscribe", {
         method: "POST",

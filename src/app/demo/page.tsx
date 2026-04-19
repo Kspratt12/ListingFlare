@@ -14,6 +14,7 @@ import MortgageCalculator from "@/components/MortgageCalculator";
 import NeighborhoodInfo from "@/components/NeighborhoodInfo";
 import PriceHistory from "@/components/PriceHistory";
 import PropertyAttributes from "@/components/PropertyAttributes";
+import ListingAlertSignup from "@/components/ListingAlertSignup";
 import Link from "next/link";
 import { ArrowRight, X } from "lucide-react";
 import { useState } from "react";
@@ -127,6 +128,12 @@ export default function DemoPage() {
         schoolElementary="Palisades Charter Elementary"
         schoolMiddle="Paul Revere Middle School"
         schoolHigh="Palisades Charter High School"
+      />
+
+      <ListingAlertSignup
+        listingId="demo"
+        listingAddress={`${demoListing.address.street}, ${demoListing.address.city}, ${demoListing.address.state}`}
+        isDemo
       />
 
       <AgentBranding agent={demoListing.agent} agentId="demo" />
