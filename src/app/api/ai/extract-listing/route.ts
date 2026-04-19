@@ -6,6 +6,88 @@ import { hasActiveSubscription } from "@/lib/subscriptionGate";
 
 export const dynamic = "force-dynamic";
 
+// Block URLs that would let an attacker use our server to probe internal hosts
+function isSafeUrl(raw: string): boolean {
+  try {
+    const url = new URL(raw);
+    if (url.protocol !== "http:" && url.protocol !== "https:") return false;
+    const host = url.hostname.toLowerCase();
+    if (host === "localhost" || host === "0.0.0.0") return false;
+    // Block private IPv4 ranges and loopback
+    if (/^127\./.test(host)) return false;
+    if (/^10\./.test(host)) return false;
+    if (/^192\.168\./.test(host)) return false;
+    if (/^172\.(1[6-9]|2\d|3[01])\./.test(host)) return false;
+    // Block raw IPv6 loopback and link-local
+    if (host === "::1" || host.startsWith("fe80:") || host.startsWith("fc00:") || host.startsWith("fd00:")) return false;
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// Pull readable text out of HTML. Not perfect but good enough for Claude to parse.
+function htmlToText(html: string): string {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<noscript[\s\S]*?<\/noscript>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+async function fetchPageText(url: string): Promise<{ ok: true; text: string } | { ok: false; error: string }> {
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+
+    const res = await fetch(url, {
+      signal: controller.signal,
+      redirect: "follow",
+      headers: {
+        "User-Agent": "Mozilla/5.0 (compatible; ListingFlareBot/1.0)",
+        "Accept": "text/html,application/xhtml+xml",
+        "Accept-Language": "en-US,en;q=0.9",
+      },
+    });
+    clearTimeout(timeout);
+
+    if (!res.ok) {
+      if (res.status === 403 || res.status === 401) {
+        return { ok: false, error: "This site blocks automated fetches (common on Zillow, Realtor.com). Paste the description instead." };
+      }
+      return { ok: false, error: `Site returned ${res.status}. Try pasting the description instead.` };
+    }
+
+    const contentType = res.headers.get("content-type") || "";
+    if (!contentType.includes("text/html") && !contentType.includes("application/xhtml")) {
+      return { ok: false, error: "URL must point to a webpage." };
+    }
+
+    const html = await res.text();
+    const text = htmlToText(html);
+    if (text.length < 100) {
+      return { ok: false, error: "Couldn't find readable content at that URL. Paste the description instead." };
+    }
+
+    // Cap at 20k chars - listings rarely need more context than that
+    return { ok: true, text: text.slice(0, 20000) };
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    if (msg.includes("aborted") || msg.includes("timeout")) {
+      return { ok: false, error: "Site took too long to respond. Paste the description instead." };
+    }
+    return { ok: false, error: "Couldn't reach that URL. Paste the description instead." };
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -27,17 +109,36 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Slow down. Try again in a minute." }, { status: 429 });
     }
 
-    const { text } = await req.json();
-    if (!text || typeof text !== "string") {
+    const { text: rawInput } = await req.json();
+    if (!rawInput || typeof rawInput !== "string") {
       return NextResponse.json({ error: "Missing text" }, { status: 400 });
     }
-    if (text.length > 10_000) {
-      return NextResponse.json({ error: "Description too long" }, { status: 400 });
+
+    const trimmed = rawInput.trim();
+
+    // Figure out if this is a URL or raw text
+    let sourceText: string;
+    const looksLikeUrl = /^https?:\/\//i.test(trimmed);
+
+    if (looksLikeUrl) {
+      if (!isSafeUrl(trimmed)) {
+        return NextResponse.json({ error: "That URL isn't allowed. Paste the description instead." }, { status: 400 });
+      }
+      const fetched = await fetchPageText(trimmed);
+      if (!fetched.ok) {
+        return NextResponse.json({ error: fetched.error }, { status: 400 });
+      }
+      sourceText = fetched.text;
+    } else {
+      if (trimmed.length > 10_000) {
+        return NextResponse.json({ error: "Description too long" }, { status: 400 });
+      }
+      sourceText = trimmed;
     }
 
     const client = new Anthropic({ apiKey });
 
-    const systemPrompt = `You extract real estate listing fields from MLS-style descriptions. Return ONLY a JSON object, no prose, no markdown fences. Use this exact shape:
+    const systemPrompt = `You extract real estate listing fields from MLS-style descriptions or scraped webpage text. Return ONLY a JSON object, no prose, no markdown fences. Use this exact shape:
 
 {
   "street": string or null,
@@ -49,14 +150,15 @@ export async function POST(req: NextRequest) {
   "baths": number or null (allow decimals like 2.5),
   "sqft": number or null,
   "yearBuilt": number or null,
-  "lotSize": string or null (keep format the agent typed, e.g. "0.25 acres" or "10,890 sqft"),
+  "lotSize": string or null (keep format like "0.25 acres" or "10,890 sqft"),
   "features": array of short strings (max 10, each under 80 chars),
-  "description": string (a cleaned, readable version of the description, 2 to 4 paragraphs, no bullet lists, no em-dashes)
+  "description": string (a cleaned, readable version, 2 to 4 paragraphs, no bullet lists, no em-dashes)
 }
 
 Rules:
 - If a field isn't mentioned, use null (or [] for features).
 - Never invent data. If the source doesn't say "4 bedrooms" don't guess.
+- The input may be raw webpage text with navigation and junk mixed in. Ignore non-listing content.
 - For description, rewrite for clarity and flow. Keep factual claims only.
 - No em-dashes anywhere. Use periods or colons.
 - Do not include any text outside the JSON.`;
@@ -65,7 +167,7 @@ Rules:
       model: "claude-sonnet-4-20250514",
       max_tokens: 1500,
       system: systemPrompt,
-      messages: [{ role: "user", content: text }],
+      messages: [{ role: "user", content: sourceText }],
     });
 
     const textBlock = response.content.find((b) => b.type === "text");
@@ -73,7 +175,6 @@ Rules:
       return NextResponse.json({ error: "No response from AI" }, { status: 500 });
     }
 
-    // Strip any accidental markdown fences, just in case
     let raw = textBlock.text.trim();
     if (raw.startsWith("```")) {
       raw = raw.replace(/^```(?:json)?\s*/i, "").replace(/```\s*$/, "").trim();

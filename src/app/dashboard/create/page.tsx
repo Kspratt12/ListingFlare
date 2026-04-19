@@ -468,51 +468,47 @@ export default function CreateListingPage() {
 
       <div className="mt-8 space-y-8">
         {/* MLS Paste - auto-fill shortcut */}
-        <section className="relative overflow-hidden rounded-xl border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-emerald-50 p-6">
-          <div className="flex items-start gap-3">
-            <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500">
-              <Sparkles className="h-4 w-4 text-white" />
-            </div>
-            <div className="flex-1">
-              <h2 className="font-serif text-lg font-semibold text-gray-900">
-                Skip the retyping. Paste your MLS description.
-              </h2>
-              <p className="mt-1 text-sm text-gray-600">
-                Copy the description from your MLS (Matrix, Flexmls, Zillow, anywhere) and paste it below. We&apos;ll auto-fill the form for you.
-              </p>
-              <textarea
-                value={pasteText}
-                onChange={(e) => setPasteText(e.target.value)}
-                rows={5}
-                placeholder="Paste your MLS description here. Include beds, baths, sqft, price, and any details you have. The more context, the better the extraction."
-                className="mt-3 w-full resize-y rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
-              />
-              <div className="mt-3 flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={autoFillFromPaste}
-                  disabled={extracting || !pasteText.trim()}
-                  className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-emerald-600 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  {extracting ? (
-                    <>
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                      Extracting...
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles className="h-4 w-4" />
-                      Auto-fill from description
-                    </>
-                  )}
-                </button>
-                {extractSuccess && (
-                  <span className="text-sm font-medium text-emerald-700">
-                    Fields filled. Review and edit below.
-                  </span>
-                )}
-              </div>
-            </div>
+        <section className="relative overflow-hidden rounded-xl border border-brand-200 bg-gradient-to-br from-brand-50 via-white to-amber-50 p-4">
+          <div className="flex items-center gap-2 mb-2">
+            <Sparkles className="h-4 w-4 text-brand-600" />
+            <h2 className="text-sm font-semibold text-gray-900">
+              Skip the retyping. Paste a link or description.
+            </h2>
+          </div>
+          <p className="text-xs text-gray-500">
+            Drop a Zillow / Realtor.com / brokerage URL, or paste the MLS description. We&apos;ll auto-fill the fields.
+          </p>
+          <textarea
+            value={pasteText}
+            onChange={(e) => setPasteText(e.target.value)}
+            rows={3}
+            placeholder="Paste a listing URL or the full MLS description here..."
+            className="mt-2 w-full resize-y rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+          />
+          <div className="mt-2 flex items-center gap-3">
+            <button
+              type="button"
+              onClick={autoFillFromPaste}
+              disabled={extracting || !pasteText.trim()}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-brand-500 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-brand-600 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {extracting ? (
+                <>
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  Extracting...
+                </>
+              ) : (
+                <>
+                  <Sparkles className="h-3.5 w-3.5" />
+                  Auto-fill
+                </>
+              )}
+            </button>
+            {extractSuccess && (
+              <span className="text-xs font-medium text-brand-700">
+                Fields filled. Review below.
+              </span>
+            )}
           </div>
         </section>
 
