@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/client";
 import type { AgentProfile } from "@/lib/types";
 import { Loader2, Upload, CheckCircle } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
+import { validateUpload } from "@/lib/validateUpload";
 import GoogleCalendarConnect from "@/components/GoogleCalendarConnect";
 
 export default function SettingsPage() {
@@ -94,6 +95,9 @@ export default function SettingsPage() {
     setError("");
 
     try {
+      const vErr = validateUpload(file, { kind: "image", maxBytes: 5 * 1024 * 1024 });
+      if (vErr) throw new Error(vErr);
+
       const {
         data: { user },
       } = await supabase.auth.getUser();

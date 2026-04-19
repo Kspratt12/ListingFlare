@@ -1,0 +1,22 @@
+-- ============================================================
+-- ListingFlare - Migration 016
+-- Drop the now-unused "Public can submit leads" RLS policy.
+--
+-- All public lead inserts now go through /api/leads/create and
+-- /api/showings/book (server-side, admin client, honeypot + rate
+-- limited). No client path should be hitting direct anon inserts
+-- anymore.
+--
+-- SAFETY: wait ~48 hours after the d1f66e5 deploy before running
+-- this, so browsers still running cached old JS have finished
+-- submitting whatever was in flight. If you run it earlier, anyone
+-- on a stale tab who submits will silently fail.
+--
+-- To verify no traffic is hitting the old path: check your
+-- Supabase logs for anon-role INSERT attempts on the leads table
+-- in the last 24 hours. If zero, it's safe to drop.
+--
+-- Run this in Supabase SQL Editor.
+-- ============================================================
+
+drop policy if exists "Public can submit leads" on public.leads;

@@ -21,6 +21,7 @@ import type { ListingPhoto, ListingVideo, AgentProfile } from "@/lib/types";
 import Link from "next/link";
 import AddressAutocomplete from "@/components/AddressAutocomplete";
 import { formatNumber, parseNumber, formatLotSize } from "@/lib/formatters";
+import { validateUpload } from "@/lib/validateUpload";
 import { getSubscriptionLimits } from "@/lib/subscription";
 // UpgradePrompt available if needed for future gating
 
@@ -260,6 +261,8 @@ export default function EditListingPage() {
       const newPhotos: ListingPhoto[] = [];
 
       for (const file of Array.from(files)) {
+        const vErr = validateUpload(file, { kind: "image" });
+        if (vErr) throw new Error(vErr);
         const ext = file.name.split(".").pop();
         const fileName = `${user.id}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
 
@@ -315,9 +318,8 @@ export default function EditListingPage() {
       const newVideos: ListingVideo[] = [];
 
       for (const file of Array.from(files)) {
-        if (file.size > 500 * 1024 * 1024) {
-          throw new Error(`${file.name} exceeds 500MB limit`);
-        }
+        const vErr = validateUpload(file, { kind: "video" });
+        if (vErr) throw new Error(vErr);
 
         const ext = file.name.split(".").pop();
         const fileName = `${user.id}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
