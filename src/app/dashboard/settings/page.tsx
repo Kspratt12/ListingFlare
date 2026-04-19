@@ -35,7 +35,17 @@ export default function SettingsPage() {
   const [aiApprovalMode, setAiApprovalMode] = useState(false);
   const [aiSavedAt, setAiSavedAt] = useState<number | null>(null);
   const [handle, setHandle] = useState("");
-  const [brandColor, setBrandColor] = useState("#b8965a");
+  // Lazy init from the same localStorage cache the root inline script
+  // uses, so the Settings page never briefly paints with gold while the
+  // profile is loading. Falls back to gold only if nothing is cached.
+  const [brandColor, setBrandColor] = useState(() => {
+    if (typeof window === "undefined") return "#b8965a";
+    try {
+      return localStorage.getItem("listingflare:brand-color") || "#b8965a";
+    } catch {
+      return "#b8965a";
+    }
+  });
 
   // Live-preview the brand color on the entire dashboard (sidebar logo,
   // active nav item, icon color) as the agent drags the color picker.
