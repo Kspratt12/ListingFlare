@@ -33,7 +33,7 @@ export default function VirtualTourEmbed({ src }: Props) {
           allowFullScreen
         />
 
-        {/* Scroll guard — blocks accidental interaction until user clicks */}
+        {/* Scroll guard - blocks accidental interaction until user clicks */}
         {!active && (
           <div
             className="absolute inset-0 z-10 flex cursor-pointer items-center justify-center bg-black/30 backdrop-blur-[2px] transition-all hover:bg-black/20"
@@ -50,7 +50,7 @@ export default function VirtualTourEmbed({ src }: Props) {
           </div>
         )}
 
-        {/* Pause button — centered bottom, lets user deactivate and scroll past */}
+        {/* Pause button - centered bottom, lets user deactivate and scroll past */}
         {active && (
           <button
             onClick={() => setActive(false)}

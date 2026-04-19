@@ -55,7 +55,7 @@ ${propertyContext ? `Property context: ${propertyContext}` : ""}
 Guidelines:
 - Be specific about what you see (e.g. "Sun-drenched open concept living area" not "Living room")
 - Use sophisticated, luxury real estate language
-- Keep each caption concise — 5 to 10 words max
+- Keep each caption concise - 5 to 10 words max
 - Do NOT use quotes, numbering, or bullet points
 - Do NOT mention "photo" or "image"
 - Each caption should feel like it belongs in a high-end listing magazine

@@ -106,7 +106,7 @@ export default function AssistantPage() {
             </div>
           )}
 
-          {/* Suggestion chips — only show at start */}
+          {/* Suggestion chips - only show at start */}
           {messages.length <= 1 && !sending && (
             <div className="flex flex-wrap gap-2 pt-2">
               {SUGGESTIONS.map((s) => (

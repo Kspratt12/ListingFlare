@@ -53,7 +53,7 @@ export async function GET(req: NextRequest) {
 
   const results = await Promise.allSettled(followUps.map(async (followUp) => {
     try {
-      // Check if lead has been marked as closed/lost — skip if so
+      // Check if lead has been marked as closed/lost - skip if so
       const { data: lead } = await db
         .from("leads")
         .select("id, name, email, phone, message, status")
@@ -129,7 +129,7 @@ Rules:
 - Sound like a real person texting, not a marketing email
 - Don't mention price
 - Include a soft call to action
-- Do NOT include subject line, greeting, or sign-off — just the body
+- Do NOT include subject line, greeting, or sign-off - just the body
 - Match the style: "Hey [name], just checking in..." or "Hi [name], wanted to follow up..."`;
 
       const aiResponse = await anthropic.messages.create({
@@ -176,7 +176,7 @@ Rules:
           from: `${agent.name} via ListingFlare <leads@listingflare.com>`,
           to: lead.email,
           replyTo: agent.email,
-          subject: `${followUp.subject} — ${listingAddress}`,
+          subject: `${followUp.subject} - ${listingAddress}`,
           html: emailHtml,
         }),
       });

@@ -15,7 +15,7 @@ export async function GET() {
   try {
     const db = getAdminClient();
 
-    // Aggregate totals — safe, anonymous numbers only
+    // Aggregate totals - safe, anonymous numbers only
     const [leadsResult, showingsResult, listingsResult] = await Promise.all([
       db.from("leads").select("id", { count: "exact", head: true }),
       db.from("showings").select("id", { count: "exact", head: true }),

@@ -32,7 +32,7 @@ export default function GoogleCalendarConnect() {
     const googleStatus = params.get("google");
     if (googleStatus === "connected") setStatus("✓ Google Calendar connected");
     else if (googleStatus === "error") setStatus("Connection cancelled");
-    else if (googleStatus === "token_exchange_failed") setStatus("Token exchange failed — try again");
+    else if (googleStatus === "token_exchange_failed") setStatus("Token exchange failed - try again");
     else if (googleStatus === "save_failed") setStatus("Failed to save connection");
     else if (googleStatus === "unconfigured") {
       setStatus("Google integration not configured on this deployment");

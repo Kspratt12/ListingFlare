@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Terms of Service — ListingFlare",
+  title: "Terms of Service - ListingFlare",
 };
 
 export default function TermsPage() {

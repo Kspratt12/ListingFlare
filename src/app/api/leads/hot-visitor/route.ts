@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 export const dynamic = "force-dynamic";
 
-// Called when a visitor views the same listing 3+ times — alert the agent
+// Called when a visitor views the same listing 3+ times - alert the agent
 export async function POST(req: NextRequest) {
   try {
     const { listingId, agentId, viewCount } = await req.json();
@@ -52,10 +52,10 @@ export async function POST(req: NextRequest) {
           </div>
           <h2 style="margin: 0 0 8px; color: #111827; font-size: 18px;">${listing?.street || "Your listing"}</h2>
           <p style="color: #6b7280; margin: 0 0 4px; font-size: 14px;">
-            ${listing ? `${listing.city}, ${listing.state}` : ""}${price ? ` — ${price}` : ""}
+            ${listing ? `${listing.city}, ${listing.state}` : ""}${price ? ` - ${price}` : ""}
           </p>
           <p style="color: #6b7280; margin: 16px 0 0; font-size: 14px;">
-            A potential buyer keeps coming back to this property page. This is a strong signal of interest — consider reaching out to recent leads for this listing.
+            A potential buyer keeps coming back to this property page. This is a strong signal of interest - consider reaching out to recent leads for this listing.
           </p>
           <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #e5e7eb;">
             <a href="${process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com"}/dashboard/leads"
@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         from: "ListingFlare <leads@listingflare.com>",
         to: agent.email,
-        subject: `🔥 Hot visitor — someone viewed ${listing?.street || "your listing"} ${viewCount} times`,
+        subject: `🔥 Hot visitor - someone viewed ${listing?.street || "your listing"} ${viewCount} times`,
         html: emailHtml,
       }),
     });

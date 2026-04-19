@@ -49,7 +49,7 @@ function formatReminderEmail(
         <h1 style="color: #b8965a; margin: 0; font-size: 20px;">ListingFlare</h1>
       </div>
       <div style="background: #ffffff; padding: 32px; border: 1px solid #e5e7eb; border-top: 0; border-radius: 0 0 12px 12px;">
-        <h2 style="margin: 0 0 8px; color: #111827;">${greeting} — your showing is ${detail}</h2>
+        <h2 style="margin: 0 0 8px; color: #111827;">${greeting} - your showing is ${detail}</h2>
         <p style="color: #6b7280; margin: 0 0 24px; font-size: 15px;">
           Hi ${name.split(" ")[0]}, looking forward to seeing you at the showing.
         </p>
@@ -160,8 +160,8 @@ export async function GET(req: NextRequest) {
 
       const subject =
         reminderType === "24h"
-          ? `Reminder: Showing tomorrow at ${showing.showing_time} — ${listingAddress}`
-          : `Your showing starts soon — ${listingAddress}`;
+          ? `Reminder: Showing tomorrow at ${showing.showing_time} - ${listingAddress}`
+          : `Your showing starts soon - ${listingAddress}`;
 
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",

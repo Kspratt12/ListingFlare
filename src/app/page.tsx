@@ -870,7 +870,7 @@ export default function LandingPage() {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-sm font-medium text-brand-700">
               <Sparkles className="h-3.5 w-3.5" />
-              14-day free trial &mdash; no credit card required
+              14-day free trial. No credit card required.
             </div>
             <h1 className="font-serif text-4xl font-bold leading-tight text-gray-900 md:text-display">
               <span className="mb-3 block text-base font-semibold tracking-wide text-brand-600 md:text-lg" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>Real Estate Software for Listing Agents</span>
@@ -1290,7 +1290,7 @@ export default function LandingPage() {
                     { feature: "Showing reminders (24hr + 1hr before)", us: true, zillow: false, kv: "partial" },
                     { feature: "Re-engage past leads when you list a similar home", us: true, zillow: false, kv: true },
                     { feature: "Leads belong to YOU (not sold to other agents)", us: true, zillow: false, kv: true },
-                    { feature: "Setup time", us: "5 min", zillow: "—", kv: "Multi-week onboarding" },
+                    { feature: "Setup time", us: "5 min", zillow: "N/A", kv: "Multi-week onboarding" },
                     { feature: "Forces you onto their platform's rules", us: false, zillow: true, kv: true },
                   ].map((row, i) => (
                     <tr key={i} className="hover:bg-gray-50/50">

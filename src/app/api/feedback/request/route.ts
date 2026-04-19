@@ -126,7 +126,7 @@ export async function GET(req: NextRequest) {
           <div style="background: #ffffff; padding: 32px; border: 1px solid #e5e7eb; border-top: 0; border-radius: 0 0 12px 12px;">
             <h2 style="margin: 0 0 8px; color: #111827;">How was the showing?</h2>
             <p style="color: #6b7280; margin: 0 0 24px; font-size: 15px;">
-              Hi ${showing.name.split(" ")[0]}, thanks for stopping by <strong>${listingAddress}</strong> today. I'd love a quick note on what you thought — good, bad, or mixed. Takes 30 seconds.
+              Hi ${showing.name.split(" ")[0]}, thanks for stopping by <strong>${listingAddress}</strong> today. I'd love a quick note on what you thought - good, bad, or mixed. Takes 30 seconds.
             </p>
             <div style="text-align: center; margin: 0 0 24px;">
               <a href="${feedbackUrl}"
@@ -156,7 +156,7 @@ export async function GET(req: NextRequest) {
           from: `${agent.name} via ListingFlare <leads@listingflare.com>`,
           to: showing.email,
           replyTo: agent.email,
-          subject: `Quick question about today's showing — ${listingAddress}`,
+          subject: `Quick question about today's showing - ${listingAddress}`,
           html,
         }),
       });

@@ -16,7 +16,7 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-// NOTE: Do NOT set force-dynamic here — it would prevent blog pages and
+// NOTE: Do NOT set force-dynamic here - it would prevent blog pages and
 // other static content from being cached/pre-rendered at build time,
 // hurting SEO and Core Web Vitals. Pages that need runtime data (dashboard,
 // listing pages) set their own `export const dynamic = "force-dynamic"`.
@@ -24,7 +24,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.listingflare.com"),
   title: {
-    default: "ListingFlare — Real Estate Software for Listing Agents | Property Websites & Lead Capture",
+    default: "ListingFlare - Real Estate Software for Listing Agents | Property Websites & Lead Capture",
     template: "%s | ListingFlare",
   },
   description:
@@ -56,14 +56,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "ListingFlare",
-    title: "ListingFlare — Real Estate Software for Listing Agents",
+    title: "ListingFlare - Real Estate Software for Listing Agents",
     description:
       "Real estate software that creates stunning listing pages with AI chatbot, instant lead capture, and auto follow-up.",
     url: "https://www.listingflare.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ListingFlare — Real Estate Software for Listing Agents",
+    title: "ListingFlare - Real Estate Software for Listing Agents",
     description:
       "Real estate software with AI-powered listing pages that capture leads and answer buyer questions 24/7.",
   },

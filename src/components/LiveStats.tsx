@@ -19,7 +19,7 @@ export default function LiveStats() {
       .catch(() => setStats({ leads: 0, showings: 0, listings: 0 }));
   }, []);
 
-  // Hide the section entirely until we have real data — don't show zeros that look embarrassing
+  // Hide the section entirely until we have real data - don't show zeros that look embarrassing
   if (!stats || (stats.leads < 5 && stats.showings < 2 && stats.listings < 3)) {
     return null;
   }

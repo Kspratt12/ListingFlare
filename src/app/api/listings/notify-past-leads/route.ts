@@ -155,7 +155,7 @@ export async function POST(req: NextRequest) {
             from: `${agent.name} via ListingFlare <leads@listingflare.com>`,
             to: lead.email,
             replyTo: agent.email,
-            subject: `New in ${listing.city}: ${listing.street} — ${price}`,
+            subject: `New in ${listing.city}: ${listing.street} - ${price}`,
             html,
           }),
         });

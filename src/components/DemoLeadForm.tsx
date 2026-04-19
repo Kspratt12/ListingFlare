@@ -63,7 +63,7 @@ export default function DemoLeadForm() {
                 Thank You
               </h3>
               <p className="mt-2 text-gray-400">
-                This is a demo &mdash; in a real listing, the agent would
+                This is a demo. In a real listing, the agent would
                 receive your inquiry instantly.
               </p>
             </div>

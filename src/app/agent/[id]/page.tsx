@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!data) return { title: "Agent Not Found" };
 
   return {
-    title: `${data.name} — ${data.brokerage} | ListingFlare`,
+    title: `${data.name} - ${data.brokerage} | ListingFlare`,
     description: `View all property listings by ${data.name} at ${data.brokerage}.`,
   };
 }

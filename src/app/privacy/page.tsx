@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Privacy Policy — ListingFlare",
+  title: "Privacy Policy - ListingFlare",
 };
 
 export default function PrivacyPage() {

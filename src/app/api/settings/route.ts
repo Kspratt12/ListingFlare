@@ -4,7 +4,7 @@ import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = "force-dynamic";
 
-// Admin client bypasses RLS — safe here because we verify auth first
+// Admin client bypasses RLS - safe here because we verify auth first
 function getAdminClient() {
   return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -91,7 +91,7 @@ export async function PUT(req: NextRequest) {
 
     if (verify.email !== (email || "")) {
       return NextResponse.json(
-        { error: "Save failed — database did not accept the changes" },
+        { error: "Save failed - database did not accept the changes" },
         { status: 500 }
       );
     }

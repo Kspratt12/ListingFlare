@@ -35,7 +35,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen">
-      {/* Left — branding panel */}
+      {/* Left - branding panel */}
       <div className="hidden w-1/2 bg-gray-950 lg:flex lg:flex-col lg:justify-between lg:p-12">
         <Link href="/">
           <h1 className="font-serif text-2xl font-bold text-white">
@@ -58,7 +58,7 @@ export default function LoginPage() {
         </p>
       </div>
 
-      {/* Right — form */}
+      {/* Right - form */}
       <div className="flex w-full items-center justify-center px-6 lg:w-1/2">
         <div className="w-full max-w-sm">
           <div className="mb-8 lg:hidden">

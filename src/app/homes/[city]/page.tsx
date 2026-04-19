@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const display = cityDisplayName(citySlug);
 
   return {
-    title: `Homes for Sale in ${display} — ListingFlare Listings`,
+    title: `Homes for Sale in ${display} - ListingFlare Listings`,
     description: `Browse homes for sale in ${display}. View property details, photos, and connect with listing agents on ListingFlare.`,
     openGraph: {
       title: `Homes for Sale in ${display}`,

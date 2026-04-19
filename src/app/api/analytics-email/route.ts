@@ -106,7 +106,7 @@ export async function GET(req: NextRequest) {
           ${topListing ? `
           <div style="background: #f9fafb; border-radius: 8px; padding: 16px; margin-bottom: 24px;">
             <p style="margin: 0; font-size: 13px; color: #6b7280;">Top Performing Listing</p>
-            <p style="margin: 4px 0 0; font-weight: 600; color: #111827;">${topListing.street}, ${topListing.city} — ${topListing.view_count} views</p>
+            <p style="margin: 4px 0 0; font-weight: 600; color: #111827;">${topListing.street}, ${topListing.city} - ${topListing.view_count} views</p>
           </div>
           ` : ""}
 
@@ -144,7 +144,7 @@ export async function GET(req: NextRequest) {
       await resend.emails.send({
         from: "ListingFlare <reports@listingflare.com>",
         to: agent.email,
-        subject: `Your Weekly Report — ${totalViews} views, ${leadCount} new leads`,
+        subject: `Your Weekly Report - ${totalViews} views, ${leadCount} new leads`,
         html: emailHtml,
       });
       sentCount++;

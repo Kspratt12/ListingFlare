@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     maximumFractionDigits: 0,
   }).format(data.price);
 
-  const title = `${data.street} — ${price}`;
+  const title = `${data.street} - ${price}`;
   const description = `${data.street}, ${data.city}, ${data.state}. ${data.beds} bed, ${data.baths} bath, ${data.sqft?.toLocaleString() || ""} sqft. Listed at ${price}.`;
   const heroImage = data.photos?.[0]?.src || undefined;
   const url = `https://www.listingflare.com/listing/${slug}`;
@@ -104,10 +104,10 @@ function InactiveListingPage() {
 }
 
 export default async function ListingPage({ params }: Props) {
-  // Admin client for ALL database queries — bypasses RLS for anonymous visitors
+  // Admin client for ALL database queries - bypasses RLS for anonymous visitors
   const db = getAdminClient();
 
-  // Fetch listing — try UUID first, then slug
+  // Fetch listing - try UUID first, then slug
   let listing;
   if (isUUIDFormat(params.id)) {
     const { data } = await db.from("listings").select("*").eq("id", params.id).single();
@@ -123,7 +123,7 @@ export default async function ListingPage({ params }: Props) {
 
   const typedListing = listing as Listing;
 
-  // Fetch agent profile — also using admin client
+  // Fetch agent profile - also using admin client
   const { data: agent } = await db
     .from("agent_profiles")
     .select("*")
@@ -141,7 +141,7 @@ export default async function ListingPage({ params }: Props) {
     const { data: { user } } = await authClient.auth.getUser();
     isOwner = !!user && user.id === typedListing.agent_id;
   } catch {
-    // Not logged in or auth error — treat as non-owner
+    // Not logged in or auth error - treat as non-owner
   }
 
   // Increment view count atomically using SQL to prevent race conditions

@@ -34,7 +34,7 @@ export const article: BlogPost = {
 
 <p><strong>Pros:</strong></p>
 <ul>
-  <li>Pages look professional out of the box&mdash;no design skills needed</li>
+  <li>Pages look professional out of the box-no design skills needed</li>
   <li>AI chatbot qualifies and engages buyers around the clock</li>
   <li>Automatic lead capture on every interaction</li>
   <li>Instant follow-up emails reduce response time to near zero</li>

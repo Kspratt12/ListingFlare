@@ -125,7 +125,7 @@ export default function AddressAutocomplete({
       setShowDropdown(unique.length > 0);
       setActiveIndex(-1);
     } catch {
-      // Silently fail — user can still type manually
+      // Silently fail - user can still type manually
     }
   }, []);
 

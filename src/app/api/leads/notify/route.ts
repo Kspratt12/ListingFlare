@@ -4,7 +4,7 @@ import { formatPhone } from "@/lib/formatters";
 
 export const dynamic = "force-dynamic";
 
-// Admin client — called from anonymous visitors, bypasses RLS
+// Admin client - called from anonymous visitors, bypasses RLS
 function getAdminClient() {
   return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -126,7 +126,7 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({
           from: "ListingFlare <leads@listingflare.com>",
           to: agent.email,
-          subject: `New lead for ${listing?.street || "your listing"} — ${lead.name}`,
+          subject: `New lead for ${listing?.street || "your listing"} - ${lead.name}`,
           html: emailHtml,
         }),
       });

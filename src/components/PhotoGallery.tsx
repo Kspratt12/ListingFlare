@@ -47,7 +47,7 @@ function VideoCard({ video, index }: { video: { src: string; thumbnail?: string;
           style={{ aspectRatio: index % 2 === 0 ? "3/4" : "4/5" }}
           onClick={started ? handleVideoTap : handleStart}
         >
-          {/* Video element — always mounted for preview, plays when started */}
+          {/* Video element - always mounted for preview, plays when started */}
           <video
             ref={videoRef}
             src={video.src}
@@ -58,7 +58,7 @@ function VideoCard({ video, index }: { video: { src: string; thumbnail?: string;
             title=""
             className={`absolute inset-0 h-full w-full rounded-xl object-cover ${started ? "z-10" : "z-0"}`}
           />
-          {/* Thumbnail overlay — hides once started */}
+          {/* Thumbnail overlay - hides once started */}
           {!started && (
             <div className="absolute inset-0 z-20">
               {video.thumbnail ? (
@@ -91,7 +91,7 @@ function VideoCard({ video, index }: { video: { src: string; thumbnail?: string;
               </div>
             </div>
           )}
-          {/* 8K badge — always visible */}
+          {/* 8K badge - always visible */}
           <div className="absolute top-3 left-3 z-30 pointer-events-none">
             <span className="rounded-full bg-black/60 px-2.5 py-1 text-[10px] font-bold text-white backdrop-blur-sm flex items-center gap-1">
               <span className="h-1.5 w-1.5 rounded-full bg-brand-400" />
@@ -135,7 +135,7 @@ export default function PhotoGallery({ photos, videos = [] }: Props) {
             </p>
           </motion.div>
 
-          {/* Masonry grid — photos and videos blended together */}
+          {/* Masonry grid - photos and videos blended together */}
           <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
             {/* First few photos */}
             {photos.slice(0, 3).map((photo, i) => (
@@ -267,8 +267,8 @@ export default function PhotoGallery({ photos, videos = [] }: Props) {
                 className="max-h-[85vh] rounded-lg object-contain"
               />
               <p className="mt-4 text-center text-sm text-white/60">
-                {photos[lightboxIndex].alt} &mdash; {lightboxIndex + 1} of{" "}
-                {photos.length}
+                {photos[lightboxIndex].alt} ({lightboxIndex + 1} of{" "}
+                {photos.length})
               </p>
             </motion.div>
           </motion.div>

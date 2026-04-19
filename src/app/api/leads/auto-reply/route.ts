@@ -5,7 +5,7 @@ import { formatPhone } from "@/lib/formatters";
 
 export const dynamic = "force-dynamic";
 
-// Admin client — this endpoint is called server-to-server (no cookies)
+// Admin client - this endpoint is called server-to-server (no cookies)
 function getAdminClient() {
   return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -81,7 +81,7 @@ Write a brief, personalized follow-up email (3-4 sentences max). Guidelines:
 - Mention one appealing detail about the property
 - Offer to schedule a showing or answer questions
 - Be warm and genuine, not salesy or pushy
-- Do NOT include a subject line, greeting like "Dear", or sign-off — just the body text
+- Do NOT include a subject line, greeting like "Dear", or sign-off - just the body text
 - Do NOT mention the price (it feels pushy in a first response)
 - Keep it conversational and under 60 words`;
 
@@ -102,7 +102,7 @@ Write a brief, personalized follow-up email (3-4 sentences max). Guidelines:
         .update({ auto_reply_draft: draft })
         .eq("id", leadId);
 
-      // Auto-send the reply to the buyer via Resend — UNLESS agent has approval mode ON
+      // Auto-send the reply to the buyer via Resend - UNLESS agent has approval mode ON
       const resendKey = process.env.RESEND_API_KEY;
       const approvalMode = agent.ai_approval_mode === true;
       if (resendKey && lead.email && !approvalMode) {
@@ -142,7 +142,7 @@ Write a brief, personalized follow-up email (3-4 sentences max). Guidelines:
             from: `${agent.name} via ListingFlare <leads@listingflare.com>`,
             to: lead.email,
             replyTo: agent.email,
-            subject: `Re: ${listingAddress} — ${agent.name}`,
+            subject: `Re: ${listingAddress} - ${agent.name}`,
             html: emailHtml,
           }),
         });

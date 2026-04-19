@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
       from: `${agent.name} via ListingFlare <leads@listingflare.com>`,
       to: leadEmail,
       replyTo: agent.email,
-      subject: `Re: ${listingAddress} — ${agent.name}`,
+      subject: `Re: ${listingAddress} - ${agent.name}`,
       html: emailHtml,
       attachments,
     });

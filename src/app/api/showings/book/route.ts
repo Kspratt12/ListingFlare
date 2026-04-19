@@ -224,7 +224,7 @@ export async function POST(req: NextRequest) {
         date: showingDate,
         time: showingTime,
         durationMinutes: 30,
-        summary: `Property Showing — ${listingAddress}`,
+        summary: `Property Showing - ${listingAddress}`,
         description: [
           `Showing with ${name}`,
           agent.phone ? `Agent: ${agent.name} (${formatPhone(agent.phone)})` : `Agent: ${agent.name}`,
@@ -243,7 +243,7 @@ export async function POST(req: NextRequest) {
         contentType: "text/calendar",
       };
 
-      // Send both emails in parallel — with calendar invite attached
+      // Send both emails in parallel - with calendar invite attached
       await Promise.all([
         fetch("https://api.resend.com/emails", {
           method: "POST",
@@ -255,7 +255,7 @@ export async function POST(req: NextRequest) {
             from: `${agent.name} via ListingFlare <leads@listingflare.com>`,
             to: email,
             replyTo: agent.email,
-            subject: `Showing Confirmed — ${listingAddress} on ${formattedDate}`,
+            subject: `Showing Confirmed - ${listingAddress} on ${formattedDate}`,
             html: buyerHtml,
             attachments: [icsAttachment],
           }),
@@ -269,7 +269,7 @@ export async function POST(req: NextRequest) {
           body: JSON.stringify({
             from: "ListingFlare <leads@listingflare.com>",
             to: agent.email,
-            subject: `Showing booked — ${name} for ${listingAddress}`,
+            subject: `Showing booked - ${name} for ${listingAddress}`,
             html: agentHtml,
             attachments: [icsAttachment],
           }),
@@ -328,7 +328,7 @@ export async function POST(req: NextRequest) {
             const endDate = new Date(startDate.getTime() + 30 * 60 * 1000);
 
             await createCalendarEvent(accessToken, {
-              summary: `Showing — ${listingAddress}`,
+              summary: `Showing - ${listingAddress}`,
               description: [
                 `Buyer: ${name}`,
                 phone ? `Phone: ${formatPhone(phone)}` : null,
@@ -346,7 +346,7 @@ export async function POST(req: NextRequest) {
         }
       } catch (err) {
         console.error("Google Calendar event creation failed:", err);
-        // Non-fatal — booking still succeeds
+        // Non-fatal - booking still succeeds
       }
     }
 

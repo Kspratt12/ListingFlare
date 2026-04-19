@@ -36,7 +36,7 @@ export default function DemoPage() {
                   DEMO
                 </span>
                 <span>
-                  This is a demo listing &mdash; want one for your properties?
+                  This is a demo listing. Want one for your properties?
                 </span>
                 <Link
                   href="/signup"

@@ -4,14 +4,14 @@ import { getAllPosts } from "@/lib/blog";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Real Estate Agent Blog — Tips, Guides & Lead Generation Strategies",
+  title: "Real Estate Agent Blog - Tips, Guides & Lead Generation Strategies",
   description:
     "Expert articles on real estate lead generation, listing marketing, and home selling. Actionable strategies to help agents grow their business in 2026.",
   alternates: {
     canonical: "https://www.listingflare.com/blog",
   },
   openGraph: {
-    title: "Real Estate Agent Blog — ListingFlare",
+    title: "Real Estate Agent Blog - ListingFlare",
     description:
       "Expert articles on real estate lead generation, listing marketing, and home selling strategies.",
     url: "https://www.listingflare.com/blog",

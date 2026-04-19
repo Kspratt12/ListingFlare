@@ -63,7 +63,7 @@ function toPropertyListing(listing: Listing, agent: AgentProfile): PropertyListi
 export default function ListingPageClient({ listing, agent, isOwner }: Props) {
   const propertyData = toPropertyListing(listing, agent);
 
-  // Track repeat visits — alert agent when someone views 3+ times
+  // Track repeat visits - alert agent when someone views 3+ times
   useEffect(() => {
     if (isOwner) return;
     try {

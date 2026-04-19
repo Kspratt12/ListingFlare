@@ -32,13 +32,13 @@ export const article: BlogPost = {
 <h2>Short on Time? Here Are the Top Picks</h2>
 
 <ol>
-<li><strong><a href="/signup">ListingFlare</a></strong> &mdash; Best overall. AI chatbot captures leads 24/7, auto follow-up emails, unlimited listings for $150/mo. The only builder that engages buyers after hours.</li>
-<li><strong>Rela HQ</strong> &mdash; Best for luxury visuals. Gorgeous templates, 3D tour integration, but no chatbot and per-listing pricing adds up.</li>
-<li><strong>CribFlyer</strong> &mdash; Best for flexibility. Free plan available, pay-per-listing model, but dated templates and no AI features.</li>
-<li><strong>Spiro</strong> &mdash; Best for photographers. Branded and unbranded options with built-in showing scheduler.</li>
-<li><strong>SinglePropertySites.com</strong> &mdash; Best marketing bundle. Auto-generates social posts, emails, and flyers alongside the website.</li>
-<li><strong>HDphotohub</strong> &mdash; Best budget option. No monthly fee, pay per property only, but very basic features.</li>
-<li><strong>Placester</strong> &mdash; Best for full agent websites. Includes property pages as part of a larger site with IDX and CRM.</li>
+<li><strong><a href="/signup">ListingFlare</a></strong> - Best overall. AI chatbot captures leads 24/7, auto follow-up emails, unlimited listings for $150/mo. The only builder that engages buyers after hours.</li>
+<li><strong>Rela HQ</strong> - Best for luxury visuals. Gorgeous templates, 3D tour integration, but no chatbot and per-listing pricing adds up.</li>
+<li><strong>CribFlyer</strong> - Best for flexibility. Free plan available, pay-per-listing model, but dated templates and no AI features.</li>
+<li><strong>Spiro</strong> - Best for photographers. Branded and unbranded options with built-in showing scheduler.</li>
+<li><strong>SinglePropertySites.com</strong> - Best marketing bundle. Auto-generates social posts, emails, and flyers alongside the website.</li>
+<li><strong>HDphotohub</strong> - Best budget option. No monthly fee, pay per property only, but very basic features.</li>
+<li><strong>Placester</strong> - Best for full agent websites. Includes property pages as part of a larger site with IDX and CRM.</li>
 </ol>
 
 <h2>What I Looked For in Each Builder</h2>
@@ -67,7 +67,7 @@ export const article: BlogPost = {
 
 <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=450&fit=crop&q=80" alt="Modern luxury home exterior used for single property website marketing by a real estate agent" loading="lazy" />
 
-<h2>1. ListingFlare &mdash; Best Overall for Lead Capture and After-Hours Engagement</h2>
+<h2>1. ListingFlare - Best Overall for Lead Capture and After-Hours Engagement</h2>
 
 <p><strong>Price:</strong> $150/month (unlimited listings) | 14-day free trial, no credit card required</p>
 
@@ -103,7 +103,7 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Listing agents who are tired of losing after-hours leads and want a page that works for them while they are off the clock. <a href="/signup">Try ListingFlare free for 14 days</a> or <a href="/demo">see a live demo listing</a>.</p>
 
-<h2>2. Rela HQ &mdash; Best for High-End Visual Presentation</h2>
+<h2>2. Rela HQ - Best for High-End Visual Presentation</h2>
 
 <p><strong>Price:</strong> Starts at $29/month per listing (varies by plan)</p>
 
@@ -136,7 +136,7 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Luxury agents who want the most visually impressive listing pages and do not mind handling lead follow-up manually.</p>
 
-<h2>3. CribFlyer &mdash; Best for Flexibility and Per-Listing Control</h2>
+<h2>3. CribFlyer - Best for Flexibility and Per-Listing Control</h2>
 
 <p><strong>Price:</strong> Free plan available | Paid plans from $15/listing/month</p>
 
@@ -171,7 +171,7 @@ export const article: BlogPost = {
 
 <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=450&fit=crop&q=80" alt="Bright modern living room featured on a real estate single property website for buyer lead capture" loading="lazy" />
 
-<h2>4. Spiro &mdash; Best for Branded and Unbranded Options</h2>
+<h2>4. Spiro - Best for Branded and Unbranded Options</h2>
 
 <p><strong>Price:</strong> Starting at $10/property</p>
 
@@ -204,7 +204,7 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Real estate photographers and marketing companies who create listing pages on behalf of agents, or agents who want the option to remove branding for certain listings.</p>
 
-<h2>5. SinglePropertySites.com (SPS) &mdash; Best for Automated Marketing Bundles</h2>
+<h2>5. SinglePropertySites.com (SPS) - Best for Automated Marketing Bundles</h2>
 
 <p><strong>Price:</strong> Varies by package (typically $25-50/listing)</p>
 
@@ -237,7 +237,7 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Agents who want a full listing marketing bundle (website + social + email + print) generated automatically from a single listing entry, and are less concerned about cutting-edge design.</p>
 
-<h2>6. HDphotohub &mdash; Best Budget Option</h2>
+<h2>6. HDphotohub - Best Budget Option</h2>
 
 <p><strong>Price:</strong> Starting at $15/property, no monthly fee</p>
 
@@ -271,7 +271,7 @@ export const article: BlogPost = {
 
 <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop&q=80" alt="Modern home exterior at twilight showcased on a single property website with lead capture for real estate agents" loading="lazy" />
 
-<h2>7. Placester &mdash; Best for Full Agent Websites (With Property Pages Built In)</h2>
+<h2>7. Placester - Best for Full Agent Websites (With Property Pages Built In)</h2>
 
 <p><strong>Price:</strong> Starting at $99/month for a full agent website</p>
 

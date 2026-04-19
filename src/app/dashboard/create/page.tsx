@@ -40,7 +40,7 @@ export default function CreateListingPage() {
   const [listingCount, setListingCount] = useState(0);
   const [checkingAccess, setCheckingAccess] = useState(true);
 
-  // Form state — all hooks must be declared before any early return
+  // Form state - all hooks must be declared before any early return
   const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("CA");
@@ -140,7 +140,7 @@ export default function CreateListingPage() {
         prev.map((photo) => urlToCaption.has(photo.src) ? { ...photo, alt: urlToCaption.get(photo.src)! } : photo)
       );
     } catch {
-      // Silently fail — captions are a nice-to-have
+      // Silently fail - captions are a nice-to-have
     } finally {
       setGeneratingCaptions(false);
     }

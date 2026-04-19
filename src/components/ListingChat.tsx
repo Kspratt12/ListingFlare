@@ -164,7 +164,7 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
         text: `Thanks ${leadName.split(" ")[0]}! I've let ${listing.agentName} know you're interested. They'll reach out to you shortly!`,
       }]);
 
-      // Trigger notification + auto-reply — always send, with fallback lead details
+      // Trigger notification + auto-reply - always send, with fallback lead details
       fetch("/api/leads/notify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -181,7 +181,7 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
     } catch {
       setMessages((prev) => [...prev, {
         role: "assistant",
-        text: "Something went wrong on my end. You can reach the agent directly — their info is on the page.",
+        text: "Something went wrong on my end. You can reach the agent directly - their info is on the page.",
       }]);
     }
   };
@@ -198,7 +198,7 @@ export default function ListingChat({ listing, listingId, agentId, isDemo = fals
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             className="fixed bottom-6 right-6 z-40 flex items-center gap-3"
           >
-            {/* Hint bubble — looks like a chat message */}
+            {/* Hint bubble - looks like a chat message */}
             <AnimatePresence>
               {showHint && (
                 <motion.div

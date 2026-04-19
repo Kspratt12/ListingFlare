@@ -206,7 +206,7 @@ export default function MyListingsPage() {
     if (sortBy === "city") return (a.city || "").localeCompare(b.city || "");
     if (sortBy === "state") return (a.state || "").localeCompare(b.state || "");
     if (sortBy === "price") return priceDir === "desc" ? (b.price || 0) - (a.price || 0) : (a.price || 0) - (b.price || 0);
-    return 0; // newest — already sorted by created_at desc from DB
+    return 0; // newest - already sorted by created_at desc from DB
   });
 
   return (
@@ -242,7 +242,7 @@ export default function MyListingsPage() {
       )}
       {!loading && (
         <div className="mb-6 space-y-4">
-          {/* Getting Started — auto-hides when complete */}
+          {/* Getting Started - auto-hides when complete */}
           <GettingStarted />
 
           {/* Top row: equal-height cards */}
@@ -402,7 +402,7 @@ export default function MyListingsPage() {
                   : "border-gray-200 bg-white"
               }`}
             >
-              {/* Thumbnail — clicks through to live listing page */}
+              {/* Thumbnail - clicks through to live listing page */}
               <Link
                 href={`/listing/${listing.slug || listing.id}`}
                 className="relative block h-44 overflow-hidden bg-gray-100"
