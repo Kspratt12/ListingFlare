@@ -139,20 +139,25 @@ function PriceTrajectoryChart({
           strokeLinejoin="round"
         />
 
-        {/* Point markers — larger + brand fill on hover. onTouchStart
-            handler makes the tooltip work on mobile where hover is
-            absent; touch-action:manipulation prevents the 300ms delay. */}
+        {/* Point markers. Pointer events unify mouse + touch cleanly —
+            only a real mouse triggers hover, touch only responds to
+            click. Click is a toggle: tap to pin, tap same dot again to
+            dismiss, tap a different dot to switch. Fixed a bug where
+            onTouchStart + onClick were double-firing and canceling. */}
         {points.map((p, i) => (
           <g key={i}>
             <circle
               cx={p.x}
               cy={p.y}
-              r={20}
+              r={22}
               fill="transparent"
               style={{ cursor: "pointer", touchAction: "manipulation" }}
-              onMouseEnter={() => setHoverIdx(i)}
-              onMouseLeave={() => setHoverIdx(null)}
-              onTouchStart={() => setHoverIdx(i)}
+              onPointerEnter={(e) => {
+                if (e.pointerType === "mouse") setHoverIdx(i);
+              }}
+              onPointerLeave={(e) => {
+                if (e.pointerType === "mouse") setHoverIdx(null);
+              }}
               onClick={() => setHoverIdx(hoverIdx === i ? null : i)}
             />
             <circle

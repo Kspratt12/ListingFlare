@@ -71,11 +71,11 @@ export default function DemoColorSwitcher({ topOffset = false }: { topOffset?: b
           >
             <Palette className="h-4 w-4" />
           </button>
-          {/* Always-visible "Demo" pill so agents don't wonder whether
-              this floating palette will show up on their actual
-              listings. Reassures them before they become customers. */}
-          <span className="hidden rounded-full bg-gray-900/80 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white sm:inline">
-            Demo
+          {/* Always-visible "Demo only" pill. Shows on mobile AND desktop
+              so agents never wonder whether this floating palette will
+              show up on their actual listings. */}
+          <span className="rounded-full bg-gray-900/80 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white whitespace-nowrap">
+            Demo only
           </span>
           {expanded && (
             <>
