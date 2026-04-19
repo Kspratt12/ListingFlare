@@ -29,24 +29,24 @@ export default function DemoColorSwitcher({ topOffset = false }: { topOffset?: b
 
   return (
     <div
-      className={`fixed left-4 z-40 transition-all sm:left-6 ${
-        topOffset ? "top-24" : "top-20"
+      className={`fixed left-4 z-30 transition-all sm:left-6 ${
+        topOffset ? "top-28" : "top-24"
       }`}
     >
-      <div className="rounded-full border border-gray-200 bg-white/95 p-1.5 shadow-lg backdrop-blur-sm">
+      <div className="rounded-full border border-white/40 bg-white/60 p-1.5 shadow-md backdrop-blur-md">
         <div className="flex items-center gap-1.5">
           <button
             type="button"
             onClick={() => setExpanded((v) => !v)}
             aria-label="Toggle color picker"
-            className="flex h-8 w-8 items-center justify-center rounded-full text-gray-600 transition-colors hover:bg-gray-100"
+            className="flex h-8 w-8 items-center justify-center rounded-full text-gray-700 transition-colors hover:bg-white/60"
             title={expanded ? "Hide colors" : "Try a color"}
           >
             <Palette className="h-4 w-4" />
           </button>
           {expanded && (
             <>
-              <span className="hidden pr-1 text-[11px] font-medium text-gray-500 sm:inline">
+              <span className="hidden pr-1 text-[11px] font-medium text-gray-700 sm:inline">
                 Try it:
               </span>
               <div className="flex items-center gap-1">
@@ -60,7 +60,7 @@ export default function DemoColorSwitcher({ topOffset = false }: { topOffset?: b
                     style={{ backgroundColor: c.hex }}
                     className={`h-6 w-6 rounded-full border-2 transition-transform hover:scale-110 ${
                       active.toLowerCase() === c.hex.toLowerCase()
-                        ? "border-gray-900 ring-2 ring-gray-900 ring-offset-1"
+                        ? "border-white ring-2 ring-gray-900 ring-offset-1"
                         : "border-white"
                     }`}
                   />
