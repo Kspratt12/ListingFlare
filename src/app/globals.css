@@ -520,13 +520,36 @@ input[type="number"]::-webkit-inner-spin-button {
    component for the demo page).
    Only kicks in when both the class AND the variable are present.
    ============================================================ */
-.agent-brand-override .bg-brand-500 { background-color: var(--agent-brand, #b8965a) !important; }
-.agent-brand-override .bg-brand-600 { background-color: var(--agent-brand, #b8965a) !important; filter: brightness(0.92); }
+/* Solid backgrounds: use the color directly */
+.agent-brand-override .bg-brand-500,
+.agent-brand-override .bg-brand-600 { background-color: var(--agent-brand, #b8965a) !important; }
+.agent-brand-override .bg-brand-600 { filter: brightness(0.92); }
+
+/* Light tinted backgrounds: apply a low-opacity color wash so the
+   icon-chip look is preserved but tinted */
+.agent-brand-override .bg-brand-50 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 12%, white) !important; }
+.agent-brand-override .bg-brand-100 { background-color: color-mix(in srgb, var(--agent-brand, #b8965a) 20%, white) !important; }
+
+/* Text in every brand shade gets the selected color */
+.agent-brand-override .text-brand-300,
+.agent-brand-override .text-brand-400,
 .agent-brand-override .text-brand-500,
 .agent-brand-override .text-brand-600,
 .agent-brand-override .text-brand-700 { color: var(--agent-brand, #b8965a) !important; }
+
+/* Borders across every brand shade */
+.agent-brand-override .border-brand-100,
 .agent-brand-override .border-brand-200,
 .agent-brand-override .border-brand-300,
-.agent-brand-override .border-brand-400 { border-color: var(--agent-brand, #b8965a) !important; }
-.agent-brand-override .ring-brand-400 { --tw-ring-color: var(--agent-brand, #b8965a) !important; }
-.agent-brand-override .focus\:border-brand-400:focus { border-color: var(--agent-brand, #b8965a) !important; }
+.agent-brand-override .border-brand-400,
+.agent-brand-override .border-brand-500 { border-color: var(--agent-brand, #b8965a) !important; }
+
+/* Focus + rings */
+.agent-brand-override .ring-brand-400,
+.agent-brand-override .ring-brand-500 { --tw-ring-color: var(--agent-brand, #b8965a) !important; }
+.agent-brand-override .focus\:border-brand-400:focus,
+.agent-brand-override .focus\:ring-brand-400:focus { border-color: var(--agent-brand, #b8965a) !important; --tw-ring-color: var(--agent-brand, #b8965a) !important; }
+
+/* Gradients that reference brand colors via Tailwind's from-brand / to-brand */
+.agent-brand-override .from-brand-50 { --tw-gradient-from: color-mix(in srgb, var(--agent-brand, #b8965a) 12%, white) !important; }
+.agent-brand-override .to-brand-500 { --tw-gradient-to: var(--agent-brand, #b8965a) !important; }
