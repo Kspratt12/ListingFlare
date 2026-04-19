@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/client";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import type { AgentProfile } from "@/lib/types";
 import LiveLeadAlerts from "@/components/LiveLeadAlerts";
+import CommandPalette from "@/components/CommandPalette";
 import {
   LayoutGrid,
   PlusCircle,
@@ -186,6 +187,7 @@ export default function DashboardLayout({
         <main className="flex-1 overflow-y-auto p-6 md:p-8">{children}</main>
       </div>
       <LiveLeadAlerts />
+      <CommandPalette />
     </div>
   );
 }
