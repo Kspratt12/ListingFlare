@@ -59,6 +59,16 @@ export default function DashboardLayout({
     });
   }, []);
 
+  // Keep the --agent-brand CSS variable in sync with whatever's loaded from
+  // the profile. The Settings page can override this in real-time by calling
+  // setProperty on document.documentElement; this layout then picks up the
+  // new color for the sidebar accents without needing a refresh.
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const color = profile?.brand_color || "#b8965a";
+    document.documentElement.style.setProperty("--agent-brand", color);
+  }, [profile?.brand_color]);
+
   const handleLogout = async () => {
     const supabase = createClient();
     await supabase.auth.signOut();
@@ -77,10 +87,7 @@ export default function DashboardLayout({
       <div className="px-6 py-6">
         <Link href="/" className="font-serif text-xl font-bold text-white">
           Listing
-          <span
-            style={profile?.brand_color ? { color: profile.brand_color } : undefined}
-            className={profile?.brand_color ? "" : "text-brand-400"}
-          >
+          <span style={{ color: "var(--agent-brand, #b8965a)" }}>
             Flare
           </span>
         </Link>
@@ -90,7 +97,6 @@ export default function DashboardLayout({
       <nav className="mt-4 flex-1 px-3">
         {navItems.map((item) => {
           const active = isActive(item.href);
-          const color = profile?.brand_color || null;
           return (
             <Link
               key={item.href}
@@ -103,7 +109,7 @@ export default function DashboardLayout({
               }`}
               style={
                 active
-                  ? { backgroundColor: color ? `${color}22` : "rgba(255,255,255,0.08)" }
+                  ? { backgroundColor: "color-mix(in srgb, var(--agent-brand, #b8965a) 20%, transparent)" }
                   : undefined
               }
             >
@@ -112,16 +118,12 @@ export default function DashboardLayout({
                 <span
                   aria-hidden="true"
                   className="absolute left-0 top-1/2 h-7 w-1 -translate-y-1/2 rounded-r-full"
-                  style={{ backgroundColor: color || "#b8965a" }}
+                  style={{ backgroundColor: "var(--agent-brand, #b8965a)" }}
                 />
               )}
               <item.icon
                 className="h-5 w-5 transition-colors"
-                style={{
-                  color: active
-                    ? color || "#b8965a"
-                    : undefined,
-                }}
+                style={active ? { color: "var(--agent-brand, #b8965a)" } : undefined}
               />
               {item.label}
             </Link>

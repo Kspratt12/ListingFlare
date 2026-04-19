@@ -36,6 +36,14 @@ export default function SettingsPage() {
   const [aiSavedAt, setAiSavedAt] = useState<number | null>(null);
   const [handle, setHandle] = useState("");
   const [brandColor, setBrandColor] = useState("#b8965a");
+
+  // Live-preview the brand color on the entire dashboard (sidebar logo,
+  // active nav item, icon color) as the agent drags the color picker.
+  // The dashboard layout reads --agent-brand from document root.
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    document.documentElement.style.setProperty("--agent-brand", brandColor || "#b8965a");
+  }, [brandColor]);
   const [handleStatus, setHandleStatus] = useState<
     { state: "idle" | "checking" | "ok" | "taken" | "invalid"; reason?: string }
   >({ state: "idle" });
