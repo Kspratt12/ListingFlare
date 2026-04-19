@@ -76,7 +76,13 @@ export default function DashboardLayout({
       {/* Logo */}
       <div className="px-6 py-6">
         <Link href="/" className="font-serif text-xl font-bold text-white">
-          Listing<span className="text-brand-400">Flare</span>
+          Listing
+          <span
+            style={profile?.brand_color ? { color: profile.brand_color } : undefined}
+            className={profile?.brand_color ? "" : "text-brand-400"}
+          >
+            Flare
+          </span>
         </Link>
       </div>
 
@@ -89,11 +95,19 @@ export default function DashboardLayout({
             onClick={() => setSidebarOpen(false)}
             className={`mb-1 flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
               isActive(item.href)
-                ? "bg-white/10 text-white"
+                ? "text-white"
                 : "text-gray-400 hover:bg-white/5 hover:text-white"
             }`}
+            style={
+              isActive(item.href)
+                ? { backgroundColor: profile?.brand_color ? `${profile.brand_color}30` : "rgba(255,255,255,0.1)" }
+                : undefined
+            }
           >
-            <item.icon className="h-5 w-5" />
+            <item.icon
+              className="h-5 w-5"
+              style={isActive(item.href) && profile?.brand_color ? { color: profile.brand_color } : undefined}
+            />
             {item.label}
           </Link>
         ))}

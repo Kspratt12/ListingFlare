@@ -7,6 +7,7 @@ import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 import { getAllPosts } from "@/lib/blog";
 import LiveStats from "@/components/LiveStats";
+import ProductTestimonials from "@/components/ProductTestimonials";
 import {
   Sparkles,
   Globe,
@@ -1899,6 +1900,9 @@ export default function LandingPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Agent testimonials - auto-hides until you have real ones */}
+      <ProductTestimonials />
 
       {/* How It Works - Animated Walkthrough */}
       <HowItWorks />
