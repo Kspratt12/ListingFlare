@@ -9,6 +9,9 @@ interface Props {
   brokerage?: string | null;
   licenseNumber?: string | null;
   state?: string | null;
+  coAgentName?: string | null;
+  coAgentBrokerage?: string | null;
+  coAgentLicense?: string | null;
 }
 
 export default function Footer({
@@ -16,6 +19,9 @@ export default function Footer({
   brokerage,
   licenseNumber,
   state,
+  coAgentName,
+  coAgentBrokerage,
+  coAgentLicense,
 }: Props = {}) {
   const isListing = Boolean(agentName || brokerage || licenseNumber);
 
@@ -88,12 +94,21 @@ export default function Footer({
               </p>
 
               {/* Agent license line — required by most state real estate
-                  commissions on any consumer-facing advertising. */}
+                  commissions on any consumer-facing advertising. Shows
+                  both agents on co-listed homes. */}
               {(agentName || licenseNumber || brokerage) && (
                 <p className="text-[11px] text-gray-500">
                   {agentName && <span>{agentName}</span>}
                   {brokerage && <span>{agentName ? ", " : ""}{brokerage}</span>}
                   {licenseNumber && <span>{agentName || brokerage ? " · " : ""}License #{licenseNumber}{state ? ` (${state})` : ""}</span>}
+                  {coAgentName && (
+                    <>
+                      <span className="mx-2 text-gray-400">&bull;</span>
+                      <span>{coAgentName}</span>
+                      {coAgentBrokerage && <span>, {coAgentBrokerage}</span>}
+                      {coAgentLicense && <span> · License #{coAgentLicense}{state ? ` (${state})` : ""}</span>}
+                    </>
+                  )}
                 </p>
               )}
             </div>

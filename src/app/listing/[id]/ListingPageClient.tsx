@@ -290,7 +290,23 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
 
       <TestimonialShowcase agentId={listing.agent_id} />
 
-      <AgentBranding agent={propertyData.agent} agentId={listing.agent_id} />
+      <AgentBranding
+        agent={propertyData.agent}
+        agentId={listing.agent_id}
+        coAgent={
+          listing.co_agent_name
+            ? {
+                name: listing.co_agent_name,
+                title: listing.co_agent_title,
+                brokerage: listing.co_agent_brokerage,
+                license: listing.co_agent_license,
+                phone: listing.co_agent_phone,
+                email: listing.co_agent_email,
+                headshotUrl: listing.co_agent_headshot_url,
+              }
+            : null
+        }
+      />
       <ShowingScheduler listingId={listing.id} agentId={listing.agent_id} />
 
       <OtherListings
@@ -329,6 +345,9 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
         brokerage={agent.brokerage}
         licenseNumber={agent.license_number}
         state={listing.state}
+        coAgentName={listing.co_agent_name}
+        coAgentBrokerage={listing.co_agent_brokerage}
+        coAgentLicense={listing.co_agent_license}
       />
     </main>
   );

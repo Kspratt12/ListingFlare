@@ -9,9 +9,20 @@ import Link from "next/link";
 interface Props {
   agent: PropertyListing["agent"];
   agentId?: string;
+  // Optional co-listing agent. When present, rendered as a second
+  // card below the primary agent.
+  coAgent?: {
+    name: string;
+    title?: string | null;
+    brokerage?: string | null;
+    license?: string | null;
+    phone?: string | null;
+    email?: string | null;
+    headshotUrl?: string | null;
+  } | null;
 }
 
-export default function AgentBranding({ agent, agentId }: Props) {
+export default function AgentBranding({ agent, agentId, coAgent }: Props) {
   const isDemo = agentId === "demo";
   const profileLink = agentId ? (isDemo ? "/signup" : `/agent/${agentId}`) : null;
   return (
@@ -131,6 +142,60 @@ export default function AgentBranding({ agent, agentId }: Props) {
               )}
             </div>
           </div>
+
+          {/* Co-listing agent — compact card below the primary. Only
+              rendered when the agent has filled in at least a name. */}
+          {coAgent && coAgent.name && (
+            <div className="mt-10 border-t border-gray-100 pt-8">
+              <p className="mb-4 text-center text-[10px] font-semibold uppercase tracking-[0.3em] text-gray-400">
+                Co-Listed By
+              </p>
+              <div className="flex flex-col items-center gap-5 text-center md:flex-row md:items-start md:gap-8 md:text-left">
+                {coAgent.headshotUrl && (
+                  <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-full border-2 border-gray-200 shadow-sm">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={coAgent.headshotUrl} alt={coAgent.name} loading="lazy" className="h-full w-full object-cover" />
+                  </div>
+                )}
+                <div className="min-w-0 flex-1">
+                  <h4 className="font-serif text-xl font-semibold text-gray-900">{coAgent.name}</h4>
+                  {coAgent.title && (
+                    <p className="mt-0.5 text-sm text-brand-500">{coAgent.title}</p>
+                  )}
+                  {coAgent.brokerage && (
+                    <p className="mt-0.5 text-sm text-gray-500">
+                      {coAgent.brokerage}
+                      {coAgent.license && (
+                        <span className="ml-2 text-[11px] text-gray-400">· Lic #{coAgent.license}</span>
+                      )}
+                    </p>
+                  )}
+                  {(coAgent.phone || coAgent.email) && (
+                    <div className="mt-3 flex flex-col gap-2 text-sm text-gray-600 sm:flex-row sm:gap-5">
+                      {coAgent.phone && (
+                        <a
+                          href={`tel:${coAgent.phone}`}
+                          className="inline-flex items-center justify-center gap-1.5 transition-colors hover:text-brand-600 md:justify-start"
+                        >
+                          <Phone className="h-3.5 w-3.5" />
+                          {formatPhone(coAgent.phone)}
+                        </a>
+                      )}
+                      {coAgent.email && (
+                        <a
+                          href={`mailto:${coAgent.email}`}
+                          className="inline-flex items-center justify-center gap-1.5 transition-colors hover:text-brand-600 md:justify-start"
+                        >
+                          <Mail className="h-3.5 w-3.5" />
+                          {coAgent.email}
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
         </motion.div>
       </div>
     </section>

@@ -100,6 +100,38 @@ export interface Listing {
   // the AI chat bubble on that specific listing.
   ai_chat_enabled?: boolean;
   comparable_sales?: ComparableSale[];
+  // Optional co-listing agent — shown alongside the primary agent on
+  // the listing page when any of these fields are set.
+  co_agent_name?: string | null;
+  co_agent_title?: string | null;
+  co_agent_brokerage?: string | null;
+  co_agent_license?: string | null;
+  co_agent_phone?: string | null;
+  co_agent_email?: string | null;
+  co_agent_headshot_url?: string | null;
+}
+
+export interface Offer {
+  id: string;
+  listing_id: string;
+  agent_id: string;
+  buyer_name: string;
+  buyer_email?: string | null;
+  buyer_phone?: string | null;
+  buyer_agent_name?: string | null;
+  buyer_agent_brokerage?: string | null;
+  buyer_agent_phone?: string | null;
+  buyer_agent_email?: string | null;
+  offer_price: number;
+  earnest_money?: number | null;
+  closing_date?: string | null;
+  financing_type?: "cash" | "conventional" | "fha" | "va" | "usda" | "other" | null;
+  contingencies: string[];
+  notes?: string | null;
+  status: "submitted" | "countered" | "accepted" | "rejected" | "withdrawn" | "expired";
+  received_at: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface ComparableSale {

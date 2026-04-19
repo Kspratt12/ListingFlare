@@ -96,6 +96,13 @@ export default function CreateListingPage() {
   const [brandColor, setBrandColor] = useState("");
   const [aiChatEnabled, setAiChatEnabled] = useState(true); // default on — the AI chat is the core conversion engine
   const [comps, setComps] = useState<ComparableSale[]>([]);
+  // Optional co-listing agent (roughly 20% of listings have two agents)
+  const [coAgentName, setCoAgentName] = useState("");
+  const [coAgentTitle, setCoAgentTitle] = useState("");
+  const [coAgentBrokerage, setCoAgentBrokerage] = useState("");
+  const [coAgentLicense, setCoAgentLicense] = useState("");
+  const [coAgentPhone, setCoAgentPhone] = useState("");
+  const [coAgentEmail, setCoAgentEmail] = useState("");
 
   // MLS paste feature - auto-fills form fields from a pasted description
   const [pasteText, setPasteText] = useState("");
@@ -523,6 +530,12 @@ export default function CreateListingPage() {
         brand_color: brandColor || null,
         ai_chat_enabled: aiChatEnabled,
         comparable_sales: comps.filter((c) => c.address && c.soldPrice > 0 && c.soldDate),
+        co_agent_name: coAgentName || null,
+        co_agent_title: coAgentTitle || null,
+        co_agent_brokerage: coAgentBrokerage || null,
+        co_agent_license: coAgentLicense || null,
+        co_agent_phone: coAgentPhone || null,
+        co_agent_email: coAgentEmail || null,
         price_history: initialHistory,
       }).select("id").single();
 
@@ -1056,6 +1069,54 @@ export default function CreateListingPage() {
                 }`}
               />
             </button>
+          </div>
+        </section>
+
+        {/* Optional co-listing agent. About 1 in 5 real-world listings
+            has a second agent. Fields are all optional; only rendered
+            on the listing page when at least the name is filled in. */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <h2 className="font-serif text-lg font-semibold text-gray-900">Co-listing agent (optional)</h2>
+          <p className="mt-1 text-sm text-gray-500">
+            If another agent is on this listing with you, add their info. Shows up alongside yours in the &ldquo;Listed By&rdquo; section and in the legal disclaimers.
+          </p>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <div>
+              <label className="mb-1 block text-xs font-medium text-gray-600">Full name</label>
+              <input type="text" value={coAgentName} onChange={(e) => setCoAgentName(e.target.value)}
+                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                placeholder="Jane Doe" />
+            </div>
+            <div>
+              <label className="mb-1 block text-xs font-medium text-gray-600">Title</label>
+              <input type="text" value={coAgentTitle} onChange={(e) => setCoAgentTitle(e.target.value)}
+                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                placeholder="Real Estate Agent" />
+            </div>
+            <div>
+              <label className="mb-1 block text-xs font-medium text-gray-600">Brokerage</label>
+              <input type="text" value={coAgentBrokerage} onChange={(e) => setCoAgentBrokerage(e.target.value)}
+                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                placeholder="Westside Realty" />
+            </div>
+            <div>
+              <label className="mb-1 block text-xs font-medium text-gray-600">License #</label>
+              <input type="text" value={coAgentLicense} onChange={(e) => setCoAgentLicense(e.target.value)}
+                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                placeholder="NC-300XXX" />
+            </div>
+            <div>
+              <label className="mb-1 block text-xs font-medium text-gray-600">Phone</label>
+              <input type="tel" value={coAgentPhone} onChange={(e) => setCoAgentPhone(e.target.value)}
+                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                placeholder="(555) 123-4567" />
+            </div>
+            <div>
+              <label className="mb-1 block text-xs font-medium text-gray-600">Email</label>
+              <input type="email" value={coAgentEmail} onChange={(e) => setCoAgentEmail(e.target.value)}
+                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+                placeholder="jane@brokerage.com" />
+            </div>
           </div>
         </section>
 
