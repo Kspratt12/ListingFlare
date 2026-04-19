@@ -6,7 +6,7 @@ import type { Listing, AgentProfile } from "@/lib/types";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import UpgradePrompt from "@/components/UpgradePrompt";
 import Link from "next/link";
-import { PlusCircle, Eye, Pencil, Share2, Loader2, Trash2, Lock, ArrowUpDown, Archive, Search, Copy, Link2, QrCode, Check } from "lucide-react";
+import { PlusCircle, Eye, Pencil, Share2, Loader2, Trash2, Lock, ArrowUpDown, Archive, Search, Copy, Link2, QrCode, Check, FileText } from "lucide-react";
 import UpcomingShowings from "@/components/UpcomingShowings";
 import ActivityFeed from "@/components/ActivityFeed";
 import SpeedToLead from "@/components/SpeedToLead";
@@ -545,6 +545,17 @@ export default function MyListingsPage() {
                   <div className="flex items-center gap-1">
                     {listing.status !== "archived" && listing.status !== "draft" && (
                       <>
+                        <Link
+                          href={`/reports/${listing.id}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-indigo-50 hover:text-indigo-600"
+                          title="Seller Report"
+                          aria-label="Generate seller report"
+                        >
+                          <FileText className="h-4 w-4" />
+                        </Link>
                         <button
                           type="button"
                           onClick={(e) => handleCopyLink(e, listing)}

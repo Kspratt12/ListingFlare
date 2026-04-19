@@ -87,14 +87,11 @@ export async function GET() {
     }
   }
 
-  // Build greeting based on time of day
-  const hour = now.getHours();
-  const greeting =
-    hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
+  // Return agent's first name. Greeting text is computed client-side using browser time zone.
   const firstName = agent?.name?.split(" ")[0] || "there";
 
   return NextResponse.json({
-    greeting: `${greeting}, ${firstName}`,
+    firstName,
     overnightLeads: (overnightLeads || []).length,
     todayShowings: (todayShowings || []).map((s) => {
       const listing = Array.isArray(s.listing) ? s.listing[0] : s.listing;

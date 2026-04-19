@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Sparkles, CalendarClock, Flame, ArrowRight, Bell } from "lucide-react";
 
 interface Briefing {
-  greeting: string;
+  firstName: string;
   overnightLeads: number;
   todayShowings: Array<{ id: string; time: string; name: string; address: string }>;
   unreadLeads: number;
@@ -17,6 +17,13 @@ interface Briefing {
     reasons: string[];
     listing: string | null;
   } | null;
+}
+
+function getClientGreeting(): string {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good morning";
+  if (hour < 18) return "Good afternoon";
+  return "Good evening";
 }
 
 export default function DailyBriefing() {
@@ -62,7 +69,9 @@ export default function DailyBriefing() {
     <div className="rounded-xl border border-gray-200 bg-gradient-to-br from-brand-50/60 via-white to-brand-50/20 p-5">
       <div className="flex items-center gap-2">
         <Sparkles className="h-4 w-4 text-brand-500" />
-        <h3 className="text-sm font-semibold text-gray-900">{data.greeting}</h3>
+        <h3 className="text-sm font-semibold text-gray-900">
+          {getClientGreeting()}, {data.firstName}
+        </h3>
       </div>
 
       <div className="mt-3 space-y-2">
