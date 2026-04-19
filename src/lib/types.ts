@@ -95,6 +95,9 @@ export interface Listing {
   laundry_location?: string | null;
   basement_type?: string | null;
   published_at?: string | null;
+  // Per-listing AI chat toggle. True by default — set to false to hide
+  // the AI chat bubble on that specific listing.
+  ai_chat_enabled?: boolean;
 }
 
 export interface ListingVideo {

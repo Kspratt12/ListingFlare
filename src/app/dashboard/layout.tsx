@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
@@ -62,10 +62,27 @@ export default function DashboardLayout({
     });
   }, []);
 
+  // Restore the saved brand color synchronously before paint on every
+  // mount — covers the SPA-navigation case where the root <head> inline
+  // script only runs on full page loads. Without this, navigating from
+  // e.g. the demo page (which clears the variable on unmount) back into
+  // the dashboard would flash gold before the profile-based effect fires.
+  useLayoutEffect(() => {
+    if (typeof document === "undefined") return;
+    try {
+      const cached = localStorage.getItem("listingflare:brand-color");
+      if (cached) {
+        document.documentElement.style.setProperty("--agent-brand", cached);
+      }
+    } catch {
+      // private-mode / quota — ignore
+    }
+  }, []);
+
   // Keep the --agent-brand CSS variable in sync with whatever's loaded from
   // the profile. Only runs when the profile has actually loaded — while
-  // loading, we leave the value that the root-layout inline script already
-  // restored from localStorage, so there's no gold-flash-then-your-color.
+  // loading, we leave whatever the useLayoutEffect above or the inline
+  // root-script restored from localStorage. That avoids the gold-flash.
   // Also persist the current choice to localStorage for next visit.
   useEffect(() => {
     if (typeof document === "undefined" || !profile) return;
@@ -81,6 +98,14 @@ export default function DashboardLayout({
   const handleLogout = async () => {
     const supabase = createClient();
     await supabase.auth.signOut();
+    // Clear the per-browser brand-color cache so the next user who signs
+    // in on this device doesn't briefly see the previous user's theme.
+    try {
+      localStorage.removeItem("listingflare:brand-color");
+      document.documentElement.style.removeProperty("--agent-brand");
+    } catch {
+      // ignore
+    }
     router.push("/login");
     router.refresh();
   };

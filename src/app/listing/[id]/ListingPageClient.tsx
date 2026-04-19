@@ -265,27 +265,32 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
         currentListingId={listing.id}
         agentName={agent.name || ""}
       />
-      <ListingChat
-        listing={{
-          street: listing.street,
-          city: listing.city,
-          state: listing.state,
-          zip: listing.zip,
-          price: listing.price,
-          beds: listing.beds,
-          baths: listing.baths,
-          sqft: listing.sqft,
-          yearBuilt: listing.year_built || 0,
-          lotSize: listing.lot_size,
-          description: listing.description,
-          features: listing.features,
-          agentName: agent.name,
-          agentPhone: agent.phone,
-        }}
-        listingId={listing.id}
-        agentId={listing.agent_id}
-        calendlyUrl={agent.calendly_url || undefined}
-      />
+      {/* AI chat is on by default for every listing, but agents can
+          flip it off per-listing from the Create/Edit form when they
+          want full manual control on a specific property. */}
+      {listing.ai_chat_enabled !== false && (
+        <ListingChat
+          listing={{
+            street: listing.street,
+            city: listing.city,
+            state: listing.state,
+            zip: listing.zip,
+            price: listing.price,
+            beds: listing.beds,
+            baths: listing.baths,
+            sqft: listing.sqft,
+            yearBuilt: listing.year_built || 0,
+            lotSize: listing.lot_size,
+            description: listing.description,
+            features: listing.features,
+            agentName: agent.name,
+            agentPhone: agent.phone,
+          }}
+          listingId={listing.id}
+          agentId={listing.agent_id}
+          calendlyUrl={agent.calendly_url || undefined}
+        />
+      )}
       <Footer />
     </main>
   );

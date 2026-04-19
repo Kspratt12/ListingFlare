@@ -48,7 +48,21 @@ interface Row {
   value: string | null | undefined;
 }
 
-function Section({
+// One row (label → value). Rows flow inside a CSS columns layout so the
+// column breaks are even without us having to balance by hand.
+function DetailRow({ row }: { row: Row }) {
+  return (
+    <div className="flex items-baseline justify-between gap-4 break-inside-avoid py-2.5">
+      <dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500">{row.label}</dt>
+      <dd className="text-right text-sm font-semibold text-gray-900">{row.value}</dd>
+    </div>
+  );
+}
+
+// Section inside the single stat sheet — small icon + title on the left,
+// rows flowing in a 2-column layout on the right. Each section is
+// separated by a hairline divider, no individual card wrappers.
+function StatSection({
   title,
   icon: Icon,
   rows,
@@ -60,48 +74,38 @@ function Section({
   const visible = rows.filter((r) => r.value);
   if (visible.length === 0) return null;
   return (
-    <div className="group relative snap-start overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm shadow-gray-200/60 transition-all duration-500 hover:-translate-y-1 hover:border-brand-300 hover:shadow-2xl hover:shadow-gray-300/50">
-      {/* Top accent stripe in brand color */}
-      <div
-        className="h-1 w-full"
-        style={{ background: "linear-gradient(90deg, transparent 0%, var(--agent-brand, #b8965a) 20%, var(--agent-brand, #b8965a) 80%, transparent 100%)" }}
-      />
-      {/* Subtle corner glow in brand color */}
-      <div
-        className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-20"
-        style={{ backgroundColor: "var(--agent-brand, #b8965a)" }}
-      />
-
-      <div className="relative flex items-center gap-4 border-b border-gray-100 px-6 py-5">
-        <div
-          className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl shadow-inner transition-transform duration-500 group-hover:scale-110"
-          style={{
-            background: "linear-gradient(135deg, color-mix(in srgb, var(--agent-brand, #b8965a) 14%, white) 0%, color-mix(in srgb, var(--agent-brand, #b8965a) 22%, white) 100%)",
-          }}
-        >
-          <Icon className="h-5 w-5" style={{ color: "var(--agent-brand, #b8965a)" }} />
-        </div>
-        <div className="min-w-0 flex-1">
-          <h3 className="font-serif text-lg font-semibold leading-tight text-gray-900">{title}</h3>
-          <p className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.2em] text-gray-400">
-            {visible.length} {visible.length === 1 ? "detail" : "details"}
-          </p>
-        </div>
-      </div>
-      <dl className="divide-y divide-gray-100 bg-gradient-to-b from-white to-gray-50/40">
-        {visible.map((row) => (
-          <div key={row.label} className="flex items-start justify-between gap-4 px-6 py-3.5 transition-colors hover:bg-white">
-            <dt className="text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-500">{row.label}</dt>
-            <dd className="text-right text-sm font-bold text-gray-900">{row.value}</dd>
+    <div className="border-t border-gray-200 first:border-t-0">
+      <div className="grid gap-6 px-6 py-6 md:grid-cols-[200px_1fr] md:gap-10 md:px-8 md:py-8">
+        <div className="flex items-center gap-3 md:flex-col md:items-start md:gap-2">
+          <div
+            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg"
+            style={{
+              background: "color-mix(in srgb, var(--agent-brand, #b8965a) 14%, white)",
+            }}
+          >
+            <Icon className="h-4 w-4" style={{ color: "var(--agent-brand, #b8965a)" }} />
           </div>
-        ))}
-      </dl>
+          <div>
+            <h3 className="font-serif text-base font-semibold text-gray-900 md:text-lg">{title}</h3>
+            <p className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.2em] text-gray-400">
+              {visible.length} {visible.length === 1 ? "detail" : "details"}
+            </p>
+          </div>
+        </div>
+        <dl className="md:columns-2 md:gap-10">
+          {visible.map((row) => (
+            <DetailRow key={row.label} row={row} />
+          ))}
+        </dl>
+      </div>
     </div>
   );
 }
 
 // Auto-hides any section with zero populated fields so agents who don't
-// fill everything don't see empty cards.
+// fill everything don't see empty rows. Rendered as a single stat sheet —
+// one panel with elegant section dividers — rather than a grid of cards,
+// which felt too "dashboard-y" for a luxury MLS-style listing.
 export default function PropertyAttributes(props: Props) {
   const generalRows: Row[] = [
     { label: "Property Type", value: props.propertySubtype || null },
@@ -163,7 +167,7 @@ export default function PropertyAttributes(props: Props) {
           backgroundImage: "radial-gradient(ellipse at top, var(--agent-brand, #b8965a) 0%, transparent 60%)",
         }}
       />
-      <div className="relative mx-auto max-w-5xl px-6">
+      <div className="relative mx-auto max-w-4xl px-6">
         <div className="text-center">
           <div
             className="mx-auto mb-4 h-px w-20"
@@ -180,23 +184,31 @@ export default function PropertyAttributes(props: Props) {
           </p>
         </div>
 
-        {/* Mobile: horizontal swipe carousel with snap-scroll.
-            Desktop: 2-column grid. */}
-        <div className="mt-8 -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-6 pb-4 md:mx-0 md:grid md:snap-none md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-          <div className="w-[85%] flex-shrink-0 md:w-auto"><Section title="General" icon={Home} rows={generalRows} /></div>
-          <div className="w-[85%] flex-shrink-0 md:w-auto"><Section title="Costs" icon={Info} rows={costRows} /></div>
-          <div className="w-[85%] flex-shrink-0 md:w-auto"><Section title="Interior" icon={Sofa} rows={interiorRows} /></div>
-          <div className="w-[85%] flex-shrink-0 md:w-auto"><Section title="Systems" icon={Thermometer} rows={systemsRows} /></div>
-          <div className="w-[85%] flex-shrink-0 md:w-auto"><Section title="Construction" icon={Hammer} rows={constructionRows} /></div>
+        {/* Single stat sheet — one elegant panel, sections separated by
+            hairline dividers. No more orphan-card awkwardness, no more
+            dashboard-widget feel. Top and bottom edges get a subtle
+            brand-tinted accent line to give it a premium brochure feel. */}
+        <div className="mt-10 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm shadow-gray-200/40">
+          <div
+            className="h-1 w-full"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent 0%, var(--agent-brand, #b8965a) 20%, var(--agent-brand, #b8965a) 80%, transparent 100%)",
+            }}
+          />
+          <StatSection title="General" icon={Home} rows={generalRows} />
+          <StatSection title="Costs" icon={Info} rows={costRows} />
+          <StatSection title="Interior" icon={Sofa} rows={interiorRows} />
+          <StatSection title="Systems" icon={Thermometer} rows={systemsRows} />
+          <StatSection title="Construction" icon={Hammer} rows={constructionRows} />
         </div>
-        <p className="mt-2 text-center text-[11px] text-gray-400 md:hidden">Swipe to see all details →</p>
 
         {appliances && (
-          <div className="mt-4 overflow-hidden rounded-2xl border border-gray-200 bg-white">
-            <div className="border-b border-gray-100 bg-gray-50/50 px-5 py-3">
+          <div className="mt-6 overflow-hidden rounded-2xl border border-gray-200 bg-white">
+            <div className="border-b border-gray-100 bg-gray-50/50 px-6 py-3">
               <h3 className="text-sm font-semibold text-gray-900">Appliances Included</h3>
             </div>
-            <div className="flex flex-wrap gap-2 px-5 py-4">
+            <div className="flex flex-wrap gap-2 px-6 py-4">
               {props.appliances!.map((a) => (
                 <span key={a} className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700">
                   {a}

@@ -120,6 +120,7 @@ export default function EditListingPage() {
   const [launchDate, setLaunchDate] = useState("");
   const [videoIntroUrl, setVideoIntroUrl] = useState("");
   const [brandColor, setBrandColor] = useState("");
+  const [aiChatEnabled, setAiChatEnabled] = useState(true); // default on; falls back to true for pre-migration listings
   // Track previous price + history so we can auto-log price changes
   const [loadedPrice, setLoadedPrice] = useState<number | null>(null);
   const [priceHistory, setPriceHistory] = useState<Array<{ date: string; price: number; event: string }>>([]);
@@ -299,6 +300,7 @@ export default function EditListingPage() {
       setLaunchDate(data.launch_date ? new Date(data.launch_date).toISOString().slice(0, 16) : "");
       setVideoIntroUrl(data.video_intro_url || "");
       setBrandColor(data.brand_color || "");
+      setAiChatEnabled(data.ai_chat_enabled !== false);
       setLoadedPrice(data.price || null);
       setPriceHistory(Array.isArray(data.price_history) ? data.price_history : []);
       setHasUnsavedChanges(false);
@@ -522,6 +524,7 @@ export default function EditListingPage() {
           launch_date: launchDate ? new Date(launchDate).toISOString() : null,
           video_intro_url: videoIntroUrl || null,
           brand_color: brandColor || null,
+          ai_chat_enabled: aiChatEnabled,
           price_history: nextHistory,
           updated_at: new Date().toISOString(),
         })
@@ -1030,6 +1033,33 @@ export default function EditListingPage() {
               label=""
               fallbackLabel="Leave blank to use your agent brand color from Settings"
             />
+          </div>
+        </section>
+
+        {/* AI chat toggle — per-listing override. */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex-1">
+              <h2 className="font-serif text-lg font-semibold text-gray-900">AI chat on this listing</h2>
+              <p className="mt-1 text-sm text-gray-500">
+                Buyers can ask questions and get instant answers about this property. Turns into leads automatically. Leave on unless you want full manual control on this one.
+              </p>
+            </div>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={aiChatEnabled}
+              onClick={() => { setAiChatEnabled((v) => !v); setHasUnsavedChanges(true); }}
+              className={`relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full transition-colors ${
+                aiChatEnabled ? "bg-brand-500" : "bg-gray-300"
+              }`}
+            >
+              <span
+                className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${
+                  aiChatEnabled ? "translate-x-6" : "translate-x-1"
+                }`}
+              />
+            </button>
           </div>
         </section>
 
