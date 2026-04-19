@@ -6,6 +6,8 @@ import { Mail, Phone, Home, Clock, ChevronDown, Sparkles, GripVertical } from "l
 import { formatPhone } from "@/lib/formatters";
 import HotLeadBadge from "@/components/HotLeadBadge";
 import { calculateHotScore } from "@/lib/hotScore";
+import ContactButtons from "@/components/ContactButtons";
+import { firstName } from "@/lib/contactLinks";
 import {
   DndContext,
   DragEndEvent,
@@ -101,6 +103,16 @@ function LeadCardContent({ lead, dragging }: { lead: Lead; dragging?: boolean })
             {formatPhone(lead.phone)}
           </span>
         )}
+      </div>
+      <div className="mt-2">
+        <ContactButtons
+          phone={lead.phone}
+          email={lead.email}
+          size="sm"
+          stopPropagation
+          smsBody={`Hi ${firstName(lead.name)}, following up on your interest. Got a minute?`}
+          emailSubject="Following up"
+        />
       </div>
     </>
   );

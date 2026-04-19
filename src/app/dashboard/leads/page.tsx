@@ -20,6 +20,8 @@ import LeadIntel from "@/components/LeadIntel";
 import LeadSourcesCard from "@/components/LeadSourcesCard";
 import HotLeadBadge from "@/components/HotLeadBadge";
 import { calculateHotScore } from "@/lib/hotScore";
+import ContactButtons from "@/components/ContactButtons";
+import { firstName } from "@/lib/contactLinks";
 
 const LEAD_STATUSES = [
   { value: "new", label: "New", color: "bg-blue-50 text-blue-700 border-blue-300" },
@@ -822,15 +824,25 @@ export default function LeadsPage() {
                   </div>
                 </div>
               ) : (
-              <div className="flex flex-wrap gap-4 text-sm">
-                <a href={`mailto:${selectedLead.email}`} className="flex items-center gap-1.5 text-brand-600 hover:underline">
-                  <Mail className="h-4 w-4" />{selectedLead.email}
-                </a>
-                {selectedLead.phone && (
-                  <a href={`tel:${selectedLead.phone}`} className="flex items-center gap-1.5 text-brand-600 hover:underline">
-                    <Phone className="h-4 w-4" />{formatPhone(selectedLead.phone)}
+              <div className="space-y-2">
+                <div className="flex flex-wrap gap-4 text-sm">
+                  <a href={`mailto:${selectedLead.email}`} className="flex items-center gap-1.5 text-brand-600 hover:underline">
+                    <Mail className="h-4 w-4" />{selectedLead.email}
                   </a>
-                )}
+                  {selectedLead.phone && (
+                    <a href={`tel:${selectedLead.phone}`} className="flex items-center gap-1.5 text-brand-600 hover:underline">
+                      <Phone className="h-4 w-4" />{formatPhone(selectedLead.phone)}
+                    </a>
+                  )}
+                </div>
+                <ContactButtons
+                  phone={selectedLead.phone}
+                  email={selectedLead.email}
+                  smsBody={`Hi ${firstName(selectedLead.name)}, this is ${profile?.name || "your agent"} following up on your interest. Got a minute?`}
+                  emailSubject="Following up"
+                  emailBody={`Hi ${firstName(selectedLead.name)},\n\nThanks for reaching out. I'd love to chat whenever you have a minute.\n\n${profile?.name || ""}`}
+                  showLabels
+                />
               </div>
               )}
               <div className="mt-3 flex items-center gap-3">

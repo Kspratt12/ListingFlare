@@ -22,6 +22,8 @@ import {
   Trash2,
 } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
+import ContactButtons from "@/components/ContactButtons";
+import { firstName } from "@/lib/contactLinks";
 
 type ShowingWithListing = Omit<Showing, "listing"> & {
   listing?: { street: string; city: string; state: string } | null;
@@ -562,6 +564,16 @@ export default function ShowingsPage() {
                                 {formatPhone(showing.phone)}
                               </a>
                             )}
+                          </div>
+
+                          <div className="mt-2">
+                            <ContactButtons
+                              phone={showing.phone}
+                              email={showing.email}
+                              size="sm"
+                              smsBody={`Hi ${firstName(showing.name)}, just confirming our showing on ${showing.showing_date} at ${showing.showing_time}. Let me know if anything changes.`}
+                              emailSubject={`Confirming your showing on ${showing.showing_date}`}
+                            />
                           </div>
 
                           {showing.message && (
