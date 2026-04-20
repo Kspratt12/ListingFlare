@@ -75,10 +75,19 @@ export default function Navbar({ topOffset = false, shareTitle, shareUrl, showPr
       className={`fixed left-0 right-0 z-40 transition-all duration-500 ${
         topOffset ? "top-[40px]" : "top-0"
       } ${
-        scrolled
-          ? "bg-gray-950/95 shadow-lg backdrop-blur-md"
-          : "bg-transparent"
+        scrolled ? "shadow-lg backdrop-blur-md" : ""
       }`}
+      style={
+        scrolled
+          ? {
+              // Same brand-tinted gradient as the dashboard sidebar so
+              // the navbar doesn't read as pure black — picks up the
+              // agent's theme color through the dark.
+              background:
+                "linear-gradient(180deg, color-mix(in srgb, var(--agent-brand, #b8965a) 22%, rgba(10,10,10,0.95)) 0%, color-mix(in srgb, var(--agent-brand, #b8965a) 14%, rgba(10,10,10,0.95)) 100%)",
+            }
+          : undefined
+      }
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
         {/* Logo - always links home */}
@@ -166,7 +175,13 @@ export default function Navbar({ topOffset = false, shareTitle, shareUrl, showPr
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="border-t border-white/10 bg-gray-950/98 backdrop-blur-md md:hidden"
+          className="border-t border-white/10 backdrop-blur-md md:hidden"
+          style={{
+            // Matches the desktop navbar + dashboard sidebar so the
+            // whole site reads as one brand-tinted dark surface.
+            background:
+              "linear-gradient(180deg, color-mix(in srgb, var(--agent-brand, #b8965a) 18%, rgba(10,10,10,0.98)) 0%, color-mix(in srgb, var(--agent-brand, #b8965a) 10%, rgba(10,10,10,0.98)) 100%)",
+          }}
         >
           <div className="flex flex-col gap-1 px-6 py-4">
             {links.map((link) => (
