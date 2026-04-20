@@ -93,7 +93,12 @@ export default function Navbar({ topOffset = false, shareTitle, shareUrl, showPr
         {/* Logo - always links home */}
         <Link href="/" className="font-serif text-xl font-bold text-white">
           Listing
-          <span style={{ color: "var(--agent-brand, #b8965a)" }}>Flare</span>
+          {/* "Flare" uses a brightened mix of the brand color so it stays
+              visible when the brand is dark (navy, black, deep red) —
+              otherwise dark-on-dark-navbar makes it disappear. */}
+          <span style={{ color: "color-mix(in srgb, var(--agent-brand, #b8965a) 55%, white)" }}>
+            Flare
+          </span>
         </Link>
 
         {/* Desktop links */}

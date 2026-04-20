@@ -123,7 +123,7 @@ export default function DashboardLayout({
       <div className="px-6 py-6">
         <Link href="/" className="font-serif text-xl font-bold text-white">
           Listing
-          <span style={{ color: "var(--agent-brand, #b8965a)" }}>
+          <span style={{ color: "color-mix(in srgb, var(--agent-brand, #b8965a) 55%, white)" }}>
             Flare
           </span>
         </Link>
@@ -286,7 +286,7 @@ export default function DashboardLayout({
             <Menu className="h-5 w-5" />
           </button>
           <span className="font-serif text-lg font-bold text-gray-900">
-            Listing<span style={{ color: "var(--agent-brand, #b8965a)" }}>Flare</span>
+            Listing<span style={{ color: "color-mix(in srgb, var(--agent-brand, #b8965a) 55%, white)" }}>Flare</span>
           </span>
         </header>
 
