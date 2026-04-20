@@ -96,7 +96,7 @@ export default function Navbar({ topOffset = false, shareTitle, shareUrl, showPr
           {/* "Flare" uses a brightened mix of the brand color so it stays
               visible when the brand is dark (navy, black, deep red) —
               otherwise dark-on-dark-navbar makes it disappear. */}
-          <span style={{ color: "color-mix(in srgb, var(--agent-brand, #b8965a) 55%, white)" }}>
+          <span style={{ color: "color-mix(in srgb, var(--agent-brand, #b8965a) 35%, white)" }}>
             Flare
           </span>
         </Link>
