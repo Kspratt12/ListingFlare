@@ -15,14 +15,17 @@ import { formatPhone, formatLotSize } from "@/lib/formatters";
 import VirtualTourEmbed from "@/components/VirtualTourEmbed";
 import MortgageCalculator from "@/components/MortgageCalculator";
 import NeighborhoodInfo from "@/components/NeighborhoodInfo";
-import OtherListings from "@/components/OtherListings";
+// OtherListings intentionally removed from the listing page — luxury
+// listings tell one property's story without cross-selling siblings.
+// The agent's full portfolio is still visible on the /agent/[id] page.
 import PriceHistory from "@/components/PriceHistory";
 import PropertyAttributes from "@/components/PropertyAttributes";
 import ComparableSales from "@/components/ComparableSales";
 import ListingAlertSignup from "@/components/ListingAlertSignup";
 import ListingStatsBar from "@/components/ListingStatsBar";
 import ComingSoonBanner from "@/components/ComingSoonBanner";
-import LiveViewerCounter from "@/components/LiveViewerCounter";
+// LiveViewerCounter intentionally removed — luxury listings don't use
+// pressure-selling ("18 people viewing right now") urgency tactics.
 import AgentVideoIntro from "@/components/AgentVideoIntro";
 import TestimonialShowcase from "@/components/TestimonialShowcase";
 
@@ -176,8 +179,6 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
         />
       ) : null}
 
-      <LiveViewerCounter listingId={listing.id} />
-
       {/* Compute the price-reduction summary from price_history so the
           hero can show a Zillow-style "Price improved" badge automatically.
           Uses the earliest "listed" or "relisted" event as the baseline;
@@ -309,11 +310,6 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
       />
       <ShowingScheduler listingId={listing.id} agentId={listing.agent_id} />
 
-      <OtherListings
-        agentId={listing.agent_id}
-        currentListingId={listing.id}
-        agentName={agent.name || ""}
-      />
       {/* AI chat is on by default for every listing, but agents can
           flip it off per-listing from the Create/Edit form when they
           want full manual control on a specific property. */}
