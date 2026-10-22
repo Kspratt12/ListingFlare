@@ -291,7 +291,18 @@ export default function OffersPage() {
 
       {/* Offer list */}
       {loading ? (
-        <div className="rounded-xl border border-gray-200 bg-white p-8 text-center text-sm text-gray-500">Loading…</div>
+        <div className="space-y-3" aria-busy="true" aria-label="Loading offers">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="animate-pulse rounded-xl border border-gray-200 bg-white p-5">
+              <div className="flex items-center justify-between">
+                <div className="h-4 w-40 rounded bg-gray-200" />
+                <div className="h-5 w-20 rounded-full bg-gray-100" />
+              </div>
+              <div className="mt-3 h-3 w-64 rounded bg-gray-100" />
+              <div className="mt-2 h-3 w-32 rounded bg-gray-100" />
+            </div>
+          ))}
+        </div>
       ) : filtered.length === 0 ? (
         <div className="rounded-xl border border-dashed border-gray-300 bg-white p-12 text-center">
           <HandshakeIcon className="mx-auto h-8 w-8 text-gray-300" />

@@ -497,13 +497,32 @@ export default function ShowingsPage() {
           <p className="mt-2 text-gray-500">
             When buyers book a showing from your listing pages, they&apos;ll appear here.
           </p>
-          <Link
-            href="/dashboard"
-            className="mt-6 inline-flex items-center gap-2 rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
-          >
-            <Home className="h-4 w-4" />
-            View Listings
-          </Link>
+          {myListings.length === 0 ? (
+            <Link
+              href="/dashboard/create"
+              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-gray-950 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-800"
+            >
+              <Plus className="h-4 w-4" />
+              Create a Listing
+            </Link>
+          ) : (
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <button
+                onClick={() => setCreatingShowing(true)}
+                className="inline-flex items-center gap-2 rounded-lg bg-gray-950 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-800"
+              >
+                <Plus className="h-4 w-4" />
+                Add Showing
+              </button>
+              <Link
+                href="/dashboard"
+                className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                <Home className="h-4 w-4" />
+                View Listings
+              </Link>
+            </div>
+          )}
         </div>
       ) : (
         <div className="mt-6 space-y-6">

@@ -6,7 +6,7 @@ import type { Lead, AgentProfile } from "@/lib/types";
 import {
   MessageSquare, Mail, Phone, Calendar, Home, ChevronDown,
   X, Loader2, ArrowUpDown, Lock, Trash2, Pencil, Sparkles,
-  LayoutList, Columns3, Search, Download, Inbox, UserCheck,
+  LayoutList, Columns3, Search, Download, Inbox, UserCheck, PlusCircle,
 } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
 import { readUserPref, writeUserPref } from "@/lib/userStorage";
@@ -578,13 +578,27 @@ export default function LeadsPage() {
           ))}
         </div>
       ) : leads.length === 0 ? (
-        <div className="mt-16 text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
-            <MessageSquare className="h-8 w-8 text-gray-400" />
+        <>
+          <div className="mt-8 flex flex-col items-center gap-3 rounded-xl border border-dashed border-gray-300 bg-white px-6 py-8 text-center">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
+              <MessageSquare className="h-6 w-6 text-gray-400" />
+            </div>
+            <h3 className="font-serif text-xl font-semibold text-gray-900">No leads yet</h3>
+            <p className="max-w-md text-sm text-gray-500">
+              When visitors submit the contact form on your listings, they&apos;ll land in the first column below.
+              Publish a listing and share it to get your first lead.
+            </p>
+            <Link
+              href="/dashboard/create"
+              className="inline-flex items-center gap-2 rounded-lg bg-gray-950 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-800"
+            >
+              <PlusCircle className="h-4 w-4" />
+              Create a Listing
+            </Link>
           </div>
-          <h3 className="mt-4 font-serif text-xl font-semibold text-gray-900">No leads yet</h3>
-          <p className="mt-2 text-gray-500">When visitors submit the contact form on your listings, they&apos;ll show up here.</p>
-        </div>
+          {/* Empty board so new agents see how the pipeline works */}
+          <LeadPipeline leads={[]} onSelectLead={openLead} onUpdateStatus={updateLeadStatus} />
+        </>
       ) : viewMode === "pipeline" ? (
         <LeadPipeline
           leads={scopedLeads}
