@@ -3,6 +3,8 @@ import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
 import { PUBLIC_AGENT_COLUMNS, type Listing, type PublicAgentProfile } from "@/lib/types";
 import type { Metadata } from "next";
+import { cache } from "react";
+import { cookies, headers } from "next/headers";
 import ListingPageClient from "./ListingPageClient";
 import Link from "next/link";
 
@@ -35,20 +37,34 @@ const LISTING_PAGE_COLUMNS =
 const isUUIDFormat = (s: string) =>
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(s);
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+// One lookup per request, shared by generateMetadata and the page itself
+// (React cache() dedupes it), instead of each running its own queries.
+// UUID links try the id first and fall back to the slug.
+const getListingRow = cache(async (idOrSlug: string) => {
   const db = getAdminClient();
+  if (isUUIDFormat(idOrSlug)) {
+    const { data } = await db.from("listings").select(LISTING_PAGE_COLUMNS).eq("id", idOrSlug).single();
+    if (data) return data;
+  }
+  const { data } = await db.from("listings").select(LISTING_PAGE_COLUMNS).eq("slug", idOrSlug).single();
+  return data;
+});
 
-  let data;
-  let slug = params.id;
-  if (isUUIDFormat(params.id)) {
-    const res = await db.from("listings").select("street, city, state, price, slug, photos, beds, baths, sqft").eq("id", params.id).single();
-    data = res.data;
-    if (data?.slug) slug = data.slug;
+// Crawlers and link-preview fetchers shouldn't inflate a listing's view count
+const BOT_UA = /bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|lighthouse|headless|monitor/i;
+
+async function getSignedInUserId(): Promise<string | null> {
+  try {
+    const { data: { user } } = await createServerSupabaseClient().auth.getUser();
+    return user?.id ?? null;
+  } catch {
+    return null;
   }
-  if (!data) {
-    const res = await db.from("listings").select("street, city, state, price, slug, photos, beds, baths, sqft").eq("slug", params.id).single();
-    data = res.data;
-  }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const data = await getListingRow(params.id);
+  const slug = data?.slug || params.id;
 
   if (!data) return { title: "Listing Not Found" };
 
@@ -113,45 +129,22 @@ export default async function ListingPage({ params }: Props) {
   // Admin client for ALL database queries - bypasses RLS for anonymous visitors
   const db = getAdminClient();
 
-  // Fetch listing - try UUID first, then slug
-  let listing;
-  if (isUUIDFormat(params.id)) {
-    const { data } = await db.from("listings").select(LISTING_PAGE_COLUMNS).eq("id", params.id).single();
-    listing = data;
-  }
-  if (!listing) {
-    const { data } = await db.from("listings").select(LISTING_PAGE_COLUMNS).eq("slug", params.id).single();
-    listing = data;
-  }
+  // Visitors with no Supabase auth cookie can't be the owner, so the auth
+  // round-trip is skipped for them. Signed-in visitors start it right away,
+  // in parallel with the listing lookup.
+  const hasAuthCookie = cookies().getAll().some((c) => c.name.startsWith("sb-"));
+  const isBot = BOT_UA.test(headers().get("user-agent") || "");
+  const userIdPromise = hasAuthCookie ? getSignedInUserId() : Promise.resolve<string | null>(null);
+
+  const listing = await getListingRow(params.id);
 
   if (!listing) notFound();
   if (listing.status === "draft" || listing.status === "archived") notFound();
 
-  const typedListing = listing as Listing;
-
-  // Fetch agent profile - also using admin client
-  const { data: agent } = await db
-    .from("agent_profiles")
-    .select(PUBLIC_AGENT_COLUMNS)
-    .eq("id", typedListing.agent_id)
-    .single();
-
-  if (!agent) notFound();
-
-  const typedAgent = agent as unknown as PublicAgentProfile;
-
-  // Check if the current user is the listing owner
-  let isOwner = false;
-  try {
-    const authClient = createServerSupabaseClient();
-    const { data: { user } } = await authClient.auth.getUser();
-    isOwner = !!user && user.id === typedListing.agent_id;
-  } catch {
-    // Not logged in or auth error - treat as non-owner
-  }
+  const typedListing = listing as unknown as Listing;
 
   // Increment view count atomically using SQL to prevent race conditions
-  if (!isOwner) {
+  const countView = async () => {
     const { error: rpcError } = await db.rpc("increment_view_count", { listing_id: typedListing.id });
     if (rpcError) {
       // Fallback if RPC doesn't exist yet
@@ -160,6 +153,30 @@ export default async function ListingPage({ params }: Props) {
         .update({ view_count: (typedListing.view_count || 0) + 1 })
         .eq("id", typedListing.id);
     }
+  };
+
+  // Agent profile, owner check and (for anonymous humans) the view count all
+  // run at the same time instead of one after another.
+  const [agentRes, signedInUserId] = await Promise.all([
+    db
+      .from("agent_profiles")
+      .select(PUBLIC_AGENT_COLUMNS)
+      .eq("id", typedListing.agent_id)
+      .single(),
+    userIdPromise,
+    !hasAuthCookie && !isBot ? countView() : Promise.resolve(),
+  ]);
+
+  const agent = agentRes.data;
+  if (!agent) notFound();
+
+  const typedAgent = agent as unknown as PublicAgentProfile;
+
+  const isOwner = !!signedInUserId && signedInUserId === typedListing.agent_id;
+
+  // Signed-in visitors: count the view only once we know they aren't the owner
+  if (hasAuthCookie && !isOwner && !isBot) {
+    await countView();
   }
 
   // Check subscription status
