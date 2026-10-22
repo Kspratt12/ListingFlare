@@ -89,14 +89,34 @@ export default function LeadsPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const showErrorToast = (message: string) => {
+    setToast({ message, type: "error" });
+    setTimeout(() => setToast(null), 4000);
+  };
+
+  // Optimistic: the UI (list, pipeline card, detail panel) changes
+  // immediately; the write happens in the background and rolls back with
+  // a toast if Supabase rejects it.
   const updateLeadStatus = async (id: string, status: string) => {
-    await supabase.from("leads").update({ status, is_read: true }).eq("id", id);
+    const previous = leads.find((l) => l.id === id);
+    if (!previous) return;
+    const prevStatus = previous.status;
+    const prevRead = previous.is_read;
+
     setLeads((prev) =>
       prev.map((l) => (l.id === id ? { ...l, status: status as Lead["status"], is_read: true } : l))
     );
     if (selectedLead?.id === id) {
       setSelectedLead((prev) => prev ? { ...prev, status: status as Lead["status"], is_read: true } : null);
     }
+
+    supabase.from("leads").update({ status, is_read: true }).eq("id", id).then(({ error }) => {
+      if (!error) return;
+      setLeads((prev) => prev.map((l) => (l.id === id ? { ...l, status: prevStatus, is_read: prevRead } : l)));
+      setSelectedLead((prev) => (prev?.id === id ? { ...prev, status: prevStatus, is_read: prevRead } : prev));
+      showErrorToast("Couldn't update the lead. Your change was reverted.");
+    });
+
     // If marked closed, prompt to log commission
     if (status === "closed") {
       const lead = leads.find((l) => l.id === id) || selectedLead;
@@ -107,22 +127,35 @@ export default function LeadsPage() {
   };
 
   const deleteLead = async (id: string) => {
-    await supabase.from("leads").delete().eq("id", id);
+    const removed = leads.find((l) => l.id === id);
     setLeads((prev) => prev.filter((l) => l.id !== id));
     setSelectedLead(null);
     setDeleteConfirm(false);
+
+    const { error } = await supabase.from("leads").delete().eq("id", id);
+    if (error && removed) {
+      setLeads((prev) => [removed, ...prev.filter((l) => l.id !== id)]
+        .sort((a, b) => b.created_at.localeCompare(a.created_at)));
+      showErrorToast("Couldn't delete the lead. It has been restored.");
+    }
   };
 
   const saveLeadEdit = async () => {
     if (!selectedLead) return;
-    await supabase.from("leads").update({
-      name: editName,
-      email: editEmail,
-      phone: editPhone,
-    }).eq("id", selectedLead.id);
-    setLeads((prev) => prev.map((l) => l.id === selectedLead.id ? { ...l, name: editName, email: editEmail, phone: editPhone } : l));
-    setSelectedLead((prev) => prev ? { ...prev, name: editName, email: editEmail, phone: editPhone } : null);
+    const id = selectedLead.id;
+    const before = { name: selectedLead.name, email: selectedLead.email, phone: selectedLead.phone };
+    const after = { name: editName, email: editEmail, phone: editPhone };
+
+    setLeads((prev) => prev.map((l) => l.id === id ? { ...l, ...after } : l));
+    setSelectedLead((prev) => prev ? { ...prev, ...after } : null);
     setEditingLead(false);
+
+    const { error } = await supabase.from("leads").update(after).eq("id", id);
+    if (error) {
+      setLeads((prev) => prev.map((l) => l.id === id ? { ...l, ...before } : l));
+      setSelectedLead((prev) => (prev?.id === id ? { ...prev, ...before } : prev));
+      showErrorToast("Couldn't save changes. Your edit was reverted.");
+    }
   };
 
   const openLead = (lead: Lead) => {

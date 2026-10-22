@@ -1,7 +1,7 @@
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
-import type { Listing, AgentProfile } from "@/lib/types";
+import { PUBLIC_AGENT_COLUMNS, type Listing, type PublicAgentProfile } from "@/lib/types";
 import type { Metadata } from "next";
 import ListingPageClient from "./ListingPageClient";
 import Link from "next/link";
@@ -26,6 +26,11 @@ function getAdminClient() {
     }
   );
 }
+
+// Everything the public listing page renders. Deliberately excludes
+// updated_at and anything not shown to visitors.
+const LISTING_PAGE_COLUMNS =
+  "id, agent_id, status, launch_date, video_intro_url, brand_color, slug, street, city, state, zip, price, beds, baths, sqft, year_built, lot_size, description, features, photos, videos, virtual_tour_url, view_count, created_at, price_history, mls_id, county, subdivision, architectural_style, property_subtype, stories, parking_spaces, property_tax_annual, hoa_required, hoa_fee_monthly, heating_type, cooling_type, water_source, sewer_type, roof_type, construction_material, foundation_type, appliances_included, school_elementary, school_middle, school_high, parcel_number, fireplace_count, laundry_location, basement_type, published_at, ai_chat_enabled, comparable_sales, co_agent_name, co_agent_title, co_agent_brokerage, co_agent_license, co_agent_phone, co_agent_email, co_agent_headshot_url";
 
 const isUUIDFormat = (s: string) =>
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(s);
@@ -61,6 +66,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
+    alternates: { canonical: url },
     openGraph: {
       title,
       description,
@@ -110,11 +116,11 @@ export default async function ListingPage({ params }: Props) {
   // Fetch listing - try UUID first, then slug
   let listing;
   if (isUUIDFormat(params.id)) {
-    const { data } = await db.from("listings").select("*").eq("id", params.id).single();
+    const { data } = await db.from("listings").select(LISTING_PAGE_COLUMNS).eq("id", params.id).single();
     listing = data;
   }
   if (!listing) {
-    const { data } = await db.from("listings").select("*").eq("slug", params.id).single();
+    const { data } = await db.from("listings").select(LISTING_PAGE_COLUMNS).eq("slug", params.id).single();
     listing = data;
   }
 
@@ -126,13 +132,13 @@ export default async function ListingPage({ params }: Props) {
   // Fetch agent profile - also using admin client
   const { data: agent } = await db
     .from("agent_profiles")
-    .select("*")
+    .select(PUBLIC_AGENT_COLUMNS)
     .eq("id", typedListing.agent_id)
     .single();
 
   if (!agent) notFound();
 
-  const typedAgent = agent as AgentProfile;
+  const typedAgent = agent as unknown as PublicAgentProfile;
 
   // Check if the current user is the listing owner
   let isOwner = false;

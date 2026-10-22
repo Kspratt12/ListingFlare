@@ -291,3 +291,32 @@ export interface SellerProspect {
   created_at: string;
   updated_at: string;
 }
+
+// Columns that are safe to send to the browser on public pages. Anything
+// not listed here (Stripe IDs, Google OAuth tokens, billing flags) must
+// never be selected for, or passed into, a client component.
+export const PUBLIC_AGENT_COLUMNS =
+  "id, handle, name, title, brokerage, phone, email, headshot_url, brand_color, instagram, linkedin, zillow, realtor_com, facebook, website, calendly_url, license_number, subscription_status, trial_ends_at" as const;
+
+export type PublicAgentProfile = Pick<
+  AgentProfile,
+  | "id"
+  | "handle"
+  | "name"
+  | "title"
+  | "brokerage"
+  | "phone"
+  | "email"
+  | "headshot_url"
+  | "brand_color"
+  | "instagram"
+  | "linkedin"
+  | "zillow"
+  | "realtor_com"
+  | "facebook"
+  | "website"
+  | "calendly_url"
+  | "license_number"
+  | "subscription_status"
+  | "trial_ends_at"
+>;

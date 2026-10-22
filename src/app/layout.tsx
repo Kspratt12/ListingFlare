@@ -50,7 +50,9 @@ export const metadata: Metadata = {
     "property website for realtors",
   ],
   alternates: {
-    canonical: "https://www.listingflare.com",
+    // Relative: each page resolves to its own URL. Pages with a different
+    // canonical (e.g. listings by slug) override this in their own metadata.
+    canonical: "./",
   },
   openGraph: {
     type: "website",

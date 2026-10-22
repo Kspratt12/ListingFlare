@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
-import type { Listing, AgentProfile } from "@/lib/types";
+import type { Listing, PublicAgentProfile } from "@/lib/types";
 import Navbar from "@/components/Navbar";
 import HeroSlideshow from "@/components/HeroSlideshow";
 import PropertyDetails from "@/components/PropertyDetails";
@@ -37,11 +37,11 @@ import { ArrowLeft, Pencil } from "lucide-react";
 
 interface Props {
   listing: Listing;
-  agent: AgentProfile;
+  agent: PublicAgentProfile;
   isOwner?: boolean;
 }
 
-function toPropertyListing(listing: Listing, agent: AgentProfile): PropertyListing {
+function toPropertyListing(listing: Listing, agent: PublicAgentProfile): PropertyListing {
   return {
     address: {
       street: listing.street,

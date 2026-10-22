@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
-import type { Listing, AgentProfile } from "@/lib/types";
+import { PUBLIC_AGENT_COLUMNS, type Listing, type PublicAgentProfile } from "@/lib/types";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Phone, Mail, MapPin, Star, Quote } from "lucide-react";
@@ -26,9 +26,9 @@ const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
 async function findAgent(idOrHandle: string) {
   const db = getAdminClient();
   if (UUID_RE.test(idOrHandle)) {
-    return db.from("agent_profiles").select("*").eq("id", idOrHandle).maybeSingle();
+    return db.from("agent_profiles").select(PUBLIC_AGENT_COLUMNS).eq("id", idOrHandle).maybeSingle();
   }
-  return db.from("agent_profiles").select("*").ilike("handle", idOrHandle).maybeSingle();
+  return db.from("agent_profiles").select(PUBLIC_AGENT_COLUMNS).ilike("handle", idOrHandle).maybeSingle();
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -46,7 +46,7 @@ export default async function AgentProfilePage({ params }: Props) {
 
   if (!agent) notFound();
 
-  const typedAgent = agent as AgentProfile;
+  const typedAgent = agent as unknown as PublicAgentProfile;
   const agentId = typedAgent.id;
   const supabase = getAdminClient();
 
