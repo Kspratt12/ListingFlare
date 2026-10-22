@@ -20,9 +20,9 @@ export const article: BlogPost = {
   ],
   readingTime: 9,
   coverImage:
-    "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=630&fit=crop&q=80",
+    "/blog/zillow.png",
   coverImageAlt:
-    "Listing agent presenting a branded single-property website on a laptop instead of a multi-agent portal",
+    "Aerial view of a dense housing development showing many competing homes, like listings crowded together on a portal",
   content: `
 <p>You did the work to win the listing. You hired the photographer, wrote the description, priced it with the seller, and staged the open house. Then the most important marketing asset, the page buyers actually look at, lives on someone else's website, next to other agents' ads and other homes.</p>
 

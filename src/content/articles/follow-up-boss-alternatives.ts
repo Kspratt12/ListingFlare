@@ -21,9 +21,9 @@ export const article: BlogPost = {
   ],
   readingTime: 18,
   coverImage:
-    "https://images.unsplash.com/photo-1556155092-490a1ba16284?w=1200&h=630&fit=crop&q=80",
+    "/blog/close-deals.png",
   coverImageAlt:
-    "Real estate CRM dashboard showing lead management and follow-up tools as Follow Up Boss alternatives",
+    "Two real estate professionals shaking hands after closing a deal, representing a CRM built around follow-up and conversions",
   content: `
 <p>Follow Up Boss is one of the most widely used CRMs in real estate. It has earned that reputation through strong integrations, reliable lead routing, and a platform that teams of all sizes can grow into. But popularity does not mean it is the right fit for every agent or every budget.</p>
 

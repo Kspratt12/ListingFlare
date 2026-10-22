@@ -19,9 +19,9 @@ export const article: BlogPost = {
   ],
   readingTime: 8,
   coverImage:
-    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=630&fit=crop&q=80",
+    "/blog/open-house-flyer.png",
   coverImageAlt:
-    "Printed real estate open house flyer with hero photo, price, and agent details on a desk",
+    "Branded open house sign with agent photo, phone number, and QR code, matching a printed open house flyer",
   content: `
 <p>It is Thursday night. The open house is Saturday. You have the photos, the price, and the description sitting in your listing. And you are about to spend forty minutes dragging the same information into a design template, resizing photos, and fixing text that will not line up.</p>
 
