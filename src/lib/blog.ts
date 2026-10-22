@@ -61,6 +61,8 @@ import { article as aiIsaTools } from "@/content/articles/best-ai-isa-tools-real
 import { article as followUpBossAlts } from "@/content/articles/follow-up-boss-alternatives";
 import { article as aiVirtualStaging } from "@/content/articles/best-ai-virtual-staging-software";
 import { article as aiToolsRealtors } from "@/content/articles/best-ai-tools-for-realtors";
+import { article as spwVsZillowShowcase } from "@/content/articles/single-property-website-vs-zillow-showcase";
+import { article as openHouseFlyerGenerator } from "@/content/articles/open-house-flyer-generator";
 
 const allPosts: BlogPost[] = [
   howToGetLeads,
@@ -110,6 +112,8 @@ const allPosts: BlogPost[] = [
   followUpBossAlts,
   aiVirtualStaging,
   aiToolsRealtors,
+  spwVsZillowShowcase,
+  openHouseFlyerGenerator,
 ];
 
 // Sort by date descending
