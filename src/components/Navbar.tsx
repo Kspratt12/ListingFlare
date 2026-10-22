@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { Menu, X, Share2, Check, Link2, Mail, MessageSquare, Printer } from "lucide-react";
 import Link from "next/link";
 
@@ -68,11 +67,8 @@ export default function Navbar({ topOffset = false, shareTitle, shareUrl, showPr
   const canShare = Boolean(shareUrl && shareTitle);
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-      className={`fixed left-0 right-0 z-40 transition-all duration-500 ${
+    <nav
+      className={`fixed left-0 right-0 z-40 animate-nav-drop transition-all duration-500 ${
         topOffset ? "top-[40px]" : "top-0"
       } ${
         scrolled ? "shadow-lg backdrop-blur-md" : ""
@@ -177,10 +173,8 @@ export default function Navbar({ topOffset = false, shareTitle, shareUrl, showPr
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="border-t border-white/10 backdrop-blur-md md:hidden"
+        <div
+          className="animate-menu-in border-t border-white/10 backdrop-blur-md md:hidden"
           style={{
             // Matches the desktop navbar + dashboard sidebar so the
             // whole site reads as one brand-tinted dark surface.
@@ -231,8 +225,8 @@ export default function Navbar({ topOffset = false, shareTitle, shareUrl, showPr
               Schedule Showing
             </a>
           </div>
-        </motion.div>
+        </div>
       )}
-    </motion.nav>
+    </nav>
   );
 }

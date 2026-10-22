@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useLayoutEffect } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
@@ -41,83 +42,25 @@ const navItems = [
   { href: "/dashboard/settings", label: "Settings", icon: Settings },
 ];
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const pathname = usePathname();
-  const router = useRouter();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [profile, setProfile] = useState<AgentProfile | null>(null);
-  const [bannerDismissed, setBannerDismissed] = useState(false);
-  const [themeOpen, setThemeOpen] = useState(false); // collapsed by default so the picker isn't visual clutter
-  const limits = getSubscriptionLimits(profile);
+interface SidebarContentProps {
+  pathname: string;
+  profile: AgentProfile | null;
+  setProfile: Dispatch<SetStateAction<AgentProfile | null>>;
+  themeOpen: boolean;
+  setThemeOpen: Dispatch<SetStateAction<boolean>>;
+  onNavigate: () => void;
+  onLogout: () => void;
+}
 
-  useEffect(() => {
-    const supabase = createClient();
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) {
-        supabase.from("agent_profiles").select("*").eq("id", user.id).single()
-          .then(({ data }) => { if (data) setProfile(data as AgentProfile); });
-      }
-    });
-  }, []);
-
-  // Restore the saved brand color synchronously before paint on every
-  // mount — covers the SPA-navigation case where the root <head> inline
-  // script only runs on full page loads. Without this, navigating from
-  // e.g. the demo page (which clears the variable on unmount) back into
-  // the dashboard would flash gold before the profile-based effect fires.
-  useLayoutEffect(() => {
-    if (typeof document === "undefined") return;
-    try {
-      const cached = localStorage.getItem("listingflare:brand-color");
-      if (cached) {
-        document.documentElement.style.setProperty("--agent-brand", cached);
-      }
-    } catch {
-      // private-mode / quota — ignore
-    }
-  }, []);
-
-  // Keep the --agent-brand CSS variable in sync with whatever's loaded from
-  // the profile. Only runs when the profile has actually loaded — while
-  // loading, we leave whatever the useLayoutEffect above or the inline
-  // root-script restored from localStorage. That avoids the gold-flash.
-  // Also persist the current choice to localStorage for next visit.
-  useEffect(() => {
-    if (typeof document === "undefined" || !profile) return;
-    const color = profile.brand_color || "#b8965a";
-    document.documentElement.style.setProperty("--agent-brand", color);
-    try {
-      localStorage.setItem("listingflare:brand-color", color);
-    } catch {
-      // private-mode / quota — ignore
-    }
-  }, [profile]);
-
-  const handleLogout = async () => {
-    const supabase = createClient();
-    await supabase.auth.signOut();
-    // Clear the per-browser brand-color cache so the next user who signs
-    // in on this device doesn't briefly see the previous user's theme.
-    try {
-      localStorage.removeItem("listingflare:brand-color");
-      document.documentElement.style.removeProperty("--agent-brand");
-    } catch {
-      // ignore
-    }
-    router.push("/login");
-    router.refresh();
-  };
-
+// Module-level so its identity is stable across layout re-renders
+// (an inline component would remount the whole sidebar every render).
+function SidebarContent({ pathname, profile, setProfile, themeOpen, setThemeOpen, onNavigate, onLogout }: SidebarContentProps) {
   const isActive = (href: string) => {
     if (href === "/dashboard") return pathname === "/dashboard";
     return pathname.startsWith(href);
   };
 
-  const SidebarContent = () => (
+  return (
     <>
       {/* Logo */}
       <div className="px-6 py-6">
@@ -137,7 +80,7 @@ export default function DashboardLayout({
             <Link
               key={item.href}
               href={item.href}
-              onClick={() => setSidebarOpen(false)}
+              onClick={() => onNavigate()}
               className={`group relative mb-1 flex items-center gap-3 overflow-hidden rounded-lg px-3 py-2.5 text-sm font-medium transition-all ${
                 active
                   ? "text-white"
@@ -227,7 +170,7 @@ export default function DashboardLayout({
         )}
 
         <button
-          onClick={handleLogout}
+          onClick={onLogout}
           className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-400 transition-colors hover:bg-white/5 hover:text-white"
         >
           <LogOut className="h-5 w-5" />
@@ -236,6 +179,88 @@ export default function DashboardLayout({
       </div>
     </>
   );
+}
+
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const pathname = usePathname();
+  const router = useRouter();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [profile, setProfile] = useState<AgentProfile | null>(null);
+  const [bannerDismissed, setBannerDismissed] = useState(false);
+  const [themeOpen, setThemeOpen] = useState(false); // collapsed by default so the picker isn't visual clutter
+  const limits = getSubscriptionLimits(profile);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        supabase.from("agent_profiles").select("*").eq("id", user.id).single()
+          .then(({ data }) => { if (data) setProfile(data as AgentProfile); });
+      }
+    });
+  }, []);
+
+  // Restore the saved brand color synchronously before paint on every
+  // mount — covers the SPA-navigation case where the root <head> inline
+  // script only runs on full page loads. Without this, navigating from
+  // e.g. the demo page (which clears the variable on unmount) back into
+  // the dashboard would flash gold before the profile-based effect fires.
+  useLayoutEffect(() => {
+    if (typeof document === "undefined") return;
+    try {
+      const cached = localStorage.getItem("listingflare:brand-color");
+      if (cached) {
+        document.documentElement.style.setProperty("--agent-brand", cached);
+      }
+    } catch {
+      // private-mode / quota — ignore
+    }
+  }, []);
+
+  // Keep the --agent-brand CSS variable in sync with whatever's loaded from
+  // the profile. Only runs when the profile has actually loaded — while
+  // loading, we leave whatever the useLayoutEffect above or the inline
+  // root-script restored from localStorage. That avoids the gold-flash.
+  // Also persist the current choice to localStorage for next visit.
+  useEffect(() => {
+    if (typeof document === "undefined" || !profile) return;
+    const color = profile.brand_color || "#b8965a";
+    document.documentElement.style.setProperty("--agent-brand", color);
+    try {
+      localStorage.setItem("listingflare:brand-color", color);
+    } catch {
+      // private-mode / quota — ignore
+    }
+  }, [profile]);
+
+  const handleLogout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    // Clear the per-browser brand-color cache so the next user who signs
+    // in on this device doesn't briefly see the previous user's theme.
+    try {
+      localStorage.removeItem("listingflare:brand-color");
+      document.documentElement.style.removeProperty("--agent-brand");
+    } catch {
+      // ignore
+    }
+    router.push("/login");
+    router.refresh();
+  };
+
+  const sidebarProps: SidebarContentProps = {
+    pathname,
+    profile,
+    setProfile,
+    themeOpen,
+    setThemeOpen,
+    onNavigate: () => setSidebarOpen(false),
+    onLogout: handleLogout,
+  };
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -246,34 +271,32 @@ export default function DashboardLayout({
           background: `linear-gradient(180deg, color-mix(in srgb, var(--agent-brand, #b8965a) 22%, #0a0a0a) 0%, color-mix(in srgb, var(--agent-brand, #b8965a) 12%, #0a0a0a) 45%, color-mix(in srgb, var(--agent-brand, #b8965a) 8%, #0a0a0a) 75%, color-mix(in srgb, var(--agent-brand, #b8965a) 14%, #0a0a0a) 100%)`,
         }}
       >
-        <SidebarContent />
+        <SidebarContent {...sidebarProps} />
       </aside>
 
-      {/* Mobile sidebar overlay */}
+      {/* Mobile sidebar: mounted only while open */}
       {sidebarOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-black/50 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
+        <>
+          <div
+            className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          />
+          <aside
+            className="fixed inset-y-0 left-0 z-50 flex w-64 animate-sidebar-in flex-col lg:hidden"
+            style={{
+              background: `linear-gradient(180deg, color-mix(in srgb, var(--agent-brand, #b8965a) 22%, #0a0a0a) 0%, color-mix(in srgb, var(--agent-brand, #b8965a) 12%, #0a0a0a) 45%, color-mix(in srgb, var(--agent-brand, #b8965a) 8%, #0a0a0a) 75%, color-mix(in srgb, var(--agent-brand, #b8965a) 14%, #0a0a0a) 100%)`,
+            }}
+          >
+            <button
+              onClick={() => setSidebarOpen(false)}
+              className="absolute right-3 top-5 p-1 text-gray-400 hover:text-white"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <SidebarContent {...sidebarProps} />
+          </aside>
+        </>
       )}
-
-      {/* Mobile sidebar */}
-      <aside
-        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col transition-transform duration-300 lg:hidden ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-        style={{
-          background: `linear-gradient(180deg, color-mix(in srgb, var(--agent-brand, #b8965a) 22%, #0a0a0a) 0%, color-mix(in srgb, var(--agent-brand, #b8965a) 12%, #0a0a0a) 45%, color-mix(in srgb, var(--agent-brand, #b8965a) 8%, #0a0a0a) 75%, color-mix(in srgb, var(--agent-brand, #b8965a) 14%, #0a0a0a) 100%)`,
-        }}
-      >
-        <button
-          onClick={() => setSidebarOpen(false)}
-          className="absolute right-3 top-5 p-1 text-gray-400 hover:text-white"
-        >
-          <X className="h-5 w-5" />
-        </button>
-        <SidebarContent />
-      </aside>
 
       {/* Main content */}
       <div className="flex flex-1 flex-col overflow-hidden">

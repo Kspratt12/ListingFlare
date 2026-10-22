@@ -38,8 +38,23 @@ const config: Config = {
         "fade-in": "fadeIn 0.8s ease-out forwards",
         "slide-up": "slideUp 0.8s ease-out forwards",
         "scale-in": "scaleIn 0.6s ease-out forwards",
+        "nav-drop": "navDrop 0.6s ease-out both",
+        "menu-in": "menuIn 0.2s ease-out both",
+        "sidebar-in": "sidebarIn 0.3s ease-out both",
       },
       keyframes: {
+        sidebarIn: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        navDrop: {
+          "0%": { transform: "translateY(-100px)" },
+          "100%": { transform: "translateY(0)" },
+        },
+        menuIn: {
+          "0%": { opacity: "0", transform: "translateY(-10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
         fadeIn: {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
