@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { getSubscriptionLimits } from "@/lib/subscription";
+import { clearUserStorage } from "@/lib/userStorage";
 import type { AgentProfile } from "@/lib/types";
 import LiveLeadAlerts from "@/components/LiveLeadAlerts";
 import CommandPalette from "@/components/CommandPalette";
@@ -50,11 +51,12 @@ interface SidebarContentProps {
   setThemeOpen: Dispatch<SetStateAction<boolean>>;
   onNavigate: () => void;
   onLogout: () => void;
+  unreadLeads: number;
 }
 
 // Module-level so its identity is stable across layout re-renders
 // (an inline component would remount the whole sidebar every render).
-function SidebarContent({ pathname, profile, setProfile, themeOpen, setThemeOpen, onNavigate, onLogout }: SidebarContentProps) {
+function SidebarContent({ pathname, profile, setProfile, themeOpen, setThemeOpen, onNavigate, onLogout, unreadLeads }: SidebarContentProps) {
   const isActive = (href: string) => {
     if (href === "/dashboard") return pathname === "/dashboard";
     return pathname.startsWith(href);
@@ -105,6 +107,14 @@ function SidebarContent({ pathname, profile, setProfile, themeOpen, setThemeOpen
                 style={active ? { color: "var(--agent-brand, #b8965a)" } : undefined}
               />
               {item.label}
+              {item.href === "/dashboard/leads" && unreadLeads > 0 && (
+                <span
+                  aria-label={`${unreadLeads} unread leads`}
+                  className="ml-auto min-w-[1.25rem] rounded-full bg-red-500 px-1.5 py-0.5 text-center text-[11px] font-semibold leading-none text-white"
+                >
+                  {unreadLeads > 99 ? "99+" : unreadLeads}
+                </span>
+              )}
             </Link>
           );
         })}
@@ -193,6 +203,34 @@ export default function DashboardLayout({
   const [bannerDismissed, setBannerDismissed] = useState(false);
   const [themeOpen, setThemeOpen] = useState(false); // collapsed by default so the picker isn't visual clutter
   const limits = getSubscriptionLimits(profile);
+  const [unreadLeads, setUnreadLeads] = useState(0);
+
+  // Unread count for the sidebar badge: a head-only count query (no rows
+  // transferred), refreshed on navigation and every minute. The leads page
+  // pushes exact updates through the "lf:unread-leads" event.
+  useEffect(() => {
+    const supabase = createClient();
+    let active = true;
+    const refresh = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user || !active) return;
+      const { count } = await supabase
+        .from("leads")
+        .select("id", { count: "exact", head: true })
+        .eq("agent_id", user.id)
+        .eq("is_read", false);
+      if (active && count !== null) setUnreadLeads(count);
+    };
+    refresh();
+    const timer = setInterval(refresh, 60000);
+    const onPush = (e: Event) => setUnreadLeads((e as CustomEvent<number>).detail);
+    window.addEventListener("lf:unread-leads", onPush);
+    return () => {
+      active = false;
+      clearInterval(timer);
+      window.removeEventListener("lf:unread-leads", onPush);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     const supabase = createClient();
@@ -240,6 +278,7 @@ export default function DashboardLayout({
   const handleLogout = async () => {
     const supabase = createClient();
     await supabase.auth.signOut();
+    clearUserStorage();
     // Clear the per-browser brand-color cache so the next user who signs
     // in on this device doesn't briefly see the previous user's theme.
     try {
@@ -260,6 +299,7 @@ export default function DashboardLayout({
     setThemeOpen,
     onNavigate: () => setSidebarOpen(false),
     onLogout: handleLogout,
+    unreadLeads,
   };
 
   return (

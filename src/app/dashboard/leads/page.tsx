@@ -9,6 +9,7 @@ import {
   LayoutList, Columns3, Search, Download, Inbox, UserCheck,
 } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
+import { readUserPref, writeUserPref } from "@/lib/userStorage";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -61,7 +62,8 @@ export default function LeadsPage() {
   const [editPhone, setEditPhone] = useState("");
   const [deleteConfirm, setDeleteConfirm] = useState(false);
   const [generatingDraft, setGeneratingDraft] = useState(false);
-  const [viewMode, setViewMode] = useState<"list" | "pipeline">("list");
+  const [viewMode, setViewModeState] = useState<"list" | "pipeline">("list");
+  const [userId, setUserId] = useState<string | null>(null);
   const [leadScope, setLeadScope] = useState<"all" | "buyers">("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLeadIds, setSelectedLeadIds] = useState<Set<string>>(new Set());
@@ -75,6 +77,9 @@ export default function LeadsPage() {
     async function fetchLeads() {
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
+        setUserId(user.id);
+        const savedView = readUserPref("leads-view", user.id);
+        if (savedView === "list" || savedView === "pipeline") setViewModeState(savedView);
         const { data: p } = await supabase.from("agent_profiles").select("*").eq("id", user.id).single();
         if (p) setProfile(p as AgentProfile);
       }
@@ -88,6 +93,20 @@ export default function LeadsPage() {
     fetchLeads();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const setViewMode = (mode: "list" | "pipeline") => {
+    setViewModeState(mode);
+    if (userId) writeUserPref("leads-view", userId, mode);
+  };
+
+  // Keep the sidebar's unread badge in step with local read/unread changes
+  // without it having to re-query.
+  useEffect(() => {
+    if (loading) return;
+    window.dispatchEvent(
+      new CustomEvent("lf:unread-leads", { detail: leads.filter((l) => !l.is_read).length })
+    );
+  }, [leads, loading]);
 
   const showErrorToast = (message: string) => {
     setToast({ message, type: "error" });

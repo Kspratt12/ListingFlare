@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
+import { readUserPref, writeUserPref } from "@/lib/userStorage";
 import {
   CheckCircle2,
   Circle,
@@ -24,20 +25,17 @@ interface Task {
   action?: { label: string; href: string; external?: boolean };
 }
 
-const DISMISS_KEY = "lf_getting_started_dismissed";
+const DISMISS_PREF = "getting-started-dismissed";
 
 export default function GettingStarted() {
   const [tasks, setTasks] = useState<Task[] | null>(null);
-  const [dismissed, setDismissed] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return localStorage.getItem(DISMISS_KEY) === "true";
-  });
+  const [userId, setUserId] = useState<string | null>(null);
+  // Read after mount (and per user) so server and client markup match
+  const [dismissed, setDismissed] = useState(false);
 
   const handleDismiss = () => {
     setDismissed(true);
-    if (typeof window !== "undefined") {
-      localStorage.setItem(DISMISS_KEY, "true");
-    }
+    if (userId) writeUserPref(DISMISS_PREF, userId, "true");
   };
 
   useEffect(() => {
@@ -48,6 +46,9 @@ export default function GettingStarted() {
         data: { user },
       } = await supabase.auth.getUser();
       if (!user) return;
+      if (!active) return;
+      setUserId(user.id);
+      setDismissed(readUserPref(DISMISS_PREF, user.id) === "true");
 
       const [profileResult, listingsResult, leadsResult, showingsResult] = await Promise.all([
         supabase
