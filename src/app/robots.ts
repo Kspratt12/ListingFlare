@@ -6,9 +6,11 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/dashboard/", "/api/", "/auth/"],
+        // Private app routes, auth callbacks and token-gated seller portals
+        disallow: ["/dashboard", "/dashboard/", "/api/", "/auth/", "/seller/"],
       },
     ],
     sitemap: "https://www.listingflare.com/sitemap.xml",
+    host: "https://www.listingflare.com",
   };
 }
