@@ -11,7 +11,10 @@ import {
 import { formatPhone } from "@/lib/formatters";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import Link from "next/link";
-import LeadPipeline from "@/components/LeadPipeline";
+import dynamic from "next/dynamic";
+
+// Drag-and-drop bundle (@dnd-kit) only loads when the pipeline view renders
+const LeadPipeline = dynamic(() => import("@/components/LeadPipeline"), { ssr: false });
 import LeadMessageThread from "@/components/LeadMessageThread";
 import LeadNotesTags, { getTagStyle, getTagLabel } from "@/components/LeadNotesTags";
 import LeadTimeline from "@/components/LeadTimeline";

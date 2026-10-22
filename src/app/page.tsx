@@ -243,8 +243,7 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
                         transition={{ delay: i * 0.15 }}
                         className="relative aspect-square overflow-hidden rounded-lg"
                       >
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={`https://images.unsplash.com/${id}?w=200&h=200&fit=crop&q=80`} alt="Property listing photo uploaded to ListingFlare real estate software" loading="lazy" className="h-full w-full object-cover" />
+                        <Image src={`https://images.unsplash.com/${id}?w=200&h=200&fit=crop&q=80`} alt="Property listing photo uploaded to ListingFlare real estate software" width={200} height={200} sizes="64px" className="h-full w-full object-cover" />
                         <span className="rounded-full bg-green-500 p-0.5 text-white absolute top-1 right-1">
                           <Check className="h-2.5 w-2.5" />
                         </span>
@@ -257,8 +256,7 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
                       transition={{ delay: 0.45 }}
                       className="relative aspect-square overflow-hidden rounded-lg bg-gray-900"
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=200&fit=crop&q=80" alt="4K property video thumbnail in ListingFlare listing builder" loading="lazy" className="h-full w-full object-cover opacity-70" />
+                      <Image src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=200&fit=crop&q=80" alt="4K property video thumbnail in ListingFlare listing builder" width={200} height={200} sizes="64px" className="h-full w-full object-cover opacity-70" />
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="rounded-full bg-white/90 p-1.5">
                           <svg className="h-3 w-3 text-gray-900 ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -307,8 +305,7 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
                   <p className="font-serif text-lg font-bold text-gray-900">My Listings</p>
                   <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
                     <div className="relative h-36 overflow-hidden">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=300&fit=crop&q=80" alt="Published property listing on ListingFlare real estate software dashboard" loading="lazy" className="h-full w-full object-cover" />
+                      <Image src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=300&fit=crop&q=80" alt="Published property listing on ListingFlare real estate software dashboard" width={800} height={300} sizes="(max-width: 1024px) 90vw, 480px" priority className="h-full w-full object-cover" />
                       <motion.span
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
@@ -432,10 +429,12 @@ function ComparisonHeroSlideshow() {
           transition={{ duration: 0.8 }}
           className="absolute inset-0"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={`https://images.unsplash.com/${comparisonHeroPhotos[heroIdx]}?w=800&h=450&fit=crop&q=90`}
             alt="Luxury home"
+            width={800}
+            height={450}
+            sizes="(max-width: 1024px) 90vw, 480px"
             className="h-full w-full object-cover"
           />
         </motion.div>
@@ -1070,11 +1069,12 @@ export default function LandingPage() {
                   </div>
                   {/* Photo */}
                   <div className="relative">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=280&fit=crop&q=80"
                       alt="Real estate listing on Zillow showing competing agent ads and distractions"
-                      loading="lazy"
+                      width={600}
+                      height={280}
+                      sizes="(max-width: 768px) 90vw, 400px"
                       className="h-36 w-full object-cover"
                     />
                     <div className="absolute right-2 top-2 flex gap-1.5">
@@ -1161,12 +1161,13 @@ export default function LandingPage() {
                     "photo-1600566753086-00f18fb6b3ea",
                     "photo-1616594039964-ae9021a400a0",
                   ].map((id) => (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
+                    <Image
                       key={id}
                       src={`https://images.unsplash.com/${id}?w=200&h=150&fit=crop&q=80`}
                       alt="Property photo gallery thumbnail on ListingFlare listing page"
-                      loading="lazy"
+                      width={200}
+                      height={150}
+                      sizes="100px"
                       className="aspect-[4/3] w-full rounded object-cover"
                     />
                   ))}
@@ -1226,8 +1227,7 @@ export default function LandingPage() {
                   {/* Agent branding */}
                   <div className="flex items-center gap-3 border-t border-gray-100 pt-3">
                     <div className="h-10 w-10 overflow-hidden rounded-full border-2 border-brand-100">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&q=80" alt="Real estate agent profile photo on ListingFlare listing page" loading="lazy" className="h-full w-full object-cover" />
+                      <Image src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&q=80" alt="Real estate agent profile photo on ListingFlare listing page" width={80} height={80} sizes="40px" className="h-full w-full object-cover" />
                     </div>
                     <div className="flex-1">
                       <p className="text-sm font-semibold text-gray-900">Victoria Ashworth</p>
@@ -2035,11 +2035,12 @@ export default function LandingPage() {
               >
                 <Link href={`/blog/${post.slug}`} className="group block">
                   <div className="overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow hover:shadow-lg hover:shadow-gray-200/50">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src={post.coverImage}
                       alt={post.coverImageAlt}
-                      loading="lazy"
+                      width={600}
+                      height={315}
+                      sizes="(max-width: 768px) 90vw, 33vw"
                       className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="p-5">

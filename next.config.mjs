@@ -1,8 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Ensure pages scroll to top on navigation
+  // Strip console.log from production bundles, keep errors and warnings
+  compiler: {
+    removeConsole: { exclude: ["error", "warn"] },
+  },
   experimental: {
+    // Ensure pages scroll to top on navigation
     scrollRestoration: true,
+    optimizePackageImports: ["lucide-react", "framer-motion", "@headlessui/react"],
   },
   // Security + caching headers
   async headers() {
@@ -55,6 +60,8 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     formats: ["image/avif", "image/webp"],
+    // Cache optimized images for 30 days
+    minimumCacheTTL: 2592000,
   },
 };
 
