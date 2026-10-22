@@ -82,6 +82,7 @@ function SidebarContent({ pathname, profile, setProfile, themeOpen, setThemeOpen
             <Link
               key={item.href}
               href={item.href}
+              prefetch={true}
               onClick={() => onNavigate()}
               className={`group relative mb-1 flex items-center gap-3 overflow-hidden rounded-lg px-3 py-2.5 text-sm font-medium transition-all ${
                 active
@@ -390,6 +391,7 @@ export default function DashboardLayout({
             <div className="flex flex-shrink-0 items-center gap-1">
               <Link
                 href="/dashboard/billing"
+                prefetch={true}
                 className={`flex items-center gap-1 rounded-full px-3 py-1 text-[11px] font-semibold text-white whitespace-nowrap sm:px-4 sm:py-1.5 sm:text-xs ${
                   limits.trialDaysLeft <= 3
                     ? "bg-red-600 hover:bg-red-700"

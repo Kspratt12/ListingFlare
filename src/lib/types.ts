@@ -320,3 +320,32 @@ export type PublicAgentProfile = Pick<
   | "subscription_status"
   | "trial_ends_at"
 >;
+
+// Payload for the printable open house flyer. The agent half is the
+// public-safe profile only: no Stripe IDs or Google tokens.
+export type FlyerListing = Pick<
+  Listing,
+  | "id"
+  | "slug"
+  | "street"
+  | "city"
+  | "state"
+  | "zip"
+  | "price"
+  | "beds"
+  | "baths"
+  | "sqft"
+  | "year_built"
+  | "lot_size"
+  | "description"
+  | "features"
+  | "photos"
+  | "brand_color"
+>;
+
+export interface FlyerData {
+  listing: FlyerListing;
+  agent: PublicAgentProfile;
+  listingUrl: string;
+  qrDataUrl: string;
+}

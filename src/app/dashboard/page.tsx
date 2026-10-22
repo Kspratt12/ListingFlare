@@ -6,7 +6,7 @@ import type { Listing, AgentProfile } from "@/lib/types";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import UpgradePrompt from "@/components/UpgradePrompt";
 import Link from "next/link";
-import { PlusCircle, Eye, Pencil, ArrowUpDown, Archive, ArchiveRestore, Search, Lock, Share2, Loader2 } from "lucide-react";
+import { PlusCircle, Eye, Pencil, ArrowUpDown, Archive, ArchiveRestore, Search, Lock, Share2, Loader2, FileText } from "lucide-react";
 import UpcomingShowings from "@/components/UpcomingShowings";
 import ActivityFeed from "@/components/ActivityFeed";
 import SpeedToLead from "@/components/SpeedToLead";
@@ -15,11 +15,13 @@ import DailyBriefing from "@/components/DailyBriefing";
 import PushNotificationPrompt from "@/components/PushNotificationPrompt";
 import RevenueStat from "@/components/RevenueStat";
 import ListingActionsMenu from "@/components/ListingActionsMenu";
+import FlyerModal from "@/components/FlyerModal";
 
 export default function MyListingsPage() {
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
   const [generatingPosts, setGeneratingPosts] = useState<string | null>(null);
+  const [flyerListingId, setFlyerListingId] = useState<string | null>(null);
   const [profile, setProfile] = useState<AgentProfile | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
   const [hasEverCreated, setHasEverCreated] = useState(false);
@@ -836,6 +838,21 @@ export default function MyListingsPage() {
                       </Link>
                     )
                   )}
+                  {listing.status === "published" && (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setFlyerListingId(listing.id);
+                      }}
+                      title="Generate Open House Flyer"
+                      aria-label="Generate Open House Flyer"
+                      className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-amber-50 px-3 py-2 text-xs font-medium text-amber-700 hover:bg-amber-100"
+                    >
+                      <FileText className="h-3.5 w-3.5" />
+                      <span className="whitespace-nowrap">Flyer</span>
+                    </button>
+                  )}
                   <ListingActionsMenu
                       listing={listing}
                       copiedId={copiedId}
@@ -894,6 +911,9 @@ export default function MyListingsPage() {
             </div>
           </div>
         </div>
+      )}
+      {flyerListingId && (
+        <FlyerModal listingId={flyerListingId} onClose={() => setFlyerListingId(null)} />
       )}
     </div>
   );

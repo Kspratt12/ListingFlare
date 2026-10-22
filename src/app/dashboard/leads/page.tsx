@@ -75,19 +75,25 @@ export default function LeadsPage() {
 
   useEffect(() => {
     async function fetchLeads() {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
+      // Leads are scoped by RLS, so that query doesn't need the user ID and
+      // runs in parallel with the auth -> profile chain.
+      const loadProfile = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) return;
         setUserId(user.id);
         const savedView = readUserPref("leads-view", user.id);
         if (savedView === "list" || savedView === "pipeline") setViewModeState(savedView);
         const { data: p } = await supabase.from("agent_profiles").select("*").eq("id", user.id).single();
         if (p) setProfile(p as AgentProfile);
-      }
-      const { data } = await supabase
-        .from("leads")
-        .select(`*, listing:listings(street, city, state)`)
-        .order("created_at", { ascending: false }) as { data: Lead[] | null };
-      setLeads((data as Lead[]) || []);
+      };
+      const [, { data }] = await Promise.all([
+        loadProfile(),
+        supabase
+          .from("leads")
+          .select(`*, listing:listings(street, city, state)`)
+          .order("created_at", { ascending: false }) as unknown as Promise<{ data: Lead[] | null }>,
+      ]);
+      setLeads(data || []);
       setLoading(false);
     }
     fetchLeads();
