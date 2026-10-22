@@ -146,7 +146,7 @@ export const article: BlogPost = {
 <li><strong>Neighborhood guides</strong> - Detailed breakdowns of schools, dining, commute times, and home prices</li>
 <li><strong>Market reports</strong> - Monthly or quarterly updates with real data on prices, inventory, and days on market</li>
 <li><strong>Buyer and seller guides</strong> - Step-by-step content like <a href="/blog/first-time-home-sellers-guide">"First-Time Home Seller's Guide"</a> or <a href="/blog/how-much-does-it-cost-to-sell-a-house">"How Much Does It Cost to Sell a House"</a></li>
-<li><strong>Comparison content</strong> - "<a href="/blog/buying-vs-renting-a-home">Buying vs. Renting</a>" or "Living in [City A] vs. [City B]"</li>
+<li><strong>Comparison content</strong> - "<a href="/blog/buying-vs-renting-a-home-2026">Buying vs. Renting</a>" or "Living in [City A] vs. [City B]"</li>
 </ul>
 
 <p>Every blog post should include internal links to your listings, your property websites, and your contact page. Over time, a consistent content strategy makes your website the local authority that buyers find before they ever open Zillow. This is how you build a lead generation engine that works while you sleep.</p>

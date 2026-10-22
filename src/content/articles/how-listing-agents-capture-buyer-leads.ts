@@ -72,7 +72,7 @@ export const article: BlogPost = {
 
 <p>The agents who are winning in 2026 are creating a single property website for every listing, every time. It is the foundation that the rest of these strategies build on. If you want to see how the finished product looks, you can <a href="/demo">view a demo listing here</a>.</p>
 
-<p>For a step-by-step walkthrough of building your first property page, check out our guide on <a href="/blog/how-to-create-single-property-website">how to create a single property website</a>.</p>
+<p>For a step-by-step walkthrough of building your first property page, check out our guide on <a href="/blog/how-to-create-a-single-property-website">how to create a single property website</a>.</p>
 
 <h2>Strategy 2 - Add an AI Chatbot to Your Listing Pages</h2>
 

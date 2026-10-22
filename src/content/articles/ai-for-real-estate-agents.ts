@@ -154,7 +154,7 @@ export const article: BlogPost = {
 
 <p>The flyer includes your listing photo, property details, open house date and time, and your agent branding, all ready to print and display in minutes. After the open house, every attendee is already in your CRM with their contact info, ready for follow-up.</p>
 
-<p>For more tactics on maximizing open houses, read our complete guide on <a href="/blog/open-house-ideas-attract-buyers">open house ideas that attract buyers and generate leads</a>.</p>
+<p>For more tactics on maximizing open houses, read our complete guide on <a href="/blog/open-house-ideas-to-attract-more-buyers">open house ideas that attract buyers and generate leads</a>.</p>
 
 <h2>How to Choose the Best AI Tool for Your Real Estate Business</h2>
 

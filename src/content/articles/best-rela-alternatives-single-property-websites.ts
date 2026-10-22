@@ -465,7 +465,7 @@ Your browser does not support the video tag.
 
 <h3>Choose ListingFlare If You Want to Capture More Leads</h3>
 
-<p>If your primary goal is turning listing page visitors into actual leads with names, phone numbers, and email addresses, <a href="/signup">ListingFlare</a> is the clear choice. The AI chatbot engages buyers in real-time conversation, captures their contact info naturally, and follows up automatically. No other platform on this list does this. For $150/month with unlimited listings, you are paying for a lead generation system, not just a website builder. Read our guide on <a href="/blog/how-to-create-single-property-website">how to create a single property website</a> to understand the full setup process.</p>
+<p>If your primary goal is turning listing page visitors into actual leads with names, phone numbers, and email addresses, <a href="/signup">ListingFlare</a> is the clear choice. The AI chatbot engages buyers in real-time conversation, captures their contact info naturally, and follows up automatically. No other platform on this list does this. For $150/month with unlimited listings, you are paying for a lead generation system, not just a website builder. Read our guide on <a href="/blog/how-to-create-a-single-property-website">how to create a single property website</a> to understand the full setup process.</p>
 
 <h3>Choose CribFlyer or Listings Unlimited If Budget Is Your Priority</h3>
 

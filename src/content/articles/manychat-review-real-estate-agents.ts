@@ -169,7 +169,7 @@ export const article: BlogPost = {
 
 <ul>
 <li>Welcomes them and asks for their name and email</li>
-<li>Sends them the property details, photos, and a link to your <a href="/blog/how-to-create-single-property-website">single property website</a></li>
+<li>Sends them the property details, photos, and a link to your <a href="/blog/how-to-create-a-single-property-website">single property website</a></li>
 <li>Asks if they would like to schedule a private showing</li>
 <li>Tags them in your CRM as an open house attendee</li>
 </ul>

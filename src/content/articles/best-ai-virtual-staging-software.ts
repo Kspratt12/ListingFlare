@@ -373,7 +373,7 @@ export const article: BlogPost = {
 
 <p><strong>Always disclose virtual staging.</strong> This cannot be overstated. Include a clear note in your MLS listing and all marketing materials that photos have been virtually staged. Most MLSs require this disclosure, and failing to include it can result in complaints, fines, and damage to your reputation. A simple line like "Living room, bedroom, and dining room photos are virtually staged" is sufficient and transparent.</p>
 
-<p><strong>Use high-resolution output for print materials.</strong> If you are using staged photos on flyers, postcards, or property brochures, make sure you download the highest resolution version the platform offers. Images that look great on a phone screen can look pixelated and unprofessional when printed at larger sizes. Most tools offer at least 2048 x 1536 resolution, which is adequate for standard print materials. For large-format prints, look for tools that output at 4K resolution or higher. For more tips on maximizing your listing photos, check out our guide on <a href="/blog/home-staging-tips-sell-faster">home staging tips to sell your house faster</a>.</p>
+<p><strong>Use high-resolution output for print materials.</strong> If you are using staged photos on flyers, postcards, or property brochures, make sure you download the highest resolution version the platform offers. Images that look great on a phone screen can look pixelated and unprofessional when printed at larger sizes. Most tools offer at least 2048 x 1536 resolution, which is adequate for standard print materials. For large-format prints, look for tools that output at 4K resolution or higher. For more tips on maximizing your listing photos, check out our guide on <a href="/blog/home-staging-tips-to-sell-your-house-faster">home staging tips to sell your house faster</a>.</p>
 
 <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop&q=80" alt="Beautiful home exterior with professional landscaping showing a well-marketed real estate listing" loading="lazy" />
 
@@ -389,7 +389,7 @@ export const article: BlogPost = {
 
 <p><a href="/signup"><strong>ListingFlare</strong></a> creates dedicated property websites in 5 minutes with full photo galleries, property details, neighborhood insights, and an AI chatbot that engages buyers and captures leads around the clock. Upload your virtually staged photos, add your property details, and you have a complete listing marketing hub that puts every lead in your pipeline instead of on Zillow. <a href="/demo">See how it works with a live demo</a>.</p>
 
-<p>For a complete breakdown of listing marketing strategies that actually generate leads, read our guide on <a href="/blog/how-to-market-real-estate-listing">how to market a real estate listing</a>.</p>
+<p>For a complete breakdown of listing marketing strategies that actually generate leads, read our guide on <a href="/blog/how-to-market-a-real-estate-listing">how to market a real estate listing</a>.</p>
 
 <h2>Which Virtual Staging Tool Is Right for You?</h2>
 

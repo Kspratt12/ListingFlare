@@ -402,7 +402,7 @@ export const article: BlogPost = {
 
 <p><a href="/signup">Start your free 14-day ListingFlare trial</a> and see the difference on your next listing. No credit card required. Your first page will be live in under five minutes.</p>
 
-<p>For more on building an effective listing marketing strategy, check out our guides on <a href="/blog/how-to-create-single-property-website">how to create a single property website</a> and <a href="/blog/best-single-property-website-builders">the best single property website builders for 2026</a>.</p>
+<p>For more on building an effective listing marketing strategy, check out our guides on <a href="/blog/how-to-create-a-single-property-website">how to create a single property website</a> and <a href="/blog/best-single-property-website-builders">the best single property website builders for 2026</a>.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

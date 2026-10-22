@@ -212,7 +212,7 @@ export const article: BlogPost = {
 <li><strong>Hold open houses for other agents' listings</strong> - if you are a newer realtor without many listings, offer to host opens for agents in your office. You get the leads, they get the exposure for their seller</li>
 </ul>
 
-<p>For a complete playbook, read our guide on <a href="/blog/open-house-ideas-attract-buyers">open house ideas that attract buyers and generate leads</a>.</p>
+<p>For a complete playbook, read our guide on <a href="/blog/open-house-ideas-to-attract-more-buyers">open house ideas that attract buyers and generate leads</a>.</p>
 
 <p><strong>Best for:</strong> All realtors, especially newer agents who need face-to-face opportunities. Open houses are free (minus some snacks and signage) and put you directly in front of active buyers.</p>
 
@@ -366,7 +366,7 @@ export const article: BlogPost = {
 
 <p>That said, paid platforms can work as <strong>one piece of a larger strategy</strong>. The realtors who succeed with Zillow leads follow up within 5 minutes (leads contacted in under 5 minutes are <strong>21 times more likely to convert</strong>), use automated text and email sequences, and treat platform leads as a supplement, not their entire business.</p>
 
-<p>For a detailed comparison, read our full guide on the <a href="/blog/best-lead-generation-tools-real-estate-agents">best lead generation tools for real estate agents</a>.</p>
+<p>For a detailed comparison, read our full guide on the <a href="/blog/best-lead-generation-tools-for-real-estate-agents">best lead generation tools for real estate agents</a>.</p>
 
 <p><strong>Best for:</strong> Realtors with budget to spend who need immediate pipeline and have fast follow-up systems in place. Not recommended as your sole lead source.</p>
 
@@ -498,7 +498,7 @@ export const article: BlogPost = {
 <li><strong>Google Business Profile</strong> - set it up on day one and ask every person you help for a review</li>
 <li><strong>Expired listing and FSBO prospecting</strong> - 1 to 2 hours daily</li>
 <li><strong>Social media</strong> - post daily on Instagram and Facebook to build your brand</li>
-<li>Create a <a href="/blog/real-estate-leads-new-agents">lead generation plan designed specifically for new agents</a></li>
+<li>Create a <a href="/blog/real-estate-leads-for-new-agents">lead generation plan designed specifically for new agents</a></li>
 </ol>
 
 <h3>If You Are an Established Realtor (3–7 Years)</h3>

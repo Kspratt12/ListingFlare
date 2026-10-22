@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { createClient } from "@supabase/supabase-js";
 import { getAllPosts } from "@/lib/blog";
+import { slugifyCity, MIN_LISTINGS_TO_INDEX } from "@/lib/cities";
 
 // Regenerate hourly so new listings reach Googlebot without a redeploy.
 export const revalidate = 3600;
@@ -45,6 +46,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .limit(5000);
 
     const cityLastModified = new Map<string, Date>();
+    const cityCounts = new Map<string, number>();
 
     for (const listing of listings || []) {
       const modified = new Date(listing.updated_at || STATIC_LAST_MODIFIED);
@@ -56,13 +58,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       });
 
       if (listing.city && listing.state) {
-        const citySlug = `${listing.city.toLowerCase().replace(/\s+/g, "-")}-${listing.state.toLowerCase()}`;
+        const citySlug = `${slugifyCity(listing.city)}-${listing.state.toLowerCase()}`;
+        cityCounts.set(citySlug, (cityCounts.get(citySlug) || 0) + 1);
         const seen = cityLastModified.get(citySlug);
         if (!seen || modified > seen) cityLastModified.set(citySlug, modified);
       }
     }
 
+    // Thin city pages (fewer than MIN_LISTINGS_TO_INDEX) are noindex, so they
+    // stay out of the sitemap too.
     cityLastModified.forEach((lastModified, citySlug) => {
+      if ((cityCounts.get(citySlug) || 0) < MIN_LISTINGS_TO_INDEX) return;
       entries.push({
         url: `${baseUrl}/homes/${citySlug}`,
         lastModified,

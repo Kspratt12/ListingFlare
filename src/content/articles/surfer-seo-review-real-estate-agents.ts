@@ -328,7 +328,7 @@ export const article: BlogPost = {
 
 <p>This blog-to-listing-page funnel is one of the most effective organic lead generation strategies in real estate. The blog post does the heavy lifting of attracting and educating the visitor. The ListingFlare property page does the heavy lifting of capturing their information and starting the relationship.</p>
 
-<p>For more on this strategy, check out our guides on <a href="/blog/how-to-market-real-estate-listing">how to market a real estate listing</a> and <a href="/blog/best-ai-tools-real-estate-marketing">the best AI tools for real estate marketing</a>. Both articles cover complementary strategies that work alongside Surfer-optimized blog content.</p>
+<p>For more on this strategy, check out our guides on <a href="/blog/how-to-market-a-real-estate-listing">how to market a real estate listing</a> and <a href="/blog/best-ai-tools-real-estate-marketing">the best AI tools for real estate marketing</a>. Both articles cover complementary strategies that work alongside Surfer-optimized blog content.</p>
 
 <p>The agents who are winning at organic lead generation in 2026 are not choosing between content marketing and property marketing. They are doing both and connecting them into a cohesive funnel. Surfer SEO handles the content optimization side. <a href="/signup">ListingFlare</a> handles the property presentation and lead capture side. Together, they create a system that generates leads on autopilot through organic search.</p>
 

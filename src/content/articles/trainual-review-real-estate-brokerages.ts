@@ -234,7 +234,7 @@ export const article: BlogPost = {
 
 <p>This is the most damaging mistake. Many brokerages train agents on systems, paperwork, and compliance but skip the most critical skill: finding clients. The result is agents who know how to process a transaction but have no transactions to process.</p>
 
-<p>The fix: Dedicate at least 30% of your training content to prospecting and lead generation. Cover sphere of influence outreach, door knocking, social media content, open house strategy, and online lead conversion. For listing-specific strategies, check out our guide on <a href="/blog/how-to-win-more-listings-real-estate-agent">how to win more listings as a real estate agent</a>.</p>
+<p>The fix: Dedicate at least 30% of your training content to prospecting and lead generation. Cover sphere of influence outreach, door knocking, social media content, open house strategy, and online lead conversion. For listing-specific strategies, check out our guide on <a href="/blog/how-to-win-more-listings-as-a-real-estate-agent">how to win more listings as a real estate agent</a>.</p>
 
 <h3>4. Not Defining Compliance in Practical Terms</h3>
 

@@ -181,7 +181,7 @@ export const article: BlogPost = {
 <li><strong>Follow up the same day</strong> - Call or text every attendee within 4 hours. "Thanks for visiting 123 Oak Street today! Do you have any questions about the property or the neighborhood?"</li>
 </ul>
 
-<p>For 30 more ideas on maximizing your open houses, read our complete guide on <a href="/blog/open-house-ideas-attract-buyers">open house ideas that attract buyers and generate leads</a>.</p>
+<p>For 30 more ideas on maximizing your open houses, read our complete guide on <a href="/blog/open-house-ideas-to-attract-more-buyers">open house ideas that attract buyers and generate leads</a>.</p>
 
 <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=450&fit=crop&q=80" alt="Welcoming open house setup with visitors touring a beautifully staged home representing in-person real estate lead generation" loading="lazy" />
 
@@ -323,7 +323,7 @@ export const article: BlogPost = {
 
 <p>The biggest mistake agents make with paid leads is <strong>not following up fast enough</strong>. Studies show that leads contacted within 5 minutes are 21 times more likely to convert than leads contacted after 30 minutes. If you are buying leads and taking hours to respond, you are wasting your ad spend. Automate your initial response and have a system for immediate follow-up.</p>
 
-<p>For a deeper breakdown, read our full comparison of the <a href="/blog/best-lead-generation-tools-real-estate-agents">best lead generation tools for real estate agents</a>.</p>
+<p>For a deeper breakdown, read our full comparison of the <a href="/blog/best-lead-generation-tools-for-real-estate-agents">best lead generation tools for real estate agents</a>.</p>
 
 <h2>15. Turn Every Listing Into a Lead Generation Machine</h2>
 
@@ -338,7 +338,7 @@ export const article: BlogPost = {
 <li><strong>Follow up with every buyer lead</strong> who inquired about the listing but did not buy it. They are still looking. They still need an agent</li>
 </ul>
 
-<p>A single listing, marketed properly, can generate <strong>20 to 50 new leads</strong>. If you close just one additional deal from those leads, you have doubled the revenue from that listing. This is the power of treating every listing as a marketing event, not just a transaction. Learn more in our guide on <a href="/blog/how-to-market-real-estate-listing">how to market a real estate listing for maximum exposure</a>.</p>
+<p>A single listing, marketed properly, can generate <strong>20 to 50 new leads</strong>. If you close just one additional deal from those leads, you have doubled the revenue from that listing. This is the power of treating every listing as a marketing event, not just a transaction. Learn more in our guide on <a href="/blog/how-to-market-a-real-estate-listing">how to market a real estate listing for maximum exposure</a>.</p>
 
 <img src="/blog/real-estate-lead-generation/listingflare-3.png" alt="ListingFlare analytics and lead tracking dashboard showing how to measure real estate lead generation results" loading="lazy" />
 
@@ -367,7 +367,7 @@ export const article: BlogPost = {
 <ol>
 <li>Set up your Google Business Profile and start collecting reviews from day one</li>
 <li>Host open houses every weekend - for your listings and your colleagues' listings</li>
-<li>Create a <a href="/blog/real-estate-leads-new-agents">lead generation plan specifically designed for new agents</a></li>
+<li>Create a <a href="/blog/real-estate-leads-for-new-agents">lead generation plan specifically designed for new agents</a></li>
 <li>Start posting on Instagram and Facebook daily</li>
 <li>Build an email list and set up a basic drip sequence</li>
 <li>Door knock or cold call FSBOs and expired listings 2 hours per day</li>

@@ -3,6 +3,8 @@ import Image from "next/image";
 import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { cache } from "react";
+import { slugifyCity, MIN_LISTINGS_TO_INDEX } from "@/lib/cities";
 
 export const dynamic = "force-dynamic";
 
@@ -27,21 +29,46 @@ function cityDisplayName(slug: string): string {
   return `${city}, ${state}`;
 }
 
-/** Extract city and state from slug */
-function parseCitySlug(slug: string): { city: string; state: string } {
+/** Split "fuquay-varina-nc" into { citySlug: "fuquay-varina", state: "NC" } */
+function parseCitySlug(slug: string): { citySlug: string; state: string } {
   const parts = slug.split("-");
-  const state = parts.pop() || "";
-  const city = parts.map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-  return { city, state: state.toUpperCase() };
+  const state = (parts.pop() || "").toUpperCase();
+  return { citySlug: parts.join("-"), state };
+}
+
+// Cities are matched by slug, not by rebuilding the name from the URL, so
+// hyphenated names ("Fuquay-Varina") and multi-word names both resolve.
+// cache() lets generateMetadata and the page share one query per request.
+const getCityListings = cache(async (slug: string) => {
+  const { citySlug, state } = parseCitySlug(slug);
+  if (!citySlug || !state) return { listings: [], cityName: null as string | null, state };
+
+  const db = getAdminClient();
+  const { data } = await db
+    .from("listings")
+    .select("id, slug, agent_id, street, city, state, price, beds, baths, sqft, photos, description, agent:agent_profiles(name, title, brokerage, headshot_url)")
+    .eq("status", "published")
+    .ilike("state", state)
+    .order("created_at", { ascending: false });
+
+  const listings = (data || []).filter((l) => slugifyCity(l.city || "") === citySlug);
+  return { listings, cityName: (listings[0]?.city as string | undefined) ?? null, state };
+});
+
+function displayFor(slug: string, cityName: string | null, state: string) {
+  return cityName ? `${cityName}, ${state}` : cityDisplayName(slug);
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city: citySlug } = await params;
-  const display = cityDisplayName(citySlug);
+  const { listings, cityName, state } = await getCityListings(citySlug);
+  const display = displayFor(citySlug, cityName, state);
 
   return {
     title: `Homes for Sale in ${display} - ListingFlare Listings`,
     description: `Browse homes for sale in ${display}. View property details, photos, and connect with listing agents on ListingFlare.`,
+    // Thin pages stay reachable but out of Google's index
+    robots: { index: listings.length >= MIN_LISTINGS_TO_INDEX, follow: true },
     openGraph: {
       title: `Homes for Sale in ${display}`,
       description: `Browse available homes and listings in ${display} on ListingFlare.`,
@@ -55,26 +82,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CityPage({ params }: Props) {
   const { city: citySlug } = await params;
-  const { city, state } = parseCitySlug(citySlug);
-  const display = cityDisplayName(citySlug);
 
-  const db = getAdminClient();
-
-  // Query published listings in this city WITH agent attribution
-  const { data: listings } = await db
-    .from("listings")
-    .select("id, slug, agent_id, street, city, state, price, beds, baths, sqft, photos, description, agent:agent_profiles(name, title, brokerage, headshot_url)")
-    .eq("status", "published")
-    .ilike("city", city)
-    .ilike("state", state)
-    .order("created_at", { ascending: false });
-
-  // If no listings and not a recognizable city format, 404
-  if (!listings && citySlug.split("-").length < 2) {
+  // Not a "city-state" shaped slug at all
+  if (citySlug.split("-").length < 2) {
     notFound();
   }
 
-  const hasListings = listings && listings.length > 0;
+  const { listings, cityName, state } = await getCityListings(citySlug);
+  const display = displayFor(citySlug, cityName, state);
+  const hasListings = listings.length > 0;
 
   // JSON-LD for the city page
   const jsonLd = {
