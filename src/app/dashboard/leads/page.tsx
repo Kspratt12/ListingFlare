@@ -105,12 +105,12 @@ export default function LeadsPage() {
     if (userId) writeUserPref("leads-view", userId, mode);
   };
 
-  // Keep the sidebar's unread badge in step with local read/unread changes
+  // Keep the sidebar's "New" badge (status = "new") in step with local read/unread changes
   // without it having to re-query.
   useEffect(() => {
     if (loading) return;
     window.dispatchEvent(
-      new CustomEvent("lf:unread-leads", { detail: leads.filter((l) => !l.is_read).length })
+      new CustomEvent("lf:unread-leads", { detail: leads.filter((l) => l.status === "new").length })
     );
   }, [leads, loading]);
 

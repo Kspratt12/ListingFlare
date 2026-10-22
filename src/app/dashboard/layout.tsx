@@ -110,7 +110,7 @@ function SidebarContent({ pathname, profile, setProfile, themeOpen, setThemeOpen
               {item.label}
               {item.href === "/dashboard/leads" && unreadLeads > 0 && (
                 <span
-                  aria-label={`${unreadLeads} unread leads`}
+                  aria-label={`${unreadLeads} new leads`}
                   className="ml-auto min-w-[1.25rem] rounded-full bg-red-500 px-1.5 py-0.5 text-center text-[11px] font-semibold leading-none text-white"
                 >
                   {unreadLeads > 99 ? "99+" : unreadLeads}
@@ -206,7 +206,9 @@ export default function DashboardLayout({
   const limits = getSubscriptionLimits(profile);
   const [unreadLeads, setUnreadLeads] = useState(0);
 
-  // Unread count for the sidebar badge: a head-only count query (no rows
+  // "New" lead count for the sidebar badge. Uses the same criteria as the
+  // "New" filter on the leads page (status = "new") so the two always match.
+  // A head-only count query (no rows
   // transferred), refreshed on navigation and every minute. The leads page
   // pushes exact updates through the "lf:unread-leads" event.
   useEffect(() => {
@@ -219,7 +221,7 @@ export default function DashboardLayout({
         .from("leads")
         .select("id", { count: "exact", head: true })
         .eq("agent_id", user.id)
-        .eq("is_read", false);
+        .eq("status", "new");
       if (active && count !== null) setUnreadLeads(count);
     };
     refresh();
