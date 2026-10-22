@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { getLocalUserId } from "@/lib/agentSession";
 import {
   CreditCard,
   CheckCircle,
@@ -36,9 +37,9 @@ export default function BillingContent() {
 
   useEffect(() => {
     async function fetchBilling() {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      // Local session read: no network round-trip (RLS still protects every query)
+      const localUid = await getLocalUserId();
+      const user = localUid ? { id: localUid } : null;
       if (!user) return;
 
       const { data } = await supabase

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
-import type { Listing, AgentProfile } from "@/lib/types";
+import type { Listing } from "@/lib/types";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import UpgradePrompt from "@/components/UpgradePrompt";
 import Link from "next/link";
@@ -16,15 +16,24 @@ import PushNotificationPrompt from "@/components/PushNotificationPrompt";
 import RevenueStat from "@/components/RevenueStat";
 import ListingActionsMenu from "@/components/ListingActionsMenu";
 import FlyerModal from "@/components/FlyerModal";
+import { getLocalUserId, useAgentSession } from "@/lib/agentSession";
+import { cacheGet, cacheSet } from "@/lib/swrCache";
+
+// Columns the listing cards, flyer, duplicate and archive actions need. Leaves
+// out the MLS-parity extras, comparable_sales, price_history and co-agent fields.
+const DASHBOARD_LISTING_COLUMNS =
+  "id, agent_id, status, slug, street, city, state, zip, price, beds, baths, sqft, year_built, lot_size, description, features, photos, videos, virtual_tour_url, view_count, created_at, updated_at";
 
 export default function MyListingsPage() {
-  const [listings, setListings] = useState<Listing[]>([]);
-  const [loading, setLoading] = useState(true);
+  // Seeded from the in-memory cache so returning to this tab is instant;
+  // fetchData() refreshes it in the background.
+  const [listings, setListings] = useState<Listing[]>(() => cacheGet<Listing[]>("dashboard:listings") ?? []);
+  const [loading, setLoading] = useState(() => cacheGet("dashboard:listings") === undefined);
   const [generatingPosts, setGeneratingPosts] = useState<string | null>(null);
   const [flyerListingId, setFlyerListingId] = useState<string | null>(null);
-  const [profile, setProfile] = useState<AgentProfile | null>(null);
+  const { profile } = useAgentSession();
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
-  const [hasEverCreated, setHasEverCreated] = useState(false);
+  const [hasEverCreated, setHasEverCreated] = useState(() => (cacheGet<Listing[]>("dashboard:listings")?.length ?? 0) > 0);
   const [sortBy, setSortBy] = useState<"newest" | "city" | "state" | "price">("newest");
   const [priceDir, setPriceDir] = useState<"desc" | "asc">("desc");
   const [showArchived, setShowArchived] = useState(false);
@@ -299,31 +308,33 @@ export default function MyListingsPage() {
 
   useEffect(() => {
     async function fetchData() {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return;
-
-      // Fetch profile for subscription status
-      const { data: profileData } = await supabase
-        .from("agent_profiles")
-        .select("*")
-        .eq("id", user.id)
-        .single();
-      if (profileData) setProfile(profileData as AgentProfile);
+      // Local session read; the profile comes from the layout's context.
+      const uid = await getLocalUserId();
+      if (!uid) return;
 
       // Fetch only this agent's listings
-      const { data, count } = await supabase
+      const { data, count, error } = await supabase
         .from("listings")
-        .select("*", { count: "exact" })
-        .eq("agent_id", user.id)
+        .select(DASHBOARD_LISTING_COLUMNS, { count: "exact" })
+        .eq("agent_id", uid)
         .order("created_at", { ascending: false });
 
-      setListings((data as Listing[]) || []);
-      setHasEverCreated((count || 0) > 0 || (data || []).length > 0);
+      if (!error && data) {
+        const rows = data as unknown as Listing[];
+        setListings(rows);
+        cacheSet("dashboard:listings", rows);
+        setHasEverCreated((count || 0) > 0 || rows.length > 0);
+      }
       setLoading(false);
     }
     fetchData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Keep the cache in step with local archive, delete and duplicate changes
+  useEffect(() => {
+    if (!loading) cacheSet("dashboard:listings", listings);
+  }, [listings, loading]);
 
   const formatPrice = (price: number) =>
     new Intl.NumberFormat("en-US", {
@@ -436,10 +447,10 @@ export default function MyListingsPage() {
     e.stopPropagation();
     setDuplicating(listing.id);
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return;
+      const uid = await getLocalUserId();
+      if (!uid) return;
       const { data: newListing, error } = await supabase.from("listings").insert({
-        agent_id: user.id,
+        agent_id: uid,
         status: "draft",
         street: listing.street ? `${listing.street} (copy)` : "",
         city: listing.city,

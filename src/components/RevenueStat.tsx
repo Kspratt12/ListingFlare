@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { getLocalUserId } from "@/lib/agentSession";
 import { Trophy, TrendingUp } from "lucide-react";
 
 interface Stats {
@@ -27,9 +28,9 @@ export default function RevenueStat() {
     let active = true;
     async function load() {
       const supabase = createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      // Local session read: no network round-trip (RLS still protects every query)
+      const localUid = await getLocalUserId();
+      const user = localUid ? { id: localUid } : null;
       if (!user) {
         if (active) setLoading(false);
         return;

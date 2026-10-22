@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
+import { getLocalUserId } from "@/lib/agentSession";
 import { readUserPref, writeUserPref } from "@/lib/userStorage";
 import {
   CheckCircle2,
@@ -42,9 +43,9 @@ export default function GettingStarted() {
     let active = true;
     async function load() {
       const supabase = createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      // Local session read: no network round-trip (RLS still protects every query)
+      const localUid = await getLocalUserId();
+      const user = localUid ? { id: localUid } : null;
       if (!user) return;
       if (!active) return;
       setUserId(user.id);

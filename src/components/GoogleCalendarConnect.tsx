@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { getLocalUserId } from "@/lib/agentSession";
 import { Loader2, CheckCircle, ExternalLink } from "lucide-react";
 
 export default function GoogleCalendarConnect() {
@@ -14,9 +15,9 @@ export default function GoogleCalendarConnect() {
     let active = true;
     async function load() {
       const supabase = createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      // Local session read: no network round-trip (RLS still protects every query)
+      const localUid = await getLocalUserId();
+      const user = localUid ? { id: localUid } : null;
       if (!user) return;
       const { data } = await supabase
         .from("agent_profiles")

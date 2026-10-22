@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { getLocalUserId } from "@/lib/agentSession";
 import type { Listing, Lead } from "@/lib/types";
 import { Eye, Users, TrendingUp, Home, BarChart3, Sparkles } from "lucide-react";
 import Link from "next/link";
@@ -14,7 +15,8 @@ export default function AnalyticsPage() {
 
   useEffect(() => {
     async function fetchData() {
-      const { data: { user } } = await supabase.auth.getUser();
+      const localUid = await getLocalUserId();
+      const user = localUid ? { id: localUid } : null;
       if (!user) return;
 
       const [listingsRes, leadsRes] = await Promise.all([

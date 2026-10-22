@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
+import { getLocalUserId } from "@/lib/agentSession";
 import type { Showing } from "@/lib/types";
 import { CalendarDays, Clock, User, MapPin, Phone, ArrowRight } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
@@ -44,9 +45,9 @@ export default function UpcomingShowings({ limit = 5, compact = false }: Props) 
     let active = true;
     async function load() {
       const supabase = createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      // Local session read: no network round-trip (RLS still protects every query)
+      const localUid = await getLocalUserId();
+      const user = localUid ? { id: localUid } : null;
       if (!user) {
         if (active) setLoading(false);
         return;

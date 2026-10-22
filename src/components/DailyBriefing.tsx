@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
+import { getLocalUserId } from "@/lib/agentSession";
 import { Sparkles, CalendarClock, Flame, ArrowRight, Bell, Bot, Loader2 } from "lucide-react";
 
 interface Briefing {
@@ -41,7 +42,8 @@ export default function DailyBriefing() {
     setTogglingAi(true);
     try {
       const supabase = createClient();
-      const { data: { user } } = await supabase.auth.getUser();
+      const localUid = await getLocalUserId();
+      const user = localUid ? { id: localUid } : null;
       if (!user) throw new Error("Not authenticated");
       const { error } = await supabase
         .from("agent_profiles")

@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { getLocalUserId } from "@/lib/agentSession";
 import {
   Search,
   LayoutGrid,
@@ -97,9 +98,9 @@ export default function CommandPalette() {
   // Load listings, leads, showings for search
   const loadData = useCallback(async () => {
     const supabase = createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+    // Local session read: no network round-trip (RLS still protects every query)
+    const localUid = await getLocalUserId();
+    const user = localUid ? { id: localUid } : null;
     if (!user) return;
 
     const [listingsRes, leadsRes, showingsRes] = await Promise.all([

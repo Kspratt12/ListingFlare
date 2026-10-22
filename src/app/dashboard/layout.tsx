@@ -7,6 +7,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import { clearUserStorage } from "@/lib/userStorage";
+import { AgentSessionContext, getLocalUserId, resetLocalUserId } from "@/lib/agentSession";
+import { clearCache, setCacheOwner } from "@/lib/swrCache";
 import type { AgentProfile } from "@/lib/types";
 import LiveLeadAlerts from "@/components/LiveLeadAlerts";
 import CommandPalette from "@/components/CommandPalette";
@@ -201,6 +203,7 @@ export default function DashboardLayout({
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [profile, setProfile] = useState<AgentProfile | null>(null);
+  const [userId, setUserId] = useState<string | null>(null);
   const [bannerDismissed, setBannerDismissed] = useState(false);
   const [themeOpen, setThemeOpen] = useState(false); // collapsed by default so the picker isn't visual clutter
   const limits = getSubscriptionLimits(profile);
@@ -215,12 +218,12 @@ export default function DashboardLayout({
     const supabase = createClient();
     let active = true;
     const refresh = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user || !active) return;
+      const uid = await getLocalUserId();
+      if (!uid || !active) return;
       const { count } = await supabase
         .from("leads")
         .select("id", { count: "exact", head: true })
-        .eq("agent_id", user.id)
+        .eq("agent_id", uid)
         .eq("status", "new");
       if (active && count !== null) setUnreadLeads(count);
     };
@@ -236,13 +239,20 @@ export default function DashboardLayout({
   }, [pathname]);
 
   useEffect(() => {
+    // Load the user ID (local session read) and profile once. Every tab
+    // reads them from context instead of refetching.
     const supabase = createClient();
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) {
-        supabase.from("agent_profiles").select("*").eq("id", user.id).single()
-          .then(({ data }) => { if (data) setProfile(data as AgentProfile); });
-      }
+    let active = true;
+    getLocalUserId().then((uid) => {
+      if (!uid || !active) return;
+      setCacheOwner(uid);
+      setUserId(uid);
+      supabase.from("agent_profiles").select("*").eq("id", uid).single()
+        .then(({ data }) => { if (active && data) setProfile(data as AgentProfile); });
     });
+    return () => {
+      active = false;
+    };
   }, []);
 
   // Restore the saved brand color synchronously before paint on every
@@ -282,6 +292,8 @@ export default function DashboardLayout({
     const supabase = createClient();
     await supabase.auth.signOut();
     clearUserStorage();
+    clearCache();
+    resetLocalUserId();
     // Clear the per-browser brand-color cache so the next user who signs
     // in on this device doesn't briefly see the previous user's theme.
     try {
@@ -306,6 +318,7 @@ export default function DashboardLayout({
   };
 
   return (
+    <AgentSessionContext.Provider value={{ userId, profile, setProfile }}>
     <div className="flex h-screen bg-gray-50">
       {/* Desktop sidebar */}
       <aside
@@ -426,5 +439,6 @@ export default function DashboardLayout({
       <LiveLeadAlerts />
       <CommandPalette />
     </div>
+    </AgentSessionContext.Provider>
   );
 }

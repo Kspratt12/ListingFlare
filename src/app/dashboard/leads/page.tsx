@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
-import type { Lead, AgentProfile } from "@/lib/types";
+import type { Lead } from "@/lib/types";
+import { useAgentSession } from "@/lib/agentSession";
+import { cacheGet, cacheSet } from "@/lib/swrCache";
 import {
   MessageSquare, Mail, Phone, Calendar, Home, ChevronDown,
   X, Loader2, ArrowUpDown, Lock, Trash2, Pencil, Sparkles,
@@ -48,14 +50,16 @@ type SortField = "name" | "created_at" | "status";
 type SortDir = "asc" | "desc";
 
 export default function LeadsPage() {
-  const [leads, setLeads] = useState<Lead[]>([]);
-  const [loading, setLoading] = useState(true);
+  // Seeded from the in-memory cache so a returning visit renders instantly;
+  // the fetch below refreshes it in the background.
+  const [leads, setLeads] = useState<Lead[]>(() => cacheGet<Lead[]>("leads") ?? []);
+  const [loading, setLoading] = useState(() => cacheGet<Lead[]>("leads") === undefined);
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [sortField, setSortField] = useState<SortField>("created_at");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [regenerateConfirm, setRegenerateConfirm] = useState<Lead | null>(null);
-  const [profile, setProfile] = useState<AgentProfile | null>(null);
+  const { userId, profile } = useAgentSession();
   const [editingLead, setEditingLead] = useState(false);
   const [editName, setEditName] = useState("");
   const [editEmail, setEditEmail] = useState("");
@@ -63,7 +67,6 @@ export default function LeadsPage() {
   const [deleteConfirm, setDeleteConfirm] = useState(false);
   const [generatingDraft, setGeneratingDraft] = useState(false);
   const [viewMode, setViewModeState] = useState<"list" | "pipeline">("list");
-  const [userId, setUserId] = useState<string | null>(null);
   const [leadScope, setLeadScope] = useState<"all" | "buyers">("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLeadIds, setSelectedLeadIds] = useState<Set<string>>(new Set());
@@ -73,32 +76,34 @@ export default function LeadsPage() {
   const limits = getSubscriptionLimits(profile);
   const supabase = createClient();
 
+  // Saved list/pipeline choice, once the user ID is known (local session read)
+  useEffect(() => {
+    if (!userId) return;
+    const savedView = readUserPref("leads-view", userId);
+    if (savedView === "list" || savedView === "pipeline") setViewModeState(savedView);
+  }, [userId]);
+
   useEffect(() => {
     async function fetchLeads() {
-      // Leads are scoped by RLS, so that query doesn't need the user ID and
-      // runs in parallel with the auth -> profile chain.
-      const loadProfile = async () => {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) return;
-        setUserId(user.id);
-        const savedView = readUserPref("leads-view", user.id);
-        if (savedView === "list" || savedView === "pipeline") setViewModeState(savedView);
-        const { data: p } = await supabase.from("agent_profiles").select("*").eq("id", user.id).single();
-        if (p) setProfile(p as AgentProfile);
-      };
-      const [, { data }] = await Promise.all([
-        loadProfile(),
-        supabase
-          .from("leads")
-          .select(`*, listing:listings(street, city, state)`)
-          .order("created_at", { ascending: false }) as unknown as Promise<{ data: Lead[] | null }>,
-      ]);
-      setLeads(data || []);
+      // Leads are scoped by RLS, so no user ID is needed for the query.
+      const { data, error } = await supabase
+        .from("leads")
+        .select(`*, listing:listings(street, city, state)`)
+        .order("created_at", { ascending: false }) as unknown as { data: Lead[] | null; error: unknown };
+      if (!error && data) {
+        setLeads(data);
+        cacheSet("leads", data);
+      }
       setLoading(false);
     }
     fetchLeads();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Keep the cache in step with optimistic edits, deletes and status changes
+  useEffect(() => {
+    if (!loading) cacheSet("leads", leads);
+  }, [leads, loading]);
 
   const setViewMode = (mode: "list" | "pipeline") => {
     setViewModeState(mode);

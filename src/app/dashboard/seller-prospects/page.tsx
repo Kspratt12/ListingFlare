@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { cacheGet, cacheSet } from "@/lib/swrCache";
 import {
   Users,
   Plus,
@@ -55,8 +56,9 @@ function daysUntil(dateStr: string | null): number | null {
 }
 
 export default function SellerProspectsPage() {
-  const [prospects, setProspects] = useState<SellerProspect[]>([]);
-  const [loading, setLoading] = useState(true);
+  // Seeded from the in-memory cache; load() refreshes it in the background.
+  const [prospects, setProspects] = useState<SellerProspect[]>(() => cacheGet<SellerProspect[]>("seller-prospects") ?? []);
+  const [loading, setLoading] = useState(() => cacheGet("seller-prospects") === undefined);
   const [error, setError] = useState<string | null>(null);
   const [activeStage, setActiveStage] = useState<"all" | SellerProspectStage>("all");
   const [search, setSearch] = useState("");
@@ -71,10 +73,16 @@ export default function SellerProspectsPage() {
       }
       const data = await res.json();
       setProspects(data.prospects || []);
+      cacheSet("seller-prospects", data.prospects || []);
     } finally {
       setLoading(false);
     }
   };
+
+  // Keep the cache in step with local saves and deletes
+  useEffect(() => {
+    if (!loading) cacheSet("seller-prospects", prospects);
+  }, [prospects, loading]);
 
   useEffect(() => {
     load();

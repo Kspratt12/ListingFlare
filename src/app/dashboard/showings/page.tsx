@@ -24,6 +24,8 @@ import {
 import { formatPhone } from "@/lib/formatters";
 import ContactButtons from "@/components/ContactButtons";
 import { firstName } from "@/lib/contactLinks";
+import { getLocalUserId } from "@/lib/agentSession";
+import { cacheGet, cacheSet } from "@/lib/swrCache";
 
 type ShowingWithListing = Omit<Showing, "listing"> & {
   listing?: { street: string; city: string; state: string } | null;
@@ -107,8 +109,8 @@ function ShowingEditModal({ showing, listings, mode, onClose, onSaved }: Showing
 
     try {
       const supabase = createClient();
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) throw new Error("Not authenticated");
+      const uid = await getLocalUserId();
+      if (!uid) throw new Error("Not authenticated");
 
       if (mode === "edit" && showing) {
         await supabase
@@ -127,7 +129,7 @@ function ShowingEditModal({ showing, listings, mode, onClose, onSaved }: Showing
           .eq("id", showing.id);
       } else {
         await supabase.from("showings").insert({
-          agent_id: user.id,
+          agent_id: uid,
           listing_id: listingId,
           lead_id: showing?.lead_id || null,
           showing_date: date,
@@ -320,9 +322,12 @@ function ShowingEditModal({ showing, listings, mode, onClose, onSaved }: Showing
 }
 
 export default function ShowingsPage() {
-  const [showings, setShowings] = useState<ShowingWithListing[]>([]);
-  const [myListings, setMyListings] = useState<Pick<Listing, "id" | "street" | "city" | "state">[]>([]);
-  const [loading, setLoading] = useState(true);
+  // Seeded from the in-memory cache; reload() refreshes it in the background.
+  const [showings, setShowings] = useState<ShowingWithListing[]>(() => cacheGet<ShowingWithListing[]>("showings") ?? []);
+  const [myListings, setMyListings] = useState<Pick<Listing, "id" | "street" | "city" | "state">[]>(
+    () => cacheGet<Pick<Listing, "id" | "street" | "city" | "state">[]>("showings:listings") ?? []
+  );
+  const [loading, setLoading] = useState(() => cacheGet("showings") === undefined);
   const [filter, setFilter] = useState<"upcoming" | "past" | "all">("upcoming");
   const [searchQuery, setSearchQuery] = useState("");
   const [editingShowing, setEditingShowing] = useState<ShowingWithListing | null>(null);
@@ -330,8 +335,8 @@ export default function ShowingsPage() {
 
   const reload = async () => {
     const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) {
+    const uid = await getLocalUserId();
+    if (!uid) {
       setLoading(false);
       return;
     }
@@ -339,20 +344,32 @@ export default function ShowingsPage() {
       supabase
         .from("showings")
         .select(`*, listing:listings(street, city, state)`)
-        .eq("agent_id", user.id)
+        .eq("agent_id", uid)
         .order("showing_date", { ascending: true })
         .order("showing_time", { ascending: true }),
       supabase
         .from("listings")
         .select("id, street, city, state")
-        .eq("agent_id", user.id)
+        .eq("agent_id", uid)
         .in("status", ["published", "pending", "draft"])
         .order("created_at", { ascending: false }),
     ]);
-    setShowings((showingsRes.data as ShowingWithListing[]) || []);
-    setMyListings(listingsRes.data || []);
+    if (!showingsRes.error && showingsRes.data) {
+      const rows = showingsRes.data as ShowingWithListing[];
+      setShowings(rows);
+      cacheSet("showings", rows);
+    }
+    if (!listingsRes.error && listingsRes.data) {
+      setMyListings(listingsRes.data);
+      cacheSet("showings:listings", listingsRes.data);
+    }
     setLoading(false);
   };
+
+  // Keep the cache in step with local status edits
+  useEffect(() => {
+    if (!loading) cacheSet("showings", showings);
+  }, [showings, loading]);
 
   useEffect(() => {
     let active = true;

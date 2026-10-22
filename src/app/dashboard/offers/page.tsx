@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import type { Offer, Listing } from "@/lib/types";
+import { getLocalUserId } from "@/lib/agentSession";
+import { cacheGet, cacheSet } from "@/lib/swrCache";
 import { HandshakeIcon, PlusCircle, X, DollarSign, Pencil, Trash2 } from "lucide-react";
 
 type OfferWithListing = Offer & {
@@ -43,9 +45,12 @@ function formatDate(iso: string): string {
 }
 
 export default function OffersPage() {
-  const [offers, setOffers] = useState<OfferWithListing[]>([]);
-  const [listings, setListings] = useState<Pick<Listing, "id" | "street" | "city" | "state" | "price" | "status">[]>([]);
-  const [loading, setLoading] = useState(true);
+  // Seeded from the in-memory cache; the load effect refreshes it in the background.
+  const [offers, setOffers] = useState<OfferWithListing[]>(() => cacheGet<OfferWithListing[]>("offers") ?? []);
+  const [listings, setListings] = useState<Pick<Listing, "id" | "street" | "city" | "state" | "price" | "status">[]>(
+    () => cacheGet<Pick<Listing, "id" | "street" | "city" | "state" | "price" | "status">[]>("offers:listings") ?? []
+  );
+  const [loading, setLoading] = useState(() => cacheGet("offers") === undefined);
   const [showNewModal, setShowNewModal] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null); // null = creating, uuid = editing
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
@@ -77,10 +82,8 @@ export default function OffersPage() {
   useEffect(() => {
     let active = true;
     async function load() {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) {
+      const uid = await getLocalUserId();
+      if (!uid) {
         if (active) setLoading(false);
         return;
       }
@@ -92,19 +95,22 @@ export default function OffersPage() {
         supabase
           .from("offers")
           .select(`*, listing:listings(id, street, city, state)`)
-          .eq("agent_id", user.id)
+          .eq("agent_id", uid)
           .order("received_at", { ascending: false }),
         supabase
           .from("listings")
           .select("id, street, city, state, price, status")
-          .eq("agent_id", user.id)
+          .eq("agent_id", uid)
           .neq("status", "archived")
           .order("created_at", { ascending: false }),
       ]);
 
       if (!active) return;
-      setOffers((offersRes.data as OfferWithListing[]) || []);
-      setListings((listingsRes.data as typeof listings) || []);
+      if (!offersRes.error && offersRes.data) setOffers(offersRes.data as OfferWithListing[]);
+      if (!listingsRes.error && listingsRes.data) {
+        setListings(listingsRes.data as typeof listings);
+        cacheSet("offers:listings", listingsRes.data);
+      }
       setLoading(false);
     }
     load();
@@ -113,6 +119,11 @@ export default function OffersPage() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Keep the cache in step with local edits (status changes, deletes, new offers)
+  useEffect(() => {
+    if (!loading) cacheSet("offers", offers);
+  }, [offers, loading]);
 
   const updateStatus = async (offerId: string, next: Offer["status"]) => {
     const prevOffers = offers;
@@ -169,10 +180,8 @@ export default function OffersPage() {
     if (!nListing || !nBuyerName || !nOfferPrice) return;
     setSubmitting(true);
     try {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) {
+      const uid = await getLocalUserId();
+      if (!uid) {
         showToast("You're not signed in.", "error");
         return;
       }
@@ -206,7 +215,7 @@ export default function OffersPage() {
       } else {
         const { data, error } = await supabase
           .from("offers")
-          .insert({ ...payload, agent_id: user.id })
+          .insert({ ...payload, agent_id: uid })
           .select(`*, listing:listings(id, street, city, state)`)
           .single();
         if (error) throw error;
