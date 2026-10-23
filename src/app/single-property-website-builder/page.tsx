@@ -75,6 +75,8 @@ export default function Page() {
         { href: "/blog/how-to-create-a-single-property-website", label: "How to create a single property website: the complete guide" },
         { href: "/blog/best-single-property-website-builders", label: "Best single property website builders compared" },
         { href: "/blog/single-property-website-vs-zillow-showcase", label: "Single property website vs. Zillow Showcase" },
+        { href: "/listingflare-vs-rela", label: "ListingFlare vs Rela" },
+        { href: "/listingflare-vs-singlepropertysites", label: "ListingFlare vs SinglePropertySites.com" },
         { href: "/pricing", label: "ListingFlare pricing" },
       ]}
     />
