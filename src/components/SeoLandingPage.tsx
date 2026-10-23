@@ -28,6 +28,8 @@ export interface SeoLandingPageProps {
   intro: string;
   highlights: string[];
   sections: LandingSection[];
+  // Optional side-by-side table shown after the sections (comparison pages)
+  comparison?: { heading: string; columns: string[]; rows: string[][]; note?: string };
   stepsHeading: string;
   steps: LandingStep[];
   limits: { heading: string; items: string[] };
@@ -46,6 +48,7 @@ export default function SeoLandingPage({
   intro,
   highlights,
   sections,
+  comparison,
   stepsHeading,
   steps,
   limits,
@@ -143,6 +146,37 @@ export default function SeoLandingPage({
             ))}
           </section>
         ))}
+
+        {comparison && (
+          <section className="mt-14">
+            <h2 className="font-serif text-2xl font-bold text-gray-900 md:text-3xl">{comparison.heading}</h2>
+            <div className="mt-6 overflow-x-auto rounded-xl border border-gray-200">
+              <table className="w-full min-w-[560px] text-left text-sm">
+                <thead className="bg-gray-50 text-gray-900">
+                  <tr>
+                    {comparison.columns.map((c) => (
+                      <th key={c} className="px-4 py-3 font-semibold">
+                        {c}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100 text-gray-600">
+                  {comparison.rows.map((row) => (
+                    <tr key={row[0]}>
+                      {row.map((cell, i) => (
+                        <td key={i} className={`px-4 py-3 align-top ${i === 0 ? "font-medium text-gray-900" : ""}`}>
+                          {cell}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {comparison.note && <p className="mt-3 text-xs text-gray-500">{comparison.note}</p>}
+          </section>
+        )}
 
         <section className="mt-14">
           <h2 className="font-serif text-2xl font-bold text-gray-900 md:text-3xl">{stepsHeading}</h2>

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import SeoLandingPage from "@/components/SeoLandingPage";
 
 export const metadata: Metadata = {
-  title: "Real Estate Lead Capture Software for Listing Agents",
+  title: "Real Estate Lead Generation & Capture Software for Agents",
   description:
-    "Capture buyer leads from listing pages and open houses, reply instantly, and follow up automatically. Lead inbox, pipeline, hot lead scoring and QR sign-in. 14-day free trial.",
+    "Turn every listing into a lead source. Capture buyer leads from listing pages and open houses, reply instantly, and follow up automatically. Lead inbox, scoring and QR sign-in. 14-day free trial.",
   alternates: {
     canonical: "https://www.listingflare.com/real-estate-lead-capture-software",
   },
@@ -15,8 +15,8 @@ export default function Page() {
     <SeoLandingPage
       path="/real-estate-lead-capture-software"
       eyebrow="Lead capture"
-      h1="Real Estate Lead Capture Software"
-      intro="ListingFlare captures buyers who view your listing pages or sign in at an open house, replies to them right away, and keeps every conversation and follow-up in one place."
+      h1="Real Estate Lead Generation and Capture Software"
+      intro="ListingFlare is real estate lead generation software built around your listings. It captures the buyers who view your listing pages or sign in at an open house, replies to them right away, and keeps every conversation and follow-up in one place. It does not sell you leads. It makes sure the buyers already looking at your listings do not slip away."
       highlights={[
         "Lead forms and AI chat on every listing page",
         "QR code sign-in for open houses",

@@ -305,10 +305,10 @@ export default async function BlogPostPage({ params }: Props) {
             Key Takeaways
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-gray-700">
-            {post.description}
+            {post.description.replace(/^key takeaways:\s*/i, "")}
           </p>
-          <p className="mt-3 text-xs text-gray-400">
-            {post.readingTime} min read by {post.author}
+          <p className="mt-3 text-xs text-gray-500">
+            {post.readingTime} min read
           </p>
         </div>
 
@@ -471,11 +471,10 @@ export default async function BlogPostPage({ params }: Props) {
       <section className="border-t border-gray-100 bg-brand-50 py-12">
         <div className="mx-auto max-w-xl px-6 text-center">
           <h2 className="font-serif text-xl font-bold text-gray-900">
-            Get real estate marketing tips in your inbox
+            Turn your listings into leads
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            Join agents who get our best strategies, templates, and market insights
-            delivered weekly. No spam, unsubscribe anytime.
+            Try ListingFlare free for 14 days. No credit card required.
           </p>
           <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Link
