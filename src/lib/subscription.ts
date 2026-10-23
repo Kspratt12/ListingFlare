@@ -60,7 +60,10 @@ export function getSubscriptionLimits(profile: AgentProfile | null): Subscriptio
     canGenerateOpenHouseFlyer: false,
     maxAiDescriptions: 1,
     isPaid: false,
-    isTrialing: !isExpired,
+    // Only a genuinely trialing account counts as trialing. past_due,
+    // canceled and unpaid accounts land in this branch too, and must not
+    // see the "free trial: N days left" banner.
+    isTrialing: isTrialing && !isExpired,
     isExpired,
     trialDaysLeft,
   };
