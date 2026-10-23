@@ -4,6 +4,9 @@ export interface BlogPost {
   description: string;
   date: string;
   updated?: string;
+  // Keeps an out-of-date article out of search results and the sitemap, and
+  // shows readers an "out of date" notice, until it is rewritten.
+  noindex?: boolean;
   author: string;
   category: string;
   keywords: string[];

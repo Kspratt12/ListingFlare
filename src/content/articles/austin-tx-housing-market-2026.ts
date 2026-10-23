@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "Austin TX housing market analysis for 2026. Current home prices, inventory changes, and what the correction means for buyers and sellers in Austin.",
   date: "2026-02-28",
+  noindex: true,
   author: "ListingFlare Team",
   category: "Market Reports",
   keywords: [

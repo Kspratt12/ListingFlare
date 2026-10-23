@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: post.title,
     description: post.description,
     keywords: post.keywords,
+    ...(post.noindex ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       title: post.title,
       description: post.description,
@@ -374,6 +375,15 @@ export default async function BlogPostPage({ params }: Props) {
             Copy link
           </button>
         </div>
+
+        {post.noindex && (
+          <div className="mt-8 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+            <strong>This article is being updated.</strong> It was written earlier in 2026, and
+            prices, inventory and mortgage rates have since changed (30-year rates are now above
+            7%). Treat the figures below as out of date and check current local data before
+            making decisions.
+          </div>
+        )}
 
         {/* Content */}
         <div

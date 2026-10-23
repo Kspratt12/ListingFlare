@@ -27,6 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Blog posts live in src/content/articles, not Supabase.
   for (const post of getAllPosts()) {
+    if (post.noindex) continue;
     entries.push({
       url: `${baseUrl}/blog/${post.slug}`,
       lastModified: new Date(post.updated || post.date),
