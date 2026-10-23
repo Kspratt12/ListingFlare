@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
-import LiveStats from "@/components/LiveStats";
 
 // Only the fields the homepage cards render. The server page picks these so the
 // full article bodies (~1.4 MB of HTML) never ship in the client bundle.
@@ -1039,7 +1038,6 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
       </section>
 
       {/* Live Stats - hides until real data exists */}
-      <LiveStats />
 
       {/* Social Proof */}
       <section className="border-y border-gray-100 bg-white py-12">

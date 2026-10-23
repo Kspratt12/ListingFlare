@@ -252,8 +252,25 @@ export default function DashboardLayout({
       const loadProfile = async (attempt: number): Promise<void> => {
         const { data, error } = await supabase.from("agent_profiles").select("*").eq("id", uid).single();
         if (!active) return;
-        if (data) setProfile(data as AgentProfile);
-        else if (error && attempt < 2) {
+        if (data) {
+          setProfile(data as AgentProfile);
+          // The signup name is stored in auth metadata only (the profile row is
+          // created by a trigger before the user is signed in). Copy it over once
+          // so new agents do not start with a blank name. Never blocks the UI.
+          if (!data.name) {
+            try {
+              const { data: sess } = await supabase.auth.getSession();
+              const metaName = sess.session?.user?.user_metadata?.name;
+              if (typeof metaName === "string" && metaName.trim()) {
+                const name = metaName.trim();
+                const { error: upErr } = await supabase.from("agent_profiles").update({ name }).eq("id", uid);
+                if (!upErr && active) setProfile({ ...(data as AgentProfile), name });
+              }
+            } catch {
+              // best effort only
+            }
+          }
+        } else if (error && attempt < 2) {
           await new Promise((r) => setTimeout(r, 1000));
           if (active) await loadProfile(attempt + 1);
         }

@@ -238,7 +238,7 @@ export default function SellerReportPage() {
               <li className="flex items-start gap-2">
                 <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-500" />
                 <span>
-                  <strong>Instant response</strong> to every buyer inquiry in under 15 seconds. First to respond wins the buyer.
+                  <strong>Automatic response</strong> to every buyer inquiry, so buyers hear back quickly.
                 </span>
               </li>
               <li className="flex items-start gap-2">

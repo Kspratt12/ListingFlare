@@ -58,11 +58,10 @@ export default function SpeedToLead() {
             Waiting for lead #1
           </p>
           <p className="mt-1 text-xs text-gray-500">
-            Industry avg response:{" "}
-            <span className="font-semibold text-gray-700">47 minutes</span>
+            Your average time to first reply will show up here.
           </p>
           <p className="mt-2 rounded-lg border border-emerald-200 bg-emerald-50/70 px-3 py-1.5 text-[11px] font-medium text-emerald-800">
-            Your AI auto-replies in &lt;15 seconds
+            Your AI replies to new leads automatically
           </p>
         </div>
       </div>
@@ -70,8 +69,6 @@ export default function SpeedToLead() {
   }
 
   const avg = stats.avgSeconds!;
-  const fasterBy = stats.industryAvgSeconds - avg;
-  const timesFaster = Math.round(stats.industryAvgSeconds / Math.max(avg, 1));
 
   return (
     <div className="flex h-full flex-col rounded-xl border border-gray-200 bg-gradient-to-br from-brand-50 to-white p-5">
@@ -90,13 +87,7 @@ export default function SpeedToLead() {
       <div className="mt-3 flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50/70 px-3 py-2">
         <TrendingDown className="h-3.5 w-3.5 flex-shrink-0 text-emerald-600" />
         <p className="text-xs font-medium text-emerald-800">
-          {fasterBy > 0 ? (
-            <>
-              {timesFaster}× faster than industry avg ({formatDuration(stats.industryAvgSeconds)})
-            </>
-          ) : (
-            <>On pace with industry benchmark</>
-          )}
+          Time from inquiry to your first reply
         </p>
       </div>
 

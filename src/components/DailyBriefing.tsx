@@ -126,7 +126,7 @@ export default function DailyBriefing() {
       {!hasBriefing && (
         <p className="mt-3 text-sm text-gray-500">
           Nothing pressing right now. Your AI is{" "}
-          {data.aiApprovalMode ? "drafting replies for your review" : "auto-replying to new leads in under 15 seconds"}
+          {data.aiApprovalMode ? "drafting replies for your review" : "auto-replying to new leads"}
           . New activity will show up here as it happens.
         </p>
       )}
