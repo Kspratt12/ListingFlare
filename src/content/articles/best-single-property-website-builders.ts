@@ -307,89 +307,22 @@ export const article: BlogPost = {
 
 <p>Here is how every builder compares across the features that matter most to listing agents. This table is designed to help you make a quick decision based on your priorities.</p>
 
-<h3>Pricing</h3>
+<table>
+<thead>
+<tr><th>Feature</th><th>ListingFlare</th><th>Rela</th><th>CribFlyer</th><th>Spiro</th><th>SPS</th><th>HDphotohub</th><th>Placester</th></tr>
+</thead>
+<tbody>
+<tr><td>Pricing</td><td>$150/mo (unlimited listings)</td><td>about $29/listing/mo</td><td>Free plan, then $15/listing/mo</td><td>about $10/property</td><td>$25-50/listing</td><td>$15/property one-time</td><td>$99+/mo (full site)</td></tr>
+<tr><td>AI Chatbot for Lead Engagement</td><td>Yes, AI chatbot on every page that answers buyer questions 24/7</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
+<tr><td>Automated Follow-Up</td><td>Yes, automatic follow-up emails</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Basic CRM (manual follow-up)</td></tr>
+<tr><td>Design Quality</td><td>Modern, clean, mobile-optimized</td><td>Best-in-class luxury templates</td><td>Clean but dated</td><td>Clean, professional</td><td>Functional but dated</td><td>Basic</td><td>Professional (full site templates)</td></tr>
+<tr><td>3D Tour / Virtual Tour Integration</td><td>Yes (Matterport, YouTube, custom embed)</td><td>Yes (Matterport, iGuide, native)</td><td>Limited</td><td>Limited (iFrame workaround)</td><td>Limited</td><td>No</td><td>Yes (through IDX and embeds)</td></tr>
+<tr><td>Analytics Dashboard</td><td>Detailed (views, time on page, lead source, chatbot engagement)</td><td>Basic view counts</td><td>Basic view counts</td><td>Basic</td><td>Basic</td><td>None</td><td>Moderate (site-wide analytics)</td></tr>
+<tr><td>Cost for 5 Simultaneous Listings</td><td>$150/mo</td><td>about $145/mo</td><td>about $75/mo</td><td>about $50</td><td>about $125-250/mo</td><td>$75 one-time</td><td>$99+/mo</td></tr>
+</tbody>
+</table>
 
-<ul>
-<li><strong>ListingFlare:</strong> $150/mo (unlimited listings)</li>
-<li><strong>Rela:</strong> about $29/listing/mo</li>
-<li><strong>CribFlyer:</strong> Free plan, then $15/listing/mo</li>
-<li><strong>Spiro:</strong> about $10/property</li>
-<li><strong>SPS:</strong> $25-50/listing</li>
-<li><strong>HDphotohub:</strong> $15/property one-time</li>
-<li><strong>Placester:</strong> $99+/mo (full site)</li>
-</ul>
-
-<h3>AI Chatbot for Lead Engagement</h3>
-
-<ul>
-<li><strong>ListingFlare:</strong> Yes, AI chatbot on every page that answers buyer questions 24/7</li>
-<li><strong>Rela:</strong> No</li>
-<li><strong>CribFlyer:</strong> No</li>
-<li><strong>Spiro:</strong> No</li>
-<li><strong>SPS:</strong> No</li>
-<li><strong>HDphotohub:</strong> No</li>
-<li><strong>Placester:</strong> No</li>
-</ul>
-
-<h3>Automated Follow-Up</h3>
-
-<ul>
-<li><strong>ListingFlare:</strong> Yes, automatic follow-up emails</li>
-<li><strong>Rela:</strong> No</li>
-<li><strong>CribFlyer:</strong> No</li>
-<li><strong>Spiro:</strong> No</li>
-<li><strong>SPS:</strong> No</li>
-<li><strong>HDphotohub:</strong> No</li>
-<li><strong>Placester:</strong> Basic CRM (manual follow-up)</li>
-</ul>
-
-<h3>Design Quality</h3>
-
-<ul>
-<li><strong>ListingFlare:</strong> Modern, clean, mobile-optimized</li>
-<li><strong>Rela:</strong> Best-in-class luxury templates</li>
-<li><strong>CribFlyer:</strong> Clean but dated</li>
-<li><strong>Spiro:</strong> Clean, professional</li>
-<li><strong>SPS:</strong> Functional but dated</li>
-<li><strong>HDphotohub:</strong> Basic</li>
-<li><strong>Placester:</strong> Professional (full site templates)</li>
-</ul>
-
-<h3>3D Tour / Virtual Tour Integration</h3>
-
-<ul>
-<li><strong>ListingFlare:</strong> Yes (Matterport, YouTube, custom embed)</li>
-<li><strong>Rela:</strong> Yes (Matterport, iGuide, native)</li>
-<li><strong>CribFlyer:</strong> Limited</li>
-<li><strong>Spiro:</strong> Limited (iFrame workaround)</li>
-<li><strong>SPS:</strong> Limited</li>
-<li><strong>HDphotohub:</strong> No</li>
-<li><strong>Placester:</strong> Yes (through IDX and embeds)</li>
-</ul>
-
-<h3>Analytics Dashboard</h3>
-
-<ul>
-<li><strong>ListingFlare:</strong> Detailed (views, time on page, lead source, chatbot engagement)</li>
-<li><strong>Rela:</strong> Basic view counts</li>
-<li><strong>CribFlyer:</strong> Basic view counts</li>
-<li><strong>Spiro:</strong> Basic</li>
-<li><strong>SPS:</strong> Basic</li>
-<li><strong>HDphotohub:</strong> None</li>
-<li><strong>Placester:</strong> Moderate (site-wide analytics)</li>
-</ul>
-
-<h3>Cost for 5 Simultaneous Listings</h3>
-
-<ul>
-<li><strong>ListingFlare:</strong> $150/mo</li>
-<li><strong>Rela:</strong> about $145/mo</li>
-<li><strong>CribFlyer:</strong> about $75/mo</li>
-<li><strong>Spiro:</strong> about $50</li>
-<li><strong>SPS:</strong> about $125-250/mo</li>
-<li><strong>HDphotohub:</strong> $75 one-time</li>
-<li><strong>Placester:</strong> $99+/mo</li>
-</ul>
+<p>We make ListingFlare, so check each vendor's current pricing and features before you decide. Plans change.</p>
 
 <h2>The Real Question: Do You Need a Page That Looks Good, or a Page That Captures Leads?</h2>
 
