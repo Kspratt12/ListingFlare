@@ -161,6 +161,7 @@ function ListingPhoto({
   sizes,
   className,
   priority,
+  forceSrc,
 }: {
   index: number;
   fallback: string;
@@ -170,10 +171,11 @@ function ListingPhoto({
   sizes: string;
   className: string;
   priority?: boolean;
+  forceSrc?: string;
 }) {
   const photos = useContext(LivePhotosContext);
   const [failed, setFailed] = useState(false);
-  const src = photos.length > 0 ? photos[index % photos.length] : fallback;
+  const src = forceSrc ?? (photos.length > 0 ? photos[index % photos.length] : fallback);
 
   if (!src || failed) {
     return <div aria-hidden="true" className={`animate-pulse bg-gray-200 ${className}`} />;
@@ -360,7 +362,7 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
                   <p className="font-serif text-lg font-bold text-gray-900">My Listings</p>
                   <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
                     <div className="relative h-36 overflow-hidden">
-                      <ListingPhoto index={0} fallback="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=300&fit=crop&q=80" alt="Published property listing on ListingFlare real estate software dashboard" width={800} height={300} sizes="(max-width: 1024px) 90vw, 480px" priority className="h-full w-full object-cover" />
+                      <ListingPhoto index={0} forceSrc="/luxury.webp" fallback="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=300&fit=crop&q=80" alt="Published property listing on ListingFlare real estate software dashboard" width={800} height={300} sizes="(max-width: 1024px) 90vw, 480px" priority className="h-full w-full object-cover" />
                       <motion.span
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
@@ -503,7 +505,7 @@ function ComparisonHeroSlideshow() {
         ))}
       </div>
       <div className="absolute bottom-3 left-4 right-4 text-white">
-        <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-white/50">Exclusive Listing</p>
+        <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-white/50">Example Listing</p>
         <p className="mt-0.5 font-serif text-xl font-bold leading-tight">1847 Grandview Terrace</p>
         <p className="text-[11px] text-white/70">Pacific Palisades, CA 90272</p>
         <div className="mt-1 flex items-center gap-3 text-xs text-white/90">
@@ -997,6 +999,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
                 <div className="relative aspect-[16/9] overflow-hidden bg-gray-900">
                   <ListingPhoto
                     index={1}
+                    forceSrc="/luxury.webp"
                     fallback="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&h=1080&fit=crop&q=85&auto=format"
                     alt="ListingFlare single property website preview showing a luxury home listing page with AI chatbot, lead capture form, and agent branding"
                     width={1920}
@@ -1008,7 +1011,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
                   <div className="absolute bottom-8 left-8 text-white md:bottom-12 md:left-12">
                     <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/60">
-                      Exclusive Listing
+                      Example Listing
                     </p>
                     <p className="mt-2 font-serif text-2xl font-bold md:text-4xl">
                       1847 Grandview Terrace
