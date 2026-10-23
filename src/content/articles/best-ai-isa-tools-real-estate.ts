@@ -495,6 +495,8 @@ export const article: BlogPost = {
 
 <p>Start with the tool that addresses your biggest pain point. If leads are going cold because nobody responds fast enough, get an AI ISA. If listing leads are slipping through the cracks because your yard sign sends buyers to Zillow instead of you, get <a href="/signup">ListingFlare</a>. If both, start with whichever one costs you more deals today and add the other within 90 days.</p>
 
+<p><strong>About ListingFlare:</strong> we make ListingFlare. If you want to see how an AI assistant works on a listing page, including what it can and cannot do, read about our <a href="/real-estate-ai-chatbot">AI chatbot for listings</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions About AI ISA Tools for Real Estate</h2>
 

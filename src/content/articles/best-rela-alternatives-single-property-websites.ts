@@ -495,6 +495,8 @@ Your browser does not support the video tag.
 
 <p><strong><a href="/signup">Start your free 14-day ListingFlare trial</a></strong> and see the difference an AI-powered listing page makes. No credit card required.</p>
 
+<p><strong>More on ListingFlare:</strong> we make ListingFlare, so weigh our placement accordingly. See our <a href="/real-estate-listing-website-builder">listing website builder</a> page for features and limits, and the <a href="/real-estate-ai-chatbot">AI chatbot for listings</a> that answers buyer questions on each listing.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 
