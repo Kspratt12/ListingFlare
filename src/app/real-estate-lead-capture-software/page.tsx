@@ -76,6 +76,7 @@ export default function Page() {
         { href: "/real-estate-ai-chatbot", label: "AI chatbot for real estate listings" },
         { href: "/blog/how-listing-agents-capture-buyer-leads", label: "How listing agents capture buyer leads" },
         { href: "/blog/best-lead-generation-tools-for-real-estate-agents", label: "Best lead generation tools for real estate agents" },
+        { href: "/blog/open-house-sign-in-sheet-vs-qr-code", label: "Open house sign-in sheet vs. QR code" },
         { href: "/blog/lead-scoring-criteria-real-estate-agents", label: "Lead scoring criteria for real estate agents" },
         { href: "/pricing", label: "ListingFlare pricing" },
       ]}

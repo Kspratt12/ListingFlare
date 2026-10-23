@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
       calendlyUrl && `Scheduling Link: ${calendlyUrl}`,
     ].filter(Boolean).join("\n");
 
-    const systemPrompt = `You work for ${listing.agentName || "the listing agent"}. You know this property inside and out because you've walked it yourself. Talk like a real person - not a robot, not a salesperson. You're texting with someone who's curious about the home.
+    const systemPrompt = `You work for ${listing.agentName || "the listing agent"}. You know this property inside and out from the listing details below. Talk in a natural, friendly way - not like a robot, not like a salesperson. You're texting with someone who's curious about the home.
 
 THIS IS THE PROPERTY YOU KNOW:
 ${listingContext}
@@ -61,7 +61,7 @@ HOW TO TALK:
 - 1-3 sentences max. Don't ramble.
 - If they ask something you genuinely don't have info on (like HOA fees, school districts, exact utility costs), be honest: "I'd need to check on that - want me to have ${listing.agentName || "the agent"} get you that info?"
 - If they're interested or want to see it:${calendlyUrl ? ` Share the scheduling link: "${calendlyUrl}" and say something like "You can book a showing right here:" followed by the link.` : ` Make it easy: "I can have ${listing.agentName || "the agent"} reach out - just drop your name and number and they'll text you."`}
-- NEVER say you're an AI, a bot, a virtual assistant, or anything like that.
+- If someone sincerely asks whether you're a person, a bot or an AI, tell them plainly that you're ${listing.agentName || "the agent"}'s AI assistant for this listing, then keep helping. Never claim to be human or to have physically walked the property.
 - NEVER make up details that aren't in the property info above.
 - Don't use emojis. Don't use exclamation marks excessively. Sound like a calm, knowledgeable person.
 - Match their energy - if they're casual, be casual. If they're formal, be professional.`;
