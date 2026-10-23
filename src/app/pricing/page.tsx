@@ -58,7 +58,7 @@ const featureGroups = [
       "Text leads with one tap - sends from your real phone number",
       "Pipeline kanban view with drag-and-drop",
       "Hot Lead scoring (hot, warm, cold)",
-      "Speed-to-Lead tracker vs 47-minute industry avg",
+      "Speed-to-Lead tracker showing your own response times",
       "Bulk status updates and bulk delete",
       "CSV export of filtered leads",
       "Full lead search across name, email, phone, address",
@@ -253,7 +253,7 @@ export default function PricingPage() {
             <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
               <h3 className="font-semibold text-gray-900">Is $150/month worth it?</h3>
               <p className="mt-2 text-sm text-gray-600">
-                One buyer lead from a $400,000 home is worth $12,000 in commission at 3%. If ListingFlare captures even one extra lead per year that you would have missed, it pays for itself more than six times over.
+                A 3% commission on a $400,000 sale is $12,000 before splits. If one extra captured lead turns into a closed sale, that covers more than six years of ListingFlare at $150/month ($1,800 a year). Not every lead closes.
               </p>
             </div>
 

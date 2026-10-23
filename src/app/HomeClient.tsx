@@ -52,7 +52,7 @@ const features = [
     icon: Globe,
     title: "Win the listing presentation",
     description:
-      "Show sellers a dedicated property website that looks like it cost $5,000. You build it in five minutes. That is how you win the listing.",
+      "Show sellers a dedicated, branded website for their listing, built in minutes. It is a concrete way to stand out in a listing presentation.",
   },
   {
     icon: MessageCircle,
@@ -64,13 +64,13 @@ const features = [
     icon: BarChart3,
     title: "You respond before anyone else can",
     description:
-      "AI drafts a personalized reply the second a lead comes in. While other agents check their email tomorrow morning, you already responded tonight.",
+      "AI drafts a personalized reply as soon as a lead comes in, so a new lead hears back right away, even when you are away from your phone.",
   },
   {
     icon: View,
     title: "More time on your page. More showings booked.",
     description:
-      "Embed Matterport, Kuula, or any 3D tour right on the listing. The longer a buyer stays, the more likely they book.",
+      "Embed Matterport, Kuula, or any 3D tour right on the listing so buyers can explore the home without leaving the page.",
   },
   {
     icon: Zap,
@@ -95,7 +95,7 @@ const features = [
 const included = [
   "Unlimited listing websites with your branding",
   "AI chat answers buyer questions 24/7",
-  "Instant AI auto-reply to every new lead (under 15 seconds)",
+  "AI auto-reply to every new lead",
   "Built-in showing scheduler synced to your Google Calendar",
   "Day 1, 3, and 7 AI follow-up sequences sent for you",
   "Text leads with one tap from your real phone number",
@@ -131,7 +131,7 @@ const walkthrough = [
   {
     step: "04",
     title: "Check your phone in the morning",
-    description: "A buyer found your listing at 11 PM, asked a question, got an answer, and booked a showing. The lead is already in your dashboard.",
+    description: "For example: a buyer finds your listing at 11 PM, asks a question, and leaves their details. The lead is in your dashboard when you wake up.",
     icon: Bell,
     mockup: "leads",
   },
@@ -413,7 +413,7 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
                 </div>
                 <div className="flex-1 space-y-3">
                   <div className="flex items-center justify-between">
-                    <p className="font-serif text-lg font-bold text-gray-900">Leads</p>
+                    <p className="font-serif text-lg font-bold text-gray-900">Leads <span className="font-sans text-[10px] font-normal text-gray-500">(example data)</span></p>
                     <div className="flex gap-1.5">
                       <span className="rounded-full bg-gray-900 px-2.5 py-1 text-[10px] font-medium text-white">All (3)</span>
                       <span className="rounded-full border border-blue-200 bg-blue-50 px-2.5 py-1 text-[10px] font-medium text-blue-700">New (3)</span>
@@ -809,11 +809,11 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
   const faqs = [
     {
       question: "What is ListingFlare?",
-      answer: "ListingFlare gives every listing its own branded property website with a built-in AI assistant. The AI answers buyer questions 24/7, captures their contact information, drafts a follow-up response instantly, and can help book showings through Calendly. You get more leads and faster response times without any extra work.",
+      answer: "ListingFlare gives every listing its own branded property website with a built-in AI assistant. The AI answers buyer questions 24/7, captures their contact information, drafts a follow-up response instantly, and can share your Calendly link to help book showings. It answers from the listing details you enter, so buyers get quick answers without extra work from you.",
     },
     {
       question: "How is ListingFlare different from Zillow or Realtor.com?",
-      answer: "On Zillow, your listing sits next to competitor ads and other agents. Buyers who inquire often get routed away from you. With ListingFlare, every page is yours. Your brand, your contact info, zero competing agents. Every lead goes directly to your dashboard, and your AI assistant responds before anyone else can.",
+      answer: "On Zillow, your listing sits next to competitor ads and other agents. Buyers who inquire can be routed to other agents. With ListingFlare, every page is yours. Your brand, your contact info, zero competing agents. Every lead goes directly to your dashboard, and your AI assistant responds before anyone else can.",
     },
     {
       question: "How much does ListingFlare cost?",
@@ -825,7 +825,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
     },
     {
       question: "What does the AI chatbot actually do?",
-      answer: "It answers buyer questions instantly using your property details, things like bedrooms, square footage, neighborhood info, and specific features. When a buyer engages, the AI captures their name, email, and phone number, then invites them to schedule a showing. You get notified immediately with the lead ready in your dashboard.",
+      answer: "It answers buyer questions using the listing details you enter, such as bedrooms, square footage, and features. When a buyer engages, the AI can capture their name, email, and phone number and invite them to book a showing. Because it only knows what you entered, it can be wrong or incomplete if those details are, and it does not negotiate or give legal or financial advice. If it does not know something, it offers to have you follow up.",
     },
     {
       question: "Can I use ListingFlare with my brokerage branding?",
@@ -1049,7 +1049,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
             className="text-center"
           >
             <p className="text-sm font-medium text-gray-500">
-              While you were sleeping, a buyer found your listing, asked a question, and booked a showing. That is how this works.
+              Here is what a late-night visit to your listing can look like.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-8 md:gap-14">
               <div className="text-center">
@@ -1316,13 +1316,13 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
             className="text-center"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-brand-700">
-              The Honest Comparison
+              Feature Comparison
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
               How we stack up
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-base text-gray-500">
-              Not marketing spin. What each tool actually does for a solo listing agent.
+              Based on each vendor&apos;s public pricing and feature information as of October 2026. An X means we did not find the feature listed; it may still exist. Confirm current details on each vendor&apos;s site.
             </p>
           </motion.div>
 
@@ -1337,8 +1337,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               { feature: "Showing reminders (24hr + 1hr before)", us: true, zillow: false, kv: "partial" },
               { feature: "Re-engage past leads when you list a similar home", us: true, zillow: false, kv: true },
               { feature: "Leads belong to YOU (not sold to other agents)", us: true, zillow: false, kv: true },
-              { feature: "Setup time", us: "5 min", zillow: "N/A", kv: "Multi-week onboarding" },
-              { feature: "Forces you onto their platform's rules", us: false, zillow: true, kv: true },
+              { feature: "Setup time", us: "5 min", zillow: "N/A", kv: "Not listed" },
             ];
             return (
               <motion.div
@@ -1360,11 +1359,11 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
                         </th>
                         <th className="px-6 py-4">
                           <div className="text-base font-semibold text-gray-900">Zillow Premier</div>
-                          <div className="mt-0.5 text-xs font-normal text-gray-500">$300+/mo</div>
+                          <div className="mt-0.5 text-xs font-normal text-gray-500">Pricing varies</div>
                         </th>
                         <th className="px-6 py-4">
                           <div className="text-base font-semibold text-gray-900">kvCORE</div>
-                          <div className="mt-0.5 text-xs font-normal text-gray-500">$499+/mo</div>
+                          <div className="mt-0.5 text-xs font-normal text-gray-500">Pricing varies</div>
                         </th>
                       </tr>
                     </thead>
@@ -1391,11 +1390,11 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
                     <div className="flex gap-3 text-center">
                       <div>
                         <div className="text-sm font-semibold text-gray-700">Zillow</div>
-                        <div className="text-[10px] text-gray-500">$300+</div>
+                        <div className="text-[10px] text-gray-500">Varies</div>
                       </div>
                       <div>
                         <div className="text-sm font-semibold text-gray-700">kvCORE</div>
-                        <div className="text-[10px] text-gray-500">$499+</div>
+                        <div className="text-[10px] text-gray-500">Varies</div>
                       </div>
                     </div>
                   </div>
@@ -1443,7 +1442,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               Your open house visitors are walking out unnamed.
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-gray-500">
-              Saturday open house. 14 people walked through. 2 signed the guest book. The other 12 left without giving you their name, their email, or any way to follow up. That is 12 potential buyers you will never hear from again.
+              Picture a Saturday open house: 14 people walk through and 2 sign the guest book. The other 12 leave without giving you a name, an email, or any way to follow up.
             </p>
             <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-gray-300">
               With ListingFlare, every visitor who scans your QR code lands on a page with an AI that starts a conversation and captures their info before they drive away.
@@ -1482,11 +1481,11 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               <ul className="mt-4 space-y-3">
                 <li className="flex items-start gap-3 text-sm text-gray-500">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
-                  Zillow sells your buyer leads to other agents
+                  Zillow can route your buyer inquiries to other agents
                 </li>
                 <li className="flex items-start gap-3 text-sm text-gray-500">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
-                  Three other agents are advertised on your listing
+                  Other agents can be advertised on your listing
                 </li>
                 <li className="flex items-start gap-3 text-sm text-gray-500">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
@@ -1510,7 +1509,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
                 </li>
                 <li className="flex items-start gap-3 text-sm text-gray-700">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
-                  Buyer gets an answer in under 10 seconds. Any hour.
+                  Buyer gets an answer right away. Any hour.
                 </li>
                 <li className="flex items-start gap-3 text-sm text-gray-700">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
@@ -1539,7 +1538,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               How it works while you sleep.
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-lg text-gray-500">
-              This happened last Tuesday night. The agent was asleep.
+              An example of a late-night visit to a listing page.
             </p>
           </motion.div>
 
@@ -1561,7 +1560,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
                 step: "03",
                 icon: CalendarCheck,
                 title: "They get an answer in seconds.",
-                description: "The AI responds with the real details. Then it asks: \"Would you like to schedule a showing this weekend?\" and offers your Calendly link.",
+                description: "The AI responds with the real details. Then it asks: \"Would you like to schedule a showing this weekend?\" and offers your Calendly link if you have added one.",
               },
               {
                 step: "04",
@@ -1639,7 +1638,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               </div>
               <div className="mt-3 flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50/70 px-3 py-2">
                 <p className="text-xs font-medium text-emerald-800">
-                  201x faster than industry avg
+                  Sample figure for illustration
                 </p>
               </div>
             </div>
@@ -1876,7 +1875,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
                   className="flex justify-start"
                 >
                   <div className="rounded-2xl rounded-bl-md bg-white border border-gray-200 px-5 py-3 text-sm text-gray-700 max-w-sm shadow-sm">
-                    Absolutely. I have Saturday morning availability open. Just share your name and email below and I will get the showing confirmed for you right away.
+                    Happy to help with that. Share your name and email below and I will pass your request to the agent so they can confirm a time.
                   </div>
                 </motion.div>
               </div>
@@ -1916,7 +1915,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
                   </motion.div>
                 </div>
                 <p className="mt-3 text-sm text-gray-500">
-                  10:47 PM. Tuesday. The agent was asleep. The buyer booked Saturday at 10 AM.
+                  Example conversation. The agent is notified and follows up to confirm a time.
                 </p>
               </div>
             </div>
@@ -1992,15 +1991,15 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               Simple Pricing
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-white md:text-display-sm">
-              You lose more in one missed deal
+              One extra buyer lead can
               <br />
-              than this costs in ten years.
+              cover a year of ListingFlare.
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-lg text-gray-400">
-              40+ features across listing pages, AI, lead management, showing scheduler, and automation. One plan. Everything included.
+              50+ features across listing pages, AI, lead management, showing scheduler, and automation. One plan. Everything included.
             </p>
             <p className="mt-3 text-sm font-medium text-brand-400/80">
-              One closed deal from a buyer you would have lost pays for this ten times over.
+              At $150 a month, a year of ListingFlare is $1,800. Not every lead closes.
             </p>
           </motion.div>
 
@@ -2053,13 +2052,12 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               <button
                 onClick={handleBuyNow}
                 disabled={buyLoading}
-                className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-6 py-4 font-medium text-white transition-all hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-500/20 disabled:opacity-50"
+                className="mt-3 w-full text-center text-sm text-gray-400 underline underline-offset-2 transition-colors hover:text-white disabled:opacity-50"
               >
-                {buyLoading ? "Loading..." : "Buy Now $150/mo"}
-                {!buyLoading && <ArrowRight className="h-4 w-4" />}
+                {buyLoading ? "Loading..." : "Skip the trial and subscribe now ($150/mo)"}
               </button>
               <p className="mt-6 text-center text-xs text-gray-500">
-                One missed buyer on a $400K listing is $12,000 in lost commission. This is $5 a day.
+                For scale: a 3% commission on a $400K sale is $12,000 before splits. ListingFlare is about $5 a day.
               </p>
             </div>
           </motion.div>
@@ -2230,6 +2228,8 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
             <Link href="/privacy" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Privacy Policy</Link>
             <span>&middot;</span>
             <Link href="/terms" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Terms of Service</Link>
+            <span>&middot;</span>
+            <a href="mailto:kelvin@listingflare.com" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Contact</a>
             <span>&middot;</span>
             <span>&copy; {new Date().getFullYear()} ListingFlare</span>
           </div>

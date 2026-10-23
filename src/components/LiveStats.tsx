@@ -40,15 +40,15 @@ export default function LiveStats() {
       value: stats.showings,
       label: stats.showings === 1 ? "showing booked" : "showings booked",
     },
-  ];
+  ].filter((item) => item.value > 0);
 
   return (
     <section className="border-y border-gray-100 bg-white py-10">
       <div className="mx-auto max-w-5xl px-6">
         <p className="text-center text-xs font-semibold uppercase tracking-widest text-brand-700">
-          Real results, live
+          Live platform activity
         </p>
-        <div className="mt-5 grid grid-cols-3 gap-4 md:gap-8">
+        <div className={`mt-5 grid gap-4 md:gap-8 ${items.length === 2 ? "grid-cols-2" : "grid-cols-3"}`}>
           {items.map((item, i) => {
             const Icon = item.icon;
             return (
