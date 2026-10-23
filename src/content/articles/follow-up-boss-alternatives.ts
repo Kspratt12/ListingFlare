@@ -575,6 +575,8 @@ export const article: BlogPost = {
 
 <p>Regardless of which CRM you choose, add <a href="/signup">ListingFlare</a> for listing marketing. No CRM on this list creates dedicated property websites or puts AI chatbots on your listing pages. That gap exists whether you use FUB, Lofty, or any of the other seven alternatives. ListingFlare fills it.</p>
 
+<p><strong>About ListingFlare:</strong> we make ListingFlare. It is built around listings rather than as a full CRM. See how its <a href="/real-estate-lead-capture-software">lead capture software</a> works, including the inbox, follow-up sequence and CSV export, to judge whether it fits alongside or instead of your current tools.</p>
+
 <div class="faq-section">
 
 <h2>Frequently Asked Questions</h2>

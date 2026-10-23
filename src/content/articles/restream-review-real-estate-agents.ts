@@ -7,6 +7,7 @@ export const article: BlogPost = {
   description:
     "An in-depth Restream review for real estate agents covering pricing, multistreaming to 30+ platforms, live open house streaming, chat aggregation, and how to combine live video with AI lead capture.",
   date: "2026-03-27",
+  updated: "2026-10-23",
   author: "ListingFlare Team",
   category: "Social Media",
   keywords: [
@@ -31,7 +32,7 @@ export const article: BlogPost = {
 
 <p>That is where <strong>Restream</strong> comes in. It lets you broadcast to 30+ platforms simultaneously from a single stream. One camera, one setup, one live session - and you are everywhere at once.</p>
 
-<p>We spent several weeks testing Restream specifically for real estate use cases - live open houses, market updates, Q&A sessions, and property walkthroughs. Here is our full <strong>Restream review for real estate agents</strong> heading into 2026.</p>
+<p>This guide looks at Restream specifically for real estate use cases - live open houses, market updates, Q&A sessions, and property walkthroughs - based on the company's public documentation, pricing and feature descriptions. We have not run formal tests, so try any free trial with your own content before you pay. Here is our full <strong>Restream review for real estate agents</strong> heading into 2026.</p>
 
 <img src="/blog/restream/studio-stream.png" alt="Restream studio multistreaming platform for real estate live video" loading="lazy" />
 
@@ -232,7 +233,7 @@ export const article: BlogPost = {
 <li><strong>Chat aggregation</strong> - all platform comments in one unified window</li>
 <li><strong>Guest invites</strong> - co-hosts join via link, no account required</li>
 <li><strong>Recordings and analytics</strong> - automatic cloud recordings and post-stream data</li>
-<li><strong>Reliable uptime</strong> - zero dropped streams in our testing</li>
+<li><strong>Stream reliability</strong> - a core selling point, but test it on your own connection before going live</li>
 <li><strong>Stream scheduling</strong> - schedule in advance so platforms notify your audience</li>
 </ul>
 </div>

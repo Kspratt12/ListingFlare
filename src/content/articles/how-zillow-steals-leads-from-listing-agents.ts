@@ -381,6 +381,8 @@ export const article: BlogPost = {
 
 <p><strong><a href="/signup">Start your free trial with ListingFlare</a></strong> and create your first single-property website in under 5 minutes. Or <a href="/demo">see a live demo</a> to see exactly how it works. Your leads are waiting.</p>
 
+<p><strong>Where to go from here:</strong> a dedicated page for each listing is the most direct way to keep buyer inquiries with you. Disclosure: we make ListingFlare. You can see how our <a href="/single-property-website-builder">single property website builder</a> works, or how its <a href="/real-estate-lead-capture-software">lead capture software</a> handles inquiries, open house sign-ins and follow-up.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

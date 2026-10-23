@@ -7,6 +7,7 @@ export const article: BlogPost = {
   description:
     "A comprehensive Descript review for real estate agents covering pricing, AI features, transcript-based video editing, filler word removal, Studio Sound, and how to create polished listing videos without any editing experience.",
   date: "2026-03-27",
+  updated: "2026-10-23",
   author: "ListingFlare Team",
   category: "Listing Marketing",
   keywords: [
@@ -31,7 +32,7 @@ export const article: BlogPost = {
 
 <p>That is the problem <strong>Descript</strong> solves. Instead of editing video on a traditional timeline, you edit the transcript. Delete a sentence from the text, and Descript removes that exact segment from the video. It is as simple as editing a Google Doc. No timeline. No scrubbing. No technical skills required.</p>
 
-<p>We spent several weeks testing Descript specifically for real estate workflows - listing walkthroughs, market updates, social media clips, and property tours. Here is our full <strong>Descript review for real estate agents</strong> in 2026, covering everything from pricing to step-by-step workflows to whether it actually lives up to the hype.</p>
+<p>This guide looks at Descript specifically for real estate workflows - listing walkthroughs, market updates, social media clips, and property tours - based on the company's public documentation, pricing and feature descriptions. We have not run formal tests, so try any free trial with your own content before you pay. Here is our full <strong>Descript review for real estate agents</strong> in 2026, covering everything from pricing to step-by-step workflows to whether it lives up to the hype.</p>
 
 <img src="/blog/descript/descript1.png" alt="Descript AI video editor platform overview" loading="lazy" />
 
@@ -118,7 +119,7 @@ export const article: BlogPost = {
 
 <h2>How Real Estate Agents Use Descript</h2>
 
-<p>The features list sounds impressive on paper, but how does Descript actually fit into a real estate agent's day-to-day workflow? We tested every major use case. Here is how each feature translates into real value for your business.</p>
+<p>The features list sounds impressive on paper, but how does Descript fit into a real estate agent's day-to-day workflow? Here is how each major feature translates into value for your business.</p>
 
 <h3>Edit Listing Walkthrough Videos by Editing Text</h3>
 
@@ -134,7 +135,7 @@ export const article: BlogPost = {
 
 <p>This feature alone might justify the subscription for some agents. When recording listing walkthroughs, you are naturally looking around the room, glancing at your notes, checking the camera angle, or reading bullet points about the home's features. The result is footage where you rarely look directly at the camera, which makes the video feel less engaging and less trustworthy to viewers.</p>
 
-<p>Descript's eye contact correction uses AI to subtly adjust your eye line so it appears you are looking directly into the camera lens. The effect is not perfect in every frame, but in our testing it was convincing about 90% of the time. For talking-head segments where you are standing in a room and speaking to the camera, it works remarkably well. The difference in perceived confidence and authority is significant.</p>
+<p>Descript's eye contact correction uses AI to subtly adjust your eye line so it appears you are looking directly into the camera lens. The effect is not perfect in every frame, so review your footage before posting. For talking-head segments where you are standing in a room and speaking to the camera, it can work well, and the difference in perceived confidence can be noticeable.</p>
 
 <p>One tip: eye contact correction works best when your face is clearly visible and relatively still. Quick head movements or extreme angles can break the illusion. For best results, position yourself facing the camera and keep your head movements natural. The AI handles the rest.</p>
 
@@ -142,7 +143,7 @@ export const article: BlogPost = {
 
 <p>Every agent has verbal tics. "Um," "uh," "like," "so," "you know," "basically" - these filler words creep into every recording. In casual conversation they are invisible, but in a listing video they make you sound unprepared and unprofessional. The problem is that manually finding and removing every filler word from a 3-minute video can take 20 to 30 minutes in a traditional editor.</p>
 
-<p>Descript solves this in about three seconds. After transcription, it highlights every detected filler word in the transcript. Click "Remove filler words" and they all disappear from both the text and the video. The cuts are clean and natural. In our testing, we recorded a deliberately filler-heavy 2-minute walkthrough (23 filler words total) and Descript caught and removed every single one. The resulting video sounded polished and professional with zero manual effort.</p>
+<p>Descript solves this in about three seconds. After transcription, it highlights every detected filler word in the transcript. Click "Remove filler words" and they all disappear from both the text and the video. Automatic cuts are usually clean, but it can miss some words or leave an occasional awkward edit, so give the result a quick listen before you publish.</p>
 
 <img src="/blog/descript/studio-sound.png" alt="Descript Studio Sound noise removal for real estate recordings" loading="lazy" />
 
@@ -150,7 +151,7 @@ export const article: BlogPost = {
 
 <p>Real estate recordings happen in less-than-ideal audio environments. You are filming at an open house with people chatting in the background. You are standing on a busy street explaining the neighborhood. You are in an empty house with hard floors and echo bouncing everywhere. You are outside and the wind is whipping past the microphone.</p>
 
-<p>Descript's Studio Sound feature uses AI to isolate your voice and dramatically reduce background noise. It does not make bad audio perfect, but it makes bad audio usable. In our testing, we recorded a listing walkthrough with audible traffic noise from an open window. Studio Sound reduced the traffic to a barely noticeable hum while keeping the voice clear and natural. We also tested it in an empty room with significant echo, and the improvement was immediately noticeable.</p>
+<p>Descript's Studio Sound feature uses AI to isolate your voice and reduce background noise. It does not make bad audio perfect, but it can make poor audio more usable. It tends to help most with steady background noise such as traffic or room echo, and less with sudden or overlapping sounds. Always listen to the result before you publish.</p>
 
 <p>The key limitation is that Studio Sound works best when your voice is the primary audio source. If you are speaking quietly while loud music plays in the background, it will struggle. But for the typical real estate recording scenario - your voice in a somewhat noisy environment - it performs well enough to save you from re-recording.</p>
 
@@ -170,7 +171,7 @@ export const article: BlogPost = {
 
 <p>The practical use case for agents is fixing mistakes without re-recording. Imagine you finished editing a listing video and then realized you said the home has "three bathrooms" when it actually has "three and a half bathrooms." In any other editor, you would need to re-record that segment, match the audio levels, and splice it in. With Overdub, you highlight the wrong text in the transcript, type the correction, and Descript generates the new audio in your voice and drops it into the video. It takes about 15 seconds.</p>
 
-<p>The voice quality is good but not flawless. In our testing, the cloned voice was about 85% accurate to the original. Most viewers would not notice the difference, especially in a fast-paced social media video. For high-stakes content like a luxury listing film, you might prefer to re-record. But for everyday social media content, Overdub is a massive time saver.</p>
+<p>The voice quality is good but not flawless, and results vary with the quality of the training recording. Many viewers may not notice the difference in a fast-paced social media video. For high-stakes content like a luxury listing film, you might prefer to re-record. For everyday social media content, Overdub can save a lot of time.</p>
 
 <h3>Auto-Captions for Social Media Accessibility</h3>
 

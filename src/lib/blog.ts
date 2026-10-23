@@ -4,6 +4,9 @@ export interface BlogPost {
   description: string;
   date: string;
   updated?: string;
+  // Keeps an out-of-date article out of search results and the sitemap, and
+  // shows readers an "out of date" notice, until it is rewritten.
+  noindex?: boolean;
   author: string;
   category: string;
   keywords: string[];
@@ -63,6 +66,7 @@ import { article as aiVirtualStaging } from "@/content/articles/best-ai-virtual-
 import { article as aiToolsRealtors } from "@/content/articles/best-ai-tools-for-realtors";
 import { article as spwVsZillowShowcase } from "@/content/articles/single-property-website-vs-zillow-showcase";
 import { article as openHouseFlyerGenerator } from "@/content/articles/open-house-flyer-generator";
+import { article as openHouseSignInVsQr } from "@/content/articles/open-house-sign-in-sheet-vs-qr-code";
 
 const allPosts: BlogPost[] = [
   howToGetLeads,
@@ -114,6 +118,7 @@ const allPosts: BlogPost[] = [
   aiToolsRealtors,
   spwVsZillowShowcase,
   openHouseFlyerGenerator,
+  openHouseSignInVsQr,
 ];
 
 // Sort by date descending

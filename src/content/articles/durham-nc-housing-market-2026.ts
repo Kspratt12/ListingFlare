@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "Durham NC housing market outlook for 2026. Home prices, inventory levels, neighborhood breakdown, and what the Bull City market means for buyers and sellers.",
   date: "2026-03-01",
+  noindex: true,
   author: "ListingFlare Team",
   category: "Market Reports",
   keywords: [

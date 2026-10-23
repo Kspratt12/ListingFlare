@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "Get the latest Raleigh NC housing market trends for 2026. Home prices, inventory levels, mortgage rates, and expert forecasts for buyers and sellers in the Triangle.",
   date: "2026-03-18",
+  noindex: true,
   author: "ListingFlare Team",
   category: "Market Reports",
   keywords: [

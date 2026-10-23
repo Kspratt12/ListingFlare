@@ -45,7 +45,7 @@ export default function LiveStats() {
   return (
     <section className="border-y border-gray-100 bg-white py-10">
       <div className="mx-auto max-w-5xl px-6">
-        <p className="text-center text-xs font-semibold uppercase tracking-widest text-brand-500">
+        <p className="text-center text-xs font-semibold uppercase tracking-widest text-brand-700">
           Real results, live
         </p>
         <div className="mt-5 grid grid-cols-3 gap-4 md:gap-8">

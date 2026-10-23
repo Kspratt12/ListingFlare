@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "Charlotte NC housing market analysis for 2026. Current home prices, inventory trends, mortgage rate outlook, and what buyers and sellers should expect in the Queen City.",
   date: "2026-03-02",
+  noindex: true,
   author: "ListingFlare Team",
   category: "Market Reports",
   keywords: [
