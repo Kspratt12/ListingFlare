@@ -2,11 +2,11 @@ import { BlogPost } from "@/lib/blog";
 
 export const article: BlogPost = {
   slug: "best-ai-tools-for-realtors",
-  title:
-    "Best AI Tools for Realtors: 10 Tools That Save Time and Close More Deals",
+  title: "Best AI Tools for Realtors (2026): 10 Picks for Agents",
   description:
-    "The best AI tools for realtors in 2026. From AI chatbots to virtual staging to content creation - these 10 tools help real estate agents save hours and capture more leads.",
+    "The 10 best AI tools for realtors in 2026: chatbots, virtual staging, content and marketing tools, with what each one does best and who it fits.",
   date: "2026-03-29",
+  updated: "2026-10-23",
   author: "ListingFlare Team",
   category: "Agent Growth",
   keywords: [
