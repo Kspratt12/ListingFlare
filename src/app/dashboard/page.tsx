@@ -521,30 +521,55 @@ export default function MyListingsPage() {
       )}
       {!loading && (
         <div className="mb-6 space-y-4">
+          {/* First-run focus: a new agent with no listings sees one clear next step */}
+          {listings.length === 0 && (
+            <div className="rounded-xl border border-brand-200 bg-gradient-to-br from-brand-50 to-white p-6">
+              <h2 className="font-serif text-xl font-bold text-gray-900">
+                Get your first listing live in about 5 minutes
+              </h2>
+              <ol className="mt-3 space-y-1.5 text-sm text-gray-600">
+                <li><span className="font-semibold text-gray-900">1.</span> Paste a Zillow, Realtor.com or MLS link or description and we will auto-fill the details.</li>
+                <li><span className="font-semibold text-gray-900">2.</span> Add your photos.</li>
+                <li><span className="font-semibold text-gray-900">3.</span> Publish and share the link. Buyer questions and leads land here.</li>
+              </ol>
+              <Link
+                href="/dashboard/create"
+                className="mt-4 inline-flex items-center gap-2 rounded-lg bg-gray-950 px-5 py-3 text-sm font-medium text-white hover:bg-gray-800"
+              >
+                <PlusCircle className="h-4 w-4" />
+                Create your first listing
+              </Link>
+            </div>
+          )}
+
           {/* Push notifications opt-in - auto-hides when granted+dismissed or unsupported */}
-          <PushNotificationPrompt />
+          {listings.length > 0 && <PushNotificationPrompt />}
 
           {/* Getting Started - auto-hides when complete */}
           <GettingStarted />
 
           {/* Daily briefing - auto-hides when nothing to report */}
-          <DailyBriefing />
+          {listings.length > 0 && <DailyBriefing />}
 
           {/* Revenue stat - hides if no commission logged yet */}
-          <RevenueStat />
+          {listings.length > 0 && <RevenueStat />}
 
-          {/* Top row: equal-height cards */}
-          <div className="grid gap-4 lg:grid-cols-3">
-            <div className="lg:col-span-1">
-              <SpeedToLead />
-            </div>
-            <div className="lg:col-span-2">
-              <UpcomingShowings limit={3} />
-            </div>
-          </div>
+          {listings.length > 0 && (
+            <>
+              {/* Top row: equal-height cards */}
+              <div className="grid gap-4 lg:grid-cols-3">
+                <div className="lg:col-span-1">
+                  <SpeedToLead />
+                </div>
+                <div className="lg:col-span-2">
+                  <UpcomingShowings limit={3} />
+                </div>
+              </div>
 
-          {/* Activity feed */}
-          <ActivityFeed />
+              {/* Activity feed */}
+              <ActivityFeed />
+            </>
+          )}
         </div>
       )}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
