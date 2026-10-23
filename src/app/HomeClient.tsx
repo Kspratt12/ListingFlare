@@ -757,14 +757,6 @@ function LandingPageInner() {
       "@type": "Organization",
       name: "ListingFlare",
     },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: "https://www.listingflare.com/blog?q={search_term_string}",
-      },
-      "query-input": "required name=search_term_string",
-    },
   };
 
   const softwareJsonLd = {
@@ -1606,6 +1598,9 @@ function LandingPageInner() {
             <p className="mx-auto mt-3 max-w-2xl text-base text-gray-500">
               Every response time, every showing booked, every follow-up sent. Visible in one place so you actually know your software is working.
             </p>
+            <p className="mx-auto mt-2 max-w-2xl text-xs text-gray-400">
+              Sample dashboard with illustrative numbers. Your dashboard shows your own leads and response times.
+            </p>
           </motion.div>
 
           <motion.div
@@ -1623,7 +1618,7 @@ function LandingPageInner() {
               </div>
               <div className="mt-3 flex items-baseline gap-2">
                 <p className="font-serif text-3xl font-bold text-gray-900">14s</p>
-                <p className="text-xs text-gray-500">avg response</p>
+                <p className="text-xs text-gray-500">avg response (sample)</p>
               </div>
               <div className="mt-3 flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50/70 px-3 py-2">
                 <p className="text-xs font-medium text-emerald-800">

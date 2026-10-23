@@ -44,6 +44,9 @@ export default function Footer({
             <Link href="/blog" className="transition-colors hover:text-gray-900">Blog</Link>
             <Link href="/about" className="transition-colors hover:text-gray-900">About</Link>
             <Link href="/demo" className="transition-colors hover:text-gray-900">Demo</Link>
+            <Link href="/real-estate-listing-website-builder" className="transition-colors hover:text-gray-900">Listing Websites</Link>
+            <Link href="/real-estate-lead-capture-software" className="transition-colors hover:text-gray-900">Lead Capture</Link>
+            <Link href="/real-estate-ai-chatbot" className="transition-colors hover:text-gray-900">AI Chatbot</Link>
             <Link href="/privacy" className="transition-colors hover:text-gray-900">Privacy</Link>
             <Link href="/terms" className="transition-colors hover:text-gray-900">Terms</Link>
           </div>
