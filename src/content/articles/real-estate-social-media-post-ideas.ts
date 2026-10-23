@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "real-estate-social-media-post-ideas",
   title:
-    "30 Real Estate Social Media Post Ideas That Actually Generate Leads",
+    "30 Real Estate Social Media Post Ideas for Leads",
   description:
-    "Never run out of content again. 30 proven real estate social media post ideas for Instagram, Facebook, and TikTok that attract followers and generate leads in 2026.",
+    "30 real estate social media post ideas for Instagram, Facebook and TikTok that help attract followers and generate leads in 2026. Never run out of content.",
   date: "2026-03-04",
   author: "ListingFlare Team",
   category: "Social Media",

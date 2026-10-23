@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "castmagic-review-real-estate-agents",
   title:
-    "Castmagic Review for Real Estate Agents: Turn One Video Into 30 Pieces of Content",
+    "Castmagic Review for Real Estate Agents (2026)",
   description:
-    "Detailed Castmagic review for real estate agents. Learn how AI content repurposing turns one recording into blog posts, social captions, emails, and more. Pricing, pros, cons, and alternatives compared.",
+    "Castmagic review for real estate agents: how AI content repurposing turns one recording into posts, captions and emails, with pricing, pros and cons.",
   date: "2026-03-27",
   author: "ListingFlare Team",
   category: "Social Media",

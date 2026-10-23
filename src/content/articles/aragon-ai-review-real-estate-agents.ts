@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "aragon-ai-review-real-estate-agents",
   title:
-    "Aragon AI Review for Real Estate Agents: Professional Headshots Without a Photographer",
+    "Aragon AI Review for Real Estate Agents (Headshots)",
   description:
-    "An in-depth Aragon AI review for real estate agents covering pricing, headshot quality, step-by-step setup, pros and cons, and how AI-generated professional headshots can elevate your personal brand and listing marketing.",
+    "Aragon AI review for real estate agents: pricing, headshot quality, setup steps, pros and cons, and how AI headshots fit your personal brand.",
   date: "2026-03-27",
   updated: "2026-10-23",
   author: "ListingFlare Team",

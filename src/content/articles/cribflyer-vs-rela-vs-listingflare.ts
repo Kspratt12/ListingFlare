@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "cribflyer-vs-rela-vs-listingflare",
   title:
-    "CribFlyer vs Rela vs ListingFlare: Which Single Property Website Builder Is Best?",
+    "CribFlyer vs Rela vs ListingFlare: Which Is Best?",
   description:
-    "An honest comparison of CribFlyer, Rela, and ListingFlare for real estate agents. See pricing, features, lead capture, and AI chatbot differences side by side.",
+    "CribFlyer vs Rela vs ListingFlare compared on features, lead capture and AI chatbot support. We make ListingFlare; confirm pricing on each vendor's site.",
   date: "2026-03-27",
   author: "ListingFlare Team",
   category: "Listing Marketing",

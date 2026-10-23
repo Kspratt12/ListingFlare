@@ -2,7 +2,7 @@ import { BlogPost } from "@/lib/blog";
 
 export const article: BlogPost = {
   slug: "home-staging-tips-to-sell-your-house-faster",
-  title: "Home Staging Tips to Sell Your House Faster: 12 Expert Strategies",
+  title: "Home Staging Tips to Sell Your House Faster",
   description:
     "Professional home staging tips that help your house sell faster and for more money. 12 expert strategies from decluttering to curb appeal that buyers love.",
   date: "2026-02-24",

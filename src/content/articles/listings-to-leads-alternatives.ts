@@ -4,7 +4,7 @@ export const article: BlogPost = {
   slug: "listings-to-leads-alternatives",
   title: "Top Listings to Leads Alternatives for Real Estate Agents",
   description:
-    "Looking for a Listings to Leads alternative? Compare the 5 best listing marketing platforms for real estate agents, with pricing, features, and honest reviews.",
+    "Looking for a Listings to Leads alternative? Compare 5 listing marketing platforms for real estate agents on pricing, features and fit for your workflow.",
   date: "2026-03-27",
   author: "ListingFlare Team",
   category: "Listing Marketing",

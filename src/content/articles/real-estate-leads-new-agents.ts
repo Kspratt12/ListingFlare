@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "real-estate-leads-for-new-agents",
   title:
-    "Real Estate Leads for New Agents: How to Build Your Pipeline from Zero",
+    "Real Estate Leads for New Agents: Build Your Pipeline",
   description:
-    "New to real estate? Learn how to generate your first leads as a new agent with budget-friendly strategies that actually work in 2026.",
+    "New to real estate? Learn how to generate your first leads as a new agent with budget-friendly strategies, from sphere outreach to listing websites.",
   date: "2026-03-10",
   author: "ListingFlare Team",
   category: "Lead Generation",

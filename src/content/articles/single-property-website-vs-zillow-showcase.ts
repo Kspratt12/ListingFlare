@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "single-property-website-vs-zillow-showcase",
   title:
-    "Why Single-Property Websites Beat Zillow Showcase for Listing Agents (2026 Guide)",
+    "Single-Property Website vs Zillow Showcase (2026)",
   description:
-    "Key takeaways: A single-property website keeps buyers, leads, and branding on your own page, while a portal listing shares the screen with competing agents and ads. Here is when each one wins, and how to use both without losing the lead.",
+    "A single-property website keeps buyers and leads on your page; a portal listing shares the screen with other agents. When each wins, and how to use both.",
   date: "2026-10-22",
   author: "ListingFlare Team",
   category: "Listing Marketing",

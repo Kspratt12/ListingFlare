@@ -3,7 +3,7 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "what-not-to-fix-when-selling-a-house",
   title:
-    "What Not to Fix When Selling a House: Save Money on These 10 Repairs",
+    "What Not to Fix When Selling a House: 10 Repairs",
   description:
     "Stop wasting money on unnecessary repairs before selling. Learn what not to fix when selling a house and where to invest for maximum return instead.",
   date: "2026-02-26",

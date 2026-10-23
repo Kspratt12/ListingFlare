@@ -5,7 +5,7 @@ export const article: BlogPost = {
   title:
     "7 Best AI Virtual Staging Tools for Real Estate Agents",
   description:
-    "Compare the best AI virtual staging software for real estate. See pricing, quality, speed, and real results from the top 7 platforms that are replacing traditional staging.",
+    "Compare the best AI virtual staging software for real estate: pricing, speed and quality notes for 7 platforms, and how they compare with traditional staging.",
   date: "2026-03-28",
   author: "ListingFlare Team",
   category: "Listing Marketing",

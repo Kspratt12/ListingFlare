@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "manychat-review-real-estate-agents",
   title:
-    "ManyChat Review for Real Estate Agents: Automate Instagram & Facebook Leads",
+    "ManyChat Review for Real Estate Agents (2026)",
   description:
-    "An in-depth ManyChat review for real estate agents covering pricing, Instagram DM automation, Facebook Messenger chatbots, lead qualification flows, and 7 proven strategies to capture more buyer and seller leads from social media.",
+    "ManyChat review for real estate agents: pricing, Instagram DM automation, Messenger chatbots and lead qualification flows to capture social media leads.",
   date: "2026-03-27",
   updated: "2026-10-23",
   author: "ListingFlare Team",

@@ -2,9 +2,9 @@ import { BlogPost } from "@/lib/blog";
 
 export const article: BlogPost = {
   slug: "how-to-stop-losing-leads-to-zillow",
-  title: "How to Stop Losing Buyer Leads to Zillow: 9 Strategies Every Agent Needs in 2026",
+  title: "How to Stop Losing Buyer Leads to Zillow: 9 Strategies",
   description:
-    "Tired of Zillow sending your buyer leads to competing agents? Learn 9 proven strategies to capture leads directly from your listings and stop paying for leads that should already be yours.",
+    "Zillow can route your listing's buyer leads to other agents. Here are 9 strategies to capture leads directly from your own listings instead.",
   date: "2026-03-20",
   author: "ListingFlare Team",
   category: "Lead Generation",
@@ -260,6 +260,8 @@ export const article: BlogPost = {
 </ul>
 
 <p>By the end of 30 days, you will have a lead capture system that works independently of any portal. Every lead you generate is yours. No middleman. No shared leads. No paying for prospects that came from your own listing.</p>
+
+<p><strong>Related reading:</strong> <a href="/blog/single-property-website-vs-zillow-showcase">single-property website vs Zillow Showcase</a></p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

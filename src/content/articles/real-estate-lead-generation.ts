@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "real-estate-lead-generation",
   title:
-    "Real Estate Lead Generation: 15 Strategies Top Agents Use to Never Run Out of Clients",
+    "Real Estate Lead Generation: 15 Strategies for Agents",
   description:
-    "Master real estate lead generation with 15 proven strategies that top-producing agents use to consistently attract buyers and sellers. From digital marketing to referral systems, this is the only guide you need.",
+    "Real estate lead generation guide with 15 strategies for agents, from digital marketing and listing websites to referral systems and follow-up.",
   date: "2026-03-21",
   author: "ListingFlare Team",
   category: "Lead Generation",
@@ -406,6 +406,8 @@ export const article: BlogPost = {
 <li><strong>Spending on ads before building systems</strong> - Driving 100 leads per month to a website with no lead capture is burning money. Build the system first, then add fuel</li>
 <li><strong>Doing everything yourself</strong> - Lead generation is a full-time job on top of your full-time job. Automate what you can, delegate what you cannot, and focus your personal time on the activities with the highest dollar-per-hour value: listing appointments and closings</li>
 </ul>
+
+<p><strong>Related reading:</strong> <a href="/blog/best-lead-generation-for-realtors">best lead generation methods for realtors, compared</a></p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions About Real Estate Lead Generation</h2>

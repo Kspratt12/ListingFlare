@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "best-ai-isa-tools-real-estate",
   title:
-    "Best AI ISA Tools for Real Estate: Replace Your $60K ISA for $500/Month",
+    "Best AI ISA Tools for Real Estate Agents (2026)",
   description:
-    "Compare the best AI inside sales agent tools for real estate teams. See how AI ISAs handle lead follow-up, qualification, and appointment setting at a fraction of the cost of a human ISA.",
+    "Compare AI inside sales agent tools for real estate. See how each handles lead follow-up, qualification and appointment setting, plus pricing.",
   date: "2026-03-28",
   author: "ListingFlare Team",
   category: "Lead Generation",

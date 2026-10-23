@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "open-house-ideas-to-attract-more-buyers",
   title:
-    "Open House Ideas to Attract More Buyers: 15 Creative Strategies for 2026",
+    "Open House Ideas to Attract More Buyers: 15 Strategies",
   description:
-    "Stand out with these 15 creative open house ideas that attract more buyers, generate leads, and create buzz. Proven strategies for real estate agents in 2026.",
+    "15 open house ideas that attract more buyers, generate leads and create buzz, from themed events to QR sign-ins. Practical strategies for agents in 2026.",
   date: "2026-03-07",
   author: "ListingFlare Team",
   category: "Lead Generation",
@@ -134,6 +134,8 @@ export const article: BlogPost = {
 <p>You don't need to implement all 15 ideas at once. Start with three or four that fit your style and your listing. A themed open house with a local business partnership, digital sign-in, and same-day follow-up is a recipe that will outperform 90% of the open houses in your market.</p>
 
 <p>The agents who consistently attract more buyers to their open houses aren't doing anything magical. They're just more intentional. They treat every open house like a marketing event, not a box to check. Pairing a well-run open house with a <a href="/blog/how-to-create-a-single-property-website">single property website</a> ensures that every visitor can revisit the listing details on their own time, and that you capture leads long after the event ends. Do the same, and you'll build a reputation as the agent whose open houses are actually worth attending.</p>
+
+<p><strong>Related reading:</strong> <a href="/blog/open-house-sign-in-sheet-vs-qr-code">open house sign-in sheet vs QR code</a></p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "descript-ai-review-real-estate-agents",
   title:
-    "Descript AI Review for Real Estate Agents: Edit Videos Like a Doc",
+    "Descript AI Review for Real Estate Agents (2026)",
   description:
-    "A comprehensive Descript review for real estate agents covering pricing, AI features, transcript-based video editing, filler word removal, Studio Sound, and how to create polished listing videos without any editing experience.",
+    "Descript review for real estate agents: pricing, AI features, transcript-based video editing and how to make polished listing videos with no experience.",
   date: "2026-03-27",
   updated: "2026-10-23",
   author: "ListingFlare Team",

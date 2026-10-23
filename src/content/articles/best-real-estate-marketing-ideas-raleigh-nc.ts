@@ -2,9 +2,9 @@ import { BlogPost } from "@/lib/blog";
 
 export const article: BlogPost = {
   slug: "best-real-estate-marketing-ideas-raleigh-nc",
-  title: "Best Real Estate Marketing Ideas for Raleigh NC Agents in 2026",
+  title: "Real Estate Marketing Ideas for Raleigh NC Agents",
   description:
-    "Raleigh real estate agents: discover the best local marketing ideas to grow your business in 2026. From Triangle-specific strategies to tech tools that set you apart.",
+    "Local real estate marketing ideas for Raleigh agents in 2026, from Triangle-specific strategies to tech tools that help your listings stand out.",
   date: "2026-03-03",
   author: "ListingFlare Team",
   category: "Listing Marketing",

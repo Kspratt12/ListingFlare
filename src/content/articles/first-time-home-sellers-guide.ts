@@ -3,7 +3,7 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "first-time-home-sellers-guide",
   title:
-    "First-Time Home Seller's Guide: The Complete Step-by-Step Process for 2026",
+    "First-Time Home Seller's Guide: Step-by-Step (2026)",
   description:
     "Selling your home for the first time? This step-by-step guide covers everything from pricing to closing, so you sell faster and for top dollar.",
   date: "2026-03-05",
@@ -225,6 +225,8 @@ export const article: BlogPost = {
 <h3>Timeline from Offer to Keys</h3>
 
 <p>Most transactions close in <strong>30–45 days</strong> from accepted offer to closing. Cash deals can close in as few as 7–14 days. Delays can happen due to financing issues, title problems, or repair negotiations, but your agent and title company will keep things on track.</p>
+
+<p><strong>Related reading:</strong> <a href="/blog/how-to-choose-a-real-estate-agent">how to choose a real estate agent</a></p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

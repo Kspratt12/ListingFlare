@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "how-to-market-a-real-estate-listing",
   title:
-    "How to Market a Real Estate Listing: 15 Strategies That Actually Work in 2026",
+    "How to Market a Real Estate Listing: 15 Strategies",
   description:
-    "Discover 15 proven real estate listing marketing strategies for 2026. From professional photography to AI chatbots, learn how top agents market properties for maximum exposure.",
+    "15 real estate listing marketing strategies for 2026, from professional photography to AI chatbots, to help your listing get more exposure and leads.",
   date: "2026-03-11",
   author: "ListingFlare Team",
   category: "Listing Marketing",

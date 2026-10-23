@@ -4,7 +4,7 @@ export const article: BlogPost = {
   slug: "follow-up-boss-alternatives",
   title: "9 Best Follow Up Boss Alternatives in 2026 (Compared)",
   description:
-    "Looking for a Follow Up Boss alternative? Compare 9 real estate CRMs, including Lofty, Sierra Interactive and kvCORE, with pricing, features and who each one fits.",
+    "Looking for a Follow Up Boss alternative? Compare 9 real estate CRMs, including Lofty, Sierra Interactive and kvCORE, on features and who each one fits.",
   date: "2026-03-28",
   updated: "2026-10-23",
   author: "ListingFlare Team",

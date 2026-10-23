@@ -2,7 +2,7 @@ import { BlogPost } from "@/lib/blog";
 
 export const article: BlogPost = {
   slug: "how-to-sell-your-house-fast-in-raleigh-nc",
-  title: "How to Sell Your House Fast in Raleigh NC: 10 Proven Tips for 2026",
+  title: "How to Sell Your House Fast in Raleigh NC: 10 Tips",
   description:
     "Need to sell your house fast in Raleigh NC? These 10 proven strategies help Raleigh homeowners sell quicker and for top dollar in today's market.",
   date: "2026-03-17",

@@ -3,7 +3,7 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "how-to-choose-a-real-estate-agent",
   title:
-    "How to Choose a Real Estate Agent: 8 Questions to Ask Before You Hire",
+    "How to Choose a Real Estate Agent: 8 Questions to Ask",
   description:
     "Choosing the right real estate agent is the most important decision in your home sale. Ask these 8 questions to find an agent who will get you top dollar.",
   date: "2026-02-22",

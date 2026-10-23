@@ -5,7 +5,7 @@ export const article: BlogPost = {
   title:
     "5 Ways Listing Agents Can Capture Buyer Leads Directly",
   description:
-    "Most listing agents lose 90% of buyer interest to portals and competing agents. Learn 5 proven strategies to capture buyer leads directly from your listings and turn every listing into a lead generation machine.",
+    "Portals send buyer interest to competing agents. Here are 5 ways listing agents can capture buyer leads directly from their own listings, step by step.",
   date: "2026-03-27",
   author: "ListingFlare Team",
   category: "Lead Generation",
