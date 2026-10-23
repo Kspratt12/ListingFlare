@@ -4,7 +4,7 @@ export const article: BlogPost = {
   slug: "best-rela-alternatives-single-property-websites",
   title: "Best Rela Alternatives for Single Property Websites",
   description:
-    "Looking for a Rela alternative? Compare the 7 best single property website builders with pricing, AI chatbot support, lead capture, and automated follow-up compared side by side.",
+    "Looking for a Rela alternative? Compare 7 single property website builders on pricing, AI chatbot support, lead capture and automated follow-up.",
   date: "2026-03-27",
   author: "ListingFlare Team",
   category: "Listing Marketing",

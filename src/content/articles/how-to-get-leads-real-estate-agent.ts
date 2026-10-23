@@ -2,9 +2,9 @@ import { BlogPost } from "@/lib/blog";
 
 export const article: BlogPost = {
   slug: "how-to-get-leads-as-a-real-estate-agent",
-  title: "How to Get Leads as a Real Estate Agent: 12 Proven Strategies for 2026",
+  title: "How to Get Leads as a Real Estate Agent: 12 Strategies",
   description:
-    "Learn how to get leads as a real estate agent with 12 proven lead generation strategies. From single-property websites to social media, discover what works in 2026.",
+    "How to get leads as a real estate agent: 12 lead generation strategies, from single-property websites to social media, and what to try first.",
   date: "2026-03-15",
   author: "ListingFlare Team",
   category: "Lead Generation",
@@ -121,6 +121,8 @@ export const article: BlogPost = {
 <p>Build a referral network by identifying two to three professionals in each category and developing genuine relationships with them. Take them to coffee, refer your own clients to them, and stay in regular contact. When a mortgage lender has a pre-approved buyer who has not chosen an agent yet, you want to be the first name that comes to mind.</p>
 
 <p>Formalize these relationships with a simple reciprocal referral agreement. You do not need anything complicated; a verbal commitment to refer business to each other is often enough. Join your local BNI chapter, chamber of commerce, or real estate investor meetup to expand your professional network even further. Agents who maintain a strong professional referral network often cite it as one of their most consistent and highest-quality lead sources year after year.</p>
+
+<p><strong>Related reading:</strong> <a href="/blog/best-lead-generation-for-realtors">best lead generation methods for realtors, compared</a></p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

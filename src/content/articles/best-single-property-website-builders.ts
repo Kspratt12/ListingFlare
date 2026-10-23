@@ -2,9 +2,9 @@ import { BlogPost } from "@/lib/blog";
 
 export const article: BlogPost = {
   slug: "best-single-property-website-builders",
-  title: "7 Best Single Property Website Builders for Real Estate Agents (2026)",
+  title: "7 Best Single Property Website Builders (2026)",
   description:
-    "Compare the 7 best single property website builders for real estate agents in 2026. Pricing, pros, cons, and lead capture compared.",
+    "Compare the 7 best single property website builders for agents in 2026: pricing, pros, cons and lead capture. We make ListingFlare, one of the 7.",
   date: "2026-03-24",
   updated: "2026-10-23",
   author: "ListingFlare Team",
@@ -378,6 +378,8 @@ export const article: BlogPost = {
 <p>For more strategies on marketing your listings and generating leads, check out our guides on <a href="/blog/how-to-market-a-real-estate-listing">how to market a real estate listing</a> and <a href="/blog/real-estate-lead-generation">real estate lead generation strategies</a>.</p>
 
 <p><strong>More on ListingFlare:</strong> we make ListingFlare, so weigh our placement accordingly. For a direct head-to-head, see <a href="/listingflare-vs-rela">ListingFlare vs Rela</a> and <a href="/listingflare-vs-singlepropertysites">ListingFlare vs SinglePropertySites.com</a>. If you want the details, see our <a href="/single-property-website-builder">single property website builder</a> page, including what it does not do, and the <a href="/real-estate-lead-capture-software">lead capture software</a> it includes.</p>
+
+<p><strong>Related reading:</strong> <a href="/blog/best-rela-alternatives-single-property-websites">Rela alternatives</a> &middot; <a href="/blog/cribflyer-vs-rela-vs-listingflare">CribFlyer vs Rela vs ListingFlare</a> &middot; <a href="/blog/propertysimple-alternatives">PropertySimple alternatives</a> &middot; <a href="/blog/listings-to-leads-alternatives">Listings to Leads alternatives</a> &middot; <a href="/blog/single-property-website-vs-zillow-showcase">single-property website vs Zillow Showcase</a></p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

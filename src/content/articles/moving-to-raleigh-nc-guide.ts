@@ -3,7 +3,7 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "moving-to-raleigh-nc-guide",
   title:
-    "Moving to Raleigh NC in 2026: Neighborhoods, Cost of Living & Complete Guide",
+    "Moving to Raleigh NC: Neighborhoods & Cost of Living",
   description:
     "Planning a move to Raleigh NC? This complete guide covers the best neighborhoods, cost of living, schools, job market, and what to expect in 2026.",
   date: "2026-03-16",

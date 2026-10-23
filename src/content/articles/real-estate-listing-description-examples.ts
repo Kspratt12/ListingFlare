@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "real-estate-listing-description-examples",
   title:
-    "Real Estate Listing Description Examples: 20 Templates That Sell Homes Faster",
+    "Real Estate Listing Description Examples: 20 Templates",
   description:
-    "Copy-and-customize real estate listing description examples for every property type. 20 proven templates plus tips for writing descriptions that attract buyers.",
+    "Copy-and-customize real estate listing description examples for every property type. 20 templates plus tips for writing descriptions buyers read.",
   date: "2026-03-09",
   author: "ListingFlare Team",
   category: "Listing Marketing",

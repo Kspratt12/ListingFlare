@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "surfer-seo-review-real-estate-agents",
   title:
-    "Surfer SEO Review for Real Estate Agents: Rank Your Content on Page 1",
+    "Surfer SEO Review for Real Estate Agents (2026)",
   description:
-    "A detailed Surfer SEO review for real estate agents covering pricing, content optimization, local keyword strategies, and how to use Surfer SEO to rank your real estate blog posts on page 1 of Google.",
+    "Surfer SEO review for real estate agents: pricing, content optimization, local keyword strategy and how to use it to improve your real estate blog posts.",
   date: "2026-03-27",
   updated: "2026-10-23",
   author: "ListingFlare Team",

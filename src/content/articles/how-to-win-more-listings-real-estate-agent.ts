@@ -2,7 +2,7 @@ import { BlogPost } from "@/lib/blog";
 
 export const article: BlogPost = {
   slug: "how-to-win-more-listings-as-a-real-estate-agent",
-  title: "How to Win More Listings as a Real Estate Agent: The 2026 Playbook",
+  title: "How to Win More Listings as a Real Estate Agent",
   description:
     "Learn how to win more listings with a killer listing presentation, superior marketing plan, and the tools that top-producing agents use in 2026.",
   date: "2026-03-06",

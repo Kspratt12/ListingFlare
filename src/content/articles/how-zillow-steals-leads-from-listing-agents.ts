@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "how-zillow-steals-leads-from-listing-agents",
   title:
-    "How Zillow Steals Leads from Listing Agents (And How to Fight Back)",
+    "How Zillow Steals Leads from Listing Agents",
   description:
-    "Zillow's deceptive Contact Agent button sends your listing leads to competing agents. Learn how Zillow's billion-dollar lead business works against you and 7 strategies to take your leads back.",
+    "Zillow's Contact Agent button can send your listing's leads to competing agents. Learn how that lead business works and 7 strategies to take leads back.",
   date: "2026-03-27",
   author: "ListingFlare Team",
   category: "Lead Generation",
@@ -382,6 +382,8 @@ export const article: BlogPost = {
 <p><strong><a href="/signup">Start your free trial with ListingFlare</a></strong> and create your first single-property website in under 5 minutes. Or <a href="/demo">see a live demo</a> to see exactly how it works. Your leads are waiting.</p>
 
 <p><strong>Where to go from here:</strong> a dedicated page for each listing is the most direct way to keep buyer inquiries with you. Disclosure: we make ListingFlare. You can see how our <a href="/single-property-website-builder">single property website builder</a> works, or how its <a href="/real-estate-lead-capture-software">lead capture software</a> handles inquiries, open house sign-ins and follow-up.</p>
+
+<p><strong>Related reading:</strong> <a href="/blog/single-property-website-vs-zillow-showcase">single-property website vs Zillow Showcase</a> &middot; <a href="/blog/how-to-stop-losing-leads-to-zillow">9 strategies to stop losing leads to Zillow</a></p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

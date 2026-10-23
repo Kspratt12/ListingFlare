@@ -2,9 +2,9 @@ import { BlogPost } from "@/lib/blog";
 
 export const article: BlogPost = {
   slug: "open-house-sign-in-sheet-vs-qr-code",
-  title: "Open House Sign-In Sheet vs. QR Code: Which Captures More Leads?",
+  title: "Open House Sign-In Sheet vs QR Code: Which Is Better?",
   description:
-    "Paper sign-in sheets and QR code sign-ins both work at an open house, but they fail in different ways. Here is how to choose, and how to follow up on the leads either way.",
+    "Paper sign-in sheets and QR code sign-ins both work at an open house but fail in different ways. Here is how to choose and follow up on leads.",
   date: "2026-10-23",
   author: "ListingFlare Team",
   category: "Lead Generation",

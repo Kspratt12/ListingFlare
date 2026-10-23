@@ -2,9 +2,9 @@ import { BlogPost } from "@/lib/blog";
 
 export const article: BlogPost = {
   slug: "open-house-flyer-generator",
-  title: "How to Auto-Generate Real Estate Open House Flyers in 1-Click",
+  title: "Open House Flyer Generator: Create One in 1 Click",
   description:
-    "Key takeaways: Your listing already holds the photos, price, specs, and your branding, so a flyer should build itself. See how a one-click open house flyer works, what goes on it, and why it can replace starting from a blank Canva template.",
+    "Your listing holds the photos, price, specs and branding, so an open house flyer can build itself. See how one-click flyers work and what goes on one.",
   date: "2026-10-22",
   author: "ListingFlare Team",
   category: "Listing Marketing",
@@ -99,6 +99,8 @@ export const article: BlogPost = {
 <p>The flyer is one piece of a connected setup. Your <a href="/blog/how-to-create-a-single-property-website">single-property website</a> holds the listing, the AI assistant captures leads around the clock, the dashboard tracks follow-up, and the flyer puts the same information on paper with a QR code back to the page. Everything stays consistent because it all comes from one source, and you only enter the details once.</p>
 
 <p>You can see the layout for yourself in the <a href="/demo">live demo</a>, or review <a href="/pricing">pricing</a>. The plan includes unlimited listings, so a flyer for every open house costs nothing extra.</p>
+
+<p><strong>Related reading:</strong> <a href="/blog/open-house-sign-in-sheet-vs-qr-code">open house sign-in sheet vs QR code</a></p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

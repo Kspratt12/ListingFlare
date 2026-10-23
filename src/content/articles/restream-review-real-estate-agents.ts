@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "restream-review-real-estate-agents",
   title:
-    "Restream Review for Real Estate Agents: Go Live Everywhere at Once",
+    "Restream Review for Real Estate Agents (2026)",
   description:
-    "An in-depth Restream review for real estate agents covering pricing, multistreaming to 30+ platforms, live open house streaming, chat aggregation, and how to combine live video with AI lead capture.",
+    "Restream review for real estate agents: pricing, multistreaming to 30+ platforms, live open house streaming and combining live video with lead capture.",
   date: "2026-03-27",
   updated: "2026-10-23",
   author: "ListingFlare Team",

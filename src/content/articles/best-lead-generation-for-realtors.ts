@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "best-lead-generation-for-realtors",
   title:
-    "Best Lead Generation for Realtors: 12 Methods Ranked by ROI, Speed, and Quality",
+    "Best Lead Generation for Realtors: 12 Methods Ranked",
   description:
-    "We ranked the 12 best lead generation methods for realtors based on cost, conversion rate, and speed to results. See which strategies top agents actually use to fill their pipeline and close more deals.",
+    "The 12 best lead generation methods for realtors, compared by cost, speed to results and effort, so you can choose what fits your pipeline and budget.",
   date: "2026-03-21",
   author: "ListingFlare Team",
   category: "Lead Generation",

@@ -4,7 +4,7 @@ export const article: BlogPost = {
   slug: "propertysimple-alternatives",
   title: "Best PropertySimple Alternatives for Real Estate Agents",
   description:
-    "Comparing the best PropertySimple alternatives for real estate agents. Honest breakdown of pricing, features, and which tool fits your listing marketing needs.",
+    "Comparing the best PropertySimple alternatives for real estate agents, with pricing, features and which tool fits your listing marketing needs.",
   date: "2026-03-27",
   author: "ListingFlare Team",
   category: "Listing Marketing",

@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "elevenlabs-review-real-estate-agents",
   title:
-    "ElevenLabs Review for Real Estate Agents: Is AI Voice Worth It?",
+    "ElevenLabs Review for Real Estate Agents (2026)",
   description:
-    "An honest ElevenLabs review for real estate agents covering pricing, voice cloning, listing voiceovers, multilingual presentations, and whether AI voice is worth the investment for your real estate marketing.",
+    "ElevenLabs review for real estate agents: pricing, voice cloning, listing voiceovers and multilingual use, and whether AI voice is worth it for you.",
   date: "2026-03-27",
   updated: "2026-10-23",
   author: "ListingFlare Team",

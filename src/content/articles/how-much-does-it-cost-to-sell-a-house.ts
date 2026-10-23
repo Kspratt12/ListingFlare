@@ -3,7 +3,7 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "how-much-does-it-cost-to-sell-a-house",
   title:
-    "How Much Does It Cost to Sell a House in 2026? Complete Breakdown",
+    "How Much Does It Cost to Sell a House? (2026)",
   description:
     "Find out exactly how much it costs to sell a house in 2026. From agent commissions to closing costs, here's every fee sellers need to budget for.",
   date: "2026-02-18",

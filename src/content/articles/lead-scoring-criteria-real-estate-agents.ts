@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "lead-scoring-criteria-real-estate-agents",
   title:
-    "Lead Scoring Criteria for Real Estate Agents: How to Prioritize Your Best Prospects",
+    "Lead Scoring Criteria for Real Estate Agents",
   description:
-    "Learn the essential lead scoring criteria every real estate agent needs. Prioritize hot prospects, save time, and close more deals with a simple scoring system.",
+    "Learn the lead scoring criteria real estate agents need. Prioritize hot prospects, save time and follow up faster with a simple scoring system.",
   date: "2026-03-08",
   author: "ListingFlare Team",
   category: "Lead Management",

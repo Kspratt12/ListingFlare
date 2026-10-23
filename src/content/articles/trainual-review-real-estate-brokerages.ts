@@ -4,7 +4,7 @@ export const article: BlogPost = {
   slug: "trainual-review-real-estate-brokerages",
   title: "Trainual Review for Real Estate Teams: Is It Worth It?",
   description:
-    "An in-depth Trainual review for real estate brokerages covering pricing, onboarding workflows, SOP documentation, compliance training, and whether Trainual is worth the investment for your team.",
+    "Trainual review for real estate brokerages: pricing, onboarding workflows, SOP documentation, compliance training and whether it fits your team.",
   date: "2026-03-27",
   updated: "2026-10-23",
   author: "ListingFlare Team",

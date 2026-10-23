@@ -3,9 +3,9 @@ import { BlogPost } from "@/lib/blog";
 export const article: BlogPost = {
   slug: "how-to-create-a-single-property-website",
   title:
-    "How to Create a Single Property Website: The Complete Guide for Real Estate Agents",
+    "How to Create a Single Property Website (2026 Guide)",
   description:
-    "Learn how to create a single property website that captures leads and sells listings faster. Step-by-step guide with examples, tools, and best practices for 2026.",
+    "Learn how to create a single property website that captures leads. Step-by-step guide with examples, tools and best practices for real estate agents.",
   date: "2026-03-14",
   author: "ListingFlare Team",
   category: "Listing Marketing",
@@ -120,6 +120,8 @@ export const article: BlogPost = {
   <li><strong>Faster response times with automated follow-up.</strong> The number one complaint from buyers about real estate agents is slow response times. Auto follow-up emails solve this instantly. The moment a buyer submits a form or chats with the AI, they receive a professional response. You buy yourself time to respond personally without the buyer feeling ignored.</li>
   <li><strong>Sellers become your biggest promoters.</strong> Sellers love sharing their single property website. They send the link to friends, family, and coworkers. They post it on their own social media. They show it off at work. Every share is free marketing for you-and every visitor who sees your branding on that page is a potential future client.</li>
 </ul>
+
+<p><strong>Related reading:</strong> <a href="/blog/single-property-website-vs-zillow-showcase">single-property website vs Zillow Showcase</a> &middot; <a href="/blog/cribflyer-vs-rela-vs-listingflare">CribFlyer vs Rela vs ListingFlare</a></p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
