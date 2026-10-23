@@ -9,6 +9,18 @@ const nextConfig = {
     scrollRestoration: true,
     optimizePackageImports: ["lucide-react", "framer-motion", "@headlessui/react"],
   },
+  // Send the vercel.app deployment host to the canonical domain so link and
+  // ranking signals are not split between two hostnames.
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "listing-flare.vercel.app" }],
+        destination: "https://www.listingflare.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
   // Security + caching headers
   async headers() {
     // Security headers applied to all routes

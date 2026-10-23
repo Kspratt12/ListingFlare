@@ -886,6 +886,12 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
             >
               Pricing
             </Link>
+            <Link
+              href="/demo"
+              className="hidden text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 md:block"
+            >
+              Live Demo
+            </Link>
             {!authChecked ? (
               <div className="h-9 w-24 rounded-full bg-gray-100 animate-pulse" />
             ) : isLoggedIn ? (
@@ -950,7 +956,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               your listing. You lost them.
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-gray-500 md:text-xl">
-              10:43 PM. Question about the backyard. No answer. Gone. ListingFlare would have answered, captured their info, and booked the showing. You would have woken up to a new lead.
+              Every listing gets its own branded page with an AI assistant that answers buyer questions at any hour, captures their contact info, and books the showing. You wake up to a new lead, not a lost one.
             </p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link
@@ -1733,7 +1739,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               href="/signup"
               className="group inline-flex items-center gap-2 rounded-full bg-gray-950 px-6 py-3 text-sm font-medium text-white hover:bg-gray-800"
             >
-              Get Your Dashboard
+              Start Free Trial
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
@@ -2039,7 +2045,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
                 href="/signup"
                 className="mt-10 flex w-full items-center justify-center gap-2 rounded-lg bg-white px-6 py-4 font-medium text-gray-900 transition-all hover:bg-gray-100"
               >
-                Start Your 14-Day Free Trial
+                Start Free Trial
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <p className="mt-3 text-center text-sm text-gray-500">
@@ -2208,7 +2214,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               href="/signup"
               className="group mt-10 inline-flex items-center gap-2 rounded-full bg-gray-950 px-8 py-4 text-base font-medium text-white transition-all hover:bg-gray-800 hover:shadow-xl hover:shadow-gray-950/10"
             >
-              Get Started Free
+              Start Free Trial
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </motion.div>
