@@ -17,7 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: baseUrl, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "weekly", priority: 1 },
     { url: `${baseUrl}/demo`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/pricing`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${baseUrl}/real-estate-listing-website-builder`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${baseUrl}/single-property-website-builder`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/real-estate-lead-capture-software`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/real-estate-ai-chatbot`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/signup`,lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.6 },

@@ -2,21 +2,21 @@ import type { Metadata } from "next";
 import SeoLandingPage from "@/components/SeoLandingPage";
 
 export const metadata: Metadata = {
-  title: "Real Estate Listing Website Builder for Agents",
+  title: "Single Property Website Builder for Real Estate Agents",
   description:
-    "Build a branded website for each listing in minutes. Your photos, your contact info, no competing agents. Includes AI chat, lead capture and showing requests. 14-day free trial.",
+    "Build a single property website for each listing in minutes. Your photos, your contact info, no competing agents. Includes AI chat, lead capture and showing requests. 14-day free trial.",
   alternates: {
-    canonical: "https://www.listingflare.com/real-estate-listing-website-builder",
+    canonical: "https://www.listingflare.com/single-property-website-builder",
   },
 };
 
 export default function Page() {
   return (
     <SeoLandingPage
-      path="/real-estate-listing-website-builder"
-      eyebrow="Listing website builder"
-      h1="Real Estate Listing Website Builder"
-      intro="ListingFlare gives each of your listings its own branded website. Add the property details and photos, publish, and share one link with buyers, sellers and your social audience. Every inquiry goes to you, not to a portal."
+      path="/single-property-website-builder"
+      eyebrow="Single property website builder"
+      h1="Single Property Website Builder for Real Estate Agents"
+      intro="ListingFlare is a real estate website builder made for one job: giving each of your listings its own branded single property website. Add the property details and photos, publish, and share one link with buyers, sellers and your social audience. Every inquiry goes to you, not to a portal."
       highlights={[
         "A separate branded page for every listing",
         "Your name, headshot, brokerage and contact info on every page",
@@ -27,7 +27,7 @@ export default function Page() {
       ]}
       sections={[
         {
-          heading: "Why give a listing its own website",
+          heading: "Why give each listing its own single property website",
           body: [
             "On a portal such as Zillow, your listing sits beside other agents' ads and buyer inquiries can be routed to someone else. A single-property website puts one home, one agent and one contact path on the page.",
             "It also gives you something concrete to show a seller at a listing presentation: here is the page your home will have, and here is where your leads will land.",
@@ -63,7 +63,7 @@ export default function Page() {
         ],
       }}
       faqs={[
-        { question: "How long does it take to create a listing website?", answer: "Most of the time goes into gathering photos and details. Once you have those, publishing takes a few minutes." },
+        { question: "How long does it take to create a single property website?", answer: "Most of the time goes into gathering photos and details. Once you have those, publishing takes a few minutes." },
         { question: "How much does it cost?", answer: "$150 per month for unlimited listing websites, with a 14-day free trial and no credit card required to start." },
         { question: "Do I need technical skills?", answer: "No. You fill in a form and upload photos. There is no code or design work." },
         { question: "Can I use my own branding?", answer: "Yes. Your headshot, name, brokerage and brand color appear on each listing page." },

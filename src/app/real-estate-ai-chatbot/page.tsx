@@ -66,7 +66,7 @@ export default function Page() {
       ]}
       related={[
         { href: "/real-estate-lead-capture-software", label: "Real estate lead capture software" },
-        { href: "/real-estate-listing-website-builder", label: "Real estate listing website builder" },
+        { href: "/single-property-website-builder", label: "Single property website builder" },
         { href: "/blog/ai-for-real-estate-agents", label: "AI for real estate agents" },
         { href: "/blog/best-ai-isa-tools-real-estate", label: "Best AI ISA tools for real estate" },
         { href: "/blog/how-to-stop-losing-leads-to-zillow", label: "How to stop losing leads to Zillow" },

@@ -441,7 +441,7 @@ export const article: BlogPost = {
 
 <p>For more strategies on marketing your listings and generating leads, check out our guides on <a href="/blog/how-to-market-a-real-estate-listing">how to market a real estate listing</a> and <a href="/blog/real-estate-lead-generation">real estate lead generation strategies</a>.</p>
 
-<p><strong>More on ListingFlare:</strong> we make ListingFlare, so weigh our placement accordingly. If you want the details, see our <a href="/real-estate-listing-website-builder">listing website builder</a> page, including what it does not do, and the <a href="/real-estate-lead-capture-software">lead capture software</a> it includes.</p>
+<p><strong>More on ListingFlare:</strong> we make ListingFlare, so weigh our placement accordingly. If you want the details, see our <a href="/single-property-website-builder">single property website builder</a> page, including what it does not do, and the <a href="/real-estate-lead-capture-software">lead capture software</a> it includes.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

@@ -72,7 +72,7 @@ export default function Page() {
         { question: "Does it replace my CRM?", answer: "It includes an inbox, pipeline and scoring for the leads it captures. If you use another CRM for everything else, you can export leads to CSV." },
       ]}
       related={[
-        { href: "/real-estate-listing-website-builder", label: "Real estate listing website builder" },
+        { href: "/single-property-website-builder", label: "Single property website builder" },
         { href: "/real-estate-ai-chatbot", label: "AI chatbot for real estate listings" },
         { href: "/blog/how-listing-agents-capture-buyer-leads", label: "How listing agents capture buyer leads" },
         { href: "/blog/best-lead-generation-tools-for-real-estate-agents", label: "Best lead generation tools for real estate agents" },
