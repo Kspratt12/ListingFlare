@@ -507,7 +507,7 @@ export default function MyListingsPage() {
           </button>
         </div>
       )}
-      {!loading && limits.isExpired && listings.length > 0 && (
+      {!loading && profile && limits.isExpired && listings.length > 0 && (
         <div className="mb-6 flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 p-4">
           <Lock className="h-5 w-5 flex-shrink-0 text-red-500" />
           <div className="flex-1">
@@ -651,7 +651,7 @@ export default function MyListingsPage() {
         </div>
       ) : listings.length === 0 ? (
         <div className="mt-16 text-center">
-          {!limits.isPaid && hasEverCreated ? (
+          {profile && !limits.isPaid && hasEverCreated ? (
             <>
               <UpgradePrompt
                 title="Listing Limit Reached"
@@ -886,7 +886,7 @@ export default function MyListingsPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" onClick={() => setDeleteConfirm(null)}>
           <div onClick={(e) => e.stopPropagation()} className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
             <h3 className="font-serif text-lg font-bold text-gray-900">Delete this listing?</h3>
-            {!limits.isPaid && (
+            {profile && !limits.isPaid && (
               <div className="mt-3 rounded-lg border border-red-200 bg-red-50 px-4 py-3">
                 <p className="text-sm font-medium text-red-800">Warning: Free trial allows only 1 listing</p>
                 <p className="mt-1 text-xs text-red-600">If you delete this listing, you will not be able to create a new one. You&apos;ll need to upgrade to create more listings.</p>

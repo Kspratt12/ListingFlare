@@ -247,8 +247,18 @@ export default function DashboardLayout({
       if (!uid || !active) return;
       setCacheOwner(uid);
       setUserId(uid);
-      supabase.from("agent_profiles").select("*").eq("id", uid).single()
-        .then(({ data }) => { if (active && data) setProfile(data as AgentProfile); });
+      // Retry once on failure so a transient error doesn't leave a paying
+      // client without a profile (which would look like a locked account).
+      const loadProfile = async (attempt: number): Promise<void> => {
+        const { data, error } = await supabase.from("agent_profiles").select("*").eq("id", uid).single();
+        if (!active) return;
+        if (data) setProfile(data as AgentProfile);
+        else if (error && attempt < 2) {
+          await new Promise((r) => setTimeout(r, 1000));
+          if (active) await loadProfile(attempt + 1);
+        }
+      };
+      loadProfile(0);
     });
     return () => {
       active = false;

@@ -1023,7 +1023,7 @@ export default function LeadsPage() {
                   }
                 }}
               />
-              {!limits.canReplyToLeads && (
+              {profile && !limits.canReplyToLeads && (
                 <div className="mt-3 flex items-center gap-3 rounded-lg border border-brand-200 bg-brand-50 p-4">
                   <Lock className="h-5 w-5 flex-shrink-0 text-brand-500" />
                   <div className="flex-1">
