@@ -25,13 +25,27 @@ const SHOWING_SEQUENCE = [
 
 export async function POST(req: NextRequest) {
   try {
-    const { leadId, listingId, agentId, sequenceType = "inquiry" } = await req.json();
+    const { leadId, sequenceType: rawSequenceType = "inquiry" } = await req.json();
+    const sequenceType = rawSequenceType === "showing" ? "showing" : "inquiry";
 
-    if (!leadId || !listingId || !agentId) {
+    if (!leadId) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
     const db = getAdminClient();
+
+    // Public endpoint: derive listing and agent from the lead row instead of
+    // trusting client-sent ids, so nobody can queue emails under another agent.
+    const { data: lead } = await db
+      .from("leads")
+      .select("listing_id, agent_id")
+      .eq("id", leadId)
+      .maybeSingle();
+    if (!lead) {
+      return NextResponse.json({ error: "Lead not found" }, { status: 404 });
+    }
+    const listingId = lead.listing_id;
+    const agentId = lead.agent_id;
 
     // Check if follow-ups already exist for this lead
     const { data: existing } = await db

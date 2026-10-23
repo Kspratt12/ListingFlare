@@ -15,7 +15,7 @@ function getAdminClient() {
 // Vercel cron auth check
 function isAuthorized(req: NextRequest) {
   const authHeader = req.headers.get("authorization");
-  if (authHeader === `Bearer ${process.env.CRON_SECRET}`) return true;
+  if (process.env.CRON_SECRET && authHeader === `Bearer ${process.env.CRON_SECRET}`) return true;
   // Allow in development
   if (process.env.NODE_ENV === "development") return true;
   return false;

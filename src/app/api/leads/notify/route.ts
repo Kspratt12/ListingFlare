@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     let { leadId } = body;
-    const { listingId, agentId, leadName, leadEmail, leadPhone, leadMessage } = body;
+    const { listingId, agentId, leadEmail } = body;
 
     if (!listingId || !agentId) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
@@ -57,17 +57,18 @@ export async function POST(req: NextRequest) {
     if (leadId) {
       const { data: foundLead } = await supabase
         .from("leads")
-        .select("name, email, phone, message")
+        .select("name, email, phone, message, listing_id, agent_id")
         .eq("id", leadId)
         .single();
-      lead = foundLead;
-    }
-    // Fallback to the lead details sent directly from the form
-    if (!lead) {
-      if (!leadName || !leadEmail) {
-        return NextResponse.json({ ok: true, emailed: false });
+      // Only trust a lead that really belongs to this listing and agent
+      if (foundLead && foundLead.listing_id === listingId && foundLead.agent_id === agentId) {
+        lead = foundLead;
       }
-      lead = { name: leadName, email: leadEmail, phone: leadPhone || "", message: leadMessage || "" };
+    }
+    // This endpoint is public, so never email an agent from client-supplied
+    // details alone. A real stored lead is required.
+    if (!lead) {
+      return NextResponse.json({ ok: true, emailed: false });
     }
 
     // Fetch listing address

@@ -27,7 +27,7 @@ function getAdminClient() {
 
 function isAuthorized(req: NextRequest) {
   const auth = req.headers.get("authorization");
-  if (auth === `Bearer ${process.env.CRON_SECRET}`) return true;
+  if (process.env.CRON_SECRET && auth === `Bearer ${process.env.CRON_SECRET}`) return true;
   if (process.env.NODE_ENV === "development") return true;
   return false;
 }
