@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import SeoLandingPage from "@/components/SeoLandingPage";
 
 export const metadata: Metadata = {
-  title: "AI Chatbot for Real Estate Listings",
+  title: "AI for Real Estate Agents: A Listing Chatbot That Captures Leads",
   description:
-    "An AI assistant on every listing page answers buyer questions from your property details, collects contact info and points buyers to a showing. See what it can and can't do.",
+    "AI for real estate agents that works on every listing page: it answers buyer questions from your property details, collects contact info and points buyers to a showing. See what it can and can't do.",
   alternates: {
     canonical: "https://www.listingflare.com/real-estate-ai-chatbot",
   },
