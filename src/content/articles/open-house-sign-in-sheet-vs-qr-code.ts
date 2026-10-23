@@ -84,6 +84,8 @@ export const article: BlogPost = {
 
 <p>If you use paper, schedule the data entry. Put it on your calendar for the same evening, and send your first message before you go to bed.</p>
 
+<p>For more on drawing a crowd in the first place, see our <a href="/blog/open-house-ideas-to-attract-more-buyers">open house ideas</a>, and for the printed side, how to <a href="/blog/open-house-flyer-generator">auto-generate an open house flyer</a>. To see how those leads fit into a wider system, read <a href="/blog/how-listing-agents-capture-buyer-leads">how listing agents capture buyer leads</a>.</p>
+
 <h2>Open House Sign-In Checklist</h2>
 
 <ul>
