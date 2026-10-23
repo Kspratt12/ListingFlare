@@ -7,6 +7,7 @@ export const article: BlogPost = {
   description:
     "An in-depth ManyChat review for real estate agents covering pricing, Instagram DM automation, Facebook Messenger chatbots, lead qualification flows, and 7 proven strategies to capture more buyer and seller leads from social media.",
   date: "2026-03-27",
+  updated: "2026-10-23",
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [
@@ -31,7 +32,7 @@ export const article: BlogPost = {
 
 <p>This is the exact problem <strong>ManyChat</strong> was built to solve. It automates Instagram DMs, Facebook Messenger conversations, and WhatsApp messages so that every person who engages with your content gets an instant, personalized response - even at 2 AM on a Saturday.</p>
 
-<p>We spent several weeks testing ManyChat specifically for real estate use cases - lead magnets, qualification flows, open house signups, listing inquiries, and follow-up sequences. Here is our full <strong>ManyChat review for real estate agents</strong> heading into 2026.</p>
+<p>This guide looks at ManyChat specifically for real estate use cases - lead magnets, qualification flows, open house signups, listing inquiries, and follow-up sequences - based on the company's public documentation, pricing and feature descriptions. We have not run formal tests, so try any free trial with your own content before you pay. Here is our full <strong>ManyChat review for real estate agents</strong> heading into 2026.</p>
 
 <img src="/blog/manychat/manychat-1.png" alt="ManyChat automation platform for real estate lead generation" loading="lazy" />
 

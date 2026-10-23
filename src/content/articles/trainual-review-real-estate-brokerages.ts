@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "An in-depth Trainual review for real estate brokerages covering pricing, onboarding workflows, SOP documentation, compliance training, and whether Trainual is worth the investment for your team.",
   date: "2026-03-27",
+  updated: "2026-10-23",
   author: "ListingFlare Team",
   category: "Agent Growth",
   keywords: [
@@ -32,7 +33,7 @@ export const article: BlogPost = {
 
 <p><strong>Trainual</strong> is one of the most popular platforms for building that system. It has gained real traction with real estate teams who are tired of reinventing the wheel every time a new agent joins. But is it worth the investment? Does it solve the right problems?</p>
 
-<p>We spent several weeks evaluating Trainual through the lens of real estate brokerages. Here is our <strong>Trainual review for 2026</strong> - covering features, pricing, real-world use cases, and whether it deserves a spot in your tech stack.</p>
+<p>This guide evaluates Trainual through the lens of real estate brokerages, based on the company's public documentation, pricing and feature descriptions. We have not run formal tests, so try any free trial with your own content before you pay. Here is our <strong>Trainual review for 2026</strong> - covering features, pricing, use cases, and whether it deserves a spot in your tech stack.</p>
 
 <img src="/blog/trainual/trainual.gif" alt="Trainual platform overview for real estate team training and onboarding" loading="lazy" />
 
