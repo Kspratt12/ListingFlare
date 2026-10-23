@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import HomeClient from "./HomeClient";
+import { getAllPosts } from "@/lib/blog";
 
 // Rebuilt at most hourly. Photos are fetched here, on the server, so the
 // landing page renders with its images already chosen (no client fetch
@@ -45,5 +46,15 @@ async function getLivePhotos(): Promise<string[]> {
 
 export default async function Page() {
   const livePhotos = await getLivePhotos();
-  return <HomeClient livePhotos={livePhotos} />;
+  const latestPosts = getAllPosts()
+    .slice(0, 6)
+    .map(({ slug, title, description, category, coverImage, coverImageAlt }) => ({
+      slug,
+      title,
+      description,
+      category,
+      coverImage,
+      coverImageAlt,
+    }));
+  return <HomeClient livePhotos={livePhotos} latestPosts={latestPosts} />;
 }

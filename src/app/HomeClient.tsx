@@ -6,8 +6,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
-import { getAllPosts } from "@/lib/blog";
 import LiveStats from "@/components/LiveStats";
+
+// Only the fields the homepage cards render. The server page picks these so the
+// full article bodies (~1.4 MB of HTML) never ship in the client bundle.
+export interface LatestPost {
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  coverImage: string;
+  coverImageAlt: string;
+}
 
 // Below-the-fold sections lazy-loaded so the initial homepage JS
 // payload stays small and LCP doesn't pay for code visitors may never
@@ -192,7 +202,7 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
           <div className="h-2.5 w-2.5 rounded-full bg-yellow-300" />
           <div className="h-2.5 w-2.5 rounded-full bg-green-300" />
         </div>
-        <div className="mx-auto rounded-md bg-white px-12 py-1 text-xs text-gray-400 border border-gray-100">
+        <div className="mx-auto rounded-md bg-white px-12 py-1 text-xs text-gray-500 border border-gray-100">
           listingflare.com/dashboard
         </div>
       </div>
@@ -245,7 +255,7 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
                         <p className="text-xs font-medium text-gray-500">Description</p>
                         <span className="flex items-center gap-1 text-xs text-brand-600 font-medium"><Sparkles className="h-3 w-3" /> AI Generate</span>
                       </div>
-                      <div className="rounded-md border border-gray-200 px-3 py-2 text-xs text-gray-400 h-16">Perched above the coastline with panoramic ocean views...</div>
+                      <div className="rounded-md border border-gray-200 px-3 py-2 text-xs text-gray-500 h-16">Perched above the coastline with panoramic ocean views...</div>
                     </div>
                   </div>
                 </div>
@@ -273,7 +283,7 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
                   <div className="rounded-lg border-2 border-dashed border-brand-300 bg-brand-50/30 p-5 text-center">
                     <Upload className="mx-auto h-7 w-7 text-brand-400" />
                     <p className="mt-1.5 text-sm font-medium text-gray-600">Drag & drop photos and videos</p>
-                    <p className="mt-0.5 text-xs text-gray-400">Photos up to 20MB &middot; Videos up to 500MB &middot; Supports 4K/8K</p>
+                    <p className="mt-0.5 text-xs text-gray-500">Photos up to 20MB &middot; Videos up to 500MB &middot; Supports 4K/8K</p>
                   </div>
                   <div className="grid grid-cols-4 gap-2">
                     {[
@@ -365,7 +375,7 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
                       <p className="text-xs text-gray-500">Pacific Palisades, CA 90272</p>
                       <p className="mt-1 font-serif text-lg font-bold text-gray-900">$4,750,000</p>
                       <div className="mt-3 flex items-center justify-between border-t border-gray-100 pt-3">
-                        <span className="flex items-center gap-1 text-xs text-gray-400"><Eye className="h-3 w-3" /> 0 views</span>
+                        <span className="flex items-center gap-1 text-xs text-gray-500"><Eye className="h-3 w-3" /> 0 views</span>
                         <motion.div
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
@@ -425,7 +435,7 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between">
                           <p className="text-sm font-semibold text-gray-900">{lead.name}</p>
-                          <span className="text-[10px] text-gray-400">{lead.time}</span>
+                          <span className="text-[10px] text-gray-500">{lead.time}</span>
                         </div>
                         <p className="mt-0.5 text-xs text-gray-500 truncate">{lead.msg}</p>
                         <div className="mt-2 flex items-center gap-2">
@@ -530,7 +540,7 @@ function HowItWorks() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-700">
             How It Works
           </p>
           <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
@@ -545,13 +555,17 @@ function HowItWorks() {
           <div>
             {/* Mobile: show only active step */}
             <div className="lg:hidden">
-              <div className="flex items-center justify-center gap-2 mb-4">
-                {walkthrough.map((_, i) => (
+              <div className="flex items-center justify-center mb-4">
+                {walkthrough.map((step, i) => (
                   <button
                     key={i}
                     onClick={() => setActiveIndex(i)}
-                    className={`h-2 rounded-full transition-all ${i === activeIndex ? "w-8 bg-brand-500" : "w-2 bg-gray-300"}`}
-                  />
+                    aria-label={`Show step ${i + 1}: ${step.title}`}
+                    aria-current={i === activeIndex ? "true" : undefined}
+                    className="flex h-6 items-center justify-center px-2"
+                  >
+                    <span className={`block h-2 rounded-full transition-all ${i === activeIndex ? "w-8 bg-brand-500" : "w-2 bg-gray-300"}`} />
+                  </button>
                 ))}
               </div>
               <div className="relative rounded-xl bg-white shadow-lg shadow-gray-200/50 border border-gray-200 p-4 h-[160px] overflow-hidden">
@@ -672,7 +686,7 @@ function ComparisonCell({ value, highlight = false }: { value: boolean | string;
   return <span className={`text-xs font-medium ${highlight ? "text-brand-700" : "text-gray-500"}`}>{value}</span>;
 }
 
-function LandingPageInner() {
+function LandingPageInner({ posts }: { posts: LatestPost[] }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
 
@@ -915,8 +929,11 @@ function LandingPageInner() {
         <div className="absolute left-1/2 top-0 -z-10 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-brand-100/30 blur-3xl" />
 
         <div className="mx-auto max-w-6xl px-6">
+          {/* initial={false}: the hero renders visible in the server HTML. A fade-in
+              from opacity 0 kept the headline invisible until JS hydrated, which
+              pushed mobile LCP to ~6s. */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="mx-auto max-w-3xl text-center"
@@ -926,7 +943,7 @@ function LandingPageInner() {
               14-day free trial. No credit card required.
             </div>
             <h1 className="font-serif text-4xl font-bold leading-tight text-gray-900 md:text-display">
-              <span className="mb-3 block text-base font-semibold tracking-wide text-brand-600 md:text-lg" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>Real Estate Software for Listing Agents</span>
+              <span className="mb-3 block text-base font-semibold tracking-wide text-brand-700 md:text-lg" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>Real Estate Software for Listing Agents</span>
               Last night, a buyer asked about
               <br />
               your listing. You lost them.
@@ -950,7 +967,7 @@ function LandingPageInner() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
-            <p className="mt-5 text-sm font-medium text-gray-400">
+            <p className="mt-5 text-sm font-medium text-gray-500">
               In real estate, the fastest response wins. That is not an opinion. It is how deals close.
             </p>
           </motion.div>
@@ -958,7 +975,7 @@ function LandingPageInner() {
           {/* Preview mockup */}
           <motion.div
             id="preview"
-            initial={{ opacity: 0, y: 50 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-12"
@@ -972,7 +989,7 @@ function LandingPageInner() {
                     <div className="h-3 w-3 rounded-full bg-gray-200" />
                     <div className="h-3 w-3 rounded-full bg-gray-200" />
                   </div>
-                  <div className="mx-auto rounded-md bg-white px-16 py-1 text-xs text-gray-400 border border-gray-100">
+                  <div className="mx-auto rounded-md bg-white px-16 py-1 text-xs text-gray-500 border border-gray-100">
                     listingflare.com/listing/1847-grandview
                   </div>
                 </div>
@@ -1069,7 +1086,7 @@ function LandingPageInner() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-700">
               See The Difference
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
@@ -1095,7 +1112,7 @@ function LandingPageInner() {
                       <div className="h-2.5 w-2.5 rounded-full bg-gray-200" />
                       <div className="h-2.5 w-2.5 rounded-full bg-gray-200" />
                     </div>
-                    <div className="mx-auto rounded-md bg-white px-8 py-1 text-xs text-gray-400 border border-gray-100">
+                    <div className="mx-auto rounded-md bg-white px-8 py-1 text-xs text-gray-500 border border-gray-100">
                       zillow.com/homedetails/...
                     </div>
                   </div>
@@ -1103,8 +1120,8 @@ function LandingPageInner() {
                 <div className="text-left">
                   {/* Zillow nav bar */}
                   <div className="flex items-center gap-4 border-b border-gray-100 px-4 py-2 text-[10px] font-medium text-blue-600">
-                    <span>Buy</span><span>Rent</span><span>Sell</span><span className="text-gray-400">Get a mortgage</span>
-                    <span className="ml-auto text-gray-400">Sign in</span>
+                    <span>Buy</span><span>Rent</span><span>Sell</span><span className="text-gray-500">Get a mortgage</span>
+                    <span className="ml-auto text-gray-500">Sign in</span>
                   </div>
                   {/* Photo */}
                   <div className="relative">
@@ -1142,22 +1159,22 @@ function LandingPageInner() {
                     </div>
                     {/* Competing listings sidebar hint */}
                     <div className="border-t border-gray-100 pt-2.5">
-                      <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Homes For You</p>
+                      <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Homes For You</p>
                       <div className="mt-1.5 flex gap-2">
                         <div className="flex-1 rounded border border-gray-100 p-1.5">
                           <div className="h-10 rounded bg-gray-100" />
                           <p className="mt-1 text-[9px] font-semibold text-gray-700">$410,000</p>
-                          <p className="text-[8px] text-gray-400">1418 Summerville Rd</p>
+                          <p className="text-[8px] text-gray-500">1418 Summerville Rd</p>
                         </div>
                         <div className="flex-1 rounded border border-gray-100 p-1.5">
                           <div className="h-10 rounded bg-gray-100" />
                           <p className="mt-1 text-[9px] font-semibold text-gray-700">$389,000</p>
-                          <p className="text-[8px] text-gray-400">2431 Brathay Ct</p>
+                          <p className="text-[8px] text-gray-500">2431 Brathay Ct</p>
                         </div>
                         <div className="hidden sm:block flex-1 rounded border border-gray-100 p-1.5">
                           <div className="h-10 rounded bg-gray-100" />
                           <p className="mt-1 text-[9px] font-semibold text-gray-700">$425,000</p>
-                          <p className="text-[8px] text-gray-400">901 Kensington Dr</p>
+                          <p className="text-[8px] text-gray-500">901 Kensington Dr</p>
                         </div>
                       </div>
                     </div>
@@ -1166,7 +1183,7 @@ function LandingPageInner() {
               </div>
               <div className="mt-4 text-center">
                 <p className="text-sm font-medium text-[#006AFF]">Your listing on Zillow</p>
-                <p className="mt-1 text-xs text-gray-400">Your listing, their rules. Competing agents advertised. Leads sold off. Buyer messages ignored for hours. That deal is gone.</p>
+                <p className="mt-1 text-xs text-gray-500">Your listing, their rules. Competing agents advertised. Leads sold off. Buyer messages ignored for hours. That deal is gone.</p>
               </div>
             </motion.div>
 
@@ -1185,7 +1202,7 @@ function LandingPageInner() {
                       <div className="h-2.5 w-2.5 rounded-full bg-yellow-300" />
                       <div className="h-2.5 w-2.5 rounded-full bg-green-300" />
                     </div>
-                    <div className="mx-auto rounded-md bg-white px-8 py-1 text-xs text-gray-400 border border-gray-100">
+                    <div className="mx-auto rounded-md bg-white px-8 py-1 text-xs text-gray-500 border border-gray-100">
                       listingflare.com/listing/your-property
                     </div>
                   </div>
@@ -1298,7 +1315,7 @@ function LandingPageInner() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <p className="text-sm font-semibold uppercase tracking-widest text-brand-500">
+            <p className="text-sm font-semibold uppercase tracking-widest text-brand-700">
               The Honest Comparison
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
@@ -1374,11 +1391,11 @@ function LandingPageInner() {
                     <div className="flex gap-3 text-center">
                       <div>
                         <div className="text-sm font-semibold text-gray-700">Zillow</div>
-                        <div className="text-[10px] text-gray-400">$300+</div>
+                        <div className="text-[10px] text-gray-500">$300+</div>
                       </div>
                       <div>
                         <div className="text-sm font-semibold text-gray-700">kvCORE</div>
-                        <div className="text-[10px] text-gray-400">$499+</div>
+                        <div className="text-[10px] text-gray-500">$499+</div>
                       </div>
                     </div>
                   </div>
@@ -1406,7 +1423,7 @@ function LandingPageInner() {
             );
           })()}
 
-          <p className="mt-6 text-center text-sm text-gray-400">
+          <p className="mt-6 text-center text-sm text-gray-500">
             Pricing and features as of {new Date().getFullYear()}. Competitor info from public pricing pages.
           </p>
         </div>
@@ -1425,7 +1442,7 @@ function LandingPageInner() {
             <h2 className="font-serif text-3xl font-bold text-white md:text-display-sm">
               Your open house visitors are walking out unnamed.
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-gray-400">
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-gray-500">
               Saturday open house. 14 people walked through. 2 signed the guest book. The other 12 left without giving you their name, their email, or any way to follow up. That is 12 potential buyers you will never hear from again.
             </p>
             <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-gray-300">
@@ -1445,7 +1462,7 @@ function LandingPageInner() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-700">
               The Real Problem
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
@@ -1461,7 +1478,7 @@ function LandingPageInner() {
               transition={{ duration: 0.5 }}
               className="rounded-2xl border border-gray-200 bg-gray-50 p-6"
             >
-              <p className="text-xs font-bold uppercase tracking-wider text-gray-400">On Zillow</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-gray-500">On Zillow</p>
               <ul className="mt-4 space-y-3">
                 <li className="flex items-start gap-3 text-sm text-gray-500">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
@@ -1485,7 +1502,7 @@ function LandingPageInner() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="rounded-2xl border border-brand-200 bg-brand-50/50 p-6"
             >
-              <p className="text-xs font-bold uppercase tracking-wider text-brand-500">On ListingFlare</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-brand-700">On ListingFlare</p>
               <ul className="mt-4 space-y-3">
                 <li className="flex items-start gap-3 text-sm text-gray-700">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
@@ -1515,7 +1532,7 @@ function LandingPageInner() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-700">
               Always Working For You
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
@@ -1589,7 +1606,7 @@ function LandingPageInner() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <p className="text-sm font-semibold uppercase tracking-widest text-brand-500">
+            <p className="text-sm font-semibold uppercase tracking-widest text-brand-700">
               Your Command Center
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
@@ -1598,7 +1615,7 @@ function LandingPageInner() {
             <p className="mx-auto mt-3 max-w-2xl text-base text-gray-500">
               Every response time, every showing booked, every follow-up sent. Visible in one place so you actually know your software is working.
             </p>
-            <p className="mx-auto mt-2 max-w-2xl text-xs text-gray-400">
+            <p className="mx-auto mt-2 max-w-2xl text-xs text-gray-500">
               Sample dashboard with illustrative numbers. Your dashboard shows your own leads and response times.
             </p>
           </motion.div>
@@ -1738,7 +1755,7 @@ function LandingPageInner() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-700">
               Picture This
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
@@ -1774,7 +1791,7 @@ function LandingPageInner() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-700">
               See It In Action
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
@@ -1809,7 +1826,7 @@ function LandingPageInner() {
 
               <div className="space-y-4 p-6">
                 {/* Timestamp */}
-                <p className="text-center text-xs text-gray-400">Tuesday, 10:47 PM</p>
+                <p className="text-center text-xs text-gray-500">Tuesday, 10:47 PM</p>
 
                 {/* Buyer message 1 */}
                 <motion.div
@@ -1898,7 +1915,7 @@ function LandingPageInner() {
                     <span className="text-sm font-medium text-brand-700">Agent notified</span>
                   </motion.div>
                 </div>
-                <p className="mt-3 text-sm text-gray-400">
+                <p className="mt-3 text-sm text-gray-500">
                   10:47 PM. Tuesday. The agent was asleep. The buyer booked Saturday at 10 AM.
                 </p>
               </div>
@@ -1917,7 +1934,7 @@ function LandingPageInner() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-700">
               Everything You Need
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
@@ -2059,7 +2076,7 @@ function LandingPageInner() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-700">
               Real Estate Marketing Tips
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
@@ -2068,7 +2085,7 @@ function LandingPageInner() {
           </motion.div>
 
           <div className="mt-14 grid gap-8 md:grid-cols-3">
-            {getAllPosts().slice(0, 6).map((post, i) => (
+            {posts.map((post, i) => (
               <motion.div
                 key={post.slug}
                 initial={{ opacity: 0, y: 20 }}
@@ -2087,7 +2104,7 @@ function LandingPageInner() {
                       className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="p-5">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-brand-500">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-brand-700">
                         {post.category}
                       </span>
                       <h3 className="mt-2 font-serif text-lg font-bold text-gray-900 line-clamp-2 group-hover:text-brand-600 transition-colors">
@@ -2106,7 +2123,7 @@ function LandingPageInner() {
           <div className="mt-10 text-center">
             <Link
               href="/blog"
-              className="group inline-flex items-center gap-2 text-base font-medium text-brand-600 transition-colors hover:text-brand-700"
+              className="group inline-flex items-center gap-2 text-base font-medium text-brand-700 transition-colors hover:text-brand-800"
             >
               View All Articles
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -2125,7 +2142,7 @@ function LandingPageInner() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-700">
               FAQ
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
@@ -2203,16 +2220,16 @@ function LandingPageInner() {
       <footer className="border-t border-gray-100 bg-white py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
           <span className="font-serif text-lg font-bold text-gray-900">
-            Listing<span className="text-brand-500">Flare</span>
+            Listing<span className="text-brand-700">Flare</span>
           </span>
           <div className="flex items-center gap-5 text-sm text-gray-500">
-            <Link href="/blog" className="underline underline-offset-2 transition-colors hover:text-gray-900">Blog</Link>
+            <Link href="/blog" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Blog</Link>
             <span>&middot;</span>
-            <Link href="/about" className="underline underline-offset-2 transition-colors hover:text-gray-900">About</Link>
+            <Link href="/about" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">About</Link>
             <span>&middot;</span>
-            <Link href="/privacy" className="underline underline-offset-2 transition-colors hover:text-gray-900">Privacy Policy</Link>
+            <Link href="/privacy" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Privacy Policy</Link>
             <span>&middot;</span>
-            <Link href="/terms" className="underline underline-offset-2 transition-colors hover:text-gray-900">Terms of Service</Link>
+            <Link href="/terms" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Terms of Service</Link>
             <span>&middot;</span>
             <span>&copy; {new Date().getFullYear()} ListingFlare</span>
           </div>
@@ -2222,10 +2239,16 @@ function LandingPageInner() {
   );
 }
 
-export default function LandingPage({ livePhotos = [] }: { livePhotos?: string[] }) {
+export default function LandingPage({
+  livePhotos = [],
+  latestPosts = [],
+}: {
+  livePhotos?: string[];
+  latestPosts?: LatestPost[];
+}) {
   return (
     <LivePhotosContext.Provider value={livePhotos}>
-      <LandingPageInner />
+      <LandingPageInner posts={latestPosts} />
     </LivePhotosContext.Provider>
   );
 }

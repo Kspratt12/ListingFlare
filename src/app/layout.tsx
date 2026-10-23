@@ -90,7 +90,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <head>
         {/* Preconnect to external origins for faster resource loading (LCP) */}
-        <link rel="preconnect" href="https://pvnsirpfofxklqgxwdiz.supabase.co" />
+        <link rel="preconnect" href="https://pvnsirpfofxklqgxwdiz.supabase.co" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://pvnsirpfofxklqgxwdiz.supabase.co" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
