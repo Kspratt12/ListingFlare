@@ -123,6 +123,8 @@ export const article: BlogPost = {
 
 <p>Do not choose between a portal and your own page. Use the portal to be found, and use your own page to keep the buyers you bring in yourself. Any traffic you paid for, printed, or posted should land somewhere you control, with your name on it and your follow-up behind it.</p>
 
+<p><strong>More to read:</strong> <a href="/blog/real-estate-listing-page-checklist">listing page checklist</a> &middot; <a href="/blog/real-estate-listing-presentation-outline">listing presentation outline</a></p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

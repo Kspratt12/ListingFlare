@@ -181,6 +181,8 @@ export const article: BlogPost = {
 
 <p>You would be amazed how many agents deliver a solid presentation and then never follow up. Life gets busy, another deal heats up, and the follow-up email never gets sent. Build a follow-up checklist into your process: thank-you within two hours, sample property website link within 24 hours, check-in at 48 hours. Automate reminders in your CRM so nothing falls through the cracks.</p>
 
+<p><strong>More to read:</strong> <a href="/blog/real-estate-listing-presentation-outline">what to include in a listing presentation</a></p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 
