@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "Real estate agent website examples by type, and the pages, features and layout choices worth copying, from agent sites to single-property pages.",
   date: "2026-10-24",
+  updated: "2026-10-24",
   author: "ListingFlare Team",
   category: "Agent Growth",
   keywords: [
@@ -16,11 +17,11 @@ export const article: BlogPost = {
     "real estate agent website",
     "single property website example",
   ],
-  readingTime: 9,
+  readingTime: 11,
   coverImage:
-    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=630&fit=crop&q=80",
+    "/blog/real-estate-agent-website-examples/hero.jpg",
   coverImageAlt:
-    "Laptop screen showing website analytics charts for page load time and bounce rate",
+    "Smiling couple seated with a real estate agent, partly visible at the edge of the frame, who holds a document, with a laptop open on the table",
   content: `
 <p>The best real estate agent website examples are not the ones with the flashiest design. They make one thing easy: a visitor finding what they came for and then getting in touch. This guide breaks real estate websites into four types, shows what each one needs, and gives you a checklist you can use to review any site, including your own.</p>
 
@@ -98,7 +99,57 @@ export const article: BlogPost = {
 
 <p>That last point matters more than any design choice. A beautiful site with slow follow-up loses leads that a plain site with fast follow-up keeps. If your leads sit unanswered, the website is not the problem to fix first. Our guide on <a href="/blog/how-listing-agents-capture-buyer-leads">how listing agents capture buyer leads</a> goes into follow-up.</p>
 
-<h2>Where to Find Real Examples</h2>
+<h2>What Vendor Sites Do on Their Own Pages</h2>
+
+<p>Software companies that sell real estate websites spend heavily on their own homepages, so their choices are worth studying. These are observations from public pages viewed on October 24, 2026. Pages change, so treat them as a snapshot, not a ranking.</p>
+
+<table>
+<thead><tr><th>Site</th><th>What it leads with</th><th>Main call to action</th><th>Lesson for your own site</th></tr></thead>
+<tbody>
+<tr><td>Rela (single property websites page)</td><td>A large headline, a laptop mockup of a finished listing page and a short promise to build pages in minutes</td><td>"7-Day Free Trial", repeated in the header and again in a bold closing section</td><td>One clear action, shown several times, with a visual of the finished result next to it</td></tr>
+<tr><td>SinglePropertySites.com (homepage)</td><td>A rotating photo of a listing with a "Contact Agent" bar, next to short benefit statements</td><td>A "Try It for Free" sign-up form placed directly on the homepage</td><td>Removing a click: the form is the page, so there is no separate sign-up step to abandon</td></tr>
+<tr><td>Rela (features section)</td><td>Short feature blocks, each with a screenshot: media, lead capture, analytics</td><td>"Get Started" after the three-step "launch in minutes" section</td><td>Show each feature as a picture of the result, not a paragraph about it</td></tr>
+</tbody>
+</table>
+
+<p>Two patterns repeat. Both show the finished product early, and both ask for one action rather than several. You can apply both to an agent site: put a photo of a real listing next to your headline, and give the visitor a single next step.</p>
+
+<p>This is not a verdict on which tool is better. A template gallery with 20+ designs, as Rela describes, solves a different problem than a tool built around lead follow-up. Compare them against your own needs in <a href="/blog/best-single-property-website-builders">our builder comparison</a>.</p>
+
+<h2>Score Your Own Site in 10 Minutes</h2>
+
+<p>Open your site on your phone, then work through this scorecard. Give one point for each yes. It is a simple self-check, not an industry benchmark.</p>
+
+<table>
+<thead><tr><th>Check</th><th>How to test it</th></tr></thead>
+<tbody>
+<tr><td>Clear in five seconds</td><td>Show the first screen to someone for five seconds. Ask what you do and where.</td></tr>
+<tr><td>One main action</td><td>Count the buttons on the first screen. More than two competing ones is a warning.</td></tr>
+<tr><td>Form works on a phone</td><td>Submit it yourself from your own phone with real data.</td></tr>
+<tr><td>You actually get notified</td><td>Check how fast the message arrives in your inbox or phone.</td></tr>
+<tr><td>Listings lead somewhere useful</td><td>Tap every listing card and confirm each opens a working page.</td></tr>
+<tr><td>Loads quickly</td><td>Run the page through Google's free PageSpeed Insights. Google's Core Web Vitals guidance treats a Largest Contentful Paint of 2.5 seconds or less as good.</td></tr>
+<tr><td>Contact details as text</td><td>Confirm your phone and email appear as plain text, not only in an image.</td></tr>
+<tr><td>Nothing outdated</td><td>Look for old listings, expired promotions and dead links.</td></tr>
+</tbody>
+</table>
+
+<p>A score of 7 or 8 out of 8 means the basics are in place. Below 5, fix the lowest-scoring items before spending on design.</p>
+
+<h2>Rewrite Your First Screen: Before and After</h2>
+
+<p>The most common fix is the headline. These are illustrative rewrites, not quotes from real sites.</p>
+
+<table>
+<thead><tr><th>Weak</th><th>Stronger</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>"Welcome to my website"</td><td>"[Your name], listing agent in [city]. See my current listings."</td><td>Says who, where and what to do next</td></tr>
+<tr><td>"Your dream home awaits"</td><td>"Selling a home in [neighborhood]? Here is how I market listings."</td><td>Speaks to a specific visitor with a specific need</td></tr>
+<tr><td>"Contact us today"</td><td>"Ask about this home" or "Request a showing"</td><td>Names the exact action</td></tr>
+</tbody>
+</table>
+
+<h2>Where to Find More Examples</h2>
 
 <p>Rather than relying on a list that may be out of date, look at current sites directly:</p>
 
@@ -141,6 +192,9 @@ export const article: BlogPost = {
 
 <h3>How many pages does a real estate website need?</h3>
 <p>A small number is fine. Home, about, listings, contact and a few testimonials cover most needs. A blog is optional and only worth it if you will keep it up.</p>
+
+<h3>How do I know if my real estate website is working?</h3>
+<p>Check three things: whether visitors reach the contact form, whether submissions arrive in your inbox quickly, and how fast you reply. If you have analytics, look at how many visitors submit the form. If you do not, test the form yourself from a phone and time how long the notification takes.</p>
 
 <h3>Can I build a real estate website myself?</h3>
 <p>Yes. Several tools are designed for agents and need no coding. The harder part is writing good content, taking good photos and responding quickly to inquiries, not the technical build.</p>
