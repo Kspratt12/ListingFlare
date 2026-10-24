@@ -123,6 +123,8 @@ export const article: BlogPost = {
 
 <p><strong>Related reading:</strong> <a href="/blog/single-property-website-vs-zillow-showcase">single-property website vs Zillow Showcase</a> &middot; <a href="/blog/cribflyer-vs-rela-vs-listingflare">CribFlyer vs Rela vs ListingFlare</a></p>
 
+<p><strong>More to read:</strong> <a href="/blog/real-estate-listing-page-checklist">12-point listing page checklist</a> &middot; <a href="/blog/real-estate-agent-website-examples">real estate agent website examples</a></p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

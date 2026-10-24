@@ -180,6 +180,8 @@ export const article: BlogPost = {
 
 <p>Ready to add single-property websites to your marketing toolkit? <a href="/signup">Try ListingFlare free</a> and launch your first property website in under two minutes.</p>
 
+<p><strong>More to read:</strong> <a href="/blog/real-estate-listing-page-checklist">listing landing page checklist</a></p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

@@ -66,6 +66,10 @@ import { article as aiVirtualStaging } from "@/content/articles/best-ai-virtual-
 import { article as aiToolsRealtors } from "@/content/articles/best-ai-tools-for-realtors";
 import { article as spwVsZillowShowcase } from "@/content/articles/single-property-website-vs-zillow-showcase";
 import { article as openHouseFlyerGenerator } from "@/content/articles/open-house-flyer-generator";
+import { article as agentWebsiteExamples } from "@/content/articles/real-estate-agent-website-examples";
+import { article as freeRealEstateWebsite } from "@/content/articles/free-real-estate-website-options";
+import { article as listingPageChecklist } from "@/content/articles/real-estate-listing-page-checklist";
+import { article as listingPresentationOutline } from "@/content/articles/real-estate-listing-presentation-outline";
 import { article as openHouseSignInVsQr } from "@/content/articles/open-house-sign-in-sheet-vs-qr-code";
 
 const allPosts: BlogPost[] = [
@@ -119,6 +123,10 @@ const allPosts: BlogPost[] = [
   spwVsZillowShowcase,
   openHouseFlyerGenerator,
   openHouseSignInVsQr,
+  agentWebsiteExamples,
+  freeRealEstateWebsite,
+  listingPageChecklist,
+  listingPresentationOutline,
 ];
 
 // Sort by date descending

@@ -381,6 +381,8 @@ export const article: BlogPost = {
 
 <p><strong>Related reading:</strong> <a href="/blog/best-rela-alternatives-single-property-websites">Rela alternatives</a> &middot; <a href="/blog/cribflyer-vs-rela-vs-listingflare">CribFlyer vs Rela vs ListingFlare</a> &middot; <a href="/blog/propertysimple-alternatives">PropertySimple alternatives</a> &middot; <a href="/blog/listings-to-leads-alternatives">Listings to Leads alternatives</a> &middot; <a href="/blog/single-property-website-vs-zillow-showcase">single-property website vs Zillow Showcase</a></p>
 
+<p><strong>More to read:</strong> <a href="/blog/real-estate-agent-website-examples">real estate agent website examples</a> &middot; <a href="/blog/free-real-estate-website-options">free real estate website options</a> &middot; <a href="/blog/real-estate-listing-page-checklist">listing landing page checklist</a></p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 
