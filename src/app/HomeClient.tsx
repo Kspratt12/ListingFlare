@@ -951,7 +951,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               14-day free trial. No credit card required.
             </div>
             <h1 className="font-serif text-4xl font-bold leading-tight text-gray-900 md:text-display">
-              <span className="mb-3 block text-base font-semibold tracking-wide text-brand-700 md:text-lg" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>Real Estate Software for Listing Agents</span>
+              <span className="mb-3 block text-base font-semibold tracking-wide text-brand-700 md:text-lg" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>Real Estate Software for Listing Agents</span>{" "}
               Last night, a buyer asked about
               <br />
               your listing. You lost them.

@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  poweredByHeader: false,
   // Strip console.log from production bundles, keep errors and warnings
   compiler: {
     removeConsole: { exclude: ["error", "warn"] },
