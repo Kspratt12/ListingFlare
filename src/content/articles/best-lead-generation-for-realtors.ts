@@ -85,7 +85,7 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Every realtor at every level. If you are not building a referral system, you are leaving your highest-quality lead source on the table.</p>
 
-<img src="/blog/best-lead-generation-for-realtors/google-business.png" alt="Google Business Profile search results showing local real estate agent listings in the map pack for lead generation" loading="lazy" />
+<img src="/blog/best-lead-generation-for-realtors/google-business.png" alt="Google Business Profile search results showing local real estate agent listings in the map pack for lead generation" loading="lazy" width="950" height="466" />
 
 <h2>2. Google Business Profile and Local SEO</h2>
 
@@ -103,7 +103,7 @@ export const article: BlogPost = {
 
 <p>The compounding effect is what makes this so powerful. Every review, every post, every photo you add builds authority that keeps working for months and years. Six months from now, you could be generating 5 to 15 inbound leads per month from Google alone, completely free.</p>
 
-<img src="/blog/best-lead-generation-for-realtors/listingflare-4.png" alt="ListingFlare single-property website platform showing how realtors capture leads directly from their listings" loading="lazy" />
+<img src="/blog/best-lead-generation-for-realtors/listingflare-4.png" alt="ListingFlare single-property website platform showing how realtors capture leads directly from their listings" loading="lazy" width="2538" height="1227" />
 
 <h2>3. Single-Property Websites With Lead Capture</h2>
 
@@ -121,7 +121,7 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Any realtor with active listings. If you have listings and are not capturing leads from them directly, you are leaving the most valuable leads in your business on the table.</p>
 
-<img src="/blog/best-lead-generation-for-realtors/google-ads.png" alt="Google Ads platform interface showing pay-per-click campaign setup for real estate lead generation" loading="lazy" />
+<img src="/blog/best-lead-generation-for-realtors/google-ads.png" alt="Google Ads platform interface showing pay-per-click campaign setup for real estate lead generation" loading="lazy" width="1600" height="1150" />
 
 <h2>4. Google Ads (Pay-Per-Click)</h2>
 
@@ -175,7 +175,7 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Realtors who want high volume at a low cost and have the follow-up systems (CRM, drip emails, text sequences) to nurture leads over time.</p>
 
-<img src="/blog/best-lead-generation-for-realtors/blogger.png" alt="Real estate blogger creating SEO-optimized content marketing articles for lead generation" loading="lazy" />
+<img src="/blog/best-lead-generation-for-realtors/blogger.png" alt="Real estate blogger creating SEO-optimized content marketing articles for lead generation" loading="lazy" width="1280" height="720" />
 
 <h2>6. Content Marketing and Blogging</h2>
 
@@ -216,7 +216,7 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> All realtors, especially newer agents who need face-to-face opportunities. Open houses are free (minus some snacks and signage) and put you directly in front of active buyers.</p>
 
-<img src="/blog/best-lead-generation-for-realtors/youtube.png" alt="YouTube video marketing platform showing real estate content creation for lead generation" loading="lazy" />
+<img src="/blog/best-lead-generation-for-realtors/youtube.png" alt="YouTube video marketing platform showing real estate content creation for lead generation" loading="lazy" width="1120" height="630" />
 
 <h2>8. YouTube Video Marketing</h2>
 
@@ -259,7 +259,7 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Realtors who want to dominate a specific neighborhood and have the patience and budget ($300 to $800 per month for a 500-home farm) to commit for at least 12 months.</p>
 
-<img src="/blog/best-lead-generation-for-realtors/fsbo.png" alt="For sale by owner property representing FSBO and expired listing prospecting opportunities for realtors" loading="lazy" />
+<img src="/blog/best-lead-generation-for-realtors/fsbo.png" alt="For sale by owner property representing FSBO and expired listing prospecting opportunities for realtors" loading="lazy" width="2000" height="1333" />
 
 <h2>10. Expired Listings and FSBO Prospecting</h2>
 
@@ -309,7 +309,7 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Realtors at any level who are willing to invest time in relationship building. Start with 3 to 5 partnerships and nurture them with monthly check-ins, co-hosted events, and consistent referrals.</p>
 
-<img src="/blog/best-lead-generation-for-realtors/zillow.png" alt="Zillow Premier Agent platform showing paid lead generation options and costs for realtors" loading="lazy" />
+<img src="/blog/best-lead-generation-for-realtors/zillow.png" alt="Zillow Premier Agent platform showing paid lead generation options and costs for realtors" loading="lazy" width="3000" height="2000" />
 
 <h2>12. Zillow Premier Agent and Paid Lead Platforms</h2>
 

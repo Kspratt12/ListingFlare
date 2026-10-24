@@ -55,13 +55,13 @@ const features = [
   },
   {
     icon: MessageCircle,
-    title: "Never lose a buyer to silence",
+    title: "Answer buyers when you cannot",
     description:
-      "Every listing has an AI that answers buyer questions instantly. Bedrooms, backyard, neighborhood. The lead gets captured before they close the tab.",
+      "Every listing has an AI that answers buyer questions instantly. Bedrooms, backyard, neighborhood. The lead can be captured before they close the tab.",
   },
   {
     icon: BarChart3,
-    title: "You respond before anyone else can",
+    title: "Reply to new leads right away",
     description:
       "AI drafts a personalized reply as soon as a lead comes in, so a new lead hears back right away, even when you are away from your phone.",
   },
@@ -487,6 +487,7 @@ function ComparisonHeroSlideshow() {
         >
           <ListingPhoto
             index={heroIdx}
+            forceSrc={heroIdx === 0 ? "/luxury.webp" : `https://images.unsplash.com/${comparisonHeroPhotos[heroIdx]}?w=800&h=450&fit=crop&q=90`}
             fallback={`https://images.unsplash.com/${comparisonHeroPhotos[heroIdx]}?w=800&h=450&fit=crop&q=90`}
             alt="Luxury home"
             width={800}
@@ -975,7 +976,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               </Link>
             </div>
             <p className="mt-5 text-sm font-medium text-gray-500">
-              In real estate, the fastest response wins. That is not an opinion. It is how deals close.
+              Buyers move on quickly. A fast reply helps you stay in the conversation.
             </p>
           </motion.div>
 
@@ -1071,7 +1072,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               <div className="h-10 w-px bg-gray-200 hidden sm:block" />
               <div className="text-center">
                 <p className="font-serif text-3xl font-bold text-gray-900">24/7</p>
-                <p className="mt-1 text-sm text-gray-500">No missed buyers</p>
+                <p className="mt-1 text-sm text-gray-500">Chat always on</p>
               </div>
               <div className="h-10 w-px bg-gray-200 hidden sm:block" />
               <div className="text-center">
@@ -1227,6 +1228,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
                     <ListingPhoto
                       key={id}
                       index={i + 2}
+                      forceSrc={`https://images.unsplash.com/${id}?w=200&h=150&fit=crop&q=80`}
                       fallback={`https://images.unsplash.com/${id}?w=200&h=150&fit=crop&q=80`}
                       alt="Property photo gallery thumbnail on ListingFlare listing page"
                       width={200}
@@ -1520,7 +1522,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
                 </li>
                 <li className="flex items-start gap-3 text-sm text-gray-700">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
-                  Showing booked, lead captured, you notified. Automatically.
+                  Lead captured and showing requests sent to you. You are notified automatically.
                 </li>
               </ul>
             </motion.div>
@@ -1572,8 +1574,8 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               {
                 step: "04",
                 icon: UserPlus,
-                title: "You wake up to a booked showing.",
-                description: "The buyer left their name, email, and phone. They booked Saturday at 10 AM. The lead is already in your dashboard. You didn't do anything.",
+                title: "You wake up to a new lead.",
+                description: "The buyer left their name, email, and phone and asked about a showing. The lead is already in your dashboard.",
               },
             ].map((item, i) => (
               <motion.div
@@ -1778,7 +1780,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
             <p className="text-lg text-gray-600"><span className="font-semibold text-brand-500">10:42 PM.</span> A buyer opens your listing.</p>
             <p className="text-lg text-gray-600"><span className="font-semibold text-brand-500">10:43 PM.</span> They ask about the backyard.</p>
             <p className="text-lg text-gray-600"><span className="font-semibold text-brand-500">10:43 PM.</span> They get an answer.</p>
-            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-500">10:44 PM.</span> They book a showing for Saturday.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-500">10:44 PM.</span> They ask for a showing on Saturday.</p>
             <p className="text-lg text-gray-600"><span className="font-semibold text-brand-500">10:45 PM.</span> Their contact info hits your dashboard.</p>
             <p className="mt-6 font-serif text-xl font-semibold text-gray-900">
               You were asleep the entire time.
@@ -1806,7 +1808,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               is interested.
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-lg text-gray-500">
-              This is exactly how buyers interact with your listing. Not a static page. A working assistant that handles the conversation, captures the lead, and gets the showing booked.
+              This is exactly how buyers interact with your listing. Not a static page. A working assistant that handles the conversation, captures the lead, and passes the showing request to you.
             </p>
           </motion.div>
 
@@ -1944,9 +1946,9 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               Everything You Need
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
-              Stop missing buyers.
+              Answer more buyers.
               <br />
-              Start closing faster.
+              Follow up faster.
             </h2>
           </motion.div>
 
@@ -2208,7 +2210,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               Will anyone be there to answer?
             </h2>
             <p className="mt-4 text-lg text-gray-500">
-              No answer means no showing. No showing means no deal. You will never even know it happened.
+              A buyer who does not get a quick answer may move on to another listing, and you may never know they stopped by.
             </p>
             <Link
               href="/signup"

@@ -68,7 +68,7 @@ export const article: BlogPost = {
 
 <p>Virtual tour embeds (Matterport, iGuide), video hosting, QR code generation, social sharing tools, analytics dashboards, CRM connections. These are not deal-breakers, but they separate good builders from great ones. I noted which extras each platform includes and which ones cost extra.</p>
 
-<img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=450&fit=crop&q=80" alt="Modern luxury home exterior used for single property website marketing by a real estate agent" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=450&fit=crop&q=80" alt="Modern luxury home exterior used for single property website marketing by a real estate agent" loading="lazy" width="800" height="450" />
 
 <h2>1. ListingFlare - Best Overall for Lead Capture and After-Hours Engagement</h2>
 
@@ -172,7 +172,7 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Agents who want a pay-as-you-go model and only carry one or two listings at a time.</p>
 
-<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=450&fit=crop&q=80" alt="Bright modern living room featured on a real estate single property website for buyer lead capture" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=450&fit=crop&q=80" alt="Bright modern living room featured on a real estate single property website for buyer lead capture" loading="lazy" width="800" height="450" />
 
 <h2>4. Spiro - Best for Branded and Unbranded Options</h2>
 
@@ -272,7 +272,7 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Budget-conscious agents who just need a basic property page and do not need lead engagement, analytics, or automation features.</p>
 
-<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop&q=80" alt="Modern home exterior at twilight showcased on a single property website with lead capture for real estate agents" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop&q=80" alt="Modern home exterior at twilight showcased on a single property website with lead capture for real estate agents" loading="lazy" width="800" height="450" />
 
 <h2>7. Placester - Best for Full Agent Websites (With Property Pages Built In)</h2>
 

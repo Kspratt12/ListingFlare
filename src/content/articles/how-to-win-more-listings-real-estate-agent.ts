@@ -77,7 +77,7 @@ export const article: BlogPost = {
 
 <h3>Show Examples of Past Results</h3>
 
-<img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=800&h=450&fit=crop&q=80" alt="Confident real estate agent preparing to win more listings with a professional marketing plan" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=800&h=450&fit=crop&q=80" alt="Confident real estate agent preparing to win more listings with a professional marketing plan" loading="lazy" width="800" height="450" />
 
 <p>Nothing builds confidence like proof. Prepare a portfolio of three to five recent listings that includes the original list price, sale price, days on market, and a brief summary of the marketing strategy you used. If you have testimonials from those sellers, include them. Video testimonials are even more powerful if you have them available on your phone or tablet.</p>
 

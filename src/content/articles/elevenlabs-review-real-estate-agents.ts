@@ -40,7 +40,7 @@ export const article: BlogPost = {
 
 <p>This guide looks at ElevenLabs through a real estate lens - listing voiceovers, social media content, multilingual presentations, and more - based on the company's public documentation, pricing and feature descriptions. We have not run formal tests, so try any free trial with your own content before you pay. Here is our <strong>ElevenLabs review for real estate agents</strong> in 2026.</p>
 
-<img src="/blog/elevenlabs/eleven-what-is.png" alt="ElevenLabs AI voice platform overview for real estate agents" loading="lazy" />
+<img src="/blog/elevenlabs/eleven-what-is.png" alt="ElevenLabs AI voice platform overview for real estate agents" loading="lazy" width="2546" height="1371" />
 
 <h2>What Is ElevenLabs?</h2>
 
@@ -130,7 +130,7 @@ export const article: BlogPost = {
 
 <h3>1. Property Listing Video Voiceovers</h3>
 
-<img src="/blog/elevenlabs/ElevenLabs-voice-app.png" alt="ElevenLabs voice app generating property listing voiceover" loading="lazy" />
+<img src="/blog/elevenlabs/ElevenLabs-voice-app.png" alt="ElevenLabs voice app generating property listing voiceover" loading="lazy" width="2425" height="1364" />
 
 <p>This is the most obvious and highest-impact use case. Instead of recording yourself narrating a property walkthrough - or worse, posting silent slideshows - you write a script and let the software generate a polished, professional voiceover in seconds.</p>
 
@@ -146,7 +146,7 @@ export const article: BlogPost = {
 
 <h3>2. Social Media Content at Scale</h3>
 
-<img src="/blog/elevenlabs/social-media-eleven.png" alt="Social media content creation at scale with ElevenLabs AI voice" loading="lazy" />
+<img src="/blog/elevenlabs/social-media-eleven.png" alt="Social media content creation at scale with ElevenLabs AI voice" loading="lazy" width="2038" height="1142" />
 
 <p>Instagram Reels with voiceovers get 2 to 3 times more engagement than silent slideshows with text overlays. But producing voiceover content manually is slow. With this tool, you can produce 10 voiceover videos in the time it takes to manually record one.</p>
 
@@ -165,7 +165,7 @@ export const article: BlogPost = {
 
 <h3>3. Clone Your Own Voice</h3>
 
-<img src="/blog/elevenlabs/clone.png" alt="ElevenLabs voice cloning feature for real estate agents" loading="lazy" />
+<img src="/blog/elevenlabs/clone.png" alt="ElevenLabs voice cloning feature for real estate agents" loading="lazy" width="1560" height="1200" />
 
 <p>The platform lets you create a voice clone from as little as a 30-second audio sample. Once cloned, your AI voice can read any script - and it sounds like you. For agents who have built a personal brand, this keeps your content feeling authentic even at scale.</p>
 
@@ -175,7 +175,7 @@ export const article: BlogPost = {
 
 <h3>4. Multilingual Listing Presentations</h3>
 
-<img src="/blog/elevenlabs/multi-language.png" alt="Multilingual listing presentation in 30 plus languages with ElevenLabs" loading="lazy" />
+<img src="/blog/elevenlabs/multi-language.png" alt="Multilingual listing presentation in 30 plus languages with ElevenLabs" loading="lazy" width="3840" height="2160" />
 
 <p>ElevenLabs supports over 30 languages, and the quality in non-English languages is surprisingly good. For agents working in diverse markets - Miami, Los Angeles, New York, Houston - this is a massive competitive advantage. Same script, same visuals, different language.</p>
 
@@ -194,7 +194,7 @@ export const article: BlogPost = {
 
 <h3>5. Market Update Podcasts</h3>
 
-<img src="/blog/elevenlabs/podcast-real-estate.png" alt="AI-generated real estate market update podcast using ElevenLabs" loading="lazy" />
+<img src="/blog/elevenlabs/podcast-real-estate.png" alt="AI-generated real estate market update podcast using ElevenLabs" loading="lazy" width="1600" height="840" />
 
 <p>Podcasts are underused in real estate because the production side is a bottleneck - microphone, quiet room, editing software, weekly time commitment. This tool can remove many of those barriers. A typical workflow:</p>
 
@@ -211,7 +211,7 @@ export const article: BlogPost = {
 
 <h3>6. Professional Voicemail and IVR Greetings</h3>
 
-<img src="/blog/elevenlabs/Voicemail-Greeting-Generator.png" alt="Professional voicemail greeting generator for real estate agents" loading="lazy" />
+<img src="/blog/elevenlabs/Voicemail-Greeting-Generator.png" alt="Professional voicemail greeting generator for real estate agents" loading="lazy" width="1222" height="860" />
 
 <p>Create studio-quality voicemail greetings and phone system (IVR) messages in minutes. Write a script, generate the audio, and set it as your voicemail greeting. You can even create different greetings for different phone numbers so the message matches each campaign.</p>
 
@@ -225,7 +225,7 @@ export const article: BlogPost = {
 
 <h3>7. Open House Audio Tours</h3>
 
-<img src="/blog/elevenlabs/open-house-1.png" alt="Open house audio tour created with ElevenLabs AI voice" loading="lazy" />
+<img src="/blog/elevenlabs/open-house-1.png" alt="Open house audio tour created with ElevenLabs AI voice" loading="lazy" width="1500" height="1000" />
 
 <p>Create a guided audio tour that buyers can listen to on their phones as they walk through the home. This is one of the more creative uses for the platform.</p>
 
@@ -357,7 +357,7 @@ export const article: BlogPost = {
 
 <p>Murf.ai is the easiest to learn. If you are not particularly tech-savvy and want the simplest possible path from script to finished audio, Murf's interface is slightly more intuitive than ElevenLabs. The trade-off is fewer voices, slightly lower quality, and a higher starting price.</p>
 
-<img src="/blog/elevenlabs/re-marketing.png" alt="Real estate marketing stack combining ElevenLabs with ListingFlare" loading="lazy" />
+<img src="/blog/elevenlabs/re-marketing.png" alt="Real estate marketing stack combining ElevenLabs with ListingFlare" loading="lazy" width="4752" height="3431" />
 
 <h2>How to Combine ElevenLabs with Your Listing Marketing Stack</h2>
 
@@ -384,7 +384,7 @@ export const article: BlogPost = {
 
 <p>Go to <a href="https://try.elevenlabs.io/bkxad5z0cuhk" target="_blank" rel="noopener noreferrer">elevenlabs.io</a> and create a free account. You do not need a credit card to start. The free plan gives you 10,000 characters per month, which is enough to create your first several voiceovers and test the platform before committing to a paid plan.</p>
 
-<img src="/blog/elevenlabs/property-script.png" alt="Property listing voiceover script template for ElevenLabs" loading="lazy" />
+<img src="/blog/elevenlabs/property-script.png" alt="Property listing voiceover script template for ElevenLabs" loading="lazy" width="2545" height="1378" />
 
 <h3>Step 2: Write Your Property Script</h3>
 
@@ -416,7 +416,7 @@ export const article: BlogPost = {
 
 <p>Preview several voices by clicking the play button next to each one. Pick a voice that matches your brand. Luxury listings call for a deep, polished voice. Starter homes and family neighborhoods work better with a warm, friendly tone. You can also clone your own voice if you are on the Creator plan or above - just click "Add Voice" and follow the cloning instructions.</p>
 
-<img src="/blog/elevenlabs/generate-audio.png" alt="Generating AI audio in ElevenLabs for real estate listing video" loading="lazy" />
+<img src="/blog/elevenlabs/generate-audio.png" alt="Generating AI audio in ElevenLabs for real estate listing video" loading="lazy" width="3840" height="2160" />
 
 <h3>Step 4: Generate the Audio</h3>
 
@@ -451,7 +451,7 @@ export const article: BlogPost = {
 
 <p>The voiceover got their attention. The property page converts them into a lead. That is the complete workflow.</p>
 
-<img src="/blog/elevenlabs/bart.png" alt="ElevenLabs verdict and recommendation for real estate agents" loading="lazy" />
+<img src="/blog/elevenlabs/bart.png" alt="ElevenLabs verdict and recommendation for real estate agents" loading="lazy" width="4480" height="2656" />
 
 <h2>Is ElevenLabs Worth It for Real Estate Agents? Our Verdict</h2>
 

@@ -76,7 +76,7 @@ export const article: BlogPost = {
 
 <p>The ideal agent provides regular updates (at least weekly, and more frequently when showings or offers are active), responds within a few hours during business hours, and proactively reaches out with feedback after every showing. They should also make it easy for you to reach them through your preferred channel, whether that is phone, text, or email.</p>
 
-<img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&h=450&fit=crop&q=80" alt="Real estate agent communicating with home selling clients on the phone" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&h=450&fit=crop&q=80" alt="Real estate agent communicating with home selling clients on the phone" loading="lazy" width="800" height="450" />
 
 <h2>Question 5: What Are Your Commission Rates and Fees?</h2>
 

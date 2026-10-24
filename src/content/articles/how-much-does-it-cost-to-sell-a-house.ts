@@ -151,7 +151,7 @@ export const article: BlogPost = {
   </tbody>
 </table>
 
-<img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=450&fit=crop&q=80" alt="Home for sale with costs calculated for the selling process" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=450&fit=crop&q=80" alt="Home for sale with costs calculated for the selling process" loading="lazy" width="800" height="450" />
 
 <p>Keep in mind that the totals above don't include potential capital gains tax, mortgage prepayment penalties, or moving costs. Those vary widely based on your individual situation, so be sure to factor them into your personal budget.</p>
 

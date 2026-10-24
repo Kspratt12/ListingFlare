@@ -34,7 +34,7 @@ export const article: BlogPost = {
 
 <p>This guide looks at Descript specifically for real estate workflows - listing walkthroughs, market updates, social media clips, and property tours - based on the company's public documentation, pricing and feature descriptions. We have not run formal tests, so try any free trial with your own content before you pay. Here is our full <strong>Descript review for real estate agents</strong> in 2026, covering everything from pricing to step-by-step workflows to whether it lives up to the hype.</p>
 
-<img src="/blog/descript/descript1.png" alt="Descript AI video editor platform overview" loading="lazy" />
+<img src="/blog/descript/descript1.png" alt="Descript AI video editor platform overview" loading="lazy" width="1280" height="708" />
 
 <h2>What Is Descript?</h2>
 
@@ -115,7 +115,7 @@ export const article: BlogPost = {
 
 <a href="https://get.descript.com/dnhbj2ud2ge8" target="_blank" rel="noopener noreferrer" class="cta-button">Try Descript Free &rarr;</a>
 
-<img src="/blog/descript/real-agent.png" alt="Real estate agent editing listing video in Descript" loading="lazy" />
+<img src="/blog/descript/real-agent.png" alt="Real estate agent editing listing video in Descript" loading="lazy" width="1920" height="1280" />
 
 <h2>How Real Estate Agents Use Descript</h2>
 
@@ -129,7 +129,7 @@ export const article: BlogPost = {
 
 <p>You can also rearrange sections. If you walked through the backyard before the kitchen but want to reorder them in the final video, just cut and paste the paragraphs in the transcript. The video clips follow. It feels like editing a document, and for agents who have never touched video editing software, this is a revelation.</p>
 
-<img src="/blog/descript/eye-contact.png" alt="Descript AI eye contact correction feature for real estate videos" loading="lazy" />
+<img src="/blog/descript/eye-contact.png" alt="Descript AI eye contact correction feature for real estate videos" loading="lazy" width="1280" height="720" />
 
 <h3>AI Eye Contact Correction</h3>
 
@@ -145,7 +145,7 @@ export const article: BlogPost = {
 
 <p>Descript solves this in about three seconds. After transcription, it highlights every detected filler word in the transcript. Click "Remove filler words" and they all disappear from both the text and the video. Automatic cuts are usually clean, but it can miss some words or leave an occasional awkward edit, so give the result a quick listen before you publish.</p>
 
-<img src="/blog/descript/studio-sound.png" alt="Descript Studio Sound noise removal for real estate recordings" loading="lazy" />
+<img src="/blog/descript/studio-sound.png" alt="Descript Studio Sound noise removal for real estate recordings" loading="lazy" width="1080" height="669" />
 
 <h3>Studio Sound for Noisy Recordings</h3>
 
@@ -163,7 +163,7 @@ export const article: BlogPost = {
 
 <p>This streamlined workflow turns market update videos from a 2-hour production into a 20-minute task. Record for 5 minutes, spend 10 minutes cleaning up the transcript, add captions, and export. That is it.</p>
 
-<img src="/blog/descript/Descript-Overdub.png" alt="Descript Overdub AI voice clone for quick video corrections" loading="lazy" />
+<img src="/blog/descript/Descript-Overdub.png" alt="Descript Overdub AI voice clone for quick video corrections" loading="lazy" width="1080" height="600" />
 
 <h3>Overdub - AI Voice Clone for Quick Corrections</h3>
 
@@ -189,7 +189,7 @@ export const article: BlogPost = {
 
 <p>Descript also has an AI feature that can automatically identify the most engaging segments of your video and suggest them as potential clips. While the AI suggestions are not always perfect for real estate content (it tends to favor dramatic moments over informational ones), it is a useful starting point.</p>
 
-<img src="/blog/descript/agent-video.png" alt="Creating a listing video with Descript step by step" loading="lazy" />
+<img src="/blog/descript/agent-video.png" alt="Creating a listing video with Descript step by step" loading="lazy" width="1030" height="563" />
 
 <h2>Step-by-Step: Creating a Listing Video with Descript</h2>
 
@@ -211,7 +211,7 @@ export const article: BlogPost = {
 
 <p>If you want to rearrange sections (maybe you want to start with the kitchen instead of the foyer), simply cut and paste the paragraphs in the transcript. The video follows. Spend about 5 to 7 minutes on this step.</p>
 
-<img src="/blog/descript/word-gap.png" alt="Applying AI enhancements and removing filler words in Descript" loading="lazy" />
+<img src="/blog/descript/word-gap.png" alt="Applying AI enhancements and removing filler words in Descript" loading="lazy" width="994" height="381" />
 
 <h3>Step 4: Apply AI Enhancements</h3>
 
@@ -264,7 +264,7 @@ export const article: BlogPost = {
 
 <h3>Descript vs CapCut</h3>
 
-<img src="/blog/descript/capcut.png" alt="CapCut free video editor comparison" loading="lazy" />
+<img src="/blog/descript/capcut.png" alt="CapCut free video editor comparison" loading="lazy" width="1064" height="665" />
 
 <p><strong>CapCut</strong> is a free video editor from ByteDance (the company behind TikTok). It has exploded in popularity because it is free, available on mobile and desktop, and packed with trendy effects, transitions, and templates.</p>
 
@@ -276,7 +276,7 @@ export const article: BlogPost = {
 
 <h3>Descript vs Adobe Premiere Pro</h3>
 
-<img src="/blog/descript/adobe.png" alt="Adobe Premiere Pro professional video editor comparison" loading="lazy" />
+<img src="/blog/descript/adobe.png" alt="Adobe Premiere Pro professional video editor comparison" loading="lazy" width="940" height="571" />
 
 <p><strong>Adobe Premiere Pro</strong> is the industry-standard professional video editor. It can do virtually anything - complex transitions, multi-camera editing, advanced color grading, motion graphics, and more. It is what professional videographers use to create cinematic listing films and brand videos.</p>
 
@@ -288,7 +288,7 @@ export const article: BlogPost = {
 
 <h3>Descript vs Final Cut Pro</h3>
 
-<img src="/blog/descript/final-cut.png" alt="Final Cut Pro Mac video editor comparison" loading="lazy" />
+<img src="/blog/descript/final-cut.png" alt="Final Cut Pro Mac video editor comparison" loading="lazy" width="1360" height="1046" />
 
 <p><strong>Final Cut Pro</strong> is Apple's professional video editor, available only on Mac. It is a one-time purchase of $299.99 (or $4.99/month subscription) and is known for its performance on Apple hardware. Like Premiere Pro, it is a powerful timeline-based editor with a significant learning curve.</p>
 
@@ -298,7 +298,7 @@ export const article: BlogPost = {
 
 <h3>Descript vs iMovie</h3>
 
-<img src="/blog/descript/i-movie.png" alt="iMovie free video editor comparison for real estate agents" loading="lazy" />
+<img src="/blog/descript/i-movie.png" alt="iMovie free video editor comparison for real estate agents" loading="lazy" width="2864" height="1632" />
 
 <p><strong>iMovie</strong> is Apple's free video editor that comes pre-installed on every Mac and iPhone. It is the simplest traditional editor available and is perfectly fine for basic cuts and trimming.</p>
 
@@ -306,7 +306,7 @@ export const article: BlogPost = {
 
 <p><strong>Verdict:</strong> iMovie is free and fine for absolute basics. But the AI features in Descript (especially filler word removal and Studio Sound) produce dramatically better results with less effort. The $24/month for Descript is worth it for any agent creating video regularly.</p>
 
-<img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=1200&h=630&fit=crop&q=80" alt="Person working on a laptop with video content displayed representing the workflow of editing real estate videos with AI tools" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=1200&h=630&fit=crop&q=80" alt="Person working on a laptop with video content displayed representing the workflow of editing real estate videos with AI tools" loading="lazy" width="1200" height="630" />
 
 <h2>Descript + ListingFlare: The Complete Listing Marketing Workflow</h2>
 

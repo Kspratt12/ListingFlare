@@ -58,7 +58,7 @@ export const article: BlogPost = {
   <li><strong>Social sharing buttons.</strong> Make it effortless for visitors to share the listing on Facebook, Instagram, or via text. Every share expands your reach without any ad spend.</li>
 </ul>
 
-<img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&h=450&fit=crop&q=80" alt="Luxury property showcased on a single property website with professional photography" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&h=450&fit=crop&q=80" alt="Luxury property showcased on a single property website with professional photography" loading="lazy" width="800" height="450" />
 
 <h2>How to Create a Single Property Website: Your Options</h2>
 
@@ -108,7 +108,7 @@ export const article: BlogPost = {
 
 <p>This is especially powerful with sellers who have interviewed multiple agents. When every other agent shows the same CMA and promises the same MLS exposure, you walk in with a live demo of a dedicated property website with AI-powered buyer engagement. That is how you win the listing.</p>
 
-<img src="https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=800&h=450&fit=crop&q=80" alt="Real estate agent creating a single property website on their laptop" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=800&h=450&fit=crop&q=80" alt="Real estate agent creating a single property website on their laptop" loading="lazy" width="800" height="450" />
 
 <h2>Real Results: What Agents See with Single Property Websites</h2>
 

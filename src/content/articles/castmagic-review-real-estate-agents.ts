@@ -31,7 +31,7 @@ export const article: BlogPost = {
 
 <p>In this <strong>Castmagic review</strong>, we will break down exactly what the platform does, how real estate agents are using it to dominate social media with minimal effort, what it costs, and whether it is worth the investment for your business. We will also compare it to the top alternatives so you can make an informed decision. If you have been struggling with the content creation treadmill, this guide will show you how to get off it.</p>
 
-<img src="/blog/castmagic/castmagic-what.png" alt="Castmagic AI content repurposing platform overview" loading="lazy" />
+<img src="/blog/castmagic/castmagic-what.png" alt="Castmagic AI content repurposing platform overview" loading="lazy" width="2533" height="1228" />
 
 <h2>What Is Castmagic?</h2>
 
@@ -105,7 +105,7 @@ export const article: BlogPost = {
 
 <a href="https://get.castmagic.io/nrxry3kwbzkj" target="_blank" rel="noopener noreferrer" class="cta-button">Try Castmagic Free &rarr;</a>
 
-<img src="/blog/castmagic/agent-casting.png" alt="Real estate agent using Castmagic to repurpose content" loading="lazy" />
+<img src="/blog/castmagic/agent-casting.png" alt="Real estate agent using Castmagic to repurpose content" loading="lazy" width="2558" height="1438" />
 
 <h2>How Real Estate Agents Use Castmagic</h2>
 
@@ -128,7 +128,7 @@ export const article: BlogPost = {
 
 <p>From one 5-minute recording, you now have a full week of content across every platform. The total time investment is roughly 20 minutes: 5 minutes recording, 5 minutes uploading and generating, and 10 minutes reviewing and scheduling. Compare that to the 5 to 8 hours most agents spend creating that same volume of content manually. For more inspiration on what to post, check out our guide on <a href="/blog/real-estate-social-media-post-ideas">30 real estate social media post ideas that generate leads</a>.</p>
 
-<img src="/blog/castmagic/popular.png" alt="Open house recap video being repurposed into blog content" loading="lazy" />
+<img src="/blog/castmagic/popular.png" alt="Open house recap video being repurposed into blog content" loading="lazy" width="937" height="672" />
 
 <h3>2. Open House Recap Videos Turned Into Blog Content</h3>
 
@@ -142,7 +142,7 @@ export const article: BlogPost = {
 
 <p>Castmagic pulls out the best quotes, generates social media posts with testimonial highlights, creates a blog-style case study, and drafts a Google review request email you can send to the client afterward. One genuine client conversation becomes weeks of trust-building content that shows future clients what working with you actually looks like.</p>
 
-<img src="/blog/castmagic/narrow.png" alt="Listing walkthrough narration repurposed across platforms" loading="lazy" />
+<img src="/blog/castmagic/narrow.png" alt="Listing walkthrough narration repurposed across platforms" loading="lazy" width="1506" height="885" />
 
 <h3>4. Listing Walkthrough Narrations Repurposed Across Platforms</h3>
 
@@ -162,7 +162,7 @@ export const article: BlogPost = {
 
 <h3>Step 1: Record Your Content</h3>
 
-<img src="/blog/castmagic/record-cast.png" alt="Recording content in Castmagic for AI repurposing" loading="lazy" />
+<img src="/blog/castmagic/record-cast.png" alt="Recording content in Castmagic for AI repurposing" loading="lazy" width="1506" height="885" />
 
 <p>Use your smartphone, a USB microphone at your desk, or any recording app you already use. The recording does not need to be perfect - Castmagic handles filler words, pauses, and natural speech patterns. For video content, you can upload MP4 files directly. For audio-only content, MP3 and WAV formats work. Aim for 3 to 10 minutes per recording for the best output quality. Shorter recordings produce thinner content, while recordings over 15 minutes may produce outputs that are too long for social platforms without editing.</p>
 
@@ -176,7 +176,7 @@ export const article: BlogPost = {
 
 <h3>Step 4: Generate and Review</h3>
 
-<img src="/blog/castmagic/generate.png" alt="Generating AI content outputs in Castmagic" loading="lazy" />
+<img src="/blog/castmagic/generate.png" alt="Generating AI content outputs in Castmagic" loading="lazy" width="1455" height="772" />
 
 <p>Click generate and Castmagic processes your recording in 2 to 5 minutes depending on length. The AI transcribes the audio, analyzes the content themes, and produces every output you selected. Review each piece, make minor edits for accuracy (always double-check stats, property details, and pricing), and approve. Most agents find the outputs are 80 to 90 percent ready to publish, requiring only light tweaks.</p>
 
@@ -230,7 +230,7 @@ export const article: BlogPost = {
 
 <h3>Castmagic vs Repurpose.io</h3>
 
-<img src="/blog/castmagic/repurpose.png" alt="Repurpose.io content distribution platform comparison" loading="lazy" />
+<img src="/blog/castmagic/repurpose.png" alt="Repurpose.io content distribution platform comparison" loading="lazy" width="2800" height="1800" />
 
 <p><a href="https://repurpose.io/" target="_blank" rel="noopener noreferrer">Repurpose.io</a> is a content distribution and automation platform. It takes content you have already created and automatically publishes it across multiple platforms. For example, it can take a YouTube video and automatically post it to Facebook, LinkedIn, TikTok, and Twitter.</p>
 
@@ -240,7 +240,7 @@ export const article: BlogPost = {
 
 <h3>Castmagic vs Descript</h3>
 
-<img src="/blog/castmagic/descript-vs.png" alt="Descript AI video editor comparison with Castmagic" loading="lazy" />
+<img src="/blog/castmagic/descript-vs.png" alt="Descript AI video editor comparison with Castmagic" loading="lazy" width="2592" height="1643" />
 
 <p><a href="https://get.descript.com/" target="_blank" rel="noopener noreferrer">Descript</a> is a video and audio editing platform that uses AI for transcription-based editing. You edit your video by editing the text transcript, and Descript removes the corresponding video segments automatically. It also offers AI-powered features like filler word removal, eye contact correction, and green screen replacement. For a deeper dive on Descript and other tools, see our roundup of the <a href="/blog/best-ai-tools-real-estate-marketing">best AI tools for real estate marketing</a>.</p>
 
@@ -322,7 +322,7 @@ export const article: BlogPost = {
 
 <p>The bottom line: Castmagic is the best option if your primary need is transforming recordings into written content at scale. It occupies a unique space in the market that the other tools do not directly compete with. For a complete content repurposing workflow, the ideal stack is Descript (edit recordings) plus Castmagic (generate written content) plus Repurpose.io (distribute across platforms).</p>
 
-<img src="/blog/castmagic/list-1.png" alt="Castmagic and ListingFlare content-to-lead pipeline" loading="lazy" />
+<img src="/blog/castmagic/list-1.png" alt="Castmagic and ListingFlare content-to-lead pipeline" loading="lazy" width="2548" height="1228" />
 
 <h2>Castmagic + ListingFlare: The Complete Real Estate Content-to-Lead Pipeline</h2>
 

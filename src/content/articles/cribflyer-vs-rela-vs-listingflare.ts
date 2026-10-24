@@ -29,7 +29,7 @@ export const article: BlogPost = {
 
 <p>If you want a broader look at the full market, check out our roundup of the <a href="/blog/best-single-property-website-builders">best single property website builders</a> for 2026. This article goes deep on the three-way comparison agents ask about most.</p>
 
-<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop&q=80" alt="Luxury home exterior photographed for a single property website listing page" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop&q=80" alt="Luxury home exterior photographed for a single property website listing page" loading="lazy" width="800" height="450" />
 
 <h2>Quick Verdict: TL;DR Comparison</h2>
 
@@ -171,7 +171,7 @@ export const article: BlogPost = {
 </div>
 </div>
 
-<img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=450&fit=crop&q=80" alt="Real estate agent reviewing listing performance data on a tablet device" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=450&fit=crop&q=80" alt="Real estate agent reviewing listing performance data on a tablet device" loading="lazy" width="800" height="450" />
 
 <hr style="border:none;border-top:1px solid #e5e7eb;margin:2.5rem 0;" />
 
@@ -388,7 +388,7 @@ export const article: BlogPost = {
 
 <p><a href="/demo">See the 24/7 chat assistant in action on a live listing page</a> to understand the difference.</p>
 
-<img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=450&fit=crop&q=80" alt="Professional real estate agent working on her laptop to manage listing leads and marketing" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=450&fit=crop&q=80" alt="Professional real estate agent working on her laptop to manage listing leads and marketing" loading="lazy" width="800" height="450" />
 
 <h2>The Bottom Line - Why Lead Capture Matters More Than Design</h2>
 

@@ -34,7 +34,7 @@ export const article: BlogPost = {
 
 <p>If you are tired of funding Zillow's business model with your listings, this article is for you. We are going to break down exactly how Zillow steals your leads, what the lawsuits and research have revealed, why Premier Agent is a money pit, and - most importantly - seven strategies you can use right now to take your leads back.</p>
 
-<img src="/blog/zillow/hijack.png" alt="How Zillow hijacks buyer leads from listing agents through their business model" loading="lazy" />
+<img src="/blog/zillow/hijack.png" alt="How Zillow hijacks buyer leads from listing agents through their business model" loading="lazy" width="1000" height="563" />
 
 <h2>The $2 Billion Lead Hijack - How Zillow's Business Model Works Against You</h2>
 
@@ -57,7 +57,7 @@ export const article: BlogPost = {
 
 <p>Think of it like opening a restaurant, paying for all the ingredients and staff, cooking a beautiful meal, and then having someone stand outside your door intercepting customers and sending them to the restaurant next door - for a fee. That is Zillow's business model. And it has been wildly profitable for them, at your expense.</p>
 
-<img src="/blog/zillow/upenn.png" alt="University of Pennsylvania study showing only 0.3 percent of Zillow users know they are not contacting the listing agent" loading="lazy" />
+<img src="/blog/zillow/upenn.png" alt="University of Pennsylvania study showing only 0.3 percent of Zillow users know they are not contacting the listing agent" loading="lazy" width="6000" height="4000" />
 
 <h2>The Deceptive "Contact Agent" Button - What the Penn Study Found</h2>
 
@@ -81,7 +81,7 @@ export const article: BlogPost = {
 
 <p>For listing agents, this means every single listing you put on the MLS - which then syndicates to Zillow - becomes a lead generation tool for your competition. And the vast majority of buyers have no idea it is happening.</p>
 
-<img src="/blog/zillow/flex.png" alt="Zillow Flex program charging agents up to 40 percent referral fee on closed transactions" loading="lazy" />
+<img src="/blog/zillow/flex.png" alt="Zillow Flex program charging agents up to 40 percent referral fee on closed transactions" loading="lazy" width="1024" height="575" />
 
 <h2>Zillow Flex - Paying 40% of Your Commission for Your Own Leads</h2>
 
@@ -119,7 +119,7 @@ export const article: BlogPost = {
 
 <p>Zillow is the only party that wins in this arrangement. Listing agents lose their leads. Flex agents lose nearly half their commission. And buyers get connected to an agent they never intended to contact in the first place.</p>
 
-<img src="/blog/zillow/zillow-premier.png" alt="Zillow Premier Agent program with high costs and low conversion rates for real estate agents" loading="lazy" />
+<img src="/blog/zillow/zillow-premier.png" alt="Zillow Premier Agent program with high costs and low conversion rates for real estate agents" loading="lazy" width="1280" height="720" />
 
 <h2>Why Zillow Premier Agent Is Not the Answer</h2>
 
@@ -153,7 +153,7 @@ export const article: BlogPost = {
 
 <p>Bottom line: <strong>paying Zillow to solve a problem that Zillow created is not a strategy. It is a subscription to your own exploitation.</strong></p>
 
-<img src="/blog/zillow/lawsuit.png" alt="Real estate agents filing lawsuits against Zillow for deceptive lead practices" loading="lazy" />
+<img src="/blog/zillow/lawsuit.png" alt="Real estate agents filing lawsuits against Zillow for deceptive lead practices" loading="lazy" width="2560" height="1707" />
 
 <h2>The Lawsuits - Agents Fighting Back in 2025-2026</h2>
 
@@ -196,7 +196,7 @@ export const article: BlogPost = {
 
 <p>The math is compelling. If a single-property website captures just one additional lead per listing that would have otherwise gone to Zillow, and that lead converts to a $400,000 sale with a 3% commission, that is $12,000 in commission you would have lost. The cost of creating the single-property website? A fraction of that. <a href="/blog/best-single-property-website-builders">Compare the best single-property website builders here.</a></p>
 
-<img src="/blog/zillow/lead-capture.png" alt="AI chatbot capturing buyer leads on a single property website" loading="lazy" />
+<img src="/blog/zillow/lead-capture.png" alt="AI chatbot capturing buyer leads on a single property website" loading="lazy" width="825" height="500" />
 
 <h3>2. Deploy an AI Chatbot for 24/7 Lead Capture</h3>
 
@@ -210,7 +210,7 @@ export const article: BlogPost = {
 
 <p>ListingFlare's AI chatbot is trained on each individual listing's data, so it provides accurate, property-specific responses that build buyer confidence and capture leads around the clock. <a href="/demo">See a live demo</a> to watch it in action.</p>
 
-<img src="/blog/zillow/qr-code.png" alt="QR code on real estate yard sign linking to single property website" loading="lazy" />
+<img src="/blog/zillow/qr-code.png" alt="QR code on real estate yard sign linking to single property website" loading="lazy" width="2400" height="1260" />
 
 <h3>3. Use Direct Marketing with QR Codes</h3>
 
@@ -232,7 +232,7 @@ export const article: BlogPost = {
 
 <p>Pro tip: use trackable QR codes so you can see which marketing channels are driving the most traffic. If yard signs are generating 60% of your scans but postcards are only generating 5%, you know where to focus your budget.</p>
 
-<img src="/blog/zillow/funnel.png" alt="Social media marketing funnel directing buyers to agent property website" loading="lazy" />
+<img src="/blog/zillow/funnel.png" alt="Social media marketing funnel directing buyers to agent property website" loading="lazy" width="1920" height="1080" />
 
 <h3>4. Build Social Media Direct Funnels</h3>
 
@@ -252,7 +252,7 @@ export const article: BlogPost = {
 
 <p>The common thread: every social media interaction should funnel the buyer to a platform you control, not a platform that will sell them to your competition.</p>
 
-<img src="/blog/zillow/email-marketing-reach-blog.png" alt="Email marketing campaign for real estate listing reaching buyer sphere of influence" loading="lazy" />
+<img src="/blog/zillow/email-marketing-reach-blog.png" alt="Email marketing campaign for real estate listing reaching buyer sphere of influence" loading="lazy" width="2560" height="1440" />
 
 <h3>5. Email Marketing to Your Sphere</h3>
 
@@ -273,7 +273,7 @@ export const article: BlogPost = {
 
 <p>Consistency matters. Send a monthly market update, a weekly new listing roundup, or a quarterly newsletter. Stay top of mind so that when someone in your sphere hears "We're thinking about buying a house," your name is the first one that comes up - not Zillow's algorithm.</p>
 
-<img src="/blog/zillow/Google-profile-picture.png" alt="Google Business Profile optimization for real estate listing agents" loading="lazy" />
+<img src="/blog/zillow/Google-profile-picture.png" alt="Google Business Profile optimization for real estate listing agents" loading="lazy" width="1920" height="1080" />
 
 <h3>6. Optimize Your Google Business Profile</h3>
 
@@ -300,7 +300,7 @@ export const article: BlogPost = {
 
 <p>A strong GBP means buyers find you directly through Google instead of finding your listing on Zillow and getting routed to someone else. It is free to set up and maintain, and the long-term lead generation value is enormous.</p>
 
-<img src="/blog/zillow/zillow1.png" alt="Real estate agent building independent brand instead of relying on Zillow" loading="lazy" />
+<img src="/blog/zillow/zillow1.png" alt="Real estate agent building independent brand instead of relying on Zillow" loading="lazy" width="1024" height="576" />
 
 <h3>7. Build Your Own Brand Instead of Renting Zillow's</h3>
 

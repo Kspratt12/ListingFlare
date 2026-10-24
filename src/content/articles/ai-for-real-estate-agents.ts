@@ -35,7 +35,7 @@ export const article: BlogPost = {
 
 <p>But here is the problem. Most agents are either overwhelmed by the options or using AI wrong. They are copying and pasting generic ChatGPT outputs that sound robotic, or they are paying for expensive tools that do not integrate into their actual workflow. We tested and compared every major <strong>AI for real estate agents</strong> platform on the market to find the ones that actually deliver results. This guide breaks down exactly which tools are worth your money, how AI is being used by top producers right now, and how you can implement it into your business starting this week.</p>
 
-<img src="/blog/ai-for-real-estate-agents/Contributors-AI.png" alt="AI technology contributors and innovations shaping the future of real estate marketing and lead generation" loading="lazy" />
+<img src="/blog/ai-for-real-estate-agents/Contributors-AI.png" alt="AI technology contributors and innovations shaping the future of real estate marketing and lead generation" loading="lazy" width="1200" height="675" />
 
 <h2>Why AI Matters More for Real Estate Agents Than Almost Any Other Profession</h2>
 
@@ -51,7 +51,7 @@ export const article: BlogPost = {
 
 <p>AI in real estate is not one thing. It is a toolkit of capabilities that touch every part of your business. Here are the seven most impactful applications:</p>
 
-<img src="/blog/ai-for-real-estate-agents/Chatbot-examples.png" alt="AI chatbot examples showing how real estate agents use conversational AI to capture buyer leads on listing pages" loading="lazy" />
+<img src="/blog/ai-for-real-estate-agents/Chatbot-examples.png" alt="AI chatbot examples showing how real estate agents use conversational AI to capture buyer leads on listing pages" loading="lazy" width="1536" height="1028" />
 
 <h2>1. AI Chatbots That Capture Leads 24/7</h2>
 
@@ -65,7 +65,7 @@ export const article: BlogPost = {
 
 <p>The numbers speak for themselves. Listing pages with AI chatbots capture <strong>3 to 5 times more leads</strong> than pages with just a static contact form. Why? Because buyers want answers now, not later. And the chatbot gives them a reason to engage instead of bouncing.</p>
 
-<img src="/blog/ai-for-real-estate-agents/listingflare-5.png" alt="ListingFlare AI-powered listing description generator creating professional property descriptions for real estate agents" loading="lazy" />
+<img src="/blog/ai-for-real-estate-agents/listingflare-5.png" alt="ListingFlare AI-powered listing description generator creating professional property descriptions for real estate agents" loading="lazy" width="2548" height="1225" />
 
 <h2>2. AI-Powered Listing Descriptions That Sell</h2>
 
@@ -79,7 +79,7 @@ export const article: BlogPost = {
 
 <p>For examples of what great descriptions look like, check out our guide on <a href="/blog/real-estate-listing-description-examples">real estate listing description examples that sell</a>.</p>
 
-<img src="/blog/ai-for-real-estate-agents/caption.png" alt="AI-generated photo captions on real estate listing images showing automated visual marketing for agents" loading="lazy" />
+<img src="/blog/ai-for-real-estate-agents/caption.png" alt="AI-generated photo captions on real estate listing images showing automated visual marketing for agents" loading="lazy" width="1600" height="1005" />
 
 <h2>3. AI Photo Captions and Visual Marketing</h2>
 
@@ -89,7 +89,7 @@ export const article: BlogPost = {
 
 <p>This might sound like a small thing, but it adds up. Across 25 photos for a single listing, you are saving 20 to 30 minutes per property. Across 20 listings per year, that is <strong>8 to 10 hours saved</strong> on photo captions alone. That is time you can spend on activities that actually generate revenue.</p>
 
-<img src="/blog/ai-for-real-estate-agents/listingflare-6.png" alt="ListingFlare AI auto-reply system drafting personalized follow-up emails for real estate leads" loading="lazy" />
+<img src="/blog/ai-for-real-estate-agents/listingflare-6.png" alt="ListingFlare AI auto-reply system drafting personalized follow-up emails for real estate leads" loading="lazy" width="2157" height="1063" />
 
 <h2>4. AI-Drafted Follow-Up Emails That Convert</h2>
 
@@ -109,7 +109,7 @@ export const article: BlogPost = {
 
 <p>Compare this to the industry reality: according to a <a href="https://www.realtrends.com/articles/why-real-estate-leads-fail/" target="_blank" rel="noopener noreferrer">RealTrends study</a>, <strong>47 percent of real estate leads never receive a single follow-up</strong>. The agents using AI auto-reply are not just responding faster. They are responding to leads that most agents never contact at all.</p>
 
-<img src="/blog/ai-for-real-estate-agents/assistant.png" alt="AI business assistant dashboard providing real estate agents with performance insights and strategy recommendations" loading="lazy" />
+<img src="/blog/ai-for-real-estate-agents/assistant.png" alt="AI business assistant dashboard providing real estate agents with performance insights and strategy recommendations" loading="lazy" width="1456" height="816" />
 
 <h2>5. AI Business Assistant for Strategy and Insights</h2>
 
@@ -126,7 +126,7 @@ export const article: BlogPost = {
 
 <p>Think of it as having a marketing coordinator, data analyst, and copywriter rolled into one, available 24/7, never calls in sick, and costs a fraction of a single employee.</p>
 
-<img src="/blog/ai-for-real-estate-agents/Ai-post.png" alt="AI-generated social media post for real estate listing showing branded content creation for Instagram and Facebook" loading="lazy" />
+<img src="/blog/ai-for-real-estate-agents/Ai-post.png" alt="AI-generated social media post for real estate listing showing branded content creation for Instagram and Facebook" loading="lazy" width="3000" height="2000" />
 
 <h2>6. AI-Generated Social Media Content</h2>
 
@@ -144,7 +144,7 @@ export const article: BlogPost = {
 
 <p>For more ideas on what to post beyond listings, check out our guide on <a href="/blog/real-estate-social-media-post-ideas">real estate social media post ideas that actually generate leads</a>.</p>
 
-<img src="/blog/ai-for-real-estate-agents/flyer.png" alt="AI-generated open house flyer with QR code for digital sign-in and lead capture at real estate events" loading="lazy" />
+<img src="/blog/ai-for-real-estate-agents/flyer.png" alt="AI-generated open house flyer with QR code for digital sign-in and lead capture at real estate events" loading="lazy" width="1440" height="916" />
 
 <h2>7. AI-Powered Open House Tools</h2>
 
@@ -168,7 +168,7 @@ export const article: BlogPost = {
 <li><strong>Transparent pricing</strong> - Avoid platforms with per-feature paywalls, per-lead charges, or hidden AI usage limits. Look for flat-rate pricing that includes everything so you can scale without surprise costs</li>
 </ol>
 
-<img src="/blog/ai-for-real-estate-agents/ai-tool.png" alt="AI tool selection criteria for real estate agents comparing features pricing and integration capabilities" loading="lazy" />
+<img src="/blog/ai-for-real-estate-agents/ai-tool.png" alt="AI tool selection criteria for real estate agents comparing features pricing and integration capabilities" loading="lazy" width="958" height="539" />
 
 <p>With those criteria in mind, here is how the major <strong>AI tools for real estate agents</strong> stack up.</p>
 
@@ -235,7 +235,7 @@ export const article: BlogPost = {
 
 <h2>How ListingFlare Uses AI Across the Entire Agent Workflow</h2>
 
-<img src="/blog/ai-for-real-estate-agents/listingflare-zillow.png" alt="ListingFlare AI platform showing the complete agent workflow from listing creation to lead capture and follow-up" loading="lazy" />
+<img src="/blog/ai-for-real-estate-agents/listingflare-zillow.png" alt="ListingFlare AI platform showing the complete agent workflow from listing creation to lead capture and follow-up" loading="lazy" width="2553" height="1227" />
 
 <p>Most AI tools for real estate handle one task. ListingFlare is different because AI powers <strong>every stage</strong> of the listing-to-closing pipeline. Here is how it all connects:</p>
 
@@ -247,7 +247,7 @@ export const article: BlogPost = {
 
 <p>Your listing goes live as a beautiful, standalone property website with your branding, photo gallery, virtual tour embed, and the AI chatbot ready to engage buyers. Share the URL on your yard sign, social media, flyers, and email blasts. Every visitor who interacts with the chatbot becomes a potential lead, captured automatically, 24/7.</p>
 
-<img src="/blog/ai-for-real-estate-agents/responder.png" alt="ListingFlare AI auto-responder drafting personalized lead follow-up emails for real estate agents" loading="lazy" style="max-width: 70%; margin-left: auto; margin-right: auto; display: block;" />
+<img src="/blog/ai-for-real-estate-agents/responder.png" alt="ListingFlare AI auto-responder drafting personalized lead follow-up emails for real estate agents" loading="lazy" style="max-width: 70%; margin-left: auto; margin-right: auto; display: block;" width="745" height="742" />
 
 <h3>Step 3: Respond to Leads (AI Drafts the Reply)</h3>
 
@@ -292,7 +292,7 @@ export const article: BlogPost = {
 <li><strong>Build a repeatable system</strong> - every new listing should automatically get a property website, AI description, social posts, and open house flyer. Make AI part of your standard workflow, not an afterthought</li>
 </ol>
 
-<img src="/blog/ai-for-real-estate-agents/sad-agent.png" alt="Frustrated real estate agent making common AI mistakes that hurt their lead generation and marketing results" loading="lazy" />
+<img src="/blog/ai-for-real-estate-agents/sad-agent.png" alt="Frustrated real estate agent making common AI mistakes that hurt their lead generation and marketing results" loading="lazy" width="1000" height="600" />
 
 <h2>Common Mistakes Agents Make With AI (And How to Avoid Them)</h2>
 
@@ -320,7 +320,7 @@ export const article: BlogPost = {
 
 <p>The agents who build their AI foundation now will be best positioned to adopt these capabilities as they emerge. Starting with a platform like <a href="/signup">ListingFlare</a> that is actively developing AI features means you are not just keeping up. You are staying ahead.</p>
 
-<img src="/blog/ai-for-real-estate-agents/listingflare-7.png" alt="ListingFlare platform overview showing the complete AI-powered real estate marketing and lead generation solution" loading="lazy" />
+<img src="/blog/ai-for-real-estate-agents/listingflare-7.png" alt="ListingFlare platform overview showing the complete AI-powered real estate marketing and lead generation solution" loading="lazy" width="2543" height="1225" />
 
 <h2>The Bottom Line: The Best AI for Real Estate Agents Is the One You Actually Use</h2>
 

@@ -66,7 +66,7 @@ export const article: BlogPost = {
 
 <p><strong>Pro tip:</strong> Repurpose your professional photos and video clips into multiple formats. One shoot can fuel 10+ social media posts if you slice the content strategically.</p>
 
-<img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=450&fit=crop&q=80" alt="Social media marketing for a real estate listing with engagement and reach metrics" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=450&fit=crop&q=80" alt="Social media marketing for a real estate listing with engagement and reach metrics" loading="lazy" width="800" height="450" />
 
 <h2>6. Email Blasts to Your Database</h2>
 
@@ -108,7 +108,7 @@ export const article: BlogPost = {
 
 <p><strong>Pro tip:</strong> Add the neighborhood name and city as additional keyword variations (e.g., "homes for sale in [Neighborhood]") to capture broader buyer searches.</p>
 
-<img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&h=450&fit=crop&q=80" alt="Digital marketing professional setting up Google Ads campaigns for real estate property listings" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&h=450&fit=crop&q=80" alt="Digital marketing professional setting up Google Ads campaigns for real estate property listings" loading="lazy" width="800" height="450" />
 
 <h2>11. Broker Open Houses &amp; Agent Caravans</h2>
 

@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { createClient } from "@supabase/supabase-js";
 import { getAllPosts } from "@/lib/blog";
+import { isAgentInactive, firstRelation } from "@/lib/listingVisibility";
 import { slugifyCity, MIN_LISTINGS_TO_INDEX } from "@/lib/cities";
 
 // Regenerate hourly so new listings reach Googlebot without a redeploy.
@@ -22,7 +23,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/real-estate-ai-chatbot`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/listingflare-vs-rela`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/listingflare-vs-singlepropertysites`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/signup`,lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/blog`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/about`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.6 },
   ];
@@ -46,7 +46,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     );
     const { data: listings } = await db
       .from("listings")
-      .select("slug, id, updated_at, city, state")
+      .select("slug, id, updated_at, city, state, agent:agent_profiles(subscription_status, trial_ends_at)")
       .eq("status", "published")
       .order("updated_at", { ascending: false })
       .limit(5000);
@@ -55,6 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const cityCounts = new Map<string, number>();
 
     for (const listing of listings || []) {
+      if (isAgentInactive(firstRelation(listing.agent as never))) continue;
       const modified = new Date(listing.updated_at || STATIC_LAST_MODIFIED);
       entries.push({
         url: `${baseUrl}/listing/${listing.slug || listing.id}`,

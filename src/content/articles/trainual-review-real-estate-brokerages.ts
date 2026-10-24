@@ -114,7 +114,7 @@ export const article: BlogPost = {
 
 <p>This is especially powerful for brokerages that hire in batches. Instead of the broker personally walking each group through the same material, the training is pre-built and self-paced. The broker's time shifts from lecturing to coaching.</p>
 
-<img src="/blog/trainual/role-sop.png" alt="Standard operating procedure documentation in Trainual for real estate brokerages" loading="lazy" />
+<img src="/blog/trainual/role-sop.png" alt="Standard operating procedure documentation in Trainual for real estate brokerages" loading="lazy" width="837" height="707" />
 
 <h3>SOP Documentation for Core Processes</h3>
 
@@ -132,7 +132,7 @@ export const article: BlogPost = {
 
 <p>Fair housing laws, advertising regulations, agency disclosure requirements, and state-specific rules all require ongoing training. With Trainual, you create compliance modules that every agent must complete and pass a quiz on. The completion tracking gives you documented proof that your team was trained - which matters if a complaint or audit ever arises.</p>
 
-<img src="/blog/trainual/role-chart.png" alt="Role-specific training paths in Trainual for buyer agents and listing agents" loading="lazy" />
+<img src="/blog/trainual/role-chart.png" alt="Role-specific training paths in Trainual for buyer agents and listing agents" loading="lazy" width="1501" height="971" />
 
 <h3>Role-Specific Training Paths</h3>
 
@@ -149,7 +149,7 @@ export const article: BlogPost = {
 
 <p>One of the underrated benefits is that Trainual reduces how often agents ask the broker or office manager basic questions. When every process is documented and searchable, agents find answers on their own. "How do I submit a referral?" Search it. "What is our policy on dual agency?" Search it. This frees up leadership to focus on strategy, recruiting, and coaching instead of answering the same questions repeatedly.</p>
 
-<img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&h=630&fit=crop&q=80" alt="Real estate professionals working together at a desk with laptops reviewing training materials and onboarding documents" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&h=630&fit=crop&q=80" alt="Real estate professionals working together at a desk with laptops reviewing training materials and onboarding documents" loading="lazy" width="1200" height="630" />
 
 <h2>What the First 30 Days Should Look Like</h2>
 
@@ -213,7 +213,7 @@ export const article: BlogPost = {
 
 <p>This framework is not revolutionary. What makes it powerful is that it is documented, repeatable, and trackable. Every new agent gets the same quality experience regardless of when they join or how busy the broker is. That consistency is what Trainual enables.</p>
 
-<img src="/blog/trainual/brokerage.png" alt="Common training mistakes real estate brokerages make and how to avoid them" loading="lazy" />
+<img src="/blog/trainual/brokerage.png" alt="Common training mistakes real estate brokerages make and how to avoid them" loading="lazy" width="1200" height="628" />
 
 <h2>5 Training Mistakes Brokerages Make (and How to Avoid Them)</h2>
 
@@ -285,25 +285,25 @@ export const article: BlogPost = {
 
 <h3>Trainual vs SweetProcess</h3>
 
-<img src="/blog/trainual/sweet-process.png" alt="Trainual vs SweetProcess comparison for real estate team training" loading="lazy" />
+<img src="/blog/trainual/sweet-process.png" alt="Trainual vs SweetProcess comparison for real estate team training" loading="lazy" width="1919" height="876" />
 
 <p><a href="https://sweetprocess.com" target="_blank" rel="noopener noreferrer">SweetProcess</a> is another SOP documentation tool that competes directly with Trainual. It focuses on process documentation with a clean interface for building step-by-step procedures. SweetProcess is generally cheaper and has strong process mapping features. However, it lacks the onboarding automation and role-based training paths that make Trainual appealing for growing teams. If your primary need is documenting SOPs, SweetProcess is worth evaluating. If structured onboarding is your priority, Trainual has the edge.</p>
 
 <h3>Trainual vs Notion</h3>
 
-<img src="/blog/trainual/notion-ai.png" alt="Trainual vs Notion comparison for real estate SOPs and training" loading="lazy" />
+<img src="/blog/trainual/notion-ai.png" alt="Trainual vs Notion comparison for real estate SOPs and training" loading="lazy" width="1920" height="1200" />
 
 <p><a href="https://notion.so" target="_blank" rel="noopener noreferrer">Notion</a> is the popular workspace tool that many teams already use for project management and documentation. You can build a training wiki and SOP library in Notion. It is flexible, affordable (free for individuals, $10/user/mo for teams), and most people already know how to use it. The downside? Zero training-specific features. No completion tracking, no automated assignment by role, no quizzes, and no accountability. For bootstrapped teams that need a quick solution, Notion works. For brokerages that need to verify training completion and automate onboarding, it falls short.</p>
 
 <h3>Trainual vs Google Docs</h3>
 
-<img src="/blog/trainual/google-docs.png" alt="Trainual vs Google Docs comparison for real estate brokerage documentation" loading="lazy" />
+<img src="/blog/trainual/google-docs.png" alt="Trainual vs Google Docs comparison for real estate brokerage documentation" loading="lazy" width="1435" height="914" />
 
 <p>Many brokerages start here, and it works for a while. You create a shared Google Drive folder called "Training" and fill it with documents, checklists, and video links. The cost is zero. The problem emerges as your team grows: files get disorganized, nobody knows which version is current, and there is no way to track who read what. Google Docs is fine for a solo agent documenting their own processes. It breaks down for teams of five or more where consistency matters.</p>
 
 <p>The bottom line: if your team is under five people, start with Notion or Google Docs. When you grow past five and are hiring regularly, the upgrade to Trainual pays for itself in time savings and retention.</p>
 
-<img src="/blog/trainual/list-1.png" alt="How Trainual and ListingFlare work together for real estate teams" loading="lazy" />
+<img src="/blog/trainual/list-1.png" alt="How Trainual and ListingFlare work together for real estate teams" loading="lazy" width="2548" height="1228" />
 
 <h2>How Trainual and ListingFlare Complement Each Other</h2>
 

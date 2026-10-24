@@ -32,7 +32,7 @@ export const article: BlogPost = {
 
 <h2>How AI Is Changing Real Estate in 2026</h2>
 
-<img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&h=600&fit=crop&q=80" alt="Real estate agent using AI tools on laptop to manage listings and leads efficiently" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&h=600&fit=crop&q=80" alt="Real estate agent using AI tools on laptop to manage listings and leads efficiently" loading="lazy" width="1200" height="600" />
 
 <p>AI adoption in real estate has gone from experimental to essential in the past two years. According to the <a href="https://www.nar.realtor/research-and-statistics/research-reports/technology-in-real-estate" target="_blank" rel="noopener noreferrer">National Association of Realtors 2025 Technology Survey</a>, over 60 percent of agents now use at least one AI-powered tool in their daily workflow. More importantly, agents who actively use AI report saving 30 percent or more of their working hours each week. That is roughly 12 to 15 hours back in your schedule every single week.</p>
 
@@ -116,7 +116,7 @@ export const article: BlogPost = {
 
 <h3>6. ManyChat - Automated Instagram and Facebook Lead Capture</h3>
 
-<img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&h=600&fit=crop&q=80" alt="Social media lead capture automation for real estate agents using AI chatbot tools" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&h=600&fit=crop&q=80" alt="Social media lead capture automation for real estate agents using AI chatbot tools" loading="lazy" width="1200" height="600" />
 
 <p><strong>What it does:</strong> <a href="https://manychat.partnerlinks.io/01x6zkowpzw1" target="_blank" rel="noopener noreferrer">ManyChat</a> automates lead capture on Instagram and Facebook through AI-powered direct messages. When someone comments a specific keyword on your post, ManyChat automatically sends them a DM with the information they requested and captures their contact details.</p>
 
@@ -253,7 +253,7 @@ export const article: BlogPost = {
 
 <h2>How to Build Your AI Tech Stack as a Realtor</h2>
 
-<img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=600&fit=crop&q=80" alt="Real estate agent building an AI tech stack on computer to streamline business operations and lead generation" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=600&fit=crop&q=80" alt="Real estate agent building an AI tech stack on computer to streamline business operations and lead generation" loading="lazy" width="1200" height="600" />
 
 <p>You do not need all 10 of these tools. In fact, trying to adopt everything at once is a recipe for overwhelm and wasted subscriptions. The smarter approach is to pick 3 to 4 tools based on where you spend the most time and where AI can make the biggest impact on your specific business.</p>
 

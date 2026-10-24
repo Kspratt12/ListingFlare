@@ -24,11 +24,11 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.listingflare.com"),
   title: {
-    default: "ListingFlare - Real Estate Software for Listing Agents | Property Websites & Lead Capture",
+    default: "ListingFlare: Single Property Websites & AI Lead Capture",
     template: "%s | ListingFlare",
   },
   description:
-    "Real estate software that helps listing agents create stunning single-property websites, capture leads with AI chatbot, and auto follow-up. The all-in-one listing marketing platform.",
+    "Real estate software for listing agents: a branded website for every listing, an AI chat assistant, lead capture and automatic follow-up. 14-day free trial.",
   keywords: [
     "real estate software",
     "realtor software",

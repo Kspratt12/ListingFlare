@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import SeoLandingPage from "@/components/SeoLandingPage";
 
 export const metadata: Metadata = {
-  title: "Single Property Website Builder for Real Estate Agents",
+  title: "Single Property Website Builder for Agents",
   description:
-    "Build a single property website for each listing in minutes. Your photos, your contact info, no competing agents. Includes AI chat, lead capture and showing requests. 14-day free trial.",
+    "Build a single property website for each listing in minutes: your photos, your contact info, AI chat and lead capture. 14-day free trial.",
   alternates: {
     canonical: "https://www.listingflare.com/single-property-website-builder",
   },

@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import { cache } from "react";
 import { cookies, headers } from "next/headers";
 import ListingPageClient from "./ListingPageClient";
+import { isAgentInactive } from "@/lib/listingVisibility";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
@@ -75,13 +76,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }).format(data.price);
 
   const title = `${data.street} - ${price}`;
-  const description = `${data.street}, ${data.city}, ${data.state}. ${data.beds} bed, ${data.baths} bath, ${data.sqft?.toLocaleString() || ""} sqft. Listed at ${price}.`;
+  const description = `${data.street}, ${data.city}, ${data.state}. ${data.beds} bed, ${data.baths} bath, ${data.sqft?.toLocaleString() || ""} sqft. Listed at ${price}. See photos, details and request a showing.`;
+  let inactive = false;
+  try {
+    const { data: agentRow } = await getAdminClient()
+      .from("agent_profiles")
+      .select("subscription_status, trial_ends_at")
+      .eq("id", data.agent_id)
+      .single();
+    inactive = isAgentInactive(agentRow);
+  } catch {
+    // metadata still renders without the check
+  }
   const heroImage = data.photos?.[0]?.src || undefined;
   const url = `https://www.listingflare.com/listing/${slug}`;
 
   return {
     title,
     description,
+    ...(inactive ? { robots: { index: false, follow: true } } : {}),
     alternates: { canonical: url },
     openGraph: {
       title,
