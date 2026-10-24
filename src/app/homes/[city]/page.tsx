@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { cache } from "react";
 import { slugifyCity, MIN_LISTINGS_TO_INDEX } from "@/lib/cities";
+import { isAgentInactive, firstRelation } from "@/lib/listingVisibility";
 
 export const dynamic = "force-dynamic";
 
@@ -46,12 +47,14 @@ const getCityListings = cache(async (slug: string) => {
   const db = getAdminClient();
   const { data } = await db
     .from("listings")
-    .select("id, slug, agent_id, street, city, state, price, beds, baths, sqft, photos, description, agent:agent_profiles(name, title, brokerage, headshot_url)")
+    .select("id, slug, agent_id, street, city, state, price, beds, baths, sqft, photos, description, agent:agent_profiles(name, title, brokerage, headshot_url, subscription_status, trial_ends_at)")
     .eq("status", "published")
     .ilike("state", state)
     .order("created_at", { ascending: false });
 
-  const listings = (data || []).filter((l) => slugifyCity(l.city || "") === citySlug);
+  const listings = (data || []).filter(
+    (l) => slugifyCity(l.city || "") === citySlug && !isAgentInactive(firstRelation(l.agent as never))
+  );
   return { listings, cityName: (listings[0]?.city as string | undefined) ?? null, state };
 });
 
@@ -65,7 +68,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const display = displayFor(citySlug, cityName, state);
 
   return {
-    title: `Homes for Sale in ${display} - ListingFlare Listings`,
+    title: `Homes for Sale in ${display}`,
     description: `Browse homes for sale in ${display}. View property details, photos, and connect with listing agents on ListingFlare.`,
     // Thin pages stay reachable but out of Google's index
     robots: { index: listings.length >= MIN_LISTINGS_TO_INDEX, follow: true },

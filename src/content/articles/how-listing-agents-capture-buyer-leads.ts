@@ -31,7 +31,7 @@ export const article: BlogPost = {
 
 <p>In this guide, we will walk through five proven strategies that listing agents are using in 2026 to capture buyer leads directly. No portals. No middlemen. No paying for leads that should already be yours. Each strategy builds on the last, and together they create a complete lead capture system that turns every listing into a pipeline of new business.</p>
 
-<img src="https://images.unsplash.com/photo-1560520031-3a4dc4e9de0c?w=800&h=450&fit=crop&q=80" alt="Modern home exterior with professional photography representing a listing that generates buyer leads for the listing agent" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1560520031-3a4dc4e9de0c?w=800&h=450&fit=crop&q=80" alt="Modern home exterior with professional photography representing a listing that generates buyer leads for the listing agent" loading="lazy" width="800" height="450" />
 
 <h2>Why Listing Agents Lose Buyer Leads</h2>
 
@@ -102,7 +102,7 @@ export const article: BlogPost = {
 
 <p>The five-minute response window is not just a suggestion. It is the difference between converting a lead and losing them. An AI chatbot ensures you never miss that window again, even at 2 AM on a holiday weekend.</p>
 
-<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=450&fit=crop&q=80" alt="Person using a smartphone to chat with an AI assistant late at night representing automated lead capture for real estate agents" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=450&fit=crop&q=80" alt="Person using a smartphone to chat with an AI assistant late at night representing automated lead capture for real estate agents" loading="lazy" width="800" height="450" />
 
 <h2>Strategy 3 - Use QR Codes on All Physical Marketing</h2>
 
@@ -205,7 +205,7 @@ export const article: BlogPost = {
 
 <p>Here is what this looks like over the course of a month. Say you have three active listings. Each one has a single property website, QR codes on all physical marketing, social media campaigns running, and an AI chatbot capturing leads around the clock. If each listing generates five to ten buyer leads, you have 15 to 30 new prospects in your pipeline every month. Some are buyers for that specific property. Others are buyers looking for something similar. A few might be future sellers doing research. Every one of them is a business opportunity that would have gone to someone else if you were relying on portals.</p>
 
-<img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop&q=80" alt="Marketing analytics dashboard showing lead generation metrics and conversion tracking for a real estate agent" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop&q=80" alt="Marketing analytics dashboard showing lead generation metrics and conversion tracking for a real estate agent" loading="lazy" width="800" height="450" />
 
 <h2>The Math - What 1 Extra Lead Per Listing Is Worth</h2>
 

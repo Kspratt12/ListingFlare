@@ -143,7 +143,7 @@ export const article: BlogPost = {
   <li>Make sure exterior lights work and are clean.</li>
 </ol>
 
-<img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=800&h=450&fit=crop&q=80" alt="Home staged and ready for sale with professional curb appeal for first time sellers" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=800&h=450&fit=crop&q=80" alt="Home staged and ready for sale with professional curb appeal for first time sellers" loading="lazy" width="800" height="450" />
 
 <h2>Step 5: List and Market Your Home</h2>
 
@@ -186,7 +186,7 @@ export const article: BlogPost = {
 
 <p>If you receive multiple offers (congratulations!), your agent will help you compare them side by side. The highest price isn't always the best offer. An all-cash offer at \$5,000 less than a financed offer might actually net you more money and close with fewer headaches. Your agent may also advise you to ask all buyers for their "highest and best" offers by a specific deadline.</p>
 
-<img src="https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?w=800&h=450&fit=crop&q=80" alt="Home seller reviewing real estate offers and paperwork at a desk" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?w=800&h=450&fit=crop&q=80" alt="Home seller reviewing real estate offers and paperwork at a desk" loading="lazy" width="800" height="450" />
 
 <h2>Step 7: Navigate Inspections and Appraisal</h2>
 

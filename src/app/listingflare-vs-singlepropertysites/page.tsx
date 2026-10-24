@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import SeoLandingPage from "@/components/SeoLandingPage";
 
 export const metadata: Metadata = {
-  title: "ListingFlare vs SinglePropertySites.com: Comparison",
+  title: "ListingFlare vs SinglePropertySites.com",
   description:
     "ListingFlare vs SinglePropertySites.com compared on price, marketing bundle, design, AI chat and lead follow-up. Who each one is best for.",
   alternates: {

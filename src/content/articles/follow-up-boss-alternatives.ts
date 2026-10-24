@@ -53,7 +53,7 @@ export const article: BlogPost = {
 
 <p>FUB is intentionally a standalone CRM that integrates with other tools. That flexibility is a strength for agents who want to pick best-in-class tools for each part of their business. But other agents want everything in one place - CRM, website, lead generation, marketing - without managing five different subscriptions and hoping the integrations stay connected.</p>
 
-<img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop&q=80" alt="Business analytics dashboard on a monitor showing lead management metrics and CRM data" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop&q=80" alt="Business analytics dashboard on a monitor showing lead management metrics and CRM data" loading="lazy" width="800" height="450" />
 
 <h2>What to Look for in a Real Estate CRM</h2>
 
@@ -231,7 +231,7 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Solo agents or small teams on a tight budget who need a capable CRM without the premium price tag.</p>
 
-<img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?w=800&h=450&fit=crop&q=80" alt="Real estate agent reviewing CRM options on a tablet while sitting at a desk with property documents" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?w=800&h=450&fit=crop&q=80" alt="Real estate agent reviewing CRM options on a tablet while sitting at a desk with property documents" loading="lazy" width="800" height="450" />
 
 <h3>5. Real Geeks - Best for AI Chatbot + IDX Website</h3>
 
@@ -518,7 +518,7 @@ export const article: BlogPost = {
 
 <p>The ideal tech stack for a listing agent in 2026 is not one tool. It is two: a CRM for lead management (FUB, Lofty, Wise Agent, whatever fits your budget and team size) plus ListingFlare for listing-specific lead capture. One manages leads. The other creates them. <a href="/demo">See it in action here</a>.</p>
 
-<img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=450&fit=crop&q=80" alt="Modern home exterior with for sale sign representing the listing marketing gap that CRMs leave open" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=450&fit=crop&q=80" alt="Modern home exterior with for sale sign representing the listing marketing gap that CRMs leave open" loading="lazy" width="800" height="450" />
 
 <h2>How to Build a Complete Lead Management + Listing Marketing Stack</h2>
 

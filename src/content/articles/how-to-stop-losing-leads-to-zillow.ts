@@ -29,7 +29,7 @@ export const article: BlogPost = {
 
 <p>If you have ever wondered <strong>how to stop losing leads to Zillow</strong>, this guide is for you. We will break down exactly how the Zillow lead funnel works against listing agents, why paying for Zillow Premier Agent may not be the answer, and nine strategies you can implement today to capture buyer leads directly from your own listings without giving up a single prospect to the portals.</p>
 
-<img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=450&fit=crop&q=80" alt="Professional reviewing data and analytics on a laptop showing how online leads are being diverted to competing agents" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=450&fit=crop&q=80" alt="Professional reviewing data and analytics on a laptop showing how online leads are being diverted to competing agents" loading="lazy" width="800" height="450" />
 
 <h2>How Zillow Takes Your Leads and Sells Them Back to You</h2>
 
@@ -51,7 +51,7 @@ export const article: BlogPost = {
 
 <p>The real question is not "How do I get more Zillow leads?" It is <strong>"How do I stop needing Zillow in the first place?"</strong></p>
 
-<img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=450&fit=crop&q=80" alt="Financial comparison chart showing the high cost of Zillow Premier Agent leads versus direct lead capture methods" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=450&fit=crop&q=80" alt="Financial comparison chart showing the high cost of Zillow Premier Agent leads versus direct lead capture methods" loading="lazy" width="800" height="450" />
 
 <h2>1. Create Single-Property Websites for Every Listing</h2>
 
@@ -63,7 +63,7 @@ export const article: BlogPost = {
 
 <p><a href="/signup">ListingFlare</a> lets you create a professional single-property website in under five minutes. Each page includes a full-screen photo gallery, property details, neighborhood information, and an <strong>AI-powered chatbot</strong> that answers buyer questions and captures contact information 24/7. When a buyer visits your listing page at 11 PM and asks "Does this home have a finished basement?", the chatbot answers the question and collects their name, email, and phone number. You wake up with a warm lead in your inbox instead of losing that buyer to a midnight Zillow browse. <a href="/demo">See a demo listing here.</a></p>
 
-<img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=800&h=450&fit=crop&q=80" alt="Modern single family home with professional photography perfect for a dedicated single property listing website" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=800&h=450&fit=crop&q=80" alt="Modern single family home with professional photography perfect for a dedicated single property listing website" loading="lazy" width="800" height="450" />
 
 <h2>2. Put QR Codes on Everything</h2>
 
@@ -96,7 +96,7 @@ export const article: BlogPost = {
 
 <p>Seventy-eight percent of homebuyers end up working with the <strong>first agent who responds</strong> to their inquiry. If your Google Business Profile puts you in front of them before Zillow does, you win. And unlike Zillow, Google does not charge you per lead. It costs nothing to claim and optimize your profile.</p>
 
-<img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=450&fit=crop&q=80" alt="Professional working on Google Business Profile optimization on a desktop computer to capture local real estate leads" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=450&fit=crop&q=80" alt="Professional working on Google Business Profile optimization on a desktop computer to capture local real estate leads" loading="lazy" width="800" height="450" />
 
 <h2>4. Own Your Social Media Traffic</h2>
 
@@ -132,7 +132,7 @@ export const article: BlogPost = {
 
 <p>Every email should drive traffic back to pages you own. When a subscriber clicks through to a listing, they land on your property website where your lead capture is waiting, not on a Zillow page where they get poached. For deeper strategies on nurturing prospects, read our guide on <a href="/blog/how-to-get-leads-as-a-real-estate-agent">how to get leads as a real estate agent</a>.</p>
 
-<img src="https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=800&h=450&fit=crop&q=80" alt="Email marketing campaign being composed on a laptop for real estate lead nurturing and follow-up" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=800&h=450&fit=crop&q=80" alt="Email marketing campaign being composed on a laptop for real estate lead nurturing and follow-up" loading="lazy" width="800" height="450" />
 
 <h2>6. Dominate Local SEO with Blog Content</h2>
 
@@ -168,7 +168,7 @@ export const article: BlogPost = {
 
 <p>YouTube videos rank in Google search results and generate views for months or years after publishing. A listing walk-through video that ranks for "[Address] home tour" means every buyer searching for that property finds you, not Zillow.</p>
 
-<img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&h=450&fit=crop&q=80" alt="Person recording a professional video walkthrough of a property using a camera for real estate marketing on YouTube" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&h=450&fit=crop&q=80" alt="Person recording a professional video walkthrough of a property using a camera for real estate marketing on YouTube" loading="lazy" width="800" height="450" />
 
 <h2>8. Run Your Own Google Ads Instead of Paying Zillow</h2>
 
@@ -202,7 +202,7 @@ export const article: BlogPost = {
 
 <p>This is how you win listings against agents who have been in the business for 20 years. You do not need more experience. You need better technology and a smarter marketing strategy. For more ways to differentiate yourself, read our guide on <a href="/blog/how-to-win-more-listings-as-a-real-estate-agent">how to win more listings as a real estate agent</a>.</p>
 
-<img src="https://images.unsplash.com/photo-1556745757-8d76bdb6984b?w=800&h=450&fit=crop&q=80" alt="Real estate agent confidently presenting a listing marketing strategy to clients during a professional meeting" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1556745757-8d76bdb6984b?w=800&h=450&fit=crop&q=80" alt="Real estate agent confidently presenting a listing marketing strategy to clients during a professional meeting" loading="lazy" width="800" height="450" />
 
 <h2>The Real Cost of Staying on Zillow</h2>
 

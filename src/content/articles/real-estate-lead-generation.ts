@@ -35,7 +35,7 @@ export const article: BlogPost = {
 
 <p>This guide breaks down <strong>15 proven real estate lead generation strategies</strong> that top producers use to build a consistent pipeline of qualified buyers and sellers. We will cover both paid and free methods, online and offline tactics, and short-term wins alongside long-term systems. Whether you are a new agent building from scratch or a veteran looking to scale, every strategy here is actionable and backed by data.</p>
 
-<img src="/blog/real-estate-lead-generation/top-real-estate-lead-generation-strategies-2025-guide.png" alt="Real estate lead generation funnel showing how agents convert prospects into clients through targeted marketing strategies" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/top-real-estate-lead-generation-strategies-2025-guide.png" alt="Real estate lead generation funnel showing how agents convert prospects into clients through targeted marketing strategies" loading="lazy" width="1100" height="620" />
 
 <h2>What Is Real Estate Lead Generation and Why It Matters</h2>
 
@@ -59,7 +59,7 @@ export const article: BlogPost = {
 
 <p>The best agents do not choose one over the other. They build both. Outbound fills the pipeline today while inbound builds the machine that generates leads tomorrow with less effort. The strategies below cover both, and the order is intentional. We start with the highest-impact digital strategies first.</p>
 
-<img src="/blog/real-estate-lead-generation/listingflare-1.png" alt="ListingFlare dashboard showing multiple property listings with lead tracking and analytics for real estate agents" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/listingflare-1.png" alt="ListingFlare dashboard showing multiple property listings with lead tracking and analytics for real estate agents" loading="lazy" width="2556" height="1237" />
 
 <h2>1. Build a Lead-Capturing Website That Works 24/7</h2>
 
@@ -77,7 +77,7 @@ export const article: BlogPost = {
 
 <p>The most important metric is not how much traffic your site gets. It is your <strong>conversion rate</strong>, the percentage of visitors who become leads. A site getting 500 visitors per month with a 5 percent conversion rate (25 leads) outperforms a site getting 2,000 visitors with a 0.5 percent rate (10 leads). Focus on conversion first, traffic second.</p>
 
-<img src="/blog/real-estate-lead-generation/listingflare-2.png" alt="ListingFlare single-property website showing property details, highlights, and AI-powered lead capture for real estate agents" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/listingflare-2.png" alt="ListingFlare single-property website showing property details, highlights, and AI-powered lead capture for real estate agents" loading="lazy" width="2552" height="1227" />
 
 <h2>2. Create Single-Property Websites for Every Listing</h2>
 
@@ -89,7 +89,7 @@ export const article: BlogPost = {
 
 <p><a href="/signup">ListingFlare</a> makes this effortless. You can create a professional single-property website in under five minutes, complete with an <strong>AI-powered chatbot</strong> that answers buyer questions and captures lead information around the clock. When a buyer asks "What school district is this in?" at midnight, the chatbot provides the answer and collects their contact info. You wake up to a qualified lead. <a href="/demo">See a live demo here.</a></p>
 
-<img src="/blog/real-estate-lead-generation/local-seo.png" alt="Google search results page showing local real estate agent listings and map pack representing local SEO lead generation" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/local-seo.png" alt="Google search results page showing local real estate agent listings and map pack representing local SEO lead generation" loading="lazy" width="2540" height="1225" />
 
 <h2>3. Dominate Local SEO to Attract Organic Leads</h2>
 
@@ -109,7 +109,7 @@ export const article: BlogPost = {
 
 <p>Every page on your site needs a unique title tag, meta description, H1 heading, and natural keyword usage. Your homepage should target your primary market ("Real Estate Agent in [City]"), and interior pages should target long-tail variations. Internal linking between your blog posts, neighborhood pages, and listing pages builds authority and keeps visitors on your site longer, and both are signals Google values.</p>
 
-<img src="/blog/real-estate-lead-generation/google-ads-scaled.png" alt="Google Ads app on a smartphone showing the platform real estate agents use to run paid lead generation campaigns" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/google-ads-scaled.png" alt="Google Ads app on a smartphone showing the platform real estate agents use to run paid lead generation campaigns" loading="lazy" width="2560" height="1707" />
 
 <h2>4. Run Google Ads for Immediate Lead Flow</h2>
 
@@ -129,7 +129,7 @@ export const article: BlogPost = {
 
 <p>The critical mistake agents make is sending Google Ads traffic to their homepage. Instead, build <strong>dedicated landing pages</strong> for each campaign. A "Sell My House Fast in Austin" ad should land on a page specifically about selling in Austin with a home valuation form, not your generic homepage with 14 navigation links. Fewer distractions equal higher conversion.</p>
 
-<img src="/blog/real-estate-lead-generation/social-media.png" alt="Modern home for sale social media marketing post showing how real estate agents use social platforms for lead generation" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/social-media.png" alt="Modern home for sale social media marketing post showing how real estate agents use social platforms for lead generation" loading="lazy" width="1600" height="1080" />
 
 <h2>5. Use Social Media to Build Trust and Generate Leads</h2>
 
@@ -151,7 +151,7 @@ export const article: BlogPost = {
 
 <p>For more specific ideas, check out our guide on <a href="/blog/real-estate-social-media-post-ideas">real estate social media post ideas that actually generate leads</a>.</p>
 
-<img src="/blog/real-estate-lead-generation/email-system.png" alt="Email marketing automation system showing drip sequences and nurture campaigns for real estate lead follow-up" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/email-system.png" alt="Email marketing automation system showing drip sequences and nurture campaigns for real estate lead follow-up" loading="lazy" width="2000" height="1251" />
 
 <h2>6. Build an Email Nurture System That Converts Over Time</h2>
 
@@ -183,7 +183,7 @@ export const article: BlogPost = {
 
 <p>For 30 more ideas on maximizing your open houses, read our complete guide on <a href="/blog/open-house-ideas-to-attract-more-buyers">open house ideas that attract buyers and generate leads</a>.</p>
 
-<img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=450&fit=crop&q=80" alt="Welcoming open house setup with visitors touring a beautifully staged home representing in-person real estate lead generation" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=450&fit=crop&q=80" alt="Welcoming open house setup with visitors touring a beautifully staged home representing in-person real estate lead generation" loading="lazy" width="800" height="450" />
 
 <h2>8. Generate Seller Leads with Home Valuation Tools</h2>
 
@@ -224,7 +224,7 @@ export const article: BlogPost = {
 
 <p>You do not need a production crew. A smartphone, a $30 lapel microphone, and natural lighting are enough. Authenticity outperforms polish every time. Post every video on YouTube, Instagram Reels, TikTok, and Facebook for maximum distribution.</p>
 
-<img src="/blog/real-estate-lead-generation/mailbox-mailer.png" alt="Direct mail marketing materials in a residential mailbox showing how real estate agents use physical mailers for lead generation" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/mailbox-mailer.png" alt="Direct mail marketing materials in a residential mailbox showing how real estate agents use physical mailers for lead generation" loading="lazy" width="1920" height="1080" />
 
 <h2>11. Use Direct Mail in a Digital World</h2>
 
@@ -254,7 +254,7 @@ export const article: BlogPost = {
 
 <p>FSBO sellers are trying to save on commission, but the vast majority, <strong>over 90 percent</strong>, eventually list with an agent. Your job is to be the agent they choose. Build the relationship by offering genuinely helpful advice without a hard sell. Offer to send them a market report for their area. Offer to review their listing photos. The FSBO who sees you as a helpful resource will call you first when they realize they need professional help.</p>
 
-<img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&h=450&fit=crop&q=80" alt="For sale sign in front of a residential home representing expired listing and FSBO prospecting opportunities for real estate agents" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&h=450&fit=crop&q=80" alt="For sale sign in front of a residential home representing expired listing and FSBO prospecting opportunities for real estate agents" loading="lazy" width="800" height="450" />
 
 <h2>13. Host Community Events and Workshops</h2>
 
@@ -340,7 +340,7 @@ export const article: BlogPost = {
 
 <p>A single listing, marketed properly, can generate <strong>20 to 50 new leads</strong>. If you close just one additional deal from those leads, you have doubled the revenue from that listing. This is the power of treating every listing as a marketing event, not just a transaction. Learn more in our guide on <a href="/blog/how-to-market-a-real-estate-listing">how to market a real estate listing for maximum exposure</a>.</p>
 
-<img src="/blog/real-estate-lead-generation/listingflare-3.png" alt="ListingFlare analytics and lead tracking dashboard showing how to measure real estate lead generation results" loading="lazy" />
+<img src="/blog/real-estate-lead-generation/listingflare-3.png" alt="ListingFlare analytics and lead tracking dashboard showing how to measure real estate lead generation results" loading="lazy" width="2539" height="1220" />
 
 <h2>How to Track and Measure Your Lead Generation Results</h2>
 

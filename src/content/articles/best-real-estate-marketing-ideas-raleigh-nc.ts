@@ -74,7 +74,7 @@ export const article: BlogPost = {
 
 <p>Video is the most underutilized channel for Raleigh agents. Start a <strong>YouTube channel with neighborhood tours</strong>. Drive through North Hills narrating what makes it special, walk through downtown Cary, showcase the trails at Umstead Park. These videos rank in both YouTube and Google search results, they build trust with viewers who haven't met you yet, and they have an incredibly long shelf life. A well-optimized neighborhood tour video can generate leads for years.</p>
 
-<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=450&fit=crop&q=80" alt="Real estate agent implementing digital marketing strategies on a computer in Raleigh NC" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=450&fit=crop&q=80" alt="Real estate agent implementing digital marketing strategies on a computer in Raleigh NC" loading="lazy" width="800" height="450" />
 
 <h2>Community Marketing</h2>
 

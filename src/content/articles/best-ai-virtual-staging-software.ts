@@ -58,7 +58,7 @@ export const article: BlogPost = {
 
 <p><strong>Important:</strong> Always disclose virtual staging in your MLS listing and marketing materials. Most MLSs require a note indicating that photos have been virtually staged. This is not just an ethical best practice - it is a rule that can result in penalties if violated. A simple disclosure protects you and sets proper expectations for buyers.</p>
 
-<img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=450&fit=crop&q=80" alt="Beautifully furnished modern living room showcasing the type of results AI virtual staging software can produce for real estate listings" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=450&fit=crop&q=80" alt="Beautifully furnished modern living room showcasing the type of results AI virtual staging software can produce for real estate listings" loading="lazy" width="800" height="450" />
 
 <h2>The 7 Best AI Virtual Staging Tools</h2>
 
@@ -192,7 +192,7 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Agents who want hands-on control over furniture placement, especially for high-value or architecturally unique listings.</p>
 
-<img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=450&fit=crop&q=80" alt="Modern apartment living room with natural light showing the type of space that benefits from AI virtual staging for real estate listings" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=450&fit=crop&q=80" alt="Modern apartment living room with natural light showing the type of space that benefits from AI virtual staging for real estate listings" loading="lazy" width="800" height="450" />
 
 <h3>5. BoxBrownie</h3>
 
@@ -375,7 +375,7 @@ export const article: BlogPost = {
 
 <p><strong>Use high-resolution output for print materials.</strong> If you are using staged photos on flyers, postcards, or property brochures, make sure you download the highest resolution version the platform offers. Images that look great on a phone screen can look pixelated and unprofessional when printed at larger sizes. Most tools offer at least 2048 x 1536 resolution, which is adequate for standard print materials. For large-format prints, look for tools that output at 4K resolution or higher. For more tips on maximizing your listing photos, check out our guide on <a href="/blog/home-staging-tips-to-sell-your-house-faster">home staging tips to sell your house faster</a>.</p>
 
-<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop&q=80" alt="Beautiful home exterior with professional landscaping showing a well-marketed real estate listing" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop&q=80" alt="Beautiful home exterior with professional landscaping showing a well-marketed real estate listing" loading="lazy" width="800" height="450" />
 
 <h2>Virtual Staging + Single Property Websites - The Listing Marketing Stack</h2>
 

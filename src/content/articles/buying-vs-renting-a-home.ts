@@ -161,7 +161,7 @@ export const article: BlogPost = {
   </tbody>
 </table>
 
-<img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=450&fit=crop&q=80" alt="Financial charts comparing the costs of buying vs renting a home" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=450&fit=crop&q=80" alt="Financial charts comparing the costs of buying vs renting a home" loading="lazy" width="800" height="450" />
 
 <h2>When Buying Makes Sense</h2>
 

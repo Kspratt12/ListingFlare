@@ -34,7 +34,7 @@ export const article: BlogPost = {
 
 <p>This guide looks at ManyChat specifically for real estate use cases - lead magnets, qualification flows, open house signups, listing inquiries, and follow-up sequences - based on the company's public documentation, pricing and feature descriptions. We have not run formal tests, so try any free trial with your own content before you pay. Here is our full <strong>ManyChat review for real estate agents</strong> heading into 2026.</p>
 
-<img src="/blog/manychat/manychat-1.png" alt="ManyChat automation platform for real estate lead generation" loading="lazy" />
+<img src="/blog/manychat/manychat-1.png" alt="ManyChat automation platform for real estate lead generation" loading="lazy" width="2552" height="1437" />
 
 <h2>What Is ManyChat?</h2>
 
@@ -122,7 +122,7 @@ export const article: BlogPost = {
 
 <h3>1. Auto-DM Lead Magnets (The "Comment Trigger" Strategy)</h3>
 
-<img src="/blog/manychat/comments.png" alt="Instagram comment trigger automation with ManyChat for real estate agents" loading="lazy" />
+<img src="/blog/manychat/comments.png" alt="Instagram comment trigger automation with ManyChat for real estate agents" loading="lazy" width="2552" height="1435" />
 
 <p>This is the single most effective ManyChat strategy for real estate agents, and it is the one you should set up first.</p>
 
@@ -148,7 +148,7 @@ export const article: BlogPost = {
 
 <h3>2. Lead Qualification Flows</h3>
 
-<img src="/blog/manychat/many-auto.png" alt="ManyChat automated lead qualification flow for real estate" loading="lazy" />
+<img src="/blog/manychat/many-auto.png" alt="ManyChat automated lead qualification flow for real estate" loading="lazy" width="2558" height="1437" />
 
 <p>Getting a DM is one thing. Knowing whether that person is a serious lead or just casually browsing is another. The software lets you build qualification flows that ask the right questions automatically.</p>
 
@@ -194,7 +194,7 @@ export const article: BlogPost = {
 
 <h3>5. Automated Follow-Up Sequences</h3>
 
-<img src="/blog/manychat/many-testing.png" alt="ManyChat automated follow-up sequence testing for realtors" loading="lazy" />
+<img src="/blog/manychat/many-testing.png" alt="ManyChat automated follow-up sequence testing for realtors" loading="lazy" width="2553" height="1438" />
 
 <p>The fortune is in the follow-up, and most agents are terrible at it. Studies show that it takes an average of 5 to 12 contacts before a lead converts. It lets you set up timed follow-up sequences that keep you top of mind without you lifting a finger.</p>
 
@@ -229,7 +229,7 @@ export const article: BlogPost = {
 
 <p>The key with Story triggers is that they feel organic. The person interacted with your content, and they get a relevant follow-up. It does not feel like spam because it is contextual and timely.</p>
 
-<img src="/blog/manychat/many-setup.png" alt="Step-by-step ManyChat setup guide for real estate agents" loading="lazy" />
+<img src="/blog/manychat/many-setup.png" alt="Step-by-step ManyChat setup guide for real estate agents" loading="lazy" width="2558" height="1438" />
 
 <h2>Step-by-Step: Setting Up ManyChat for Real Estate</h2>
 
@@ -317,7 +317,7 @@ export const article: BlogPost = {
 
 <p>ManyChat is the market leader for social media chatbot automation, but there are alternatives worth knowing about. Here is a quick comparison:</p>
 
-<img src="/blog/manychat/chat-fuel.png" alt="ManyChat vs Chatfuel comparison for real estate marketing" loading="lazy" />
+<img src="/blog/manychat/chat-fuel.png" alt="ManyChat vs Chatfuel comparison for real estate marketing" loading="lazy" width="1792" height="1034" />
 
 <h3>ManyChat vs Chatfuel</h3>
 
@@ -333,7 +333,7 @@ export const article: BlogPost = {
 
 <p>The bottom line: ManyChat is the best all-around option for real estate agents who want to automate social media lead capture. It has the largest community, the most templates, the best Instagram integration, and the most affordable pricing.</p>
 
-<img src="/blog/manychat/list-1.png" alt="ManyChat and ListingFlare integration for real estate lead capture" loading="lazy" />
+<img src="/blog/manychat/list-1.png" alt="ManyChat and ListingFlare integration for real estate lead capture" loading="lazy" width="2548" height="1228" />
 
 <h2>How ManyChat and ListingFlare Work Together</h2>
 

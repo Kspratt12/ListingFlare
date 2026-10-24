@@ -60,7 +60,7 @@ export const article: BlogPost = {
 
 <p>At $99 to $199 per month, PropertySimple is not the most expensive tool on the market. But if you are mainly paying for social media automation and you do not use social media as your primary lead source, that spend adds up without delivering the return you need. Many agents find better value in tools that focus specifically on listing marketing, lead capture, and buyer engagement - even if the monthly cost is similar or slightly higher - because the features align directly with how they generate business.</p>
 
-<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop&q=80" alt="Beautiful modern home exterior representing a real estate listing that needs dedicated marketing beyond social media" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop&q=80" alt="Beautiful modern home exterior representing a real estate listing that needs dedicated marketing beyond social media" loading="lazy" width="800" height="450" />
 
 <h2>5 Best PropertySimple Alternatives for Real Estate Agents</h2>
 
@@ -230,7 +230,7 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Agents and teams who want a CRM-centered platform that includes listing marketing as one part of a broader lead management system.</p>
 
-<img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&h=450&fit=crop&q=80" alt="Real estate professional comparing marketing platforms on a computer to find the best PropertySimple alternative" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&h=450&fit=crop&q=80" alt="Real estate professional comparing marketing platforms on a computer to find the best PropertySimple alternative" loading="lazy" width="800" height="450" />
 
 <h2>Feature Comparison Table</h2>
 

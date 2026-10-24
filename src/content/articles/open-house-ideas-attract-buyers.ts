@@ -68,7 +68,7 @@ export const article: BlogPost = {
 
 <p>The goal is to help buyers picture <em>their</em> life in the home, not just admire the furniture. When staging matches the target demographic, emotional connection happens faster, and emotional buyers make offers.</p>
 
-<img src="https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=800&h=450&fit=crop&q=80" alt="Beautifully staged living room designed to attract buyers at an open house" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=800&h=450&fit=crop&q=80" alt="Beautifully staged living room designed to attract buyers at an open house" loading="lazy" width="800" height="450" />
 
 <h2>8. Provide a Property Info Packet</h2>
 
@@ -115,7 +115,7 @@ export const article: BlogPost = {
 
 <p>Avoid anything with lyrics (too distracting), anything too loud (buyers need to talk to each other), or anything too niche (save the death metal for your car ride home). Think coffee-shop jazz, acoustic instrumentals, or lo-fi beats. Pair it with a subtle scented candle (vanilla or fresh linen), and the sensory experience is complete.</p>
 
-<img src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800&h=450&fit=crop&q=80" alt="Modern kitchen with warm lighting creating an inviting atmosphere for open house visitors" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800&h=450&fit=crop&q=80" alt="Modern kitchen with warm lighting creating an inviting atmosphere for open house visitors" loading="lazy" width="800" height="450" />
 
 <h2>14. Display Before and After Photos if Renovated</h2>
 

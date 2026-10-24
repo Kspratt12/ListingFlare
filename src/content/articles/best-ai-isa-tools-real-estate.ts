@@ -35,7 +35,7 @@ export const article: BlogPost = {
 
 <h2>What Is a Real Estate ISA and Why Every Agent Needs One</h2>
 
-<img src="https://images.unsplash.com/photo-1560472355-536de3962603?w=1200&h=630&fit=crop&q=80" alt="Real estate agent working at desk managing lead follow-up calls and CRM tasks" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1560472355-536de3962603?w=1200&h=630&fit=crop&q=80" alt="Real estate agent working at desk managing lead follow-up calls and CRM tasks" loading="lazy" width="1200" height="630" />
 
 <p>An Inside Sales Agent is essentially a dedicated salesperson who handles the top of your sales funnel. Their job is straightforward but critical: respond to new leads immediately, follow up persistently with older leads, qualify prospects based on timeline, budget, and motivation, and book appointments for the listing or buyer agents on the team.</p>
 
@@ -369,7 +369,7 @@ export const article: BlogPost = {
 
 <h2>What About Listing-Specific Leads? The AI ISA Gap Most Agents Miss</h2>
 
-<img src="https://images.unsplash.com/photo-1582407947092-c582553ade58?w=1200&h=630&fit=crop&q=80" alt="Real estate yard sign in front of a home for sale generating listing-specific buyer leads" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1582407947092-c582553ade58?w=1200&h=630&fit=crop&q=80" alt="Real estate yard sign in front of a home for sale generating listing-specific buyer leads" loading="lazy" width="1200" height="630" />
 
 <p>Here is something that almost every AI ISA review misses, and it is a big deal for listing agents.</p>
 

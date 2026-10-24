@@ -86,7 +86,7 @@ export const article: BlogPost = {
 <p><strong>Pros:</strong> Extremely feature-rich, smart campaigns driven by lead behavior, built-in IDX site.</p>
 <p><strong>Cons:</strong> Steep learning curve, expensive for solo agents, and the bundled website can feel generic if you do not invest time customizing it.</p>
 
-<img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=450&fit=crop&q=80" alt="Real estate agent using lead generation tools and CRM on a laptop" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=450&fit=crop&q=80" alt="Real estate agent using lead generation tools and CRM on a laptop" loading="lazy" width="800" height="450" />
 
 <h2>3. Lead Generation Platforms</h2>
 

@@ -183,7 +183,7 @@ Your own private retreat on 8 scenic acres. This custom-built 4-bedroom, 3-bathr
   <li><strong>"Won't last long"</strong> - overused and reads as pressure rather than genuine urgency</li>
 </ul>
 
-<img src="https://images.unsplash.com/photo-1455587734955-081b22074882?w=800&h=450&fit=crop&q=80" alt="Real estate professional writing compelling property listing descriptions at a desk with notes" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1455587734955-081b22074882?w=800&h=450&fit=crop&q=80" alt="Real estate professional writing compelling property listing descriptions at a desk with notes" loading="lazy" width="800" height="450" />
 
 <h2>Tips for Writing Better Listing Descriptions</h2>
 

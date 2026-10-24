@@ -53,7 +53,7 @@ export const article: BlogPost = {
 <li><strong>Limited interactive engagement on landing pages.</strong> The landing pages are functional but static. They display photos, details, and a contact form. There is no interactive element that keeps buyers on the page, answers their questions, or creates a conversational experience that builds trust before you ever pick up the phone.</li>
 </ul>
 
-<img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=450&fit=crop&q=80" alt="Modern home exterior with for sale sign representing listing marketing opportunities for real estate agents" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=450&fit=crop&q=80" alt="Modern home exterior with for sale sign representing listing marketing opportunities for real estate agents" loading="lazy" width="800" height="450" />
 
 <h2>Why Agents Switch from Listings to Leads</h2>
 
@@ -202,7 +202,7 @@ export const article: BlogPost = {
 
 <p><strong>Best for:</strong> Agents who hold frequent open houses and need a reliable, polished digital sign-in system with strong CRM integration.</p>
 
-<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop&q=80" alt="Luxury home interior showcasing the type of property listing that benefits from dedicated marketing pages" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop&q=80" alt="Luxury home interior showcasing the type of property listing that benefits from dedicated marketing pages" loading="lazy" width="800" height="450" />
 
 <h2>Feature Comparison Table</h2>
 

@@ -31,7 +31,7 @@ export const article: BlogPost = {
 
 <p>For most agents, a simple point-based system works best. Each lead earns points across several categories, and the total score tells you whether to drop everything and call, add them to a nurture sequence, or file them away for later follow-up.</p>
 
-<img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=450&fit=crop&q=80" alt="Lead scoring analytics showing how real estate agents prioritize their best prospects" loading="lazy" />
+<img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=450&fit=crop&q=80" alt="Lead scoring analytics showing how real estate agents prioritize their best prospects" loading="lazy" width="800" height="450" />
 
 <h2>The Essential Lead Scoring Criteria for Real Estate Agents</h2>
 

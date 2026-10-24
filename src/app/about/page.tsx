@@ -3,9 +3,9 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About ListingFlare: Real Estate Software Built by Kelvin Spratt",
+  title: "About ListingFlare and Founder Kelvin Spratt",
   description:
-    "ListingFlare is real estate software built by Kelvin Spratt to help listing agents create property websites, capture leads, and close more deals with AI-powered tools.",
+    "ListingFlare is real estate software built by Kelvin Spratt to help listing agents create property websites, capture leads and follow up with AI.",
   alternates: {
     canonical: "https://www.listingflare.com/about",
   },

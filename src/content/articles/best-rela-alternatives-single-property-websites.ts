@@ -78,7 +78,7 @@ Your browser does not support the video tag.
 <li><strong>No social media content generation.</strong> You still need to create your own social posts, captions, and marketing assets separately.</li>
 </ul>
 
-<img src="/blog/rela-alternatives/Intelligent-property-matching.png" alt="Intelligent property matching comparison showing why real estate agents look for Rela alternatives with better lead capture" loading="lazy" style="width:100%;border-radius:0.75rem;" />
+<img src="/blog/rela-alternatives/Intelligent-property-matching.png" alt="Intelligent property matching comparison showing why real estate agents look for Rela alternatives with better lead capture" loading="lazy" style="width:100%;border-radius:0.75rem;" width="1800" height="1245" />
 
 <h2>Why Agents Look for Rela Alternatives</h2>
 
@@ -108,7 +108,7 @@ Your browser does not support the video tag.
 
 <h3>1. ListingFlare - Best Overall Rela Alternative</h3>
 
-<img src="/blog/rela-alternatives/listing-flare.png" alt="ListingFlare single property website builder dashboard showing AI chatbot, lead capture, and analytics features" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1.5rem;" />
+<img src="/blog/rela-alternatives/listing-flare.png" alt="ListingFlare single property website builder dashboard showing AI chatbot, lead capture, and analytics features" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1.5rem;" width="2552" height="1223" />
 
 <p><strong>Price:</strong> $150/month (unlimited listings) | 14-day free trial, no credit card required</p>
 
@@ -146,7 +146,7 @@ Your browser does not support the video tag.
 
 <h3>2. CribFlyer - Best Budget Rela Alternative</h3>
 
-<img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop&q=80" alt="CribFlyer budget-friendly single property website builder for real estate agents" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1.5rem;" />
+<img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop&q=80" alt="CribFlyer budget-friendly single property website builder for real estate agents" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1.5rem;" width="800" height="450" />
 
 <p><strong>Price:</strong> $7-25/month depending on plan</p>
 
@@ -183,7 +183,7 @@ Your browser does not support the video tag.
 
 <h3>3. SinglePropertySites - Best for High-Volume Teams</h3>
 
-<img src="/blog/rela-alternatives/single-property.png" alt="SinglePropertySites platform showing MLS auto-generated listing pages for high-volume real estate teams" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1.5rem;" />
+<img src="/blog/rela-alternatives/single-property.png" alt="SinglePropertySites platform showing MLS auto-generated listing pages for high-volume real estate teams" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1.5rem;" width="2880" height="1636" />
 
 <p><strong>Price:</strong> Starting at $0.50/listing for enterprise plans</p>
 
@@ -221,7 +221,7 @@ Your browser does not support the video tag.
 
 <h3>4. Listings Unlimited - Best for Video-Heavy Listings</h3>
 
-<img src="/blog/rela-alternatives/listing.unlimited.png" alt="Listings Unlimited platform showing video builder and unlimited single property website features" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1.5rem;" />
+<img src="/blog/rela-alternatives/listing.unlimited.png" alt="Listings Unlimited platform showing video builder and unlimited single property website features" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1.5rem;" width="1012" height="720" />
 
 <p><strong>Price:</strong> $24.95/month for unlimited sites</p>
 
@@ -259,7 +259,7 @@ Your browser does not support the video tag.
 
 <h3>5. PhotoUp - Best for Agents Who Bundle Photo Editing</h3>
 
-<img src="/blog/rela-alternatives/photo-up.png" alt="PhotoUp real estate photo editing and single property website platform showing edited listing photos" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1.5rem;" />
+<img src="/blog/rela-alternatives/photo-up.png" alt="PhotoUp real estate photo editing and single property website platform showing edited listing photos" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1.5rem;" width="1024" height="710" />
 
 <p><strong>Price:</strong> Approximately $9/site</p>
 
@@ -296,7 +296,7 @@ Your browser does not support the video tag.
 
 <h3>6. Modobay - Best for SEO-Focused Agents</h3>
 
-<img src="/blog/rela-alternatives/modo-bay.png" alt="Modobay real estate listing platform showing automated SEO optimization and schema markup features" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1.5rem;" />
+<img src="/blog/rela-alternatives/modo-bay.png" alt="Modobay real estate listing platform showing automated SEO optimization and schema markup features" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1.5rem;" width="1600" height="1200" />
 
 <p><strong>Price:</strong> Contact for pricing</p>
 
@@ -333,7 +333,7 @@ Your browser does not support the video tag.
 
 <h3>7. RealBird - Best for Portal Syndication</h3>
 
-<img src="/blog/rela-alternatives/Listing-Widgets.png" alt="RealBird listing widgets and portal syndication platform showing auto-distribution to real estate websites" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1.5rem;" />
+<img src="/blog/rela-alternatives/Listing-Widgets.png" alt="RealBird listing widgets and portal syndication platform showing auto-distribution to real estate websites" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1.5rem;" width="767" height="431" />
 
 <p><strong>Price:</strong> Free basic plan, premium plans available</p>
 

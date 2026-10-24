@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import SeoLandingPage from "@/components/SeoLandingPage";
 
 export const metadata: Metadata = {
-  title: "Real Estate Lead Generation & Capture Software for Agents",
+  title: "Real Estate Lead Capture Software for Agents",
   description:
-    "Turn every listing into a lead source. Capture buyer leads from listing pages and open houses, reply instantly, and follow up automatically. Lead inbox, scoring and QR sign-in. 14-day free trial.",
+    "Capture buyer leads from listing pages and open houses, reply instantly and follow up automatically. Lead inbox and QR sign-in. 14-day free trial.",
   alternates: {
     canonical: "https://www.listingflare.com/real-estate-lead-capture-software",
   },

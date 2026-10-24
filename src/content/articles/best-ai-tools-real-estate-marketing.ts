@@ -47,7 +47,7 @@ export const article: BlogPost = {
 
 <h2>1. ListingFlare: Best All-in-One AI Platform for Listing Marketing</h2>
 
-<img src="/blog/best-ai-tools-real-estate-marketing/listingflare8.png" alt="ListingFlare AI-powered listing marketing platform dashboard showing property websites and lead capture for real estate agents" loading="lazy" />
+<img src="/blog/best-ai-tools-real-estate-marketing/listingflare8.png" alt="ListingFlare AI-powered listing marketing platform dashboard showing property websites and lead capture for real estate agents" loading="lazy" width="2550" height="1228" />
 
 <p><strong>What it does:</strong> ListingFlare is a complete AI-powered listing marketing and lead capture platform built specifically for real estate agents. It combines single-property websites, AI chatbots, automated follow-up, content generation, and analytics into one integrated system.</p>
 
@@ -73,7 +73,7 @@ export const article: BlogPost = {
 
 <h2>2. Descript: Best AI Tool for Real Estate Video Editing</h2>
 
-<img src="/blog/best-ai-tools-real-estate-marketing/descript.png" alt="Descript AI video editing platform showing text-based editing interface for real estate listing tour videos" loading="lazy" />
+<img src="/blog/best-ai-tools-real-estate-marketing/descript.png" alt="Descript AI video editing platform showing text-based editing interface for real estate listing tour videos" loading="lazy" width="2000" height="1409" />
 
 <p><strong>What it does:</strong> <a href="https://get.descript.com/dnhbj2ud2ge8" target="_blank" rel="noopener noreferrer">Descript</a> is an AI-powered video and audio editing platform that lets you edit video by editing text. You record a property walkthrough or market update video, and Descript transcribes it automatically. Then you edit the transcript like a document, and the video edits itself to match.</p>
 
@@ -97,7 +97,7 @@ export const article: BlogPost = {
 
 <h2>3. Aragon AI: Best AI Tool for Professional Agent Headshots</h2>
 
-<img src="/blog/best-ai-tools-real-estate-marketing/aragon.ai.png" alt="Aragon AI professional headshot generator showing studio-quality results from casual photos for real estate agents" loading="lazy" />
+<img src="/blog/best-ai-tools-real-estate-marketing/aragon.ai.png" alt="Aragon AI professional headshot generator showing studio-quality results from casual photos for real estate agents" loading="lazy" width="1000" height="563" />
 
 <p><strong>What it does:</strong> <a href="https://www.aragon.ai/?via=kelvin" target="_blank" rel="noopener noreferrer">Aragon AI</a> generates professional-quality headshots from your selfies using artificial intelligence. Upload 10 to 15 casual photos of yourself, and the AI produces dozens of studio-quality headshots in different outfits, backgrounds, and styles.</p>
 
@@ -120,7 +120,7 @@ export const article: BlogPost = {
 
 <h2>4. AdCreative.ai: Best AI Tool for Real Estate Ad Design</h2>
 
-<img src="/blog/best-ai-tools-real-estate-marketing/adcreative-ai.png" alt="AdCreative.ai platform generating high-converting ad creatives for real estate Facebook and Google campaigns" loading="lazy" />
+<img src="/blog/best-ai-tools-real-estate-marketing/adcreative-ai.png" alt="AdCreative.ai platform generating high-converting ad creatives for real estate Facebook and Google campaigns" loading="lazy" width="1600" height="866" />
 
 <p><strong>What it does:</strong> <a href="https://free-trial.adcreative.ai/ikhlvnrfvjoh" target="_blank" rel="noopener noreferrer">AdCreative.ai</a> generates high-converting ad creatives for Facebook, Instagram, Google, and other platforms using AI. You input your listing details or marketing message, and the platform produces dozens of ad variations with different layouts, copy, and calls to action.</p>
 
@@ -144,7 +144,7 @@ export const article: BlogPost = {
 
 <h2>5. ElevenLabs: Best AI Tool for Real Estate Voiceovers and Audio</h2>
 
-<img src="/blog/best-ai-tools-real-estate-marketing/elevenlabs.png" alt="ElevenLabs AI voice generation platform creating professional voiceovers for real estate listing tour videos" loading="lazy" />
+<img src="/blog/best-ai-tools-real-estate-marketing/elevenlabs.png" alt="ElevenLabs AI voice generation platform creating professional voiceovers for real estate listing tour videos" loading="lazy" width="3456" height="1998" />
 
 <p><strong>What it does:</strong> <a href="https://try.elevenlabs.io/bkxad5z0cuhk" target="_blank" rel="noopener noreferrer">ElevenLabs</a> is an AI voice generation platform that creates realistic, human-sounding voiceovers from text. You type a script, choose a voice, and the AI generates professional narration that sounds like a real person recorded it in a studio.</p>
 
@@ -169,7 +169,7 @@ export const article: BlogPost = {
 
 <h2>6. Restream: Best AI Tool for Live Real Estate Video and Webinars</h2>
 
-<img src="/blog/best-ai-tools-real-estate-marketing/restream-studio_2x.png" alt="Restream live streaming studio interface for broadcasting real estate open houses and market updates to multiple platforms" loading="lazy" />
+<img src="/blog/best-ai-tools-real-estate-marketing/restream-studio_2x.png" alt="Restream live streaming studio interface for broadcasting real estate open houses and market updates to multiple platforms" loading="lazy" width="3360" height="2000" />
 
 <p><strong>What it does:</strong> <a href="https://try.restream.io/tor0vsurj671" target="_blank" rel="noopener noreferrer">Restream</a> is a live streaming and video hosting platform that lets you broadcast simultaneously to multiple platforms. Go live on YouTube, Facebook, LinkedIn, Instagram, and more at the same time from a single dashboard. The AI features handle captions, highlights, and repurposing.</p>
 
@@ -193,7 +193,7 @@ export const article: BlogPost = {
 
 <h2>7. Castmagic: Best AI Tool for Real Estate Podcast and Content Repurposing</h2>
 
-<img src="/blog/best-ai-tools-real-estate-marketing/castmagic.png" alt="Castmagic AI content repurposing platform turning real estate podcast episodes and videos into blog posts and social content" loading="lazy" />
+<img src="/blog/best-ai-tools-real-estate-marketing/castmagic.png" alt="Castmagic AI content repurposing platform turning real estate podcast episodes and videos into blog posts and social content" loading="lazy" width="1600" height="1009" />
 
 <p><strong>What it does:</strong> <a href="https://get.castmagic.io/nrxry3kwbzkj" target="_blank" rel="noopener noreferrer">Castmagic</a> is an AI content repurposing platform designed for audio and video. Upload a recording of any kind, whether a podcast episode, a listing tour video, a market update, or a coaching call, and the AI generates a full suite of content from it: blog posts, social media captions, email newsletters, show notes, timestamps, quotes, and more.</p>
 
@@ -218,7 +218,7 @@ export const article: BlogPost = {
 
 <h2>8. Canva AI: Best Free AI Tool for Real Estate Graphics</h2>
 
-<img src="/blog/best-ai-tools-real-estate-marketing/canva-ai-image26.png" alt="Canva AI design platform with real estate templates for creating professional social media posts and marketing materials" loading="lazy" />
+<img src="/blog/best-ai-tools-real-estate-marketing/canva-ai-image26.png" alt="Canva AI design platform with real estate templates for creating professional social media posts and marketing materials" loading="lazy" width="1205" height="757" />
 
 <p><strong>What it does:</strong> Canva is a visual design platform with AI features that let you create professional graphics, presentations, social media posts, flyers, and brochures without any design skills. The AI assists with layout suggestions, text generation, image editing, and brand consistency.</p>
 
@@ -240,7 +240,7 @@ export const article: BlogPost = {
 
 <h2>9. ChatGPT / Claude: Best AI Tool for General Real Estate Writing</h2>
 
-<img src="/blog/best-ai-tools-real-estate-marketing/chatgpt.png" alt="ChatGPT AI assistant interface showing real estate writing prompts for listing descriptions and marketing content" loading="lazy" />
+<img src="/blog/best-ai-tools-real-estate-marketing/chatgpt.png" alt="ChatGPT AI assistant interface showing real estate writing prompts for listing descriptions and marketing content" loading="lazy" width="1600" height="822" />
 
 <p><strong>What it does:</strong> ChatGPT (by OpenAI) and Claude (by Anthropic) are general-purpose AI assistants that can write, brainstorm, analyze, and answer questions on virtually any topic. For real estate agents, they are useful for drafting emails, writing blog content, creating scripts for videos, generating social media captions, and brainstorming marketing ideas.</p>
 
@@ -263,7 +263,7 @@ export const article: BlogPost = {
 
 <h2>10. Keap: Best AI-Powered CRM for Real Estate Follow-Up</h2>
 
-<img src="/blog/best-ai-tools-real-estate-marketing/keap.png" alt="Keap CRM and marketing automation platform showing lead management and follow-up sequences for real estate agents" loading="lazy" />
+<img src="/blog/best-ai-tools-real-estate-marketing/keap.png" alt="Keap CRM and marketing automation platform showing lead management and follow-up sequences for real estate agents" loading="lazy" width="1280" height="720" />
 
 <p><strong>What it does:</strong> <a href="https://get.keap.com/lsju5phwu8y1" target="_blank" rel="noopener noreferrer">Keap</a> (formerly Infusionsoft) is a CRM and marketing automation platform with AI features for lead management, email marketing, and sales pipeline tracking. It automates the follow-up sequences that most agents handle manually or forget entirely.</p>
 
@@ -354,7 +354,7 @@ export const article: BlogPost = {
 <li><strong>Restream</strong> for live streaming open houses and market updates across all platforms</li>
 </ol>
 
-<img src="/blog/best-ai-tools-real-estate-marketing/Best-AI-Tools-for-Research.png" alt="Best AI tools for real estate research and marketing showing how agents combine multiple platforms for maximum results" loading="lazy" />
+<img src="/blog/best-ai-tools-real-estate-marketing/Best-AI-Tools-for-Research.png" alt="Best AI tools for real estate research and marketing showing how agents combine multiple platforms for maximum results" loading="lazy" width="1200" height="630" />
 
 <h2>How These Tools Work Together in Practice</h2>
 
