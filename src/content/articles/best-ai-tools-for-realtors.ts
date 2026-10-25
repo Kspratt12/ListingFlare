@@ -34,7 +34,7 @@ export const article: BlogPost = {
 
 <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&h=600&fit=crop&q=80" alt="Real estate agent using AI tools on laptop to manage listings and leads efficiently" loading="lazy" width="1200" height="600" />
 
-<p>AI adoption in real estate has gone from experimental to essential in the past two years. According to the <a href="https://www.nar.realtor/research-and-statistics/research-reports/technology-in-real-estate" target="_blank" rel="noopener noreferrer">National Association of Realtors 2025 Technology Survey</a>, over 60 percent of agents now use at least one AI-powered tool in their daily workflow. More importantly, agents who actively use AI report saving 30 percent or more of their working hours each week. That is roughly 12 to 15 hours back in your schedule every single week.</p>
+<p>AI adoption in real estate has grown quickly over the past couple of years, and many agents now use at least one AI tool in their daily work. Agents who use AI well often report getting hours back each week, though results vary by agent and by how the tools are used.</p>
 
 <p>But "realtor AI" does not mean robots showing houses or algorithms replacing your negotiation skills. In practice, <strong>AI for realtors</strong> means tools that handle the repetitive, time-consuming work so you can focus on what actually closes deals: building relationships, understanding client needs, and being present during the moments that matter.</p>
 
@@ -52,7 +52,7 @@ export const article: BlogPost = {
 
 <h2>The 10 Best AI Tools for Realtors</h2>
 
-<p>We evaluated dozens of AI platforms and narrowed the list to 10 tools that consistently deliver measurable results for real estate agents. For each tool, we cover what it does, how agents actually use it, what it costs, and who it is best suited for.</p>
+<p>We reviewed a range of AI platforms and narrowed the list to 10 tools that look relevant to real estate agents, based on public information. Results vary by agent. For each tool, we cover what it does, how agents actually use it, what it costs, and who it is best suited for.</p>
 
 <h3>1. ListingFlare - AI Chatbot and Lead Capture for Listings</h3>
 

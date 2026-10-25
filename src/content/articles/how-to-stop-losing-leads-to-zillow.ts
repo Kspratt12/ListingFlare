@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "Zillow can route your listing's buyer leads to other agents. Here are 9 strategies to capture leads directly from your own listings instead.",
   date: "2026-03-20",
+  updated: "2026-10-25",
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [
@@ -225,7 +226,7 @@ export const article: BlogPost = {
 </tbody>
 </table>
 
-<p>For the same budget you spend on Zillow, you could run ListingFlare, email marketing, and a modest Google Ads campaign and generate <strong>three to five times more leads</strong> that are exclusively yours. No sharing with other agents. No paying for leads that came from your own listing.</p>
+<p>For the same budget you spend on Zillow, you could run ListingFlare, email marketing, and a modest Google Ads campaign and generate leads that are exclusively yours. No sharing with other agents. No paying for leads that came from your own listing.</p>
 
 <h2>Your 30-Day Action Plan to Break Free from Zillow</h2>
 

@@ -281,6 +281,21 @@ export default async function BlogPostPage({ params }: Props) {
                 year: "numeric",
               })}
             </time>
+            {post.updated && post.updated !== post.date && (
+              <>
+                <span>&middot;</span>
+                <span>
+                  Updated{" "}
+                  <time dateTime={post.updated}>
+                    {new Date(post.updated).toLocaleDateString("en-US", {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </time>
+                </span>
+              </>
+            )}
             <span>&middot;</span>
             <span>{post.readingTime} min read</span>
           </div>

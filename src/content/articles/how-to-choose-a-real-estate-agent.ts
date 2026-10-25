@@ -7,6 +7,7 @@ export const article: BlogPost = {
   description:
     "Choosing the right real estate agent is the most important decision in your home sale. Ask these 8 questions to find an agent who will get you top dollar.",
   date: "2026-02-22",
+  updated: "2026-10-25",
   author: "ListingFlare Team",
   category: "Home Selling",
   keywords: [
@@ -166,7 +167,7 @@ export const article: BlogPost = {
 <p>A listing agent (also called a seller's agent) represents you, the home seller. They handle pricing, marketing, showings, and negotiations on your behalf. A buyer's agent represents the person purchasing a home. In most transactions, each side has their own agent. When interviewing agents for your home sale, make sure they have strong experience as a listing agent specifically, since the skill set is different from working with buyers.</p>
 
 <h3>Can I sell my home without an agent to save on commission?</h3>
-<p>You can sell "For Sale By Owner" (FSBO), but data from the National Association of Realtors shows that FSBO homes sell for a median of 23% less than agent-assisted homes. When you factor in the lower sale price, the time investment, and the legal risks, most sellers net more money by working with a qualified agent. If you are considering this route, read our <a href="/blog/first-time-home-sellers-guide">first-time home seller's guide</a> to understand the full scope of what is involved.</p>
+<p>You can sell "For Sale By Owner" (FSBO), but National Association of Realtors surveys generally show that FSBO homes sell for less than agent-assisted homes. When you factor in the lower sale price, the time investment, and the legal risks, most sellers net more money by working with a qualified agent. If you are considering this route, read our <a href="/blog/first-time-home-sellers-guide">first-time home seller's guide</a> to understand the full scope of what is involved.</p>
 
 <h3>How long should a listing agreement last?</h3>
 <p>Most listing agreements run 3-6 months. A 6-month agreement is standard in many markets and gives the agent enough time to implement their marketing plan and find a buyer. Be cautious of agents who push for 12-month contracts or agreements with heavy cancellation fees. A good agent should be confident enough in their abilities to offer a reasonable exit clause if you are unhappy with their performance.</p>

@@ -69,7 +69,7 @@ export const article: BlogPost = {
 </ul>
 
 <h2>Consent and Rules to Check</h2>
-<p>Rules on marketing texts, calls and emails vary, and they can include getting permission, identifying yourself and offering a way to opt out. Add consent wording to your sign-in sheet or form, include an unsubscribe option in marketing emails, and check your brokerage's guidance and the rules where you work. This is general information, not legal advice. Our <a href="/blog/open-house-sign-in-sheet-template">open house sign-in sheet template</a> includes a place for consent wording.</p>
+<p>Rules on marketing texts, calls and emails vary, and they can include getting permission, identifying yourself and offering a way to opt out. Add consent wording to your sign-in sheet or form, include an unsubscribe option in marketing emails, and check your brokerage's guidance and the rules where you work. This is general information, not legal advice. The <a href="https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business" target="_blank" rel="noopener noreferrer">FTC&rsquo;s CAN-SPAM compliance guide for business</a> explains the basics for marketing emails. Our <a href="/blog/open-house-sign-in-sheet-template">open house sign-in sheet template</a> includes a place for consent wording.</p>
 
 <h2>How ListingFlare Handles the First Steps</h2>
 <p>ListingFlare gives each listing an open house sign-in page you can open from a QR code, which asks for name, email, phone, and whether the visitor is working with an agent. When someone signs in, ListingFlare:</p>

@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "Learn how to win more listings with a killer listing presentation, superior marketing plan, and the tools that top-producing agents use in 2026.",
   date: "2026-03-06",
+  updated: "2026-10-25",
   author: "ListingFlare Team",
   category: "Agent Growth",
   keywords: [
@@ -95,7 +96,7 @@ export const article: BlogPost = {
 
 <h3>Professional Photography</h3>
 
-<p>This should be non-negotiable for every listing at every price point. Homes with professional photography sell 32 percent faster and for up to 47 percent more per square foot, according to studies from Redfin and the Wall Street Journal. Show the seller side-by-side comparisons of phone photos versus professional shots to make the value immediately obvious.</p>
+<p>This should be non-negotiable for every listing at every price point. Professional photography is widely reported to help listings attract more interest and sell faster, so show the seller side-by-side comparisons of phone photos versus professional shots to make the case. Show the seller side-by-side comparisons of phone photos versus professional shots to make the value immediately obvious.</p>
 
 <h3>A Dedicated Property Website</h3>
 

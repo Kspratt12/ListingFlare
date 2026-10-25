@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "How to get leads as a real estate agent: 12 lead generation strategies, from single-property websites to social media, and what to try first.",
   date: "2026-03-15",
+  updated: "2026-10-25",
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [
@@ -18,7 +19,7 @@ export const article: BlogPost = {
   coverImage: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&h=630&fit=crop&q=80",
   coverImageAlt: "Real estate agent reviewing lead generation strategies on a laptop to get more clients",
   content: `
-<p>If you have ever wondered <strong>how to get leads as a real estate agent</strong>, you are not alone. According to the National Association of Realtors, lead generation remains the single biggest challenge facing agents at every experience level. The market in 2026 is more competitive than ever: buyers start their search online, attention spans are shorter, and the agents who win are the ones with a repeatable system for attracting and capturing new prospects. There are more channels available to you today than at any point in the industry's history.</p>
+<p>If you have ever wondered <strong>how to get leads as a real estate agent</strong>, you are not alone. Lead generation is one of the biggest challenges agents at every experience level report. The market in 2026 is more competitive than ever: buyers start their search online, attention spans are shorter, and the agents who win are the ones with a repeatable system for attracting and capturing new prospects. There are more channels available to you today than at any point in the industry's history.</p>
 
 <p>In this guide we break down 12 proven strategies for <strong>lead generation for real estate agents</strong> that are working right now. Whether you are a solo agent building your first pipeline or a team leader looking to scale, you will find actionable tactics you can implement this week. Let's dive in.</p>
 
@@ -54,7 +55,7 @@ export const article: BlogPost = {
 
 <p>Take your open house strategy further with QR codes. Place a QR code on the yard sign, flyers, and even the kitchen counter that links directly to the property's dedicated website. Visitors who scan the code can browse listing details, photos, and neighborhood information on their own phone while they tour the home. You capture their information whether they sign in at the door or scan the code later from their car.</p>
 
-<p>Follow up within one hour of the open house ending. Send a personalized text or email referencing something specific about the property or their search criteria. For more ways to make your events stand out, explore these <a href="/blog/open-house-ideas-to-attract-more-buyers">creative open house ideas that attract more buyers</a>. Speed matters: the National Association of Realtors found that agents who respond within five minutes are 21 times more likely to qualify a lead than those who wait 30 minutes or more.</p>
+<p>Follow up within one hour of the open house ending. Send a personalized text or email referencing something specific about the property or their search criteria. For more ways to make your events stand out, explore these <a href="/blog/open-house-ideas-to-attract-more-buyers">creative open house ideas that attract more buyers</a>. Speed matters: the sooner you reply, the better your chances of starting a real conversation.</p>
 
 <img src="https://images.unsplash.com/photo-1565402170291-8491f14678db?w=800&h=450&fit=crop&q=80" alt="Open house entrance welcoming potential buyers for real estate lead generation" loading="lazy" width="800" height="450" />
 

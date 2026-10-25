@@ -2,7 +2,7 @@ import { BlogPost } from "@/lib/blog";
 
 export const article: BlogPost = {
   slug: "real-estate-lead-follow-up-sequence",
-  title: "Real Estate Lead Follow-Up: A Day 1, 3 and 7 Sequence With Templates",
+  title: "Real Estate Lead Follow-Up: Day 1, 3 and 7 Templates",
   description:
     "A simple real estate lead follow-up sequence for days 1, 3 and 7 with copy-and-paste email and text templates, plus what to avoid and rules to check.",
   date: "2026-10-25",
@@ -80,7 +80,7 @@ export const article: BlogPost = {
 </ul>
 
 <h2>Rules to Check</h2>
-<p>Rules on marketing emails, calls and texts vary and can include getting permission, identifying yourself and offering an opt-out. Include an unsubscribe option in marketing emails, get permission before texting, and check your brokerage's guidance and the rules where you work. This is general information, not legal advice.</p>
+<p>Rules on marketing emails, calls and texts vary and can include getting permission, identifying yourself and offering an opt-out. Include an unsubscribe option in marketing emails, get permission before texting, and check your brokerage's guidance and the rules where you work. This is general information, not legal advice. See the <a href="https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business" target="_blank" rel="noopener noreferrer">FTC&rsquo;s CAN-SPAM compliance guide for business</a> for the basics on marketing emails.</p>
 
 <h2>Automating the Sequence With ListingFlare</h2>
 <p>Doing this by hand is fine for a few leads and hard to keep up when a listing is busy. When someone inquires through a ListingFlare listing page or signs in at an open house, ListingFlare creates the lead, emails you a notification, and sends an AI-written first reply right away unless you have approval mode on to review messages first. It also schedules a day 1, day 3 and day 7 follow-up email sequence, with a separate sequence for people who have been to a showing. The messages are AI-written, so review how they sound and make sure they match how you work. You can also reply to leads yourself from the inbox.</p>

@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "Looking for a Rela alternative? Compare 7 single property website builders on pricing, AI chatbot support, lead capture and automated follow-up.",
   date: "2026-03-27",
+  updated: "2026-10-25",
   author: "ListingFlare Team",
   category: "Listing Marketing",
   keywords: [
@@ -92,7 +93,7 @@ Your browser does not support the video tag.
 
 <h3>2. No Automated Lead Capture and Follow-Up</h3>
 
-<p>Even when Rela does capture a lead through its basic contact form, the follow-up is entirely manual. You get a notification, and then it is up to you to respond. Studies show that responding to a lead within five minutes makes you 21 times more likely to qualify that lead compared to responding after 30 minutes. Manual follow-up simply cannot compete with automated systems that send a personalized email within seconds.</p>
+<p>Even when Rela does capture a lead through its basic contact form, the follow-up is entirely manual. You get a notification, and then it is up to you to respond. In general, the faster you reply, the better your chances of starting a real conversation. Manual follow-up simply cannot compete with automated systems that send a personalized email within seconds.</p>
 
 <h3>3. Templates Start to Look Similar</h3>
 

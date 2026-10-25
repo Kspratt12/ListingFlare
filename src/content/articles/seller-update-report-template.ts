@@ -5,7 +5,7 @@ export const article: BlogPost = {
   slug: "seller-update-report-template",
   title: "Seller Update Report Template (Free Weekly Listing Report)",
   description:
-    "Free seller update report template (PDF, fillable PDF and Word) for weekly listing updates, plus what to include and how to keep sellers informed without overpromising.",
+    "Free seller update report template (PDF, fillable PDF, Word) for weekly listing updates, plus what to include and how to keep sellers informed.",
   date: "2026-10-25",
   author: "ListingFlare Team",
   category: "Agent Growth",

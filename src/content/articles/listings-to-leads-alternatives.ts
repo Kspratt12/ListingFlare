@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "Looking for a Listings to Leads alternative? Compare 5 listing marketing platforms for real estate agents on pricing, features and fit for your workflow.",
   date: "2026-03-27",
+  updated: "2026-10-25",
   author: "ListingFlare Team",
   category: "Listing Marketing",
   keywords: [
@@ -77,7 +78,7 @@ export const article: BlogPost = {
 
 <h2>5 Best Listings to Leads Alternatives</h2>
 
-<p>Here are the five platforms worth considering if you are looking for a better fit. I evaluated each one on lead capture quality, pricing transparency, ease of use, and the features that matter most to listing agents in 2026.</p>
+<p>Here are the five platforms worth considering if you are looking for a better fit. I reviewed each one, using public information, on lead capture quality, pricing transparency, ease of use, and the features that matter most to listing agents in 2026.</p>
 
 <h3>1. ListingFlare - Best Overall for Lead Capture and AI Engagement</h3>
 

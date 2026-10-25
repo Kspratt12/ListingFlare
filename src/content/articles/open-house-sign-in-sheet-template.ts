@@ -3,7 +3,7 @@ import { downloadBox } from "@/content/templates";
 
 export const article: BlogPost = {
   slug: "open-house-sign-in-sheet-template",
-  title: "Open House Sign-In Sheet Template (Free Printable PDF and Word)",
+  title: "Open House Sign-In Sheet Template (Free Printable PDF)",
   description:
     "A free printable open house sign-in sheet as a PDF or Word file, plus what to put on it, how to word consent, and what to do with the names afterward.",
   date: "2026-10-25",
@@ -44,7 +44,7 @@ ${downloadBox("open-house-sign-in-sheet-template")}
 <p>Ask only for what you will use. A short sheet is easier and quicker to fill in than a long one.</p>
 
 <h2>Add Consent Wording</h2>
-<p>Visitors should know what their details will be used for. The template has a spot at the top for a short consent line. An example you can adapt: <em>By signing in, I agree that the host may contact me about this property.</em> Rules on calls, texts and marketing emails vary, and your brokerage may have its own required wording, so check both before you print. This is general guidance, not legal advice.</p>
+<p>Visitors should know what their details will be used for. The template has a spot at the top for a short consent line. An example you can adapt: <em>By signing in, I agree that the host may contact me about this property.</em> Rules on calls, texts and marketing emails vary, and your brokerage may have its own required wording, so check both before you print. This is general guidance, not legal advice. The <a href="https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business" target="_blank" rel="noopener noreferrer">FTC&rsquo;s CAN-SPAM compliance guide for business</a> is a good starting point for marketing emails.</p>
 
 <h2>Tips for the Day</h2>
 <ul>
