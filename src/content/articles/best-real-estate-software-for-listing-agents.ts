@@ -18,9 +18,9 @@ export const article: BlogPost = {
   ],
   readingTime: 11,
   coverImage:
-    "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=1200&h=630&fit=crop&q=80",
+    "/blog/best-real-estate-software-for-listing-agents/hero.jpg",
   coverImageAlt:
-    "Listing agent reviewing marketing and lead software on a laptop in a modern home",
+    "Four real estate agents posing together in a bright living room",
   content: `
 <p>Most &ldquo;best real estate software&rdquo; lists are written for a generic agent and bundle everything into one giant CRM. A <strong>listing agent</strong> has a narrower, more specific set of jobs: get a property in front of buyers, capture the people who respond, schedule showings, report to the seller and win the next listing. This guide organizes software by those jobs so you can build a stack that covers each one without paying for tools you will not use.</p>
 

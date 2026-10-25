@@ -18,9 +18,9 @@ export const article: BlogPost = {
   ],
   readingTime: 9,
   coverImage:
-    "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=1200&h=630&fit=crop&q=80",
+    "/blog/real-estate-lead-magnet-ideas/hero.jpg",
   coverImageAlt:
-    "Agent preparing a free guide to offer buyers in exchange for contact details",
+    "Agent showing a clipboard of information to a couple inside a home",
   content: `
 <p>A <strong>lead magnet</strong> is something useful you give away in exchange for contact details. Most real estate lead magnet lists recommend the same thing: a home valuation tool. That works for seller leads but is crowded, and it does not help a <em>listing agent</em> capture buyers who are looking at a specific home. This list focuses on lead magnets that fit listings, buyers and the moments they actually look for help.</p>
 

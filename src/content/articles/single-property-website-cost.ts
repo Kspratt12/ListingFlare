@@ -18,9 +18,9 @@ export const article: BlogPost = {
   ],
   readingTime: 8,
   coverImage:
-    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&h=630&fit=crop&q=80",
+    "/blog/single-property-website-cost/hero.jpg",
   coverImageAlt:
-    "Modern home exterior representing a dedicated single property listing website",
+    "Elegant living room with a fireplace, the kind of home a listing website showcases",
   content: `
 <p>A single property website can cost anywhere from a couple of dollars to several hundred dollars a month, and the gap comes from what you get, not just what you pay. This guide breaks down the pricing models, gives reported price ranges, and shows how to compare tools by <strong>cost per listing</strong> rather than headline price.</p>
 

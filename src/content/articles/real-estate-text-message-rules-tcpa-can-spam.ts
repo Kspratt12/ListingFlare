@@ -18,9 +18,9 @@ export const article: BlogPost = {
   ],
   readingTime: 9,
   coverImage:
-    "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&h=630&fit=crop&q=80",
+    "/blog/real-estate-text-message-rules-tcpa-can-spam/hero.jpg",
   coverImageAlt:
-    "Documents and a phone representing consent rules for texting and emailing real estate leads",
+    "Hands pointing at a document and signing it beside a small model house",
   content: `
 <p>Texting and email are the fastest ways to reach a lead, and also where agents most often stumble into compliance trouble. This guide explains the basics in plain English. <strong>It is general information, not legal advice.</strong> Rules vary by state and change over time, so confirm with your broker, brokerage compliance team or an attorney before you build a messaging program.</p>
 
