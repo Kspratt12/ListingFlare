@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "A 12-point checklist for a real estate listing landing page: what to show, how to capture inquiries, and the mistakes that cost you buyer leads.",
   date: "2026-10-24",
+  updated: "2026-10-25",
   author: "ListingFlare Team",
   category: "Listing Marketing",
   keywords: [
@@ -16,10 +17,9 @@ export const article: BlogPost = {
     "property landing page",
   ],
   readingTime: 8,
-  coverImage:
-    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=630&fit=crop&q=80",
+  coverImage: "/blog/real-estate-listing-page-checklist/hero.jpg",
   coverImageAlt:
-    "Modern white house with a swimming pool under a blue sky, the kind of lead photo used on a listing page",
+    "Agent welcoming two visitors through the front door into a bright entryway",
   content: `
 <p>A good real estate listing landing page does one job: it gets a buyer from "interested" to "asked about the home". The twelve points below cover what to put on the page and in what order, whether you build it yourself or with a tool. Use it as a review list before you publish.</p>
 
@@ -77,6 +77,9 @@ export const article: BlogPost = {
 <p>ListingFlare is one of those tools. Each listing gets its own branded page with an AI chat assistant that answers questions from the details you enter. The assistant can be wrong if those details are wrong, and it does not negotiate or give legal or financial advice. Leads go to your inbox with an instant reply and day 1, 3 and 7 follow-up. See the <a href="/single-property-website-builder">single property website builder</a> page, try the <a href="/demo">live demo</a>, or <a href="/signup">start a 14-day free trial</a>. Confirm current pricing and features on the vendor's site for any tool you compare.</p>
 
 <p><strong>Related:</strong> <a href="/blog/single-property-website-template">single property website template</a> and <a href="/blog/pre-listing-checklist">pre-listing checklist</a>. More <a href="/free-real-estate-templates">free real estate templates</a> for listing agents.</p>
+
+<h2>Sources and Further Reading</h2>
+<p>Keep the wording on a listing page about the home, not the people who might buy it. See <a href="https://www.hud.gov/program_offices/fair_housing_equal_opp/fair_housing_act_overview" target="_blank" rel="noopener noreferrer">HUD&rsquo;s overview of housing discrimination under the Fair Housing Act</a> and your brokerage&rsquo;s and MLS&rsquo;s advertising rules. For the page itself, <a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide" target="_blank" rel="noopener noreferrer">Google&rsquo;s SEO Starter Guide</a> covers titles, descriptions, images and links. This is general guidance, not legal advice.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

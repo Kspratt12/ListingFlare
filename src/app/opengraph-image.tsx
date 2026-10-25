@@ -35,6 +35,8 @@ export default async function OGImage() {
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           <div
             style={{
+              display: "flex",
+              flexDirection: "column",
               fontSize: 56,
               fontWeight: 800,
               color: "#ffffff",
@@ -42,9 +44,8 @@ export default async function OGImage() {
               letterSpacing: "-0.02em",
             }}
           >
-            Property Websites That
-            <br />
-            Capture Leads 24/7
+            <div style={{ display: "flex" }}>Property Websites That</div>
+            <div style={{ display: "flex" }}>Capture Leads 24/7</div>
           </div>
           <div
             style={{
@@ -97,9 +98,9 @@ export default async function OGImage() {
             </div>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
               <span style={{ fontSize: 28, fontWeight: 700, color: "#ffffff" }}>
-                4.9/5
+                $150/mo
               </span>
-              <span style={{ fontSize: 14, color: "#6b7280" }}>Rating</span>
+              <span style={{ fontSize: 14, color: "#6b7280" }}>Flat price</span>
             </div>
           </div>
         </div>

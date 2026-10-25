@@ -264,6 +264,8 @@ export const article: BlogPost = {
 
 <p><strong>Related reading:</strong> <a href="/blog/single-property-website-vs-zillow-showcase">single-property website vs Zillow Showcase</a></p>
 
+<p><strong>See also:</strong> <a href="/blog/how-zillow-steals-leads-from-listing-agents">how Zillow takes leads from listing agents</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

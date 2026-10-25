@@ -206,6 +206,8 @@ export const article: BlogPost = {
 
 <h2>Frequently Asked Questions</h2>
 
+<p><strong>See also:</strong> <a href="/blog/trainual-review-real-estate-brokerages">a Trainual review for brokerages</a>.</p>
+
 <div class="faq-section">
 
 <h3>How long does it take for a new real estate agent to get their first lead?</h3>

@@ -545,6 +545,8 @@ export const article: BlogPost = {
 
 <p>For a comprehensive overview of every strategy mentioned here plus more, read our complete <a href="/blog/real-estate-lead-generation">real estate lead generation guide</a>.</p>
 
+<p><strong>See also:</strong> <a href="/blog/manychat-review-real-estate-agents">a ManyChat review for agents</a> and <a href="/blog/how-zillow-steals-leads-from-listing-agents">how Zillow takes leads from listing agents</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

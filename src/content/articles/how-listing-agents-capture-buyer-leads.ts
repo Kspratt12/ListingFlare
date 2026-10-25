@@ -252,6 +252,8 @@ export const article: BlogPost = {
 
 <p>Within 30 days, you will have a clear picture of how many buyer leads your listings are generating - leads that used to go to Zillow or competing agents. And you will wonder why you did not start sooner.</p>
 
+<p><strong>See also:</strong> <a href="/blog/how-zillow-steals-leads-from-listing-agents">how Zillow takes leads from listing agents</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

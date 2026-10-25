@@ -337,6 +337,8 @@ export const article: BlogPost = {
 
 <p><strong>Related:</strong> <a href="/blog/ai-real-estate-chatbot-vs-virtual-assistant">AI real estate chatbot vs virtual assistant</a>.</p>
 
+<p><strong>See also:</strong> <a href="/blog/elevenlabs-review-real-estate-agents">an ElevenLabs review for agents</a>, <a href="/blog/manychat-review-real-estate-agents">a ManyChat review for agents</a>, <a href="/blog/descript-ai-review-real-estate-agents">a Descript review for agents</a>, <a href="/blog/aragon-ai-review-real-estate-agents">an Aragon AI headshots review</a> and <a href="/blog/surfer-seo-review-real-estate-agents">a Surfer SEO review for agents</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions About AI for Real Estate Agents</h2>
 

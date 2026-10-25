@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "Paper sign-in sheets and QR code sign-ins both work at an open house but fail in different ways. Here is how to choose and follow up on leads.",
   date: "2026-10-23",
+  updated: "2026-10-25",
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [
@@ -97,6 +98,9 @@ export const article: BlogPost = {
 </ul>
 
 <p><strong>Related:</strong> <a href="/blog/open-house-checklist">open house checklist</a>, <a href="/blog/open-house-sign-in-sheet-template">printable sign-in sheet</a> and <a href="/blog/open-house-follow-up">follow-up templates</a>. More <a href="/free-real-estate-templates">free real estate templates</a> for listing agents.</p>
+
+<h2>Sources and Further Reading</h2>
+<p>If you use sign-in details for marketing emails, the <a href="https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business" target="_blank" rel="noopener noreferrer">FTC&rsquo;s CAN-SPAM compliance guide for business</a> covers the basics, including accurate sender information and a way to opt out. Check your brokerage&rsquo;s guidance and the rules where you work on calls and texts. This is general information, not legal advice.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

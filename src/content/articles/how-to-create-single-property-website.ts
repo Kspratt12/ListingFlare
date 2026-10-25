@@ -127,6 +127,8 @@ export const article: BlogPost = {
 
 <p><strong>Related:</strong> <a href="/blog/single-property-website-template">single property website content template</a>. More <a href="/free-real-estate-templates">free real estate templates</a> for listing agents.</p>
 
+<p><strong>See also:</strong> <a href="/blog/free-real-estate-website-options">free real estate website options</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

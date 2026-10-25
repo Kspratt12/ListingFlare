@@ -76,6 +76,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `Homes for Sale in ${display}`,
       description: `Browse available homes and listings in ${display} on ListingFlare.`,
       url: `https://www.listingflare.com/homes/${citySlug}`,
+      images: [{ url: "https://www.listingflare.com/opengraph-image", width: 1200, height: 630, alt: "ListingFlare" }],
     },
     alternates: {
       canonical: `https://www.listingflare.com/homes/${citySlug}`,
