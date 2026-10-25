@@ -8,6 +8,7 @@ export const article: BlogPost = {
     "Surfer SEO review for real estate agents: pricing, content optimization, local keyword strategy and how to use it to improve your real estate blog posts.",
   date: "2026-03-27",
   updated: "2026-10-23",
+  noindex: true,
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [

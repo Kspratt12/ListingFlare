@@ -8,6 +8,7 @@ export const article: BlogPost = {
     "Restream review for real estate agents: pricing, multistreaming to 30+ platforms, live open house streaming and combining live video with lead capture.",
   date: "2026-03-27",
   updated: "2026-10-23",
+  noindex: true,
   author: "ListingFlare Team",
   category: "Social Media",
   keywords: [

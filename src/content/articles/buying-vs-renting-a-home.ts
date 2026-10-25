@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "Should you buy or rent in 2026? Compare the real costs, pros and cons, and use our simple framework to decide what makes sense for your situation.",
   date: "2026-02-20",
+  noindex: true,
   author: "ListingFlare Team",
   category: "Home Buying",
   keywords: [

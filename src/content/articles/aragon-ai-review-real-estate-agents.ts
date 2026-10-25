@@ -8,6 +8,7 @@ export const article: BlogPost = {
     "Aragon AI review for real estate agents: pricing, headshot quality, setup steps, pros and cons, and how AI headshots fit your personal brand.",
   date: "2026-03-27",
   updated: "2026-10-23",
+  noindex: true,
   author: "ListingFlare Team",
   category: "Listing Marketing",
   keywords: [

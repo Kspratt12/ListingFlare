@@ -2153,6 +2153,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
               { href: "/listingflare-vs-rela", title: "ListingFlare vs Rela", text: "A side-by-side feature comparison." },
               { href: "/listingflare-vs-singlepropertysites", title: "ListingFlare vs SinglePropertySites.com", text: "How the two compare." },
               { href: "/free-real-estate-templates", title: "Free Real Estate Templates", text: "Listing presentation, open house and seller update templates." },
+              { href: "/homes", title: "Homes for Sale by City", text: "Browse listings published on ListingFlare, city by city." },
             ].map((r) => (
               <Link
                 key={r.href}
@@ -2261,6 +2262,8 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
             <Link href="/blog" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Blog</Link>
             <span>&middot;</span>
             <Link href="/free-real-estate-templates" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Free Templates</Link>
+            <span>&middot;</span>
+            <Link href="/homes" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Homes by City</Link>
             <span>&middot;</span>
             <Link href="/about" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">About</Link>
             <span>&middot;</span>
