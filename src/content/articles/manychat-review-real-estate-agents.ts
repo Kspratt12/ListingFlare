@@ -196,7 +196,7 @@ export const article: BlogPost = {
 
 <img src="/blog/manychat/many-testing.png" alt="ManyChat automated follow-up sequence testing for realtors" loading="lazy" width="2553" height="1438" />
 
-<p>The fortune is in the follow-up, and most agents are terrible at it. Studies show that it takes an average of 5 to 12 contacts before a lead converts. It lets you set up timed follow-up sequences that keep you top of mind without you lifting a finger.</p>
+<p>The fortune is in the follow-up, and most agents are terrible at it. Many leads need several contacts before they respond. It lets you set up timed follow-up sequences that keep you top of mind without you lifting a finger.</p>
 
 <p>An example follow-up sequence for a buyer lead:</p>
 

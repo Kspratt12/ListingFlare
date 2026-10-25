@@ -7,6 +7,7 @@ export const article: BlogPost = {
   description:
     "Selling your home for the first time? This step-by-step guide covers everything from pricing to closing, so you sell faster and for top dollar.",
   date: "2026-03-05",
+  updated: "2026-10-25",
   author: "ListingFlare Team",
   category: "Home Selling",
   keywords: [
@@ -129,7 +130,7 @@ export const article: BlogPost = {
 
 <h3>Professional Staging - Is It Worth It?</h3>
 
-<p>Studies from the National Association of Realtors show that <strong>staging can increase a home's sale price by 1–5%</strong> and significantly reduce time on market. Full staging costs \$2,000–\$5,000 for a typical home but can pay for itself many times over. At minimum, ask your agent about partial staging for key rooms like the living room, primary bedroom, and kitchen.</p>
+<p>Staging is often cited as a way to help a home sell faster and for a better price, though results vary by home and market. Full staging costs \$2,000–\$5,000 for a typical home but can pay for itself many times over. At minimum, ask your agent about partial staging for key rooms like the living room, primary bedroom, and kitchen.</p>
 
 <h3>Curb Appeal Checklist</h3>
 
@@ -238,7 +239,7 @@ export const article: BlogPost = {
 <p>Plan for total selling costs of approximately <strong>8–10% of your sale price</strong>. This includes agent commissions (5–6%), closing costs (1–3%), and home preparation expenses. On a \$400,000 sale, you might pay \$32,000–\$40,000 in total costs.</p>
 
 <h3>Should I sell my house without a realtor?</h3>
-<p>Selling "For Sale By Owner" (FSBO) can save you the listing agent's commission (typically 2.5–3%), but NAR data shows that FSBO homes sell for a median of 23% less than agent-assisted homes. Unless you have real estate experience, the net savings often don't materialize, and you'll take on significant legal and financial risk. For first-time sellers especially, working with a qualified agent is strongly recommended.</p>
+<p>Selling "For Sale By Owner" (FSBO) can save you the listing agent's commission (typically 2.5–3%), but FSBO homes often sell for less than agent-assisted homes, according to National Association of Realtors seller surveys. Unless you have real estate experience, the net savings often don't materialize, and you'll take on significant legal and financial risk. For first-time sellers especially, working with a qualified agent is strongly recommended.</p>
 
 <h3>What's the best month to sell a house?</h3>
 <p>Historically, homes listed in <strong>late April through June</strong> tend to sell faster and for higher prices. Spring brings more buyers into the market, days are longer for showings, and families want to move during summer break. That said, selling in fall or winter means less competition from other listings, so the "best" time depends on your local market and personal circumstances.</p>

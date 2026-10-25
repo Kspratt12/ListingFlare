@@ -26,7 +26,7 @@ export const article: BlogPost = {
   coverImageAlt:
     "Professional video editing setup with monitor and camera equipment representing AI-powered video editing for real estate marketing",
   content: `
-<p>Video is the single most powerful content format in real estate marketing right now. According to the National Association of Realtors, 73% of homeowners say they are more likely to list with an agent who uses video. Listings with video get 403% more inquiries than those without, and AI editing tools like Descript are making it easier than ever to create them. Buyers overwhelmingly prefer video tours over static photos when browsing homes online.</p>
+<p>Video is a strong content format in real estate marketing right now. AI editing tools like Descript are making it easier for busy agents to produce.</p>
 
 <p>And yet, the vast majority of real estate agents do not create video content consistently. Why? Because traditional video editing is genuinely painful. Learning Premiere Pro or Final Cut Pro takes months. Even "beginner-friendly" editors like iMovie require you to scrub through timelines, split clips, adjust audio, add transitions, and export in the right format. A 2-minute listing walkthrough can easily take 45 minutes to an hour to edit, and that is if you already know what you are doing.</p>
 
@@ -175,7 +175,7 @@ export const article: BlogPost = {
 
 <h3>Auto-Captions for Social Media Accessibility</h3>
 
-<p>Captions are no longer optional for social media video. Studies show that videos with captions receive 40% more views and significantly higher completion rates. The reason is simple - most people scroll social media in public, at work, or in bed next to a sleeping partner. They are watching without sound. If your video does not have captions, they scroll right past it.</p>
+<p>Captions are no longer optional for social media video. Captions are widely recommended for social video because they help viewers who watch without sound. The reason is simple - most people scroll social media in public, at work, or in bed next to a sleeping partner. They are watching without sound. If your video does not have captions, they scroll right past it.</p>
 
 <p>Descript generates accurate captions automatically from your transcript. You can customize the font, size, color, position, and style. The word-by-word highlight animation (where each word lights up as it is spoken) is especially effective for short-form content on Instagram Reels and TikTok.</p>
 

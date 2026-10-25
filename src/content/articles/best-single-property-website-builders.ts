@@ -58,7 +58,7 @@ export const article: BlogPost = {
 
 <h3>Design and Mobile Experience</h3>
 
-<p>Over 76% of home buyers use a mobile device during their search, according to NAR&rsquo;s 2025 Home Buyers and Sellers report. If your listing page does not look flawless on a phone screen, you are losing the majority of your audience before they even see the kitchen photos. Open each builder's live examples on your own phone and check load times, photo gallery behavior, and lead form usability on small screens.</p>
+<p>Most home buyers use a mobile device at some point during their search. If your listing page does not look flawless on a phone screen, you are losing the majority of your audience before they even see the kitchen photos. Open each builder's live examples on your own phone and check load times, photo gallery behavior, and lead form usability on small screens.</p>
 
 <h3>Pricing Model and Value at Scale</h3>
 
@@ -94,7 +94,7 @@ export const article: BlogPost = {
 
 <h3>What I Like</h3>
 
-<p>The AI chatbot is a genuine differentiator that no other builder on this list offers. I tested it by asking questions about the listing at 10:30 PM. It answered accurately within seconds, then asked if I wanted to schedule a showing. That is exactly the kind of engagement that turns a casual browser into a lead. The setup was fast too. I went from zero to a published listing page in under 4 minutes.</p>
+<p>The AI chatbot is a genuine differentiator that no other builder on this list offers. The chatbot answers questions about the listing at any hour and can offer to schedule a showing. That is exactly the kind of engagement that turns a casual browser into a lead. The setup was fast too. Setup is designed to be quick.</p>
 
 <h3>What Could Be Better</h3>
 

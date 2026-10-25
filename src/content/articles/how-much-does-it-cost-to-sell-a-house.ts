@@ -7,6 +7,7 @@ export const article: BlogPost = {
   description:
     "Find out exactly how much it costs to sell a house in 2026. From agent commissions to closing costs, here's every fee sellers need to budget for.",
   date: "2026-02-18",
+  updated: "2026-10-25",
   author: "ListingFlare Team",
   category: "Home Selling",
   keywords: [
@@ -208,7 +209,7 @@ export const article: BlogPost = {
 <p>Yes. Sellers are responsible for their own set of closing costs, which typically total 1 to 3 percent of the sale price. Common seller closing costs include title insurance, transfer taxes, attorney fees, recording fees, and escrow fees. These are separate from the buyer's closing costs, which the buyer pays.</p>
 
 <h3>Can I sell my house without paying a commission?</h3>
-<p>You can sell your house without an agent (known as "for sale by owner" or FSBO), which eliminates the listing agent's commission. However, FSBO homes tend to sell for less than agent-assisted homes. According to the National Association of Realtors, FSBO homes sold for a median of \$310,000 compared to \$405,000 for agent-assisted sales in recent years. You may still need to offer a buyer's agent commission to attract buyers working with agents.</p>
+<p>You can sell your house without an agent (known as "for sale by owner" or FSBO), which eliminates the listing agent's commission. However, FSBO homes tend to sell for less than agent-assisted homes. You may still need to offer a buyer's agent commission to attract buyers working with agents.</p>
 
 <h3>Are there tax implications when I sell my house?</h3>
 <p>If you've lived in your home as your primary residence for at least two of the past five years, you can exclude up to \$250,000 of profit (single) or \$500,000 (married filing jointly) from capital gains tax. Profit above those thresholds is taxed at the federal capital gains rate of 15 to 20 percent, plus any applicable state income tax. If you've owned the home for less than a year, the profit is taxed as ordinary income at your marginal tax rate.</p>

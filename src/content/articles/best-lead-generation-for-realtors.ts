@@ -7,6 +7,7 @@ export const article: BlogPost = {
   description:
     "The 12 best lead generation methods for realtors, compared by cost, speed to results and effort, so you can choose what fits your pipeline and budget.",
   date: "2026-03-21",
+  updated: "2026-10-25",
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [
@@ -70,7 +71,7 @@ export const article: BlogPost = {
 
 <p><strong>ROI:</strong> Exceptional | <strong>Speed:</strong> Medium | <strong>Lead Quality:</strong> Highest</p>
 
-<p>No lead generation method comes close to referrals. According to the National Association of Realtors, <strong>38 percent of buyers</strong> chose their agent based on a referral from someone they trust. Referral leads convert at 15 to 25 percent, which is five to ten times higher than any paid lead source. And the cost? Essentially zero beyond the time and small gifts you invest in maintaining relationships.</p>
+<p>No lead generation method comes close to referrals. National Association of Realtors surveys regularly find that referrals and past clients are among the most common ways buyers and sellers choose an agent. Referral leads tend to convert better than most paid lead sources. And the cost? Essentially zero beyond the time and small gifts you invest in maintaining relationships.</p>
 
 <p>The problem is that most realtors treat referrals as passive. They close a deal, say "send me your friends," and hope for the best. That is not a system. That is wishful thinking.</p>
 
@@ -222,7 +223,7 @@ export const article: BlogPost = {
 
 <p><strong>ROI:</strong> Very High (long-term) | <strong>Speed:</strong> Medium (1–3 months) | <strong>Lead Quality:</strong> Very High</p>
 
-<p>YouTube is the second-largest search engine in the world, and real estate is one of the top-performing content categories on the platform. Realtors who create video content generate <strong>403 percent more inquiries</strong> than those who do not, yet fewer than 10 percent of agents post videos consistently.</p>
+<p>Realtors who create video content stand out from the crowd, yet many agents post videos only rarely, which leaves room for you to differentiate.</p>
 
 <p>That gap is your opportunity. The videos that generate leads for realtors:</p>
 
@@ -280,7 +281,7 @@ export const article: BlogPost = {
 <li>Two or three testimonials from past sellers</li>
 </ul>
 
-<p>Follow up 48 hours later with a call: "Did you receive the marketing plan I sent over? I would love to walk you through it." This approach converts at <strong>3 to 5 times the rate</strong> of a cold call alone.</p>
+<p>Follow up 48 hours later with a call: "Did you receive the marketing plan I sent over? I would love to walk you through it." This approach tends to land better than a cold call alone.</p>
 
 <h3>FSBOs</h3>
 
@@ -364,7 +365,7 @@ export const article: BlogPost = {
 
 <p>The biggest issue with Zillow is that <strong>leads are shared</strong>. When a buyer clicks "Contact an Agent" on your listing, Zillow sends that lead to you and two or three other agents who are paying for that zip code. You are competing for your own listing's leads. That is why we recommend building your own lead capture with <a href="/blog/how-to-stop-losing-leads-to-zillow">single-property websites instead of relying on Zillow</a>.</p>
 
-<p>That said, paid platforms can work as <strong>one piece of a larger strategy</strong>. The realtors who succeed with Zillow leads follow up within 5 minutes (leads contacted in under 5 minutes are <strong>21 times more likely to convert</strong>), use automated text and email sequences, and treat platform leads as a supplement, not their entire business.</p>
+<p>That said, paid platforms can work as <strong>one piece of a larger strategy</strong>. The realtors who succeed with Zillow leads follow up within 5 minutes (fast replies tend to matter), use automated text and email sequences, and treat platform leads as a supplement, not their entire business.</p>
 
 <p>For a detailed comparison, read our full guide on the <a href="/blog/best-lead-generation-tools-for-real-estate-agents">best lead generation tools for real estate agents</a>.</p>
 
@@ -534,10 +535,10 @@ export const article: BlogPost = {
 <p>The data is unforgiving:</p>
 
 <ul>
-<li>78 percent of leads go with the first agent who responds</li>
-<li>Leads contacted within 5 minutes are 21 times more likely to convert</li>
-<li>Only 12 percent of agents follow up more than twice</li>
-<li>50 percent of sales happen after the 5th follow-up attempt</li>
+<li>Many leads go with the first agent who responds</li>
+<li>Fast replies make leads more likely to turn into conversations</li>
+<li>Many agents follow up only once or twice</li>
+<li>Most sales take several follow-up touches</li>
 </ul>
 
 <p>You can have the best lead generation strategy in the world, but if your follow-up is weak, you are pouring water into a bucket with holes in it. Invest in a CRM, set up automated email and text sequences, and commit to a follow-up cadence that runs for 90 days minimum. The fortune is literally in the follow-up.</p>

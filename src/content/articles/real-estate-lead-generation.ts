@@ -7,6 +7,7 @@ export const article: BlogPost = {
   description:
     "Real estate lead generation guide with 15 strategies for agents, from digital marketing and listing websites to referral systems and follow-up.",
   date: "2026-03-21",
+  updated: "2026-10-25",
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [
@@ -191,7 +192,7 @@ export const article: BlogPost = {
 
 <p>The concept is simple: a homeowner enters their address, and they receive an estimated value of their property. In exchange, you capture their name, email, phone number, and address, the four data points you need to begin a listing conversation.</p>
 
-<p>Why this works so well: homeowners are curious about their home's value even when they are not actively planning to sell. A study by Qualia found that <strong>68 percent of homeowners</strong> check their home value at least once per year. By capturing those early-stage prospects, you are building relationships months or even years before they list, putting you first in line when they are ready.</p>
+<p>Why this works well: homeowners are curious about their home's value even when they are not actively planning to sell. By capturing those early-stage prospects, you are building relationships months or even years before they list, putting you first in line when they are ready.</p>
 
 <p>Run Facebook ads targeting homeowners in specific zip codes with the message: "What's your home worth in today's market? Get a free instant valuation." These ads consistently generate leads at <strong>$3 to $12 per lead</strong>, some of the cheapest leads available in real estate marketing.</p>
 
@@ -210,7 +211,7 @@ export const article: BlogPost = {
 
 <h2>10. Leverage Video Marketing to Stand Out From Every Other Agent</h2>
 
-<p>Video is no longer optional in real estate marketing. It is the most consumed content format on the internet, and agents who use video generate <strong>403 percent more inquiries</strong> than those who do not. Yet only 9 percent of agents create video content consistently, which means the opportunity to differentiate is massive.</p>
+<p>Video is increasingly important in real estate marketing. It is one of the most consumed content formats online, and agents who use it well can stand out. Yet many agents create video only occasionally, which means the opportunity to differentiate is real.</p>
 
 <p>Types of video that generate real estate leads:</p>
 
@@ -321,7 +322,7 @@ export const article: BlogPost = {
 </tbody>
 </table>
 
-<p>The biggest mistake agents make with paid leads is <strong>not following up fast enough</strong>. Studies show that leads contacted within 5 minutes are 21 times more likely to convert than leads contacted after 30 minutes. If you are buying leads and taking hours to respond, you are wasting your ad spend. Automate your initial response and have a system for immediate follow-up.</p>
+<p>The biggest mistake agents make with paid leads is <strong>not following up fast enough</strong>. Studies of online sales leads across industries generally suggest that quick replies help, though the exact figures vary. If you are buying leads and taking hours to respond, you are wasting your ad spend. Automate your initial response and have a system for immediate follow-up.</p>
 
 <p>For a deeper breakdown, read our full comparison of the <a href="/blog/best-lead-generation-tools-for-real-estate-agents">best lead generation tools for real estate agents</a>.</p>
 
