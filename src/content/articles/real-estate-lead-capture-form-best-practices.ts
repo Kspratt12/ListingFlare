@@ -91,6 +91,52 @@ export const article: BlogPost = {
 
 <p>Keep the open house sign-in even shorter: name and one contact detail, plus an optional &ldquo;do you have an agent?&rdquo; question. See <a href="/blog/open-house-sign-in-sheet-template">the sign-in sheet template</a> and <a href="/blog/best-open-house-apps">best open house apps</a>.</p>
 
+<!-- expanded --><h2>Field-by-Field Guide</h2>
+<table>
+<thead>
+<tr><th>Field</th><th>Keep?</th><th>Notes</th></tr>
+</thead>
+<tbody>
+<tr><td>Name</td><td>Yes</td><td>First name alone is often enough to start</td></tr>
+<tr><td>Phone</td><td>One of phone or email</td><td>Use a numeric keypad on mobile</td></tr>
+<tr><td>Email</td><td>One of phone or email</td><td>Needed if you will send documents</td></tr>
+<tr><td>Message</td><td>Optional</td><td>Pre-fill a friendly prompt like &ldquo;What would you like to know?&rdquo;</td></tr>
+<tr><td>Preferred time</td><td>Optional</td><td>Replace with a booking link if you can</td></tr>
+<tr><td>Budget, timeline, pre-approval</td><td>No, not at first</td><td>Ask in conversation once there is trust</td></tr>
+<tr><td>&ldquo;Do you have an agent?&rdquo;</td><td>Only for open houses</td><td>It matters for how you follow up</td></tr>
+</tbody>
+</table>
+
+<h2>The Right Form for Each Page</h2>
+<h3>Listing page</h3>
+<p>Short form plus a showing button plus chat. The buyer is already interested in this home.</p>
+<h3>Open house sign-in</h3>
+<p>Even shorter. Name, one contact method and the optional agent question. People are standing in a doorway.</p>
+<h3>Flyer or sign QR landing</h3>
+<p>Lead with the photos and price so the visitor knows they are in the right place, then show one clear action.</p>
+<h3>Guide or checklist download</h3>
+<p>Name and email only, delivered instantly. Make the offer specific. See <a href="/blog/real-estate-lead-magnet-ideas">lead magnet ideas</a>.</p>
+
+<h2>Make It Fast and Accessible</h2>
+<ul>
+<li>Every field needs a visible label, not just placeholder text that disappears.</li>
+<li>Buttons should be large enough to tap with a thumb.</li>
+<li>Show clear error messages next to the field that needs fixing.</li>
+<li>Keep the page quick on mobile data. Compress photos, because a slow page loses people before they see the form.</li>
+</ul>
+
+<h2>Keep Spam Out Without Annoying Buyers</h2>
+<p>Forms attract bots. Use a hidden honeypot field or a lightweight invisible check before you reach for puzzles that make real buyers give up. Rate limiting and basic validation (a valid email or phone format) catch most of the junk.</p>
+
+<h2>A Four-Week Testing Plan</h2>
+<ol>
+<li><strong>Week 1:</strong> record your current rate: leads divided by visits.</li>
+<li><strong>Week 2:</strong> change only the button label.</li>
+<li><strong>Week 3:</strong> cut one field, or make one optional.</li>
+<li><strong>Week 4:</strong> move the call to action higher on the page or add a sticky mobile button.</li>
+</ol>
+<p>Compare each week with the one before. On a single listing the numbers will be small, so look for big differences and repeat the test on your next listing before drawing firm conclusions.</p>
+
 <h2>Where ListingFlare Helps</h2>
 
 <p>ListingFlare listing pages include a contact form, a showing request option, an AI chat assistant and a scheduler, and every inquiry becomes a lead with an instant reply and follow-up sequence. You can see which actions visitors take on each listing in the analytics. <a href="/real-estate-lead-capture-software">Read how lead capture works</a> or <a href="/demo">see it on a live example</a>.</p>
@@ -109,6 +155,12 @@ export const article: BlogPost = {
 
 <h3>Is a chat box better than a form?</h3>
 <p>Both help. Chat captures people who want a quick answer first, and a form captures people ready to book.</p>
+<h3>Should I use a CAPTCHA on a listing form?</h3>
+<p>Try quieter protections first, such as a hidden honeypot field and basic validation. Puzzles add friction for real buyers.</p>
+
+<h3>Is it okay to require a phone number?</h3>
+<p>It lowers completion. Offer phone or email, and let the buyer pick whichever they prefer.</p>
+
 </div>
 `,
 };

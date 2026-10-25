@@ -90,6 +90,38 @@ export const article: BlogPost = {
 <li>Check your <a href="/blog/real-estate-lead-conversion-rate">conversion rate</a> by source monthly.</li>
 </ul>
 
+<!-- expanded --><h2>Your First Week With a New CRM</h2>
+<ol>
+<li><strong>Day 1:</strong> import your contacts and tag the source of each. Clean obvious duplicates.</li>
+<li><strong>Day 2:</strong> set pipeline stages that match how you actually work, such as New, Contacted, Showing, Offer and Closed. Keep it to five or six.</li>
+<li><strong>Day 3:</strong> save your three core messages: first reply, showing confirmation and check-in.</li>
+<li><strong>Day 4:</strong> connect your calendar and phone, and test that new leads notify you.</li>
+<li><strong>Day 5:</strong> build one simple follow-up plan, such as days 1, 3 and 7.</li>
+<li><strong>Day 7:</strong> review the &ldquo;needs follow-up today&rdquo; view and make it your morning routine.</li>
+</ol>
+
+<h2>Moving From a Spreadsheet</h2>
+<p>If you track leads in a spreadsheet today, export it as a CSV with one row per lead, including name, phone, email, source and notes. Most CRMs can import it. Spend the time to standardize the source column, because that is the field you will care about most later.</p>
+
+<h2>What a Good Day Looks Like in a CRM</h2>
+<ul>
+<li>Open the app and see today&rsquo;s follow-ups at the top.</li>
+<li>Reply to new leads first, then work down the list.</li>
+<li>Log each conversation in one line: what was said and the next step.</li>
+<li>Close the app knowing nothing is overdue.</li>
+</ul>
+
+<h2>Red Flags When Buying</h2>
+<ul>
+<li>A contract that locks you in for a year before you have used it.</li>
+<li>No way to export your data.</li>
+<li>Pricing that jumps as soon as you add a second user or more contacts.</li>
+<li>A sales process that will not let you try it on real leads first.</li>
+</ul>
+
+<h2>When It Is Time to Upgrade</h2>
+<p>Consider a heavier CRM when you add a team member who needs their own leads, when you cannot see your pipeline at a glance, or when follow-ups start slipping because your tool cannot keep up. Until then, a simple system you use daily beats a powerful one you avoid.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 
@@ -104,6 +136,12 @@ export const article: BlogPost = {
 
 <h3>Can I use a general CRM instead of a real estate CRM?</h3>
 <p>Yes, but you will build your own pipeline stages and templates. A real estate CRM saves setup time.</p>
+<h3>How many pipeline stages should I have?</h3>
+<p>Five or six is enough for most solo agents. More stages mean more upkeep and less use.</p>
+
+<h3>Can I switch CRMs later?</h3>
+<p>Yes, if your data is exportable. That is why you should check export options before you buy.</p>
+
 </div>
 `,
 };

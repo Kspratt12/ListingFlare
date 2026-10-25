@@ -104,6 +104,52 @@ export const article: BlogPost = {
 <li>Do not promise outcomes based on a few days of data.</li>
 </ul>
 
+<!-- expanded --><h2>A Worked Example (Illustrative Numbers)</h2>
+<p>These numbers are made up to show how to read the pattern. Use your own.</p>
+<table>
+<thead>
+<tr><th>Measure</th><th>Week 1</th><th>Week 2</th><th>Week 3</th></tr>
+</thead>
+<tbody>
+<tr><td>Page visits</td><td>240</td><td>180</td><td>120</td></tr>
+<tr><td>Chat questions</td><td>9</td><td>6</td><td>3</td></tr>
+<tr><td>Showing requests</td><td>5</td><td>2</td><td>1</td></tr>
+<tr><td>Showings held</td><td>4</td><td>2</td><td>1</td></tr>
+<tr><td>Offers</td><td>0</td><td>0</td><td>0</td></tr>
+</tbody>
+</table>
+<p><strong>How to read it:</strong> visits fall each week, which is normal as a listing ages, but the ratio of showing requests to visits (about 2% in week 1, around 1% by week 3) is falling too. People who do see it are not acting. With no offers after four showings, the likely lessons are price or condition. The right move is to collect the feedback from those four showings and bring it to the seller with the numbers.</p>
+
+<h2>Where to Get the Data</h2>
+<ul>
+<li><strong>Your listing platform&rsquo;s analytics</strong> for visits, chat questions, showing requests and returning viewers.</li>
+<li><strong>A general analytics tool</strong> if you build your own page, so you can see traffic sources.</li>
+<li><strong>Your calendar and showing tool</strong> for showings held.</li>
+<li><strong>Your own notes</strong> for feedback. Nothing replaces writing down what buyers actually said.</li>
+</ul>
+
+<h2>Tag Every Link You Share</h2>
+<p>If every link to the listing looks the same, you cannot tell what worked. Add a short source tag to each one: one for the yard sign QR code, one for the flyer, one for each social post, one for email. After two weeks you can answer a seller who asks, &ldquo;Is the sign doing anything?&rdquo; with a number instead of a guess.</p>
+
+<h2>Privacy: Share Counts, Not Identities</h2>
+<ul>
+<li>Show sellers totals and trends, not the names of individual buyers.</li>
+<li>Keep buyer contact details inside your own system.</li>
+<li>If you use analytics cookies on your own site, follow your local disclosure rules.</li>
+</ul>
+
+<h2>Common Mistakes</h2>
+<ul>
+<li><strong>Celebrating views.</strong> A thousand views and no showings means something is wrong.</li>
+<li><strong>Judging after three days.</strong> Give a listing a full week or two before drawing conclusions, unless something is clearly broken.</li>
+<li><strong>Changing five things at once.</strong> Change one thing, then wait, so you know what worked.</li>
+<li><strong>Hiding bad news.</strong> A seller who sees the numbers early accepts a price conversation more easily than one who is surprised at week six.</li>
+</ul>
+
+<h2>A Weekly Seller Message in Four Lines</h2>
+<blockquote>This week: [x] visits, [y] questions and [z] showing requests. Showings held: [n]. Feedback themes: [one or two]. My recommendation: [one clear action].</blockquote>
+<p>Short, specific and honest beats long and glossy. The <a href="/blog/seller-update-report-template">free seller update report</a> gives you a fuller version.</p>
+
 <h2>Where ListingFlare Helps</h2>
 
 <p>ListingFlare listing pages include analytics for visits and actions, hot visitor alerts when a buyer comes back repeatedly, and a seller portal so you can share progress without writing a report. <a href="/demo">See it live</a> or read <a href="/blog/best-real-estate-software-for-listing-agents">best real estate software for listing agents</a>.</p>
@@ -122,6 +168,12 @@ export const article: BlogPost = {
 
 <h3>What does a lot of views but no showings mean?</h3>
 <p>It often points to price or presentation. Review the photos, details, call to action and price against comparable homes.</p>
+<h3>How long should I wait before changing my approach?</h3>
+<p>Give a new listing a full week or two of data unless something is clearly broken, such as a bad lead photo or a missing call to action.</p>
+
+<h3>What is a good number of showings per week?</h3>
+<p>It varies widely by price, area and season. Compare against your own recent listings in the same market.</p>
+
 </div>
 `,
 };

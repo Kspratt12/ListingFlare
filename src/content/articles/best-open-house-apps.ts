@@ -89,6 +89,55 @@ ${downloadBox("open-house-checklist-template")}
 <li>Run the day from a <a href="/blog/open-house-checklist">checklist</a> so you do not forget the follow-up.</li>
 </ul>
 
+<!-- expanded --><h2>A Feature Checklist for Comparing Apps</h2>
+<table>
+<thead>
+<tr><th>Feature</th><th>Why it matters</th></tr>
+</thead>
+<tbody>
+<tr><td>QR sign-in on the visitor&rsquo;s phone</td><td>Faster, cleaner data, fewer fake numbers</td></tr>
+<tr><td>Tablet sign-in with offline mode</td><td>Works in homes with poor reception</td></tr>
+<tr><td>Consent line on the form</td><td>Sets expectations and supports compliance</td></tr>
+<tr><td>Instant thank-you message</td><td>Follow-up while the visit is fresh</td></tr>
+<tr><td>CRM sync or export</td><td>Leads should not be stuck in the app</td></tr>
+<tr><td>&ldquo;Has an agent?&rdquo; field</td><td>Tells you how to approach each visitor</td></tr>
+<tr><td>Visitor count and report</td><td>Lets you show the seller what happened</td></tr>
+</tbody>
+</table>
+
+<h2>The Day-Of Workflow</h2>
+<ol>
+<li><strong>The evening before:</strong> test the sign-in on your phone and a tablet, charge both and print a paper backup.</li>
+<li><strong>Arrive early:</strong> place a QR sign at the door and one on the kitchen counter, where visitors naturally pause.</li>
+<li><strong>Greet everyone, but do not gate entry on the sign-in.</strong> Invite it, never demand it.</li>
+<li><strong>Note a detail for each visitor</strong> (a question they asked, a feature they liked). It makes your follow-up personal.</li>
+<li><strong>End on time and review the list</strong> before you leave. Fix obvious typos while you still remember the faces.</li>
+</ol>
+
+<h2>The 24-Hour Follow-Up Timeline</h2>
+<table>
+<thead>
+<tr><th>When</th><th>What</th></tr>
+</thead>
+<tbody>
+<tr><td>Within 2 hours</td><td>Thank-you text or email with the listing link</td></tr>
+<tr><td>Same evening</td><td>Personal note to anyone who asked a question</td></tr>
+<tr><td>Next morning</td><td>Send answers to open questions and offer a second showing</td></tr>
+<tr><td>Day 3 and day 7</td><td>Short check-ins (see <a href="/blog/open-house-follow-up">open house follow-up templates</a>)</td></tr>
+</tbody>
+</table>
+
+<h2>Keeping the Data Clean</h2>
+<ul>
+<li>Make the form short: name, one contact method and an optional agent question.</li>
+<li>Check for duplicates, because couples often both sign in.</li>
+<li>Mark visitors who already have an agent and follow your brokerage&rsquo;s rules before contacting them.</li>
+<li>Delete or stop contacting anyone who asks you to.</li>
+</ul>
+
+<h2>How to Judge Whether an Open House Was Worth It</h2>
+<p>Count visitors, sign-ins, follow-up replies, second showings and any offers that trace back. Over a handful of open houses you will learn how many sign-ins it takes to produce a second showing in your market, which is more useful than any national figure. A good open house also serves the seller: send them the visitor count and the feedback the same day.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 
@@ -106,6 +155,12 @@ ${downloadBox("open-house-checklist-template")}
 
 <h3>How soon should I follow up after an open house?</h3>
 <p>The same day or the next morning is a good default. See our open house follow-up templates for wording.</p>
+<h3>Should I use a tablet or a QR code?</h3>
+<p>Use both if you can. A QR code is quick for most visitors and a tablet or paper sheet helps people who do not want to scan.</p>
+
+<h3>Can I contact open house visitors who already have an agent?</h3>
+<p>Be careful. Follow your brokerage&rsquo;s policy and local rules on contacting people who are represented, and keep any message to a simple thank-you.</p>
+
 </div>
 `,
 };

@@ -90,6 +90,29 @@ export const article: BlogPost = {
 <li>Fix the gaps you find, then recheck weekly.</li>
 </ol>
 
+<!-- expanded --><h2>A Testing Script You Can Run in 15 Minutes</h2>
+<p>Before you trust any chatbot with your listing, ask it these questions and judge the answers:</p>
+<ol>
+<li>A basic fact you entered, such as the number of bedrooms. It should be right.</li>
+<li>A fact you did <em>not</em> enter, such as the HOA fee. It should say it needs to check, not guess.</li>
+<li>&ldquo;Is this a good neighborhood for families?&rdquo; It should avoid describing people and point to objective facts or official sources.</li>
+<li>&ldquo;Can I see it tomorrow?&rdquo; It should share a booking link or collect contact details.</li>
+<li>&ldquo;Should I offer over asking?&rdquo; It should not give financial advice and should offer to connect you.</li>
+<li>A rude or off-topic message. It should stay calm and brief.</li>
+</ol>
+<p>If it fails the second, third or fifth test, it is not safe to leave unattended on a live listing.</p>
+
+<h2>What Good Follow-Through Looks Like</h2>
+<ul>
+<li>The lead appears in your dashboard with the full conversation.</li>
+<li>You get a notification you will actually see.</li>
+<li>A first reply goes to the buyer quickly, in your voice, with your review if you want it.</li>
+<li>A follow-up schedule starts without you having to remember it.</li>
+</ul>
+
+<h2>Total Cost, Not Sticker Price</h2>
+<p>Add up the subscription, any per-conversation or per-lead fees, the time you spend building and maintaining flows, and the cost of any other tool you need alongside it. A cheap widget that takes ten hours to set up and keep current may cost more than a pricier tool that works out of the box.</p>
+
 <h2>Where ListingFlare Fits and Where It Does Not</h2>
 
 <p>ListingFlare gives every listing page an AI assistant that answers from the details you entered, captures name, email and phone, and shares your scheduling link. New leads get an AI-drafted reply you can review first. It is included in the $150-a-month plan with a 14-day free trial, no credit card required. It is not a site-wide agent-brand chatbot, and it will only be as accurate as the listing information you provide. <a href="/demo">Try the live demo</a> to judge it yourself.</p>
@@ -111,6 +134,12 @@ export const article: BlogPost = {
 
 <h3>Is it legal to use a chatbot on a listing?</h3>
 <p>Generally yes, but follow your brokerage&rsquo;s policies, make it clear it is an assistant, and make sure it follows fair housing rules and privacy requirements.</p>
+<h3>Can a chatbot book showings?</h3>
+<p>Many can share a booking link or collect a preferred time. Whether it confirms a slot automatically depends on the tool and its calendar connection.</p>
+
+<h3>Do I need a chatbot if I already have a contact form?</h3>
+<p>A form catches people who are ready to act. Chat catches people with a quick question who would not fill out a form. Many agents use both.</p>
+
 </div>
 `,
 };

@@ -108,6 +108,45 @@ ${downloadBox("lead-follow-up-tracker")}
 
 <p>The easiest way to keep these numbers is to use a tool that logs every lead with its source and status. ListingFlare records where each lead came from (listing page, open house sign-in and so on), tags them hot, warm or cold, and shows the pipeline in one dashboard, so you can see the conversion path without a spreadsheet. <a href="/real-estate-lead-capture-software">Learn about lead capture</a> or <a href="/signup">start the free trial</a>.</p>
 
+<!-- expanded --><h2>A Worked Example by Source (Illustrative Numbers)</h2>
+<p>The figures below are invented to show the method. Use your own records.</p>
+<table>
+<thead>
+<tr><th>Source</th><th>Leads</th><th>Appointments</th><th>Closed</th><th>Spend</th><th>Cost per closed deal</th></tr>
+</thead>
+<tbody>
+<tr><td>Portal leads</td><td>60</td><td>6</td><td>1</td><td>$1,800</td><td>$1,800</td></tr>
+<tr><td>Listing page and QR</td><td>25</td><td>7</td><td>2</td><td>$150</td><td>$75</td></tr>
+<tr><td>Open houses</td><td>30</td><td>6</td><td>1</td><td>$100</td><td>$100</td></tr>
+<tr><td>Referrals</td><td>8</td><td>5</td><td>3</td><td>$0</td><td>$0</td></tr>
+</tbody>
+</table>
+<p>In this example the biggest source by volume is the most expensive per closed deal, while the smallest sources are the cheapest. The lesson is not that portals never work. It is that you cannot see this without tracking by source.</p>
+
+<h2>Setting Realistic Targets</h2>
+<ol>
+<li>Record three months of your current rates at each funnel stage.</li>
+<li>Pick the weakest stage.</li>
+<li>Set a modest improvement target for that stage, such as getting from reply to appointment a few points higher.</li>
+<li>Change one thing and measure again.</li>
+</ol>
+
+<h2>A Monthly Review Ritual (30 Minutes)</h2>
+<ol>
+<li>Update lead counts and outcomes by source.</li>
+<li>Calculate each stage rate and cost per closed deal.</li>
+<li>Read the notes on five lost leads.</li>
+<li>Choose one change for next month.</li>
+<li>Write it down so you can check it later.</li>
+</ol>
+
+<h2>Attribution Pitfalls</h2>
+<ul>
+<li><strong>Multiple touches.</strong> A buyer may see a sign, visit your page and then call after an open house. Pick a rule (first source or last source) and stick to it.</li>
+<li><strong>Missing source.</strong> If you do not record where the lead came from at the moment you get it, you will not remember later.</li>
+<li><strong>Long sales cycles.</strong> Compare the same cohort over the same window, not this month&rsquo;s leads with last month&rsquo;s closings.</li>
+</ul>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 
@@ -122,6 +161,12 @@ ${downloadBox("lead-follow-up-tracker")}
 
 <h3>How long does it take for a real estate lead to convert?</h3>
 <p>It can take weeks or months, which is why a consistent follow-up system matters more than a single push.</p>
+<h3>Which stage matters most?</h3>
+<p>The one where you lose the most people. For many agents that is the first reply, which is why speed and consistency matter.</p>
+
+<h3>How many leads do I need before the numbers mean anything?</h3>
+<p>Small samples are noisy. Look for large differences and review again after another quarter before making big decisions.</p>
+
 </div>
 `,
 };

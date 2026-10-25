@@ -112,6 +112,47 @@ ${downloadBox("lead-follow-up-tracker")}
 
 <p>Track them alongside your <a href="/blog/real-estate-lead-conversion-rate">conversion rate</a>.</p>
 
+<!-- expanded --><h2>Sample Messages for Days 14, 21 and 30</h2>
+<h3>Day 14: a light check-in</h3>
+<blockquote>Hi [name], [your name] here. Just checking in on your home search. If [address] is not the one, tell me what you liked and did not like and I will send a few better matches. No pressure either way.</blockquote>
+<h3>Day 21: something useful</h3>
+<blockquote>Hi [name], a lot of buyers ask me what to prepare before making an offer, so I put together a short checklist: [link]. Happy to walk through it if it helps.</blockquote>
+<h3>Day 30: a clear next step</h3>
+<blockquote>Hi [name], it has been about a month. Are you still looking? If so, I can set up a short call to map out next steps. If you would rather pause, just say the word and I will stop the messages.</blockquote>
+
+<h2>After Day 30: Long-Term Touches</h2>
+<p>Many leads need months. Move them to a low-frequency rhythm:</p>
+<ul>
+<li>A monthly local market note built from your MLS data.</li>
+<li>An occasional new listing that matches what they asked for.</li>
+<li>A seasonal check-in tied to something real, such as the end of a lease or the school year.</li>
+</ul>
+<p>Keep a clear way to opt out in every message and honor it quickly.</p>
+
+<h2>What to Do When a Lead Replies</h2>
+<ol>
+<li>Stop the automated sequence for that person so they do not get a generic message after a real reply.</li>
+<li>Answer the question they asked, personally.</li>
+<li>Offer one next step.</li>
+<li>Update their status in your tracker.</li>
+</ol>
+
+<h2>Exit Rules: When to Stop</h2>
+<ul>
+<li>They ask you to stop. Stop immediately on every channel.</li>
+<li>They tell you they have bought or hired another agent. Thank them and close the lead.</li>
+<li>Repeated bounces or a disconnected number. Remove it so you are not wasting effort or risking your sender reputation.</li>
+<li>Several touches, no engagement over a few months. Move them to a quiet list with an occasional message, or stop.</li>
+</ul>
+
+<h2>Common Nurture Mistakes</h2>
+<ul>
+<li>Sending the same message to everyone.</li>
+<li>Only talking about yourself.</li>
+<li>Letting automation continue after a person has replied.</li>
+<li>Skipping the consent and opt-out basics.</li>
+</ul>
+
 <h2>How ListingFlare Runs This for You</h2>
 
 <p>ListingFlare creates a lead the moment someone asks the AI assistant a question, fills in a form or signs in at an open house, then drafts an instant reply and schedules AI follow-ups on days 1, 3 and 7. You can turn on approval mode to review messages before they send, text any lead in one tap from your own phone, and see hot, warm and cold scores in the pipeline. <a href="/real-estate-lead-capture-software">See how lead capture works</a> or <a href="/signup">start free</a>.</p>
@@ -130,6 +171,12 @@ ${downloadBox("lead-follow-up-tracker")}
 
 <h3>Can I fully automate nurturing?</h3>
 <p>You can automate timing and routine messages, but personal replies matter for warm and hot leads. Review automated content for accuracy.</p>
+<h3>How long should a nurture campaign run?</h3>
+<p>A focused first 30 days, then a lighter monthly rhythm for leads who have not decided. Stop whenever someone asks.</p>
+
+<h3>Should I use the same sequence for buyers and sellers?</h3>
+<p>No. Buyers care about listings and process. Sellers care about value and timing. Write separate sequences.</p>
+
 </div>
 `,
 };

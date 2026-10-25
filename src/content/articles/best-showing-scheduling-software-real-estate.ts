@@ -83,6 +83,41 @@ export const article: BlogPost = {
 
 <p>Seller reports go better with real feedback. Ask two or three short questions after each showing: overall impression, price opinion and what they would change. Then share a summary with the seller weekly. Use our <a href="/blog/seller-update-report-template">seller update report template</a> and, if buyers say the price is the issue, see <a href="/blog/seller-price-reduction-scripts">how to talk to a seller about a price reduction</a>.</p>
 
+<!-- expanded --><h2>What to Ask Before You Commit to a Tool</h2>
+<ol>
+<li><strong>Who can book?</strong> Only agents with MLS credentials, or any buyer who lands on your page? Direct buyers and agents need different flows.</li>
+<li><strong>Who approves?</strong> If the seller or a tenant must confirm, check that the tool supports approval, or that you have a fast manual process.</li>
+<li><strong>What does the buyer see?</strong> Your branding or the vendor&rsquo;s? Fewer steps means more completed bookings.</li>
+<li><strong>What happens after the booking?</strong> Confirmation, reminder, directions, feedback request. If any of these are manual, you will skip them when you are busy.</li>
+<li><strong>Where does the data live?</strong> You want the buyer&rsquo;s name and number in your lead list, not trapped in a scheduling tool.</li>
+<li><strong>What does it cost per listing or per seat?</strong> Some platforms price per user, some per listing, some per showing.</li>
+</ol>
+
+<h2>A Showing Workflow That Works for a Solo Listing Agent</h2>
+<ol>
+<li><strong>Publish the listing page with a booking link.</strong> Put the link in the listing description, on the page, in your email signature and in any reply to a buyer.</li>
+<li><strong>Set your availability windows.</strong> Block times you can realistically attend, plus buffers for travel. Showings that you cannot attend lead to cancellations and bad reviews.</li>
+<li><strong>Agree the approval rule with the seller.</strong> For example: &ldquo;Any request within the windows is confirmed automatically. Requests outside them need my approval.&rdquo; Put it in writing.</li>
+<li><strong>Confirm instantly.</strong> The buyer should get an immediate confirmation with the address, time and your phone number.</li>
+<li><strong>Remind them the day before and the morning of.</strong> This is the single best fix for no-shows.</li>
+<li><strong>Ask for feedback the same evening.</strong> Two or three short questions, sent while the visit is fresh.</li>
+<li><strong>Summarize weekly for the seller.</strong> Count showings, quote the themes in feedback and make a recommendation. See the <a href="/blog/seller-update-report-template">seller update report template</a>.</li>
+</ol>
+
+<h2>Access, Lockboxes and Safety</h2>
+<p>How a buyer gets into the home is a separate decision from how they book. Follow your MLS rules and your brokerage&rsquo;s policy on lockboxes, supervised access and meeting new buyers. Some practical habits many agents use: confirm the buyer&rsquo;s name and phone number before the visit, tell someone where you will be, and meet at the property rather than a different location. Safety guidance varies by brokerage and area, so treat this as a prompt to check your own policy, not a replacement for it.</p>
+
+<h2>Handling the Awkward Cases</h2>
+<ul>
+<li><strong>Two requests for the same slot.</strong> Offer the second buyer the nearest open time and say why. Do not double-book.</li>
+<li><strong>Buyer is late or no-shows.</strong> Wait a reasonable time, text once, then leave. Note it in their lead record.</li>
+<li><strong>Seller wants more notice.</strong> Add a minimum lead time to your availability rules, for example no same-day requests after a certain hour.</li>
+<li><strong>Occupied home.</strong> Offer fewer, longer windows so the seller is disrupted less often.</li>
+</ul>
+
+<h2>What to Measure</h2>
+<p>Track requests, confirmed showings, no-shows and feedback responses each week. If requests are high but confirmed showings are low, your windows are too narrow or your reply is slow. If no-shows are high, your reminders are not working. See <a href="/blog/listing-page-analytics-what-to-track">listing page analytics</a> for the full set of numbers worth watching.</p>
+
 <h2>Where ListingFlare Fits</h2>
 
 <p>ListingFlare includes a built-in showing scheduler synced to your Google Calendar, plus 24-hour showing reminders, automatic feedback requests and a seller portal where your clients can watch the listing activity. Buyers can book from the page, from the AI assistant&rsquo;s reply or from a follow-up message. It is not a replacement for your MLS&rsquo;s agent-to-agent tool, so most agents use both. <a href="/demo">See the demo</a> or <a href="/pricing">view pricing</a>. For a broader tool comparison, see <a href="/blog/best-real-estate-software-for-listing-agents">best real estate software for listing agents</a>.</p>
@@ -101,6 +136,12 @@ export const article: BlogPost = {
 
 <h3>How do I collect showing feedback?</h3>
 <p>Send a short two- or three-question message after each showing and summarize it for the seller weekly.</p>
+<h3>Do I need a separate showing app if my MLS has one?</h3>
+<p>Not always. Use the MLS tool for agent-to-agent requests and add a calendar link or built-in scheduler on your own page so direct buyers can book and become leads in your database.</p>
+
+<h3>How far ahead should I let buyers book?</h3>
+<p>Many agents allow bookings from a few hours out to a couple of weeks ahead. Pick a minimum notice that respects the seller and your own schedule.</p>
+
 </div>
 `,
 };

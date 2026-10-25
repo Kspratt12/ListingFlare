@@ -84,6 +84,36 @@ export const article: BlogPost = {
 
 <p><strong>Several small tools</strong> let you pick the best at each job, but data ends up scattered and a lead can fall between them. <strong>One platform</strong> keeps everything in one place and costs less to learn, but you may give up depth in one area. For a solo listing agent, fewer moving parts usually wins, because the failure mode is a lost lead, not a missing feature.</p>
 
+<!-- expanded --><h2>A 30-Day Implementation Plan</h2>
+<table>
+<thead>
+<tr><th>Week</th><th>Goal</th><th>Actions</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>Foundation</td><td>Choose your listing page tool, set up your calendar link and write your three core reply templates</td></tr>
+<tr><td>2</td><td>Capture</td><td>Publish a real listing, put the QR code on the sign and flyers, turn on lead notifications</td></tr>
+<tr><td>3</td><td>Follow-up</td><td>Set up the day 1, 3 and 7 sequence and review the first conversations</td></tr>
+<tr><td>4</td><td>Review</td><td>Check leads by source, response time and showings, then decide what to keep, cut or upgrade</td></tr>
+</tbody>
+</table>
+
+<h2>Common Stack Mistakes</h2>
+<ul>
+<li><strong>Buying everything at once.</strong> Start with the page, lead capture and follow-up. Add more only when you feel a specific gap.</li>
+<li><strong>No owner for the data.</strong> If leads sit in five places, none will be followed up. Pick one home for leads.</li>
+<li><strong>Ignoring mobile.</strong> You will use these tools from your phone more than your desk.</li>
+<li><strong>Not reading the transcripts.</strong> AI and automation need a weekly look to stay accurate.</li>
+</ul>
+
+<h2>Questions to Ask on a Trial</h2>
+<ol>
+<li>How long did it take to publish my first listing?</li>
+<li>Did every test inquiry arrive and notify me?</li>
+<li>Were the automatic replies something I would be happy to send under my name?</li>
+<li>Could I see the whole lead history in one place?</li>
+<li>Would I miss it if I turned it off?</li>
+</ol>
+
 <h2>Where ListingFlare Fits</h2>
 
 <p>ListingFlare is built for the listing agent&rsquo;s stack in one dashboard: a branded page for every listing, an AI assistant that answers buyer questions from your listing details, lead capture, a scheduler synced to Google Calendar, AI follow-up on days 1, 3 and 7, open house QR sign-in, flyers and a seller portal. It is $150 a month with unlimited listing sites and a 14-day free trial, no credit card required. It is not an IDX website or a full team CRM, and it does not generate leads from a marketplace. See <a href="/pricing">pricing</a>, <a href="/demo">the live demo</a> or our honest <a href="/blog/listingflare-review">ListingFlare review</a>.</p>
@@ -112,6 +142,12 @@ export const article: BlogPost = {
 
 <h3>How much should listing agent software cost?</h3>
 <p>Budget tools can be a few dollars per listing per month, while premium platforms cost hundreds. Judge cost against the commission one extra closed listing earns you.</p>
+<h3>What should a new listing agent buy first?</h3>
+<p>A listing page you control with a lead form, a calendar link and a simple way to track follow-ups. Add chat and automation as your volume grows.</p>
+
+<h3>How do I know when to add more tools?</h3>
+<p>When you can name the specific gap, such as slow replies at night or no seller reporting, not when a vendor offers a bundle.</p>
+
 </div>
 `,
 };

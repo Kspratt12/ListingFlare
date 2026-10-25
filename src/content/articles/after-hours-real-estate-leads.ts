@@ -84,6 +84,48 @@ export const article: BlogPost = {
 <li>Check the first week of transcripts and fix the gaps.</li>
 </ol>
 
+<!-- expanded --><h2>A Sample 24-Hour Timeline</h2>
+<table>
+<thead>
+<tr><th>Time</th><th>What happens</th><th>Who handles it</th></tr>
+</thead>
+<tbody>
+<tr><td>9:40 PM</td><td>Buyer asks about the backyard and fence on the listing page</td><td>Assistant answers from listing details</td></tr>
+<tr><td>9:41 PM</td><td>Assistant asks if they would like to see the home and offers the booking link</td><td>Assistant</td></tr>
+<tr><td>9:43 PM</td><td>Buyer leaves their number to book Saturday</td><td>Lead is created, you are notified</td></tr>
+<tr><td>7:45 AM</td><td>You read the conversation and send a personal confirmation text</td><td>You</td></tr>
+<tr><td>Saturday</td><td>Showing, then feedback request that evening</td><td>You and the scheduler</td></tr>
+</tbody>
+</table>
+<p>The buyer never waited. You spent two minutes the next morning, not an hour at midnight.</p>
+
+<h2>Plan Your Weekends Differently</h2>
+<p>Weekend inquiries often include the most motivated buyers, since many people tour homes on days off. A few habits make weekends manageable:</p>
+<ul>
+<li>Keep a short Saturday and Sunday reply window, for example mid-morning and late afternoon, instead of being on call all day.</li>
+<li>Make sure showing slots for the weekend are open and visible on your booking page.</li>
+<li>Keep your after-hours acknowledgement honest about when to expect a real reply.</li>
+</ul>
+
+<h2>Text, Call or Email?</h2>
+<p>Match the channel the buyer used and agreed to. A text to someone who texted you is natural. A cold call at 10 PM is not. If the buyer asked for a call, schedule it for a sensible hour. See <a href="/blog/real-estate-text-message-rules-tcpa-can-spam">the rules on texts and email</a>.</p>
+
+<h2>How to Measure What You Are Capturing</h2>
+<ul>
+<li>Count inquiries that arrive outside your normal working hours each week.</li>
+<li>Note how many were answered by the assistant or auto-reply before you replied personally.</li>
+<li>Track how many of those turned into showings.</li>
+</ul>
+<p>After a month you will know whether after-hours coverage is paying off in your market, and which hours produce the most inquiries.</p>
+
+<h2>Mistakes to Avoid</h2>
+<ul>
+<li><strong>Silent leads.</strong> If a notification fails, you will never know. Test your alerts monthly.</li>
+<li><strong>Leaving gaps in the listing details.</strong> The assistant cannot answer what it was never told.</li>
+<li><strong>Forgetting the personal follow-up.</strong> Automation opens the door. You still have to walk in.</li>
+<li><strong>Over-promising.</strong> Never say a person is online if they are not.</li>
+</ul>
+
 <h2>How ListingFlare Does It</h2>
 
 <p>Every ListingFlare listing page has an AI assistant that answers buyer questions at any hour, captures their name and contact information and offers your scheduling link. New leads get an instant AI-drafted reply (with approval mode if you want to review first) and follow-up on days 1, 3 and 7, and you get a notification. You wake up to leads instead of silence. It works only from the details you enter and can still be wrong, so review the conversations. <a href="/demo">Try the demo</a> or <a href="/signup">start the free trial</a>.</p>
@@ -102,6 +144,12 @@ export const article: BlogPost = {
 
 <h3>Will an AI assistant replace my follow-up?</h3>
 <p>No. It covers the first answers and captures the lead. The personal conversation is still yours.</p>
+<h3>What time do most real estate inquiries come in?</h3>
+<p>It varies by market. Check your own inquiry timestamps over a few weeks to see when your leads arrive.</p>
+
+<h3>Do I need to reply to after-hours leads the same night?</h3>
+<p>Not necessarily. An instant acknowledgement plus a personal reply first thing the next morning is a reasonable standard for most markets.</p>
+
 </div>
 `,
 };

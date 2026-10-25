@@ -97,6 +97,50 @@ export const article: BlogPost = {
 
 <p>If you have solved visibility, presentation and friction and showings are still thin, the market is telling you something. Show the seller the data and discuss options. Having numbers makes it a conversation about facts, not opinions.</p>
 
+<!-- expanded --><h2>How to Check Your Price Against the Market</h2>
+<ol>
+<li>Pull recent sold homes similar in size, age, condition and location, over the last few months.</li>
+<li>Pull current active listings that compete with yours.</li>
+<li>Compare price per square foot as a sanity check, then adjust for real differences such as updates or lot size.</li>
+<li>Look at days on market for the homes that sold, and how far their final price was from the original list price.</li>
+<li>Write down where your listing sits and show the seller the three or four homes that matter most.</li>
+</ol>
+<p>A conversation based on a few specific comparable homes goes far better than one based on opinion. Our <a href="/blog/seller-price-reduction-scripts">price reduction scripts</a> help you frame it.</p>
+
+<h2>A Photo Checklist</h2>
+<ul>
+<li>The lead photo shows the best exterior or the most appealing room, in good light.</li>
+<li>Photos follow the order of a walkthrough: exterior, living areas, kitchen, bedrooms, bathrooms, outdoor space.</li>
+<li>No clutter, no personal photos, no cars in the driveway if avoidable.</li>
+<li>Each room is shown straight on and level, with lights on.</li>
+<li>Include a floor plan if you have one. Buyers use it to decide whether to visit.</li>
+</ul>
+
+<h2>Reach Other Agents Too</h2>
+<p>Many showings come from buyer agents. Make sure your listing is easy for them: complete MLS remarks, accurate showing instructions and a quick response to their requests. A short, direct note to agents who recently sold similar homes in the area, with a link to your listing page, can bring buyers you did not know existed.</p>
+
+<h2>A 14-Day Plan for a New Listing</h2>
+<table>
+<thead>
+<tr><th>Days</th><th>Focus</th></tr>
+</thead>
+<tbody>
+<tr><td>Before launch</td><td>Photos, description, FAQ, listing page with booking link and QR code, sign installed</td></tr>
+<tr><td>Days 1 to 3</td><td>Announce on social, email your contacts, notify neighboring agents, answer every inquiry fast</td></tr>
+<tr><td>Days 4 to 7</td><td>Hold an open house with a QR sign-in, send the seller the first numbers</td></tr>
+<tr><td>Days 8 to 14</td><td>Review feedback and analytics, change one thing, follow up on every inquiry that went quiet</td></tr>
+</tbody>
+</table>
+
+<h2>What to Tell the Seller When Showings Are Slow</h2>
+<ol>
+<li>Show the numbers: visits, inquiries and showings.</li>
+<li>Say what you already tried and what you will try next.</li>
+<li>Share feedback verbatim, with names removed.</li>
+<li>If the pattern points to price, say so plainly and show comparable homes.</li>
+</ol>
+<p>Sellers accept hard news better when it arrives early and with evidence.</p>
+
 <h2>Where ListingFlare Helps</h2>
 
 <p>ListingFlare covers several of these fixes at once: a dedicated listing page with a QR code and share panel, an assistant that answers buyer questions at any hour, a showing scheduler synced to your calendar, automatic follow-up and analytics so you can see where buyers drop off. <a href="/demo">See the demo</a> or <a href="/signup">try it free for 14 days</a>.</p>
@@ -115,6 +159,12 @@ export const article: BlogPost = {
 
 <h3>Should I lower the price if there are no showings?</h3>
 <p>If visibility and presentation are solid and showings are still thin, price is worth discussing with the seller using comparable homes and your data.</p>
+<h3>How long should I wait before changing the price?</h3>
+<p>It depends on your market, but after a couple of weeks of solid marketing, thin showings and consistent feedback about price are a signal to discuss it with the seller.</p>
+
+<h3>Do professional photos really matter?</h3>
+<p>The lead photo is often what decides whether a buyer clicks, so investing in good photography is one of the most reliable ways to improve listing performance.</p>
+
 </div>
 `,
 };

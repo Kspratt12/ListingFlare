@@ -89,6 +89,29 @@ export const article: BlogPost = {
 
 <p>Whatever you choose, build a real listing on a free trial first. ListingFlare offers a 14-day free trial with no credit card required, and you can <a href="/demo">see a live example</a> before you sign up. For a head-to-head, read <a href="/listingflare-vs-rela">ListingFlare vs Rela</a>.</p>
 
+<!-- expanded --><h2>Hidden Costs to Check</h2>
+<ul>
+<li><strong>Custom domain.</strong> Some tools include a custom address, others charge extra, and some do not offer one.</li>
+<li><strong>Branding removal.</strong> Cheaper plans may show the vendor&rsquo;s logo on your page.</li>
+<li><strong>Photo and media limits.</strong> Check caps on photos, video and floor plans.</li>
+<li><strong>Lead tools.</strong> Chat, scheduling and follow-up may be add-ons or separate subscriptions.</li>
+<li><strong>Per-listing renewals.</strong> Some tools charge monthly for each active site until you cancel, and sites you forgot about keep billing.</li>
+</ul>
+
+<h2>Contract and Cancellation Questions</h2>
+<ol>
+<li>Is it month to month, or an annual commitment?</li>
+<li>What happens to the page and its address when I cancel? Will old links break?</li>
+<li>Can I export my leads and conversations?</li>
+<li>Is there a free trial long enough to build a real listing?</li>
+</ol>
+
+<h2>An ROI Example (Illustrative)</h2>
+<p>Suppose a tool costs $150 a month and you carry three listings. That is $50 per listing per month. If a listing sits for two months, you spend $100 on the page. Now ask what one extra captured buyer is worth. If a page helps you win one more listing a year, or turns one lost inquiry into a showing that becomes a sale, the commission dwarfs the subscription. If it does neither, even a cheap tool is a waste. The right test is simple: use it on a real listing during the trial and count what it captured.</p>
+
+<h2>Pricing Is Not the Same as Value</h2>
+<p>A $10 page with a contact form is a different product from a $150 platform with chat, scheduling, follow-up and a seller portal. Compare what each does for your workflow, not just the number on the pricing page. If you only need a simple page for a single listing, a low-cost builder is a perfectly good answer. See <a href="/blog/best-single-property-website-builders">the full builder comparison</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 
@@ -103,6 +126,12 @@ export const article: BlogPost = {
 
 <h3>Do I pay for each listing separately?</h3>
 <p>Some tools charge per site, others offer bundles or unlimited listings. Calculate your cost per listing at the number of listings you normally carry.</p>
+<h3>Do I need a custom domain for a listing website?</h3>
+<p>Not required, but a memorable address looks more professional on a sign. Check whether your tool offers one.</p>
+
+<h3>What happens to the website after the home sells?</h3>
+<p>It depends on the tool. Some keep the page live, some archive it. Decide what you want and check before you buy.</p>
+
 </div>
 `,
 };

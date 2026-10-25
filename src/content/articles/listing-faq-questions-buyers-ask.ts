@@ -98,6 +98,45 @@ ${downloadBox("listing-faq-worksheet")}
 
 <p>The worksheet is one source of truth. Reuse it for the MLS remarks, your listing page, flyers, social posts and your chat assistant. See <a href="/blog/real-estate-listing-description-examples">listing description examples</a> for wording ideas.</p>
 
+<!-- expanded --><h2>How to Write Each Answer</h2>
+<p>A good listing answer has three parts: the fact, the source and the next step. For example:</p>
+<blockquote><strong>Is there an HOA?</strong> Yes. The fee is $[amount] per [month or year] and covers [items]. Source: seller&rsquo;s HOA statement dated [date]. Want the full documents? Message me and I will send them.</blockquote>
+<p>Compare that with &ldquo;Yes, small fee.&rdquo; The first answer prevents three follow-up questions.</p>
+
+<h2>Good and Bad Answers Side by Side</h2>
+<table>
+<thead>
+<tr><th>Question</th><th>Weak answer</th><th>Stronger answer</th></tr>
+</thead>
+<tbody>
+<tr><td>How old is the roof?</td><td>&ldquo;In great shape.&rdquo;</td><td>&ldquo;Installed in [year] per seller. Inspection reports available on request.&rdquo;</td></tr>
+<tr><td>Are utilities high?</td><td>&ldquo;Not bad.&rdquo;</td><td>&ldquo;Seller reports about $[x] a month on average. I can ask for a 12-month summary.&rdquo;</td></tr>
+<tr><td>Is it a good school district?</td><td>&ldquo;Great schools!&rdquo;</td><td>&ldquo;It is in [district]. Check the district&rsquo;s own address lookup: [link].&rdquo;</td></tr>
+<tr><td>Can I see it today?</td><td>&ldquo;Maybe, call me.&rdquo;</td><td>&ldquo;Open slots today at [times]. Book here: [link].&rdquo;</td></tr>
+</tbody>
+</table>
+<p>If you do not know an answer, say &ldquo;I will confirm and get back to you by [time].&rdquo; Never guess, and never write something you cannot support.</p>
+
+<h2>Keep the Answers Current</h2>
+<ul>
+<li>Update price and status the moment they change.</li>
+<li>Review the page after every showing for questions you were asked in person that are not on the page.</li>
+<li>Date-stamp anything that can change, such as taxes or utility costs.</li>
+<li>If you use an AI assistant, update the listing details it draws from. Wrong details make wrong answers.</li>
+</ul>
+
+<h2>Does a FAQ Section Help Search?</h2>
+<p>A clear FAQ helps readers and can help your page match the way people phrase questions. Search engines may or may not show FAQ-style results for a given page, and that is not something you can force, so write the section for buyers first.</p>
+
+<h2>Where to Collect the Answers Quickly</h2>
+<ol>
+<li>The seller&rsquo;s disclosure and any documents they gave you.</li>
+<li>Public records for taxes, lot size and year built.</li>
+<li>The HOA&rsquo;s statement or management company.</li>
+<li>A 15-minute conversation with the seller about what has been replaced or updated.</li>
+</ol>
+<p>The free worksheet above turns this into a one-sitting task you can repeat for every listing.</p>
+
 <h2>How ListingFlare Uses It</h2>
 
 <p>On a ListingFlare listing page, the AI assistant answers buyer questions from the details you enter and says it will check when a detail is missing, so the more of these 25 questions you fill in, the more accurate it gets. You can read each conversation and spot the questions buyers ask that your page does not yet answer. <a href="/real-estate-ai-chatbot">See how the listing assistant works</a> or <a href="/signup">try it free for 14 days</a>.</p>
@@ -116,6 +155,12 @@ ${downloadBox("listing-faq-worksheet")}
 
 <h3>How do I keep AI chat answers accurate?</h3>
 <p>Enter complete details, review transcripts regularly and fill the gaps the questions reveal.</p>
+<h3>How many FAQs should a listing page have?</h3>
+<p>Six to ten of the most common questions is plenty. Put the rest in the key facts block or answer them in conversation.</p>
+
+<h3>Should I put the price flexibility in the FAQ?</h3>
+<p>Only state what the seller has authorized. Do not hint at flexibility unless it is real and agreed.</p>
+
 </div>
 `,
 };
