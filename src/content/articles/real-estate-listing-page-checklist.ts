@@ -76,6 +76,8 @@ export const article: BlogPost = {
 
 <p>ListingFlare is one of those tools. Each listing gets its own branded page with an AI chat assistant that answers questions from the details you enter. The assistant can be wrong if those details are wrong, and it does not negotiate or give legal or financial advice. Leads go to your inbox with an instant reply and day 1, 3 and 7 follow-up. See the <a href="/single-property-website-builder">single property website builder</a> page, try the <a href="/demo">live demo</a>, or <a href="/signup">start a 14-day free trial</a>. Confirm current pricing and features on the vendor's site for any tool you compare.</p>
 
+<p><strong>Related:</strong> <a href="/blog/single-property-website-template">single property website template</a> and <a href="/blog/pre-listing-checklist">pre-listing checklist</a>. More <a href="/free-real-estate-templates">free real estate templates</a> for listing agents.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

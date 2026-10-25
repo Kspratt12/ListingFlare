@@ -97,6 +97,8 @@ export const article: BlogPost = {
 <li>Check the local rules for your area about recording visitors and contacting them.</li>
 </ul>
 
+<p><strong>Related:</strong> <a href="/blog/open-house-checklist">open house checklist</a>, <a href="/blog/open-house-sign-in-sheet-template">printable sign-in sheet</a> and <a href="/blog/open-house-follow-up">follow-up templates</a>. More <a href="/free-real-estate-templates">free real estate templates</a> for listing agents.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

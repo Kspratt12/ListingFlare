@@ -498,6 +498,8 @@ export const article: BlogPost = {
 
 <p><strong>About ListingFlare:</strong> we make ListingFlare. If you want to see how an AI assistant works on a listing page, including what it can and cannot do, read about our <a href="/real-estate-ai-chatbot">AI chatbot for listings</a>.</p>
 
+<p><strong>Related:</strong> <a href="/blog/ai-real-estate-chatbot-vs-virtual-assistant">AI real estate chatbot vs virtual assistant</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions About AI ISA Tools for Real Estate</h2>
 

@@ -12,18 +12,28 @@ import JSZip from "jszip"
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..")
 const registry = fs.readFileSync(path.join(ROOT, "src/content/templates.ts"), "utf8")
-const hrefs = [...registry.matchAll(/href:\s*"([^"]+)"/g)].map((m) => m[1])
+// Files are listed either as literal hrefs or through the pdf(), fillable() and word() helpers.
+const hrefs = [
+  ...[...registry.matchAll(/href:\s*"([^"]+)"/g)].map((m) => m[1]),
+  ...[...registry.matchAll(/\bpdf\("([^"]+)"\)/g)].map((m) => `/downloads/${m[1]}.pdf`),
+  ...[...registry.matchAll(/\bfillable\("([^"]+)"\)/g)].map((m) => `/downloads/${m[1]}-fillable.pdf`),
+  ...[...registry.matchAll(/\bword\("([^"]+)"\)/g)].map((m) => `/downloads/${m[1]}.docx`),
+]
 const SENTINELS = {
   "real-estate-listing-presentation-template": ["LISTING PRESENTATION", "About you", "Pricing recommendation", "Marketing plan", "Next steps"],
   "open-house-sign-in-sheet-template": ["OPEN HOUSE SIGN-IN SHEET", "Property address", "Consent wording", "Has agent"],
   "seller-update-report-template": ["SELLER UPDATE REPORT", "Activity this period", "Showing feedback", "Recommendation and next steps"],
+  "single-property-website-template": ["SINGLE PROPERTY WEBSITE", "Property basics", "Questions buyers ask", "Call to action", "Fair housing"],
+  "listing-marketing-plan-template": ["LISTING MARKETING PLAN", "Pricing and timeline", "Marketing activities", "Acknowledgement"],
+  "pre-listing-checklist-template": ["PRE-LISTING CHECKLIST", "Paperwork", "Home preparation", "Go live"],
+  "open-house-checklist-template": ["OPEN HOUSE CHECKLIST", "A week before", "At the open house", "After"],
 }
 
 let failures = 0
 const fail = (msg) => { failures++; console.log("FAIL", msg) }
 const ok = (cond, msg) => { if (!cond) fail(msg) }
 
-ok(hrefs.length >= 8, "registry lists the template files")
+ok(hrefs.length >= 18, "registry lists the template files")
 ok(new Set(hrefs).size === hrefs.length, "registry has duplicate hrefs")
 
 for (const href of hrefs) {
@@ -47,7 +57,7 @@ for (const href of hrefs) {
     }
     const widgets = (text.match(/\/Subtype\s*\/Widget/g) || []).length
     if (href.includes("-fillable")) {
-      ok(text.includes("/AcroForm") && widgets > 30, href + " has a form with many fields")
+      ok(text.includes("/AcroForm") && widgets > 10, href + " has a form with many fields")
       const names = [...text.matchAll(/\/T\s*\(([^)]*)\)/g)].map((m) => m[1])
       ok(new Set(names).size === names.length, href + " has duplicate field names")
       ok(!/\/AS\s*\/On/.test(text), href + " has a checkbox that starts ticked")

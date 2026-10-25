@@ -13,7 +13,7 @@ import {
 import RoiCalculator from "@/components/RoiCalculator";
 
 export const metadata: Metadata = {
-  title: "Simple, Flat SaaS Pricing",
+  title: "Pricing: $150/Month, Unlimited Listing Sites",
   description:
     "ListingFlare pricing: $150/month for unlimited listing websites with AI chat, lead capture and automated follow-up. 14-day free trial, no card required.",
   alternates: {

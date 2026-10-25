@@ -18,9 +18,9 @@ export const article: BlogPost = {
   ],
   readingTime: 5,
   coverImage:
-    "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&h=630&fit=crop&q=80",
+    "/blog/open-house-sign-in-sheet-template/hero.webp",
   coverImageAlt:
-    "Modern home exterior with a swimming pool at dusk, the kind of home an open house promotes",
+    "Red and white Open House sign in front of a two-story home with a garage",
   content: `
 <p>An open house sign-in sheet is a one-page form at the door where visitors write their name and contact details, so you can follow up after the event. The template below is a printable one-page sheet with a header for the property, a spot for your consent wording, and a table for name, phone, email, whether the visitor has an agent, and notes. Download it as a PDF or a Word file.</p>
 

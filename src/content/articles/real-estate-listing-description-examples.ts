@@ -218,6 +218,8 @@ Your own private retreat on 8 scenic acres. This custom-built 4-bedroom, 3-bathr
 
 <p>If you'd rather skip the editing process entirely, <a href="/signup">try ListingFlare's AI descriptions</a>. Paste in your listing details and get a polished, ready-to-publish description in seconds.</p>
 
+<p><strong>Related:</strong> <a href="/blog/single-property-website-template">single property website template</a>. More <a href="/free-real-estate-templates">free real estate templates</a> for listing agents.</p>
+
 <div class="faq-section">
 
 <h2>Frequently Asked Questions</h2>

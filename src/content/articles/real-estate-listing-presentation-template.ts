@@ -18,9 +18,9 @@ export const article: BlogPost = {
   ],
   readingTime: 7,
   coverImage:
-    "https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=1200&h=630&fit=crop&q=80",
+    "/blog/real-estate-listing-presentation-template/hero.webp",
   coverImageAlt:
-    "Real estate agent presenting a marketing plan to a client at a meeting",
+    "Two people at a table going over documents on a clipboard, one holding a pen above the page",
   content: `
 <p>A listing presentation template gives you the same structure every time you meet a seller: who you are, what they want, what their home is worth, how you will market it, and what happens next. The template below has all eight sections with blanks to fill in. Download it as a printable PDF, a fillable PDF you type into on screen, or a Word file you can edit.</p>
 
