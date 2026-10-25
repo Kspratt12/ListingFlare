@@ -97,6 +97,33 @@ export const TEMPLATES: Template[] = [
     guideLabel: "How to write the update",
     files: [pdf("seller-update-report-template"), fillable("seller-update-report-template"), word("seller-update-report-template")],
   },
+  {
+    id: "real-estate-lead-response-scripts",
+    title: "Lead response scripts",
+    description:
+      "Edit-and-paste first replies for text and email, an after-hours auto-reply, a voicemail script, showing confirmations and day 3 and day 7 check-ins.",
+    guideHref: "/blog/how-to-respond-to-real-estate-leads",
+    guideLabel: "How to respond to leads",
+    files: [pdf("real-estate-lead-response-scripts"), fillable("real-estate-lead-response-scripts"), word("real-estate-lead-response-scripts")],
+  },
+  {
+    id: "listing-faq-worksheet",
+    title: "Listing FAQ worksheet",
+    description:
+      "The questions buyers ask most, with blanks for your answers. Fill it in before you publish so your listing page and AI chat give accurate answers.",
+    guideHref: "/blog/listing-faq-questions-buyers-ask",
+    guideLabel: "Why it matters",
+    files: [pdf("listing-faq-worksheet"), fillable("listing-faq-worksheet"), word("listing-faq-worksheet")],
+  },
+  {
+    id: "lead-follow-up-tracker",
+    title: "Lead follow-up tracker",
+    description:
+      "A one-page tracker for each lead's first reply time, day 1, day 3 and day 7 touches, status and next step.",
+    guideHref: "/blog/real-estate-lead-nurture-campaign",
+    guideLabel: "How to nurture leads",
+    files: [pdf("lead-follow-up-tracker"), fillable("lead-follow-up-tracker"), word("lead-follow-up-tracker")],
+  },
 ];
 
 export function getTemplate(id: string): Template | undefined {

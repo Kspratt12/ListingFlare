@@ -577,6 +577,13 @@ export const article: BlogPost = {
 
 <p><strong>About ListingFlare:</strong> we make ListingFlare. It is built around listings rather than as a full CRM. See how its <a href="/real-estate-lead-capture-software">lead capture software</a> works, including the inbox, follow-up sequence and CSV export, to judge whether it fits alongside or instead of your current tools.</p>
 
+<h2>Related Guides</h2>
+<ul>
+<li><a href="/blog/best-crm-for-solo-real-estate-agents">Best CRM for solo real estate agents</a></li>
+<li><a href="/blog/best-real-estate-software-for-listing-agents">Best real estate software for listing agents</a></li>
+<li><a href="/blog/real-estate-lead-nurture-campaign">A 30-day real estate lead nurture campaign</a></li>
+</ul>
+
 <div class="faq-section">
 
 <h2>Frequently Asked Questions</h2>

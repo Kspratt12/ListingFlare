@@ -85,6 +85,8 @@ export default function Page() {
         { question: "Can I try ListingFlare before paying?", answer: "Yes. There is a 14-day free trial with no credit card required to start." },
       ]}
       related={[
+        { href: "/blog/single-property-website-cost", label: "How much a single property website costs" },
+        { href: "/blog/listingflare-review", label: "ListingFlare review: features, pricing and who it is not for" },
         { href: "/listingflare-vs-singlepropertysites", label: "ListingFlare vs SinglePropertySites.com" },
         { href: "/blog/best-rela-alternatives-single-property-websites", label: "Best Rela alternatives for single property websites" },
         { href: "/blog/cribflyer-vs-rela-vs-listingflare", label: "CribFlyer vs Rela vs ListingFlare" },

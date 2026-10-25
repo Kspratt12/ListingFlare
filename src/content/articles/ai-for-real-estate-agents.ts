@@ -339,6 +339,13 @@ export const article: BlogPost = {
 
 <p><strong>See also:</strong> <a href="/blog/elevenlabs-review-real-estate-agents">an ElevenLabs review for agents</a>, <a href="/blog/manychat-review-real-estate-agents">a ManyChat review for agents</a>, <a href="/blog/descript-ai-review-real-estate-agents">a Descript review for agents</a>, <a href="/blog/aragon-ai-review-real-estate-agents">an Aragon AI headshots review</a> and <a href="/blog/surfer-seo-review-real-estate-agents">a Surfer SEO review for agents</a>.</p>
 
+<h2>Related Guides</h2>
+<ul>
+<li><a href="/blog/best-real-estate-chatbots">Best real estate chatbots</a></li>
+<li><a href="/blog/ai-chatbot-fair-housing-compliance-real-estate">AI chatbots and fair housing</a></li>
+<li><a href="/blog/after-hours-real-estate-leads">How to answer after-hours real estate leads</a></li>
+</ul>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions About AI for Real Estate Agents</h2>
 

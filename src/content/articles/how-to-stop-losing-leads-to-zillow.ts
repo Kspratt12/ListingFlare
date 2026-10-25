@@ -266,6 +266,13 @@ export const article: BlogPost = {
 
 <p><strong>See also:</strong> <a href="/blog/how-zillow-steals-leads-from-listing-agents">how Zillow takes leads from listing agents</a>.</p>
 
+<h2>Related Guides</h2>
+<ul>
+<li><a href="/blog/zillow-premier-agent-cost-alternatives">Zillow Premier Agent cost and alternatives</a></li>
+<li><a href="/blog/real-estate-yard-sign-qr-code">How to set up a yard sign QR code</a></li>
+<li><a href="/blog/speed-to-lead-real-estate">Speed to lead in real estate</a></li>
+</ul>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

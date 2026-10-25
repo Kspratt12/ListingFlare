@@ -81,6 +81,13 @@ export const article: BlogPost = {
 </ul>
 <p>You can still send your own personal notes on top of that. Compare the sign-in options in <a href="/blog/open-house-sign-in-sheet-vs-qr-code">sign-in sheet vs QR code</a>, get ideas in <a href="/blog/open-house-ideas-to-attract-more-buyers">open house ideas</a>, and see our <a href="/blog/open-house-flyer-generator">open house flyer generator</a> for a flyer with a QR code.</p>
 
+<h2>Related Guides</h2>
+<ul>
+<li><a href="/blog/how-to-respond-to-real-estate-leads">How to respond to real estate leads (scripts)</a></li>
+<li><a href="/blog/real-estate-text-message-rules-tcpa-can-spam">Texting and emailing leads: TCPA and CAN-SPAM basics</a></li>
+<li><a href="/blog/best-open-house-apps">Best open house apps</a></li>
+</ul>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

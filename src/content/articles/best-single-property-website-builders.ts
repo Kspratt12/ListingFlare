@@ -385,6 +385,13 @@ export const article: BlogPost = {
 
 <p><strong>Related:</strong> <a href="/blog/single-property-website-template">single property website template</a>. More <a href="/free-real-estate-templates">free real estate templates</a> for listing agents.</p>
 
+<h2>Related Guides</h2>
+<ul>
+<li><a href="/blog/single-property-website-cost">How much a single property website costs</a></li>
+<li><a href="/blog/listingflare-review">ListingFlare review: features, pricing and who it is not for</a></li>
+<li><a href="/blog/best-real-estate-software-for-listing-agents">Best real estate software for listing agents</a></li>
+</ul>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

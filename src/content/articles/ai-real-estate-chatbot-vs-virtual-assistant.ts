@@ -90,6 +90,13 @@ export const article: BlogPost = {
 <p>ListingFlare adds an AI chat assistant to each listing page. It answers from the details of that listing, keeps replies short, is told not to invent information, and says so when it does not have an answer, such as an HOA fee that was not entered. If a visitor sincerely asks whether they are talking to a person, it tells them it is the agent's AI assistant. When someone is interested, it can share a scheduling link or capture their contact details as a lead. Each new lead triggers a notification to you, an instant draft reply, and a day 1, 3 and 7 email sequence, with an optional approval step if you want to review messages before they go out. It is a chat and lead tool, not a replacement for a human assistant, and you should read the conversations and keep the listing details accurate. See the <a href="/real-estate-ai-chatbot">AI chatbot for real estate listings</a> page for the feature details, or <a href="/demo">try the live demo</a>.</p>
 <p>For wider options, see our comparison of the <a href="/blog/best-ai-isa-tools-real-estate">best AI ISA tools for real estate</a>, the guide to <a href="/blog/ai-for-real-estate-agents">AI for real estate agents</a>, and <a href="/blog/how-listing-agents-capture-buyer-leads">how listing agents capture buyer leads</a>.</p>
 
+<h2>Related Guides</h2>
+<ul>
+<li><a href="/blog/best-real-estate-chatbots">Best real estate chatbots</a></li>
+<li><a href="/blog/after-hours-real-estate-leads">How to answer after-hours real estate leads</a></li>
+<li><a href="/blog/ai-chatbot-fair-housing-compliance-real-estate">AI chatbots and fair housing</a></li>
+</ul>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

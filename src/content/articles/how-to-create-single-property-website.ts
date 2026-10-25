@@ -129,6 +129,13 @@ export const article: BlogPost = {
 
 <p><strong>See also:</strong> <a href="/blog/free-real-estate-website-options">free real estate website options</a>.</p>
 
+<h2>Related Guides</h2>
+<ul>
+<li><a href="/blog/listing-faq-questions-buyers-ask">25 questions buyers ask on every listing</a></li>
+<li><a href="/blog/real-estate-yard-sign-qr-code">How to set up a yard sign QR code</a></li>
+<li><a href="/blog/single-property-website-cost">How much a single property website costs</a></li>
+</ul>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

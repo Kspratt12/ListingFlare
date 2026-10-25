@@ -83,6 +83,28 @@ import { article as preListingChecklist } from "@/content/articles/pre-listing-c
 import { article as priceReductionScripts } from "@/content/articles/seller-price-reduction-scripts";
 import { article as chatbotVsVa } from "@/content/articles/ai-real-estate-chatbot-vs-virtual-assistant";
 
+import { article as speedToLead } from "@/content/articles/speed-to-lead-real-estate";
+import { article as respondToLeads } from "@/content/articles/how-to-respond-to-real-estate-leads";
+import { article as zillowPremierCost } from "@/content/articles/zillow-premier-agent-cost-alternatives";
+import { article as bestSoftwareListingAgents } from "@/content/articles/best-real-estate-software-for-listing-agents";
+import { article as bestRealEstateChatbots } from "@/content/articles/best-real-estate-chatbots";
+import { article as leadConversionRate } from "@/content/articles/real-estate-lead-conversion-rate";
+import { article as bestOpenHouseApps } from "@/content/articles/best-open-house-apps";
+import { article as yardSignQr } from "@/content/articles/real-estate-yard-sign-qr-code";
+import { article as showingSoftware } from "@/content/articles/best-showing-scheduling-software-real-estate";
+import { article as crmSoloAgents } from "@/content/articles/best-crm-for-solo-real-estate-agents";
+import { article as spwCost } from "@/content/articles/single-property-website-cost";
+import { article as leadNurtureCampaign } from "@/content/articles/real-estate-lead-nurture-campaign";
+import { article as textRulesTcpa } from "@/content/articles/real-estate-text-message-rules-tcpa-can-spam";
+import { article as aiFairHousing } from "@/content/articles/ai-chatbot-fair-housing-compliance-real-estate";
+import { article as listingFaqQuestions } from "@/content/articles/listing-faq-questions-buyers-ask";
+import { article as leadCaptureForm } from "@/content/articles/real-estate-lead-capture-form-best-practices";
+import { article as listingAnalytics } from "@/content/articles/listing-page-analytics-what-to-track";
+import { article as listingflareReview } from "@/content/articles/listingflare-review";
+import { article as moreShowings } from "@/content/articles/how-to-get-more-showings";
+import { article as afterHoursLeads } from "@/content/articles/after-hours-real-estate-leads";
+import { article as leadMagnets } from "@/content/articles/real-estate-lead-magnet-ideas";
+
 const allPosts: BlogPost[] = [
   howToGetLeads,
   bestLeadGenTools,
@@ -149,6 +171,27 @@ const allPosts: BlogPost[] = [
   preListingChecklist,
   priceReductionScripts,
   chatbotVsVa,
+  speedToLead,
+  respondToLeads,
+  zillowPremierCost,
+  bestSoftwareListingAgents,
+  bestRealEstateChatbots,
+  leadConversionRate,
+  bestOpenHouseApps,
+  yardSignQr,
+  showingSoftware,
+  crmSoloAgents,
+  spwCost,
+  leadNurtureCampaign,
+  textRulesTcpa,
+  aiFairHousing,
+  listingFaqQuestions,
+  leadCaptureForm,
+  listingAnalytics,
+  listingflareReview,
+  moreShowings,
+  afterHoursLeads,
+  leadMagnets,
 ];
 
 // Sort by date descending
@@ -165,12 +208,21 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
 export function getRelatedPosts(currentSlug: string, limit = 3): BlogPost[] {
   const current = getPostBySlug(currentSlug);
   if (!current) return allPosts.slice(0, limit);
+  // Rank by shared keywords first, then same category, so related links point
+  // at articles that actually cover the same topic (stronger internal linking
+  // than category alone).
+  const words = (p: BlogPost) =>
+    new Set(p.keywords.flatMap((k) => k.toLowerCase().split(/W+/)).filter((w) => w.length > 3));
+  const currentWords = words(current);
+  const score = (p: BlogPost) => {
+    let overlap = 0;
+    words(p).forEach((w) => {
+      if (currentWords.has(w)) overlap++;
+    });
+    return overlap + (p.category === current.category ? 3 : 0);
+  };
   return allPosts
-    .filter((p) => p.slug !== currentSlug)
-    .sort((a, b) => {
-      const aMatch = a.category === current.category ? 1 : 0;
-      const bMatch = b.category === current.category ? 1 : 0;
-      return bMatch - aMatch;
-    })
+    .filter((p) => p.slug !== currentSlug && !p.noindex)
+    .sort((a, b) => score(b) - score(a))
     .slice(0, limit);
 }

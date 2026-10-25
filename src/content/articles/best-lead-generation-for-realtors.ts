@@ -547,6 +547,13 @@ export const article: BlogPost = {
 
 <p><strong>See also:</strong> <a href="/blog/manychat-review-real-estate-agents">a ManyChat review for agents</a> and <a href="/blog/how-zillow-steals-leads-from-listing-agents">how Zillow takes leads from listing agents</a>.</p>
 
+<h2>Related Guides</h2>
+<ul>
+<li><a href="/blog/real-estate-lead-magnet-ideas">Real estate lead magnet ideas for listing agents</a></li>
+<li><a href="/blog/real-estate-lead-conversion-rate">Real estate lead conversion rate: how to calculate and improve it</a></li>
+<li><a href="/blog/zillow-premier-agent-cost-alternatives">Zillow Premier Agent cost and alternatives</a></li>
+</ul>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

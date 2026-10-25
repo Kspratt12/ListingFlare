@@ -81,6 +81,13 @@ export const article: BlogPost = {
 <h2>Sources and Further Reading</h2>
 <p>Keep the wording on a listing page about the home, not the people who might buy it. See <a href="https://www.hud.gov/program_offices/fair_housing_equal_opp/fair_housing_act_overview" target="_blank" rel="noopener noreferrer">HUD&rsquo;s overview of housing discrimination under the Fair Housing Act</a> and your brokerage&rsquo;s and MLS&rsquo;s advertising rules. For the page itself, <a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide" target="_blank" rel="noopener noreferrer">Google&rsquo;s SEO Starter Guide</a> covers titles, descriptions, images and links. This is general guidance, not legal advice.</p>
 
+<h2>Related Guides</h2>
+<ul>
+<li><a href="/blog/real-estate-lead-capture-form-best-practices">Lead capture form best practices</a></li>
+<li><a href="/blog/listing-faq-questions-buyers-ask">25 questions buyers ask on every listing</a></li>
+<li><a href="/blog/listing-page-analytics-what-to-track">Listing page analytics: what to track</a></li>
+</ul>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

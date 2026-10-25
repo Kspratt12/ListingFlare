@@ -186,6 +186,13 @@ export const article: BlogPost = {
 
 <p><strong>See also:</strong> <a href="/blog/best-real-estate-marketing-ideas-raleigh-nc">real estate marketing ideas for Raleigh, NC</a>.</p>
 
+<h2>Related Guides</h2>
+<ul>
+<li><a href="/blog/how-to-get-more-showings">How to get more showings on a listing</a></li>
+<li><a href="/blog/real-estate-yard-sign-qr-code">How to set up a yard sign QR code</a></li>
+<li><a href="/blog/listing-page-analytics-what-to-track">Listing page analytics: what to track</a></li>
+</ul>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 
