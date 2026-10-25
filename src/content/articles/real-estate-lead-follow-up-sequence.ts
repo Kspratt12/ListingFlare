@@ -16,10 +16,9 @@ export const article: BlogPost = {
     "how to follow up with real estate leads",
   ],
   readingTime: 7,
-  coverImage:
-    "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=1200&h=630&fit=crop&q=80",
+  coverImage: "/blog/real-estate-lead-follow-up-sequence/hero.jpg",
   coverImageAlt:
-    "New real estate agent starting their career with house keys and property model on desk",
+    "Real estate agent at a laptop looking thoughtfully away from the screen",
   content: `
 <p>A real estate lead follow-up sequence is a planned set of short messages sent after someone inquires about a home: a fast, helpful first reply, then follow-ups on day 1, day 3 and day 7. The point is to stay in touch without being pushy, so that when the person is ready to talk, you are the agent they already know. This guide gives you a schedule and copy-and-paste templates for both a new inquiry and a buyer who has just seen the home.</p>
 

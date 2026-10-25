@@ -17,10 +17,9 @@ export const article: BlogPost = {
     "before you list a house checklist for agents",
   ],
   readingTime: 6,
-  coverImage:
-    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=630&fit=crop&q=80",
+  coverImage: "/blog/pre-listing-checklist/hero.jpg",
   coverImageAlt:
-    "Modern white house with a swimming pool under a blue sky, the kind of home an agent prepares to list",
+    "Agent photographing the front of a brick house with a tablet before a listing goes live",
   content: `
 <p>A pre-listing checklist is a list of everything to finish between signing a seller and putting the home on the market: the paperwork, the pricing decision, getting the home ready, photos and media, and setting up your marketing so it is ready on day one. Going live with everything in place makes for a stronger first week. The printable checklist below covers each stage. Download it as a PDF or a Word file you can edit.</p>
 

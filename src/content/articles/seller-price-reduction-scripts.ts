@@ -16,10 +16,9 @@ export const article: BlogPost = {
     "how to talk to sellers about price",
   ],
   readingTime: 8,
-  coverImage:
-    "https://images.unsplash.com/photo-1585914924626-15adac1e6402?w=1200&h=630&fit=crop&q=80",
+  coverImage: "/blog/seller-price-reduction-scripts/hero.jpg",
   coverImageAlt:
-    "Real estate agent reviewing property listings on a tablet",
+    "Smiling couple holding house keys and a small wooden model house next to a moving box",
   content: `
 <p>Talking to a seller about a price reduction is one of the harder conversations in listing work, and it goes better when it rests on facts you can show, a plan you agreed earlier, and a calm tone. The sections below cover what to look at before you call, how to start, scripts for three common situations, and options other than price. The seller makes the decision, and your job is to give them clear information and honest advice.</p>
 
