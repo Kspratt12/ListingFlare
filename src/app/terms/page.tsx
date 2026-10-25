@@ -2,6 +2,9 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Terms of Service - ListingFlare",
+  description:
+    "The terms for using ListingFlare: your account, the content you upload, acceptable use, subscription billing and cancellation.",
+  alternates: { canonical: "https://www.listingflare.com/terms" },
 };
 
 export default function TermsPage() {

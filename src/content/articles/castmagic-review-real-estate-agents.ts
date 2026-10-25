@@ -243,7 +243,7 @@ export const article: BlogPost = {
 
 <img src="/blog/castmagic/descript-vs.png" alt="Descript AI video editor comparison with Castmagic" loading="lazy" width="2592" height="1643" />
 
-<p><a href="https://get.descript.com/" target="_blank" rel="noopener noreferrer">Descript</a> is a video and audio editing platform that uses AI for transcription-based editing. You edit your video by editing the text transcript, and Descript removes the corresponding video segments automatically. It also offers AI-powered features like filler word removal, eye contact correction, and green screen replacement. For a deeper dive on Descript and other tools, see our roundup of the <a href="/blog/best-ai-tools-real-estate-marketing">best AI tools for real estate marketing</a>.</p>
+<p><a href="https://www.descript.com/" target="_blank" rel="noopener noreferrer">Descript</a> is a video and audio editing platform that uses AI for transcription-based editing. You edit your video by editing the text transcript, and Descript removes the corresponding video segments automatically. It also offers AI-powered features like filler word removal, eye contact correction, and green screen replacement. For a deeper dive on Descript and other tools, see our roundup of the <a href="/blog/best-ai-tools-real-estate-marketing">best AI tools for real estate marketing</a>.</p>
 
 <p><strong>Key difference:</strong> Descript is an editing tool. Castmagic is a content generation tool. Descript makes your recordings better. Castmagic turns your recordings into written content. Many agents use both: Descript to edit and polish the original video, then Castmagic to generate written content from the polished recording.</p>
 

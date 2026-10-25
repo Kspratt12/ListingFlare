@@ -2,6 +2,9 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Privacy Policy - ListingFlare",
+  description:
+    "How ListingFlare collects, uses and protects your information, including listing data, lead details, cookies and your choices.",
+  alternates: { canonical: "https://www.listingflare.com/privacy" },
 };
 
 export default function PrivacyPage() {
