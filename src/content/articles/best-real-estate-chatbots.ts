@@ -18,9 +18,9 @@ export const article: BlogPost = {
   ],
   readingTime: 10,
   coverImage:
-    "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=630&fit=crop&q=80",
+    "/blog/best-real-estate-chatbots/hero.jpg",
   coverImageAlt:
-    "Agent reviewing a chat conversation with a buyer on a laptop",
+    "Agent using a laptop and tablet with floating house checklist icons",
   content: `
 <p>Search for the best real estate chatbot and you will find roundups ranking ten tools, most of them written by the tool&rsquo;s own vendor or paid for by affiliate links. Instead of another ranked list, this guide gives you what actually helps you choose: the <strong>three types of real estate chatbot</strong>, what each does well, the mistakes that make a chatbot hurt you, and a checklist you can apply to any product, including ours.</p>
 

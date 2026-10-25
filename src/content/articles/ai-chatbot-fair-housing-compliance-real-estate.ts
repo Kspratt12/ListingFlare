@@ -18,9 +18,9 @@ export const article: BlogPost = {
   ],
   readingTime: 9,
   coverImage:
-    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=630&fit=crop&q=80",
+    "/blog/ai-chatbot-fair-housing-compliance-real-estate/hero.jpg",
   coverImageAlt:
-    "Documents and a laptop representing fair housing compliance for AI tools used by real estate agents",
+    "Woman looking up between tall city buildings",
   content: `
 <p>AI assistants can answer buyer questions at 2 AM, which is a real advantage. They can also say things a licensed agent never should, such as describing who lives in a neighborhood or suggesting where a type of person &ldquo;would fit in.&rdquo; Under the Fair Housing Act, <strong>you are responsible for what appears under your name</strong>, including text an AI wrote. This guide explains the risk and the guardrails to demand from any tool. <em>It is general information, not legal advice. Check with your broker and counsel.</em></p>
 

@@ -18,9 +18,9 @@ export const article: BlogPost = {
   ],
   readingTime: 8,
   coverImage:
-    "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&h=630&fit=crop&q=80",
+    "/blog/listing-page-analytics-what-to-track/hero.jpg",
   coverImageAlt:
-    "Dashboard showing listing page visits and showing requests",
+    "Agent welcoming a couple at the front door of a home for a visit",
   content: `
 <p>Sellers ask the same question every week: &ldquo;What is happening with my listing?&rdquo; If your answer is &ldquo;no news,&rdquo; you are missing what the data could tell you. A few numbers, tracked consistently, show whether the problem is visibility, price or presentation, and they give you something concrete to bring to the conversation. This guide lists what to track and how to read it.</p>
 
