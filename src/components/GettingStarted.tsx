@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { getLocalUserId } from "@/lib/agentSession";
 import { readUserPref, writeUserPref } from "@/lib/userStorage";
+import ShareYourListing from "./ShareYourListing";
 import {
   CheckCircle2,
   Circle,
@@ -24,6 +25,8 @@ interface Task {
   icon: typeof Home;
   done: boolean;
   action?: { label: string; href: string; external?: boolean };
+  /** Optional panel shown under the task while it is not done. */
+  panel?: { url: string; title: string };
 }
 
 const DISMISS_PREF = "getting-started-dismissed";
@@ -59,7 +62,7 @@ export default function GettingStarted() {
           .single(),
         supabase
           .from("listings")
-          .select("id, slug, status, view_count")
+          .select("id, slug, status, view_count, street, city")
           .eq("agent_id", user.id)
           .eq("status", "published")
           .order("created_at", { ascending: false })
@@ -111,6 +114,13 @@ export default function GettingStarted() {
           description: "Drop the link in your Zillow bio, Instagram, email signature, text blasts, or on a sign rider. You'll know it worked when views come in.",
           icon: Share2,
           done: hasViews || hasLead,
+          panel:
+            hasPublishedListing && firstListing
+              ? {
+                  url: firstListing.slug ? `/listing/${firstListing.slug}` : `/listing/${firstListing.id}`,
+                  title: [firstListing.street, firstListing.city].filter(Boolean).join(", ") || "my listing",
+                }
+              : undefined,
           action: hasPublishedListing && firstListing
             ? {
                 label: "View My Listing",
@@ -205,8 +215,8 @@ export default function GettingStarted() {
         {tasks.map((task) => {
           const Icon = task.icon;
           return (
+            <Fragment key={task.id}>
             <li
-              key={task.id}
               className={`flex flex-col gap-3 p-4 transition-colors sm:flex-row sm:items-center ${
                 task.done ? "bg-white/40" : "hover:bg-white/70"
               }`}
@@ -278,6 +288,12 @@ export default function GettingStarted() {
                 </div>
               )}
             </li>
+            {task.panel && !task.done && (
+              <li className="bg-white/60 px-4 pb-4 pt-1">
+                <ShareYourListing url={task.panel.url} title={task.panel.title} />
+              </li>
+            )}
+            </Fragment>
           );
         })}
       </ol>
