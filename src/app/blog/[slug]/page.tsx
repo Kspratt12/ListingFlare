@@ -146,7 +146,10 @@ export default async function BlogPostPage({ params }: Props) {
     },
     image: {
       "@type": "ImageObject",
-      url: post.coverImage,
+      // Google needs an absolute image URL; local heroes are root-relative.
+      url: post.coverImage.startsWith("/")
+        ? `https://www.listingflare.com${post.coverImage}`
+        : post.coverImage,
       width: 1200,
       height: 630,
     },
