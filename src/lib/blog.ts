@@ -71,6 +71,11 @@ import { article as freeRealEstateWebsite } from "@/content/articles/free-real-e
 import { article as listingPageChecklist } from "@/content/articles/real-estate-listing-page-checklist";
 import { article as listingPresentationOutline } from "@/content/articles/real-estate-listing-presentation-outline";
 import { article as openHouseSignInVsQr } from "@/content/articles/open-house-sign-in-sheet-vs-qr-code";
+import { article as listingPresentationTemplate } from "@/content/articles/real-estate-listing-presentation-template";
+import { article as openHouseFollowUp } from "@/content/articles/open-house-follow-up";
+import { article as openHouseSignInTemplate } from "@/content/articles/open-house-sign-in-sheet-template";
+import { article as sellerUpdateTemplate } from "@/content/articles/seller-update-report-template";
+import { article as leadFollowUpSequence } from "@/content/articles/real-estate-lead-follow-up-sequence";
 
 const allPosts: BlogPost[] = [
   howToGetLeads,
@@ -127,6 +132,11 @@ const allPosts: BlogPost[] = [
   freeRealEstateWebsite,
   listingPageChecklist,
   listingPresentationOutline,
+  listingPresentationTemplate,
+  openHouseFollowUp,
+  openHouseSignInTemplate,
+  sellerUpdateTemplate,
+  leadFollowUpSequence,
 ];
 
 // Sort by date descending
