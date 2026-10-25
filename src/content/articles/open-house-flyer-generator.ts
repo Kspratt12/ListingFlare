@@ -18,10 +18,9 @@ export const article: BlogPost = {
     "listing flyer for agents",
   ],
   readingTime: 8,
-  coverImage:
-    "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&h=630&fit=crop&q=80",
+  coverImage: "/blog/open-house-flyer-generator/hero.jpg",
   coverImageAlt:
-    "Modern home exterior with a swimming pool at dusk, representing a listing promoted with an open house flyer",
+    "Agent welcoming a smiling couple into an empty, bright home",
   content: `
 <p>It is Thursday night. The open house is Saturday. You have the photos, the price, and the description sitting in your listing. And you are about to spend forty minutes dragging the same information into a design template, resizing photos, and fixing text that will not line up.</p>
 

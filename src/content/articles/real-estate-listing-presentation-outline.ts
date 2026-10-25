@@ -16,10 +16,9 @@ export const article: BlogPost = {
     "how to win a listing",
   ],
   readingTime: 8,
-  coverImage:
-    "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&h=630&fit=crop&q=80",
+  coverImage: "/blog/real-estate-listing-presentation-outline/hero.webp",
   coverImageAlt:
-    "Man presenting to a seated group in a brick-walled office meeting room",
+    "Agent shaking hands with a smiling couple across a desk with documents and a tablet",
   content: `
 <p>A real estate listing presentation is a meeting where you show a seller why you should list their home and how you will sell it. The strongest ones follow a simple order: who you are, what you know about their home and market, your marketing plan, your pricing reasoning, and what happens next. This outline covers each section and what sellers tend to look for.</p>
 

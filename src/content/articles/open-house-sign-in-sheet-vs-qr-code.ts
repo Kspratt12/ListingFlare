@@ -16,10 +16,9 @@ export const article: BlogPost = {
     "open house follow up",
   ],
   readingTime: 6,
-  coverImage:
-    "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=1200&h=630&fit=crop&q=80",
+  coverImage: "/blog/open-house-sign-in-sheet-vs-qr-code/hero.jpg",
   coverImageAlt:
-    "Staged living room at an open house where visitors sign in",
+    "Person scanning a QR code on a post beneath a sign with a phone that shows a home listing",
   content: `
 <p>The sign-in sheet is the oldest lead capture tool in real estate, and it still has a place at the front door. But more agents now put a QR code next to it, or instead of it. Neither is automatically better. They fail in different ways, and the real difference shows up after the open house ends, when you have to turn names on a page into conversations.</p>
 
