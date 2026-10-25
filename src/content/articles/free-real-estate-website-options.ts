@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "What free real estate website really means: free plans, free trials and free tools, how they differ, and what to check before you build on one.",
   date: "2026-10-24",
+  updated: "2026-10-25",
   author: "ListingFlare Team",
   category: "Agent Growth",
   keywords: [
@@ -16,10 +17,9 @@ export const article: BlogPost = {
     "free single property website",
   ],
   readingTime: 7,
-  coverImage:
-    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&h=630&fit=crop&q=80",
+  coverImage: "/blog/free-real-estate-website-options/hero.jpg",
   coverImageAlt:
-    "Open-plan living room with a gray sofa, wood-paneled wall and kitchen in the background",
+    "Smiling woman using a laptop outdoors in front of a large house",
   content: `
 <p>You can get a real estate website for free, but "free" means very different things depending on the offer. It might be a free trial that ends, a free tool that earns money another way, a page your brokerage gives you, or a limited plan that asks you to upgrade. This guide explains each kind so you can pick one without a surprise later.</p>
 
@@ -85,6 +85,9 @@ export const article: BlogPost = {
 <li><strong>Need a page for one listing:</strong> try a free trial of a single-property tool. See <a href="/blog/best-single-property-website-builders">our comparison of single property website builders</a> and <a href="/blog/how-to-create-a-single-property-website">how to build one</a>.</li>
 <li><strong>Want leads captured and followed up automatically:</strong> look for tools with built-in chat and follow-up, and test whether they do what they say. ListingFlare's <a href="/real-estate-lead-capture-software">lead capture software</a> page explains how its version works, and you can <a href="/signup">start the free trial</a>.</li>
 </ul>
+
+<h2>Sources and Further Reading</h2>
+<p>Whatever plan you pick, check that you can edit the basics search engines read, such as page titles, descriptions and URLs, and whether you can connect your own domain later. <a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide" target="_blank" rel="noopener noreferrer">Google&rsquo;s SEO Starter Guide</a> explains why those basics matter. Check each provider's current terms and pricing on its own site before you commit.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

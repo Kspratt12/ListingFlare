@@ -184,6 +184,8 @@ export const article: BlogPost = {
 
 <p><strong>Related:</strong> <a href="/blog/listing-marketing-plan-template">listing marketing plan template</a> and <a href="/blog/pre-listing-checklist">pre-listing checklist</a>. More <a href="/free-real-estate-templates">free real estate templates</a> for listing agents.</p>
 
+<p><strong>See also:</strong> <a href="/blog/best-real-estate-marketing-ideas-raleigh-nc">real estate marketing ideas for Raleigh, NC</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

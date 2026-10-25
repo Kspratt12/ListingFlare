@@ -388,6 +388,8 @@ export const article: BlogPost = {
 
 <p><strong>Related reading:</strong> <a href="/blog/aragon-ai-review-real-estate-agents">Aragon AI review (headshots)</a> &middot; <a href="/blog/castmagic-review-real-estate-agents">Castmagic review (content repurposing)</a> &middot; <a href="/blog/descript-ai-review-real-estate-agents">Descript review (video editing)</a> &middot; <a href="/blog/elevenlabs-review-real-estate-agents">ElevenLabs review (AI voice)</a> &middot; <a href="/blog/manychat-review-real-estate-agents">ManyChat review (social DMs)</a> &middot; <a href="/blog/restream-review-real-estate-agents">Restream review (live streaming)</a> &middot; <a href="/blog/surfer-seo-review-real-estate-agents">Surfer SEO review (blog content)</a></p>
 
+<p><strong>See also:</strong> <a href="/blog/best-ai-tools-for-realtors">the best AI tools for realtors</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions About AI Marketing Tools for Real Estate</h2>
 

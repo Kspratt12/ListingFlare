@@ -193,9 +193,9 @@ export default function PricingPage() {
                     <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-500/10">
                       <Icon className="h-4 w-4 text-brand-600" />
                     </div>
-                    <h3 className="font-serif text-base font-bold text-gray-900">
+                    <h2 className="font-serif text-base font-bold text-gray-900">
                       {group.title}
-                    </h3>
+                    </h2>
                   </div>
                   <div className="mt-3 grid gap-2 pl-1 sm:grid-cols-2">
                     {group.items.map((item) => (

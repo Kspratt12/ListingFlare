@@ -195,6 +195,8 @@ export const article: BlogPost = {
 
 <p>That's four pieces of content per week. Batch-create them on Sunday evening so you're not scrambling during the week. After a month, you'll have 16 posts live, and you'll start seeing which categories resonate most with your audience so you can double down on what works.</p>
 
+<p><strong>See also:</strong> <a href="/blog/best-real-estate-marketing-ideas-raleigh-nc">real estate marketing ideas for Raleigh, NC</a> and <a href="/blog/descript-ai-review-real-estate-agents">a Descript review for agents</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 
