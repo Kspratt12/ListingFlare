@@ -287,6 +287,73 @@ const preListing = {
   ],
 }
 
+const leadResponseScripts = {
+  file: "real-estate-lead-response-scripts",
+  title: "Lead Response Scripts",
+  subtitle: "Edit each script into your own voice, then keep them where you can paste them fast. Fast and personal beats long and polished.",
+  blocks: [
+    { t: "h2", text: "Your details" },
+    { t: "fields", rows: [["Your name", "Brokerage"], ["Phone", "Booking link"]] },
+    { t: "h2", text: "1. First text reply to a new listing inquiry" },
+    { t: "note", text: "Example: Hi [name], this is [your name] with [brokerage]. Thanks for asking about [address]. I can answer questions or set up a showing. What would help most?" },
+    { t: "lines", n: 3 },
+    { t: "h2", text: "2. First email reply" },
+    { t: "note", text: "Example: Subject: [address] - quick answer. Hi [name], thanks for your interest in [address]. Here is the link to the listing: [link]. Would you like to see it in person? Here is my calendar: [booking link]." },
+    { t: "lines", n: 4 },
+    { t: "h2", text: "3. After-hours auto-reply" },
+    { t: "note", text: "Example: Thanks for reaching out about [address]. I will reply first thing in the morning. If it is urgent, call or text [phone]. Meanwhile, you can book a showing here: [booking link]." },
+    { t: "lines", n: 3 },
+    { t: "h2", text: "4. Voicemail script (under 20 seconds)" },
+    { t: "note", text: "Example: Hi [name], [your name] with [brokerage] returning your inquiry on [address]. I will text you the details now. Call or text me at [phone] any time." },
+    { t: "lines", n: 3 },
+    { t: "h2", text: "5. Showing request confirmation" },
+    { t: "note", text: "Example: You are set for [day] at [time] at [address]. I will meet you there. Reply here if anything changes." },
+    { t: "lines", n: 2 },
+    { t: "h2", text: "6. Day 3 and day 7 check-ins" },
+    { t: "lines", n: 4 },
+    { t: "h2", text: "Before you send" },
+    { t: "checks", items: [
+      "I have permission to text or email this person",
+      "Every marketing email has my address and a way to opt out",
+      "I only stated facts I can back up from the listing",
+      "I stopped contacting anyone who asked me to stop",
+    ] },
+    { t: "note", text: "General guidance, not legal advice. Rules on texts, calls and emails vary, so follow your brokerage's guidance and the rules where you work." },
+  ],
+}
+
+const listingFaqWorksheet = {
+  file: "listing-faq-worksheet",
+  title: "Listing FAQ Worksheet",
+  subtitle: "Answer these before you publish. Whatever you write here is what buyers (and an AI chat assistant) can accurately tell people, so leave a line blank if you do not know.",
+  blocks: [
+    { t: "fields", rows: [["Property address"], ["Prepared by", "Date"]] },
+    { t: "h2", text: "Cost and terms" },
+    { t: "fields", rows: [["List price", "Property taxes (annual)"], ["HOA fee and what it covers"], ["Average utility costs (from the seller)"], ["Special assessments"]] },
+    { t: "h2", text: "The home" },
+    { t: "fields", rows: [["Year built", "Roof age"], ["HVAC age", "Water heater age"], ["Updates and when"], ["What is included in the sale"], ["What is not included"]] },
+    { t: "h2", text: "Showing and offers" },
+    { t: "fields", rows: [["Showing availability"], ["Pets in the home?", "Occupied or vacant"], ["Offer deadline (if any)"], ["Seller timeline"]] },
+    { t: "h2", text: "Community and logistics" },
+    { t: "note", text: "State facts you can verify and link to official sources. Do not describe who lives in an area or steer buyers by neighborhood makeup. Fair housing rules apply." },
+    { t: "fields", rows: [["Parking"], ["Internet providers available"], ["School district (link to the district's own lookup)"], ["Flood zone status (link to the official map)"]] },
+    { t: "h2", text: "Questions you are asked most" },
+    { t: "lines", n: 6 },
+    { t: "note", text: "General guidance, not legal advice. Follow your brokerage's disclosure and fair housing requirements." },
+  ],
+}
+
+const leadFollowUpTracker = {
+  file: "lead-follow-up-tracker",
+  title: "Lead Follow-Up Tracker",
+  subtitle: "One row per lead. The goal is simple: no lead goes more than a day without a note on what happens next.",
+  blocks: [
+    { t: "fields", rows: [["Listing or campaign"], ["Week of"]] },
+    { t: "table", cols: [["Lead name", 18], ["Source", 12], ["First reply (time)", 14], ["Day 1", 10], ["Day 3", 10], ["Day 7", 10], ["Status", 12], ["Next step", 14]], rows: 18 },
+    { t: "note", text: "Status ideas: new, replied, showing booked, toured, offer stage, not interested. Record only what you need, and remove people who ask you to stop." },
+  ],
+}
+
 // ───────────────────────── PDF ─────────────────────────
 
 function buildPdf(model, { fillable = false } = {}) {
@@ -433,7 +500,7 @@ function buildPdf(model, { fillable = false } = {}) {
     doc.text(FOOTER, M, H - 8)
     doc.text(`Page ${p} of ${pages}`, W - M, H - 8, { align: "right" })
   }
-  doc.setProperties({ title: model.title, subject: "Free template from Supplement Snap", creator: "Supplement Snap" })
+  doc.setProperties({ title: model.title, subject: "Free template from ListingFlare", creator: "ListingFlare" })
   return Buffer.from(doc.output("arraybuffer"))
 }
 
@@ -514,9 +581,9 @@ function buildDocx(model) {
   }
 
   const doc = new Document({
-    creator: "Supplement Snap",
+    creator: "ListingFlare",
     title: model.title,
-    description: "Free template from Supplement Snap",
+    description: "Free template from ListingFlare",
     sections: [{
       properties: { page: { size: { width: 12240, height: 15840 }, margin: { top: 1000, right: 1000, bottom: 1000, left: 1000 } } },
       footers: { default: new Footer({ children: [new Paragraph({ alignment: AlignmentType.CENTER, children: [
@@ -535,7 +602,7 @@ function buildDocx(model) {
 
 const write = (name, buf) => { fs.writeFileSync(path.join(OUT, name), buf); console.log(name.padEnd(54), (buf.length / 1024).toFixed(1) + " KB") }
 
-for (const model of [listingPresentation, sellerUpdate, propertyWebsite, marketingPlan]) {
+for (const model of [listingPresentation, sellerUpdate, propertyWebsite, marketingPlan, leadResponseScripts, listingFaqWorksheet, leadFollowUpTracker]) {
   write(`${model.file}.pdf`, buildPdf(model))
   write(`${model.file}-fillable.pdf`, buildPdf(model, { fillable: true }))
   write(`${model.file}.docx`, await buildDocx(model))

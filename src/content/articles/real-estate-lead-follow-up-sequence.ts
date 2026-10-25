@@ -86,6 +86,13 @@ export const article: BlogPost = {
 
 <p>For more on keeping leads from slipping away, see <a href="/blog/how-to-stop-losing-leads-to-zillow">how to stop losing leads to Zillow</a>, <a href="/blog/how-listing-agents-capture-buyer-leads">how listing agents capture buyer leads</a>, <a href="/blog/lead-scoring-criteria-real-estate-agents">lead scoring criteria</a> and our <a href="/blog/open-house-follow-up">open house follow-up templates</a>.</p>
 
+<h2>Related Guides</h2>
+<ul>
+<li><a href="/blog/real-estate-lead-nurture-campaign">A 30-day real estate lead nurture campaign</a></li>
+<li><a href="/blog/how-to-respond-to-real-estate-leads">How to respond to real estate leads (scripts)</a></li>
+<li><a href="/blog/real-estate-text-message-rules-tcpa-can-spam">Texting and emailing leads: TCPA and CAN-SPAM basics</a></li>
+</ul>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

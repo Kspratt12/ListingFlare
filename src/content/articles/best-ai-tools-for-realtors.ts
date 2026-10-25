@@ -295,6 +295,13 @@ export const article: BlogPost = {
 
 <p>For a deeper look at AI tools specifically for your <a href="/blog/best-ai-tools-real-estate-marketing">real estate marketing workflow</a>, check out our detailed comparison of the best AI marketing tools for agents. And if you want to understand how <a href="/blog/ai-for-real-estate-agents">AI is reshaping the real estate industry</a> more broadly, that guide covers the bigger picture.</p>
 
+<h2>Related Guides</h2>
+<ul>
+<li><a href="/blog/best-real-estate-chatbots">Best real estate chatbots</a></li>
+<li><a href="/blog/ai-chatbot-fair-housing-compliance-real-estate">AI chatbots and fair housing</a></li>
+<li><a href="/blog/best-real-estate-software-for-listing-agents">Best real estate software for listing agents</a></li>
+</ul>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions About AI Tools for Realtors</h2>
 

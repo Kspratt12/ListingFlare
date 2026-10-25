@@ -102,6 +102,13 @@ export const article: BlogPost = {
 <h2>Sources and Further Reading</h2>
 <p>If you use sign-in details for marketing emails, the <a href="https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business" target="_blank" rel="noopener noreferrer">FTC&rsquo;s CAN-SPAM compliance guide for business</a> covers the basics, including accurate sender information and a way to opt out. Check your brokerage&rsquo;s guidance and the rules where you work on calls and texts. This is general information, not legal advice.</p>
 
+<h2>Related Guides</h2>
+<ul>
+<li><a href="/blog/best-open-house-apps">Best open house apps</a></li>
+<li><a href="/blog/real-estate-yard-sign-qr-code">How to set up a yard sign QR code</a></li>
+<li><a href="/blog/real-estate-text-message-rules-tcpa-can-spam">Texting and emailing leads: TCPA and CAN-SPAM basics</a></li>
+</ul>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

@@ -232,6 +232,13 @@ export const article: BlogPost = {
   <li><strong>Over-relying on automation:</strong> Technology should assist your scoring, not replace your judgment. If a lead scores low on paper but your gut says otherwise during a conversation, trust your instincts and adjust. You know your market better than any algorithm.</li>
 </ul>
 
+<h2>Related Guides</h2>
+<ul>
+<li><a href="/blog/real-estate-lead-conversion-rate">Real estate lead conversion rate: how to calculate and improve it</a></li>
+<li><a href="/blog/real-estate-lead-nurture-campaign">A 30-day real estate lead nurture campaign</a></li>
+<li><a href="/blog/speed-to-lead-real-estate">Speed to lead in real estate</a></li>
+</ul>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

@@ -65,6 +65,10 @@ export default function Page() {
         { question: "Where do the leads go?", answer: "Straight to your ListingFlare dashboard, where you can reply, score and follow up." },
       ]}
       related={[
+        { href: "/blog/best-real-estate-chatbots", label: "Best real estate chatbots" },
+        { href: "/blog/ai-chatbot-fair-housing-compliance-real-estate", label: "AI chatbots and fair housing" },
+        { href: "/blog/after-hours-real-estate-leads", label: "How to answer after-hours real estate leads" },
+        { href: "/blog/listing-faq-questions-buyers-ask", label: "25 questions buyers ask on every listing" },
         { href: "/real-estate-lead-capture-software", label: "Real estate lead capture software" },
         { href: "/single-property-website-builder", label: "Single property website builder" },
         { href: "/blog/ai-for-real-estate-agents", label: "AI for real estate agents" },

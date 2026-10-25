@@ -68,6 +68,13 @@ ${downloadBox("seller-update-report-template")}
 
 <p>Related reading: <a href="/blog/how-to-market-a-real-estate-listing">how to market a real estate listing</a> and the <a href="/blog/real-estate-listing-page-checklist">listing page checklist</a>.</p>
 
+<h2>Related Guides</h2>
+<ul>
+<li><a href="/blog/listing-page-analytics-what-to-track">Listing page analytics: what to track</a></li>
+<li><a href="/blog/best-showing-scheduling-software-real-estate">Best showing scheduling software</a></li>
+<li><a href="/blog/how-to-get-more-showings">How to get more showings on a listing</a></li>
+</ul>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

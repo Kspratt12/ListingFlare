@@ -70,6 +70,10 @@ export default function Page() {
         { question: "Is this different from a regular agent website?", answer: "A regular agent website is one site for you. This gives each property its own page, built to show one home and capture inquiries for it." },
       ]}
       related={[
+        { href: "/blog/single-property-website-cost", label: "How much a single property website costs" },
+        { href: "/blog/real-estate-yard-sign-qr-code", label: "How to set up a yard sign QR code" },
+        { href: "/blog/listing-faq-questions-buyers-ask", label: "25 questions buyers ask on every listing" },
+        { href: "/blog/listingflare-review", label: "ListingFlare review: features, pricing and who it is not for" },
         { href: "/real-estate-lead-capture-software", label: "Real estate lead capture software" },
         { href: "/real-estate-ai-chatbot", label: "AI chatbot for real estate listings" },
         { href: "/blog/how-to-create-a-single-property-website", label: "How to create a single property website: the complete guide" },

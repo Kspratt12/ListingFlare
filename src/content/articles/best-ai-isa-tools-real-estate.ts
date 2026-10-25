@@ -500,6 +500,13 @@ export const article: BlogPost = {
 
 <p><strong>Related:</strong> <a href="/blog/ai-real-estate-chatbot-vs-virtual-assistant">AI real estate chatbot vs virtual assistant</a>.</p>
 
+<h2>Related Guides</h2>
+<ul>
+<li><a href="/blog/after-hours-real-estate-leads">How to answer after-hours real estate leads</a></li>
+<li><a href="/blog/best-real-estate-chatbots">Best real estate chatbots</a></li>
+<li><a href="/blog/how-to-respond-to-real-estate-leads">How to respond to real estate leads (scripts)</a></li>
+</ul>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions About AI ISA Tools for Real Estate</h2>
 

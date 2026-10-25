@@ -26,6 +26,9 @@ const SENTINELS = {
   "single-property-website-template": ["SINGLE PROPERTY WEBSITE", "Property basics", "Questions buyers ask", "Call to action", "Fair housing"],
   "listing-marketing-plan-template": ["LISTING MARKETING PLAN", "Pricing and timeline", "Marketing activities", "Acknowledgement"],
   "pre-listing-checklist-template": ["PRE-LISTING CHECKLIST", "Paperwork", "Home preparation", "Go live"],
+  "real-estate-lead-response-scripts": ["LEAD RESPONSE SCRIPTS", "After-hours auto-reply", "Before you send"],
+  "listing-faq-worksheet": ["LISTING FAQ WORKSHEET", "Cost and terms", "Showing and offers"],
+  "lead-follow-up-tracker": ["LEAD FOLLOW-UP TRACKER", "Lead name", "Next step"],
   "open-house-checklist-template": ["OPEN HOUSE CHECKLIST", "A week before", "At the open house", "After"],
 }
 

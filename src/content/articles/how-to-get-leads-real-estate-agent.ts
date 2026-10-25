@@ -125,6 +125,13 @@ export const article: BlogPost = {
 
 <p><strong>Related reading:</strong> <a href="/blog/best-lead-generation-for-realtors">best lead generation methods for realtors, compared</a></p>
 
+<h2>Related Guides</h2>
+<ul>
+<li><a href="/blog/speed-to-lead-real-estate">Speed to lead in real estate</a></li>
+<li><a href="/blog/real-estate-lead-magnet-ideas">Real estate lead magnet ideas for listing agents</a></li>
+<li><a href="/blog/best-real-estate-software-for-listing-agents">Best real estate software for listing agents</a></li>
+</ul>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 
