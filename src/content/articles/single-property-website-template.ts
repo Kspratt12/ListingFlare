@@ -17,10 +17,9 @@ export const article: BlogPost = {
     "what to put on a single property website",
   ],
   readingTime: 7,
-  coverImage:
-    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=630&fit=crop&q=80",
+  coverImage: "/blog/single-property-website-template/hero.jpg",
   coverImageAlt:
-    "Modern white house with a swimming pool under a blue sky, the kind of lead photo used on a listing page",
+    "Smiling agent leaning on a kitchen island in a bright white kitchen",
   content: `
 <p>A single property website template is a plan for the page you build for one listing: what goes at the top, what the description says, which photos and details to show, and how a buyer gets in touch. This one is a content template, not a design theme. It is a fill-in worksheet you complete first, so that building the page, in any tool, is fast. Download it as a printable PDF, a fillable PDF or a Word file.</p>
 

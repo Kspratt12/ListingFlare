@@ -7,6 +7,7 @@ export const article: BlogPost = {
   description:
     "Castmagic review for real estate agents: how AI content repurposing turns one recording into posts, captions and emails, with pricing, pros and cons.",
   date: "2026-03-27",
+  noindex: true,
   author: "ListingFlare Team",
   category: "Social Media",
   keywords: [

@@ -8,6 +8,7 @@ export const article: BlogPost = {
     "Descript review for real estate agents: pricing, AI features, transcript-based video editing and how to make polished listing videos with no experience.",
   date: "2026-03-27",
   updated: "2026-10-23",
+  noindex: true,
   author: "ListingFlare Team",
   category: "Listing Marketing",
   keywords: [
