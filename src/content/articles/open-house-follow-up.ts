@@ -17,9 +17,9 @@ export const article: BlogPost = {
   ],
   readingTime: 7,
   coverImage:
-    "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=1200&h=630&fit=crop&q=80",
+    "/blog/open-house-follow-up/hero.jpg",
   coverImageAlt:
-    "Staged living room at an open house where visitors sign in",
+    "Single-story home with a covered patio, outdoor seating and a green lawn under a blue sky",
   content: `
 <p>An open house follow-up is a short, friendly message to each visitor after the event: a thank-you the same day or the next morning, a useful second touch a few days later, and a light check-in about a week after. The goal is to be helpful and easy to reply to, not pushy. Below is a simple timeline and templates you can copy.</p>
 

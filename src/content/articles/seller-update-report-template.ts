@@ -18,9 +18,9 @@ export const article: BlogPost = {
   ],
   readingTime: 6,
   coverImage:
-    "https://images.unsplash.com/photo-1585914924626-15adac1e6402?w=1200&h=630&fit=crop&q=80",
+    "/blog/seller-update-report-template/hero.webp",
   coverImageAlt:
-    "Real estate agent reviewing property listings on a tablet",
+    "Agent holding a set of house keys in one hand and a small model of a house in the other",
   content: `
 <p>A seller update report is a short summary you send a seller while their home is on the market: what activity the listing has had, what feedback came in, what you did that week, and what you recommend next. Sellers who hear from you regularly tend to feel better informed, and you get a chance to explain what is happening before they ask. The template below is a one-to-two page report with blanks to fill in from your own records. Download it as a PDF, a fillable PDF or a Word file.</p>
 

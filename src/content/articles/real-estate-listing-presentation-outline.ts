@@ -98,6 +98,8 @@ export const article: BlogPost = {
 <li><strong>No follow-up.</strong> Many listings go to the agent who follows up promptly and politely.</li>
 </ul>
 
+<p><strong>Related:</strong> <a href="/blog/real-estate-listing-presentation-template">listing presentation template</a> and <a href="/blog/listing-marketing-plan-template">listing marketing plan template</a>. More <a href="/free-real-estate-templates">free real estate templates</a> for listing agents.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

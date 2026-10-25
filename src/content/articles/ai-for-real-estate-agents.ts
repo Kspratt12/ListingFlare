@@ -335,6 +335,8 @@ export const article: BlogPost = {
 
 <p><strong>Related reading:</strong> <a href="/blog/best-ai-tools-for-realtors">best AI tools for realtors</a> &middot; <a href="/blog/trainual-review-real-estate-brokerages">Trainual review for brokerages</a></p>
 
+<p><strong>Related:</strong> <a href="/blog/ai-real-estate-chatbot-vs-virtual-assistant">AI real estate chatbot vs virtual assistant</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions About AI for Real Estate Agents</h2>
 

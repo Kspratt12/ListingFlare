@@ -102,6 +102,8 @@ export const article: BlogPost = {
 
 <p><strong>Related reading:</strong> <a href="/blog/open-house-sign-in-sheet-vs-qr-code">open house sign-in sheet vs QR code</a></p>
 
+<p><strong>Related:</strong> <a href="/blog/open-house-checklist">open house checklist</a> and <a href="/blog/open-house-sign-in-sheet-template">sign-in sheet template</a>. More <a href="/free-real-estate-templates">free real estate templates</a> for listing agents.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

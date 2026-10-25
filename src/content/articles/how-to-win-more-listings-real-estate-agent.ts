@@ -184,6 +184,8 @@ export const article: BlogPost = {
 
 <p><strong>More to read:</strong> <a href="/blog/real-estate-listing-presentation-outline">what to include in a listing presentation</a></p>
 
+<p><strong>Related:</strong> <a href="/blog/real-estate-listing-presentation-template">listing presentation template</a>, <a href="/blog/listing-marketing-plan-template">listing marketing plan template</a> and <a href="/blog/seller-price-reduction-scripts">how to talk to a seller about a price reduction</a>. More <a href="/free-real-estate-templates">free real estate templates</a> for listing agents.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

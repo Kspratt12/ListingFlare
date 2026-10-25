@@ -76,6 +76,12 @@ import { article as openHouseFollowUp } from "@/content/articles/open-house-foll
 import { article as openHouseSignInTemplate } from "@/content/articles/open-house-sign-in-sheet-template";
 import { article as sellerUpdateTemplate } from "@/content/articles/seller-update-report-template";
 import { article as leadFollowUpSequence } from "@/content/articles/real-estate-lead-follow-up-sequence";
+import { article as singlePropertyTemplate } from "@/content/articles/single-property-website-template";
+import { article as openHouseChecklist } from "@/content/articles/open-house-checklist";
+import { article as listingMarketingPlan } from "@/content/articles/listing-marketing-plan-template";
+import { article as preListingChecklist } from "@/content/articles/pre-listing-checklist";
+import { article as priceReductionScripts } from "@/content/articles/seller-price-reduction-scripts";
+import { article as chatbotVsVa } from "@/content/articles/ai-real-estate-chatbot-vs-virtual-assistant";
 
 const allPosts: BlogPost[] = [
   howToGetLeads,
@@ -137,6 +143,12 @@ const allPosts: BlogPost[] = [
   openHouseSignInTemplate,
   sellerUpdateTemplate,
   leadFollowUpSequence,
+  singlePropertyTemplate,
+  openHouseChecklist,
+  listingMarketingPlan,
+  preListingChecklist,
+  priceReductionScripts,
+  chatbotVsVa,
 ];
 
 // Sort by date descending

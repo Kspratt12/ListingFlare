@@ -125,6 +125,8 @@ export const article: BlogPost = {
 
 <p><strong>More to read:</strong> <a href="/blog/real-estate-listing-page-checklist">12-point listing page checklist</a> &middot; <a href="/blog/real-estate-agent-website-examples">real estate agent website examples</a></p>
 
+<p><strong>Related:</strong> <a href="/blog/single-property-website-template">single property website content template</a>. More <a href="/free-real-estate-templates">free real estate templates</a> for listing agents.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

@@ -2139,6 +2139,34 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
         </div>
       </section>
 
+      {/* Resources: internal links to the main landing pages and free templates */}
+      <section className="border-t border-gray-100 bg-gray-50 py-14 md:py-16">
+        <div className="mx-auto max-w-5xl px-6">
+          <h2 className="text-center font-serif text-2xl font-bold text-gray-900 md:text-3xl">
+            Guides, comparisons and free templates for listing agents
+          </h2>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { href: "/single-property-website-builder", title: "Single Property Website Builder", text: "A branded page for every listing, with lead capture." },
+              { href: "/real-estate-ai-chatbot", title: "AI Chatbot for Real Estate Listings", text: "Answers buyer questions at any hour." },
+              { href: "/real-estate-lead-capture-software", title: "Real Estate Lead Capture Software", text: "Capture and follow up with leads you own." },
+              { href: "/listingflare-vs-rela", title: "ListingFlare vs Rela", text: "A side-by-side feature comparison." },
+              { href: "/listingflare-vs-singlepropertysites", title: "ListingFlare vs SinglePropertySites.com", text: "How the two compare." },
+              { href: "/free-real-estate-templates", title: "Free Real Estate Templates", text: "Listing presentation, open house and seller update templates." },
+            ].map((r) => (
+              <Link
+                key={r.href}
+                href={r.href}
+                className="rounded-xl border border-gray-200 bg-white px-5 py-4 transition-colors hover:border-brand-300"
+              >
+                <span className="block text-sm font-semibold text-gray-900">{r.title} &rarr;</span>
+                <span className="mt-1 block text-xs text-gray-500">{r.text}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="bg-white py-14 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
@@ -2231,6 +2259,8 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
           </span>
           <div className="flex items-center gap-5 text-sm text-gray-500">
             <Link href="/blog" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Blog</Link>
+            <span>&middot;</span>
+            <Link href="/free-real-estate-templates" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Free Templates</Link>
             <span>&middot;</span>
             <Link href="/about" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">About</Link>
             <span>&middot;</span>

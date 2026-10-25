@@ -9,6 +9,10 @@
 //   /blog/real-estate-listing-presentation-template
 //   /blog/open-house-sign-in-sheet-template
 //   /blog/seller-update-report-template
+//   /blog/single-property-website-template
+//   /blog/open-house-checklist
+//   /blog/listing-marketing-plan-template
+//   /blog/pre-listing-checklist
 
 import fs from "node:fs"
 import path from "node:path"
@@ -114,6 +118,172 @@ const sellerUpdate = {
     { t: "lines", n: 3 },
     { t: "fields", rows: [["Seller questions to answer"], ["Next update date"], ["Agent name", "Phone"]] },
     { t: "note", text: "General guidance, not legal advice. Follow your brokerage's rules on what you may share with sellers." },
+  ],
+}
+
+const propertyWebsite = {
+  file: "single-property-website-template",
+  title: "Single Property Website: Content Template",
+  subtitle: "Fill in every section before you build the page. Use facts you have checked, and keep the wording about the home, not about the people who might buy it.",
+  blocks: [
+    { t: "h2", text: "1. Property basics" },
+    { t: "fields", rows: [["Street address"], ["City", "State and ZIP"], ["List price", "Property type"], ["Beds", "Baths"], ["Square feet", "Year built"], ["Lot size", "HOA fee (if any)"]] },
+    { t: "h2", text: "2. Headline and first impression" },
+    { t: "note", text: "One short headline that says what makes this home worth a visit. Avoid vague superlatives you cannot back up." },
+    { t: "lines", n: 2 },
+    { t: "fields", rows: [["Hero photo (which shot and why)"]] },
+    { t: "h2", text: "3. Description" },
+    { t: "note", text: "Three short paragraphs: the home, its best features, and the location. Use facts, not adjectives, and include only what you can verify." },
+    { t: "lines", n: 6 },
+    { t: "h2", text: "4. Key features" },
+    { t: "table", cols: [["Feature", 36], ["Detail", 64]], rows: 8 },
+    { t: "h2", text: "5. Neighborhood" },
+    { t: "note", text: "Mention only what you have checked, and send buyers to official sources for schools and taxes." },
+    { t: "fields", rows: [["Schools (check the district site)"], ["Commute or transit"], ["Nearby shops and parks"], ["What buyers often ask about the area"]] },
+    { t: "h2", text: "6. Photos, video and tours" },
+    { t: "checks", items: [
+      "Exterior, front",
+      "Main living areas",
+      "Kitchen",
+      "Primary bedroom and bath",
+      "Outdoor space",
+      "Floor plan or layout",
+      "Video walkthrough (optional)",
+      "Virtual tour link (optional)",
+    ] },
+    { t: "h2", text: "7. Questions buyers ask" },
+    { t: "note", text: "Write the answers once. They work as an on-page FAQ and as source material for any chat assistant. Common topics: HOA fees, property taxes, age of the roof and HVAC, utilities, school district, parking, pets, and offer deadlines." },
+    { t: "table", cols: [["Question", 40], ["Answer", 60]], rows: 8 },
+    { t: "h2", text: "8. Call to action and lead form" },
+    { t: "fields", rows: [["Main button text (for example Schedule a showing)"], ["Form fields you will ask for"], ["Who is notified, and how fast you will reply"]] },
+    { t: "h2", text: "9. Agent details" },
+    { t: "fields", rows: [["Agent name", "Brokerage"], ["Phone", "Email"], ["License no. (if required)"]] },
+    { t: "note", text: "Fair housing: describe the home, not the people. Avoid wording that suggests a preference or limitation based on a protected class, and follow your brokerage's and MLS rules on advertising." },
+  ],
+}
+
+const openHouseChecklist = {
+  file: "open-house-checklist-template",
+  title: "Open House Checklist",
+  subtitle: "Tick things off before, during and after the open house. Add anything your brokerage requires, including its safety guidance.",
+  blocks: [
+    { t: "fields", rows: [["Property address"], ["Date and time", "Hosted by"]] },
+    { t: "h2", text: "A week before" },
+    { t: "checks", items: [
+      "Confirm the date and time with the seller",
+      "Schedule cleaning and any staging",
+      "Check that the open house shows on the MLS and your listing page",
+      "Print flyers with a link or QR code",
+      "Post on social media and email your contacts",
+      "Tell nearby neighbors if you wish",
+      "Plan signs and parking",
+      "Read your brokerage's open house and safety guidance",
+    ] },
+    { t: "h2", text: "The day before" },
+    { t: "checks", items: [
+      "Walk through with the seller: put away valuables, medication and personal papers",
+      "Print sign-in sheets and test the QR sign-in link on your phone",
+      "Prepare a one-page feature sheet",
+      "Check the weather and have a backup plan",
+      "Charge your phone, and tell someone your schedule",
+    ] },
+    { t: "h2", text: "At the open house" },
+    { t: "checks", items: [
+      "Arrive early, turn on lights and open the blinds",
+      "Put out signs",
+      "Set up the sign-in at the door",
+      "Greet every visitor and note what they say",
+      "Know where the exits are, and follow your safety guidance",
+      "Walk every room at the end before you leave",
+    ] },
+    { t: "h2", text: "After" },
+    { t: "checks", items: [
+      "Lock up and turn off lights",
+      "Send a thank-you the same day or next morning",
+      "Enter new contacts in your CRM",
+      "Share feedback with the seller",
+      "Schedule follow-ups for about day 3 and day 7",
+    ] },
+    { t: "note", text: "General guidance, not legal advice. Follow your brokerage's rules and local requirements for open houses, advertising and safety." },
+  ],
+}
+
+const marketingPlan = {
+  file: "listing-marketing-plan-template",
+  title: "Listing Marketing Plan",
+  subtitle: "A one-to-two page plan to give a seller once they hire you. List only what you will actually do, and do not promise results.",
+  blocks: [
+    { t: "h2", text: "Listing and seller" },
+    { t: "fields", rows: [["Property address"], ["Seller name(s)", "Agent"], ["Plan date"]] },
+    { t: "h2", text: "Goals" },
+    { t: "fields", rows: [["Seller's main goal"], ["Target timeline"]] },
+    { t: "h2", text: "Pricing and timeline" },
+    { t: "fields", rows: [["Planned list price", "List date"], ["Price review date", "Open house date(s)"]] },
+    { t: "h2", text: "Marketing activities" },
+    { t: "note", text: "Examples: professional photos, a web page for this one listing, social posts, email to your contacts, an open house. Add a date and who is responsible." },
+    { t: "table", cols: [["Activity", 28], ["What I will do", 40], ["When", 16], ["Done", 16]], rows: 10 },
+    { t: "h2", text: "Online" },
+    { t: "checks", items: [
+      "Listed on the MLS",
+      "A web page for this listing, with a link or QR code",
+      "Social media posts",
+      "Email or text to my contacts",
+      "Paid promotion (only if agreed with the seller)",
+    ] },
+    { t: "fields", rows: [["Link to the listing page"]] },
+    { t: "h2", text: "In person" },
+    { t: "checks", items: ["Yard sign", "Open house", "Broker preview", "Printed flyers"] },
+    { t: "h2", text: "Communication" },
+    { t: "fields", rows: [["Update schedule (for example weekly)"], ["Preferred method (call, text, email)"]] },
+    { t: "h2", text: "How we will measure progress" },
+    { t: "fields", rows: [["Numbers I will report (for example visits, inquiries, showings)"], ["Review dates"]] },
+    { t: "h2", text: "Acknowledgement" },
+    { t: "fields", rows: [["Seller signature", "Date"], ["Agent signature", "Date"]] },
+    { t: "note", text: "This plan describes activities, not guaranteed results. It is not a contract. Follow your brokerage's required forms and the rules where you work." },
+  ],
+}
+
+const preListing = {
+  file: "pre-listing-checklist-template",
+  title: "Pre-Listing Checklist",
+  subtitle: "Work through this before the listing goes live. Add the forms and steps your brokerage and your state require.",
+  blocks: [
+    { t: "fields", rows: [["Property address"], ["Seller name(s)", "Target go-live date"]] },
+    { t: "h2", text: "Paperwork" },
+    { t: "checks", items: [
+      "Listing agreement signed",
+      "Seller disclosures completed, as required where you work",
+      "HOA documents requested, if any",
+      "Ownership and title details confirmed",
+      "Property tax information gathered",
+      "Showing instructions and lockbox plan agreed",
+      "Occupancy and access details noted",
+    ] },
+    { t: "h2", text: "Pricing" },
+    { t: "checks", items: ["Comparable sales reviewed", "Pricing strategy agreed with the seller", "Price review date set"] },
+    { t: "h2", text: "Home preparation" },
+    { t: "checks", items: [
+      "Declutter and deep clean",
+      "Repairs list agreed",
+      "Staging plan",
+      "Curb appeal and landscaping",
+      "Utilities on for photos and showings",
+      "Plan for pets during showings",
+    ] },
+    { t: "h2", text: "Photos and media" },
+    { t: "checks", items: ["Photographer booked", "Video or 3D tour, if used", "Floor plan, if used", "Photos reviewed and chosen"] },
+    { t: "h2", text: "Marketing setup" },
+    { t: "checks", items: [
+      "Listing description written and fact-checked",
+      "Listing page ready, with the lead form tested",
+      "QR code and flyer ready",
+      "Social posts scheduled",
+      "Open house scheduled",
+      "Email to my contacts ready",
+    ] },
+    { t: "h2", text: "Go live" },
+    { t: "fields", rows: [["Go-live date", "MLS number"], ["First seller update date"]] },
+    { t: "note", text: "General guidance, not legal advice. Required forms, disclosures and steps vary by brokerage and location." },
   ],
 }
 
@@ -365,7 +535,7 @@ function buildDocx(model) {
 
 const write = (name, buf) => { fs.writeFileSync(path.join(OUT, name), buf); console.log(name.padEnd(54), (buf.length / 1024).toFixed(1) + " KB") }
 
-for (const model of [listingPresentation, sellerUpdate]) {
+for (const model of [listingPresentation, sellerUpdate, propertyWebsite, marketingPlan]) {
   write(`${model.file}.pdf`, buildPdf(model))
   write(`${model.file}-fillable.pdf`, buildPdf(model, { fillable: true }))
   write(`${model.file}.docx`, await buildDocx(model))
@@ -373,3 +543,8 @@ for (const model of [listingPresentation, sellerUpdate]) {
 // The sign-in sheet is printed and filled in by hand, so it has no fillable version.
 write(`${openHouseSignIn.file}.pdf`, buildPdf(openHouseSignIn))
 write(`${openHouseSignIn.file}.docx`, await buildDocx(openHouseSignIn))
+// Checklists are printed and ticked by hand, so they have no fillable version.
+for (const model of [openHouseChecklist, preListing]) {
+  write(`${model.file}.pdf`, buildPdf(model))
+  write(`${model.file}.docx`, await buildDocx(model))
+}
