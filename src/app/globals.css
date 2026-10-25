@@ -110,7 +110,8 @@ input[type="number"]::-webkit-inner-spin-button {
 /* Scrollable table wrapper for mobile */
 .blog-content table {
   width: 100%;
-  min-width: 500px;
+  min-width: 0;
+  max-width: 100%;
   border-collapse: separate;
   border-spacing: 0;
   margin: 1.5rem 0;
@@ -123,7 +124,9 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* Auto-wrap tables in a scrollable container */
 .blog-content {
-  overflow-x: visible;
+  /* Contain any very wide table inside the article instead of letting it
+     widen the whole page. */
+  overflow-x: auto;
 }
 
 .blog-content table {
@@ -136,6 +139,22 @@ input[type="number"]::-webkit-inner-spin-button {
 @media (max-width: 640px) {
   .blog-content table {
     display: block;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Give columns a floor width so a wide table scrolls inside its own box
+     instead of squeezing every column or widening the whole page. */
+  .blog-content th,
+  .blog-content td {
+    min-width: 120px;
+  }
+}
+
+/* On wider screens let long headings wrap so the table fits its column. */
+@media (min-width: 641px) {
+  .blog-content table th {
+    white-space: normal;
   }
 }
 
@@ -295,7 +314,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
   .blog-content table {
     font-size: 0.85rem;
-    min-width: 400px;
+    min-width: 0;
     border-radius: 0.5rem;
   }
 
