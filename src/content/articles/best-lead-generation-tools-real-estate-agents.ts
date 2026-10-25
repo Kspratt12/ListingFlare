@@ -230,6 +230,9 @@ export const article: BlogPost = {
 <h3>Do single-property websites actually generate leads?</h3>
 <p>Yes, and often higher-quality leads than portal sites. When a buyer visits a dedicated property page, they are interested in that specific home. There are no competing listings pulling their attention away. Combined with an AI chatbot that answers questions instantly and captures contact information, single-property websites consistently convert at higher rates than generic listing pages. The key is driving traffic to the page through yard signs with QR codes, social media posts, and targeted ads.</p>
 
+<h3>What are real estate lead generators?</h3>
+<p>"Real estate lead generators" usually means the sources and tools that bring in people who may want to buy or sell: portals and paid lead programs, ads, a website or listing pages with a contact form, open houses, referrals and email or social media. Some produce leads you share with other agents and some produce leads that belong only to you, so check who owns the lead and what it costs before you commit.</p>
+
 <h3>What is the biggest lead generation mistake real estate agents make?</h3>
 <p>Slow follow-up. Research consistently shows that responding to a lead within five minutes makes you dramatically more likely to convert them compared to waiting an hour. Many agents invest heavily in lead generation but lose deals because they take too long to respond. Automation tools that send instant replies, like ListingFlare&rsquo;s automatic follow-up emails or your CRM&rsquo;s action plans, solve this problem by engaging leads the moment they come in, even if you are in a showing or asleep.</p>
 </div>

@@ -425,6 +425,9 @@ export const article: BlogPost = {
 <h3>What is a good conversion rate for real estate leads?</h3>
 <p>Industry averages vary by lead source. Internet leads (Zillow, Google Ads) convert at 1 to 3 percent. Referrals convert at 15 to 25 percent. Open house leads convert at 3 to 5 percent. Your own website with proper nurturing can convert at 4 to 8 percent. Focus on improving conversion at every stage, from lead to appointment, appointment to contract, and contract to closing, rather than just generating more raw leads.</p>
 
+<h3>What is a real estate lead generation system?</h3>
+<p>A lead generation system is a repeatable set of steps: a way to attract people (listings, ads, referrals, open houses, content), a place to capture their contact details (a form, a QR sign-in or a chat), and a follow-up routine so no inquiry goes unanswered. The tools can be simple. What matters is that every step happens consistently, and that you can see where leads come from.</p>
+
 <h3>Should I buy leads from Zillow or generate my own?</h3>
 <p>Both can work, but generating your own leads is more sustainable and profitable long-term. Zillow leads are shared among multiple agents, cost $20 to $500 each, and convert at under 2 percent in most markets. Your own leads from Google Ads, SEO, single-property websites, and referrals are exclusive to you, cost less over time, and convert at higher rates because there is no competition. If you use Zillow, treat it as one channel among many, not your entire strategy. Read our full analysis on <a href="/blog/how-to-stop-losing-leads-to-zillow">how to stop losing leads to Zillow</a>.</p>
 
