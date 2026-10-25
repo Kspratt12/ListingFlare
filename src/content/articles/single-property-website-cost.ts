@@ -115,7 +115,7 @@ export const article: BlogPost = {
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 
-<h3>How much does a single property website cost?</h3>
+<h3>What is the typical monthly price of a single property website?</h3>
 <p>Budget per-site plans have been reported from about $10 to $30 a month per site. Unlimited platforms are higher but include more features, and premium agent-website packages cost several hundred dollars a month.</p>
 
 <h3>Can I get a single property website for free?</h3>
