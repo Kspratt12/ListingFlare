@@ -17,10 +17,9 @@ export const article: BlogPost = {
     "open house to do list for realtors",
   ],
   readingTime: 6,
-  coverImage:
-    "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=1200&h=630&fit=crop&q=80",
+  coverImage: "/blog/open-house-checklist/hero.jpg",
   coverImageAlt:
-    "Staged living room prepared for an open house",
+    "Staged living room with a stone fireplace and floor-to-ceiling windows overlooking the water",
   content: `
 <p>An open house checklist is a short list of everything to do before, during and after the event, so nothing important gets missed: confirming the time with the seller, promoting the open house, preparing the home, setting up sign-in, staying safe, and following up with visitors. The printable checklist below covers all four stages. Download it as a PDF or a Word file you can edit.</p>
 

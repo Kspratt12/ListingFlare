@@ -16,10 +16,9 @@ export const article: BlogPost = {
     "real estate ai assistant",
   ],
   readingTime: 8,
-  coverImage:
-    "https://images.unsplash.com/photo-1585914924626-15adac1e6402?w=1200&h=630&fit=crop&q=80",
+  coverImage: "/blog/ai-real-estate-chatbot-vs-virtual-assistant/hero.jpg",
   coverImageAlt:
-    "Real estate agent reviewing property listings on a tablet",
+    "A man holds up a phone showing an AI chatbot screen while a young person looks on",
   content: `
 <p>An AI real estate chatbot is software that answers questions from people visiting a listing or your website, at any hour, and collects their contact details. A real estate virtual assistant is usually a remote human who handles administrative work for an agent, such as email, scheduling, listing entry and follow-up. People often search for both when they want help with leads and busywork, but they do different jobs. This guide explains each one, where they overlap, and how to decide.</p>
 

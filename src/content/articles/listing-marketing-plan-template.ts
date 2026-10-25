@@ -17,10 +17,9 @@ export const article: BlogPost = {
     "listing marketing plan for sellers",
   ],
   readingTime: 6,
-  coverImage:
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=630&fit=crop&q=80",
+  coverImage: "/blog/listing-marketing-plan-template/hero.jpg",
   coverImageAlt:
-    "Professionally photographed home, an example of what a listing marketing plan promotes",
+    "Five colleagues standing by large windows reviewing documents on a clipboard together",
   content: `
 <p>A listing marketing plan is a short document you give a seller that says how you will market their home: the goal, the price and timeline, the specific activities, how often you will update them, and how you will measure progress. It is different from a listing presentation, which is the pitch before they hire you. This is the plan you follow after. Download the template as a printable PDF, a fillable PDF or a Word file.</p>
 
