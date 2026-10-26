@@ -61,7 +61,9 @@ export const article: BlogPost = {
 
 <p>A great agent will explain the <strong>Comparative Market Analysis (CMA)</strong> process. They will pull recent sales of comparable homes in your area, adjust for differences in size, condition, upgrades, and lot, and use that data to recommend a pricing strategy. They should also factor in current inventory levels, buyer demand, and seasonal trends.</p>
 
-<p>Listen carefully to how the agent talks about pricing. The best agents present you with data and a recommended range, then discuss strategy. Some agents will suggest pricing slightly below market value to generate multiple offers and a potential bidding war. Others may recommend pricing at market value and holding firm. Both strategies have merit depending on market conditions. What you do not want is an agent who simply tells you what you want to hear. If an agent quotes a price significantly higher than others you have interviewed, be cautious. They may be "buying the listing" by inflating the price to win your business, only to push for a price reduction a few weeks later.</p>
+<p>Listen carefully to how the agent talks about pricing. The best agents present you with data and a recommended range, then discuss strategy. Some agents will suggest pricing slightly below market value to generate multiple offers and a potential bidding war. Others may recommend pricing at market value and holding firm.</p>
+
+<p>Both strategies have merit depending on market conditions. What you do not want is an agent who simply tells you what you want to hear. If an agent quotes a price significantly higher than others you have interviewed, be cautious. They may be "buying the listing" by inflating the price to win your business, only to push for a price reduction a few weeks later.</p>
 
 <h2>Question 4: How Do You Communicate with Clients?</h2>
 

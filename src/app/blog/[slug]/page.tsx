@@ -254,7 +254,7 @@ export default async function BlogPostPage({ params }: Props) {
       <nav className="border-b border-gray-100 px-6 py-4">
         <div className="mx-auto flex max-w-3xl items-center justify-between">
           <Link href="/" className="font-serif text-xl font-bold text-gray-900">
-            Listing<span className="text-brand-400">Flare</span>
+            Listing<span className="text-brand-500">Flare</span>
           </Link>
           <Link
             href="/blog"
@@ -269,7 +269,7 @@ export default async function BlogPostPage({ params }: Props) {
       <article className="mx-auto max-w-3xl px-6 py-12">
         {/* Header */}
         <header>
-          <span className="text-xs font-semibold uppercase tracking-wider text-brand-500">
+          <span className="text-xs font-semibold uppercase tracking-wider text-brand-700">
             {post.category}
           </span>
           <h1 className="mt-3 font-serif text-3xl font-bold leading-tight text-gray-900 md:text-4xl">
@@ -280,6 +280,7 @@ export default async function BlogPostPage({ params }: Props) {
             <span>&middot;</span>
             <time dateTime={post.date}>
               {new Date(post.date).toLocaleDateString("en-US", {
+                timeZone: "UTC",
                 month: "long",
                 day: "numeric",
                 year: "numeric",
@@ -292,6 +293,7 @@ export default async function BlogPostPage({ params }: Props) {
                   Updated{" "}
                   <time dateTime={post.updated}>
                     {new Date(post.updated).toLocaleDateString("en-US", {
+                      timeZone: "UTC",
                       month: "long",
                       day: "numeric",
                       year: "numeric",
@@ -354,7 +356,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         {/* Social Share */}
         <div className="mt-6 flex items-center gap-3">
-          <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+          <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">
             Share
           </span>
           <a
@@ -403,7 +405,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         {/* Social Share Bottom */}
         <div className="mt-10 flex items-center gap-3 border-t border-gray-100 pt-6">
-          <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+          <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">
             Share this article
           </span>
           <a
@@ -448,7 +450,7 @@ export default async function BlogPostPage({ params }: Props) {
               className="h-16 w-16 flex-shrink-0 rounded-full object-cover"
             />
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-brand-500">
+              <p className="text-xs font-semibold uppercase tracking-wider text-brand-700">
                 Written by
               </p>
               <Link href="/about" className="mt-1 block font-serif text-lg font-bold text-gray-900 hover:text-brand-600 transition-colors">
@@ -527,7 +529,7 @@ export default async function BlogPostPage({ params }: Props) {
                     />
                   </div>
                   <div className="p-4">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-brand-500">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-brand-700">
                       {r.category}
                     </span>
                     <h3 className="mt-1.5 font-serif text-base font-bold text-gray-900 group-hover:text-brand-600 transition-colors line-clamp-2">

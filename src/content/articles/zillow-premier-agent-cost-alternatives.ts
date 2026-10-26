@@ -28,7 +28,9 @@ export const article: BlogPost = {
 
 <h2>How Zillow Premier Agent Pricing Works</h2>
 
-<p>Premier Agent is a paid advertising program. Agents buy a share of the &ldquo;impressions&rdquo; on listing pages and agent-finder results in chosen ZIP codes, and buyer inquiries from those placements are routed to the agents who bought them. Because the placements are sold in a ZIP-code auction, popular areas cost more. Reported ranges from agent-focused sites vary widely: a few hundred dollars a month in small or rural markets to several thousand in major metros, and more in luxury and coastal areas. Some sources also cite per-lead averages in the low hundreds of dollars in large metros, while others say most leads cost far less. The spread is the point: <strong>your cost depends on your ZIP codes.</strong></p>
+<p>Premier Agent is a paid advertising program. Agents buy a share of the &ldquo;impressions&rdquo; on listing pages and agent-finder results in chosen ZIP codes, and buyer inquiries from those placements are routed to the agents who bought them. Because the placements are sold in a ZIP-code auction, popular areas cost more.</p>
+
+<p>Reported ranges from agent-focused sites vary widely: a few hundred dollars a month in small or rural markets to several thousand in major metros, and more in luxury and coastal areas. Some sources also cite per-lead averages in the low hundreds of dollars in large metros, while others say most leads cost far less. The spread is the point: <strong>your cost depends on your ZIP codes.</strong></p>
 
 <h2>What Changed: Zillow Flex Became Zillow Preferred</h2>
 

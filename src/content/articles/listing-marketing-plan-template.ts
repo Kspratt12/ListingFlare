@@ -68,6 +68,10 @@ ${downloadBox("listing-marketing-plan-template")}
 <h2>Where a Listing Page Fits</h2>
 <p>Many agents include a dedicated web page for the home in the plan. <a href="/single-property-website-builder">ListingFlare</a> builds one for each listing, with a photo gallery, a lead form, a QR code for flyers and open houses, and an AI assistant that answers buyer questions and captures leads. Our <a href="/blog/single-property-website-template">single property website template</a> helps you gather the content first, and the <a href="/blog/how-to-market-a-real-estate-listing">guide to marketing a real estate listing</a> covers the wider picture. To win the listing in the first place, see the <a href="/blog/real-estate-listing-presentation-template">listing presentation template</a>.</p>
 
+<!-- next-step -->
+<h2>Turn the Plan Into a Live Listing</h2>
+<p>A plan is only useful once the pieces exist. ListingFlare gives you the listing page, a QR code for the sign, an open house flyer, social posts and lead follow-up in one dashboard, so most of the plan is already built. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

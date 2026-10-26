@@ -75,7 +75,7 @@ export default function Page() {
       </nav>
 
       <main className="mx-auto max-w-3xl px-6 py-14 md:py-20">
-        <p className="text-sm font-semibold uppercase tracking-widest text-brand-500">Free tools</p>
+        <p className="text-sm font-semibold uppercase tracking-widest text-brand-700">Free tools</p>
         <h1 className="mt-3 font-serif text-4xl font-bold text-gray-900 md:text-5xl">Free Real Estate Agent Templates</h1>
         <p className="mt-5 text-lg text-gray-600">
           Templates for the things listing agents do most: pitch a seller, plan the marketing, prepare a listing, run an open house, and keep the seller updated. Download them as a printable PDF, a fillable PDF or Word. No email or account needed.

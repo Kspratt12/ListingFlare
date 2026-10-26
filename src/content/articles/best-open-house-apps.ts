@@ -138,6 +138,10 @@ ${downloadBox("open-house-checklist-template")}
 <h2>How to Judge Whether an Open House Was Worth It</h2>
 <p>Count visitors, sign-ins, follow-up replies, second showings and any offers that trace back. Over a handful of open houses you will learn how many sign-ins it takes to produce a second showing in your market, which is more useful than any national figure. A good open house also serves the seller: send them the visitor count and the feedback the same day.</p>
 
+<!-- next-step -->
+<h2>Test the Open House Tools on a Real Listing</h2>
+<p>Whichever app you pick, test it on a real open house before you commit. ListingFlare&rsquo;s QR sign-in is included with the platform and ties each visitor to the listing page and an automatic follow-up sequence. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

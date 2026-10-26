@@ -137,7 +137,9 @@ export const article: BlogPost = {
 <p>A real example. We wrote this script for a luxury listing and ran it through ElevenLabs:</p>
 
 <blockquote>
-<p>"Welcome to 1847 Grandview Terrace - a stunning 5-bedroom estate nestled in the heart of Westlake Hills. From the moment you step through the custom double doors, you are greeted by soaring 20-foot ceilings, white oak hardwood floors, and walls of glass that frame panoramic views of the Hill Country. The chef's kitchen features a 12-foot waterfall island, Wolf and Sub-Zero appliances, and a butler's pantry that connects seamlessly to the formal dining room. Step outside to your private oasis - a resort-style pool with an infinity edge, an outdoor kitchen with built-in seating for 12, and a fire pit lounge overlooking the greenbelt. This is more than a home. This is the lifestyle you have been searching for. Listed at $3.2 million."</p>
+<p>"Welcome to 1847 Grandview Terrace - a stunning 5-bedroom estate nestled in the heart of Westlake Hills. From the moment you step through the custom double doors, you are greeted by soaring 20-foot ceilings, white oak hardwood floors, and walls of glass that frame panoramic views of the Hill Country.</p>
+
+<p>The chef's kitchen features a 12-foot waterfall island, Wolf and Sub-Zero appliances, and a butler's pantry that connects seamlessly to the formal dining room. Step outside to your private oasis - a resort-style pool with an infinity edge, an outdoor kitchen with built-in seating for 12, and a fire pit lounge overlooking the greenbelt. This is more than a home. This is the lifestyle you have been searching for. Listed at $3.2 million."</p>
 </blockquote>
 
 <p>The AI-generated audio sounded like a seasoned narrator from a luxury real estate TV show. We paired it with drone footage in CapCut and had a professional listing video ready in under 20 minutes.</p>

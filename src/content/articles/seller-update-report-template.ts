@@ -68,6 +68,10 @@ ${downloadBox("seller-update-report-template")}
 
 <p>Related reading: <a href="/blog/how-to-market-a-real-estate-listing">how to market a real estate listing</a> and the <a href="/blog/real-estate-listing-page-checklist">listing page checklist</a>.</p>
 
+<!-- next-step -->
+<h2>Let the Seller Watch Instead of Asking</h2>
+<p>You can send this report by hand each week, or give the seller a link. ListingFlare includes a seller portal where clients can watch their listing&rsquo;s activity, plus analytics you can quote in your update. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+
 <h2>Related Guides</h2>
 <ul>
 <li><a href="/blog/listing-page-analytics-what-to-track">Listing page analytics: what to track</a></li>

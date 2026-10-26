@@ -153,7 +153,7 @@ export default async function AgentProfilePage({ params }: Props) {
         <section className="bg-gray-50 py-16">
           <div className="mx-auto max-w-5xl px-6">
             <div className="text-center">
-              <p className="text-sm font-semibold uppercase tracking-widest text-brand-500">
+              <p className="text-sm font-semibold uppercase tracking-widest text-brand-700">
                 What clients say
               </p>
               <h2 className="mt-3 font-serif text-2xl font-bold text-gray-900 md:text-3xl">

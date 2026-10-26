@@ -68,13 +68,17 @@ export const article: BlogPost = {
 
 <p>Every agent who walks into that living room will have a comparative market analysis. The CMA is table stakes. What separates the winner from the runner-up is the marketing plan. Sellers want to see exactly how you are going to expose their home to the largest possible pool of qualified buyers.</p>
 
-<p>Present your marketing plan as a visual timeline. Week one: professional photography and staging consultation. Week two: listing goes live on MLS, single-property website launches, social media campaign begins. Week three: broker open house, email blast to your buyer database. Week four: targeted digital ads, open house for the public. For a detailed breakdown of every tactic to include in this plan, see our guide on <a href="/blog/how-to-market-a-real-estate-listing">how to market a real estate listing</a>. When a seller can see the plan laid out on a timeline with specific deliverables, they feel confident that you have a system and that their home will not just sit there waiting for something to happen.</p>
+<p>Present your marketing plan as a visual timeline. Week one: professional photography and staging consultation. Week two: listing goes live on MLS, single-property website launches, social media campaign begins. Week three: broker open house, email blast to your buyer database. Week four: targeted digital ads, open house for the public.</p>
+
+<p>For a detailed breakdown of every tactic to include in this plan, see our guide on <a href="/blog/how-to-market-a-real-estate-listing">how to market a real estate listing</a>. When a seller can see the plan laid out on a timeline with specific deliverables, they feel confident that you have a system and that their home will not just sit there waiting for something to happen.</p>
 
 <h3>Demonstrate Your Tech Stack</h3>
 
 <p>In 2026, sellers expect their agent to use modern tools. This is where you differentiate yourself. Show them examples of the technology you use: professional virtual tours, AI-powered pricing tools, social media scheduling platforms, and most importantly, dedicated property websites.</p>
 
-<p>Pull up a live example of a single-property website you have created for a past listing. Show them how the page highlights the home with full-screen photography, detailed descriptions, a floor plan, and neighborhood information, all on a distraction-free page without competing listings pulling the buyer's attention away. Then show them the AI chatbot that sits on the page, answering buyer questions 24/7 and capturing lead information even when you are asleep. When a seller sees that kind of technology, they immediately understand that you are operating at a different level. Tools like <a href="/signup">ListingFlare</a> let you create these property websites in minutes, and <a href="/demo">seeing a demo listing</a> in your presentation is often the moment a seller decides you are the right agent.</p>
+<p>Pull up a live example of a single-property website you have created for a past listing. Show them how the page highlights the home with full-screen photography, detailed descriptions, a floor plan, and neighborhood information, all on a distraction-free page without competing listings pulling the buyer's attention away. Then show them the AI chatbot that sits on the page, answering buyer questions 24/7 and capturing lead information even when you are asleep.</p>
+
+<p>When a seller sees that kind of technology, they immediately understand that you are operating at a different level. Tools like <a href="/signup">ListingFlare</a> let you create these property websites in minutes, and <a href="/demo">seeing a demo listing</a> in your presentation is often the moment a seller decides you are the right agent.</p>
 
 <h3>Show Examples of Past Results</h3>
 

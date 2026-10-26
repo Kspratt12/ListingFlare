@@ -79,6 +79,10 @@ ${downloadBox("pre-listing-checklist-template")}
 <h2>Setting Up the Listing Page</h2>
 <p>If you use <a href="/single-property-website-builder">ListingFlare</a>, you can create the listing page before go-live: add photos, details, a virtual tour link and video, then use the page link and QR code in your flyers and posts. Test the lead form yourself first, so you know the notification reaches you. It is one option among many, and the checklist works the same either way.</p>
 
+<!-- next-step -->
+<h2>Go Live in Minutes</h2>
+<p>The last items on this checklist are the marketing setup and the go-live steps. ListingFlare lets you enter the details, add photos and publish a branded listing page with a QR code and lead capture the same day. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 
