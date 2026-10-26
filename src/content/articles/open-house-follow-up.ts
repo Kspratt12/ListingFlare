@@ -81,6 +81,10 @@ export const article: BlogPost = {
 </ul>
 <p>You can still send your own personal notes on top of that. Compare the sign-in options in <a href="/blog/open-house-sign-in-sheet-vs-qr-code">sign-in sheet vs QR code</a>, get ideas in <a href="/blog/open-house-ideas-to-attract-more-buyers">open house ideas</a>, and see our <a href="/blog/open-house-flyer-generator">open house flyer generator</a> for a flyer with a QR code.</p>
 
+<!-- next-step -->
+<h2>See the Follow-Up Run Itself</h2>
+<p>If you would rather not write these by hand every weekend, ListingFlare sends a first reply and a day 1, 3 and 7 sequence for each open house sign-in, and you can turn on approval mode to review messages first. <a href="/demo">See the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+
 <h2>Related Guides</h2>
 <ul>
 <li><a href="/blog/how-to-respond-to-real-estate-leads">How to respond to real estate leads (scripts)</a></li>

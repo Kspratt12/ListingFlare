@@ -68,7 +68,13 @@ ${downloadBox("single-property-website-template")}
 <p>Describe the home, not the people who might buy it. Avoid wording that suggests a preference or limitation based on a protected class, in the description, the neighborhood section or the buyer FAQ. Follow your brokerage's and your MLS's rules on advertising. This is general guidance, not legal advice.</p>
 
 <h2>Building the Page</h2>
-<p>With the template filled in, you can build the page in a general website builder, in a tool made for single property pages, or in your own site. See our comparison of the <a href="/blog/best-single-property-website-builders">best single property website builders</a> and the step-by-step guide to <a href="/blog/how-to-create-a-single-property-website">creating a single property website</a>. <a href="/single-property-website-builder">ListingFlare</a> gives each listing a branded page with a photo gallery, video upload, a virtual tour link, a lead form, a QR code you can put on flyers and signs, and an AI assistant that answers buyer questions and captures leads. Review the assistant's answers against your own FAQ so they stay accurate. A <a href="/blog/real-estate-listing-page-checklist">listing page checklist</a> is a good last check before you publish.</p>
+<p>With the template filled in, you can build the page in a general website builder, in a tool made for single property pages, or in your own site. See our comparison of the <a href="/blog/best-single-property-website-builders">best single property website builders</a> and the step-by-step guide to <a href="/blog/how-to-create-a-single-property-website">creating a single property website</a>.</p>
+
+<p><a href="/single-property-website-builder">ListingFlare</a> gives each listing a branded page with a photo gallery, video upload, a virtual tour link, a lead form, a QR code you can put on flyers and signs, and an AI assistant that answers buyer questions and captures leads. Review the assistant's answers against your own FAQ so they stay accurate. A <a href="/blog/real-estate-listing-page-checklist">listing page checklist</a> is a good last check before you publish.</p>
+
+<!-- next-step -->
+<h2>Build the Page From This Template in Minutes</h2>
+<p>Once the content is ready, the page itself should be quick. ListingFlare turns your details and photos into a branded listing page with an AI assistant, a showing scheduler and lead capture. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

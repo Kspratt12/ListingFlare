@@ -365,7 +365,9 @@ export const article: BlogPost = {
 </tbody>
 </table>
 
-<p>Two caveats keep this honest. First, some vendors sell tiers that cover several listings for one price (for example, a plan that includes a set number of active listings), so compare your plan&rsquo;s total rather than a per-listing figure. Second, price is only half the question. A $15 page without chat, scheduling or follow-up is a different product from a $150 platform that includes all three, and the cheaper page only wins if you do not need what the dearer one does. If you carry one listing at a time and want just a page, a per-listing tool is usually the better value. If you carry several at once, or you want captured leads answered quickly, the flat plan starts to make sense. See also <a href="/blog/single-property-website-cost">what a single property website really costs</a>.</p>
+<p>Two caveats keep this honest. First, some vendors sell tiers that cover several listings for one price (for example, a plan that includes a set number of active listings), so compare your plan&rsquo;s total rather than a per-listing figure. Second, price is only half the question. A $15 page without chat, scheduling or follow-up is a different product from a $150 platform that includes all three, and the cheaper page only wins if you do not need what the dearer one does.</p>
+
+<p>If you carry one listing at a time and want just a page, a per-listing tool is usually the better value. If you carry several at once, or you want captured leads answered quickly, the flat plan starts to make sense. See also <a href="/blog/single-property-website-cost">what a single property website really costs</a>.</p>
 
 <h2>The Same Buyer Question, Two Experiences</h2>
 

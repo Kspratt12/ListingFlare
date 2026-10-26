@@ -75,6 +75,10 @@ ${downloadBox("open-house-checklist-template")}
 <h2>Tools That Save Time</h2>
 <p>ListingFlare gives each listing a QR sign-in page that asks for name, email, phone and whether the visitor has an agent, creates a lead, and starts your follow-up emails, and a <a href="/blog/open-house-flyer-generator">flyer generator</a> that puts the QR code on a printable flyer. See <a href="/blog/open-house-sign-in-sheet-vs-qr-code">sign-in sheet vs QR code</a> for the trade-offs, and <a href="/blog/open-house-ideas-to-attract-more-buyers">open house ideas</a> for ways to draw more visitors.</p>
 
+<!-- next-step -->
+<h2>Run the Whole Day From One Place</h2>
+<p>Most of this checklist is the follow-through after the doors close. ListingFlare covers the digital half: a QR sign-in that turns each visitor into a lead, a printable flyer with a QR code, and automatic day 1, 3 and 7 follow-up. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

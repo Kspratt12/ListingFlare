@@ -96,6 +96,10 @@ export const article: BlogPost = {
 
 <p>Many agents prefer a personal text sent from their own phone number to a lead who asked to hear from them. That keeps the conversation human and replies land where you already answer. ListingFlare&rsquo;s Text button on a lead opens your phone&rsquo;s messages app with their number and a ready-to-send note, so the message sends from your real number. You still need the lead&rsquo;s consent and must honor opt-outs. See more in <a href="/blog/how-to-respond-to-real-estate-leads">how to respond to real estate leads</a> and our <a href="/blog/real-estate-lead-nurture-campaign">nurture campaign plan</a>.</p>
 
+<!-- next-step -->
+<h2>Put Consent in the Flow</h2>
+<p>Texts from your own number feel personal. ListingFlare&rsquo;s Text button opens your phone&rsquo;s messages with the lead&rsquo;s number ready, so the message sends from your real number. You still need the lead&rsquo;s consent and must honor opt-outs. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

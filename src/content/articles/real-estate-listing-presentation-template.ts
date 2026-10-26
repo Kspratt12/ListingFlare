@@ -72,6 +72,10 @@ ${downloadBox("real-estate-listing-presentation-template")}
 <h2>Where a Listing Page Fits in the Marketing Plan</h2>
 <p>Many agents include a dedicated web page for the listing in section 5. <a href="/single-property-website-builder">ListingFlare</a> builds a page for each listing with a photo gallery, a QR code and link, a lead form, and an AI assistant that answers buyer questions and captures leads. It is one option among several, and you can list any tool you really use in your plan. See our guides on <a href="/blog/real-estate-listing-presentation-outline">what to include in a listing presentation</a>, <a href="/blog/how-to-win-more-listings-as-a-real-estate-agent">how to win more listings</a> and a <a href="/blog/real-estate-listing-page-checklist">listing page checklist</a>.</p>
 
+<!-- next-step -->
+<h2>Show the Seller a Live Example</h2>
+<p>Sellers remember what they can see. Showing a live listing page with an assistant that answers buyer questions, and a seller portal where they can watch activity, is a concrete way to stand out. You can <a href="/demo">see the live demo</a> to see what the seller would see, or <a href="/signup">start the 14-day free trial</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

@@ -82,9 +82,15 @@ export const article: BlogPost = {
 <p>Rules on marketing emails, calls and texts vary and can include getting permission, identifying yourself and offering an opt-out. Include an unsubscribe option in marketing emails, get permission before texting, and check your brokerage's guidance and the rules where you work. This is general information, not legal advice. See the <a href="https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business" target="_blank" rel="noopener noreferrer">FTC&rsquo;s CAN-SPAM compliance guide for business</a> for the basics on marketing emails.</p>
 
 <h2>Automating the Sequence With ListingFlare</h2>
-<p>Doing this by hand is fine for a few leads and hard to keep up when a listing is busy. When someone inquires through a ListingFlare listing page or signs in at an open house, ListingFlare creates the lead, emails you a notification, and sends an AI-written first reply right away unless you have approval mode on to review messages first. It also schedules a day 1, day 3 and day 7 follow-up email sequence, with a separate sequence for people who have been to a showing. The messages are AI-written, so review how they sound and make sure they match how you work. You can also reply to leads yourself from the inbox.</p>
+<p>Doing this by hand is fine for a few leads and hard to keep up when a listing is busy. When someone inquires through a ListingFlare listing page or signs in at an open house, ListingFlare creates the lead, emails you a notification, and sends an AI-written first reply right away unless you have approval mode on to review messages first.</p>
+
+<p>It also schedules a day 1, day 3 and day 7 follow-up email sequence, with a separate sequence for people who have been to a showing. The messages are AI-written, so review how they sound and make sure they match how you work. You can also reply to leads yourself from the inbox.</p>
 
 <p>For more on keeping leads from slipping away, see <a href="/blog/how-to-stop-losing-leads-to-zillow">how to stop losing leads to Zillow</a>, <a href="/blog/how-listing-agents-capture-buyer-leads">how listing agents capture buyer leads</a>, <a href="/blog/lead-scoring-criteria-real-estate-agents">lead scoring criteria</a> and our <a href="/blog/open-house-follow-up">open house follow-up templates</a>.</p>
+
+<!-- next-step -->
+<h2>Automate the Sequence</h2>
+<p>If you would rather not send these by hand, ListingFlare sends a first reply and then follow-ups on days 1, 3 and 7 automatically, with approval mode if you want to review each message. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
 
 <h2>Related Guides</h2>
 <ul>

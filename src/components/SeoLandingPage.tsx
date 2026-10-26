@@ -107,7 +107,7 @@ export default function SeoLandingPage({
       </nav>
 
       <main className="mx-auto max-w-4xl px-6 py-14 md:py-20">
-        <p className="text-sm font-semibold uppercase tracking-widest text-brand-500">{eyebrow}</p>
+        <p className="text-sm font-semibold uppercase tracking-widest text-brand-700">{eyebrow}</p>
         <h1 className="mt-3 font-serif text-4xl font-bold text-gray-900 md:text-5xl">{h1}</h1>
         <p className="mt-5 max-w-3xl text-lg text-gray-600">{intro}</p>
 

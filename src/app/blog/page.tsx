@@ -139,7 +139,7 @@ export default async function BlogIndexPage({ searchParams }: Props) {
                 />
               </div>
               <div className="p-5">
-                <span className="text-xs font-semibold uppercase tracking-wider text-brand-500">
+                <span className="text-xs font-semibold uppercase tracking-wider text-brand-700">
                   {post.category}
                 </span>
                 <h2 className="mt-2 font-serif text-lg font-bold text-gray-900 group-hover:text-brand-600 transition-colors">
@@ -151,6 +151,7 @@ export default async function BlogIndexPage({ searchParams }: Props) {
                 <div className="mt-3 flex items-center gap-3 text-xs text-gray-400">
                   <time dateTime={post.date}>
                     {new Date(post.date).toLocaleDateString("en-US", {
+                      timeZone: "UTC",
                       month: "long",
                       day: "numeric",
                       year: "numeric",

@@ -68,6 +68,10 @@ export const article: BlogPost = {
 <h2>Keep the Seller Informed Along the Way</h2>
 <p>The conversation is easier when the seller has seen the numbers all along, and nothing in it is a surprise. Our <a href="/blog/seller-update-report-template">seller update report template</a> gives you a weekly format, and our <a href="/blog/pre-listing-checklist">pre-listing checklist</a> includes setting a price review date from the start. ListingFlare gives each listing's seller a private dashboard, opened with a link and no login, that shows live views, inquiries, showings and AI chats for their listing, with buyer details anonymized. It can make the data part of the conversation easier, though it does not replace explaining what the numbers mean.</p>
 
+<!-- next-step -->
+<h2>Bring Numbers to the Conversation</h2>
+<p>A price conversation goes better with data. ListingFlare&rsquo;s analytics show visits and actions for each listing, and the seller portal lets your client see the same activity. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

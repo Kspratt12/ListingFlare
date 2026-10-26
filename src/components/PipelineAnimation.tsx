@@ -34,7 +34,7 @@ export default function PipelineAnimation() {
     <section className="bg-gray-50 py-14 md:py-20">
       <div className="mx-auto max-w-5xl px-6">
         <div className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-700">
             Your Pipeline
           </p>
           <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">

@@ -102,6 +102,10 @@ export const article: BlogPost = {
 <h2>Sources and Further Reading</h2>
 <p>If you use sign-in details for marketing emails, the <a href="https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business" target="_blank" rel="noopener noreferrer">FTC&rsquo;s CAN-SPAM compliance guide for business</a> covers the basics, including accurate sender information and a way to opt out. Check your brokerage&rsquo;s guidance and the rules where you work on calls and texts. This is general information, not legal advice.</p>
 
+<!-- next-step -->
+<h2>Try the QR Version Free</h2>
+<p>The quickest way to compare the two formats is to run both at your next open house. ListingFlare&rsquo;s QR sign-in creates the lead, notifies you and starts the follow-up automatically. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+
 <h2>Related Guides</h2>
 <ul>
 <li><a href="/blog/best-open-house-apps">Best open house apps</a></li>

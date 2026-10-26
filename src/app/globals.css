@@ -93,13 +93,13 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .blog-content a {
-  color: #8d7958;
+  color: #75634a;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 .blog-content a:hover {
-  color: #6b5a3e;
+  color: #504436;
 }
 
 .blog-content strong {

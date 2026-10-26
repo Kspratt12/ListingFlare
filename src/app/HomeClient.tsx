@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
+import LazyVideo from "@/components/LazyVideo";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -1239,16 +1240,11 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
                   ))}
                   {/* Live auto-playing luxury home video */}
                   <div className="relative aspect-[4/3] w-full overflow-hidden rounded">
-                    <video
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="h-full w-full object-cover"
+                    <LazyVideo
+                      src="https://videos.pexels.com/video-files/7578552/7578552-sd_640_360_30fps.mp4"
                       poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=150&fit=crop&q=80"
-                    >
-                      <source src="https://videos.pexels.com/video-files/7578552/7578552-sd_640_360_30fps.mp4" type="video/mp4" />
-                    </video>
+                      className="h-full w-full object-cover"
+                    />
                     <span className="absolute top-1 left-1 rounded bg-black/70 px-1.5 py-0.5 text-[7px] font-bold text-white flex items-center gap-0.5">
                       <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
                       8K VIDEO
@@ -1297,7 +1293,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
                     </div>
                     <div className="flex-1">
                       <p className="text-sm font-semibold text-gray-900">Victoria Ashworth</p>
-                      <p className="text-[10px] text-brand-500">Luxury Property Specialist &middot; Westside Luxury Realty</p>
+                      <p className="text-[10px] text-brand-700">Luxury Property Specialist &middot; Westside Luxury Realty</p>
                     </div>
                   </div>
                   <div className="rounded-lg bg-gray-950 px-4 py-2.5 text-center text-xs font-medium text-white">
@@ -1777,11 +1773,11 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="mt-10 space-y-3 text-center"
           >
-            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-500">10:42 PM.</span> A buyer opens your listing.</p>
-            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-500">10:43 PM.</span> They ask about the backyard.</p>
-            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-500">10:43 PM.</span> They get an answer.</p>
-            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-500">10:44 PM.</span> They ask for a showing on Saturday.</p>
-            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-500">10:45 PM.</span> Their contact info hits your dashboard.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-700">10:42 PM.</span> A buyer opens your listing.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-700">10:43 PM.</span> They ask about the backyard.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-700">10:43 PM.</span> They get an answer.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-700">10:44 PM.</span> They ask for a showing on Saturday.</p>
+            <p className="text-lg text-gray-600"><span className="font-semibold text-brand-700">10:45 PM.</span> Their contact info hits your dashboard.</p>
             <p className="mt-6 font-serif text-xl font-semibold text-gray-900">
               You were asleep the entire time.
             </p>

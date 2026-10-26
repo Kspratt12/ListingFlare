@@ -85,6 +85,36 @@ export const article: BlogPost = {
 </tbody>
 </table>
 
+<h2>Ten Titles That Get Downloads</h2>
+
+<p>A specific title does most of the selling. Compare &ldquo;Home Buyer Guide&rdquo; with these, which tell the reader exactly what they get and when to use it:</p>
+
+<ol>
+<li>The 15-Minute Showing Checklist: What to Check Before You Make an Offer</li>
+<li>What Stays With the House? A One-Page Checklist for Buyers</li>
+<li>Offer-Ready: The Documents to Have Before You Tour</li>
+<li>[Neighborhood] Essentials: Parks, Groceries and Commute Times</li>
+<li>The Real Cost of Owning a Home: A Taxes, Insurance and Utilities Worksheet</li>
+<li>Your First 30 Days in a New Home: A Moving-In Checklist</li>
+<li>Questions to Ask the Seller&rsquo;s Agent and Your Lender Before You Write an Offer</li>
+<li>Get an Alert if [Address] Changes Price</li>
+<li>Three Similar Homes Under [Price] This Week</li>
+<li>The Open House Visitor&rsquo;s Guide to [Address]</li>
+</ol>
+
+<h2>Build One in an Hour: Step by Step</h2>
+
+<ol>
+<li><strong>Pick the moment.</strong> Decide who is reading and what they are about to do: tour a home, make an offer, move in.</li>
+<li><strong>Write five to seven items.</strong> More than that and it becomes a chore. Each item should be something the reader can act on today.</li>
+<li><strong>Use facts you can stand behind.</strong> Skip opinions about schools, safety or the kind of people who live nearby, and link to official sources instead. Fair housing rules apply to everything you publish.</li>
+<li><strong>Lay it out simply.</strong> One or two pages in Word or Google Docs, large text, your name, photo and contact details at the bottom. Export as a PDF.</li>
+<li><strong>Check your brokerage&rsquo;s rules</strong> on branding and claims before you share it.</li>
+<li><strong>Host it and test it on a phone.</strong> Download it from the link you plan to use, on mobile data, and make sure it opens quickly.</li>
+<li><strong>Place it next to the action.</strong> On the listing page beside the contact button, on the open house sign-in, and behind a QR code on the flyer.</li>
+<li><strong>Write the follow-up before you launch.</strong> A short personal note the next day is worth more than the download itself.</li>
+</ol>
+
 <h2>How to Deliver It</h2>
 
 <ol>

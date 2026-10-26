@@ -68,7 +68,7 @@ export default function ProductTestimonials({ agentCount }: Props) {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-700">
             From agents using it
           </p>
           <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">

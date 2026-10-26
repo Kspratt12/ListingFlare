@@ -122,6 +122,10 @@ export const article: BlogPost = {
 <h2>When It Is Time to Upgrade</h2>
 <p>Consider a heavier CRM when you add a team member who needs their own leads, when you cannot see your pipeline at a glance, or when follow-ups start slipping because your tool cannot keep up. Until then, a simple system you use daily beats a powerful one you avoid.</p> 
 
+<!-- next-step -->
+<h2>Try a Lighter Option First</h2>
+<p>If most of your leads come from your own listings, you may not need a full CRM yet. ListingFlare keeps those leads in one pipeline with scoring and automatic follow-up. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 

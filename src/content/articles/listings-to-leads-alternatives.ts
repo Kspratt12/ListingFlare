@@ -66,7 +66,9 @@ export const article: BlogPost = {
 
 <h3>No AI Chatbot for Listing Pages</h3>
 
-<p>This is the biggest gap in 2026. Buyers expect instant answers. They are browsing listings on their phone at 9 PM, on a lunch break, or during a commute. If they land on your listing page and have a question - Does the backyard face south? How far is the nearest school? Is the seller flexible on closing date? - they want an answer now. A static contact form does not cut it. A conversational AI trained on your listing details can answer those questions instantly, build rapport with the buyer, and capture their contact information before they move on to the next listing. Listings to Leads does not offer this.</p>
+<p>This is the biggest gap in 2026. Buyers expect instant answers. They are browsing listings on their phone at 9 PM, on a lunch break, or during a commute. If they land on your listing page and have a question - Does the backyard face south? How far is the nearest school? Is the seller flexible on closing date? - they want an answer now.</p>
+
+<p>A static contact form does not cut it. A conversational AI trained on your listing details can answer those questions instantly, build rapport with the buyer, and capture their contact information before they move on to the next listing. Listings to Leads does not offer this.</p>
 
 <h3>Landing Pages Lack Interactive Engagement</h3>
 

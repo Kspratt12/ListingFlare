@@ -61,6 +61,10 @@ ${downloadBox("open-house-sign-in-sheet-template")}
 <h2>Paper Sheet or QR Code?</h2>
 <p>Some agents use a paper sheet, some use a QR code that opens a sign-in form on a visitor's phone, and some use both. A paper sheet needs no phone, battery or connection, but you have to type it up afterward. A QR sign-in puts the details straight into your lead list. ListingFlare gives each listing a QR sign-in page that asks for name, email, phone and whether the visitor has an agent, then creates a lead and starts your follow-up emails. See <a href="/blog/open-house-sign-in-sheet-vs-qr-code">sign-in sheet vs QR code</a> for a fuller comparison, and the <a href="/blog/open-house-flyer-generator">open house flyer generator</a> if you want a flyer with the QR code on it.</p>
 
+<!-- next-step -->
+<h2>Skip the Retyping: A QR Sign-In That Creates the Lead</h2>
+<p>The paper sheet works. The slow part is typing it up afterward. ListingFlare gives each listing an open house sign-in page you open from a QR code. It asks for name, email, phone and whether the visitor has an agent, creates the lead for you, emails you, and can send a first reply and a day 1, 3 and 7 follow-up automatically. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>, no credit card needed.</p>
+
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 
