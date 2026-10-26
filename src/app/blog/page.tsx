@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Footer from "@/components/Footer";
+import NavAuthCta from "@/components/NavAuthCta";
 import Image from "next/image";
 import { getAllPosts } from "@/lib/blog";
 import type { Metadata } from "next";
@@ -71,12 +73,7 @@ export default async function BlogIndexPage({ searchParams }: Props) {
           <Link href="/" className="font-serif text-xl font-bold text-gray-900">
             Listing<span className="text-brand-400">Flare</span>
           </Link>
-          <Link
-            href="/signup"
-            className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600 transition-colors"
-          >
-            Get Started
-          </Link>
+          <NavAuthCta className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600 transition-colors" label="Get Started" />
         </div>
       </nav>
 
@@ -227,6 +224,7 @@ export default async function BlogIndexPage({ searchParams }: Props) {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

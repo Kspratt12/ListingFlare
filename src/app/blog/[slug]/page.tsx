@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Footer from "@/components/Footer";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getPostBySlug, getAllPosts, getRelatedPosts } from "@/lib/blog";
@@ -573,6 +574,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

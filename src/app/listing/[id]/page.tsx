@@ -7,6 +7,7 @@ import { cache } from "react";
 import { cookies, headers } from "next/headers";
 import ListingPageClient from "./ListingPageClient";
 import { isAgentInactive } from "@/lib/listingVisibility";
+import { isDemoAgentId } from "@/lib/demoAgents";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
@@ -88,6 +89,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   } catch {
     // metadata still renders without the check
   }
+  // Sample listings from demo accounts are shown to visitors but kept out of Google.
+  if (isDemoAgentId(data.agent_id)) inactive = true;
   const heroImage = data.photos?.[0]?.src || undefined;
   const url = `https://www.listingflare.com/listing/${slug}`;
 

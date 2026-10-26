@@ -1,14 +1,16 @@
 import Link from "next/link";
+import NavAuthCta from "@/components/NavAuthCta";
 import { createClient } from "@supabase/supabase-js";
 import type { Metadata } from "next";
 import { slugifyCity, MIN_LISTINGS_TO_INDEX } from "@/lib/cities";
 import { isAgentInactive, firstRelation } from "@/lib/listingVisibility";
+import { isDemoAgentId } from "@/lib/demoAgents";
 
 export const dynamic = "force-dynamic";
 
 const URL = "https://www.listingflare.com/homes";
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   title: "Homes for Sale by City",
   description:
     "Browse homes for sale by city. Each listing has its own page with photos, details and a direct way to contact the listing agent.",
@@ -26,6 +28,7 @@ interface CityRow {
   name: string;
   state: string;
   count: number;
+  realCount: number;
 }
 
 async function getCities(): Promise<CityRow[]> {
@@ -36,7 +39,7 @@ async function getCities(): Promise<CityRow[]> {
     );
     const { data } = await db
       .from("listings")
-      .select("city, state, agent:agent_profiles(subscription_status, trial_ends_at)")
+      .select("city, state, agent_id, agent:agent_profiles(subscription_status, trial_ends_at)")
       .eq("status", "published")
       .limit(5000);
     const map = new Map<string, CityRow>();
@@ -44,9 +47,10 @@ async function getCities(): Promise<CityRow[]> {
       if (!l.city || !l.state) continue;
       if (isAgentInactive(firstRelation(l.agent as never))) continue;
       const slug = `${slugifyCity(l.city)}-${String(l.state).toLowerCase()}`;
+      const real = isDemoAgentId(l.agent_id as string | null) ? 0 : 1;
       const row = map.get(slug);
-      if (row) row.count += 1;
-      else map.set(slug, { slug, name: l.city as string, state: String(l.state).toUpperCase(), count: 1 });
+      if (row) { row.count += 1; row.realCount += real; }
+      else map.set(slug, { slug, name: l.city as string, state: String(l.state).toUpperCase(), count: 1, realCount: real });
     }
     // Same rule as the city pages and the sitemap: thin cities are left out.
     return Array.from(map.values())
@@ -55,6 +59,14 @@ async function getCities(): Promise<CityRow[]> {
   } catch {
     return [];
   }
+}
+
+// Sample listings from demo accounts still appear here, but the page only asks
+// Google to index it once there are real cities to list.
+export async function generateMetadata(): Promise<Metadata> {
+  const cities = await getCities();
+  const hasRealCities = cities.some((c) => c.realCount >= MIN_LISTINGS_TO_INDEX);
+  return { ...baseMetadata, robots: { index: hasRealCities, follow: true } };
 }
 
 export default async function HomesIndexPage() {
@@ -76,9 +88,7 @@ export default async function HomesIndexPage() {
           <Link href="/" className="font-serif text-xl font-bold text-gray-900">
             Listing<span className="text-brand-500">Flare</span>
           </Link>
-          <Link href="/signup" className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-600">
-            Start Free Trial
-          </Link>
+          <NavAuthCta className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-600" label="Start Free Trial" />
         </div>
       </nav>
 
@@ -125,9 +135,9 @@ export default async function HomesIndexPage() {
 
       <footer className="border-t border-gray-100 bg-white py-10">
         <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
-          <span className="font-serif text-lg font-bold text-gray-900">
+          <Link href="/" aria-label="ListingFlare home" className="font-serif text-lg font-bold text-gray-900">
             Listing<span className="text-brand-500">Flare</span>
-          </span>
+          </Link>
           <div className="flex flex-wrap items-center justify-center gap-5 text-sm text-gray-500">
             <Link href="/blog" className="hover:text-gray-900">Blog</Link>
             <Link href="/pricing" className="hover:text-gray-900">Pricing</Link>

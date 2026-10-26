@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Footer from "@/components/Footer";
+import NavAuthCta from "@/components/NavAuthCta";
 import Image from "next/image";
 import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
@@ -6,6 +8,7 @@ import type { Metadata } from "next";
 import { cache } from "react";
 import { slugifyCity, MIN_LISTINGS_TO_INDEX } from "@/lib/cities";
 import { isAgentInactive, firstRelation } from "@/lib/listingVisibility";
+import { isDemoAgentId } from "@/lib/demoAgents";
 
 export const dynamic = "force-dynamic";
 
@@ -71,7 +74,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `Homes for Sale in ${display}`,
     description: `Browse homes for sale in ${display}. View property details, photos, and connect with listing agents on ListingFlare.`,
     // Thin pages stay reachable but out of Google's index
-    robots: { index: listings.length >= MIN_LISTINGS_TO_INDEX, follow: true },
+    // Sample listings from demo accounts still show, but do not count toward indexing
+    robots: {
+      index: listings.filter((l) => !isDemoAgentId(l.agent_id)).length >= MIN_LISTINGS_TO_INDEX,
+      follow: true,
+    },
     openGraph: {
       title: `Homes for Sale in ${display}`,
       description: `Browse available homes and listings in ${display} on ListingFlare.`,
@@ -137,12 +144,7 @@ export default async function CityPage({ params }: Props) {
             >
               Blog
             </Link>
-            <Link
-              href="/signup"
-              className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600 transition-colors"
-            >
-              Get Started
-            </Link>
+            <NavAuthCta className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600 transition-colors" label="Get Started" />
           </div>
         </div>
       </nav>
@@ -275,6 +277,7 @@ export default async function CityPage({ params }: Props) {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

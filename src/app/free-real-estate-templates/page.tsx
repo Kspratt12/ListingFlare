@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import NavAuthCta from "@/components/NavAuthCta";
 import Link from "next/link";
 import { TEMPLATES, downloadBox } from "@/content/templates";
 
@@ -64,12 +65,7 @@ export default function Page() {
             <Link href="/blog" className="hidden text-sm text-gray-500 hover:text-gray-900 sm:block">
               Blog
             </Link>
-            <Link
-              href="/signup"
-              className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-600"
-            >
-              Start Free Trial
-            </Link>
+            <NavAuthCta className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-600" label="Start Free Trial" />
           </div>
         </div>
       </nav>
@@ -145,9 +141,9 @@ export default function Page() {
 
       <footer className="border-t border-gray-100 bg-white py-10">
         <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
-          <span className="font-serif text-lg font-bold text-gray-900">
+          <Link href="/" aria-label="ListingFlare home" className="font-serif text-lg font-bold text-gray-900">
             Listing<span className="text-brand-500">Flare</span>
-          </span>
+          </Link>
           <div className="flex flex-wrap items-center justify-center gap-5 text-sm text-gray-500">
             <Link href="/blog" className="hover:text-gray-900">Blog</Link>
             <Link href="/pricing" className="hover:text-gray-900">Pricing</Link>
