@@ -290,7 +290,7 @@ export default function PricingPage() {
           <span className="font-serif text-lg font-bold text-gray-900">
             Listing<span className="text-brand-500">Flare</span>
           </span>
-          <div className="flex items-center gap-5 text-sm text-gray-500">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm text-gray-500">
             <Link href="/blog" className="transition-colors hover:text-gray-900">Blog</Link>
             <Link href="/about" className="transition-colors hover:text-gray-900">About</Link>
             <Link href="/privacy" className="transition-colors hover:text-gray-900">Privacy</Link>

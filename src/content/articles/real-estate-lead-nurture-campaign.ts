@@ -5,7 +5,7 @@ export const article: BlogPost = {
   slug: "real-estate-lead-nurture-campaign",
   title: "Real Estate Lead Nurture Campaign: 30-Day Plan, Templates",
   description:
-    "Build a real estate lead nurture campaign that does not annoy people: a 30-day schedule, message ideas by stage, segmentation, consent basics and a free tracker.",
+    "Build a real estate lead nurture campaign that does not annoy people: a 30-day schedule, ideas by stage, segmentation, consent basics and a free tracker.",
   date: "2026-10-25",
   author: "ListingFlare Team",
   category: "Lead Management",

@@ -57,7 +57,7 @@ export const article: BlogPost = {
 
 <h2>4. Follow-Up and a Simple CRM</h2>
 
-<p>A full CRM is great if you run a team. A solo listing agent often needs something lighter: a list of leads, their status and a follow-up schedule. See <a href="/blog/best-crm-for-solo-real-estate-agents">best CRM for solo agents</a>, or compare <a href="/blog/follow-up-boss-alternatives">Follow Up Boss alternatives</a>. Make sure whatever you pick can run a <a href="/blog/real-estate-lead-nurture-campaign">nurture sequence</a> so no lead is forgotten.</p>
+<p>A full CRM is great if you run a team. A solo listing agent often needs something lighter: a list of leads, their status and a follow-up schedule. See <a href="/blog/best-crm-for-solo-real-estate-agents">best CRM for solo agents</a>, or compare <a href="/blog/follow-up-boss-alternatives">Follow Up Boss alternatives</a>. Make sure whatever you pick can run a <a href="/blog/real-estate-lead-nurture-campaign">nurture sequence</a> so no lead is forgotten. If an all-in-one platform like Lofty feels like more than you need, read <a href="/blog/lofty-alternatives-solo-listing-agents">Lofty alternatives for solo listing agents</a>.</p>
 
 <h2>5. Open Houses and Offline Marketing</h2>
 

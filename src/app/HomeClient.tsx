@@ -2258,7 +2258,7 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
           <span className="font-serif text-lg font-bold text-gray-900">
             Listing<span className="text-brand-700">Flare</span>
           </span>
-          <div className="flex items-center gap-5 text-sm text-gray-500">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm text-gray-500">
             <Link href="/blog" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Blog</Link>
             <span>&middot;</span>
             <Link href="/free-real-estate-templates" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Free Templates</Link>

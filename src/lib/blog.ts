@@ -105,6 +105,8 @@ import { article as moreShowings } from "@/content/articles/how-to-get-more-show
 import { article as afterHoursLeads } from "@/content/articles/after-hours-real-estate-leads";
 import { article as leadMagnets } from "@/content/articles/real-estate-lead-magnet-ideas";
 
+import { article as loftyAlternatives } from "@/content/articles/lofty-alternatives-solo-listing-agents";
+
 const allPosts: BlogPost[] = [
   howToGetLeads,
   bestLeadGenTools,
@@ -192,6 +194,7 @@ const allPosts: BlogPost[] = [
   moreShowings,
   afterHoursLeads,
   leadMagnets,
+  loftyAlternatives,
 ];
 
 // Sort by date descending
