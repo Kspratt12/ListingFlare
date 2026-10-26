@@ -1,35 +1,52 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { escapeHtml } from "@/lib/escapeHtml";
+import { rateLimit, getClientIp } from "@/lib/rateLimit";
 export const dynamic = "force-dynamic";
 
 // Called when a visitor views the same listing 3+ times - alert the agent
 export async function POST(req: NextRequest) {
   try {
-    const { listingId, agentId, viewCount } = await req.json();
+    const body = await req.json();
+    const { listingId, agentId } = body;
+    const viewCount = Math.floor(Number(body.viewCount));
 
-    if (!listingId || !agentId) {
+    if (!listingId || !agentId || typeof listingId !== "string" || typeof agentId !== "string") {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
+    // This is public, so never trust the count: it goes into an email to the agent.
+    if (!Number.isFinite(viewCount) || viewCount < 3 || viewCount > 50) {
+      return NextResponse.json({ error: "Invalid view count" }, { status: 400 });
+    }
+
+    // Anyone can call this, so cap it: per visitor, and one alert per listing per 6 hours.
+    const ipLimit = rateLimit({ key: `hot-ip:${getClientIp(req)}`, limit: 10, windowMs: 60 * 60_000 });
+    if (!ipLimit.ok) return NextResponse.json({ ok: true, emailed: false });
+    const listingLimit = rateLimit({ key: `hot-listing:${listingId}`, limit: 1, windowMs: 6 * 60 * 60_000 });
+    if (!listingLimit.ok) return NextResponse.json({ ok: true, emailed: false });
 
     const supabase = createServerSupabaseClient();
 
-    // Fetch agent email
+    // Fetch the listing first and trust ITS agent, not the one the browser claimed
+    const { data: listing } = await supabase
+      .from("listings")
+      .select("street, city, state, price, agent_id")
+      .eq("id", listingId)
+      .single();
+
+    if (!listing || listing.agent_id !== agentId) {
+      return NextResponse.json({ ok: true, emailed: false });
+    }
+
     const { data: agent } = await supabase
       .from("agent_profiles")
       .select("name, email")
-      .eq("id", agentId)
+      .eq("id", listing.agent_id)
       .single();
 
     if (!agent?.email) {
       return NextResponse.json({ ok: true, emailed: false });
     }
-
-    // Fetch listing address
-    const { data: listing } = await supabase
-      .from("listings")
-      .select("street, city, state, price")
-      .eq("id", listingId)
-      .single();
 
     const resendKey = process.env.RESEND_API_KEY;
     if (!resendKey) {
@@ -50,9 +67,9 @@ export async function POST(req: NextRequest) {
             <p style="margin: 0; font-size: 14px; font-weight: 600; color: #92400e;">Hot Visitor Alert</p>
             <p style="margin: 4px 0 0; font-size: 13px; color: #a16207;">Someone has viewed your listing <strong>${viewCount} times</strong>. They might be seriously interested.</p>
           </div>
-          <h2 style="margin: 0 0 8px; color: #111827; font-size: 18px;">${listing?.street || "Your listing"}</h2>
+          <h2 style="margin: 0 0 8px; color: #111827; font-size: 18px;">${escapeHtml(listing?.street || "Your listing")}</h2>
           <p style="color: #6b7280; margin: 0 0 4px; font-size: 14px;">
-            ${listing ? `${listing.city}, ${listing.state}` : ""}${price ? ` - ${price}` : ""}
+            ${listing ? `${escapeHtml(listing.city)}, ${escapeHtml(listing.state)}` : ""}${price ? ` - ${price}` : ""}
           </p>
           <p style="color: #6b7280; margin: 16px 0 0; font-size: 14px;">
             A potential buyer keeps coming back to this property page. This is a strong signal of interest - consider reaching out to recent leads for this listing.

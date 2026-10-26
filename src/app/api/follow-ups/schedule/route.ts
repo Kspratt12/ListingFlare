@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isInternalCall } from "@/lib/internalAuth";
 import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = "force-dynamic";
@@ -24,6 +25,9 @@ const SHOWING_SEQUENCE = [
 ];
 
 export async function POST(req: NextRequest) {
+  if (!isInternalCall(req)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
   try {
     const { leadId, sequenceType: rawSequenceType = "inquiry" } = await req.json();
     const sequenceType = rawSequenceType === "showing" ? "showing" : "inquiry";

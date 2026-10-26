@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { internalHeaders } from "@/lib/internalAuth";
 import { createClient } from "@supabase/supabase-js";
 import {
   checkHoneypotAndTiming,
@@ -138,7 +139,7 @@ export async function POST(req: NextRequest) {
       const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
       fetch(`${appUrl}/api/leads/notify`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...internalHeaders() },
         body: JSON.stringify({
           leadId: newLead.id,
           listingId,

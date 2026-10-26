@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
+import { AI_MODEL, createAnthropic } from "@/lib/ai";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { rateLimit } from "@/lib/rateLimit";
 import { hasActiveSubscription } from "@/lib/subscriptionGate";
@@ -53,7 +54,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const client = new Anthropic({ apiKey });
+    const client = createAnthropic(apiKey);
 
     const propertyContext = property
       ? [
@@ -93,7 +94,7 @@ Guidelines:
 Return EXACTLY ${photoUrls.length} captions, one per line, in the same order as the photos. Nothing else.`;
 
     const message = await client.messages.create({
-      model: "claude-sonnet-4-20250514",
+      model: AI_MODEL,
       max_tokens: 1024,
       messages: [
         {

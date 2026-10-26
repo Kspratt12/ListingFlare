@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { internalHeaders } from "@/lib/internalAuth";
 import { createClient } from "@supabase/supabase-js";
 import { formatPhone } from "@/lib/formatters";
 import { generateShowingICS, icsToBase64 } from "@/lib/ics";
@@ -417,7 +418,7 @@ export async function POST(req: NextRequest) {
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
     fetch(`${appUrl}/api/follow-ups/schedule`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", ...internalHeaders() },
       body: JSON.stringify({
         leadId: finalLeadId,
         listingId,

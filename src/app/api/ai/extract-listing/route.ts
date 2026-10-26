@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
-import Anthropic from "@anthropic-ai/sdk";
+import { AI_MODEL, createAnthropic } from "@/lib/ai";
 import { rateLimit } from "@/lib/rateLimit";
 import { hasActiveSubscription } from "@/lib/subscriptionGate";
 
@@ -136,7 +136,7 @@ export async function POST(req: NextRequest) {
       sourceText = trimmed;
     }
 
-    const client = new Anthropic({ apiKey });
+    const client = createAnthropic(apiKey);
 
     const systemPrompt = `You extract real estate listing fields from MLS-style descriptions or scraped webpage text. Return ONLY a JSON object, no prose, no markdown fences. Use this exact shape:
 
@@ -192,7 +192,7 @@ Rules:
 - Do not include any text outside the JSON.`;
 
     const response = await client.messages.create({
-      model: "claude-sonnet-4-20250514",
+      model: AI_MODEL,
       max_tokens: 1500,
       system: systemPrompt,
       messages: [{ role: "user", content: sourceText }],

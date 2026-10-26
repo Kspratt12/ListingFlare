@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { internalHeaders, isInternalCall } from "@/lib/internalAuth";
 import { createClient } from "@supabase/supabase-js";
 import { formatPhone } from "@/lib/formatters";
 import { escapeHtml } from "@/lib/escapeHtml";
@@ -17,6 +18,9 @@ function getAdminClient() {
 // Uses a simple fetch to a free email API (Resend) if configured
 // Falls back to just recording the lead if no email service is set up
 export async function POST(req: NextRequest) {
+  if (!isInternalCall(req)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
   try {
     const body = await req.json();
     let { leadId } = body;
@@ -146,14 +150,14 @@ export async function POST(req: NextRequest) {
         const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
         fetch(`${appUrl}/api/leads/auto-reply`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", ...internalHeaders() },
           body: JSON.stringify({ leadId }),
         }).catch((err) => console.error("Auto-reply trigger error:", err));
 
         // Schedule drip follow-up sequence (non-blocking)
         fetch(`${appUrl}/api/follow-ups/schedule`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", ...internalHeaders() },
           body: JSON.stringify({ leadId, listingId, agentId, sequenceType: "inquiry" }),
         }).catch((err) => console.error("Follow-up schedule error:", err));
       }
@@ -166,14 +170,14 @@ export async function POST(req: NextRequest) {
       const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
       fetch(`${appUrl}/api/leads/auto-reply`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...internalHeaders() },
         body: JSON.stringify({ leadId }),
       }).catch((err) => console.error("Auto-reply trigger error:", err));
 
       // Schedule drip follow-up sequence (non-blocking)
       fetch(`${appUrl}/api/follow-ups/schedule`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...internalHeaders() },
         body: JSON.stringify({ leadId, listingId, agentId, sequenceType: "inquiry" }),
       }).catch((err) => console.error("Follow-up schedule error:", err));
     }
