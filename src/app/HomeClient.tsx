@@ -689,7 +689,7 @@ function ComparisonCell({ value, highlight = false }: { value: boolean | string;
   return <span className={`text-xs font-medium ${highlight ? "text-brand-700" : "text-gray-500"}`}>{value}</span>;
 }
 
-function LandingPageInner({ posts }: { posts: LatestPost[] }) {
+function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[]; showHomesLink?: boolean }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
 
@@ -2259,8 +2259,12 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
             <span>&middot;</span>
             <Link href="/free-real-estate-templates" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Free Templates</Link>
             <span>&middot;</span>
-            <Link href="/homes" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Homes by City</Link>
-            <span>&middot;</span>
+            {showHomesLink && (
+              <>
+                <Link href="/homes" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Homes by City</Link>
+                <span>&middot;</span>
+              </>
+            )}
             <Link href="/about" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">About</Link>
             <span>&middot;</span>
             <Link href="/privacy" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Privacy Policy</Link>
@@ -2280,13 +2284,15 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
 export default function LandingPage({
   livePhotos = [],
   latestPosts = [],
+  showHomesLink = false,
 }: {
   livePhotos?: string[];
   latestPosts?: LatestPost[];
+  showHomesLink?: boolean;
 }) {
   return (
     <LivePhotosContext.Provider value={livePhotos}>
-      <LandingPageInner posts={latestPosts} />
+      <LandingPageInner posts={latestPosts} showHomesLink={showHomesLink} />
     </LivePhotosContext.Provider>
   );
 }

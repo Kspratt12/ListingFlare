@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import HomeClient from "./HomeClient";
 import { getAllPosts } from "@/lib/blog";
+import { getPublicCities } from "@/lib/publicCities";
 
 // Rebuilt at most hourly. Photos are fetched here, on the server, so the
 // landing page renders with its images already chosen (no client fetch
@@ -46,6 +47,8 @@ async function getLivePhotos(): Promise<string[]> {
 
 export default async function Page() {
   const livePhotos = await getLivePhotos();
+  // Link the "Homes by City" directory only once it has real customer listings
+  const showHomesLink = (await getPublicCities()).length > 0;
   const latestPosts = getAllPosts()
     .slice(0, 6)
     .map(({ slug, title, description, category, coverImage, coverImageAlt }) => ({
@@ -56,5 +59,5 @@ export default async function Page() {
       coverImage,
       coverImageAlt,
     }));
-  return <HomeClient livePhotos={livePhotos} latestPosts={latestPosts} />;
+  return <HomeClient livePhotos={livePhotos} latestPosts={latestPosts} showHomesLink={showHomesLink} />;
 }

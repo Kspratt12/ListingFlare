@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { getPublicCities } from "@/lib/publicCities";
 import { createClient } from "@supabase/supabase-js";
 import { getAllPosts } from "@/lib/blog";
 import { isAgentInactive, firstRelation } from "@/lib/listingVisibility";
@@ -25,10 +26,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/listingflare-vs-rela`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/listingflare-vs-singlepropertysites`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/blog`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/homes`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "weekly", priority: 0.7 },
     { url: `${baseUrl}/free-real-estate-templates`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/about`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.6 },
   ];
+
+  // The "Homes by City" directory is only listed once real customers have published enough listings.
+  if ((await getPublicCities()).length > 0) {
+    entries.push({ url: `${baseUrl}/homes`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "weekly", priority: 0.7 });
+  }
 
   // Blog posts live in src/content/articles, not Supabase.
   for (const post of getAllPosts()) {

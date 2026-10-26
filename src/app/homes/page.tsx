@@ -1,10 +1,7 @@
 import Link from "next/link";
+import { getPublicCities } from "@/lib/publicCities";
 import NavAuthCta from "@/components/NavAuthCta";
-import { createClient } from "@supabase/supabase-js";
 import type { Metadata } from "next";
-import { slugifyCity, MIN_LISTINGS_TO_INDEX } from "@/lib/cities";
-import { isAgentInactive, firstRelation } from "@/lib/listingVisibility";
-import { isDemoAgentId } from "@/lib/demoAgents";
 
 export const dynamic = "force-dynamic";
 
@@ -23,54 +20,15 @@ const baseMetadata: Metadata = {
   },
 };
 
-interface CityRow {
-  slug: string;
-  name: string;
-  state: string;
-  count: number;
-  realCount: number;
-}
-
-async function getCities(): Promise<CityRow[]> {
-  try {
-    const db = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
-    );
-    const { data } = await db
-      .from("listings")
-      .select("city, state, agent_id, agent:agent_profiles(subscription_status, trial_ends_at)")
-      .eq("status", "published")
-      .limit(5000);
-    const map = new Map<string, CityRow>();
-    for (const l of data || []) {
-      if (!l.city || !l.state) continue;
-      if (isAgentInactive(firstRelation(l.agent as never))) continue;
-      const slug = `${slugifyCity(l.city)}-${String(l.state).toLowerCase()}`;
-      const real = isDemoAgentId(l.agent_id as string | null) ? 0 : 1;
-      const row = map.get(slug);
-      if (row) { row.count += 1; row.realCount += real; }
-      else map.set(slug, { slug, name: l.city as string, state: String(l.state).toUpperCase(), count: 1, realCount: real });
-    }
-    // Same rule as the city pages and the sitemap: thin cities are left out.
-    return Array.from(map.values())
-      .filter((c) => c.count >= MIN_LISTINGS_TO_INDEX)
-      .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
-  } catch {
-    return [];
-  }
-}
-
-// Sample listings from demo accounts still appear here, but the page only asks
-// Google to index it once there are real cities to list.
+// The admin/demo account's listings are never shown here. The page only asks Google
+// to index it once real customers have published enough listings to list cities.
 export async function generateMetadata(): Promise<Metadata> {
-  const cities = await getCities();
-  const hasRealCities = cities.some((c) => c.realCount >= MIN_LISTINGS_TO_INDEX);
-  return { ...baseMetadata, robots: { index: hasRealCities, follow: true } };
+  const cities = await getPublicCities();
+  return { ...baseMetadata, robots: { index: cities.length > 0, follow: true } };
 }
 
 export default async function HomesIndexPage() {
-  const cities = await getCities();
+  const cities = await getPublicCities();
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
