@@ -87,6 +87,10 @@ export const article: BlogPost = {
 
 <p>This is the gap most CRMs ignore entirely. Your CRM manages leads after they are in the system. But what captures listing-specific leads in the first place? Dedicated property websites, per-listing AI chatbots, listing-specific follow-up emails - these are the tools that turn your active listings into lead generation machines. Almost no CRM offers them. We will come back to this.</p>
 
+<h2>A Fact Worth Knowing: Who Owns Follow Up Boss</h2>
+
+<p>Zillow completed its acquisition of Follow Up Boss on December 8, 2023, according to Zillow&rsquo;s SEC filings, with a reported purchase price of roughly $400 million in cash plus up to $100 million in performance-based payments (see <a href="https://housingwire.com/articles/zillow-acquires-crm-platform-follow-up-boss" target="_blank" rel="noopener noreferrer">HousingWire&rsquo;s report on the deal</a>). That does not make Follow Up Boss a bad CRM, and many agents use it happily. But if one reason you are looking at alternatives is to depend less on Zillow for your listing leads, it is a fair thing to know while you compare tools. Our guide on <a href="/blog/how-to-stop-losing-leads-to-zillow">how to stop losing leads to Zillow</a> covers the other side of that decision.</p>
+
 <h2>The 9 Best Follow Up Boss Alternatives</h2>
 
 <p>Here are the nine platforms worth evaluating, with honest assessments of where each one beats FUB and where FUB still wins.</p>
@@ -579,6 +583,7 @@ export const article: BlogPost = {
 
 <h2>Related Guides</h2>
 <ul>
+<li><a href="/blog/lofty-alternatives-solo-listing-agents">Lofty alternatives for solo listing agents</a></li>
 <li><a href="/blog/best-crm-for-solo-real-estate-agents">Best CRM for solo real estate agents</a></li>
 <li><a href="/blog/best-real-estate-software-for-listing-agents">Best real estate software for listing agents</a></li>
 <li><a href="/blog/real-estate-lead-nurture-campaign">A 30-day real estate lead nurture campaign</a></li>
@@ -611,6 +616,12 @@ export const article: BlogPost = {
 
 <h3>Should I switch CRMs or just add listing marketing to my current setup?</h3>
 <p>If your current CRM handles lead management well but you are not capturing enough leads from your active listings, adding <a href="/signup">ListingFlare</a> to your existing stack is the faster and less disruptive move. Switching CRMs is a significant project - data migration, team retraining, workflow rebuilding. Only switch if your current CRM genuinely does not meet your lead management needs. If the gap is in listing marketing, fill that gap without touching your CRM.</p>
+
+<h3>Who owns Follow Up Boss?</h3>
+<p>Zillow Group completed its acquisition of Follow Up Boss in December 2023. Check Zillow&rsquo;s latest filings and announcements for anything that has changed since.</p>
+
+<h3>Is there a lightweight Follow Up Boss alternative for solo listing agents?</h3>
+<p>Yes. A solo agent who mainly wants to capture and follow up listing leads often does not need a full CRM. A listing platform with a lead dashboard, instant replies and automatic follow-up can cover that, and you can add a CRM later if your database grows. See our guide to the <a href="/blog/best-crm-for-solo-real-estate-agents">best CRM for solo real estate agents</a>.</p>
 
 </div>
 `,

@@ -47,7 +47,7 @@ export const article: BlogPost = {
 <p>Follow Up Boss is the tool most often recommended for lead follow-up and speed, with plans reported around the $58 to $69 per user per month mark and added setup costs in some cases. It is strong at routing and nurturing leads. If you want alternatives, see <a href="/blog/follow-up-boss-alternatives">Follow Up Boss alternatives</a>.</p>
 
 <h3>All-in-one ($300 a month and up)</h3>
-<p>Platforms such as Real Geeks, Lofty and CINC bundle an IDX website, CRM and marketing tools, often at several hundred dollars a month. They make sense if you want one vendor for your site and leads. They are usually more than a solo agent with a handful of listings needs.</p>
+<p>Platforms such as Real Geeks, Lofty and CINC bundle an IDX website, CRM and marketing tools, often at several hundred dollars a month. They make sense if you want one vendor for your site and leads. They are usually more than a solo agent with a handful of listings needs. See <a href="/blog/lofty-alternatives-solo-listing-agents">Lofty alternatives for solo listing agents</a> for lighter options.</p>
 
 <h2>Comparison</h2>
 
@@ -120,7 +120,7 @@ export const article: BlogPost = {
 </ul>
 
 <h2>When It Is Time to Upgrade</h2>
-<p>Consider a heavier CRM when you add a team member who needs their own leads, when you cannot see your pipeline at a glance, or when follow-ups start slipping because your tool cannot keep up. Until then, a simple system you use daily beats a powerful one you avoid.</p>
+<p>Consider a heavier CRM when you add a team member who needs their own leads, when you cannot see your pipeline at a glance, or when follow-ups start slipping because your tool cannot keep up. Until then, a simple system you use daily beats a powerful one you avoid.</p> 
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>
