@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NavAuthCta from "@/components/NavAuthCta";
 import type { Metadata } from "next";
 import {
   Check,
@@ -127,12 +128,7 @@ export default function PricingPage() {
           <Link href="/" className="font-serif text-xl font-bold text-gray-900">
             Listing<span className="text-brand-500">Flare</span>
           </Link>
-          <Link
-            href="/signup"
-            className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600 transition-colors"
-          >
-            Start Free Trial
-          </Link>
+          <NavAuthCta className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600 transition-colors" label="Start Free Trial" />
         </div>
       </nav>
 
@@ -287,9 +283,9 @@ export default function PricingPage() {
       {/* Footer */}
       <footer className="border-t border-gray-100 bg-white py-10">
         <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
-          <span className="font-serif text-lg font-bold text-gray-900">
+          <Link href="/" aria-label="ListingFlare home" className="font-serif text-lg font-bold text-gray-900">
             Listing<span className="text-brand-500">Flare</span>
-          </span>
+          </Link>
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm text-gray-500">
             <Link href="/blog" className="transition-colors hover:text-gray-900">Blog</Link>
             <Link href="/about" className="transition-colors hover:text-gray-900">About</Link>

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Footer from "@/components/Footer";
+import NavAuthCta from "@/components/NavAuthCta";
 import Image from "next/image";
 import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
@@ -137,12 +139,7 @@ export default async function CityPage({ params }: Props) {
             >
               Blog
             </Link>
-            <Link
-              href="/signup"
-              className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600 transition-colors"
-            >
-              Get Started
-            </Link>
+            <NavAuthCta className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600 transition-colors" label="Get Started" />
           </div>
         </div>
       </nav>
@@ -275,6 +272,7 @@ export default async function CityPage({ params }: Props) {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

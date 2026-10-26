@@ -2251,9 +2251,9 @@ function LandingPageInner({ posts }: { posts: LatestPost[] }) {
       {/* Footer */}
       <footer className="border-t border-gray-100 bg-white py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
-          <span className="font-serif text-lg font-bold text-gray-900">
+          <Link href="/" aria-label="ListingFlare home" className="font-serif text-lg font-bold text-gray-900">
             Listing<span className="text-brand-700">Flare</span>
-          </span>
+          </Link>
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm text-gray-500">
             <Link href="/blog" className="inline-block py-2 underline underline-offset-2 transition-colors hover:text-gray-900">Blog</Link>
             <span>&middot;</span>

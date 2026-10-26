@@ -31,9 +31,9 @@ export default function Footer({
         <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
           {/* Logo + tagline */}
           <div className="text-center md:text-left">
-            <p className="font-serif text-lg font-bold text-gray-900">
-              Listing<span className="text-brand-400">Flare</span>
-            </p>
+            <Link href="/" aria-label="ListingFlare home" className="block font-serif text-lg font-bold text-gray-900">
+              Listing<span className="text-brand-500">Flare</span>
+            </Link>
             <p className="mt-1 text-xs text-gray-400">
               Real estate software for listing agents
             </p>

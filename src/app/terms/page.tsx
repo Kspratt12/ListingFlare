@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Terms of Service - ListingFlare",
@@ -105,6 +106,7 @@ export default function TermsPage() {
           </section>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

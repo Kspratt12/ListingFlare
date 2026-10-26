@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Privacy Policy - ListingFlare",
@@ -104,6 +105,7 @@ export default function PrivacyPage() {
           </section>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
