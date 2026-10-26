@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { createClient } from "@supabase/supabase-js";
 import { getAllPosts } from "@/lib/blog";
 import { isAgentInactive, firstRelation } from "@/lib/listingVisibility";
+import { isDemoAgentId } from "@/lib/demoAgents";
 import { slugifyCity, MIN_LISTINGS_TO_INDEX } from "@/lib/cities";
 
 // Regenerate hourly so new listings reach Googlebot without a redeploy.
@@ -48,7 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     );
     const { data: listings } = await db
       .from("listings")
-      .select("slug, id, updated_at, city, state, agent:agent_profiles(subscription_status, trial_ends_at)")
+      .select("slug, id, agent_id, updated_at, city, state, agent:agent_profiles(subscription_status, trial_ends_at)")
       .eq("status", "published")
       .order("updated_at", { ascending: false })
       .limit(5000);
@@ -58,6 +59,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     for (const listing of listings || []) {
       if (isAgentInactive(firstRelation(listing.agent as never))) continue;
+      // Sample listings from demo accounts stay out of the sitemap.
+      if (isDemoAgentId(listing.agent_id)) continue;
       const modified = new Date(listing.updated_at || STATIC_LAST_MODIFIED);
       entries.push({
         url: `${baseUrl}/listing/${listing.slug || listing.id}`,

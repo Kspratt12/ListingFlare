@@ -4,12 +4,13 @@ import { createClient } from "@supabase/supabase-js";
 import type { Metadata } from "next";
 import { slugifyCity, MIN_LISTINGS_TO_INDEX } from "@/lib/cities";
 import { isAgentInactive, firstRelation } from "@/lib/listingVisibility";
+import { isDemoAgentId } from "@/lib/demoAgents";
 
 export const dynamic = "force-dynamic";
 
 const URL = "https://www.listingflare.com/homes";
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   title: "Homes for Sale by City",
   description:
     "Browse homes for sale by city. Each listing has its own page with photos, details and a direct way to contact the listing agent.",
@@ -27,6 +28,7 @@ interface CityRow {
   name: string;
   state: string;
   count: number;
+  realCount: number;
 }
 
 async function getCities(): Promise<CityRow[]> {
@@ -37,7 +39,7 @@ async function getCities(): Promise<CityRow[]> {
     );
     const { data } = await db
       .from("listings")
-      .select("city, state, agent:agent_profiles(subscription_status, trial_ends_at)")
+      .select("city, state, agent_id, agent:agent_profiles(subscription_status, trial_ends_at)")
       .eq("status", "published")
       .limit(5000);
     const map = new Map<string, CityRow>();
@@ -45,9 +47,10 @@ async function getCities(): Promise<CityRow[]> {
       if (!l.city || !l.state) continue;
       if (isAgentInactive(firstRelation(l.agent as never))) continue;
       const slug = `${slugifyCity(l.city)}-${String(l.state).toLowerCase()}`;
+      const real = isDemoAgentId(l.agent_id as string | null) ? 0 : 1;
       const row = map.get(slug);
-      if (row) row.count += 1;
-      else map.set(slug, { slug, name: l.city as string, state: String(l.state).toUpperCase(), count: 1 });
+      if (row) { row.count += 1; row.realCount += real; }
+      else map.set(slug, { slug, name: l.city as string, state: String(l.state).toUpperCase(), count: 1, realCount: real });
     }
     // Same rule as the city pages and the sitemap: thin cities are left out.
     return Array.from(map.values())
@@ -56,6 +59,14 @@ async function getCities(): Promise<CityRow[]> {
   } catch {
     return [];
   }
+}
+
+// Sample listings from demo accounts still appear here, but the page only asks
+// Google to index it once there are real cities to list.
+export async function generateMetadata(): Promise<Metadata> {
+  const cities = await getCities();
+  const hasRealCities = cities.some((c) => c.realCount >= MIN_LISTINGS_TO_INDEX);
+  return { ...baseMetadata, robots: { index: hasRealCities, follow: true } };
 }
 
 export default async function HomesIndexPage() {
