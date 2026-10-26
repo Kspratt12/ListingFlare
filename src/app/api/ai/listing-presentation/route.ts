@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
-import Anthropic from "@anthropic-ai/sdk";
+import { AI_MODEL, createAnthropic } from "@/lib/ai";
 import { rateLimit } from "@/lib/rateLimit";
 import { hasActiveSubscription } from "@/lib/subscriptionGate";
 
@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
 
     if (!listing || !agent) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
-    const anthropic = new Anthropic({ apiKey });
+    const anthropic = createAnthropic(apiKey);
 
     const prompt = `You are helping a real estate listing agent create a brief marketing pitch for a potential seller.
 
@@ -85,7 +85,7 @@ Rules:
 Return ONLY the 3 paragraphs.`;
 
     const message = await anthropic.messages.create({
-      model: "claude-sonnet-4-20250514",
+      model: AI_MODEL,
       max_tokens: 800,
       messages: [{ role: "user", content: prompt }],
     });

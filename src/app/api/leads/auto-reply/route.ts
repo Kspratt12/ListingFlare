@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isInternalCall } from "@/lib/internalAuth";
+import { escapeHtml } from "@/lib/escapeHtml";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { rateLimit, getClientIp } from "@/lib/rateLimit";
 import { createClient } from "@supabase/supabase-js";
-import Anthropic from "@anthropic-ai/sdk";
+import { AI_MODEL, createAnthropic } from "@/lib/ai";
 import { formatPhone } from "@/lib/formatters";
 
 export const dynamic = "force-dynamic";
@@ -21,8 +25,27 @@ export async function POST(req: NextRequest) {
     }
 
     const { leadId } = await req.json();
-    if (!leadId) {
+    if (!leadId || typeof leadId !== "string") {
       return NextResponse.json({ error: "Missing leadId" }, { status: 400 });
+    }
+
+    // Two kinds of caller:
+    //  - the server itself (a new lead was just created): may draft AND send the reply
+    //  - the agent's dashboard ("generate draft" button): must be logged in, must own
+    //    the lead, and only ever gets a draft back. It never emails the buyer.
+    const internal = isInternalCall(req);
+    let sessionUserId: string | null = null;
+    if (!internal) {
+      const limited = rateLimit({ key: `auto-reply:${getClientIp(req)}`, limit: 20, windowMs: 10 * 60_000 });
+      if (!limited.ok) {
+        return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+      }
+      const sb = createServerSupabaseClient();
+      const { data: { user } } = await sb.auth.getUser();
+      if (!user) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+      sessionUserId = user.id;
     }
 
     const db = getAdminClient();
@@ -34,7 +57,7 @@ export async function POST(req: NextRequest) {
       .eq("id", leadId)
       .single();
 
-    if (!lead) {
+    if (!lead || (sessionUserId && lead.agent_id !== sessionUserId)) {
       return NextResponse.json({ error: "Lead not found" }, { status: 404 });
     }
 
@@ -72,7 +95,7 @@ export async function POST(req: NextRequest) {
     const prompt = `You are a warm, professional real estate agent named ${agent.name} from ${agent.brokerage || "a top local brokerage"}. A potential buyer just submitted an inquiry about a property.
 
 Lead name: ${lead.name}
-Their message: "${lead.message || "They expressed interest in the property."}"
+Their message: "${String(lead.message || "They expressed interest in the property.").slice(0, 500)}"
 Property: ${listingContext}
 
 Write a brief, personalized follow-up email (3-4 sentences max). Guidelines:
@@ -85,10 +108,10 @@ Write a brief, personalized follow-up email (3-4 sentences max). Guidelines:
 - Do NOT mention the price (it feels pushy in a first response)
 - Keep it conversational and under 60 words`;
 
-    const client = new Anthropic({ apiKey });
+    const client = createAnthropic(apiKey);
 
     const message = await client.messages.create({
-      model: "claude-sonnet-4-20250514",
+      model: AI_MODEL,
       max_tokens: 256,
       messages: [{ role: "user", content: prompt }],
     });
@@ -105,7 +128,7 @@ Write a brief, personalized follow-up email (3-4 sentences max). Guidelines:
       // Auto-send the reply to the buyer via Resend - UNLESS agent has approval mode ON
       const resendKey = process.env.RESEND_API_KEY;
       const approvalMode = agent.ai_approval_mode === true;
-      if (resendKey && lead.email && !approvalMode) {
+      if (internal && resendKey && lead.email && !approvalMode) {
         const listingAddress = listing
           ? `${listing.street}, ${listing.city}, ${listing.state}`
           : "your inquiry";
@@ -117,16 +140,16 @@ Write a brief, personalized follow-up email (3-4 sentences max). Guidelines:
             </div>
             <div style="background: #ffffff; padding: 32px; border: 1px solid #e5e7eb; border-top: 0; border-radius: 0 0 12px 12px;">
               <p style="color: #6b7280; margin: 0 0 8px; font-size: 14px;">
-                Re: ${listingAddress}
+                Re: ${escapeHtml(listingAddress)}
               </p>
               <p style="color: #111827; margin: 0 0 24px; font-size: 14px;">
-                Hi ${lead.name.split(" ")[0]},
+                Hi ${escapeHtml(String(lead.name || "there").split(" ")[0])},
               </p>
-              <div style="color: #111827; font-size: 15px; line-height: 1.7; white-space: pre-wrap;">${draft}</div>
+              <div style="color: #111827; font-size: 15px; line-height: 1.7; white-space: pre-wrap;">${escapeHtml(draft)}</div>
               <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e5e7eb;">
-                <p style="margin: 0; font-weight: 600; color: #111827;">${agent.name}</p>
+                <p style="margin: 0; font-weight: 600; color: #111827;">${escapeHtml(agent.name)}</p>
                 ${agent.phone ? `<p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${formatPhone(agent.phone)}</p>` : ""}
-                <p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${agent.email}</p>
+                <p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${escapeHtml(agent.email)}</p>
               </div>
             </div>
           </div>

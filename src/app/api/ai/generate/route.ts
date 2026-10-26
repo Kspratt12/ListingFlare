@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
+import { AI_MODEL, createAnthropic } from "@/lib/ai";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { rateLimit } from "@/lib/rateLimit";
 import { hasActiveSubscription } from "@/lib/subscriptionGate";
@@ -108,10 +108,10 @@ Return ONLY the bullet points, one per line, no numbering or dashes.`;
       return NextResponse.json({ error: "Invalid type" }, { status: 400 });
     }
 
-    const client = new Anthropic({ apiKey });
+    const client = createAnthropic(apiKey);
 
     const message = await client.messages.create({
-      model: "claude-sonnet-4-20250514",
+      model: AI_MODEL,
       max_tokens: 1024,
       messages: [{ role: "user", content: prompt }],
     });

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import Anthropic from "@anthropic-ai/sdk";
+import { AI_MODEL, createAnthropic } from "@/lib/ai";
 import { rateLimit } from "@/lib/rateLimit";
 import { hasActiveSubscription } from "@/lib/subscriptionGate";
 
@@ -99,9 +100,9 @@ HOW TO HELP:
     }
     messages.push({ role: "user", content: message });
 
-    const client = new Anthropic({ apiKey });
+    const client = createAnthropic(apiKey);
     const response = await client.messages.create({
-      model: "claude-sonnet-4-20250514",
+      model: AI_MODEL,
       max_tokens: 1024,
       system: systemPrompt,
       messages,

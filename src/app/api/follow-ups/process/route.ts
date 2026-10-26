@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import Anthropic from "@anthropic-ai/sdk";
+import { AI_MODEL, createAnthropic } from "@/lib/ai";
 import { formatPhone } from "@/lib/formatters";
 
 export const dynamic = "force-dynamic";
@@ -60,7 +60,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ ok: true, processed: 0 });
   }
 
-  const anthropic = new Anthropic({ apiKey });
+  const anthropic = createAnthropic(apiKey);
 
   const results = await Promise.allSettled(followUps.map(async (followUp) => {
     try {
@@ -144,7 +144,7 @@ Rules:
 - Match the style: "Hey [name], just checking in..." or "Hi [name], wanted to follow up..."`;
 
       const aiResponse = await anthropic.messages.create({
-        model: "claude-sonnet-4-20250514",
+        model: AI_MODEL,
         max_tokens: 200,
         messages: [{ role: "user", content: prompt }],
       });
@@ -218,10 +218,17 @@ Rules:
     Authorization: `Bearer ${process.env.CRON_SECRET || ""}`,
   };
 
-  const [reminderRes, feedbackRes, testimonialRes] = await Promise.allSettled([
+  // Trial lifecycle emails (welcome, day 3, day 12). Chained here because Hobby only
+  // allows 2 crons and nothing else was calling this route. Set DISABLE_TRIAL_LIFECYCLE=1 to pause.
+  const lifecycleOn = process.env.DISABLE_TRIAL_LIFECYCLE !== "1";
+
+  const [reminderRes, feedbackRes, testimonialRes, lifecycleRes] = await Promise.allSettled([
     fetch(`${appUrl}/api/showings/reminders`, { headers: authHeaders }),
     fetch(`${appUrl}/api/feedback/request`, { headers: authHeaders }),
     fetch(`${appUrl}/api/testimonials/request`, { headers: authHeaders }),
+    lifecycleOn
+      ? fetch(`${appUrl}/api/trial/lifecycle`, { headers: authHeaders })
+      : Promise.reject(new Error("trial lifecycle disabled")),
   ]);
 
   async function safeJson(res: PromiseSettledResult<Response>): Promise<unknown> {
@@ -229,10 +236,11 @@ Rules:
     return res.value.json().catch(() => null);
   }
 
-  const [reminders, feedback, testimonials] = await Promise.all([
+  const [reminders, feedback, testimonials, trialLifecycle] = await Promise.all([
     safeJson(reminderRes),
     safeJson(feedbackRes),
     safeJson(testimonialRes),
+    safeJson(lifecycleRes),
   ]);
 
   return NextResponse.json({
@@ -241,5 +249,6 @@ Rules:
     reminders,
     feedback,
     testimonials,
+    trialLifecycle,
   });
 }

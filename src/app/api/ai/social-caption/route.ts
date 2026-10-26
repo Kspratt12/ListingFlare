@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
+import { AI_MODEL, createAnthropic } from "@/lib/ai";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { rateLimit } from "@/lib/rateLimit";
 import { hasActiveSubscription } from "@/lib/subscriptionGate";
@@ -104,10 +104,10 @@ Hashtag rules:
 
 Return just the caption + Link + hashtag line. No preamble, no explanation.`;
 
-    const client = new Anthropic({ apiKey });
+    const client = createAnthropic(apiKey);
 
     const message = await client.messages.create({
-      model: "claude-sonnet-4-20250514",
+      model: AI_MODEL,
       max_tokens: 700,
       messages: [{ role: "user", content: prompt }],
     });
