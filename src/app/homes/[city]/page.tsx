@@ -56,7 +56,11 @@ const getCityListings = cache(async (slug: string) => {
     .order("created_at", { ascending: false });
 
   const listings = (data || []).filter(
-    (l) => slugifyCity(l.city || "") === citySlug && !isAgentInactive(firstRelation(l.agent as never))
+    (l) =>
+      slugifyCity(l.city || "") === citySlug &&
+      !isAgentInactive(firstRelation(l.agent as never)) &&
+      // The admin/demo account's listings stay private
+      !isDemoAgentId(l.agent_id)
   );
   return { listings, cityName: (listings[0]?.city as string | undefined) ?? null, state };
 });
@@ -68,17 +72,16 @@ function displayFor(slug: string, cityName: string | null, state: string) {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city: citySlug } = await params;
   const { listings, cityName, state } = await getCityListings(citySlug);
+  // No public listings here (for example only the private admin account has homes in this city)
+  if (listings.length === 0) notFound();
   const display = displayFor(citySlug, cityName, state);
 
   return {
     title: `Homes for Sale in ${display}`,
     description: `Browse homes for sale in ${display}. View property details, photos, and connect with listing agents on ListingFlare.`,
     // Thin pages stay reachable but out of Google's index
-    // Sample listings from demo accounts still show, but do not count toward indexing
-    robots: {
-      index: listings.filter((l) => !isDemoAgentId(l.agent_id)).length >= MIN_LISTINGS_TO_INDEX,
-      follow: true,
-    },
+    // Thin pages stay reachable but out of Google's index
+    robots: { index: listings.length >= MIN_LISTINGS_TO_INDEX, follow: true },
     openGraph: {
       title: `Homes for Sale in ${display}`,
       description: `Browse available homes and listings in ${display} on ListingFlare.`,
