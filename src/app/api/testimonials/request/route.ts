@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { formatPhone } from "@/lib/formatters";
+import { isCronAuthorized } from "@/lib/internalAuth";
+import { nurturePausedBody, nurtureSendsEnabled } from "@/lib/automationFlags";
 
 export const dynamic = "force-dynamic";
 
@@ -11,11 +13,9 @@ function getAdminClient() {
   );
 }
 
+// Fails closed: no CRON_SECRET, no access (and no development bypass).
 function isAuthorized(req: NextRequest) {
-  const authHeader = req.headers.get("authorization");
-  if (process.env.CRON_SECRET && authHeader === `Bearer ${process.env.CRON_SECRET}`) return true;
-  if (process.env.NODE_ENV === "development") return true;
-  return false;
+  return isCronAuthorized(req);
 }
 
 // Sends testimonial request emails for recently closed leads.
@@ -23,6 +23,12 @@ function isAuthorized(req: NextRequest) {
 export async function GET(req: NextRequest) {
   if (!isAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  // Testimonial requests are discretionary: paused unless NURTURE_SENDS_ENABLED=1.
+  // Runs before any database or email access.
+  if (!nurtureSendsEnabled()) {
+    return NextResponse.json({ ...nurturePausedBody("testimonial-request"), sent: 0 });
   }
 
   const resendKey = process.env.RESEND_API_KEY;

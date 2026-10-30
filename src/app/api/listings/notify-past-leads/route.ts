@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { formatPhone } from "@/lib/formatters";
+import { nurturePausedBody, nurtureSendsEnabled } from "@/lib/automationFlags";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +16,14 @@ function getAdminClient() {
 // Triggered when an agent publishes a listing.
 // Emails past leads in the same city who haven't converted yet.
 export async function POST(req: NextRequest) {
+  // Promotional email to past leads is discretionary: paused unless
+  // NURTURE_SENDS_ENABLED=1. This is the first statement, before any session,
+  // database or email access. (It answers before checking login; the response
+  // reveals nothing about any listing or lead.)
+  if (!nurtureSendsEnabled()) {
+    return NextResponse.json({ ...nurturePausedBody("past-lead-listing-email"), notified: 0 });
+  }
+
   try {
     const authClient = createServerSupabaseClient();
     const {

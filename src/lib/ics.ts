@@ -2,7 +2,9 @@
 // Attaches to confirmation emails so buyers/agents can add the showing
 // to Google Calendar, Apple Calendar, Outlook, etc. with one click.
 
-interface ShowingInvite {
+import { isValidEmail } from "./showingInput";
+
+export interface ShowingInvite {
   uid: string;
   date: string;           // "2026-04-25"
   time: string;           // "10:00 AM"
@@ -52,9 +54,27 @@ function foldLine(line: string): string {
   return parts.join("\r\n");
 }
 
+// C0 controls and DEL. A CR or LF inside a field would start a new iCalendar
+// line, which lets a submitted value add its own properties (ATTENDEE, VALARM,
+// URL...). Newlines are kept only where the field is free text, and are then
+// written out as the escaped "\n" sequence by escapeText.
+// eslint-disable-next-line no-control-regex
+const CONTROL_CHARS = /[\u0000-\u001f\u007f]/g;
+// eslint-disable-next-line no-control-regex
+const CONTROL_CHARS_KEEP_LF = /[\u0000-\u0009\u000b-\u001f\u007f]/g;
+
+// Value of a CN= parameter. Parameter values end at ; : or , unless quoted, and a
+// quoted value cannot itself contain a double quote.
+function cnParam(name: string): string {
+  const cleaned = name.replace(CONTROL_CHARS, " ").replace(/"/g, "").trim().slice(0, 100);
+  return `"${cleaned}"`;
+}
+
 // Escape special chars per RFC 5545
 function escapeText(text: string): string {
   return text
+    .replace(/\r\n?/g, "\n")
+    .replace(CONTROL_CHARS_KEEP_LF, " ")
     .replace(/\\/g, "\\\\")
     .replace(/;/g, "\\;")
     .replace(/,/g, "\\,")
@@ -98,8 +118,14 @@ export function generateShowingICS(invite: ShowingInvite): string {
     `SUMMARY:${escapeText(invite.summary)}`,
     `DESCRIPTION:${escapeText(invite.description)}`,
     `LOCATION:${escapeText(invite.location)}`,
-    `ORGANIZER;CN=${escapeText(invite.organizerName)}:mailto:${invite.organizerEmail}`,
-    `ATTENDEE;CN=${escapeText(invite.attendeeName)};RSVP=TRUE;PARTSTAT=NEEDS-ACTION:mailto:${invite.attendeeEmail}`,
+    // An address that is not a plain, valid email is left out rather than written
+    // into the file, so it cannot carry line breaks or extra properties.
+    ...(isValidEmail(invite.organizerEmail)
+      ? [`ORGANIZER;CN=${cnParam(invite.organizerName)}:mailto:${invite.organizerEmail}`]
+      : []),
+    ...(isValidEmail(invite.attendeeEmail)
+      ? [`ATTENDEE;CN=${cnParam(invite.attendeeName)};RSVP=TRUE;PARTSTAT=NEEDS-ACTION:mailto:${invite.attendeeEmail}`]
+      : []),
     "STATUS:CONFIRMED",
     "SEQUENCE:0",
     "TRANSP:OPAQUE",

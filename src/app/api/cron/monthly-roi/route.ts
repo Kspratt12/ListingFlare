@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { escapeHtml } from "@/lib/escapeHtml";
+import { isCronAuthorized } from "@/lib/internalAuth";
 
 export const dynamic = "force-dynamic";
 
@@ -11,11 +12,9 @@ function getAdminClient() {
   );
 }
 
+// Fails closed: no CRON_SECRET, no access (and no development bypass).
 function isAuthorized(req: NextRequest) {
-  const authHeader = req.headers.get("authorization");
-  if (process.env.CRON_SECRET && authHeader === `Bearer ${process.env.CRON_SECRET}`) return true;
-  if (process.env.NODE_ENV === "development") return true;
-  return false;
+  return isCronAuthorized(req);
 }
 
 interface AgentStats {
