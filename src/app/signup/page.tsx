@@ -53,17 +53,9 @@ function SignupForm() {
       return;
     }
 
-    // Try to update profile with name - wrapped in try-catch because
-    // the profile row may not exist yet if email confirmation is required
-    if (data.user) {
-      try {
-        await supabase
-          .from("agent_profiles")
-          .upsert({ id: data.user.id, name, email });
-      } catch {
-        // Profile will be created by DB trigger when user confirms email
-      }
-    }
+    // The profile row, including the signup name from the metadata above, is created
+    // by the handle_new_user database trigger. The browser does not write agent_profiles
+    // at signup.
 
     // Check if session exists (no email confirmation required)
     if (data.session) {
