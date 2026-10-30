@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { secretsMatch } from "@/lib/internalAuth";
 
 export const dynamic = "force-dynamic";
 
@@ -10,13 +11,18 @@ function getAdminClient() {
   );
 }
 
-// Verify the request comes from Resend (simple shared secret approach).
-// Configure RESEND_WEBHOOK_SECRET in env and set the header in Resend dashboard.
+// Verify the request comes from the mail provider. This is a provider webhook,
+// NOT a cron or internal call, so it uses its own secret (RESEND_WEBHOOK_SECRET),
+// never CRON_SECRET. It fails closed (no secret configured = no access, with no
+// development bypass) and compares in constant time.
+//
+// NOT CHANGED, needs provider-side confirmation: this still expects a custom
+// "x-webhook-secret" header. If the provider signs its webhooks instead (many
+// do, with a timestamped HMAC signature), this route can never authenticate
+// them and a signature check is needed. That has not been verified against the
+// provider's documentation or a real delivery, so it is not guessed at here.
 function isAuthorized(req: NextRequest): boolean {
-  const provided = req.headers.get("x-webhook-secret");
-  const expected = process.env.RESEND_WEBHOOK_SECRET;
-  if (!expected) return process.env.NODE_ENV === "development";
-  return provided === expected;
+  return secretsMatch(req.headers.get("x-webhook-secret"), process.env.RESEND_WEBHOOK_SECRET);
 }
 
 // This endpoint receives inbound email replies from buyers.

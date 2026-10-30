@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { AI_MODEL, createAnthropic } from "@/lib/ai";
 import { formatPhone } from "@/lib/formatters";
+import { isCronAuthorized } from "@/lib/internalAuth";
+import { nurtureSendsEnabled } from "@/lib/automationFlags";
+import { runFollowUpCycle, type DueFollowUp } from "@/lib/followUpCycle";
 
 export const dynamic = "force-dynamic";
 
@@ -12,121 +15,83 @@ function getAdminClient() {
   );
 }
 
-// Vercel cron auth check
+// Vercel cron auth check. Fails closed: no CRON_SECRET, no access (and no development bypass).
 function isAuthorized(req: NextRequest) {
-  const authHeader = req.headers.get("authorization");
-  if (process.env.CRON_SECRET && authHeader === `Bearer ${process.env.CRON_SECRET}`) return true;
-  // Allow in development
-  if (process.env.NODE_ENV === "development") return true;
-  return false;
+  return isCronAuthorized(req);
 }
 
-export async function GET(req: NextRequest) {
-  if (!isAuthorized(req)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+// Sends one due follow-up. Unchanged from before the cycle was split out; it is
+// only ever called when discretionary sends are enabled (NURTURE_SENDS_ENABLED=1).
+async function processFollowUp(
+  db: SupabaseClient,
+  anthropic: ReturnType<typeof createAnthropic>,
+  resendKey: string,
+  followUp: DueFollowUp
+): Promise<boolean> {
+  try {
+    // Check if lead has been marked as closed/lost - skip if so
+    const { data: lead } = await db
+      .from("leads")
+      .select("id, name, email, phone, message, status")
+      .eq("id", followUp.lead_id)
+      .single();
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  const resendKey = process.env.RESEND_API_KEY;
+    if (!lead || lead.status === "closed" || lead.status === "lost" || lead.status === "under_contract") {
+      await db
+        .from("follow_ups")
+        .update({ status: "skipped" })
+        .eq("id", followUp.id);
+      return false;
+    }
 
-  if (!apiKey || !resendKey) {
-    return NextResponse.json({ error: "Missing API keys" }, { status: 500 });
-  }
+    // Fetch agent
+    const { data: agent } = await db
+      .from("agent_profiles")
+      .select("name, phone, email, brokerage, subscription_status, trial_ends_at")
+      .eq("id", followUp.agent_id)
+      .single();
 
-  const db = getAdminClient();
-  const nowDate = new Date();
-  const now = nowDate.toISOString();
+    if (!agent) {
+      await db.from("follow_ups").update({ status: "skipped" }).eq("id", followUp.id);
+      return false;
+    }
 
-  // If today is the 1st of the month, also fire monthly ROI summary emails.
-  // Chained here because Vercel Hobby plan caps us at 2 cron jobs.
-  if (nowDate.getUTCDate() === 1) {
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
-    fetch(`${appUrl}/api/cron/monthly-roi`, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${process.env.CRON_SECRET}` },
-    }).catch((err) => console.error("Monthly ROI cron chain error:", err));
-  }
+    // Skip if agent's subscription is expired
+    const isPaid = agent.subscription_status === "active";
+    const isTrialing = agent.subscription_status === "trialing";
+    const trialEnd = agent.trial_ends_at ? new Date(agent.trial_ends_at) : null;
+    const isExpired = isTrialing && trialEnd !== null && trialEnd < new Date();
+    if (isExpired && !isPaid) {
+      await db.from("follow_ups").update({ status: "skipped" }).eq("id", followUp.id);
+      return false;
+    }
 
-  // Fetch pending follow-ups that are due
-  const { data: followUps, error: fetchErr } = await db
-    .from("follow_ups")
-    .select("*")
-    .eq("status", "pending")
-    .lte("scheduled_at", now)
-    .order("scheduled_at", { ascending: true })
-    .limit(20);
+    // Fetch listing
+    const { data: listing } = await db
+      .from("listings")
+      .select("street, city, state, price, beds, baths, sqft, features")
+      .eq("id", followUp.listing_id)
+      .single();
 
-  if (fetchErr || !followUps || followUps.length === 0) {
-    return NextResponse.json({ ok: true, processed: 0 });
-  }
+    const listingAddress = listing
+      ? `${listing.street}, ${listing.city}, ${listing.state}`
+      : "the property";
 
-  const anthropic = createAnthropic(apiKey);
+    // Generate follow-up email content with AI
+    const dayContextMap: Record<number, string> = {
+      1: followUp.sequence_type === "showing"
+        ? "They had a showing yesterday. Check in on how it went and if they have questions."
+        : "They inquired yesterday. Follow up warmly to keep the conversation going.",
+      3: followUp.sequence_type === "showing"
+        ? "It's been 3 days since their showing. Gently ask if they're considering an offer or want to see similar homes."
+        : "It's been 3 days since they inquired. Share a compelling detail about the property or suggest similar listings.",
+      7: followUp.sequence_type === "showing"
+        ? "One week since their showing. Soft check-in, no pressure. Ask if they have any lingering questions."
+        : "One week since they inquired. Gentle check-in. Ask if they'd like to schedule a showing.",
+    };
+    const dayContext = dayContextMap[followUp.day_number as number] || "General follow-up";
 
-  const results = await Promise.allSettled(followUps.map(async (followUp) => {
-    try {
-      // Check if lead has been marked as closed/lost - skip if so
-      const { data: lead } = await db
-        .from("leads")
-        .select("id, name, email, phone, message, status")
-        .eq("id", followUp.lead_id)
-        .single();
-
-      if (!lead || lead.status === "closed" || lead.status === "lost" || lead.status === "under_contract") {
-        await db
-          .from("follow_ups")
-          .update({ status: "skipped" })
-          .eq("id", followUp.id);
-        return false;
-      }
-
-      // Fetch agent
-      const { data: agent } = await db
-        .from("agent_profiles")
-        .select("name, phone, email, brokerage, subscription_status, trial_ends_at")
-        .eq("id", followUp.agent_id)
-        .single();
-
-      if (!agent) {
-        await db.from("follow_ups").update({ status: "skipped" }).eq("id", followUp.id);
-        return false;
-      }
-
-      // Skip if agent's subscription is expired
-      const isPaid = agent.subscription_status === "active";
-      const isTrialing = agent.subscription_status === "trialing";
-      const trialEnd = agent.trial_ends_at ? new Date(agent.trial_ends_at) : null;
-      const isExpired = isTrialing && trialEnd !== null && trialEnd < new Date();
-      if (isExpired && !isPaid) {
-        await db.from("follow_ups").update({ status: "skipped" }).eq("id", followUp.id);
-        return false;
-      }
-
-      // Fetch listing
-      const { data: listing } = await db
-        .from("listings")
-        .select("street, city, state, price, beds, baths, sqft, features")
-        .eq("id", followUp.listing_id)
-        .single();
-
-      const listingAddress = listing
-        ? `${listing.street}, ${listing.city}, ${listing.state}`
-        : "the property";
-
-      // Generate follow-up email content with AI
-      const dayContextMap: Record<number, string> = {
-        1: followUp.sequence_type === "showing"
-          ? "They had a showing yesterday. Check in on how it went and if they have questions."
-          : "They inquired yesterday. Follow up warmly to keep the conversation going.",
-        3: followUp.sequence_type === "showing"
-          ? "It's been 3 days since their showing. Gently ask if they're considering an offer or want to see similar homes."
-          : "It's been 3 days since they inquired. Share a compelling detail about the property or suggest similar listings.",
-        7: followUp.sequence_type === "showing"
-          ? "One week since their showing. Soft check-in, no pressure. Ask if they have any lingering questions."
-          : "One week since they inquired. Gentle check-in. Ask if they'd like to schedule a showing.",
-      };
-      const dayContext = dayContextMap[followUp.day_number] || "General follow-up";
-
-      const prompt = `You are ${agent.name}, a real estate agent${agent.brokerage ? ` at ${agent.brokerage}` : ""}. Write a brief, personal follow-up email to ${lead.name.split(" ")[0]}.
+    const prompt = `You are ${agent.name}, a real estate agent${agent.brokerage ? ` at ${agent.brokerage}` : ""}. Write a brief, personal follow-up email to ${lead.name.split(" ")[0]}.
 
 Context: ${dayContext}
 
@@ -143,22 +108,22 @@ Rules:
 - Do NOT include subject line, greeting, or sign-off - just the body
 - Match the style: "Hey [name], just checking in..." or "Hi [name], wanted to follow up..."`;
 
-      const aiResponse = await anthropic.messages.create({
-        model: AI_MODEL,
-        max_tokens: 200,
-        messages: [{ role: "user", content: prompt }],
-      });
+    const aiResponse = await anthropic.messages.create({
+      model: AI_MODEL,
+      max_tokens: 200,
+      messages: [{ role: "user", content: prompt }],
+    });
 
-      const textBlock = aiResponse.content.find((b) => b.type === "text");
-      const body = textBlock && textBlock.type === "text" ? textBlock.text.trim() : "";
+    const textBlock = aiResponse.content.find((b) => b.type === "text");
+    const body = textBlock && textBlock.type === "text" ? textBlock.text.trim() : "";
 
-      if (!body) {
-        await db.from("follow_ups").update({ status: "failed" }).eq("id", followUp.id);
-        return false;
-      }
+    if (!body) {
+      await db.from("follow_ups").update({ status: "failed" }).eq("id", followUp.id);
+      return false;
+    }
 
-      // Send the email
-      const emailHtml = `
+    // Send the email
+    const emailHtml = `
         <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto;">
           <div style="background: #0f172a; padding: 24px 32px; border-radius: 12px 12px 0 0;">
             <h1 style="color: #b8965a; margin: 0; font-size: 20px;">ListingFlare</h1>
@@ -177,78 +142,88 @@ Rules:
         </div>
       `;
 
-      const emailRes = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${resendKey}`,
-        },
-        body: JSON.stringify({
-          from: `${agent.name} via ListingFlare <leads@listingflare.com>`,
-          to: lead.email,
-          replyTo: agent.email,
-          subject: `${followUp.subject} - ${listingAddress}`,
-          html: emailHtml,
-        }),
-      });
+    const emailRes = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${resendKey}`,
+      },
+      body: JSON.stringify({
+        from: `${agent.name} via ListingFlare <leads@listingflare.com>`,
+        to: lead.email,
+        replyTo: agent.email,
+        subject: `${followUp.subject} - ${listingAddress}`,
+        html: emailHtml,
+      }),
+    });
 
-      if (emailRes.ok) {
-        await db
-          .from("follow_ups")
-          .update({ status: "sent", body, sent_at: new Date().toISOString() })
-          .eq("id", followUp.id);
-        return true;
-      } else {
-        console.error("Follow-up email failed:", await emailRes.text().catch(() => "unknown"));
-        await db.from("follow_ups").update({ status: "failed", body }).eq("id", followUp.id);
-        return false;
-      }
-    } catch (err) {
-      console.error("Follow-up processing error:", err);
-      await db.from("follow_ups").update({ status: "failed" }).eq("id", followUp.id);
+    if (emailRes.ok) {
+      await db
+        .from("follow_ups")
+        .update({ status: "sent", body, sent_at: new Date().toISOString() })
+        .eq("id", followUp.id);
+      return true;
+    } else {
+      console.error("Follow-up email failed:", await emailRes.text().catch(() => "unknown"));
+      await db.from("follow_ups").update({ status: "failed", body }).eq("id", followUp.id);
       return false;
     }
-  }));
+  } catch (err) {
+    console.error("Follow-up processing error:", err);
+    await db.from("follow_ups").update({ status: "failed" }).eq("id", followUp.id);
+    return false;
+  }
+}
 
-  const processed = results.filter((r) => r.status === "fulfilled" && r.value === true).length;
-
-  // Chain other daily jobs to stay under Hobby plan 2-cron limit
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
-  const authHeaders = {
-    Authorization: `Bearer ${process.env.CRON_SECRET || ""}`,
-  };
-
-  // Trial lifecycle emails (welcome, day 3, day 12). Chained here because Hobby only
-  // allows 2 crons and nothing else was calling this route. Set DISABLE_TRIAL_LIFECYCLE=1 to pause.
-  const lifecycleOn = process.env.DISABLE_TRIAL_LIFECYCLE !== "1";
-
-  const [reminderRes, feedbackRes, testimonialRes, lifecycleRes] = await Promise.allSettled([
-    fetch(`${appUrl}/api/showings/reminders`, { headers: authHeaders }),
-    fetch(`${appUrl}/api/feedback/request`, { headers: authHeaders }),
-    fetch(`${appUrl}/api/testimonials/request`, { headers: authHeaders }),
-    lifecycleOn
-      ? fetch(`${appUrl}/api/trial/lifecycle`, { headers: authHeaders })
-      : Promise.reject(new Error("trial lifecycle disabled")),
-  ]);
-
-  async function safeJson(res: PromiseSettledResult<Response>): Promise<unknown> {
-    if (res.status !== "fulfilled" || !res.value.ok) return null;
-    return res.value.json().catch(() => null);
+export async function GET(req: NextRequest) {
+  if (!isAuthorized(req)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const [reminders, feedback, testimonials, trialLifecycle] = await Promise.all([
-    safeJson(reminderRes),
-    safeJson(feedbackRes),
-    safeJson(testimonialRes),
-    safeJson(lifecycleRes),
-  ]);
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const resendKey = process.env.RESEND_API_KEY;
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
+  const authHeaders = { Authorization: `Bearer ${process.env.CRON_SECRET || ""}` };
 
-  return NextResponse.json({
-    ok: true,
-    processed,
-    reminders,
-    feedback,
-    testimonials,
-    trialLifecycle,
+  // Created lazily so a paused run never builds an AI client.
+  let db: SupabaseClient | null = null;
+  const getDb = () => (db ??= getAdminClient());
+  let anthropic: ReturnType<typeof createAnthropic> | null = null;
+
+  const result = await runFollowUpCycle({
+    now: () => new Date(),
+    nurtureEnabled: () => nurtureSendsEnabled(),
+    // Trial lifecycle emails (welcome, day 3, day 12). Chained here because Hobby only
+    // allows 2 crons and nothing else was calling this route. Set DISABLE_TRIAL_LIFECYCLE=1 to pause.
+    trialLifecycleEnabled: () => process.env.DISABLE_TRIAL_LIFECYCLE !== "1",
+    keysPresent: () => Boolean(apiKey && resendKey),
+    async fetchDue() {
+      // Fetch pending follow-ups that are due
+      const { data, error } = await getDb()
+        .from("follow_ups")
+        .select("*")
+        .eq("status", "pending")
+        .lte("scheduled_at", new Date().toISOString())
+        .order("scheduled_at", { ascending: true })
+        .limit(20);
+      return { rows: data as DueFollowUp[] | null, error };
+    },
+    processRow: (row) => {
+      anthropic ??= createAnthropic(apiKey!);
+      return processFollowUp(getDb(), anthropic, resendKey!, row);
+    },
+    // Chain other daily jobs to stay under Hobby plan 2-cron limit
+    async callJob(path) {
+      try {
+        const res = await fetch(`${appUrl}${path}`, { method: "GET", headers: authHeaders });
+        if (!res.ok) return null;
+        return await res.json().catch(() => null);
+      } catch (err) {
+        console.error(`Chained job ${path} failed:`, err);
+        return null;
+      }
+    },
   });
+
+  return NextResponse.json(result.body, { status: result.status });
 }

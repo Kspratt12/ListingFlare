@@ -2,15 +2,19 @@ import { NextRequest, NextResponse } from "next/server";
 import { internalHeaders } from "@/lib/internalAuth";
 import { createClient } from "@supabase/supabase-js";
 import { formatPhone } from "@/lib/formatters";
-import { generateShowingICS, icsToBase64 } from "@/lib/ics";
 import {
   createCalendarEvent,
   refreshAccessToken,
   isGoogleConfigured,
 } from "@/lib/google/oauth";
 import { checkHoneypotAndTiming, checkRateLimits } from "@/lib/antiSpam";
-import { escapeHtml } from "@/lib/escapeHtml";
 import { sendPushToAgent } from "@/lib/sendPush";
+import {
+  BOOKING_LIMITS,
+  processBookingRequest,
+  type BookingDeps,
+  type BookingStore,
+} from "@/lib/showingBooking";
 
 export const dynamic = "force-dynamic";
 
@@ -21,421 +25,198 @@ function getAdminClient() {
   );
 }
 
-export async function POST(req: NextRequest) {
-  try {
-    const body = await req.json();
-    const {
-      leadId,
-      listingId,
-      showingDate,
-      showingTime,
-      name,
-      email,
-      phone,
-      message,
-      preApproved,
-      timeline,
-      hasAgent,
-      source,
-      honeypot,
-      formStartedAt,
-    } = body;
-
-    if (!listingId || !showingDate || !showingTime || !name || !email) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
-    }
-
-    // Cheap spam filters - fail fast before hitting DB
-    const cheap = checkHoneypotAndTiming({ honeypot, formStartedAt, listingId, email });
-    if (!cheap.ok) {
-      // Silent success so bots don't learn the honeypot works
-      return NextResponse.json({ ok: true });
-    }
-
-    const db = getAdminClient();
-
-    // Derive agentId from the listing - never trust client-sent agentId
-    const { data: ownerLookup } = await db
-      .from("listings")
-      .select("id, agent_id")
-      .eq("id", listingId)
-      .single();
-
-    if (!ownerLookup) {
-      return NextResponse.json({ error: "Listing not found" }, { status: 404 });
-    }
-    const agentId = ownerLookup.agent_id;
-
-    // DB-backed rate limits
-    const limited = await checkRateLimits(db, { listingId, email });
-    if (!limited.ok) {
-      return NextResponse.json({ error: limited.reason }, { status: 429 });
-    }
-
-    // If no leadId was provided, find or create the lead
-    let finalLeadId = leadId;
-    if (!finalLeadId) {
-      const { data: existingLead } = await db
+// All the decisions (validation, rate limiting, ordering) live in
+// src/lib/showingBooking.ts and are tested with fake dependencies. This file only
+// connects them to the real database and providers.
+function buildStore(db: ReturnType<typeof getAdminClient>): BookingStore {
+  return {
+    async findListing(listingId) {
+      const { data } = await db
+        .from("listings")
+        .select("id, agent_id")
+        .eq("id", listingId)
+        .maybeSingle();
+      return data ? { id: data.id, agent_id: data.agent_id } : null;
+    },
+    async legacyLeadRateLimit(listingId, email) {
+      const r = await checkRateLimits(db, { listingId, email });
+      return r.ok ? { ok: true } : { ok: false, reason: r.reason || "Too many submissions." };
+    },
+    async reserveBookingAttempt(listingId, email) {
+      const { data, error } = await db.rpc("reserve_booking_attempt", {
+        p_listing_id: listingId,
+        p_email: email,
+        p_window_minutes: BOOKING_LIMITS.windowMinutes,
+        p_per_email_listing: BOOKING_LIMITS.perEmailPerListing,
+        p_per_email_all: BOOKING_LIMITS.perEmailAllListings,
+        p_per_listing: BOOKING_LIMITS.perListing,
+      });
+      if (error) {
+        console.error("Booking limiter unavailable:", error);
+        return "unavailable";
+      }
+      return data === true ? "reserved" : "limited";
+    },
+    async findLeadId(listingId, email) {
+      const { data } = await db
         .from("leads")
         .select("id")
         .eq("listing_id", listingId)
         .eq("email", email)
         .order("created_at", { ascending: false })
         .limit(1)
-        .single();
-
-      if (existingLead) {
-        finalLeadId = existingLead.id;
-      } else {
-        const { data: newLead } = await db
-          .from("leads")
-          .insert({
-            listing_id: listingId,
-            agent_id: agentId,
-            name,
-            email,
-            phone: phone || "",
-            message: message || `Showing requested for ${showingDate} at ${showingTime}`,
-            status: "showing_scheduled",
-            pre_approved: preApproved || null,
-            timeline: timeline || null,
-            has_agent: hasAgent || null,
-            source: source || "direct",
-          })
-          .select("id")
-          .single();
-        finalLeadId = newLead?.id;
+        .maybeSingle();
+      return data?.id ?? null;
+    },
+    async insertLead(row) {
+      const { data } = await db.from("leads").insert(row).select("id").single();
+      return data?.id ?? null;
+    },
+    async updateLead(leadId, fields) {
+      await db.from("leads").update(fields).eq("id", leadId);
+    },
+    async insertShowing(row) {
+      const { data, error } = await db.from("showings").insert(row).select("id").single();
+      if (error || !data) {
+        console.error("Showing insert error:", error);
+        return null;
       }
+      return { id: data.id };
+    },
+    async getListing(listingId) {
+      const { data } = await db
+        .from("listings")
+        .select("street, city, state")
+        .eq("id", listingId)
+        .maybeSingle();
+      return data ?? null;
+    },
+    async getAgent(agentId) {
+      const { data } = await db
+        .from("agent_profiles")
+        .select("name, phone, email, brokerage")
+        .eq("id", agentId)
+        .maybeSingle();
+      return data ?? null;
+    },
+  };
+}
+
+async function addGoogleEvent(
+  db: ReturnType<typeof getAdminClient>,
+  agentId: string,
+  e: Parameters<BookingDeps["addGoogleEvent"]>[1]
+) {
+  if (!isGoogleConfigured()) return;
+
+  const { data: fullAgent } = await db
+    .from("agent_profiles")
+    .select("google_access_token, google_refresh_token, google_token_expires_at")
+    .eq("id", agentId)
+    .single();
+  if (!fullAgent?.google_access_token) return;
+
+  let accessToken = fullAgent.google_access_token;
+  const expiresAt = fullAgent.google_token_expires_at
+    ? new Date(fullAgent.google_token_expires_at)
+    : null;
+
+  // Refresh token if expired/expiring soon
+  if (expiresAt && expiresAt < new Date() && fullAgent.google_refresh_token) {
+    const refreshed = await refreshAccessToken(fullAgent.google_refresh_token);
+    if (refreshed) {
+      accessToken = refreshed.access_token;
+      const newExpiresAt = new Date(Date.now() + (refreshed.expires_in - 60) * 1000).toISOString();
+      await db
+        .from("agent_profiles")
+        .update({ google_access_token: accessToken, google_token_expires_at: newExpiresAt })
+        .eq("id", agentId);
+    }
+  }
+
+  // Parse showing time to ISO strings.
+  // NOTE: new Date(y, m, d, h, min) uses the SERVER's timezone, and no agent or
+  // property timezone is stored, so the event time is only correct when the
+  // server timezone matches the agent's. Unchanged by this patch; the timezone
+  // phase replaces it.
+  const timeMatch = String(e.showingTime).match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+  if (!timeMatch) return;
+  let hour = parseInt(timeMatch[1], 10);
+  const minute = parseInt(timeMatch[2], 10);
+  if (timeMatch[3].toUpperCase() === "PM" && hour !== 12) hour += 12;
+  if (timeMatch[3].toUpperCase() === "AM" && hour === 12) hour = 0;
+  const [yStr, mStr, dStr] = e.showingDate.split("-");
+  const startDate = new Date(parseInt(yStr), parseInt(mStr) - 1, parseInt(dStr), hour, minute);
+  const endDate = new Date(startDate.getTime() + 30 * 60 * 1000);
+
+  await createCalendarEvent(accessToken, {
+    summary: `Showing - ${e.listingAddress}`,
+    description: [
+      `Buyer: ${e.name}`,
+      e.phone ? `Phone: ${formatPhone(e.phone)}` : null,
+      e.message ? `Notes: ${e.message}` : null,
+    ]
+      .filter(Boolean)
+      .join("\n"),
+    location: e.listingAddress,
+    startISO: startDate.toISOString(),
+    endISO: endDate.toISOString(),
+    attendeeName: e.name,
+    attendeeEmail: e.email,
+  });
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    let body: unknown;
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json({ error: "Invalid request" }, { status: 400 });
     }
 
-    // If lead already existed, still update qualification/source if they were provided and not yet set
-    if (finalLeadId && (preApproved || timeline || hasAgent || source)) {
-      const updates: Record<string, string> = {};
-      if (preApproved) updates.pre_approved = preApproved;
-      if (timeline) updates.timeline = timeline;
-      if (hasAgent) updates.has_agent = hasAgent;
-      if (source) updates.source = source;
-      if (Object.keys(updates).length > 0) {
-        await db.from("leads").update(updates).eq("id", finalLeadId);
-      }
-    }
-
-    if (!finalLeadId) {
-      return NextResponse.json({ error: "Failed to create lead" }, { status: 500 });
-    }
-
-    // Update lead status to showing_scheduled
-    await db
-      .from("leads")
-      .update({ status: "showing_scheduled", is_read: true })
-      .eq("id", finalLeadId);
-
-    // Insert the showing
-    const { data: showing, error: showingErr } = await db
-      .from("showings")
-      .insert({
-        lead_id: finalLeadId,
-        listing_id: listingId,
-        agent_id: agentId,
-        showing_date: showingDate,
-        showing_time: showingTime,
-        name,
-        email,
-        phone: phone || "",
-        message: message || "",
-      })
-      .select("id")
-      .single();
-
-    if (showingErr) {
-      console.error("Showing insert error:", showingErr);
-      return NextResponse.json({ error: "Failed to book showing" }, { status: 500 });
-    }
-
-    // Fetch listing and agent details for emails
-    const [{ data: listing }, { data: agent }] = await Promise.all([
-      db.from("listings").select("street, city, state, price").eq("id", listingId).single(),
-      db.from("agent_profiles").select("name, phone, email, brokerage").eq("id", agentId).single(),
-    ]);
-
-    const listingAddress = listing
-      ? `${listing.street}, ${listing.city}, ${listing.state}`
-      : "the property";
-
-    const formattedDate = new Date(showingDate + "T12:00:00").toLocaleDateString("en-US", {
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    });
-
-    const resendKey = process.env.RESEND_API_KEY;
-    if (resendKey && agent) {
-      // Escape every user-provided field before it lands in an HTML email.
-      // A lead can put arbitrary text in name/email/message - without escaping
-      // they could smuggle links or markup into the agent's inbox.
-      const safeName = escapeHtml(name);
-      const safeFirstName = escapeHtml(String(name).split(" ")[0]);
-      const safeEmail = escapeHtml(email);
-      const safePhone = escapeHtml(phone);
-      const safeMessage = escapeHtml(message);
-      const safeListingAddress = escapeHtml(listingAddress);
-      const safeAgentName = escapeHtml(agent.name);
-      const safeAgentEmail = escapeHtml(agent.email);
-      // formattedDate + showingTime are server-generated, agent.phone is server-stored
-      // and goes through formatPhone() which strips non-digits - no escape needed.
-
-      // 1. Send confirmation to buyer
-      const buyerHtml = `
-        <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: #0f172a; padding: 24px 32px; border-radius: 12px 12px 0 0;">
-            <h1 style="color: #b8965a; margin: 0; font-size: 20px;">ListingFlare</h1>
-          </div>
-          <div style="background: #ffffff; padding: 32px; border: 1px solid #e5e7eb; border-top: 0; border-radius: 0 0 12px 12px;">
-            <h2 style="margin: 0 0 8px; color: #111827;">Your Showing is Confirmed!</h2>
-            <p style="color: #6b7280; margin: 0 0 24px; font-size: 15px;">
-              Hi ${safeFirstName}, your showing has been scheduled. Here are the details:
-            </p>
-            <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin: 0 0 24px;">
-              <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                  <td style="padding: 8px 0; color: #6b7280; font-size: 14px; width: 100px;">Property</td>
-                  <td style="padding: 8px 0; color: #111827; font-weight: 600;">${safeListingAddress}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Date</td>
-                  <td style="padding: 8px 0; color: #111827; font-weight: 600;">${formattedDate}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Time</td>
-                  <td style="padding: 8px 0; color: #111827; font-weight: 600;">${showingTime}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Agent</td>
-                  <td style="padding: 8px 0; color: #111827; font-weight: 600;">${safeAgentName}</td>
-                </tr>
-              </table>
-            </div>
-            <div style="background: #fef3c7; border: 1px solid #fde68a; border-radius: 8px; padding: 12px 16px; margin: 0 0 16px;">
-              <p style="margin: 0; color: #92400e; font-size: 13px;">
-                📅 <strong>Add to calendar:</strong> Open the attached <code>showing.ics</code> file to add this to Google Calendar, Apple Calendar, or Outlook in one tap.
-              </p>
-            </div>
-            <p style="color: #6b7280; font-size: 14px; margin: 0;">
-              Need to reschedule? Reply to this email or call ${agent.phone ? formatPhone(agent.phone) : "your agent"}.
-            </p>
-            <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #e5e7eb;">
-              <p style="margin: 0; font-weight: 600; color: #111827;">${safeAgentName}</p>
-              ${agent.phone ? `<p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${formatPhone(agent.phone)}</p>` : ""}
-              <p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${safeAgentEmail}</p>
-            </div>
-          </div>
-        </div>
-      `;
-
-      // 2. Send notification to agent
-      const agentHtml = `
-        <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: #0f172a; padding: 24px 32px; border-radius: 12px 12px 0 0;">
-            <h1 style="color: #b8965a; margin: 0; font-size: 20px;">ListingFlare</h1>
-          </div>
-          <div style="background: #ffffff; padding: 32px; border: 1px solid #e5e7eb; border-top: 0; border-radius: 0 0 12px 12px;">
-            <h2 style="margin: 0 0 8px; color: #111827;">New Showing Booked!</h2>
-            <p style="color: #6b7280; margin: 0 0 24px; font-size: 15px;">
-              A buyer has scheduled a showing for <strong>${safeListingAddress}</strong>.
-            </p>
-            <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin: 0 0 24px;">
-              <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                  <td style="padding: 8px 0; color: #6b7280; font-size: 14px; width: 100px;">Buyer</td>
-                  <td style="padding: 8px 0; color: #111827; font-weight: 600;">${safeName}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Email</td>
-                  <td style="padding: 8px 0;"><a href="mailto:${safeEmail}" style="color: #b8965a;">${safeEmail}</a></td>
-                </tr>
-                ${phone ? `<tr>
-                  <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Phone</td>
-                  <td style="padding: 8px 0;"><a href="tel:${safePhone}" style="color: #b8965a;">${formatPhone(phone)}</a></td>
-                </tr>` : ""}
-                <tr>
-                  <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Date</td>
-                  <td style="padding: 8px 0; color: #111827; font-weight: 600;">${formattedDate}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Time</td>
-                  <td style="padding: 8px 0; color: #111827; font-weight: 600;">${showingTime}</td>
-                </tr>
-                ${message ? `<tr>
-                  <td style="padding: 8px 0; color: #6b7280; font-size: 14px; vertical-align: top;">Notes</td>
-                  <td style="padding: 8px 0; color: #111827;">${safeMessage}</td>
-                </tr>` : ""}
-              </table>
-            </div>
-            <div style="margin-top: 16px;">
-              <a href="${process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com"}/dashboard/leads"
-                style="display: inline-block; background: #0f172a; color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-size: 14px;">
-                View in Dashboard
-              </a>
-            </div>
-          </div>
-        </div>
-      `;
-
-      // Build calendar invite (.ics) so recipients can add to their calendar in one click
-      const icsString = generateShowingICS({
-        uid: showing?.id || `${Date.now()}-${finalLeadId}`,
-        date: showingDate,
-        time: showingTime,
-        durationMinutes: 30,
-        summary: `Property Showing - ${listingAddress}`,
-        description: [
-          `Showing with ${name}`,
-          agent.phone ? `Agent: ${agent.name} (${formatPhone(agent.phone)})` : `Agent: ${agent.name}`,
-          phone ? `Buyer phone: ${formatPhone(phone)}` : null,
-          message ? `Notes: ${message}` : null,
-        ].filter(Boolean).join("\n"),
-        location: listingAddress,
-        organizerName: agent.name || "Listing Agent",
-        organizerEmail: agent.email,
-        attendeeName: name,
-        attendeeEmail: email,
-      });
-      const icsAttachment = {
-        filename: "showing.ics",
-        content: icsToBase64(icsString),
-        contentType: "text/calendar",
-      };
-
-      // Send both emails in parallel - with calendar invite attached
-      await Promise.all([
-        fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${resendKey}`,
-          },
-          body: JSON.stringify({
-            from: `${agent.name} via ListingFlare <leads@listingflare.com>`,
-            to: email,
-            replyTo: agent.email,
-            subject: `Showing Confirmed - ${listingAddress} on ${formattedDate}`,
-            html: buyerHtml,
-            attachments: [icsAttachment],
-          }),
-        }),
-        fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${resendKey}`,
-          },
-          body: JSON.stringify({
-            from: "ListingFlare <leads@listingflare.com>",
-            to: agent.email,
-            subject: `Showing booked - ${name} for ${listingAddress}`,
-            html: agentHtml,
-            attachments: [icsAttachment],
-          }),
-        }),
-      ]);
-    }
-
-    // Create Google Calendar event on agent's calendar if connected
-    if (isGoogleConfigured()) {
-      try {
-        const { data: fullAgent } = await db
-          .from("agent_profiles")
-          .select("google_access_token, google_refresh_token, google_token_expires_at")
-          .eq("id", agentId)
-          .single();
-
-        if (fullAgent?.google_access_token) {
-          let accessToken = fullAgent.google_access_token;
-          const expiresAt = fullAgent.google_token_expires_at
-            ? new Date(fullAgent.google_token_expires_at)
-            : null;
-
-          // Refresh token if expired/expiring soon
-          if (expiresAt && expiresAt < new Date() && fullAgent.google_refresh_token) {
-            const refreshed = await refreshAccessToken(fullAgent.google_refresh_token);
-            if (refreshed) {
-              accessToken = refreshed.access_token;
-              const newExpiresAt = new Date(
-                Date.now() + (refreshed.expires_in - 60) * 1000
-              ).toISOString();
-              await db
-                .from("agent_profiles")
-                .update({
-                  google_access_token: accessToken,
-                  google_token_expires_at: newExpiresAt,
-                })
-                .eq("id", agentId);
-            }
-          }
-
-          // Parse showing time to ISO strings
-          const timeMatch = String(showingTime).match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
-          if (timeMatch) {
-            let hour = parseInt(timeMatch[1], 10);
-            const minute = parseInt(timeMatch[2], 10);
-            if (timeMatch[3].toUpperCase() === "PM" && hour !== 12) hour += 12;
-            if (timeMatch[3].toUpperCase() === "AM" && hour === 12) hour = 0;
-            const [yStr, mStr, dStr] = showingDate.split("-");
-            const startDate = new Date(
-              parseInt(yStr),
-              parseInt(mStr) - 1,
-              parseInt(dStr),
-              hour,
-              minute
-            );
-            const endDate = new Date(startDate.getTime() + 30 * 60 * 1000);
-
-            await createCalendarEvent(accessToken, {
-              summary: `Showing - ${listingAddress}`,
-              description: [
-                `Buyer: ${name}`,
-                phone ? `Phone: ${formatPhone(phone)}` : null,
-                message ? `Notes: ${message}` : null,
-              ]
-                .filter(Boolean)
-                .join("\n"),
-              location: listingAddress,
-              startISO: startDate.toISOString(),
-              endISO: endDate.toISOString(),
-              attendeeName: name,
-              attendeeEmail: email,
-            });
-          }
-        }
-      } catch (err) {
-        console.error("Google Calendar event creation failed:", err);
-        // Non-fatal - booking still succeeds
-      }
-    }
-
-    // Schedule follow-up drip sequence
+    const db = getAdminClient();
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
-    fetch(`${appUrl}/api/follow-ups/schedule`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", ...internalHeaders() },
-      body: JSON.stringify({
-        leadId: finalLeadId,
-        listingId,
-        agentId,
-        sequenceType: "showing",
-      }),
-    }).catch((err) => console.error("Follow-up schedule error:", err));
+    const resendKey = process.env.RESEND_API_KEY;
 
-    // Push notification - agent's phone buzzes with the booking (non-blocking)
-    sendPushToAgent(agentId, {
-      title: "New showing booked",
-      body: `${name} booked ${formattedDate} at ${showingTime}. Tap to view.`,
-      url: "/dashboard/showings",
-      tag: `showing-${showing?.id}`,
-    }).catch((err) => console.error("Push error:", err));
+    const deps: BookingDeps = {
+      now: () => new Date(),
+      store: buildStore(db),
+      spamCheck: (input) =>
+        checkHoneypotAndTiming({
+          honeypot: input.honeypot,
+          formStartedAt: typeof input.formStartedAt === "number" ? input.formStartedAt : undefined,
+          listingId: input.listingId,
+          email: input.email,
+        }),
+      emailEnabled: Boolean(resendKey),
+      async sendEmail(msg) {
+        const res = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${resendKey}`,
+          },
+          body: JSON.stringify(msg),
+        });
+        if (!res.ok) throw new Error(`Resend responded ${res.status}`);
+      },
+      addGoogleEvent: (agentId, e) => addGoogleEvent(db, agentId, e),
+      enrollShowingFollowUps(leadId, listingId, agentId) {
+        fetch(`${appUrl}/api/follow-ups/schedule`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", ...internalHeaders() },
+          body: JSON.stringify({ leadId, listingId, agentId, sequenceType: "showing" }),
+        }).catch((err) => console.error("Follow-up schedule error:", err));
+      },
+      notifyAgentPush(agentId, payload) {
+        sendPushToAgent(agentId, payload).catch((err) => console.error("Push error:", err));
+      },
+      appUrl,
+    };
 
-    return NextResponse.json({ ok: true, showingId: showing?.id });
+    const result = await processBookingRequest(body, deps);
+    return NextResponse.json(result.body, { status: result.status, headers: result.headers });
   } catch (err) {
     console.error("Showing booking error:", err);
     return NextResponse.json({ error: "Failed to book showing" }, { status: 500 });
