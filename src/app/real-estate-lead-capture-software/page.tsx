@@ -8,6 +8,22 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.listingflare.com/real-estate-lead-capture-software",
   },
+  openGraph: {
+    type: "website",
+    siteName: "ListingFlare",
+    locale: "en_US",
+    title: "Real Estate Lead Capture Software for Agents | ListingFlare",
+    description:
+      "Capture buyer leads from listing pages and open houses, reply instantly and follow up automatically. Lead inbox and QR sign-in. 14-day free trial.",
+    url: "https://www.listingflare.com/real-estate-lead-capture-software",
+    images: [{ url: "https://www.listingflare.com/opengraph-image", width: 1200, height: 630, alt: "ListingFlare" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Real Estate Lead Capture Software for Agents | ListingFlare",
+    description:
+      "Capture buyer leads from listing pages and open houses, reply instantly and follow up automatically. Lead inbox and QR sign-in. 14-day free trial.",
+  },
 };
 
 export default function Page() {

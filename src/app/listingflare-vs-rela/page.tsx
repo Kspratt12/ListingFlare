@@ -2,11 +2,27 @@ import type { Metadata } from "next";
 import SeoLandingPage from "@/components/SeoLandingPage";
 
 export const metadata: Metadata = {
-  title: "ListingFlare vs Rela: Feature Comparison",
+  title: { absolute: "ListingFlare vs Rela: Feature Comparison" },
   description:
     "ListingFlare vs Rela compared on price, design, AI chat, lead follow-up, custom domains and 3D tours. Where Rela is the better pick, and where ListingFlare is.",
   alternates: {
     canonical: "https://www.listingflare.com/listingflare-vs-rela",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "ListingFlare",
+    locale: "en_US",
+    title: "ListingFlare vs Rela: Feature Comparison",
+    description:
+      "ListingFlare vs Rela compared on price, design, AI chat, lead follow-up, custom domains and 3D tours. Where Rela is the better pick, and where ListingFlare is.",
+    url: "https://www.listingflare.com/listingflare-vs-rela",
+    images: [{ url: "https://www.listingflare.com/opengraph-image", width: 1200, height: 630, alt: "ListingFlare" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ListingFlare vs Rela: Feature Comparison",
+    description:
+      "ListingFlare vs Rela compared on price, design, AI chat, lead follow-up, custom domains and 3D tours. Where Rela is the better pick, and where ListingFlare is.",
   },
 };
 

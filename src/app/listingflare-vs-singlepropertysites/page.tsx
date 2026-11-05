@@ -2,11 +2,27 @@ import type { Metadata } from "next";
 import SeoLandingPage from "@/components/SeoLandingPage";
 
 export const metadata: Metadata = {
-  title: "ListingFlare vs SinglePropertySites.com",
+  title: { absolute: "ListingFlare vs SinglePropertySites.com" },
   description:
     "ListingFlare vs SinglePropertySites.com compared on price, marketing bundle, design, AI chat and lead follow-up. Who each one is best for.",
   alternates: {
     canonical: "https://www.listingflare.com/listingflare-vs-singlepropertysites",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "ListingFlare",
+    locale: "en_US",
+    title: "ListingFlare vs SinglePropertySites.com",
+    description:
+      "ListingFlare vs SinglePropertySites.com compared on price, marketing bundle, design, AI chat and lead follow-up. Who each one is best for.",
+    url: "https://www.listingflare.com/listingflare-vs-singlepropertysites",
+    images: [{ url: "https://www.listingflare.com/opengraph-image", width: 1200, height: 630, alt: "ListingFlare" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ListingFlare vs SinglePropertySites.com",
+    description:
+      "ListingFlare vs SinglePropertySites.com compared on price, marketing bundle, design, AI chat and lead follow-up. Who each one is best for.",
   },
 };
 

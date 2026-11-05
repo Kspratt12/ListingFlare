@@ -8,6 +8,22 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.listingflare.com/single-property-website-builder",
   },
+  openGraph: {
+    type: "website",
+    siteName: "ListingFlare",
+    locale: "en_US",
+    title: "Single Property Website Builder for Agents | ListingFlare",
+    description:
+      "Build a single property website for each listing in minutes: your photos, your contact info, AI chat and lead capture. 14-day free trial.",
+    url: "https://www.listingflare.com/single-property-website-builder",
+    images: [{ url: "https://www.listingflare.com/opengraph-image", width: 1200, height: 630, alt: "ListingFlare" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Single Property Website Builder for Agents | ListingFlare",
+    description:
+      "Build a single property website for each listing in minutes: your photos, your contact info, AI chat and lead capture. 14-day free trial.",
+  },
 };
 
 export default function Page() {

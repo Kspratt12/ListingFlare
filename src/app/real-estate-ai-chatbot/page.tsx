@@ -8,6 +8,22 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.listingflare.com/real-estate-ai-chatbot",
   },
+  openGraph: {
+    type: "website",
+    siteName: "ListingFlare",
+    locale: "en_US",
+    title: "AI for Real Estate Agents: Listing Chatbot | ListingFlare",
+    description:
+      "An AI chat assistant on every listing page answers buyer questions from your property details and collects contact info. See what it can and can\'t do.",
+    url: "https://www.listingflare.com/real-estate-ai-chatbot",
+    images: [{ url: "https://www.listingflare.com/opengraph-image", width: 1200, height: 630, alt: "ListingFlare" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI for Real Estate Agents: Listing Chatbot | ListingFlare",
+    description:
+      "An AI chat assistant on every listing page answers buyer questions from your property details and collects contact info. See what it can and can\'t do.",
+  },
 };
 
 export default function Page() {
