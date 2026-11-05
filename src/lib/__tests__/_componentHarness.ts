@@ -50,8 +50,9 @@ export function createHarness(name: string) {
     }).outputText;
     js = js.replace(/require\("([^"]+)"\)/g, (m, spec: string) => {
       if (!(spec.startsWith("@/") || spec.startsWith("."))) return m;
+      if (/\.(css|svg|png|jpg)$/.test(spec)) return "({})"; // H2 (also when the file exists, e.g. the root layout's globals.css)
       const target = resolveSource(spec, file);
-      if (!target) return /\.(css|svg|png|jpg)$/.test(spec) ? "({})" : m; // H2
+      if (!target) return m;
       return `require(${JSON.stringify(compile(target))})`;
     });
     fs.mkdirSync(path.dirname(out), { recursive: true });

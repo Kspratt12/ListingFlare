@@ -1,11 +1,30 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 
-export const metadata = {
-  title: "Terms of Service - ListingFlare",
+export const metadata: Metadata = {
+  title: "Terms of Service",
   description:
     "The terms for using ListingFlare: your account, the content you upload, acceptable use, subscription billing and cancellation.",
-  alternates: { canonical: "https://www.listingflare.com/terms" },
+  alternates: {
+    canonical: "https://www.listingflare.com/terms",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "ListingFlare",
+    locale: "en_US",
+    title: "Terms of Service | ListingFlare",
+    description:
+      "The terms for using ListingFlare: your account, the content you upload, acceptable use, subscription billing and cancellation.",
+    url: "https://www.listingflare.com/terms",
+    images: [{ url: "https://www.listingflare.com/opengraph-image", width: 1200, height: 630, alt: "ListingFlare" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service | ListingFlare",
+    description:
+      "The terms for using ListingFlare: your account, the content you upload, acceptable use, subscription billing and cancellation.",
+  },
 };
 
 export default function TermsPage() {

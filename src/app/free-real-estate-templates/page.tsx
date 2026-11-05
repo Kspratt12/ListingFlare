@@ -10,7 +10,25 @@ export const metadata: Metadata = {
   title: "Free Real Estate Agent Templates (PDF, Word)",
   description:
     "Free real estate agent templates: listing presentation, marketing plan, open house checklist and sign-in sheet, seller updates. PDF, fillable PDF and Word.",
-  alternates: { canonical: `${baseUrl}${path}` },
+  alternates: {
+    canonical: `${baseUrl}${path}`,
+  },
+  openGraph: {
+    type: "website",
+    siteName: "ListingFlare",
+    locale: "en_US",
+    title: "Free Real Estate Agent Templates (PDF, Word) | ListingFlare",
+    description:
+      "Free real estate agent templates: listing presentation, marketing plan, open house checklist and sign-in sheet, seller updates. PDF, fillable PDF and Word.",
+    url: `${baseUrl}${path}`,
+    images: [{ url: "https://www.listingflare.com/opengraph-image", width: 1200, height: 630, alt: "ListingFlare" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Real Estate Agent Templates (PDF, Word) | ListingFlare",
+    description:
+      "Free real estate agent templates: listing presentation, marketing plan, open house checklist and sign-in sheet, seller updates. PDF, fillable PDF and Word.",
+  },
 };
 
 const FAQ = [

@@ -3,11 +3,27 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About ListingFlare and Founder Kelvin Spratt",
+  title: { absolute: "About ListingFlare and Founder Kelvin Spratt" },
   description:
     "ListingFlare is real estate software built by Kelvin Spratt to help listing agents create property websites, capture leads and follow up with AI.",
   alternates: {
     canonical: "https://www.listingflare.com/about",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "ListingFlare",
+    locale: "en_US",
+    title: "About ListingFlare and Founder Kelvin Spratt",
+    description:
+      "ListingFlare is real estate software built by Kelvin Spratt to help listing agents create property websites, capture leads and follow up with AI.",
+    url: "https://www.listingflare.com/about",
+    images: [{ url: "https://www.listingflare.com/opengraph-image", width: 1200, height: 630, alt: "ListingFlare" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About ListingFlare and Founder Kelvin Spratt",
+    description:
+      "ListingFlare is real estate software built by Kelvin Spratt to help listing agents create property websites, capture leads and follow up with AI.",
   },
 };
 

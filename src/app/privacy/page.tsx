@@ -1,11 +1,30 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 
-export const metadata = {
-  title: "Privacy Policy - ListingFlare",
+export const metadata: Metadata = {
+  title: "Privacy Policy",
   description:
     "How ListingFlare collects, uses and protects your information, including listing data, lead details, cookies and your choices.",
-  alternates: { canonical: "https://www.listingflare.com/privacy" },
+  alternates: {
+    canonical: "https://www.listingflare.com/privacy",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "ListingFlare",
+    locale: "en_US",
+    title: "Privacy Policy | ListingFlare",
+    description:
+      "How ListingFlare collects, uses and protects your information, including listing data, lead details, cookies and your choices.",
+    url: "https://www.listingflare.com/privacy",
+    images: [{ url: "https://www.listingflare.com/opengraph-image", width: 1200, height: 630, alt: "ListingFlare" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | ListingFlare",
+    description:
+      "How ListingFlare collects, uses and protects your information, including listing data, lead details, cookies and your choices.",
+  },
 };
 
 export default function PrivacyPage() {

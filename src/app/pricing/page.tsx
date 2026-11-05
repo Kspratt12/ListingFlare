@@ -20,6 +20,22 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.listingflare.com/pricing",
   },
+  openGraph: {
+    type: "website",
+    siteName: "ListingFlare",
+    locale: "en_US",
+    title: "Pricing: $150/Month, Unlimited Listing Sites | ListingFlare",
+    description:
+      "ListingFlare pricing: $150/month for unlimited listing websites with AI chat, lead capture and automated follow-up. 14-day free trial, no card required.",
+    url: "https://www.listingflare.com/pricing",
+    images: [{ url: "https://www.listingflare.com/opengraph-image", width: 1200, height: 630, alt: "ListingFlare" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pricing: $150/Month, Unlimited Listing Sites | ListingFlare",
+    description:
+      "ListingFlare pricing: $150/month for unlimited listing websites with AI chat, lead capture and automated follow-up. 14-day free trial, no card required.",
+  },
 };
 
 const featureGroups = [
