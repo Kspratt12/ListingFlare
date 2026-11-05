@@ -7,7 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import { clearUserStorage } from "@/lib/userStorage";
-import { AgentSessionContext, getLocalUserId, resetLocalUserId } from "@/lib/agentSession";
+import { AgentSessionContext, getLocalUserId, getSessionGeneration, resetLocalUserId, subscribeToSessionChanges } from "@/lib/agentSession";
 import { clearCache, setCacheOwner } from "@/lib/swrCache";
 import type { AgentProfile } from "@/lib/types";
 import LiveLeadAlerts from "@/components/LiveLeadAlerts";
@@ -208,6 +208,8 @@ export default function DashboardLayout({
   const [themeOpen, setThemeOpen] = useState(false); // collapsed by default so the picker isn't visual clutter
   const limits = getSubscriptionLimits(profile);
   const [unreadLeads, setUnreadLeads] = useState(0);
+  // Moves each time the signed-in account changes; tabs reload their data when it does.
+  const [sessionEpoch, setSessionEpoch] = useState(0);
 
   // "New" lead count for the sidebar badge. Uses the same criteria as the
   // "New" filter on the leads page (status = "new") so the two always match.
@@ -218,14 +220,16 @@ export default function DashboardLayout({
     const supabase = createClient();
     let active = true;
     const refresh = async () => {
+      const startedAt = getSessionGeneration();
       const uid = await getLocalUserId();
-      if (!uid || !active) return;
+      if (!uid || !active || startedAt !== getSessionGeneration()) return;
       const { count } = await supabase
         .from("leads")
         .select("id", { count: "exact", head: true })
         .eq("agent_id", uid)
         .eq("status", "new");
-      if (active && count !== null) setUnreadLeads(count);
+      // A count started for a previous account must not update this account's badge.
+      if (active && startedAt === getSessionGeneration() && count !== null) setUnreadLeads(count);
     };
     refresh();
     const timer = setInterval(refresh, 60000);
@@ -236,22 +240,26 @@ export default function DashboardLayout({
       clearInterval(timer);
       window.removeEventListener("lf:unread-leads", onPush);
     };
-  }, [pathname]);
+  }, [pathname, sessionEpoch]);
 
   useEffect(() => {
-    // Load the user ID (local session read) and profile once. Every tab
-    // reads them from context instead of refetching.
+    // Load the user ID (local session read) and profile. Every tab reads them
+    // from context instead of refetching. When the signed-in account changes
+    // (sign-out, another tab, a different sign-in) everything tied to the old
+    // account is dropped and the new account's profile is loaded.
     const supabase = createClient();
     let active = true;
-    getLocalUserId().then((uid) => {
-      if (!uid || !active) return;
-      setCacheOwner(uid);
-      setUserId(uid);
+    let run = 0;
+    const loadFor = (uid: string) => {
+      const mine = ++run;
+      const startedAt = getSessionGeneration();
+      // Superseded by a newer load, an unmount, or an account change.
+      const stale = () => !active || mine !== run || startedAt !== getSessionGeneration();
       // Retry once on failure so a transient error doesn't leave a paying
       // client without a profile (which would look like a locked account).
       const loadProfile = async (attempt: number): Promise<void> => {
         const { data, error } = await supabase.from("agent_profiles").select("*").eq("id", uid).single();
-        if (!active) return;
+        if (stale()) return;
         if (data) {
           setProfile(data as AgentProfile);
           // The signup name is stored in auth metadata only (the profile row is
@@ -264,7 +272,7 @@ export default function DashboardLayout({
               if (typeof metaName === "string" && metaName.trim()) {
                 const name = metaName.trim();
                 const { error: upErr } = await supabase.from("agent_profiles").update({ name }).eq("id", uid);
-                if (!upErr && active) setProfile({ ...(data as AgentProfile), name });
+                if (!upErr && !stale()) setProfile({ ...(data as AgentProfile), name });
               }
             } catch {
               // best effort only
@@ -272,13 +280,29 @@ export default function DashboardLayout({
           }
         } else if (error && attempt < 2) {
           await new Promise((r) => setTimeout(r, 1000));
-          if (active) await loadProfile(attempt + 1);
+          if (!stale()) await loadProfile(attempt + 1);
         }
       };
       loadProfile(0);
+    };
+    const startedAt = getSessionGeneration();
+    getLocalUserId().then((uid) => {
+      if (!uid || !active || startedAt !== getSessionGeneration()) return;
+      setCacheOwner(uid);
+      setUserId(uid);
+      loadFor(uid);
+    });
+    const unsubscribe = subscribeToSessionChanges((uid) => {
+      if (!active) return;
+      setSessionEpoch((n) => n + 1);
+      setProfile(null);
+      setUnreadLeads(0);
+      setUserId(uid);
+      if (uid) loadFor(uid);
     });
     return () => {
       active = false;
+      unsubscribe();
     };
   }, []);
 
@@ -345,7 +369,7 @@ export default function DashboardLayout({
   };
 
   return (
-    <AgentSessionContext.Provider value={{ userId, profile, setProfile }}>
+    <AgentSessionContext.Provider value={{ userId, profile, setProfile, sessionEpoch }}>
     <div className="flex h-screen bg-gray-50">
       {/* Desktop sidebar */}
       <aside

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Listing } from "@/lib/types";
 import { getSubscriptionLimits } from "@/lib/subscription";
@@ -16,24 +16,78 @@ import PushNotificationPrompt from "@/components/PushNotificationPrompt";
 import RevenueStat from "@/components/RevenueStat";
 import ListingActionsMenu from "@/components/ListingActionsMenu";
 import FlyerModal from "@/components/FlyerModal";
-import { getLocalUserId, useAgentSession } from "@/lib/agentSession";
-import { cacheGet, cacheSet } from "@/lib/swrCache";
+import { getLocalUserId, getSessionGeneration, peekLocalUserId, useAgentSession } from "@/lib/agentSession";
+import { cacheGetFor, cacheSetFor } from "@/lib/swrCache";
+import { loadDashboardListings } from "@/lib/dashboardListings";
 
 // Columns the listing cards, flyer, duplicate and archive actions need. Leaves
 // out the MLS-parity extras, comparable_sales, price_history and co-agent fields.
 const DASHBOARD_LISTING_COLUMNS =
   "id, agent_id, status, slug, street, city, state, zip, price, beds, baths, sqft, year_built, lot_size, description, features, photos, videos, virtual_tour_url, view_count, created_at, updated_at";
 
+const LISTINGS_CACHE_KEY = "dashboard:listings";
+
+// Cached rows for the account that is currently signed in, or undefined. Never another account's rows.
+const seededListings = () => cacheGetFor<Listing[]>(LISTINGS_CACHE_KEY, peekLocalUserId());
+
+// Shown instead of "no listings" when the listings could not be loaded. With hasRows it is a banner above the last rows
+// loaded for this same account; without rows it replaces the list.
+function ListingsLoadProblem({ kind, hasRows, onRetry }: { kind: "no-session" | "error"; hasRows: boolean; onRetry: () => void }) {
+  return (
+    <div role="alert" className={`rounded-xl border border-amber-200 bg-amber-50 p-5 text-amber-900 ${hasRows ? "mt-5" : "mt-12 text-center"}`}>
+      <p className="text-sm font-semibold">
+        {kind === "no-session"
+          ? "We couldn't confirm that you're signed in, so your listings aren't shown."
+          : hasRows
+            ? "We couldn't refresh your listings."
+            : "We couldn't load your listings."}
+      </p>
+      <p className="mt-1 text-xs text-amber-800">
+        {kind === "no-session"
+          ? "Try again, or sign in again. Nothing has been removed."
+          : hasRows
+            ? "The list below is the last version loaded for your account."
+            : "Check your connection and try again. Nothing has been removed."}
+      </p>
+      <div className={`mt-3 flex flex-wrap gap-2 ${hasRows ? "" : "justify-center"}`}>
+        <button type="button" onClick={onRetry} className="rounded-lg bg-gray-950 px-4 py-2 text-xs font-medium text-white hover:bg-gray-800">
+          Try again
+        </button>
+        {kind === "no-session" && (
+          <Link href="/login" className="rounded-lg border border-amber-300 bg-white px-4 py-2 text-xs font-medium text-amber-900 hover:bg-amber-100">
+            Sign in again
+          </Link>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function MyListingsPage() {
   // Seeded from the in-memory cache so returning to this tab is instant;
-  // fetchData() refreshes it in the background.
-  const [listings, setListings] = useState<Listing[]>(() => cacheGet<Listing[]>("dashboard:listings") ?? []);
-  const [loading, setLoading] = useState(() => cacheGet("dashboard:listings") === undefined);
+  // The loader below refreshes it in the background.
+  const [listings, setListings] = useState<Listing[]>(() => seededListings() ?? []);
+  const [loading, setLoading] = useState(() => seededListings() === undefined);
   const [generatingPosts, setGeneratingPosts] = useState<string | null>(null);
   const [flyerListingId, setFlyerListingId] = useState<string | null>(null);
-  const { profile } = useAgentSession();
+  const { profile, sessionEpoch } = useAgentSession();
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
-  const [hasEverCreated, setHasEverCreated] = useState(() => (cacheGet<Listing[]>("dashboard:listings")?.length ?? 0) > 0);
+  const [hasEverCreated, setHasEverCreated] = useState(() => (seededListings()?.length ?? 0) > 0);
+  // Why the listings could not be shown, if they could not (null = loaded fine).
+  const [loadError, setLoadError] = useState<"no-session" | "error" | null>(null);
+  const [reloadKey, setReloadKey] = useState(0);
+  // Which account the rows on screen belong to (null until a load or a cache seed establishes it).
+  const rowsOwner = useRef<string | null>(seededListings() === undefined ? null : peekLocalUserId());
+  // The account changed since these rows were loaded: drop them in the same render, so they are never painted for the new account.
+  const [seenEpoch, setSeenEpoch] = useState(sessionEpoch);
+  const lastEpoch = useRef(sessionEpoch);
+  if (seenEpoch !== sessionEpoch) {
+    setSeenEpoch(sessionEpoch);
+    setListings([]);
+    setHasEverCreated(false);
+    setLoadError(null);
+    setLoading(true);
+  }
   const [sortBy, setSortBy] = useState<"newest" | "city" | "state" | "price">("newest");
   const [priceDir, setPriceDir] = useState<"desc" | "asc">("desc");
   const [showArchived, setShowArchived] = useState(false);
@@ -307,34 +361,59 @@ export default function MyListingsPage() {
   };
 
   useEffect(() => {
-    async function fetchData() {
-      // Local session read; the profile comes from the layout's context.
-      const uid = await getLocalUserId();
-      if (!uid) return;
-
-      // Fetch only this agent's listings
-      const { data, count, error } = await supabase
-        .from("listings")
-        .select(DASHBOARD_LISTING_COLUMNS, { count: "exact" })
-        .eq("agent_id", uid)
-        .order("created_at", { ascending: false });
-
-      if (!error && data) {
-        const rows = data as unknown as Listing[];
-        setListings(rows);
-        cacheSet("dashboard:listings", rows);
-        setHasEverCreated((count || 0) > 0 || rows.length > 0);
+    let cancelled = false;
+    // Results for a previous account, an unmounted page or an older attempt are ignored.
+    const startedAt = getSessionGeneration();
+    // The account changed since the last run: the rows on screen are not this account's.
+    if (lastEpoch.current !== sessionEpoch) {
+      lastEpoch.current = sessionEpoch;
+      rowsOwner.current = null;
+    }
+    if (reloadKey > 0) {
+      setLoadError(null);
+      setLoading(true);
+    }
+    loadDashboardListings<Listing>({
+      getUserId: getLocalUserId,
+      fetchRows: (uid) =>
+        supabase
+          .from("listings")
+          .select(DASHBOARD_LISTING_COLUMNS, { count: "exact" })
+          .eq("agent_id", uid)
+          .order("created_at", { ascending: false }) as unknown as PromiseLike<{ data: Listing[] | null; count: number | null; error: unknown }>,
+      getCachedRows: (uid) => cacheGetFor<Listing[]>(LISTINGS_CACHE_KEY, uid),
+      isCurrent: () => !cancelled && startedAt === getSessionGeneration(),
+    }).then((res) => {
+      if (!res || cancelled) return;
+      if (res.status === "ready") {
+        rowsOwner.current = res.userId;
+        setListings(res.rows);
+        cacheSetFor(LISTINGS_CACHE_KEY, res.rows, res.userId);
+        setHasEverCreated(res.hasEverCreated);
+        setLoadError(null);
+      } else if (res.status === "error") {
+        // Only rows confirmed to belong to this account (cached for this user) stay visible.
+        rowsOwner.current = res.rows.length > 0 ? res.userId : null;
+        setListings(res.rows);
+        setLoadError("error");
+      } else {
+        rowsOwner.current = null;
+        setListings([]);
+        setLoadError("no-session");
       }
       setLoading(false);
-    }
-    fetchData();
+    });
+    return () => {
+      cancelled = true;
+    };
+  // Reload when the signed-in account changes or Try again is pressed.
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [sessionEpoch, reloadKey]);
 
-  // Keep the cache in step with local archive, delete and duplicate changes
+  // Keep the cache in step with local archive, delete and duplicate changes (only for the account the rows belong to)
   useEffect(() => {
-    if (!loading) cacheSet("dashboard:listings", listings);
-  }, [listings, loading]);
+    if (!loading && !loadError && rowsOwner.current) cacheSetFor(LISTINGS_CACHE_KEY, listings, rowsOwner.current);
+  }, [listings, loading, loadError]);
 
   const formatPrice = (price: number) =>
     new Intl.NumberFormat("en-US", {
@@ -522,7 +601,7 @@ export default function MyListingsPage() {
       {!loading && (
         <div className="mb-6 space-y-4">
           {/* First-run focus: a new agent with no listings sees one clear next step */}
-          {listings.length === 0 && (
+          {!loadError && listings.length === 0 && (
             <div className="rounded-xl border border-brand-200 bg-gradient-to-br from-brand-50 to-white p-6">
               <h2 className="font-serif text-xl font-bold text-gray-900">
                 Get your first listing live in about 5 minutes
@@ -665,6 +744,10 @@ export default function MyListingsPage() {
         </div>
       )}
 
+      {!loading && loadError && listings.length > 0 && (
+        <ListingsLoadProblem kind={loadError} hasRows onRetry={() => setReloadKey((k) => k + 1)} />
+      )}
+
       {loading ? (
         <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {[1, 2, 3].map((i) => (
@@ -674,6 +757,8 @@ export default function MyListingsPage() {
             />
           ))}
         </div>
+      ) : loadError && listings.length === 0 ? (
+        <ListingsLoadProblem kind={loadError} hasRows={false} onRetry={() => setReloadKey((k) => k + 1)} />
       ) : listings.length === 0 ? (
         <div className="mt-16 text-center">
           {profile && !limits.isPaid && hasEverCreated ? (
