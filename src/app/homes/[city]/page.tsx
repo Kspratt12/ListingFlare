@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { serializeJsonLd } from "@/lib/jsonLd";
 import Footer from "@/components/Footer";
 import NavAuthCta from "@/components/NavAuthCta";
 import Image from "next/image";
@@ -131,7 +132,7 @@ export default async function CityPage({ params }: Props) {
     <div className="min-h-screen bg-white">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       {/* Nav */}

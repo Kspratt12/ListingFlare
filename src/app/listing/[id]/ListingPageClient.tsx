@@ -13,6 +13,7 @@ import Footer from "@/components/Footer";
 import type { PropertyListing } from "@/lib/demo-data";
 import { formatPhone, formatLotSize } from "@/lib/formatters";
 import VirtualTourEmbed from "@/components/VirtualTourEmbed";
+import { serializeJsonLd } from "@/lib/jsonLd";
 import MortgageCalculator from "@/components/MortgageCalculator";
 import NeighborhoodInfo from "@/components/NeighborhoodInfo";
 // OtherListings intentionally removed from the listing page — luxury
@@ -139,7 +140,7 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
     <main className={effectiveBrandColor ? "agent-brand-override" : undefined}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       {isOwner && (
         <div className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2">
