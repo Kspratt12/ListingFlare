@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Play, X } from "lucide-react";
+import { safeTourEmbedUrl } from "@/lib/tourUrl";
 
 interface Props {
   src: string;
@@ -9,6 +10,8 @@ interface Props {
 
 export default function VirtualTourEmbed({ src }: Props) {
   const [active, setActive] = useState(false);
+  const safeSrc = safeTourEmbedUrl(src);
+  if (!safeSrc) return null;
 
   return (
     <section className="relative bg-gray-950">
@@ -27,7 +30,7 @@ export default function VirtualTourEmbed({ src }: Props) {
       </div>
       <div className="relative w-full" style={{ height: "80vh", minHeight: "500px", maxHeight: "800px" }}>
         <iframe
-          src={src}
+          src={safeSrc}
           title="Virtual Tour"
           className="absolute inset-0 h-full w-full"
           allowFullScreen

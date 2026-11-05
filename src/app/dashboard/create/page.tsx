@@ -21,6 +21,7 @@ import { validateUpload } from "@/lib/validateUpload";
 import BrandColorPicker from "@/components/BrandColorPicker";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import UpgradePrompt from "@/components/UpgradePrompt";
+import { tourUrlProblem, TOUR_URL_HELP } from "@/lib/tourUrl";
 
 const US_STATES = [
   "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA",
@@ -450,6 +451,11 @@ export default function CreateListingPage() {
     }
     if (publish && !price) {
       setError("Price is required to publish.");
+      return;
+    }
+    const tourProblem = tourUrlProblem(virtualTourUrl);
+    if (tourProblem) {
+      setError(tourProblem);
       return;
     }
     if (publish) {
@@ -1018,7 +1024,7 @@ export default function CreateListingPage() {
         {/* Virtual Tour */}
         <section className="rounded-xl border border-gray-200 bg-white p-6">
           <h2 className="font-serif text-lg font-semibold text-gray-900">Virtual Tour</h2>
-          <p className="mt-1 text-sm text-gray-500">Paste a link from Matterport, Kuula, CloudPano, or any 360° tour provider. The tour will be embedded directly on your listing page.</p>
+          <p className="mt-1 text-sm text-gray-500">{TOUR_URL_HELP} The tour will be embedded directly on your listing page.</p>
           <input
             type="url"
             value={virtualTourUrl}
@@ -1026,6 +1032,9 @@ export default function CreateListingPage() {
             className="mt-4 w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
             placeholder="https://my.matterport.com/show/?m=..."
           />
+          {tourUrlProblem(virtualTourUrl) && (
+            <p role="alert" className="mt-2 text-sm text-red-600">{tourUrlProblem(virtualTourUrl)}</p>
+          )}
         </section>
 
         {/* Brand color for this listing (optional) */}

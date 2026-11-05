@@ -14,6 +14,7 @@ import type { PropertyListing } from "@/lib/demo-data";
 import { formatPhone, formatLotSize } from "@/lib/formatters";
 import VirtualTourEmbed from "@/components/VirtualTourEmbed";
 import { serializeJsonLd } from "@/lib/jsonLd";
+import { safeTourEmbedUrl } from "@/lib/tourUrl";
 import MortgageCalculator from "@/components/MortgageCalculator";
 import NeighborhoodInfo from "@/components/NeighborhoodInfo";
 // OtherListings intentionally removed from the listing page — luxury
@@ -133,6 +134,9 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
     floorSize: listing.sqft ? { "@type": "QuantitativeValue", value: listing.sqft, unitCode: "FTK" } : undefined,
   };
 
+  // Only a supported https tour link is ever embedded; any other stored value renders nothing.
+  const tourSrc = safeTourEmbedUrl(listing.virtual_tour_url);
+
   // Per-listing color overrides the agent's default color
   const effectiveBrandColor = listing.brand_color || agent.brand_color || null;
 
@@ -224,9 +228,7 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
 
       <PhotoGallery photos={propertyData.photos} videos={listing.videos} />
 
-      {listing.virtual_tour_url && (
-        <VirtualTourEmbed src={listing.virtual_tour_url} />
-      )}
+      {tourSrc && <VirtualTourEmbed src={tourSrc} />}
 
       <PropertyAttributes
         propertySubtype={listing.property_subtype}

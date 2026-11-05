@@ -23,6 +23,7 @@ import AddressAutocomplete from "@/components/AddressAutocomplete";
 import { formatNumber, parseNumber, formatLotSize } from "@/lib/formatters";
 import { validateUpload } from "@/lib/validateUpload";
 import { getSubscriptionLimits } from "@/lib/subscription";
+import { safeTourEmbedUrl, tourUrlProblem, TOUR_URL_HELP } from "@/lib/tourUrl";
 import SellerPortalCard from "@/components/SellerPortalCard";
 import JustSoldBlast from "@/components/JustSoldBlast";
 import BrandColorPicker from "@/components/BrandColorPicker";
@@ -81,6 +82,8 @@ export default function EditListingPage() {
   const [description, setDescription] = useState("");
   const [featuresText, setFeaturesText] = useState("");
   const [virtualTourUrl, setVirtualTourUrl] = useState("");
+  // The value as loaded, so an unchanged legacy value does not block saving other edits.
+  const [loadedTourUrl, setLoadedTourUrl] = useState("");
   const [photos, setPhotos] = useState<ListingPhoto[]>([]);
   const [videos, setVideos] = useState<ListingVideo[]>([]);
   const [uploadingVideos, setUploadingVideos] = useState(false);
@@ -276,6 +279,7 @@ export default function EditListingPage() {
       setPhotos(data.photos || []);
       setVideos(data.videos || []);
       setVirtualTourUrl(data.virtual_tour_url || "");
+      setLoadedTourUrl(data.virtual_tour_url || "");
       setCurrentStatus(data.status || "draft");
       setCurrentSlug(data.slug || "");
       // MLS-parity fields
@@ -447,6 +451,13 @@ export default function EditListingPage() {
     if (status === "published" && !price) {
       setError("Price is required to publish.");
       return;
+    }
+    if (virtualTourUrl.trim() !== loadedTourUrl.trim()) {
+      const tourProblem = tourUrlProblem(virtualTourUrl);
+      if (tourProblem) {
+        setError(tourProblem);
+        return;
+      }
     }
     if (status === "published") {
       setPublishing(true);
@@ -1018,7 +1029,7 @@ export default function EditListingPage() {
         {/* Virtual Tour */}
         <section className="rounded-xl border border-gray-200 bg-white p-6">
           <h2 className="font-serif text-lg font-semibold text-gray-900">Virtual Tour</h2>
-          <p className="mt-1 text-sm text-gray-500">Paste a link from Matterport, Kuula, CloudPano, or any 360° tour provider. The tour will be embedded directly on your listing page.</p>
+          <p className="mt-1 text-sm text-gray-500">{TOUR_URL_HELP} The tour will be embedded directly on your listing page.</p>
           <input
             type="url"
             value={virtualTourUrl}
@@ -1026,11 +1037,16 @@ export default function EditListingPage() {
             className="mt-4 w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
             placeholder="https://my.matterport.com/show/?m=..."
           />
-          {virtualTourUrl && (
+          {tourUrlProblem(virtualTourUrl) && (
+            <p role="alert" className="mt-2 text-sm text-red-600">
+              {tourUrlProblem(virtualTourUrl)} The tour is not shown on your listing until the link is replaced or cleared.
+            </p>
+          )}
+          {safeTourEmbedUrl(virtualTourUrl) && (
             <div className="mt-4 overflow-hidden rounded-lg border border-gray-200">
               <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
                 <iframe
-                  src={virtualTourUrl}
+                  src={safeTourEmbedUrl(virtualTourUrl) ?? undefined}
                   title="Virtual Tour Preview"
                   className="absolute inset-0 h-full w-full"
                   allowFullScreen
