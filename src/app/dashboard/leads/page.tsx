@@ -564,7 +564,7 @@ export default function LeadsPage() {
         <div className="mt-4 flex flex-wrap gap-2">
           <button
             onClick={() => setFilterStatus("all")}
-            className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
+            className={`inline-flex min-h-[40px] items-center rounded-full border px-3 py-1 text-xs font-medium transition-colors md:min-h-0 ${
               filterStatus === "all" ? "border-gray-900 bg-gray-900 text-white" : "border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
             }`}
           >
@@ -577,7 +577,7 @@ export default function LeadsPage() {
               <button
                 key={s.value}
                 onClick={() => setFilterStatus(s.value)}
-                className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
+                className={`inline-flex min-h-[40px] items-center rounded-full border px-3 py-1 text-xs font-medium transition-colors md:min-h-0 ${
                   filterStatus === s.value ? "border-gray-900 bg-gray-900 text-white" : `${s.color} hover:opacity-80`
                 }`}
               >
@@ -821,7 +821,7 @@ export default function LeadsPage() {
                     <select
                       value={lead.status}
                       onChange={(e) => updateLeadStatus(lead.id, e.target.value)}
-                      className={`appearance-none rounded-full border py-1 pl-2.5 pr-6 text-xs font-medium cursor-pointer ${getStatusStyle(lead.status)}`}
+                      className={`min-h-[44px] appearance-none rounded-full border py-1 pl-2.5 pr-6 text-xs font-medium cursor-pointer md:min-h-0 ${getStatusStyle(lead.status)}`}
                     >
                       {LEAD_STATUSES.map((s) => (<option key={s.value} value={s.value}>{s.label}</option>))}
                     </select>

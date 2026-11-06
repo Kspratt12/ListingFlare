@@ -264,7 +264,7 @@ export const article: BlogPost = {
 <p>Yes. Your listings appear on portals automatically through the MLS feed. The goal is not to disappear from Zillow - it is to create an additional channel where you capture leads directly. Treat your single property website as the primary destination for all your marketing, and portals as bonus exposure.</p>
 
 <h3>How much does it cost to set up a direct lead capture system?</h3>
-<p>Under $200 per month. <a href="/signup">ListingFlare</a> costs $150/month for unlimited single property websites with AI chatbot and automated follow-up. QR codes and social media posts are free. Add $5 to $10/day for Facebook ads to generate meaningful traffic. Compare that to $1,500+/month for Zillow Premier Agent.</p>
+<p>Under $200 per month. <a href="/signup">ListingFlare</a> costs $150/month for unlimited single property websites with AI chatbot and an instant AI reply to new leads. QR codes and social media posts are free. Add $5 to $10/day for Facebook ads to generate meaningful traffic. Compare that to $1,500+/month for Zillow Premier Agent.</p>
 
 <h3>Will an AI chatbot feel impersonal to buyers?</h3>
 <p>Modern AI chatbots are designed to feel conversational and helpful, not robotic. They answer property-specific questions accurately, which buyers appreciate - especially at 10 PM when the alternative is no response at all. Many consumers would rather get an immediate answer than wait hours for a human reply.</p>

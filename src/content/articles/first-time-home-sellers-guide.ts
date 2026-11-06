@@ -72,7 +72,7 @@ export const article: BlogPost = {
 
 <h3>How Modern Agents Use Technology</h3>
 
-<p>The best agents in 2026 go beyond a basic MLS listing. They leverage technology to give your property maximum exposure: single-property websites with AI-powered chatbots that answer buyer questions 24/7, professional virtual tours, and automated follow-up with every lead. When you're interviewing agents, ask whether they use tools like <a href="/demo">ListingFlare</a> to create dedicated listing pages for their properties. These platforms give serious buyers a rich, immersive experience and capture leads around the clock, even when your agent is asleep.</p>
+<p>The best agents in 2026 go beyond a basic MLS listing. They leverage technology to give your property maximum exposure: single-property websites with AI-powered chatbots that answer buyer questions 24/7, professional virtual tours, and an instant AI-drafted reply to every lead. When you're interviewing agents, ask whether they use tools like <a href="/demo">ListingFlare</a> to create dedicated listing pages for their properties. These platforms give serious buyers a rich, immersive experience and capture leads around the clock, even when your agent is asleep.</p>
 
 <h2>Step 3: Price Your Home Right</h2>
 

@@ -143,7 +143,7 @@ export const article: BlogPost = {
 
 <h2>Where ListingFlare Helps</h2>
 
-<p>ListingFlare covers several of these fixes at once: a dedicated listing page with a QR code and share panel, an assistant that answers buyer questions at any hour, a showing scheduler synced to your calendar, automatic follow-up and analytics so you can see where buyers drop off. <a href="/demo">See the demo</a> or <a href="/signup">try it free for 14 days</a>.</p>
+<p>ListingFlare covers several of these fixes at once: a dedicated listing page with a QR code and share panel, an assistant that answers buyer questions at any hour, a showing scheduler synced to your calendar, an instant AI reply to new leads and analytics so you can see where buyers drop off. <a href="/demo">See the demo</a> or <a href="/signup">try it free for 14 days</a>.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

@@ -83,7 +83,7 @@ export const article: BlogPost = {
 
 <!-- next-step -->
 <h2>See the Follow-Up Run Itself</h2>
-<p>If you would rather not write these by hand every weekend, ListingFlare sends a first reply and a day 1, 3 and 7 sequence for each open house sign-in, and you can turn on approval mode to review messages first. <a href="/demo">See the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+<p>If you would rather not write the first reply by hand every weekend, ListingFlare sends one for each open house sign-in, and you can turn on approval mode to review messages first. <a href="/demo">See the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
 
 <h2>Related Guides</h2>
 <ul>

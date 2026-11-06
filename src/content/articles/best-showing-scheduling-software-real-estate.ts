@@ -120,7 +120,7 @@ export const article: BlogPost = {
 
 <h2>Where ListingFlare Fits</h2>
 
-<p>ListingFlare includes a built-in showing scheduler synced to your Google Calendar, plus 24-hour showing reminders, automatic feedback requests and a seller portal where your clients can watch the listing activity. Buyers can book from the page, from the AI assistant&rsquo;s reply or from a follow-up message. It is not a replacement for your MLS&rsquo;s agent-to-agent tool, so most agents use both. <a href="/demo">See the demo</a> or <a href="/pricing">view pricing</a>. For a broader tool comparison, see <a href="/blog/best-real-estate-software-for-listing-agents">best real estate software for listing agents</a>.</p>
+<p>ListingFlare includes a built-in showing scheduler synced to your Google Calendar, plus showing reminder emails and a seller portal where your clients can watch the listing activity. Buyers can book from the page, from the AI assistant&rsquo;s reply or from a message you send. It is not a replacement for your MLS&rsquo;s agent-to-agent tool, so most agents use both. <a href="/demo">See the demo</a> or <a href="/pricing">view pricing</a>. For a broader tool comparison, see <a href="/blog/best-real-estate-software-for-listing-agents">best real estate software for listing agents</a>.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

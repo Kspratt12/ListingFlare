@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     canonical: "https://www.listingflare.com/blog",
   },
   openGraph: {
-    title: "Real Estate Agent Blog - ListingFlare",
+    title: "Real Estate Agent Blog: Lead Generation & Tips | ListingFlare",
     description:
       "Expert articles on real estate lead generation, listing marketing, and home selling strategies.",
     url: "https://www.listingflare.com/blog",

@@ -84,7 +84,7 @@ test("og:url equals the canonical and the page's own URL, never the homepage", a
 });
 
 test("Open Graph and Twitter titles and descriptions are page-specific, not the root defaults, and match the page", async () => {
-  const rootOgTitle = "ListingFlare - Real Estate Software for Listing Agents";
+  const rootOgTitle = "ListingFlare: Single Property Websites & AI Lead Capture"; // the root social title, now aligned with the default page title
   for (const p of PAGES) {
     const m = await resolve(p);
     assert.equal(m.openGraph?.title?.absolute, p.ogTitle, `${p.route}: og:title`);
@@ -115,9 +115,9 @@ test("indexing is unchanged: these pages still resolve to index, follow", async 
   for (const p of PAGES) assert.equal((await resolve(p)).robots?.basic, "index, follow", p.route);
 });
 
-test("the root layout still supplies the defaults a page without its own social tags would inherit (root unchanged)", async () => {
+test("the root layout still supplies the defaults a page without its own social tags would inherit (its social title now equals the default page title)", async () => {
   const m = await accumulateMetadata([[rootMeta, rootStatic()]], { pathname: "/", trailingSlash: false, isStaticMetadataRouteFile: false });
-  assert.equal(m.openGraph?.title?.absolute, "ListingFlare - Real Estate Software for Listing Agents");
+  assert.equal(m.openGraph?.title?.absolute, "ListingFlare: Single Property Websites & AI Lead Capture");
   assert.equal(urlOf(m.openGraph?.url), BASE);
 });
 

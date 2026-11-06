@@ -22,7 +22,7 @@ export const article: BlogPost = {
   content: `
 <p>A real estate lead follow-up sequence is a planned set of short messages sent after someone inquires about a home: a fast, helpful first reply, then follow-ups on day 1, day 3 and day 7. The point is to stay in touch without being pushy, so that when the person is ready to talk, you are the agent they already know. This guide gives you a schedule and copy-and-paste templates for both a new inquiry and a buyer who has just seen the home.</p>
 
-<p><em>Disclosure: we make ListingFlare, which automates a day 1, 3 and 7 email sequence, described near the end. The sequence below works by hand or with any tool.</em></p>
+<p><em>Disclosure: we make ListingFlare, which can send an instant first reply, described near the end. The sequence below works by hand or with any tool.</em></p>
 
 <h2>The Sequence at a Glance</h2>
 
@@ -90,7 +90,7 @@ export const article: BlogPost = {
 
 <!-- next-step -->
 <h2>Automate the Sequence</h2>
-<p>If you would rather not send these by hand, ListingFlare sends a first reply and then follow-ups on days 1, 3 and 7 automatically, with approval mode if you want to review each message. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+<p>If you would rather not send these by hand, ListingFlare can send the first reply automatically, with approval mode if you want to review each message. The follow-ups on days 1, 3 and 7 are yours to send. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
 
 <h2>Related Guides</h2>
 <ul>

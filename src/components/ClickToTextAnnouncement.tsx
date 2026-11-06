@@ -34,11 +34,11 @@ export default function ClickToTextAnnouncement() {
       <button
         onClick={dismiss}
         aria-label="Dismiss"
-        className="absolute right-3 top-3 rounded-md p-1 text-emerald-600 transition-colors hover:bg-emerald-100"
+        className="absolute right-1 top-1 inline-flex h-11 w-11 items-center justify-center rounded-md text-emerald-600 transition-colors hover:bg-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 md:right-3 md:top-3 md:h-7 md:w-7"
       >
         <X className="h-3.5 w-3.5" />
       </button>
-      <div className="flex items-start gap-3">
+      <div className="flex items-start gap-3 pr-10 md:pr-0">
         <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500">
           <MessageSquare className="h-4 w-4 text-white" />
         </div>

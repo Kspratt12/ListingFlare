@@ -337,7 +337,7 @@ export const article: BlogPost = {
 
 <p>The best alternative depends on what you actually need from a marketing platform. Here is a quick decision guide based on common agent profiles.</p>
 
-<p><strong>Choose <a href="/signup">ListingFlare</a> if:</strong> You are a listing agent who wants to capture more buyer leads from your active listings. You want every listing to have its own website with an AI chatbot that engages buyers 24/7. You want automatic follow-up and analytics that show you exactly how each listing is performing. You want to impress sellers during listing presentations with dedicated property marketing. This is the best fit for agents moving away from PropertySimple because they want listing-focused tools instead of social-focused tools.</p>
+<p><strong>Choose <a href="/signup">ListingFlare</a> if:</strong> You are a listing agent who wants to capture more buyer leads from your active listings. You want every listing to have its own website with an AI chatbot that engages buyers 24/7. You want an instant AI reply to new leads and analytics that show you exactly how each listing is performing. You want to impress sellers during listing presentations with dedicated property marketing. This is the best fit for agents moving away from PropertySimple because they want listing-focused tools instead of social-focused tools.</p>
 
 <p><strong>Choose Listings to Leads if:</strong> You want a broad set of marketing tools at the lowest possible price. You are comfortable with traditional lead capture forms and do not need AI-powered conversations. You want print materials, social templates, and email campaigns bundled together.</p>
 
@@ -347,7 +347,7 @@ export const article: BlogPost = {
 
 <p><strong>Choose Brivity if:</strong> You need a CRM first and marketing tools second. You want pipeline management, transaction tracking, and automated drip campaigns in one platform. Listing marketing is a nice-to-have, not your primary focus.</p>
 
-<p>For most listing agents who are leaving PropertySimple, the common thread is this: they want their marketing to work at the listing level, not just the brand level. PropertySimple helps you build your presence on social media. But when a seller asks, &ldquo;What are you going to do to market my specific home?&rdquo; you need a tool that answers that question with a dedicated website, intelligent lead capture, and automated follow-up tied to that property. That is where <a href="/signup">ListingFlare</a> fits.</p>
+<p>For most listing agents who are leaving PropertySimple, the common thread is this: they want their marketing to work at the listing level, not just the brand level. PropertySimple helps you build your presence on social media. But when a seller asks, &ldquo;What are you going to do to market my specific home?&rdquo; you need a tool that answers that question with a dedicated website, intelligent lead capture, and an instant AI reply tied to that property. That is where <a href="/signup">ListingFlare</a> fits.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

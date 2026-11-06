@@ -48,7 +48,7 @@ export const article: BlogPost = {
 <tr><td>Curb Hero</td><td>Reported as free for agents, with paid extras</td><td>Free entry point, offline use</td><td>Advanced features and marketing may cost extra</td></tr>
 <tr><td>Open Home Pro</td><td>Free tier, with a reported premium plan around $25 a month</td><td>Simple, budget-friendly sign-in</td><td>Automation sits in the paid tier</td></tr>
 <tr><td>Happy Open House</td><td>Reports vary from about $10 to $29 a month</td><td>Straightforward sign-in</td><td>Check current plan details</td></tr>
-<tr><td>ListingFlare</td><td>Included in the $150 monthly plan</td><td>QR sign-in tied to the listing page, instant lead creation, auto follow-up</td><td>Part of a full listing platform, not a standalone sign-in tool</td></tr>
+<tr><td>ListingFlare</td><td>Included in the $150 monthly plan</td><td>QR sign-in tied to the listing page, instant lead creation, instant AI-drafted reply</td><td>Part of a full listing platform, not a standalone sign-in tool</td></tr>
 </tbody>
 </table>
 
@@ -63,7 +63,7 @@ export const article: BlogPost = {
 <p>Pay for automation. The follow-up is where the money is. A thank-you text or email the same day can turn a curious visitor into a conversation. See <a href="/blog/open-house-follow-up">open house follow-up templates</a>.</p>
 
 <h3>If you want everything on one platform</h3>
-<p>An all-in-one tool means the sign-in, the lead, the follow-up and the listing page are connected. ListingFlare creates a lead tagged as an open house sign-in, emails you, drafts an AI reply to the visitor and schedules a day 1, 3 and 7 follow-up sequence. See <a href="/blog/open-house-sign-in-sheet-vs-qr-code">sign-in sheet vs QR code</a> for the tradeoffs of each format.</p>
+<p>An all-in-one tool means the sign-in, the lead, the follow-up and the listing page are connected. ListingFlare creates a lead tagged as an open house sign-in, emails you and drafts an AI reply to the visitor. See <a href="/blog/open-house-sign-in-sheet-vs-qr-code">sign-in sheet vs QR code</a> for the tradeoffs of each format.</p>
 
 <h2>Setting Up a QR Sign-In</h2>
 
@@ -140,7 +140,7 @@ ${downloadBox("open-house-checklist-template")}
 
 <!-- next-step -->
 <h2>Test the Open House Tools on a Real Listing</h2>
-<p>Whichever app you pick, test it on a real open house before you commit. ListingFlare&rsquo;s QR sign-in is included with the platform and ties each visitor to the listing page and an automatic follow-up sequence. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+<p>Whichever app you pick, test it on a real open house before you commit. ListingFlare&rsquo;s QR sign-in is included with the platform and ties each visitor to the listing page and an instant AI-drafted reply. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

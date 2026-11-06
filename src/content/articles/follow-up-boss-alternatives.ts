@@ -544,7 +544,7 @@ export const article: BlogPost = {
 <li><strong>Buyer discovers your listing.</strong> Maybe through a Facebook ad, a flyer at an open house, or a link in an email blast. They click through to your ListingFlare property page.</li>
 <li><strong>AI chatbot engages the buyer.</strong> The buyer asks about the home - school district, lot size, whether the seller is flexible on closing. The chatbot answers instantly with accurate, listing-specific information.</li>
 <li><strong>Lead is captured.</strong> During the conversation, the chatbot naturally collects the buyer's name, email, and phone number. The lead appears in your ListingFlare dashboard with the full chat transcript.</li>
-<li><strong>Automatic follow-up fires.</strong> ListingFlare sends a personalized follow-up email referencing the specific property and the questions the buyer asked. No manual effort required.</li>
+<li><strong>Instant AI reply.</strong> ListingFlare drafts a personalized reply referencing the specific property and the questions the buyer asked, and sends it right away unless you turned on approval mode.</li>
 <li><strong>Lead enters your CRM.</strong> The lead notification hits your inbox. You add the contact to your CRM (or it syncs automatically depending on your setup). Now your CRM takes over - drip campaigns, task reminders, pipeline tracking.</li>
 <li><strong>You follow up with context.</strong> Because you have the full conversation transcript, you know exactly what the buyer cares about. Your first call is not a cold outreach - it is a warm conversation with a buyer who already got their questions answered.</li>
 </ol>
@@ -579,7 +579,7 @@ export const article: BlogPost = {
 
 <p>Regardless of which CRM you choose, add <a href="/signup">ListingFlare</a> for listing marketing. No CRM on this list creates dedicated property websites or puts AI chatbots on your listing pages. That gap exists whether you use FUB, Lofty, or any of the other seven alternatives. ListingFlare fills it.</p>
 
-<p><strong>About ListingFlare:</strong> we make ListingFlare. It is built around listings rather than as a full CRM. See how its <a href="/real-estate-lead-capture-software">lead capture software</a> works, including the inbox, follow-up sequence and CSV export, to judge whether it fits alongside or instead of your current tools.</p>
+<p><strong>About ListingFlare:</strong> we make ListingFlare. It is built around listings rather than as a full CRM. See how its <a href="/real-estate-lead-capture-software">lead capture software</a> works, including the inbox, instant auto-reply and CSV export, to judge whether it fits alongside or instead of your current tools.</p>
 
 <h2>Related Guides</h2>
 <ul>

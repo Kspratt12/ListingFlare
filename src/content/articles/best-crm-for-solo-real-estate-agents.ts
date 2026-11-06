@@ -65,7 +65,7 @@ export const article: BlogPost = {
 
 <h2>Do You Even Need a Full CRM?</h2>
 
-<p>If you handle a few dozen leads a month and most come from your own listings, a full CRM may be more tool than you need. What you need is a lead list with status, a follow-up schedule and a way to reply fast. A listing platform with a lead dashboard can cover that. ListingFlare, for example, keeps every lead from your listing pages and open house sign-ins in a pipeline with hot, warm and cold scoring, one-tap texting from your own phone number and day 1, 3 and 7 follow-up sequences. If your database grows, you can add a dedicated CRM later and export leads.</p>
+<p>If you handle a few dozen leads a month and most come from your own listings, a full CRM may be more tool than you need. What you need is a lead list with status, a follow-up schedule and a way to reply fast. A listing platform with a lead dashboard can cover that. ListingFlare, for example, keeps every lead from your listing pages and open house sign-ins in a pipeline with hot, warm and cold scoring and one-tap texting from your own phone number. If your database grows, you can add a dedicated CRM later and export leads.</p>
 
 <p>If you use neither, start with the <a href="/free-real-estate-templates">free lead tracker</a>. A spreadsheet you update daily beats a CRM you ignore.</p>
 
@@ -124,7 +124,7 @@ export const article: BlogPost = {
 
 <!-- next-step -->
 <h2>Try a Lighter Option First</h2>
-<p>If most of your leads come from your own listings, you may not need a full CRM yet. ListingFlare keeps those leads in one pipeline with scoring and automatic follow-up. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+<p>If most of your leads come from your own listings, you may not need a full CRM yet. ListingFlare keeps those leads in one pipeline with scoring and an instant AI reply to each new lead. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

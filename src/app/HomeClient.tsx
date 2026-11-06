@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import PublicMobileMenu from "@/components/PublicMobileMenu";
 import { createClient } from "@/lib/supabase/client";
 
 // Only the fields the homepage cards render. The server page picks these so the
@@ -97,11 +98,10 @@ const included = [
   "AI chat answers buyer questions 24/7",
   "AI auto-reply to every new lead",
   "Built-in showing scheduler synced to your Google Calendar",
-  "Day 1, 3, and 7 AI follow-up sequences sent for you",
   "Text leads with one tap from your real phone number",
   "Seller transparency portal so your clients watch their listing live",
   "Hot Lead scoring + drag-and-drop pipeline view",
-  "24-hour showing reminders, auto-feedback, testimonial requests",
+  "Showing reminder emails to buyers",
   "Social posts, open house flyers, QR sign-in, analytics",
   "One plan. Everything included. No add-ons.",
 ];
@@ -734,7 +734,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
       height: 512,
     },
     description:
-      "Real estate software company building listing marketing tools for real estate agents. AI-powered property websites, lead capture, and automated follow-up.",
+      "Real estate software company building listing marketing tools for real estate agents. AI-powered property websites, lead capture, and an instant AI reply to new leads.",
     foundingDate: "2026",
     founder: {
       "@type": "Person",
@@ -769,7 +769,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
     alternateName: "ListingFlare Real Estate Software",
     url: "https://www.listingflare.com",
     description:
-      "Real estate software for listing agents. Create property websites, capture leads with AI chatbot, and automate follow-up to close more deals.",
+      "Real estate software for listing agents. Create property websites, capture leads with an AI chatbot, and reply to new leads instantly.",
     publisher: {
       "@type": "Organization",
       name: "ListingFlare",
@@ -786,7 +786,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
     applicationSubCategory: "Real Estate Software",
     operatingSystem: "Web",
     description:
-      "Real estate software that helps listing agents create stunning single-property websites, capture buyer leads with AI chatbot, and automate follow-up. The all-in-one listing marketing platform for real estate professionals.",
+      "Real estate software that helps listing agents create stunning single-property websites, capture buyer leads with an AI chatbot, and reply to new leads instantly. The all-in-one listing marketing platform for real estate professionals.",
     offers: {
       "@type": "Offer",
       price: "150",
@@ -799,7 +799,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
       "Single-property listing websites",
       "AI chatbot for buyer questions",
       "Automatic lead capture",
-      "AI-drafted follow-up emails",
+      "AI-drafted replies to new leads",
       "Virtual tour integration (Matterport, Kuula)",
       "Analytics dashboard with weekly reports",
       "Social media post generation",
@@ -820,7 +820,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
     },
     {
       question: "How much does ListingFlare cost?",
-      answer: "ListingFlare is $150 per month with a 14-day free trial and no credit card required to start. That includes unlimited listing websites, AI chat on every page, lead capture, automated follow-up, analytics, social media posts, open house flyers, and full agent branding. One deal from a lead you would have missed covers the cost many times over.",
+      answer: "ListingFlare is $150 per month with a 14-day free trial and no credit card required to start. That includes unlimited listing websites, AI chat on every page, lead capture, an instant AI reply to new leads, analytics, social media posts, open house flyers, and full agent branding. One deal from a lead you would have missed covers the cost many times over.",
     },
     {
       question: "Do I need technical skills to use ListingFlare?",
@@ -927,6 +927,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
                 </Link>
               </>
             )}
+            <PublicMobileMenu />
           </div>
         </div>
       </nav>
@@ -1268,7 +1269,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
                       <Bell className="h-2.5 w-2.5" /> Instant Lead Alerts
                     </span>
                     <span className="rounded-full bg-amber-50 border border-amber-200 px-2 py-0.5 text-[9px] font-medium text-amber-700 flex items-center gap-0.5">
-                      <Sparkles className="h-2.5 w-2.5" /> AI Follow-Up
+                      <Sparkles className="h-2.5 w-2.5" /> AI Auto-Reply
                     </span>
                     <span className="rounded-full bg-orange-50 border border-orange-200 px-2 py-0.5 text-[9px] font-medium text-orange-700 flex items-center gap-0.5">
                       <Eye className="h-2.5 w-2.5" /> Open House Flyers
@@ -1338,9 +1339,6 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               { feature: "Instant auto-reply to new leads", us: true, zillow: false, kv: true },
               { feature: "Built-in showing scheduler (no Calendly needed)", us: true, zillow: false, kv: false },
               { feature: "Calendar invite (.ics) in confirmation emails", us: true, zillow: false, kv: false },
-              { feature: "Automated 1/3/7-day follow-up sequence", us: true, zillow: false, kv: true },
-              { feature: "Showing reminders (24hr + 1hr before)", us: true, zillow: false, kv: "partial" },
-              { feature: "Re-engage past leads when you list a similar home", us: true, zillow: false, kv: true },
               { feature: "Leads belong to YOU (not sold to other agents)", us: true, zillow: false, kv: true },
               { feature: "Setup time", us: "5 min", zillow: "N/A", kv: "Not listed" },
             ];
@@ -1360,7 +1358,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
                         <th className="px-6 py-4 font-medium text-gray-500">Feature</th>
                         <th className="px-6 py-4">
                           <div className="font-serif text-base font-bold text-gray-900">ListingFlare</div>
-                          <div className="mt-0.5 text-xs font-normal text-brand-600">$150/mo</div>
+                          <div className="mt-0.5 text-xs font-normal text-brand-700">$150/mo</div>
                         </th>
                         <th className="px-6 py-4">
                           <div className="text-base font-semibold text-gray-900">Zillow Premier</div>
@@ -1390,7 +1388,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
                   <div className="flex items-center justify-between rounded-xl border border-brand-200 bg-gradient-to-r from-brand-50 to-white px-4 py-3">
                     <div>
                       <div className="font-serif text-base font-bold text-gray-900">ListingFlare</div>
-                      <div className="text-xs text-brand-600">$150/mo</div>
+                      <div className="text-xs text-brand-700">$150/mo</div>
                     </div>
                     <div className="flex gap-3 text-center">
                       <div>
@@ -1446,7 +1444,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
             <h2 className="font-serif text-3xl font-bold text-white md:text-display-sm">
               Your open house visitors are walking out unnamed.
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-gray-500">
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-gray-400">
               Picture a Saturday open house: 14 people walk through and 2 sign the guest book. The other 12 leave without giving you a name, an email, or any way to follow up.
             </p>
             <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-gray-300">
@@ -1586,7 +1584,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand-600">
                     <item.icon className="h-5 w-5" />
                   </div>
-                  <span className="text-xs font-bold text-brand-400 uppercase tracking-wider">Step {item.step}</span>
+                  <span className="text-xs font-bold text-brand-700 uppercase tracking-wider">Step {item.step}</span>
                 </div>
                 <h3 className="font-serif text-lg font-semibold text-gray-900">
                   {item.title}
@@ -1682,9 +1680,9 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               <div className="mt-3 space-y-2.5">
                 {[
                   { icon: Check, text: "Auto-replied to Sarah in 12s", color: "text-emerald-600 bg-emerald-50" },
-                  { icon: Send, text: "Sent Day-3 follow-up to Mike", color: "text-brand-600 bg-brand-50" },
+                  { icon: Send, text: "Sent a showing reminder to Mike", color: "text-brand-600 bg-brand-50" },
                   { icon: CalendarCheck, text: "Showing confirmed with 2 buyers", color: "text-emerald-600 bg-emerald-50" },
-                  { icon: UserPlus, text: "Notified 4 past leads about new listing", color: "text-sky-600 bg-sky-50" },
+                  { icon: UserPlus, text: "Notified you of 4 new leads", color: "text-sky-600 bg-sky-50" },
                 ].map((item, i) => {
                   const Icon = item.icon;
                   return (
@@ -2046,7 +2044,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
                 Start Free Trial
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <p className="mt-3 text-center text-sm text-gray-500">
+              <p className="mt-3 text-center text-sm text-gray-400">
                 No credit card required to start.
               </p>
               <div className="mt-3 flex items-center gap-3">
@@ -2061,7 +2059,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               >
                 {buyLoading ? "Loading..." : "Skip the trial and subscribe now ($150/mo)"}
               </button>
-              <p className="mt-6 text-center text-xs text-gray-500">
+              <p className="mt-6 text-center text-xs text-gray-400">
                 For scale: a 3% commission on a $400K sale is $12,000 before splits. ListingFlare is about $5 a day.
               </p>
             </div>
