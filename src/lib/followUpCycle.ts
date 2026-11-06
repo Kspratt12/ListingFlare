@@ -1,15 +1,13 @@
 // Orchestration for the daily GET /api/follow-ups/process job, with every
 // provider and database call injected so it can be tested with fakes.
 //
-// Behavior is the same as before this file existed, with one addition: when
-// discretionary sends are paused, due follow-up rows are left exactly as they
-// are (no status change, no AI call, no email) and everything else - the
-// monthly ROI trigger, the early return on quiet days, and the chained jobs -
-// happens in exactly the same circumstances as when sends are enabled.
+// When discretionary sends are paused, due follow-up rows are left exactly as they
+// are (no status change, no AI call, no email); everything else happens in the same
+// circumstances as when sends are enabled.
 //
-// Do not "fix" the quiet-day early return here: chained jobs (reminders,
-// feedback, testimonials, trial emails) currently run only on days when at least
-// one follow-up is due. Changing that would newly switch those jobs on.
+// Showing reminders and trial emails run on every call, independent of whether any
+// follow-up is due (they used to run only on days with a due row). Feedback and
+// testimonial requests are nurture features and still run only when a row is due.
 
 export interface DueFollowUp {
   id: string;
@@ -54,36 +52,49 @@ export async function runFollowUpCycle(deps: CycleDeps): Promise<CycleResult> {
     );
   }
 
-  const { rows, error } = await deps.fetchDue();
-  if (error || !rows || rows.length === 0) {
-    return { status: 200, body: { ok: true, processed: 0 } };
+  // A failed or throwing follow-up lookup is treated as "nothing due"; it must not stop the
+  // independent stages below.
+  let fetched: Awaited<ReturnType<CycleDeps["fetchDue"]>>;
+  try {
+    fetched = await deps.fetchDue();
+  } catch (err) {
+    console.error("Follow-up lookup error:", err);
+    fetched = { rows: null, error: err };
   }
+  const due = !fetched.error && fetched.rows ? fetched.rows : [];
+  const hasDue = due.length > 0;
 
   const nurtureEnabled = deps.nurtureEnabled();
 
   let processed = 0;
-  if (nurtureEnabled) {
-    const results = await Promise.allSettled(rows.map((row) => deps.processRow(row)));
+  if (hasDue && nurtureEnabled) {
+    const results = await Promise.allSettled(due.map((row) => deps.processRow(row)));
     processed = results.filter((r) => r.status === "fulfilled" && r.value === true).length;
   }
 
-  // Chained daily jobs: same set, same circumstances, whether or not nurture is on.
+  // Showing reminders and trial emails run on every daily call, whether or not any follow-up
+  // is due. Each is invoked once here and nowhere else. Feedback and testimonial requests
+  // (nurture features that gate themselves) still run only when a follow-up is due.
   const safe = (p: Promise<unknown>) => p.catch(() => null);
-  const [reminders, feedback, testimonials, trialLifecycle] = await Promise.all([
+  const [reminders, trialLifecycle, feedback, testimonials] = await Promise.all([
     safe(deps.callJob(JOB_PATHS.reminders)),
-    safe(deps.callJob(JOB_PATHS.feedback)),
-    safe(deps.callJob(JOB_PATHS.testimonials)),
     deps.trialLifecycleEnabled()
       ? safe(deps.callJob(JOB_PATHS.trialLifecycle))
       : Promise.resolve(null),
+    hasDue ? safe(deps.callJob(JOB_PATHS.feedback)) : Promise.resolve(null),
+    hasDue ? safe(deps.callJob(JOB_PATHS.testimonials)) : Promise.resolve(null),
   ]);
+
+  if (!hasDue) {
+    return { status: 200, body: { ok: true, processed: 0, reminders, trialLifecycle } };
+  }
 
   return {
     status: 200,
     body: {
       ok: true,
       processed,
-      ...(nurtureEnabled ? {} : { nurtureEnabled: false, held: rows.length }),
+      ...(nurtureEnabled ? {} : { nurtureEnabled: false, held: due.length }),
       reminders,
       feedback,
       testimonials,
