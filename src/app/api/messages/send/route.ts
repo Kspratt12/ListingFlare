@@ -1,3 +1,4 @@
+import { replyToFor } from "@/lib/inboundEmail";
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
@@ -108,7 +109,7 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({
           from: `${agent.name} via ListingFlare <leads@listingflare.com>`,
           to: lead.email,
-          replyTo: agent.email,
+          replyTo: replyToFor(agent.email, leadId),
           subject,
           html: emailHtml,
           ...(attachments.length > 0 ? { attachments } : {}),

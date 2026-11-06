@@ -122,10 +122,11 @@ test("static: the cron routes use the shared strict check", () => {
   }
 });
 
-test("static: the inbound-email webhook uses its own provider secret, not the cron secret", () => {
+test("static: the inbound-email webhook uses its own provider secret (verified as a signed webhook), not the cron secret", () => {
   const text = fs.readFileSync(path.join(srcDir, "app/api/messages/inbound/route.ts"), "utf8");
   assert.match(text, /RESEND_WEBHOOK_SECRET/);
-  assert.match(text, /secretsMatch\(/);
+  assert.match(text, /webhooks\.verify\(/);
   assert.doesNotMatch(text, /process\.env\.CRON_SECRET/);
   assert.doesNotMatch(text, /isCronAuthorized/);
+  assert.doesNotMatch(text, /secretsMatch\(/); // Resend authenticates with a signature, not a static header
 });
