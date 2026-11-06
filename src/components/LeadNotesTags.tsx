@@ -18,6 +18,8 @@ const AVAILABLE_TAGS = [
   { value: "vip", label: "VIP", color: "bg-pink-50 text-pink-700 border-pink-200" },
   { value: "follow_up", label: "Needs Follow-Up", color: "bg-orange-50 text-orange-700 border-orange-200" },
   { value: "cold", label: "Cold", color: "bg-gray-50 text-gray-600 border-gray-200" },
+  // Set by the system when a reply to this lead could not be added to the thread (see lib/inboundEmail.ts); click to clear.
+  { value: "reply_needs_review", label: "Unverified reply: check with lead", color: "bg-amber-50 text-amber-700 border-amber-200" },
 ];
 
 export function getTagStyle(tag: string) {
