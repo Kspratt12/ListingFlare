@@ -1,14 +1,22 @@
 "use client";
 
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect, useLayoutEffect, useSyncExternalStore } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import { clearUserStorage } from "@/lib/userStorage";
-import { AgentSessionContext, getLocalUserId, resetLocalUserId } from "@/lib/agentSession";
-import { clearCache, setCacheOwner } from "@/lib/swrCache";
+import {
+  AgentSessionContext,
+  getLocalUserId,
+  getServerSessionSnapshot,
+  getSessionGeneration,
+  getSessionSnapshot,
+  resetLocalUserId,
+  subscribeToSessionChanges,
+} from "@/lib/agentSession";
+import { clearCache } from "@/lib/swrCache";
 import type { AgentProfile } from "@/lib/types";
 import LiveLeadAlerts from "@/components/LiveLeadAlerts";
 import CommandPalette from "@/components/CommandPalette";
@@ -202,12 +210,22 @@ export default function DashboardLayout({
   const pathname = usePathname();
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [profile, setProfile] = useState<AgentProfile | null>(null);
-  const [userId, setUserId] = useState<string | null>(null);
+  // Who is signed in, read from the session store. The snapshot { generation, userId } changes in ONE step when the account
+  // changes, and the render that sees it also remounts the keyed children below, so nothing loaded for the old account is
+  // ever shown under the new one. Same-user token refreshes leave the snapshot untouched.
+  const session = useSyncExternalStore(subscribeToSessionChanges, getSessionSnapshot, getServerSessionSnapshot);
+  const userId = session.userId;
+  // Moves each time the signed-in account changes; tabs reload their data when it does.
+  const sessionEpoch = session.generation;
+  const [rawProfile, setProfile] = useState<AgentProfile | null>(null);
+  // A profile loaded for another account is never used, not even for the render in which the account changes.
+  const profile = rawProfile && rawProfile.id === userId ? rawProfile : null;
   const [bannerDismissed, setBannerDismissed] = useState(false);
   const [themeOpen, setThemeOpen] = useState(false); // collapsed by default so the picker isn't visual clutter
   const limits = getSubscriptionLimits(profile);
-  const [unreadLeads, setUnreadLeads] = useState(0);
+  // The badge count is stored with the account it was counted for, and used only for that account.
+  const [unread, setUnread] = useState<{ userId: string | null; count: number }>({ userId: null, count: 0 });
+  const unreadLeads = unread.userId === userId ? unread.count : 0;
 
   // "New" lead count for the sidebar badge. Uses the same criteria as the
   // "New" filter on the leads page (status = "new") so the two always match.
@@ -218,69 +236,76 @@ export default function DashboardLayout({
     const supabase = createClient();
     let active = true;
     const refresh = async () => {
+      const startedAt = getSessionGeneration();
       const uid = await getLocalUserId();
-      if (!uid || !active) return;
+      if (!uid || !active || startedAt !== getSessionGeneration()) return;
       const { count } = await supabase
         .from("leads")
         .select("id", { count: "exact", head: true })
         .eq("agent_id", uid)
         .eq("status", "new");
-      if (active && count !== null) setUnreadLeads(count);
+      // A count started for a previous account must not update this account's badge.
+      if (active && startedAt === getSessionGeneration() && count !== null) setUnread({ userId: uid, count });
     };
     refresh();
     const timer = setInterval(refresh, 60000);
-    const onPush = (e: Event) => setUnreadLeads((e as CustomEvent<number>).detail);
+    const onPush = (e: Event) => setUnread({ userId: getSessionSnapshot().userId, count: (e as CustomEvent<number>).detail });
     window.addEventListener("lf:unread-leads", onPush);
     return () => {
       active = false;
       clearInterval(timer);
       window.removeEventListener("lf:unread-leads", onPush);
     };
-  }, [pathname]);
+  }, [pathname, sessionEpoch]);
 
+  // Starts the session lookup; the store learns who is signed in when it finishes (a failed read leaves nobody signed in).
   useEffect(() => {
-    // Load the user ID (local session read) and profile once. Every tab
-    // reads them from context instead of refetching.
+    getLocalUserId().catch(() => {});
+  }, []);
+
+  // Loads the signed-in account's profile. Every tab reads it from context instead of refetching. It runs again when the
+  // account changes, and anything started for the previous account is dropped.
+  useEffect(() => {
+    if (!userId) return;
+    const uid: string = userId;
     const supabase = createClient();
     let active = true;
-    getLocalUserId().then((uid) => {
-      if (!uid || !active) return;
-      setCacheOwner(uid);
-      setUserId(uid);
-      // Retry once on failure so a transient error doesn't leave a paying
-      // client without a profile (which would look like a locked account).
-      const loadProfile = async (attempt: number): Promise<void> => {
-        const { data, error } = await supabase.from("agent_profiles").select("*").eq("id", uid).single();
-        if (!active) return;
-        if (data) {
-          setProfile(data as AgentProfile);
-          // The signup name is stored in auth metadata only (the profile row is
-          // created by a trigger before the user is signed in). Copy it over once
-          // so new agents do not start with a blank name. Never blocks the UI.
-          if (!data.name) {
-            try {
-              const { data: sess } = await supabase.auth.getSession();
-              const metaName = sess.session?.user?.user_metadata?.name;
-              if (typeof metaName === "string" && metaName.trim()) {
-                const name = metaName.trim();
-                const { error: upErr } = await supabase.from("agent_profiles").update({ name }).eq("id", uid);
-                if (!upErr && active) setProfile({ ...(data as AgentProfile), name });
-              }
-            } catch {
-              // best effort only
+    const startedAt = getSessionGeneration();
+    // Superseded by an unmount or an account change.
+    const stale = () => !active || startedAt !== getSessionGeneration();
+    // Retry once on failure so a transient error doesn't leave a paying
+    // client without a profile (which would look like a locked account).
+    const loadProfile = async (attempt: number): Promise<void> => {
+      const { data, error } = await supabase.from("agent_profiles").select("*").eq("id", uid).single();
+      if (stale()) return;
+      if (data) {
+        setProfile(data as AgentProfile);
+        // The signup name is stored in auth metadata only (the profile row is
+        // created by a trigger before the user is signed in). Copy it over once
+        // so new agents do not start with a blank name. Never blocks the UI.
+        if (!data.name) {
+          try {
+            const { data: sess } = await supabase.auth.getSession();
+            const metaName = sess.session?.user?.user_metadata?.name;
+            if (typeof metaName === "string" && metaName.trim()) {
+              const name = metaName.trim();
+              const { error: upErr } = await supabase.from("agent_profiles").update({ name }).eq("id", uid);
+              if (!upErr && !stale()) setProfile({ ...(data as AgentProfile), name });
             }
+          } catch {
+            // best effort only
           }
-        } else if (error && attempt < 2) {
-          await new Promise((r) => setTimeout(r, 1000));
-          if (active) await loadProfile(attempt + 1);
         }
-      };
-      loadProfile(0);
-    });
+      } else if (error && attempt < 2) {
+        await new Promise((r) => setTimeout(r, 1000));
+        if (!stale()) await loadProfile(attempt + 1);
+      }
+    };
+    loadProfile(0);
     return () => {
       active = false;
     };
-  }, []);
+  }, [userId, sessionEpoch]);
 
   // Restore the saved brand color synchronously before paint on every
   // mount — covers the SPA-navigation case where the root <head> inline
@@ -345,7 +370,7 @@ export default function DashboardLayout({
   };
 
   return (
-    <AgentSessionContext.Provider value={{ userId, profile, setProfile }}>
+    <AgentSessionContext.Provider value={{ userId, profile, setProfile, sessionEpoch }}>
     <div className="flex h-screen bg-gray-50">
       {/* Desktop sidebar */}
       <aside
@@ -461,10 +486,12 @@ export default function DashboardLayout({
             widget inside the dashboard (Activity feed buttons, phone
             alerts, Speed to Lead, Upcoming Showings, etc.) pick up the
             agent's chosen theme color via the CSS variable. */}
-        <main className="agent-brand-override flex-1 overflow-y-auto p-6 md:p-8">{children}</main>
+        {/* Keyed by the account epoch: when the signed-in account changes, the page below (and the alerts and command palette)
+            are remounted, so no tab keeps another account's state or realtime channels. */}
+        <main key={sessionEpoch} className="agent-brand-override flex-1 overflow-y-auto p-6 md:p-8">{children}</main>
       </div>
-      <LiveLeadAlerts />
-      <CommandPalette />
+      <LiveLeadAlerts key={`alerts-${sessionEpoch}`} />
+      <CommandPalette key={`palette-${sessionEpoch}`} />
     </div>
     </AgentSessionContext.Provider>
   );

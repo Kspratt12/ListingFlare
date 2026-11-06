@@ -24,8 +24,9 @@ import {
 import { formatPhone } from "@/lib/formatters";
 import ContactButtons from "@/components/ContactButtons";
 import { firstName } from "@/lib/contactLinks";
-import { getLocalUserId } from "@/lib/agentSession";
-import { cacheGet, cacheSet } from "@/lib/swrCache";
+import { getLocalUserId, getSessionGeneration, useAgentSession } from "@/lib/agentSession";
+import { cacheGet, cacheSetFor } from "@/lib/swrCache";
+import { accountScope } from "@/lib/accountScoped";
 
 type ShowingWithListing = Omit<Showing, "listing"> & {
   listing?: { street: string; city: string; state: string } | null;
@@ -328,6 +329,7 @@ export default function ShowingsPage() {
     () => cacheGet<Pick<Listing, "id" | "street" | "city" | "state">[]>("showings:listings") ?? []
   );
   const [loading, setLoading] = useState(() => cacheGet("showings") === undefined);
+  const { userId } = useAgentSession();
   const [filter, setFilter] = useState<"upcoming" | "past" | "all">("upcoming");
   const [searchQuery, setSearchQuery] = useState("");
   const [editingShowing, setEditingShowing] = useState<ShowingWithListing | null>(null);
@@ -335,7 +337,9 @@ export default function ShowingsPage() {
 
   const reload = async () => {
     const supabase = createClient();
+    const scope = accountScope(getSessionGeneration);
     const uid = await getLocalUserId();
+    if (scope.isStale()) return;
     if (!uid) {
       setLoading(false);
       return;
@@ -354,22 +358,23 @@ export default function ShowingsPage() {
         .in("status", ["published", "pending", "draft"])
         .order("created_at", { ascending: false }),
     ]);
+    if (scope.isStale()) return; // the account changed while this ran: not for the current account
     if (!showingsRes.error && showingsRes.data) {
       const rows = showingsRes.data as ShowingWithListing[];
       setShowings(rows);
-      cacheSet("showings", rows);
+      cacheSetFor("showings", rows, uid);
     }
     if (!listingsRes.error && listingsRes.data) {
       setMyListings(listingsRes.data);
-      cacheSet("showings:listings", listingsRes.data);
+      cacheSetFor("showings:listings", listingsRes.data, uid);
     }
     setLoading(false);
   };
 
   // Keep the cache in step with local status edits
   useEffect(() => {
-    if (!loading) cacheSet("showings", showings);
-  }, [showings, loading]);
+    if (!loading) cacheSetFor("showings", showings, userId);
+  }, [showings, loading, userId]);
 
   useEffect(() => {
     let active = true;

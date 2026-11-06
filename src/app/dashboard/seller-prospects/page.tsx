@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { cacheGet, cacheSet } from "@/lib/swrCache";
+import { cacheGet, cacheSetFor } from "@/lib/swrCache";
+import { accountScope } from "@/lib/accountScoped";
 import { createClient } from "@/lib/supabase/client";
-import { getLocalUserId } from "@/lib/agentSession";
+import { getLocalUserId, getSessionGeneration, useAgentSession } from "@/lib/agentSession";
 import {
   Users,
   Plus,
@@ -61,28 +62,32 @@ export default function SellerProspectsPage() {
   // Seeded from the in-memory cache; load() refreshes it in the background.
   const [prospects, setProspects] = useState<SellerProspect[]>(() => cacheGet<SellerProspect[]>("seller-prospects") ?? []);
   const [loading, setLoading] = useState(() => cacheGet("seller-prospects") === undefined);
+  const { userId } = useAgentSession();
   const [error, setError] = useState<string | null>(null);
   const [activeStage, setActiveStage] = useState<"all" | SellerProspectStage>("all");
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState<SellerProspect | "new" | null>(null);
 
   const load = async () => {
+    const scope = accountScope(getSessionGeneration);
     try {
       // Read straight from Supabase: RLS limits rows to this agent, and it
       // skips the API hop (middleware auth + route auth + admin client).
       // Writes still go through the API, which validates and whitelists input.
       const uid = await getLocalUserId();
+      if (scope.isStale()) return;
       if (uid) {
         const { data: rows, error: readError } = await createClient()
           .from("seller_prospects")
           .select("*")
           .eq("agent_id", uid)
           .order("created_at", { ascending: false });
+        if (scope.isStale()) return; // the account changed while this ran
         // An empty first result is double-checked through the API once, in
         // case RLS policies are missing (which would hide rows silently).
         if (!readError && rows && (rows.length > 0 || cacheGet("seller-prospects") !== undefined)) {
           setProspects(rows as SellerProspect[]);
-          cacheSet("seller-prospects", rows);
+          cacheSetFor("seller-prospects", rows, uid);
           setError(null);
           return;
         }
@@ -90,13 +95,15 @@ export default function SellerProspectsPage() {
 
       // Fallback if the direct read fails for any reason
       const res = await fetch("/api/seller-prospects");
+      if (scope.isStale()) return;
       if (!res.ok) {
         setError("Couldn't load prospects.");
         return;
       }
       const data = await res.json();
+      if (scope.isStale()) return;
       setProspects(data.prospects || []);
-      cacheSet("seller-prospects", data.prospects || []);
+      cacheSetFor("seller-prospects", data.prospects || [], uid);
     } finally {
       setLoading(false);
     }
@@ -104,8 +111,8 @@ export default function SellerProspectsPage() {
 
   // Keep the cache in step with local saves and deletes
   useEffect(() => {
-    if (!loading) cacheSet("seller-prospects", prospects);
-  }, [prospects, loading]);
+    if (!loading) cacheSetFor("seller-prospects", prospects, userId);
+  }, [prospects, loading, userId]);
 
   useEffect(() => {
     load();

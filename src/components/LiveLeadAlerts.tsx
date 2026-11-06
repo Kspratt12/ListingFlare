@@ -3,7 +3,8 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
-import { getLocalUserId } from "@/lib/agentSession";
+import { getLocalUserId, getSessionGeneration } from "@/lib/agentSession";
+import { openAccountChannels } from "@/lib/accountChannels";
 import { Flame, X, MessageSquare, CalendarDays } from "lucide-react";
 import { calculateHotScore } from "@/lib/hotScore";
 
@@ -52,134 +53,137 @@ export default function LiveLeadAlerts() {
   }, []);
 
   useEffect(() => {
-    let leadChannel: ReturnType<ReturnType<typeof createClient>["channel"]> | null = null;
-    let showingChannel: ReturnType<ReturnType<typeof createClient>["channel"]> | null = null;
-    let messageChannel: ReturnType<ReturnType<typeof createClient>["channel"]> | null = null;
+    const supabase = createClient();
+    type Channel = ReturnType<typeof supabase.channel>;
+    // Channels belong to ONE account: they are opened only after the account is established and closed when the account
+    // changes (the dashboard layout remounts this component then), and late events from an old account are ignored.
+    const binding = openAccountChannels<Channel>({
+      getUserId: getLocalUserId,
+      getGeneration: getSessionGeneration,
+      // Returns the removal result (a status string, or a rejection). The binding handles both; nothing is logged.
+      close: (channel) => supabase.removeChannel(channel),
+      open: (userId, isCurrent) => {
+        const user = { id: userId };
+        userIdRef.current = user.id;
 
-    async function setup() {
-      const supabase = createClient();
-      // Local session read: no network round-trip (RLS still protects every query)
-      const localUid = await getLocalUserId();
-      const user = localUid ? { id: localUid } : null;
-      if (!user) return;
-      userIdRef.current = user.id;
+        // New lead inserts
+        const leadChannel = supabase
+          .channel("live-leads")
+          .on(
+            "postgres_changes",
+            {
+              event: "INSERT",
+              schema: "public",
+              table: "leads",
+              filter: `agent_id=eq.${user.id}`,
+            },
+            (payload) => {
+              // Ignore events once the account has changed or this component has been torn down.
+              if (!isCurrent()) return;
+              const l = payload.new as Record<string, unknown>;
+              // Ignore records that existed before this mount (e.g., initial snapshot)
+              if (l.created_at && new Date(l.created_at as string).getTime() < mountedAtRef.current - 5000) return;
 
-      // New lead inserts
-      leadChannel = supabase
-        .channel("live-leads")
-        .on(
-          "postgres_changes",
-          {
-            event: "INSERT",
-            schema: "public",
-            table: "leads",
-            filter: `agent_id=eq.${user.id}`,
-          },
-          (payload) => {
-            const l = payload.new as Record<string, unknown>;
-            // Ignore records that existed before this mount (e.g., initial snapshot)
-            if (l.created_at && new Date(l.created_at as string).getTime() < mountedAtRef.current - 5000) return;
+              const hot = calculateHotScore({
+                lead: {
+                  status: ((l.status as string) || "new") as "new" | "contacted" | "showing_scheduled" | "offer_made" | "under_contract" | "closed" | "lost",
+                  phone: (l.phone as string) || "",
+                  message: (l.message as string) || "",
+                  created_at: (l.created_at as string) || new Date().toISOString(),
+                  auto_reply_draft: null,
+                  first_response_at: null,
+                  is_read: false,
+                },
+              });
+              const fireEmoji = hot.tier === "hot" ? "🔥 " : hot.tier === "warm" ? "⭐ " : "";
+              setAlerts((prev) => [
+                {
+                  id: `lead-${l.id}`,
+                  type: "lead",
+                  title: `${fireEmoji}New lead: ${l.name || "Unknown"}`,
+                  subtitle: l.message
+                    ? String(l.message).slice(0, 60)
+                    : "Tap to view",
+                  href: `/dashboard/leads`,
+                  timestamp: Date.now(),
+                },
+                ...prev,
+              ]);
+              playAlertSound();
+            }
+          )
+          .subscribe();
 
-            const hot = calculateHotScore({
-              lead: {
-                status: ((l.status as string) || "new") as "new" | "contacted" | "showing_scheduled" | "offer_made" | "under_contract" | "closed" | "lost",
-                phone: (l.phone as string) || "",
-                message: (l.message as string) || "",
-                created_at: (l.created_at as string) || new Date().toISOString(),
-                auto_reply_draft: null,
-                first_response_at: null,
-                is_read: false,
-              },
-            });
-            const fireEmoji = hot.tier === "hot" ? "🔥 " : hot.tier === "warm" ? "⭐ " : "";
-            setAlerts((prev) => [
-              {
-                id: `lead-${l.id}`,
-                type: "lead",
-                title: `${fireEmoji}New lead: ${l.name || "Unknown"}`,
-                subtitle: l.message
-                  ? String(l.message).slice(0, 60)
-                  : "Tap to view",
-                href: `/dashboard/leads`,
-                timestamp: Date.now(),
-              },
-              ...prev,
-            ]);
-            playAlertSound();
-          }
-        )
-        .subscribe();
+        // New showings
+        const showingChannel = supabase
+          .channel("live-showings")
+          .on(
+            "postgres_changes",
+            {
+              event: "INSERT",
+              schema: "public",
+              table: "showings",
+              filter: `agent_id=eq.${user.id}`,
+            },
+            (payload) => {
+              // Ignore events once the account has changed or this component has been torn down.
+              if (!isCurrent()) return;
+              const s = payload.new as Record<string, unknown>;
+              if (s.created_at && new Date(s.created_at as string).getTime() < mountedAtRef.current - 5000) return;
+              setAlerts((prev) => [
+                {
+                  id: `showing-${s.id}`,
+                  type: "showing",
+                  title: `📅 Showing booked: ${s.name || "Unknown"}`,
+                  subtitle: `${s.showing_date} at ${s.showing_time}`,
+                  href: `/dashboard/showings`,
+                  timestamp: Date.now(),
+                },
+                ...prev,
+              ]);
+              playAlertSound();
+            }
+          )
+          .subscribe();
 
-      // New showings
-      showingChannel = supabase
-        .channel("live-showings")
-        .on(
-          "postgres_changes",
-          {
-            event: "INSERT",
-            schema: "public",
-            table: "showings",
-            filter: `agent_id=eq.${user.id}`,
-          },
-          (payload) => {
-            const s = payload.new as Record<string, unknown>;
-            if (s.created_at && new Date(s.created_at as string).getTime() < mountedAtRef.current - 5000) return;
-            setAlerts((prev) => [
-              {
-                id: `showing-${s.id}`,
-                type: "showing",
-                title: `📅 Showing booked: ${s.name || "Unknown"}`,
-                subtitle: `${s.showing_date} at ${s.showing_time}`,
-                href: `/dashboard/showings`,
-                timestamp: Date.now(),
-              },
-              ...prev,
-            ]);
-            playAlertSound();
-          }
-        )
-        .subscribe();
+        // Inbound messages (buyer replies)
+        const messageChannel = supabase
+          .channel("live-messages")
+          .on(
+            "postgres_changes",
+            {
+              event: "INSERT",
+              schema: "public",
+              table: "messages",
+              filter: `agent_id=eq.${user.id}`,
+            },
+            (payload) => {
+              // Ignore events once the account has changed or this component has been torn down.
+              if (!isCurrent()) return;
+              const m = payload.new as Record<string, unknown>;
+              if (m.direction !== "inbound") return;
+              if (m.created_at && new Date(m.created_at as string).getTime() < mountedAtRef.current - 5000) return;
+              setAlerts((prev) => [
+                {
+                  id: `msg-${m.id}`,
+                  type: "inbound",
+                  title: `💬 New reply`,
+                  subtitle: String(m.body || "").slice(0, 60),
+                  href: `/dashboard/leads`,
+                  timestamp: Date.now(),
+                },
+                ...prev,
+              ]);
+              playAlertSound();
+            }
+          )
+          .subscribe();
 
-      // Inbound messages (buyer replies)
-      messageChannel = supabase
-        .channel("live-messages")
-        .on(
-          "postgres_changes",
-          {
-            event: "INSERT",
-            schema: "public",
-            table: "messages",
-            filter: `agent_id=eq.${user.id}`,
-          },
-          (payload) => {
-            const m = payload.new as Record<string, unknown>;
-            if (m.direction !== "inbound") return;
-            if (m.created_at && new Date(m.created_at as string).getTime() < mountedAtRef.current - 5000) return;
-            setAlerts((prev) => [
-              {
-                id: `msg-${m.id}`,
-                type: "inbound",
-                title: `💬 New reply`,
-                subtitle: String(m.body || "").slice(0, 60),
-                href: `/dashboard/leads`,
-                timestamp: Date.now(),
-              },
-              ...prev,
-            ]);
-            playAlertSound();
-          }
-        )
-        .subscribe();
-    }
+        return [leadChannel, showingChannel, messageChannel];
+      },
+    });
 
-    setup();
-
-    return () => {
-      const supabase = createClient();
-      if (leadChannel) supabase.removeChannel(leadChannel);
-      if (showingChannel) supabase.removeChannel(showingChannel);
-      if (messageChannel) supabase.removeChannel(messageChannel);
-    };
+    return () => binding.stop();
   }, []);
 
   // Auto-dismiss alerts after 10 seconds

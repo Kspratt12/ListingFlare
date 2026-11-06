@@ -3,7 +3,8 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-import { getLocalUserId } from "@/lib/agentSession";
+import { getLocalUserId, getSessionGeneration } from "@/lib/agentSession";
+import { accountScope } from "@/lib/accountScoped";
 import {
   Search,
   LayoutGrid,
@@ -98,8 +99,11 @@ export default function CommandPalette() {
   // Load listings, leads, showings for search
   const loadData = useCallback(async () => {
     const supabase = createClient();
+    // Results for an account that is no longer the signed-in one are discarded (the layout also remounts this component).
+    const scope = accountScope(getSessionGeneration);
     // Local session read: no network round-trip (RLS still protects every query)
     const localUid = await getLocalUserId();
+    if (scope.isStale()) return;
     const user = localUid ? { id: localUid } : null;
     if (!user) return;
 
@@ -125,6 +129,8 @@ export default function CommandPalette() {
         .order("showing_date", { ascending: true })
         .limit(15),
     ]);
+
+    if (scope.isStale()) return;
 
     const dynamicCmds: Command[] = [];
 
