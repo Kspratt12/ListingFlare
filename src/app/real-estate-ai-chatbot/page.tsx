@@ -62,7 +62,7 @@ export default function Page() {
         { title: "You publish a listing with full details", text: "The assistant only knows what is in the listing, so add features and a good description." },
         { title: "A buyer asks a question", text: "They type into the chat on the listing page and get an answer in seconds." },
         { title: "The assistant guides next steps", text: "If the buyer wants to see the home, it shares your scheduling link or asks for contact details." },
-        { title: "You get the lead", text: "The buyer appears in your dashboard with the conversation, and your auto-reply and follow-up sequence can take it from there." },
+        { title: "You get the lead", text: "The buyer appears in your dashboard with the conversation, and your auto-reply can take it from there." },
       ]}
       limits={{
         heading: "What the AI can and cannot do",

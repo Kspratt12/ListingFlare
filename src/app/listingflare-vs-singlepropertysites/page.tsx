@@ -32,10 +32,10 @@ export default function Page() {
       path="/listingflare-vs-singlepropertysites"
       eyebrow="Comparison"
       h1="ListingFlare vs SinglePropertySites.com: Which Is Right for You?"
-      intro="SinglePropertySites.com (SPS) is one of the longest-running single property website services, known for bundling a listing page with ready-made social posts, email templates and flyers. ListingFlare also builds a website for each listing, with the emphasis on AI chat, lead capture and automatic follow-up. Full disclosure: we make ListingFlare, so we have tried to be fair."
+      intro="SinglePropertySites.com (SPS) is one of the longest-running single property website services, known for bundling a listing page with ready-made social posts, email templates and flyers. ListingFlare also builds a website for each listing, with the emphasis on AI chat, lead capture and an instant auto-reply. Full disclosure: we make ListingFlare, so we have tried to be fair."
       highlights={[
         "SPS: a listing marketing bundle, usually priced per listing",
-        "ListingFlare: AI chat, lead inbox and follow-up, one flat price",
+        "ListingFlare: AI chat, lead inbox and instant auto-reply, one flat price",
         "Both include lead forms, photo galleries and flyers",
         "The better value depends on how many listings you run at once",
       ]}
@@ -51,7 +51,7 @@ export default function Page() {
         {
           heading: "Choose ListingFlare if",
           body: [
-            "You want the page to do more of the follow-up for you. ListingFlare puts an AI chat assistant on every listing, auto-replies to new leads, sends day 1, 3 and 7 follow-ups, and keeps conversations in a lead inbox with scoring and a pipeline.",
+            "You want the page to answer buyers for you. ListingFlare puts an AI chat assistant on every listing, auto-replies to new leads, and keeps conversations in a lead inbox with scoring and a pipeline.",
             "You carry several listings at once and prefer one flat price for unlimited listings.",
             "You also want open house QR sign-in, flyers, social captions and an analytics dashboard in the same place.",
           ],
@@ -71,7 +71,6 @@ export default function Page() {
           ["Marketing bundle", "Flyers, social captions, QR sign-in", "Auto-generated social posts, email templates and flyers"],
           ["Design", "Modern, clean, mobile-friendly", "Functional, more traditional"],
           ["AI chat on the page", "Yes, answers from your listing details", "Not listed"],
-          ["Automatic follow-up", "Yes, day 1, 3 and 7 sequence", "Not listed"],
           ["Lead handling", "Inbox, scoring, pipeline, CSV export", "Forms that email you the lead"],
           ["Custom URL", "Not listed today", "Some plans"],
         ],
@@ -80,7 +79,7 @@ export default function Page() {
       stepsHeading="How to decide in five minutes"
       steps={[
         { title: "Count your active listings", text: "One or two at a time can favor per-listing pricing. Five or more tends to favor a flat plan." },
-        { title: "Decide what you want automated", text: "A ready-made social and email bundle points to SPS. Automatic chat and follow-up with buyers points to ListingFlare." },
+        { title: "Decide what you want automated", text: "A ready-made social and email bundle points to SPS. AI chat and an instant auto-reply for buyers points to ListingFlare." },
         { title: "Check the dealbreakers", text: "Need a custom URL on every listing? Confirm it with each vendor. Need AI chat? That is ListingFlare." },
         { title: "Test it", text: "ListingFlare has a 14-day free trial with no credit card required, and you can see a live example first." },
       ]}

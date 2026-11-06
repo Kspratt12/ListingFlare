@@ -94,7 +94,7 @@ export const article: BlogPost = {
 
 <ul>
 <li><strong>AI chatbot on every listing page.</strong> Engages buyers 24/7 with property-specific answers. Captures leads through natural conversation, not just static forms. You receive the full chat transcript with every lead.</li>
-<li><strong>Automatic follow-up emails.</strong> When a lead comes in, ListingFlare sends a personalized follow-up email on your behalf within seconds. If the buyer does not respond, it follows up again. This happens automatically without you lifting a finger.</li>
+<li><strong>Instant AI reply to new leads.</strong> When a lead comes in, ListingFlare can send a personalized AI-written reply on your behalf within seconds, or hold it for your approval.</li>
 <li><strong>Single property websites.</strong> Dedicated, branded pages for each listing with full-screen photo galleries, virtual tour embeds, and your agent branding front and center. No competing listings. No distractions.</li>
 <li><strong>Analytics dashboard.</strong> See who visited your listing page, where they came from, how long they stayed, and whether they engaged with the chatbot. Use this data for seller updates and to optimize your marketing spend.</li>
 <li><strong>AI-generated listing descriptions.</strong> Enter your property details and get a polished listing description in seconds. Edit, regenerate, or write your own.</li>
@@ -103,7 +103,7 @@ export const article: BlogPost = {
 
 <h4>Why It Beats Listings to Leads</h4>
 
-<p>ListingFlare focuses on the part of listing marketing that actually makes you money - lead capture and conversion. While Listings to Leads spreads across print, social, email, and landing pages (each with its own price tag), ListingFlare concentrates on making your listing pages work harder. The AI chatbot alone is a significant upgrade over any static form. Add in automatic follow-up, unlimited listings, and transparent pricing, and it is a stronger value for agents who care about turning listing page visitors into actual clients.</p>
+<p>ListingFlare focuses on the part of listing marketing that actually makes you money - lead capture and conversion. While Listings to Leads spreads across print, social, email, and landing pages (each with its own price tag), ListingFlare concentrates on making your listing pages work harder. The AI chatbot alone is a significant upgrade over any static form. Add in an instant AI reply to new leads, unlimited listings, and transparent pricing, and it is a stronger value for agents who care about turning listing page visitors into actual clients.</p>
 
 <p>If you want to see the difference firsthand, <a href="/demo">check out a live demo listing</a> or <a href="/signup">start a free 14-day trial</a>. For more context on why dedicated listing pages matter, read our guide on <a href="/blog/best-single-property-website-builders">the best single property website builders</a>.</p>
 
@@ -341,7 +341,7 @@ export const article: BlogPost = {
 
 <h3>Choose ListingFlare If Lead Capture Is Your Priority</h3>
 
-<p>If you are tired of losing buyer leads because your listing pages are static and nobody answers questions after hours, <a href="/signup">ListingFlare</a> is the clear choice. The automated buyer engagement, automatic follow-up, and detailed analytics are specifically designed to turn listing page visitors into clients. The flat $150/month pricing with unlimited listings also makes it the most predictable cost at scale.</p>
+<p>If you are tired of losing buyer leads because your listing pages are static and nobody answers questions after hours, <a href="/signup">ListingFlare</a> is the clear choice. The automated buyer engagement, instant AI replies, and detailed analytics are specifically designed to turn listing page visitors into clients. The flat $150/month pricing with unlimited listings also makes it the most predictable cost at scale.</p>
 
 <h3>Choose Rela If Visual Presentation Matters Most</h3>
 

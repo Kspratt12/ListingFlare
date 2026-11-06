@@ -84,7 +84,7 @@ export const article: BlogPost = {
 
 <h2>Where ListingFlare Fits</h2>
 
-<p><a href="/single-property-website-builder">ListingFlare</a> builds a branded page for each listing with a photo gallery, a lead form, a QR code, and an AI chat assistant that answers questions from the listing details. When someone inquires, it notifies you, drafts a reply, and schedules a day 1, 3 and 7 follow-up email sequence. It does not stop buyers from using portals, and it does not guarantee any number of leads. It gives you a page where inquiries come to you. See <a href="/pricing">pricing</a> and the <a href="/demo">live demo</a>, and read <a href="/blog/single-property-website-vs-zillow-showcase">single property website vs Zillow Showcase</a> for a comparison.</p>
+<p><a href="/single-property-website-builder">ListingFlare</a> builds a branded page for each listing with a photo gallery, a lead form, a QR code, and an AI chat assistant that answers questions from the listing details. When someone inquires, it notifies you and drafts a reply. It does not stop buyers from using portals, and it does not guarantee any number of leads. It gives you a page where inquiries come to you. See <a href="/pricing">pricing</a> and the <a href="/demo">live demo</a>, and read <a href="/blog/single-property-website-vs-zillow-showcase">single property website vs Zillow Showcase</a> for a comparison.</p>
 
 <h2>Related Guides</h2>
 <ul>

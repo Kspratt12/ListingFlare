@@ -16,7 +16,7 @@ import RoiCalculator from "@/components/RoiCalculator";
 export const metadata: Metadata = {
   title: "Pricing: $150/Month, Unlimited Listing Sites",
   description:
-    "ListingFlare pricing: $150/month for unlimited listing websites with AI chat, lead capture and automated follow-up. 14-day free trial, no card required.",
+    "ListingFlare pricing: $150/month for unlimited listing websites with AI chat, lead capture and an instant AI reply to new leads. 14-day free trial, no card required.",
   alternates: {
     canonical: "https://www.listingflare.com/pricing",
   },
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     title: "Pricing: $150/Month, Unlimited Listing Sites | ListingFlare",
     description:
-      "ListingFlare pricing: $150/month for unlimited listing websites with AI chat, lead capture and automated follow-up. 14-day free trial, no card required.",
+      "ListingFlare pricing: $150/month for unlimited listing websites with AI chat, lead capture and an instant AI reply to new leads. 14-day free trial, no card required.",
     url: "https://www.listingflare.com/pricing",
     images: [{ url: "https://www.listingflare.com/opengraph-image", width: 1200, height: 630, alt: "ListingFlare" }],
   },
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Pricing: $150/Month, Unlimited Listing Sites | ListingFlare",
     description:
-      "ListingFlare pricing: $150/month for unlimited listing websites with AI chat, lead capture and automated follow-up. 14-day free trial, no card required.",
+      "ListingFlare pricing: $150/month for unlimited listing websites with AI chat, lead capture and an instant AI reply to new leads. 14-day free trial, no card required.",
   },
 };
 
@@ -60,18 +60,17 @@ const featureGroups = [
       "AI chatbot answers buyer questions 24/7",
       "Instant AI auto-reply to every new lead",
       "AI Approval Mode (review before sending)",
-      "Day 1, 3, and 7 follow-up sequences written by AI",
       "AI business assistant (analyzes your listings and leads)",
       "AI listing description writer",
       "AI photo captions",
-      "AI-drafted replies to buyer emails",
+      "AI-drafted replies to buyer inquiries",
     ],
   },
   {
     icon: MessageSquare,
     title: "Lead Management That Feels Like a Real CRM",
     items: [
-      "Two-way threaded conversation inbox",
+      "Conversation thread for each lead, with replies sent by email from your dashboard",
       "Text leads with one tap - sends from your real phone number",
       "Pipeline kanban view with drag-and-drop",
       "Hot Lead scoring (hot, warm, cold)",
@@ -88,21 +87,18 @@ const featureGroups = [
     items: [
       "3-step date, time, and info flow (no Calendly needed)",
       "Automatic .ics calendar invites in confirmations",
-      "24-hour reminder emails to buyers",
+      "Showing reminder emails to buyers",
       "Google Calendar 2-way sync (optional)",
       "Manual showing creation for phone or text bookings",
       "Edit, reschedule, or cancel any showing",
       "Showings page grouped by date",
-      "Auto-feedback request 2 hours after every showing",
     ],
   },
   {
     icon: Zap,
     title: "Automation That Never Sleeps",
     items: [
-      "New listing goes live, past leads in same city auto-notified",
-      "Testimonial requests sent after closed deals",
-      "Open house QR sign-in with instant drip enrollment",
+      "Open house QR sign-in that turns each visitor into a lead",
       "Agent activity feed (see what the AI did for you today)",
       "Weekly performance email (views, leads, conversions)",
       "Hot visitor alerts when buyers keep coming back",
@@ -144,7 +140,7 @@ export default function PricingPage() {
           <Link href="/" className="font-serif text-xl font-bold text-gray-900">
             Listing<span className="text-brand-500">Flare</span>
           </Link>
-          <NavAuthCta className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600 transition-colors" label="Start Free Trial" />
+          <NavAuthCta className="rounded-lg bg-brand-700 px-4 py-2 text-sm font-medium text-white hover:bg-brand-800 transition-colors" label="Start Free Trial" />
         </div>
       </nav>
 
@@ -181,7 +177,7 @@ export default function PricingPage() {
                 Start Free Trial
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
-              <p className="text-center text-xs text-gray-400">
+              <p className="text-center text-sm text-gray-600">
                 14-day free trial. No credit card required.
               </p>
             </div>
@@ -288,7 +284,7 @@ export default function PricingPage() {
           </p>
           <Link
             href="/signup"
-            className="group mt-6 inline-flex items-center gap-2 rounded-full bg-brand-500 px-8 py-4 text-base font-medium text-white transition-all hover:bg-brand-600 hover:shadow-xl hover:shadow-brand-500/20"
+            className="group mt-6 inline-flex items-center gap-2 rounded-full bg-brand-700 px-8 py-4 text-base font-medium text-white transition-all hover:bg-brand-800 hover:shadow-xl hover:shadow-brand-500/20"
           >
             Start Free Trial
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

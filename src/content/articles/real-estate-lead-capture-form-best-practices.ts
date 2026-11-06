@@ -139,7 +139,7 @@ export const article: BlogPost = {
 
 <h2>Where ListingFlare Helps</h2>
 
-<p>ListingFlare listing pages include a contact form, a showing request option, an AI chat assistant and a scheduler, and every inquiry becomes a lead with an instant reply and follow-up sequence. You can see which actions visitors take on each listing in the analytics. <a href="/real-estate-lead-capture-software">Read how lead capture works</a> or <a href="/demo">see it on a live example</a>.</p>
+<p>ListingFlare listing pages include a contact form, a showing request option, an AI chat assistant and a scheduler, and every inquiry becomes a lead with an instant reply. You can see which actions visitors take on each listing in the analytics. <a href="/real-estate-lead-capture-software">Read how lead capture works</a> or <a href="/demo">see it on a live example</a>.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

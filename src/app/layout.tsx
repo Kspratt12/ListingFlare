@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s | ListingFlare",
   },
   description:
-    "Real estate software for listing agents: a branded website for every listing, an AI chat assistant, lead capture and automatic follow-up. 14-day free trial.",
+    "Real estate software for listing agents: a branded website for every listing, an AI chat assistant, lead capture and an instant AI reply to new leads. 14-day free trial.",
   keywords: [
     "real estate software",
     "realtor software",
@@ -58,14 +58,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "ListingFlare",
-    title: "ListingFlare - Real Estate Software for Listing Agents",
+    title: "ListingFlare: Single Property Websites & AI Lead Capture",
     description:
-      "Real estate software that creates stunning listing pages with AI chatbot, instant lead capture, and auto follow-up.",
+      "Real estate software that creates stunning listing pages with AI chatbot, instant lead capture, and an instant AI reply to new leads.",
     url: "https://www.listingflare.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ListingFlare - Real Estate Software for Listing Agents",
+    title: "ListingFlare: Single Property Websites & AI Lead Capture",
     description:
       "Real estate software with AI-powered listing pages that capture leads and answer buyer questions 24/7.",
   },

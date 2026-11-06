@@ -159,6 +159,6 @@ export const article: BlogPost = {
 
 <p>Single property websites are no longer a luxury reserved for agents with big marketing budgets and tech teams. They are an essential part of a modern listing marketing strategy. Pair them with a compelling <a href="/blog/real-estate-listing-description-examples">listing description</a> that tells a story, and you give buyers an experience that MLS syndication alone cannot match, and the agents who adopt them are winning more listings, capturing more leads, and closing faster than those who rely on MLS syndication alone.</p>
 
-<p>If you are ready to create your first single property website, <a href="/signup">try ListingFlare free</a> and see how fast you can go from listing photos to a live, AI-powered property page with built-in lead capture and automated follow-up. Your next listing deserves more than a MLS page.</p>
+<p>If you are ready to create your first single property website, <a href="/signup">try ListingFlare free</a> and see how fast you can go from listing photos to a live, AI-powered property page with built-in lead capture and an instant AI reply to new leads. Your next listing deserves more than a MLS page.</p>
 `,
 };

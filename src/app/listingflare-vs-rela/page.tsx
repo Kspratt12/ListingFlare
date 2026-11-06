@@ -35,7 +35,7 @@ export default function Page() {
       intro="Rela and ListingFlare both build a dedicated website for one listing, but they are built for different priorities. Rela is known for premium-looking templates. ListingFlare is built around capturing and following up with buyers. Full disclosure: we make ListingFlare, so we have tried to be fair about where Rela is the better choice."
       highlights={[
         "Rela: premium templates, custom domains, priced per listing",
-        "ListingFlare: AI chat, automatic follow-up and a lead inbox, one flat price",
+        "ListingFlare: AI chat, instant auto-reply and a lead inbox, one flat price",
         "Both support 3D tour embeds such as Matterport",
         "The cheaper option depends on how many listings you run at once",
       ]}
@@ -51,7 +51,7 @@ export default function Page() {
         {
           heading: "Choose ListingFlare if",
           body: [
-            "You care most about what happens after a buyer lands on the page. ListingFlare puts an AI chat assistant on every listing, auto-replies to new leads, sends day 1, 3 and 7 follow-ups, and keeps conversations in a lead inbox with scoring and a pipeline.",
+            "You care most about what happens after a buyer lands on the page. ListingFlare puts an AI chat assistant on every listing, auto-replies to new leads, and keeps conversations in a lead inbox with scoring and a pipeline.",
             "You run several listings at once and want one flat price for unlimited listings. At about five active listings, per-listing pricing and ListingFlare's $150 per month plan are close, and ListingFlare gets cheaper as the count grows. Check Rela's current pricing, since plans vary.",
             "You want open house QR sign-in, flyers and social captions in the same tool as your listing pages.",
           ],
@@ -71,7 +71,6 @@ export default function Page() {
           ["Design", "Modern, clean, mobile-friendly", "Premium templates, strong in luxury"],
           ["Custom domain", "Not listed today", "Yes"],
           ["AI chat on the page", "Yes, answers from your listing details", "Not listed"],
-          ["Automatic follow-up", "Yes, day 1, 3 and 7 sequence", "Not listed"],
           ["Lead handling", "Inbox, scoring, pipeline, CSV export", "Forms that email you the lead"],
           ["3D tours", "Matterport, Kuula and 360 embeds", "Matterport, iGuide and others"],
           ["Open house QR and flyers", "Yes", "Not listed"],
@@ -82,7 +81,7 @@ export default function Page() {
       steps={[
         { title: "Count your active listings", text: "One or two at a time often favors per-listing pricing. Five or more favors a flat plan." },
         { title: "Decide what matters more", text: "If the page's look is the priority, try Rela. If capturing and following up with buyers is the priority, try ListingFlare." },
-        { title: "Check the dealbreakers", text: "Need a custom domain? That points to Rela today. Need AI chat and automatic follow-up? That points to ListingFlare." },
+        { title: "Check the dealbreakers", text: "Need a custom domain? That points to Rela today. Need AI chat and an instant auto-reply? That points to ListingFlare." },
         { title: "Test both", text: "ListingFlare has a 14-day free trial with no credit card required, and you can see a live example first." },
       ]}
       limits={{

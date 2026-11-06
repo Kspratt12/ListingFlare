@@ -155,7 +155,7 @@ ${downloadBox("lead-follow-up-tracker")}
 
 <h2>How ListingFlare Runs This for You</h2>
 
-<p>ListingFlare creates a lead the moment someone asks the AI assistant a question, fills in a form or signs in at an open house, then drafts an instant reply and schedules AI follow-ups on days 1, 3 and 7. You can turn on approval mode to review messages before they send, text any lead in one tap from your own phone, and see hot, warm and cold scores in the pipeline. <a href="/real-estate-lead-capture-software">See how lead capture works</a> or <a href="/signup">start free</a>.</p>
+<p>ListingFlare creates a lead the moment someone asks the AI assistant a question, fills in a form or signs in at an open house, then drafts an instant reply. You can turn on approval mode to review messages before they send, text any lead in one tap from your own phone, and see hot, warm and cold scores in the pipeline. <a href="/real-estate-lead-capture-software">See how lead capture works</a> or <a href="/signup">start free</a>.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

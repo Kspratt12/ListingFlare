@@ -110,7 +110,7 @@ export default function AboutPage() {
           <p>
             Most real estate software tries to do everything and ends up doing nothing well.
             ListingFlare focuses on one thing: making your listings generate leads. Every
-            feature we build, from the AI chatbot to the automated follow-up emails, exists
+            feature we build, from the AI chatbot to the instant AI reply, exists
             to help you capture and convert more buyer leads from your listings.
           </p>
           <ul className="space-y-3 pl-1">
@@ -124,7 +124,7 @@ export default function AboutPage() {
             </li>
             <li className="flex items-start gap-3">
               <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-brand-500" />
-              <span>Automated follow-up so you never lose a lead to slow response time</span>
+              <span>An instant AI reply so you never lose a lead to slow response time</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-brand-500" />

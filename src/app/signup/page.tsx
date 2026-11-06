@@ -97,7 +97,7 @@ function SignupForm() {
             deserve better.
           </p>
           <p className="mt-4 max-w-md text-lg text-gray-400">
-            Premium listing websites with AI chat, instant lead capture, and automated follow-up. Every buyer, captured.
+            Premium listing websites with AI chat, instant lead capture, and an instant AI reply. Every buyer, captured.
           </p>
         </div>
         <p className="text-sm text-gray-600">

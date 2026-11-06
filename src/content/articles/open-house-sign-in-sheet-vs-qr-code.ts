@@ -80,7 +80,7 @@ export const article: BlogPost = {
 
 <p>A sign-in is only a list of names. The value comes from what happens next. Contact visitors the same day, while the home is still fresh in their minds. Reference the specific property. Ask a question that is easy to answer, such as whether they would like to see it again or want to hear about similar listings.</p>
 
-<p>This is where digital sign-in has a practical advantage. When entries arrive electronically, they can trigger an instant reply and a follow-up sequence automatically, instead of waiting for someone to retype a clipboard. With <a href="/real-estate-lead-capture-software">ListingFlare</a>, each listing can generate a QR code sign-in page and a printable flyer. Visitors who sign in become leads in your dashboard, where an auto-reply can go out right away and follow-ups can run on days 1, 3 and 7. You can also require approval before any message sends.</p>
+<p>This is where digital sign-in has a practical advantage. When entries arrive electronically, they can trigger an instant reply automatically, instead of waiting for someone to retype a clipboard. With <a href="/real-estate-lead-capture-software">ListingFlare</a>, each listing can generate a QR code sign-in page and a printable flyer. Visitors who sign in become leads in your dashboard, where an auto-reply can go out right away. You can also require approval before any message sends.</p>
 
 <p>If you use paper, schedule the data entry. Put it on your calendar for the same evening, and send your first message before you go to bed.</p>
 

@@ -270,8 +270,8 @@ export default function PresentationPage() {
                 },
                 {
                   icon: MessageSquare,
-                  title: "Automated Follow-Up",
-                  desc: "Day 1, 3, and 7 follow-ups sent in my voice. Nothing slips through.",
+                  title: "Instant AI Reply",
+                  desc: "New buyer inquiries get an AI-written reply right away. Nothing slips through.",
                 },
               ].map((f) => {
                 const Icon = f.icon;

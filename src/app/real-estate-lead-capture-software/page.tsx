@@ -37,8 +37,7 @@ export default function Page() {
         "Lead forms and AI chat on every listing page",
         "QR code sign-in for open houses",
         "Instant auto-reply to each new lead, with an optional approval step",
-        "Day 1, 3 and 7 follow-up sequences",
-        "Two-way inbox, pipeline view and hot, warm and cold scoring",
+        "Lead inbox with conversation thread, pipeline view and hot, warm and cold scoring",
         "CSV export and a speed-to-lead tracker",
       ]}
       sections={[
@@ -52,7 +51,7 @@ export default function Page() {
         {
           heading: "What happens after someone submits",
           body: [
-            "You are notified, and the lead lands in your dashboard with the property they asked about. An AI-written reply goes out right away, or waits for your approval if you turn on Approval Mode. If you do not hear back from them, the follow-up sequence sends messages on days 1, 3 and 7.",
+            "You are notified, and the lead lands in your dashboard with the property they asked about. An AI-written reply goes out right away, or waits for your approval if you turn on Approval Mode. Later follow-ups are yours to send from the lead's conversation thread.",
             "Replies come back into a threaded inbox, and you can text a lead from your own phone with one tap. Leads are scored hot, warm or cold, and you can move them through a drag-and-drop pipeline.",
           ],
         },
@@ -68,7 +67,7 @@ export default function Page() {
         { title: "A buyer visits your listing page or scans the open house QR code", text: "They ask a question in chat, request a showing, or fill in the sign-in form." },
         { title: "The lead is saved with its source and property", text: "Name, email, phone and what they asked about appear in your dashboard." },
         { title: "An auto-reply goes out", text: "Written by AI from the listing details. Turn on Approval Mode to review each one before it sends." },
-        { title: "Follow-up runs on a schedule", text: "Day 1, 3 and 7 messages go out unless you take over the conversation." },
+        { title: "Showings get confirmations and reminders", text: "Buyers who book a showing get a confirmation with a calendar invite, plus a reminder email." },
         { title: "You work the pipeline", text: "Reply from the inbox, book the showing, update the status, and export to CSV if you need the data elsewhere." },
       ]}
       limits={{
@@ -83,7 +82,7 @@ export default function Page() {
       faqs={[
         { question: "What is lead capture software for real estate?", answer: "It collects contact details from people interested in a property, from forms, chat or open house sign-ins, and helps you respond and follow up." },
         { question: "Can it capture open house leads?", answer: "Yes. Each listing can generate a QR code sign-in page and a printable flyer. Visitors who sign in become leads in your dashboard." },
-        { question: "Does it send follow-ups automatically?", answer: "Yes. A day 1, 3 and 7 sequence is included, and you can require approval before messages send." },
+        { question: "Does it reply to leads automatically?", answer: "Yes. Every new lead gets an AI-written first reply right away, and you can require approval before it sends. Later follow-ups are yours to send from the lead's conversation thread." },
         { question: "How much does it cost?", answer: "$150 per month with a 14-day free trial and no credit card required to start." },
         { question: "Does it replace my CRM?", answer: "It includes an inbox, pipeline and scoring for the leads it captures. If you use another CRM for everything else, you can export leads to CSV." },
       ]}

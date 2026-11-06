@@ -38,7 +38,7 @@ export const article: BlogPost = {
 
 <p>A <strong>single-property website</strong> gives your listing its own dedicated URL, brand-free landing page, and full-screen media experience, something an MLS listing or Zillow page can never replicate. If you have not used this approach before, our complete guide on <a href="/blog/how-to-create-a-single-property-website">how to create a single property website</a> walks you through every step. It signals to your seller (and to prospective buyers) that this property deserves premium treatment.</p>
 
-<p>The best single-property websites go beyond a photo gallery. They include lead capture forms, instant notifications, and even AI-powered chatbots that answer buyer questions 24/7. <a href="/signup">ListingFlare</a> lets you spin up a professional property website in under two minutes, complete with AI chat, automatic lead capture, and follow-up sequences, so you can focus on selling instead of building web pages.</p>
+<p>The best single-property websites go beyond a photo gallery. They include lead capture forms, instant notifications, and even AI-powered chatbots that answer buyer questions 24/7. <a href="/signup">ListingFlare</a> lets you spin up a professional property website in under two minutes, complete with AI chat, automatic lead capture, and an instant AI reply to new leads, so you can focus on selling instead of building web pages.</p>
 
 <p><strong>Pro tip:</strong> Use your property website URL in every piece of marketing: yard signs, postcards, social posts, email blasts, and ads. One clean URL ties your entire campaign together and funnels every lead to one place.</p>
 
@@ -146,7 +146,7 @@ export const article: BlogPost = {
 
 <p>QR codes are the simplest bridge between offline and online marketing. A buyer driving through a neighborhood sees your yard sign, scans the QR code with their phone, and lands directly on your property website, complete with photos, details, AI chat, and a lead capture form. No typing, no searching, no friction.</p>
 
-<p>Generate a dynamic QR code (so you can update the destination URL if needed) and print it prominently on your yard sign rider, open house flyers, postcards, and brochures. Link the code to your <a href="/demo">ListingFlare property website</a> so every scan is automatically captured as a lead and triggers your follow-up sequence.</p>
+<p>Generate a dynamic QR code (so you can update the destination URL if needed) and print it prominently on your yard sign rider, open house flyers, postcards, and brochures. Link the code to your <a href="/demo">ListingFlare property website</a> so visitors who ask a question or sign in are captured as leads.</p>
 
 <p><strong>Pro tip:</strong> Track QR code scans with UTM parameters or a QR analytics platform. Knowing how many scans come from your yard sign versus your postcards helps you allocate your marketing budget more effectively.</p>
 

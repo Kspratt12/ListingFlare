@@ -238,7 +238,7 @@ export const article: BlogPost = {
 <p>"Real estate lead generators" usually means the sources and tools that bring in people who may want to buy or sell: portals and paid lead programs, ads, a website or listing pages with a contact form, open houses, referrals and email or social media. Some produce leads you share with other agents and some produce leads that belong only to you, so check who owns the lead and what it costs before you commit.</p>
 
 <h3>What is the biggest lead generation mistake real estate agents make?</h3>
-<p>Slow follow-up. Research consistently shows that responding to a lead within five minutes makes you dramatically more likely to convert them compared to waiting an hour. Many agents invest heavily in lead generation but lose deals because they take too long to respond. Automation tools that send instant replies, like ListingFlare&rsquo;s automatic follow-up emails or your CRM&rsquo;s action plans, solve this problem by engaging leads the moment they come in, even if you are in a showing or asleep.</p>
+<p>Slow follow-up. Research consistently shows that responding to a lead within five minutes makes you dramatically more likely to convert them compared to waiting an hour. Many agents invest heavily in lead generation but lose deals because they take too long to respond. Automation tools that send instant replies, like ListingFlare&rsquo;s instant AI reply or your CRM&rsquo;s action plans, solve this problem by engaging leads the moment they come in, even if you are in a showing or asleep.</p>
 </div>
 
 <h2>Conclusion</h2>
