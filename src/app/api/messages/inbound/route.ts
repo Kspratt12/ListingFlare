@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { secretsMatch } from "@/lib/internalAuth";
+import { Resend } from "resend";
+import { processInboundEmail, type InboundDeps, type ReceivedEmail } from "@/lib/inboundEmail";
 
 export const dynamic = "force-dynamic";
 
@@ -11,113 +12,63 @@ function getAdminClient() {
   );
 }
 
-// Verify the request comes from the mail provider. This is a provider webhook,
-// NOT a cron or internal call, so it uses its own secret (RESEND_WEBHOOK_SECRET),
-// never CRON_SECRET. It fails closed (no secret configured = no access, with no
-// development bypass) and compares in constant time.
-//
-// NOT CHANGED, needs provider-side confirmation: this still expects a custom
-// "x-webhook-secret" header. If the provider signs its webhooks instead (many
-// do, with a timestamped HMAC signature), this route can never authenticate
-// them and a signature check is needed. That has not been verified against the
-// provider's documentation or a real delivery, so it is not guessed at here.
-function isAuthorized(req: NextRequest): boolean {
-  return secretsMatch(req.headers.get("x-webhook-secret"), process.env.RESEND_WEBHOOK_SECRET);
-}
-
-// This endpoint receives inbound email replies from buyers.
-// Requires DNS configuration in Resend to catch replies to leads@listingflare.com
-// and POST them here.
-//
-// Payload shape (Resend inbound):
-//   {
-//     from: { email: "buyer@example.com", name: "Buyer" },
-//     subject: "Re: 123 Main St",
-//     text: "plain body",
-//     html: "<div>...</div>",
-//     messageId: "...",
-//     inReplyTo: "...",
-//   }
+// Receives Resend `email.received` webhooks (buyer replies sent to reply+<lead id>@INBOUND_REPLY_DOMAIN).
+// This is a provider webhook, NOT a cron or internal call: it is authenticated only by Resend's signed
+// webhook headers over the RAW request body (RESEND_WEBHOOK_SECRET), never by the cron secret, and it fails
+// closed. The body is read as text and handed to the verifier untouched; parsing it first would break
+// the signature. All the logic lives in lib/inboundEmail.ts.
 export async function POST(req: NextRequest) {
-  if (!isAuthorized(req)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const rawBody = await req.text();
+
+  const secret = process.env.RESEND_WEBHOOK_SECRET;
+  const apiKey = process.env.RESEND_API_KEY;
+  const resend = apiKey ? new Resend(apiKey) : null;
+  const db = getAdminClient();
+
+  const deps: InboundDeps = {
+    webhookSecretConfigured: () => Boolean(secret && resend),
+    verify: ({ payload, headers }) =>
+      resend!.webhooks.verify({ payload, headers, webhookSecret: secret! }) as unknown as ReturnType<InboundDeps["verify"]>,
+
+    fetchReceived: async (emailId) => {
+      const { data, error } = await resend!.emails.receiving.get(emailId);
+      if (error || !data) throw new Error(error?.message || "no data");
+      return data as unknown as ReceivedEmail;
+    },
+
+    getLead: async (leadId) => {
+      const { data } = await db.from("leads").select("id, agent_id, email, status").eq("id", leadId).maybeSingle();
+      return data ?? null;
+    },
+
+    messageExists: async (providerMessageId) => {
+      const { data } = await db
+        .from("messages")
+        .select("id")
+        .eq("provider_message_id", providerMessageId)
+        .eq("direction", "inbound")
+        .limit(1);
+      return Boolean(data && data.length > 0);
+    },
+
+    insertMessage: async (row) => {
+      const { error } = await db.from("messages").insert({ ...row, direction: "inbound" });
+      return !error;
+    },
+
+    markLeadUnread: async (lead) => {
+      // Mark the lead unread and move it from "new" to "contacted" if still new.
+      const update: Record<string, unknown> = { is_read: false };
+      if (lead.status === "new") update.status = "contacted";
+      await db.from("leads").update(update).eq("id", lead.id);
+    },
+
+    log: (message, detail) => console.error(message, detail),
+  };
 
   try {
-    const payload = await req.json();
-    const fromEmail: string | undefined =
-      payload?.from?.email || payload?.from || payload?.sender?.email;
-    const subject: string = payload?.subject || "";
-    const body: string = payload?.text || payload?.html || "";
-    const providerId: string | null = payload?.messageId || null;
-    const inReplyTo: string | null = payload?.inReplyTo || null;
-
-    if (!fromEmail || !body) {
-      return NextResponse.json({ error: "Missing fields" }, { status: 400 });
-    }
-
-    const db = getAdminClient();
-
-    // Find the most recent lead from this email address.
-    // If inReplyTo is set, we'll prefer matching to that original outbound message.
-    let leadId: string | null = null;
-    let agentId: string | null = null;
-
-    if (inReplyTo) {
-      const { data: original } = await db
-        .from("messages")
-        .select("lead_id, agent_id")
-        .eq("provider_message_id", inReplyTo)
-        .limit(1)
-        .single();
-      if (original) {
-        leadId = original.lead_id;
-        agentId = original.agent_id;
-      }
-    }
-
-    if (!leadId) {
-      const { data: found } = await db
-        .from("leads")
-        .select("id, agent_id")
-        .eq("email", fromEmail)
-        .order("created_at", { ascending: false })
-        .limit(1)
-        .single();
-      if (found) {
-        leadId = found.id;
-        agentId = found.agent_id;
-      }
-    }
-
-    if (!leadId || !agentId) {
-      // Silently accept so Resend doesn't retry. Log for debugging.
-      console.warn("Inbound email with no matching lead:", fromEmail);
-      return NextResponse.json({ ok: true, matched: false });
-    }
-
-    await db.from("messages").insert({
-      lead_id: leadId,
-      agent_id: agentId,
-      direction: "inbound",
-      subject,
-      body: typeof body === "string" ? body : JSON.stringify(body),
-      provider_message_id: providerId,
-      in_reply_to: inReplyTo,
-    });
-
-    // Mark lead as unread and bump status from "new" to "contacted" if still new.
-    const { data: lead } = await db
-      .from("leads")
-      .select("status")
-      .eq("id", leadId)
-      .single();
-
-    const update: Record<string, unknown> = { is_read: false };
-    if (lead?.status === "new") update.status = "contacted";
-    await db.from("leads").update(update).eq("id", leadId);
-
-    return NextResponse.json({ ok: true, matched: true });
+    const outcome = await processInboundEmail(rawBody, req.headers, deps);
+    return NextResponse.json(outcome.body, { status: outcome.status });
   } catch (err) {
     console.error("Inbound email error:", err);
     return NextResponse.json({ error: "Failed" }, { status: 500 });

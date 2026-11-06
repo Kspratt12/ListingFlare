@@ -1,3 +1,4 @@
+import { replyToFor } from "@/lib/inboundEmail";
 import { NextRequest, NextResponse } from "next/server";
 import { isInternalCall } from "@/lib/internalAuth";
 import { escapeHtml } from "@/lib/escapeHtml";
@@ -164,7 +165,7 @@ Write a brief, personalized follow-up email (3-4 sentences max). Guidelines:
           body: JSON.stringify({
             from: `${agent.name} via ListingFlare <leads@listingflare.com>`,
             to: lead.email,
-            replyTo: agent.email,
+            replyTo: replyToFor(agent.email, leadId),
             subject: `Re: ${listingAddress} - ${agent.name}`,
             html: emailHtml,
           }),

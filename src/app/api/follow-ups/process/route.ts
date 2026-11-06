@@ -1,3 +1,4 @@
+import { replyToFor } from "@/lib/inboundEmail";
 import { NextRequest, NextResponse } from "next/server";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { AI_MODEL, createAnthropic } from "@/lib/ai";
@@ -34,6 +35,7 @@ async function processFollowUp(
       .from("leads")
       .select("id, name, email, phone, message, status")
       .eq("id", followUp.lead_id)
+      .eq("agent_id", followUp.agent_id) // ownership: a follow-up may only act on its own agent's lead
       .single();
 
     if (!lead || lead.status === "closed" || lead.status === "lost" || lead.status === "under_contract") {
@@ -71,6 +73,7 @@ async function processFollowUp(
       .from("listings")
       .select("street, city, state, price, beds, baths, sqft, features")
       .eq("id", followUp.listing_id)
+      .eq("agent_id", followUp.agent_id) // ownership: same rule for the listing
       .single();
 
     const listingAddress = listing
@@ -151,7 +154,7 @@ Rules:
       body: JSON.stringify({
         from: `${agent.name} via ListingFlare <leads@listingflare.com>`,
         to: lead.email,
-        replyTo: agent.email,
+        replyTo: replyToFor(agent.email, lead.id),
         subject: `${followUp.subject} - ${listingAddress}`,
         html: emailHtml,
       }),
