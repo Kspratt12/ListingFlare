@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import type { Offer, Listing } from "@/lib/types";
-import { getLocalUserId } from "@/lib/agentSession";
-import { cacheGet, cacheSet } from "@/lib/swrCache";
+import { getLocalUserId, getSessionGeneration, useAgentSession } from "@/lib/agentSession";
+import { cacheGet, cacheSetFor } from "@/lib/swrCache";
+import { accountScope } from "@/lib/accountScoped";
 import { HandshakeIcon, PlusCircle, X, DollarSign, Pencil, Trash2 } from "lucide-react";
 
 type OfferWithListing = Offer & {
@@ -51,6 +52,7 @@ export default function OffersPage() {
     () => cacheGet<Pick<Listing, "id" | "street" | "city" | "state" | "price" | "status">[]>("offers:listings") ?? []
   );
   const [loading, setLoading] = useState(() => cacheGet("offers") === undefined);
+  const { userId } = useAgentSession();
   const [showNewModal, setShowNewModal] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null); // null = creating, uuid = editing
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
@@ -82,7 +84,9 @@ export default function OffersPage() {
   useEffect(() => {
     let active = true;
     async function load() {
+      const scope = accountScope(getSessionGeneration);
       const uid = await getLocalUserId();
+      if (scope.isStale()) return;
       if (!uid) {
         if (active) setLoading(false);
         return;
@@ -105,11 +109,11 @@ export default function OffersPage() {
           .order("created_at", { ascending: false }),
       ]);
 
-      if (!active) return;
+      if (!active || scope.isStale()) return; // unmounted, or the account changed while this ran
       if (!offersRes.error && offersRes.data) setOffers(offersRes.data as OfferWithListing[]);
       if (!listingsRes.error && listingsRes.data) {
         setListings(listingsRes.data as typeof listings);
-        cacheSet("offers:listings", listingsRes.data);
+        cacheSetFor("offers:listings", listingsRes.data, uid);
       }
       setLoading(false);
     }
@@ -122,8 +126,8 @@ export default function OffersPage() {
 
   // Keep the cache in step with local edits (status changes, deletes, new offers)
   useEffect(() => {
-    if (!loading) cacheSet("offers", offers);
-  }, [offers, loading]);
+    if (!loading) cacheSetFor("offers", offers, userId);
+  }, [offers, loading, userId]);
 
   const updateStatus = async (offerId: string, next: Offer["status"]) => {
     const prevOffers = offers;

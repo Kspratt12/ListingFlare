@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Lead } from "@/lib/types";
-import { useAgentSession } from "@/lib/agentSession";
-import { cacheGet, cacheSet } from "@/lib/swrCache";
+import { getLocalUserId, getSessionGeneration, useAgentSession } from "@/lib/agentSession";
+import { cacheGet, cacheSetFor } from "@/lib/swrCache";
+import { accountScope } from "@/lib/accountScoped";
 import {
   MessageSquare, Mail, Phone, Calendar, Home, ChevronDown,
   X, Loader2, ArrowUpDown, Lock, Trash2, Pencil, Sparkles,
@@ -85,14 +86,19 @@ export default function LeadsPage() {
 
   useEffect(() => {
     async function fetchLeads() {
-      // Leads are scoped by RLS, so no user ID is needed for the query.
+      // Leads are scoped by RLS. The account is only used to tie the result to the account that asked for it.
+      const scope = accountScope(getSessionGeneration);
+      const uid = await getLocalUserId().catch(() => null);
+      if (scope.isStale()) return;
       const { data, error } = await supabase
         .from("leads")
         .select(`*, listing:listings(street, city, state)`)
         .order("created_at", { ascending: false }) as unknown as { data: Lead[] | null; error: unknown };
+      // The account changed while this request ran: its result is not for the current account.
+      if (scope.isStale()) return;
       if (!error && data) {
         setLeads(data);
-        cacheSet("leads", data);
+        cacheSetFor("leads", data, uid);
       }
       setLoading(false);
     }
@@ -102,8 +108,8 @@ export default function LeadsPage() {
 
   // Keep the cache in step with optimistic edits, deletes and status changes
   useEffect(() => {
-    if (!loading) cacheSet("leads", leads);
-  }, [leads, loading]);
+    if (!loading) cacheSetFor("leads", leads, userId);
+  }, [leads, loading, userId]);
 
   const setViewMode = (mode: "list" | "pipeline") => {
     setViewModeState(mode);

@@ -100,7 +100,6 @@ function world(first: string) {
     readSession: () => Promise.resolve(first),
     watchAuth: (cb) => { onEvent = cb; },
     onUserChanged: (u) => setCacheOwner(u),
-    defer: () => {},
   });
   // how the page binds the loader to the session: a load is current while the generation has not moved
   const load = (fetchRows: (uid: string) => PromiseLike<ListingsQueryResult<Row>>, getUserId = () => m.getUserId()) => {

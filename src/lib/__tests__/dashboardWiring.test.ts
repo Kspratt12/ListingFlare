@@ -51,9 +51,17 @@ test("listings page: the query itself is unchanged (columns, exact count, orderi
 test("layout: the account epoch is provided to tabs, and profile and unread-count work for an old account is dropped", () => {
   const layout = read("app/dashboard/layout.tsx");
   assert.match(layout, /value=\{\{ userId, profile, setProfile, sessionEpoch \}\}/);
-  assert.match(layout, /subscribeToSessionChanges\(\(uid\) => \{[\s\S]*?setSessionEpoch\(\(n\) => n \+ 1\);[\s\S]*?setProfile\(null\);[\s\S]*?setUnreadLeads\(0\);/);
-  assert.match(layout, /unsubscribe\(\);/);
-  assert.match(layout, /const stale = \(\) => !active \|\| mine !== run \|\| startedAt !== getSessionGeneration\(\);/);
+  // the account, the generation and the epoch come from ONE store snapshot, read with useSyncExternalStore
+  assert.match(layout, /const session = useSyncExternalStore\(subscribeToSessionChanges, getSessionSnapshot, getServerSessionSnapshot\);/);
+  assert.match(layout, /const userId = session\.userId;/);
+  assert.match(layout, /const sessionEpoch = session\.generation;/);
+  assert.ok(!/setSessionEpoch|setUserId|setTimeout\([^)]*\)[^\n]*sessionEpoch/.test(layout), "no separately updated copies of the account or the epoch");
+  assert.ok(!/setCacheOwner/.test(layout), "the cache owner is moved by the session store, not by the layout");
+  // nothing loaded for another account is used, not even for the render in which the account changes
+  assert.match(layout, /const profile = rawProfile && rawProfile\.id === userId \? rawProfile : null;/);
+  assert.match(layout, /const unreadLeads = unread\.userId === userId \? unread\.count : 0;/);
+  assert.match(layout, /const stale = \(\) => !active \|\| startedAt !== getSessionGeneration\(\);/);
+  assert.match(layout, /\}, \[userId, sessionEpoch\]\);/, "the profile loads for the current account and reloads when it changes");
   assert.match(layout, /startedAt === getSessionGeneration\(\) && count !== null/, "unread count is generation-checked");
   assert.match(layout, /\}, \[pathname, sessionEpoch\]\);/, "unread count refreshes when the account changes");
   // Sign Out still clears everything explicitly
@@ -73,6 +81,56 @@ test("middleware and RLS are untouched by this change", () => {
   const mw = read("lib/supabase/middleware.ts");
   assert.match(mw, /request\.nextUrl\.pathname\.startsWith\("\/dashboard"\)/);
   assert.match(mw, /NextResponse\.redirect\(url\)/);
+});
+
+const TABS: [string, string][] = [
+  ["leads", "app/dashboard/leads/page.tsx"],
+  ["offers", "app/dashboard/offers/page.tsx"],
+  ["showings", "app/dashboard/showings/page.tsx"],
+  ["seller-prospects", "app/dashboard/seller-prospects/page.tsx"],
+];
+
+test("tab pages: every cache write names its owner, and every request is tied to the account that started it", () => {
+  for (const [name, rel] of TABS) {
+    const src = read(rel);
+    assert.ok(!/\bcacheSet\(/.test(src), `${name}: no ownerless cacheSet remains`);
+    assert.match(src, /import \{ accountScope \} from "@\/lib\/accountScoped";/, `${name}: uses accountScope`);
+    assert.match(src, /accountScope\(getSessionGeneration\)/, `${name}: starts a scope when the request starts`);
+    assert.ok((src.match(/scope\.isStale\(\)/g) || []).length >= 2, `${name}: checks the scope after awaiting`);
+    assert.match(src, /cacheSetFor\("[a-z:-]+", [a-zA-Z.]+, userId\);\s*\n\s*\}, \[[a-zA-Z]+, loading, userId\]\);/, `${name}: the cache-in-step effect names the user from context and re-runs when it changes`);
+    assert.match(src, /cacheSetFor\("[a-z:-]+", [\s\S]*?, uid\)/, `${name}: the fetch result is stored under the user that asked`);
+  }
+});
+
+test("tab pages: a stale result returns before any state update or cache write", () => {
+  const leads = read("app/dashboard/leads/page.tsx");
+  const afterQuery = leads.slice(leads.indexOf("const { data, error } = await supabase"));
+  assert.ok(afterQuery.indexOf("if (scope.isStale()) return;") < afterQuery.indexOf("setLeads(data)"), "leads: stale check precedes setLeads");
+  const showings = read("app/dashboard/showings/page.tsx");
+  const s2 = showings.slice(showings.indexOf("const [showingsRes, listingsRes] = await Promise.all"));
+  assert.ok(s2.indexOf("if (scope.isStale()) return;") < s2.indexOf("setShowings(rows)"), "showings: stale check precedes setShowings");
+  const offers = read("app/dashboard/offers/page.tsx");
+  assert.match(offers, /if \(!active \|\| scope\.isStale\(\)\) return;[^\n]*\n\s*if \(!offersRes\.error/, "offers: stale check precedes setOffers");
+  const sp = read("app/dashboard/seller-prospects/page.tsx");
+  const s3 = sp.slice(sp.indexOf("const load = async () => {"));
+  assert.ok(s3.indexOf("if (scope.isStale()) return; // the account changed") < s3.indexOf("setProspects(rows as SellerProspect[])"), "seller prospects: stale check precedes the direct-read update");
+  assert.ok(s3.lastIndexOf("if (scope.isStale()) return;") > s3.indexOf("await res.json()"), "seller prospects: the API fallback is checked too");
+});
+
+test("layout: the page, the realtime alerts and the command palette are remounted when the account changes", () => {
+  const layout = read("app/dashboard/layout.tsx");
+  assert.match(layout, /<main key=\{sessionEpoch\} /);
+  assert.match(layout, /<LiveLeadAlerts key=\{`alerts-\$\{sessionEpoch\}`\} \/>/);
+  assert.match(layout, /<CommandPalette key=\{`palette-\$\{sessionEpoch\}`\} \/>/);
+});
+
+test("realtime alerts: channels come from the account-bound helper, every callback checks isCurrent(), and teardown goes through it", () => {
+  const src = read("components/LiveLeadAlerts.tsx");
+  assert.match(src, /openAccountChannels<Channel>\(/);
+  assert.equal((src.match(/supabase\s*\n?\s*\.channel\(/g) || []).length, 3, "the three channels are all created inside open()");
+  assert.equal((src.match(/if \(!isCurrent\(\)\) return;/g) || []).length, 3, "each of the three callbacks ignores old-account events");
+  assert.match(src, /return \(\) => binding\.stop\(\);/);
+  assert.ok(!/let (lead|showing|message)Channel/.test(src), "no loose channel variables that cleanup could miss");
 });
 
 test("no test above reached the network", () => {

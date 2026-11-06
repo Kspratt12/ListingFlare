@@ -39,9 +39,21 @@ export function getSessionGeneration(): number {
   return manager.getGeneration();
 }
 
-// Called with the new user ID (or null) after the account changes. Returns an unsubscribe function.
-export function subscribeToSessionChanges(listener: (userId: string | null) => void): () => void {
+// The three inputs of useSyncExternalStore. subscribeToSessionChanges is a module-level function, so its identity is
+// stable across renders; the listener is called synchronously after the account, the generation and the cache owner are
+// coherent, and only when the account or the generation changed (never for a same-user token refresh).
+export function subscribeToSessionChanges(listener: () => void): () => void {
   return manager.subscribe(listener);
+}
+
+// { generation, userId }: the same object until the account or the generation changes.
+export function getSessionSnapshot() {
+  return manager.getSnapshot();
+}
+
+// What the server renders and what the client reports before any account is known: constant, so hydration agrees.
+export function getServerSessionSnapshot() {
+  return manager.getServerSnapshot();
 }
 
 export function resetLocalUserId() {

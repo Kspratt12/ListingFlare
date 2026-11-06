@@ -19,6 +19,7 @@ import FlyerModal from "@/components/FlyerModal";
 import { getLocalUserId, getSessionGeneration, peekLocalUserId, useAgentSession } from "@/lib/agentSession";
 import { cacheGetFor, cacheSetFor } from "@/lib/swrCache";
 import { loadDashboardListings } from "@/lib/dashboardListings";
+import { accountScope } from "@/lib/accountScoped";
 
 // Columns the listing cards, flyer, duplicate and archive actions need. Leaves
 // out the MLS-parity extras, comparable_sales, price_history and co-agent fields.
@@ -524,10 +525,21 @@ export default function MyListingsPage() {
   const handleDuplicate = async (e: React.MouseEvent, listing: Listing) => {
     e.preventDefault();
     e.stopPropagation();
+    // The account that is signed in when the action starts. If it changes at any point before the insert, nothing is sent.
+    const scope = accountScope(getSessionGeneration);
     setDuplicating(listing.id);
     try {
       const uid = await getLocalUserId();
-      if (!uid) return;
+      if (scope.isStale() || !uid) return;
+      // Only an account's own listing can be duplicated into that account. A listing that belongs to someone else (a row
+      // kept from a previous account, say) is never re-assigned to the current one.
+      if (listing.agent_id !== uid) {
+        setToast({ message: "That listing doesn't belong to the account you're signed in to.", type: "error" });
+        setTimeout(() => setToast(null), 5000);
+        return;
+      }
+      // Last check, immediately before the request is sent.
+      if (scope.isStale()) return;
       const { data: newListing, error } = await supabase.from("listings").insert({
         agent_id: uid,
         status: "draft",
@@ -548,6 +560,7 @@ export default function MyListingsPage() {
         virtual_tour_url: listing.virtual_tour_url,
       }).select("*").single();
 
+      if (scope.isStale()) return; // the account changed while the insert ran: do not touch another account's list
       if (error) throw error;
       if (newListing) {
         setListings((prev) => [newListing as Listing, ...prev]);
