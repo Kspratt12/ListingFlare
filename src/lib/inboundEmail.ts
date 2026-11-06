@@ -14,6 +14,44 @@
 
 export const INBOUND_EVENT = "email.received";
 
+// ---- Acceptance policy for a received reply -------------------------------------------------------------------------
+// A reply is added to a lead's thread only if the provider's documented verdicts say DKIM passed and DMARC is pass or
+// gray (Resend: gray = SPF or DKIM passed but the sender's domain has no DMARC policy or uses p=none). SPF alone is not
+// enough. This is a filter on documented verdict VALUES: it is not a proof that the displayed sender is authentic, and it
+// does not rely on how Resend decides "pass". There is NO switch that turns it off: it applies whether or not customer
+// reply routing is on, so routing can never run without it.
+//
+// A reply that is not accepted is never added to the thread. The app does NOT retain a rejected message: what it keeps is a
+// review marker (a fixed tag, no content from the message) and the unread flag on the lead. Whether the provider still holds
+// the received message, and for how long, is not established here, so nothing is promised about recovering it. A failed or
+// missing verdict is NOT treated as evidence of bad intent: forwarding, mailing lists and unsigned domains all produce them.
+export const REVIEW_TAG = "reply_needs_review";
+
+export type AuthVerdicts = { spf: string | null; dkim: string | null; dmarc: string | null };
+export interface AuthDecision {
+  accepted: boolean;
+  reason: "passed" | "missing" | "dkim_not_pass" | "dmarc_not_acceptable";
+  verdicts: AuthVerdicts;
+}
+export type ReviewReason = "authentication_not_verified" | "sender_differs";
+
+// Only short strings are ever kept (they are logged); anything else counts as "no verdict".
+const verdictOf = (v: unknown): string | null => (typeof v === "string" ? v.slice(0, 24) : null);
+
+export function evaluateAuthentication(a: { spf?: unknown; dkim?: unknown; dmarc?: unknown } | null | undefined): AuthDecision {
+  const verdicts: AuthVerdicts = { spf: verdictOf(a?.spf), dkim: verdictOf(a?.dkim), dmarc: verdictOf(a?.dmarc) };
+  if (!a || typeof a !== "object") return { accepted: false, reason: "missing", verdicts };
+  if (verdicts.dkim !== "pass") return { accepted: false, reason: "dkim_not_pass", verdicts };
+  if (verdicts.dmarc !== "pass" && verdicts.dmarc !== "gray") return { accepted: false, reason: "dmarc_not_acceptable", verdicts };
+  return { accepted: true, reason: "passed", verdicts };
+}
+
+// The tags to write so the lead shows the review marker, or null when it is already there (nothing to write).
+export function withReviewTag(tags: string[] | null | undefined): string[] | null {
+  const current = Array.isArray(tags) ? tags : [];
+  return current.includes(REVIEW_TAG) ? null : [REVIEW_TAG, ...current];
+}
+
 const UUID = "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}";
 
 // Where outbound mail asks buyers to reply. DEFAULT OFF: replies go straight to the agent's own address and nothing
@@ -74,6 +112,7 @@ export interface InboundLead {
   agent_id: string;
   email: string | null;
   status: string | null;
+  tags?: string[] | null;
 }
 
 export interface InboundDeps {
@@ -85,6 +124,8 @@ export interface InboundDeps {
   messageExists: (providerMessageId: string) => Promise<boolean>;
   insertMessage: (row: { lead_id: string; agent_id: string; subject: string; body: string; provider_message_id: string | null }) => Promise<boolean>;
   markLeadUnread: (lead: InboundLead) => Promise<void>;
+  // Flags the lead for review (REVIEW_TAG + unread). Idempotent. Must throw if it cannot record the marker.
+  markNeedsReview: (lead: InboundLead, reason: ReviewReason) => Promise<void>;
   env?: Record<string, string | undefined>;
   log: (message: string, detail?: unknown) => void;
 }
@@ -134,11 +175,25 @@ export async function processInboundEmail(
   const lead = await deps.getLead(leadId);
   if (!lead) return { status: 200, body: { ok: true, matched: false } };
 
-  // 4. The sender must be that lead's own email address (a stranger who learns a lead id cannot add to its thread).
+  // A reply that cannot be added to the thread is NOT retained: only the review marker is recorded. Nothing from the message
+  // is stored or logged. If the marker cannot be recorded the answer is 500, so the provider may retry (its retry schedule
+  // is finite, so this is not a guarantee that the marker is eventually recorded).
+  const hold = async (reason: ReviewReason): Promise<InboundOutcome> => {
+    try {
+      await deps.markNeedsReview(lead, reason);
+    } catch {
+      deps.log("Could not record the review marker", { emailId, leadId: lead.id });
+      return { status: 500, body: { error: "Could not record the review marker" } };
+    }
+    return { status: 200, body: { ok: true, matched: true, stored: false, held_for_review: true } };
+  };
+
+  // 4. Only the lead's own address may add to its thread. A different sender is not assumed to be hostile (a lead may
+  //    write from another mailbox): the reply is held for review without being stored.
   const sender = bareAddress(data.from);
   if (!sender || !lead.email || sender !== lead.email.trim().toLowerCase()) {
-    deps.log("Inbound email sender does not match the lead; dropped", { emailId });
-    return { status: 200, body: { ok: true, matched: false } };
+    deps.log("Inbound email held for review: sender differs from the lead", { emailId, leadId: lead.id });
+    return hold("sender_differs");
   }
 
   // 5. Retries repeat the same event: store each received message once.
@@ -153,9 +208,11 @@ export async function processInboundEmail(
     deps.log("Fetching the received email failed", err);
   }
   if (!full) return { status: 500, body: { error: "Could not fetch the received email" } };
-  // The provider's verdicts are RECORDED, not enforced: what pass means for From-domain alignment is not documented and
-  // has not been observed on a real delivery. Until then the sender check above is NOT proof of authenticity.
-  deps.log("Inbound email authentication verdicts (provider-computed)", { emailId, authentication: full.authentication ?? null });
+  // 7. Acceptance policy (see the top of this file). The verdicts are logged (short strings only) as evidence.
+  const decision = evaluateAuthentication(full.authentication);
+  deps.log("Inbound email authentication", { emailId, ...decision.verdicts, decision: decision.reason });
+  if (!decision.accepted) return hold("authentication_not_verified");
+
   const body = (full.text && full.text.trim()) || (full.html && full.html.trim()) || "";
   if (!body) return { status: 200, body: { ok: true, matched: true, empty: true } };
 

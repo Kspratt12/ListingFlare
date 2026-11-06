@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
-import { processInboundEmail, type InboundDeps, type ReceivedEmail } from "@/lib/inboundEmail";
+import { processInboundEmail, withReviewTag, type InboundDeps, type ReceivedEmail } from "@/lib/inboundEmail";
 
 export const dynamic = "force-dynamic";
 
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     },
 
     getLead: async (leadId) => {
-      const { data } = await db.from("leads").select("id, agent_id, email, status").eq("id", leadId).maybeSingle();
+      const { data } = await db.from("leads").select("id, agent_id, email, status, tags").eq("id", leadId).maybeSingle();
       return data ?? null;
     },
 
@@ -61,6 +61,18 @@ export async function POST(req: NextRequest) {
       const update: Record<string, unknown> = { is_read: false };
       if (lead.status === "new") update.status = "contacted";
       await db.from("leads").update(update).eq("id", lead.id);
+    },
+
+    // Review marker: a fixed tag (no message content) and unread. The rejected message itself is not kept by the app.
+    // Applying it twice changes nothing more. KNOWN RISK, NOT PROTECTED: the tags are read, changed and written back
+    // without a lock or version check, so a tag edit made at the same moment (by the agent, or a second held reply) can be
+    // overwritten, and the marker or the agent's edit can be lost. Concurrent edits are not safe here.
+    markNeedsReview: async (lead) => {
+      const tags = withReviewTag(lead.tags);
+      const update: Record<string, unknown> = { is_read: false };
+      if (tags) update.tags = tags;
+      const { error } = await db.from("leads").update(update).eq("id", lead.id);
+      if (error) throw new Error("review marker not saved");
     },
 
     log: (message, detail) => console.error(message, detail),
