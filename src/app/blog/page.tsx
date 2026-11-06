@@ -19,6 +19,13 @@ export const metadata: Metadata = {
     url: "https://www.listingflare.com/blog",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "ListingFlare" }],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Real Estate Agent Blog: Lead Generation & Tips | ListingFlare",
+    description:
+      "Expert articles on real estate lead generation, listing marketing, and home selling strategies.",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "ListingFlare" }],
+  },
 };
 
 interface Props {

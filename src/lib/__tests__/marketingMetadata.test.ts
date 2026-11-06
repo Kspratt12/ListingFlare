@@ -25,6 +25,11 @@ test("/blog: the Open Graph title equals the rendered <title> (page title + the 
   assert.equal(str(meta, /openGraph: \{\s*title: "([^"]+)"/), `${pageTitle} | ListingFlare`);
   assert.match(meta, /images: \[\{ url: "\/opengraph-image", width: 1200, height: 630/);
   assert.match(read("app/layout.tsx"), /template: "%s \| ListingFlare"/);
+  // The page-level twitter block replaces the root one, so it carries its own card and image.
+  const tw = meta.slice(meta.indexOf("twitter: {"));
+  assert.equal(str(tw, /title: "([^"]+)"/), `${pageTitle} | ListingFlare`);
+  assert.match(tw, /card: "summary_large_image"/);
+  assert.match(tw, /images: \[\{ url: "\/opengraph-image", width: 1200, height: 630/);
 });
 
 test("structured data: the software description and feature list make no claim the product does not deliver; the FAQ markup comes from the visible FAQ; no ratings or reviews are invented", () => {

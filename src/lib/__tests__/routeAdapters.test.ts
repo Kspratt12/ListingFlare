@@ -320,15 +320,18 @@ test("daily job: missing provider keys -> 500 and zero requests", async () => {
   });
 });
 
-test("daily job, nothing due: identical quiet-day result with the gate off and on; only the read, no chained job", async () => {
+test("daily job, nothing due: same result with the gate off and on; only the read, then ONLY the independent jobs (showing reminders, trial emails), no nurture job", async () => {
   for (const gate of [undefined, "1"]) {
     await withWeb({}, async (web) => {
       setEnv("NURTURE_SENDS_ENABLED", gate);
       const res = await processGET(cronReq("/api/follow-ups/process"));
-      assert.deepEqual(await res.json(), { ok: true, processed: 0 }, `gate=${gate}`);
+      const body = await res.json();
+      assert.equal(body.ok, true, `gate=${gate}`);
+      assert.equal(body.processed, 0, `gate=${gate}`);
+      assert.ok(!("held" in body) && !("feedback" in body) && !("testimonials" in body), `gate=${gate}`);
       const db = web.calls.filter((c) => c.host === "127.0.0.1:1");
       assert.deepEqual(db.map(web.label), ["GET 127.0.0.1:1/rest/v1/follow_ups"]);
-      const expectApp = roiExpected() ? ["/api/cron/monthly-roi"] : [];
+      const expectApp = ["/api/showings/reminders", "/api/trial/lifecycle", ...(roiExpected() ? ["/api/cron/monthly-roi"] : [])].sort();
       assert.deepEqual(appPaths(web), expectApp, `gate=${gate}`);
       assert.deepEqual(web.writes().filter((c) => c.host !== "app.test"), []);
     });
