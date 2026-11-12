@@ -253,7 +253,7 @@ export default function MortgageCalculator({ listingPrice, state }: Props) {
 
             return (
               <div
-                className="md:col-span-2 flex flex-col gap-3 rounded-2xl p-6 text-white shadow-lg"
+                className="min-w-0 md:col-span-2 flex flex-col gap-3 rounded-2xl p-6 text-white shadow-lg"
                 style={{
                   background:
                     "linear-gradient(135deg, color-mix(in srgb, var(--agent-brand, #0f172a) 55%, #0a0a0a) 0%, color-mix(in srgb, var(--agent-brand, #0f172a) 35%, #0a0a0a) 100%)",
@@ -265,9 +265,9 @@ export default function MortgageCalculator({ listingPrice, state }: Props) {
 
                 {/* Headline number + donut side by side */}
                 <div className="flex items-center justify-between gap-4">
-                  <div>
+                  <div className="min-w-0">
                     <div className="flex items-baseline gap-1">
-                      <span className="font-serif text-4xl font-bold md:text-5xl">
+                      <span className="font-serif text-4xl font-bold md:text-3xl lg:text-5xl">
                         ${formatMoney(Math.round(totalMonthly))}
                       </span>
                       <span className="text-sm text-white/60">/ mo</span>
