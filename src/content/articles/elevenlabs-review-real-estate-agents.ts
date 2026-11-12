@@ -265,7 +265,7 @@ export const article: BlogPost = {
 
 <p>The setup process takes about an hour. You create an agent, choose one of their expressive V3 voices (or clone your own), configure the system prompt with your business details, upload your website as a knowledge base, and connect it to a phone number through Twilio.</p>
 
-<p>For real estate agents, the value is clear: every missed call is a potential lost deal. An AI voice agent that picks up instantly and captures contact information means you never lose a lead to a missed call again.</p>
+<p>For real estate agents, the value is clear: every missed call is a potential lost deal. An AI voice agent that picks up instantly and captures contact information means fewer leads are lost to missed calls, though no tool catches every one.</p>
 
 <p><strong>One important note:</strong> ElevenLabs voice agents handle phone calls. <a href="/signup">ListingFlare</a> handles your listing website with a conversational AI that captures leads from web visitors. Together, they ensure every buyer gets an instant response, whether they call or browse online.</p>
 

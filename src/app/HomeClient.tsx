@@ -75,7 +75,7 @@ const features = [
   },
   {
     icon: Zap,
-    title: "Set up in five minutes. Capturing leads by tonight.",
+    title: "Three steps to a live listing page. Buyers can ask questions right away.",
     description:
       "Enter details, upload photos, publish. Live with its own URL. Share it once. It works for you every night after that.",
   },
@@ -534,7 +534,7 @@ function HowItWorks() {
   }, [nextStep]);
 
   return (
-    <section className="bg-gray-50 py-14 md:py-20">
+    <section className="overflow-x-clip bg-gray-50 py-14 md:py-20">
       <div className="mx-auto max-w-6xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -549,7 +549,7 @@ function HowItWorks() {
           <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
             From photos to published
             <br />
-            in under 5 minutes.
+            in three steps.
           </h2>
         </motion.div>
 
@@ -824,7 +824,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
     },
     {
       question: "Do I need technical skills to use ListingFlare?",
-      answer: "Not at all. Enter your property details, upload photos, and hit publish. Your listing page is live in under 5 minutes with a shareable URL. The AI can even write your listing description and photo captions for you.",
+      answer: "Not at all. Enter your property details, upload photos, and hit publish. Your listing page goes live with a shareable URL as soon as you publish. How long it takes depends on how much you enter and how many photos you upload. The AI can even write your listing description and photo captions for you.",
     },
     {
       question: "What does the AI chatbot actually do?",
@@ -999,7 +999,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
                     <div className="h-3 w-3 rounded-full bg-gray-200" />
                     <div className="h-3 w-3 rounded-full bg-gray-200" />
                   </div>
-                  <div className="mx-auto rounded-md bg-white px-16 py-1 text-xs text-gray-500 border border-gray-100">
+                  <div className="mx-auto min-w-0 truncate rounded-md border border-gray-100 bg-white px-3 py-1 text-xs text-gray-500 sm:px-16">
                     listingflare.com/listing/1847-grandview
                   </div>
                 </div>
@@ -1087,7 +1087,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
       </section>
 
       {/* Before / After - Zillow vs ListingFlare */}
-      <section className="bg-white py-14 md:py-20">
+      <section className="overflow-x-clip bg-white py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1106,7 +1106,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
             </h2>
           </motion.div>
 
-          <div className="mt-16 grid gap-8 md:grid-cols-2">
+          <div className="mt-16 grid gap-8 md:grid-cols-2 [&>*]:min-w-0">
             {/* Zillow - Before */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -1122,7 +1122,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
                       <div className="h-2.5 w-2.5 rounded-full bg-gray-200" />
                       <div className="h-2.5 w-2.5 rounded-full bg-gray-200" />
                     </div>
-                    <div className="mx-auto rounded-md bg-white px-8 py-1 text-xs text-gray-500 border border-gray-100">
+                    <div className="mx-auto min-w-0 truncate rounded-md border border-gray-100 bg-white px-3 py-1 text-xs text-gray-500 sm:px-8">
                       zillow.com/homedetails/...
                     </div>
                   </div>
@@ -1212,7 +1212,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
                       <div className="h-2.5 w-2.5 rounded-full bg-yellow-300" />
                       <div className="h-2.5 w-2.5 rounded-full bg-green-300" />
                     </div>
-                    <div className="mx-auto rounded-md bg-white px-8 py-1 text-xs text-gray-500 border border-gray-100">
+                    <div className="mx-auto min-w-0 truncate rounded-md border border-gray-100 bg-white px-3 py-1 text-xs text-gray-500 sm:px-8">
                       listingflare.com/listing/your-property
                     </div>
                   </div>
