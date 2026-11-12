@@ -1,151 +1,121 @@
 "use client";
 
 import { useState } from "react";
-import { Calculator, TrendingUp } from "lucide-react";
+import Link from "next/link";
+import { Calculator } from "lucide-react";
+
+// A what-if tool, not a forecast. Every number below the inputs is arithmetic on
+// values the visitor types in. Nothing is stored or sent anywhere, and nothing here
+// is a measured result. The only fact is the plan price.
+const PLAN_PER_YEAR = 150 * 12;
+
+const money = (n: number) =>
+  new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n);
+
+interface SliderProps {
+  id: string; label: string; value: number; display: string;
+  min: number; max: number; step: number; onChange: (n: number) => void;
+}
+
+function Slider(p: SliderProps) {
+  return (
+    <div>
+      <div className="flex items-center justify-between">
+        <label htmlFor={p.id} className="text-sm font-medium text-gray-700">{p.label}</label>
+        <span className="font-serif text-base font-bold text-gray-900">{p.display}</span>
+      </div>
+      <input
+        id={p.id}
+        type="range"
+        min={p.min}
+        max={p.max}
+        step={p.step}
+        value={p.value}
+        onChange={(e) => p.onChange(parseFloat(e.target.value))}
+        className="mt-2 w-full accent-brand-500"
+      />
+    </div>
+  );
+}
 
 export default function RoiCalculator() {
   const [homePrice, setHomePrice] = useState(400000);
   const [commissionPct, setCommissionPct] = useState(2.5);
-  const [extraClosingsPerYear, setExtraClosingsPerYear] = useState(1);
+  const [keepPct, setKeepPct] = useState(70);
+  const [closings, setClosings] = useState(0);
 
-  const commissionPerDeal = (homePrice * commissionPct) / 100;
-  const annualEarnings = commissionPerDeal * extraClosingsPerYear;
-  const annualCost = 150 * 12;
-  const roiMultiple = Math.round(annualEarnings / annualCost);
-  const daysToBreakEven = Math.ceil((annualCost / annualEarnings) * 365);
-
-  const formatMoney = (n: number) =>
-    new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      maximumFractionDigits: 0,
-    }).format(n);
+  const grossPerSale = (homePrice * commissionPct) / 100;
+  const netPerSale = (grossPerSale * keepPct) / 100;
+  const assumedIncome = netPerSale * closings;
+  const netResult = assumedIncome - PLAN_PER_YEAR;
+  const closingsToCover = netPerSale > 0 ? PLAN_PER_YEAR / netPerSale : null;
 
   return (
     <div className="mt-12 rounded-2xl border border-gray-200 bg-white p-6 md:p-8">
       <div className="flex items-center gap-2">
         <Calculator className="h-4 w-4 text-brand-500" />
-        <h3 className="text-sm font-semibold uppercase tracking-wider text-brand-600">
-          ROI Calculator
-        </h3>
+        <h3 className="text-sm font-semibold uppercase tracking-wider text-brand-600">Break-even calculator</h3>
       </div>
-      <h2 className="mt-2 font-serif text-2xl font-bold text-gray-900">
-        What&apos;s ListingFlare worth to you?
-      </h2>
+      <h2 className="mt-2 font-serif text-2xl font-bold text-gray-900">What would it take to cover the plan?</h2>
       <p className="mt-1 text-sm text-gray-500">
-        Drag the sliders to see how fast it pays for itself.
+        A what-if tool using numbers you choose. Example values are pre-filled; replace them with yours. Nothing you enter is saved or sent.
       </p>
 
       <div className="mt-6 grid gap-6 md:grid-cols-2">
-        {/* Inputs */}
-        <div className="space-y-5">
-          <div>
-            <div className="flex items-center justify-between">
-              <label className="text-sm font-medium text-gray-700">
-                Avg home price you list
-              </label>
-              <span className="font-serif text-base font-bold text-gray-900">
-                {formatMoney(homePrice)}
-              </span>
-            </div>
-            <input
-              type="range"
-              min="150000"
-              max="1500000"
-              step="25000"
-              value={homePrice}
-              onChange={(e) => setHomePrice(parseInt(e.target.value))}
-              className="mt-2 w-full accent-brand-500"
-              aria-label="Average home price"
-            />
-          </div>
-
-          <div>
-            <div className="flex items-center justify-between">
-              <label className="text-sm font-medium text-gray-700">
-                Your commission rate
-              </label>
-              <span className="font-serif text-base font-bold text-gray-900">
-                {commissionPct.toFixed(1)}%
-              </span>
-            </div>
-            <input
-              type="range"
-              min="1"
-              max="6"
-              step="0.1"
-              value={commissionPct}
-              onChange={(e) => setCommissionPct(parseFloat(e.target.value))}
-              className="mt-2 w-full accent-brand-500"
-              aria-label="Commission percent"
-            />
-          </div>
-
-          <div>
-            <div className="flex items-center justify-between">
-              <label className="text-sm font-medium text-gray-700">
-                Extra closings/year from ListingFlare
-              </label>
-              <span className="font-serif text-base font-bold text-gray-900">
-                {extraClosingsPerYear}
-              </span>
-            </div>
-            <input
-              type="range"
-              min="1"
-              max="12"
-              step="1"
-              value={extraClosingsPerYear}
-              onChange={(e) => setExtraClosingsPerYear(parseInt(e.target.value))}
-              className="mt-2 w-full accent-brand-500"
-              aria-label="Extra closings per year"
-            />
-          </div>
+        <div className="min-w-0 space-y-5">
+          <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">Your assumptions</p>
+          <Slider id="roi-price" label="Typical sale price" value={homePrice} display={money(homePrice)}
+            min={150000} max={1500000} step={25000} onChange={setHomePrice} />
+          <Slider id="roi-commission" label="Commission rate on your side" value={commissionPct} display={`${commissionPct.toFixed(1)}%`}
+            min={1} max={6} step={0.1} onChange={setCommissionPct} />
+          <Slider id="roi-keep" label="Share you keep after brokerage split and fees" value={keepPct} display={`${keepPct}%`}
+            min={10} max={100} step={5} onChange={setKeepPct} />
+          <Slider id="roi-closings" label="Additional sales you credit to ListingFlare this year" value={closings} display={String(closings)}
+            min={0} max={6} step={1} onChange={setClosings} />
         </div>
 
-        {/* Results */}
-        <div className="flex flex-col gap-3 rounded-xl bg-gradient-to-br from-brand-50 to-white border border-brand-200 p-5">
+        <div className="flex min-w-0 flex-col gap-3 rounded-xl border border-gray-200 bg-gray-50 p-5" aria-live="polite">
           <div>
-            <p className="text-xs uppercase tracking-wider text-gray-500">
-              Commission per deal
+            <p className="text-xs uppercase tracking-wider text-gray-500">Plan cost (fact)</p>
+            <p className="font-serif text-2xl font-bold text-gray-900">{money(PLAN_PER_YEAR)} <span className="text-sm font-normal text-gray-500">per year at $150/month</span></p>
+          </div>
+          <div className="border-t border-gray-200 pt-3">
+            <p className="text-xs uppercase tracking-wider text-gray-500">Assumed take-home per sale</p>
+            <p className="font-serif text-xl font-bold text-gray-900">{money(netPerSale)}</p>
+            <p className="text-xs text-gray-500">{money(grossPerSale)} gross commission x {keepPct}% kept. Before taxes and your own costs.</p>
+          </div>
+          <div className="border-t border-gray-200 pt-3">
+            <p className="text-xs uppercase tracking-wider text-gray-500">Assumed net after plan cost</p>
+            <p className={`font-serif text-3xl font-bold ${netResult < 0 ? "text-red-700" : "text-gray-900"}`}>
+              {netResult < 0 ? "-" : ""}{money(Math.abs(netResult))}
             </p>
-            <p className="font-serif text-2xl font-bold text-gray-900">
-              {formatMoney(commissionPerDeal)}
+            <p className="text-xs text-gray-500">
+              {closings === 0
+                ? "With no additional sales, the plan is a cost."
+                : `${closings} additional ${closings === 1 ? "sale" : "sales"} x ${money(netPerSale)} minus ${money(PLAN_PER_YEAR)}.`}
             </p>
           </div>
-          <div className="border-t border-brand-100 pt-3">
-            <p className="text-xs uppercase tracking-wider text-gray-500">
-              Extra income per year
-            </p>
-            <p className="font-serif text-3xl font-bold text-brand-700">
-              {formatMoney(annualEarnings)}
-            </p>
-          </div>
-          <div className="border-t border-brand-100 pt-3">
-            <p className="text-xs uppercase tracking-wider text-gray-500">
-              ListingFlare pays for itself in
-            </p>
-            <p className="flex items-baseline gap-2">
-              <span className="font-serif text-2xl font-bold text-gray-900">
-                {daysToBreakEven < 1 ? "less than 1" : daysToBreakEven}
-              </span>
-              <span className="text-sm text-gray-500">
-                {daysToBreakEven === 1 ? "day" : "days"}
-              </span>
-            </p>
-          </div>
-          <div className="mt-1 flex items-center gap-2 rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-2">
-            <TrendingUp className="h-4 w-4 text-emerald-600" />
-            <p className="text-xs font-medium text-emerald-800">
-              {roiMultiple}× return on a $1,800/year investment
-            </p>
-          </div>
+          {closingsToCover !== null && (
+            <div className="border-t border-gray-200 pt-3">
+              <p className="text-xs uppercase tracking-wider text-gray-500">Break-even at your numbers</p>
+              <p className="text-sm text-gray-800">About {closingsToCover.toFixed(1)} additional sales per year to cover the plan.</p>
+            </div>
+          )}
         </div>
       </div>
 
-      <p className="mt-5 text-center text-xs text-gray-400">
-        Illustration only. It assumes the closings you enter actually happen; ListingFlare does not guarantee leads, showings or closed sales.
-      </p>
+      <div className="mt-6 rounded-lg border border-gray-200 p-4 text-sm text-gray-600">
+        <p className="font-medium text-gray-800">Assumptions are yours; outcomes are measured separately.</p>
+        <p className="mt-1">
+          This calculator measures nothing and does not predict results. A lead is not a sale, and leads, showing requests and
+          sales are not guaranteed. Once you use ListingFlare, your dashboard shows the real inquiries and showing requests
+          your listings received, and any sales you record yourself.
+        </p>
+        <Link href="/signup" className="mt-3 inline-block font-medium text-brand-700 underline underline-offset-2 hover:text-brand-800">
+          Try it free for 14 days, no card required
+        </Link>
+        <span className="text-gray-500"> (the trial has limits; see the questions below)</span>
+      </div>
     </div>
   );
 }

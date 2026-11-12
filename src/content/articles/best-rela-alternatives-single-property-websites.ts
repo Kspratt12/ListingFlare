@@ -57,12 +57,12 @@ Your browser does not support the video tag.
 <p>Rela uses a tiered subscription model:</p>
 
 <ul>
-<li><strong>Starter:</strong> $24/month - 1 active listing site</li>
-<li><strong>Pro:</strong> $49/month - 5 active listing sites</li>
-<li><strong>Team:</strong> $99/month - 15 active listing sites, team branding</li>
+<li><strong>Starter:</strong> $24/month - 1 active listing, 2 listing agents</li>
+<li><strong>Plus:</strong> $49/month - 5 active listings, 5 listing agents</li>
+<li><strong>Pro:</strong> $99/month - 25 active listings, 10 listing agents (Rela agents pricing page, 2026-11-12; annual billing advertised at 20% off)</li>
 </ul>
 
-<p>Per-listing cost ranges from $6.60 to $24 depending on your plan and how many active listings you carry at any given time.</p>
+<p>Rela prices by tiers of active listings, so the cost per listing falls as you fill a tier. Confirm current plans on Rela&rsquo;s site.</p>
 
 <h3>What Rela Does Well</h3>
 
@@ -149,7 +149,7 @@ Your browser does not support the video tag.
 
 <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop&q=80" alt="CribFlyer budget-friendly single property website builder for real estate agents" loading="lazy" style="width:100%;border-radius:0.75rem;margin-bottom:1.5rem;" width="800" height="450" />
 
-<p><strong>Price:</strong> $7-25/month depending on plan</p>
+<p><strong>Price:</strong> from $9/month for one property site, $29/month for ten, $99/month for 100 (CribFlyer plans page, 2026-11-12)</p>
 
 <p>CribFlyer has been around since the early days of single property websites and built a loyal following with agents who want something simple and affordable. The platform includes basic templates, photo galleries, and the ability to add property details and open house information.</p>
 
@@ -161,7 +161,7 @@ Your browser does not support the video tag.
 <div class="pros-card">
 <p>Pros</p>
 <ul>
-<li>Low entry price starting at $7/month</li>
+<li>Low entry price starting at $9/month</li>
 <li>Simple setup process under 10 minutes</li>
 <li>Basic lead capture forms included</li>
 <li>Custom domain support on higher plans</li>
@@ -403,7 +403,7 @@ Your browser does not support the video tag.
 </tr>
 <tr>
 <td><strong>CribFlyer</strong></td>
-<td>$7-25/mo</td>
+<td>$9-99/mo</td>
 <td style="text-align:center;color:#ef4444;">&#10007;</td>
 <td style="text-align:center;">Basic form</td>
 <td style="text-align:center;color:#ef4444;">&#10007;</td>
@@ -470,7 +470,7 @@ Your browser does not support the video tag.
 
 <h3>Choose CribFlyer or Listings Unlimited If Budget Is Your Priority</h3>
 
-<p>If you need basic listing pages at the lowest possible cost, CribFlyer and Listings Unlimited both offer functional sites for under $25/month. You will not get AI features or automated follow-up, but you will have a clean page to share with buyers. These work best for agents who use single property websites primarily as digital brochures and are comfortable handling lead follow-up manually.</p>
+<p>If you need basic listing pages at the lowest possible cost, CribFlyer and Listings Unlimited both list low-priced plans. You will not get AI features or automated follow-up, but you will have a clean page to share with buyers. These work best for agents who use single property websites primarily as digital brochures and are comfortable handling lead follow-up manually.</p>
 
 <h3>Choose SinglePropertySites If You Run a High-Volume Team</h3>
 
@@ -514,7 +514,7 @@ Your browser does not support the video tag.
 <p>Rela is worth it if your primary goal is visual presentation. The templates are high quality and the 3D tour integration works well. However, if you want your listing pages to capture and convert leads automatically, Rela lacks AI chatbot functionality. Agents focused on lead generation will get more value from a platform like ListingFlare.</p>
 
 <h3>What is the cheapest Rela alternative?</h3>
-<p>RealBird offers a free basic plan, making it the cheapest option. CribFlyer starts at $7/month and Listings Unlimited offers unlimited sites for $24.95/month. Keep in mind that cheaper platforms typically lack AI chatbot features and automated lead follow-up, which means you may save money on the tool but lose potential leads.</p>
+<p>RealBird&rsquo;s free basic plan and SinglePropertySites&rsquo; free tier are the lowest-cost options we know of; CribFlyer starts at $9/month for one site. Keep in mind that cheaper platforms typically lack AI chatbot features and automated lead follow-up, which can mean saving on the tool but handling more inquiries by hand.</p>
 
 <h3>Can I switch from Rela to ListingFlare easily?</h3>
 <p>Yes. ListingFlare is designed for quick setup. You can recreate your listing pages in under 15 minutes per property. Simply upload your photos, enter the property details, and the AI chatbot is automatically trained on your listing data. Most agents complete the switch in a single afternoon.</p>
@@ -526,7 +526,7 @@ Your browser does not support the video tag.
 <p>ListingFlare is the only single property website builder that includes a per-listing AI chatbot. This means every listing page has its own AI assistant that answers buyer questions in real time, captures contact information through natural conversation, and can trigger an instant AI-drafted reply. No other platform on this list offers this combination of features.</p>
 
 <h3>How much does it cost to run 10 listing pages on Rela vs ListingFlare?</h3>
-<p>Rela's Team plan at $99/month supports up to 15 listings. ListingFlare costs $150/month with unlimited listings. ListingFlare is $51 more but includes AI chatbot lead capture, an instant AI reply to new leads, and detailed analytics that Rela does not offer - features that typically generate enough leads to cover the difference.</p>
+<p>Rela&rsquo;s Pro plan is $99/month for up to 25 active listings; its Plus plan is $49/month for 5. ListingFlare costs $150/month with unlimited listings, so it is more expensive than Rela&rsquo;s published plans at any listing count up to 25. What it adds is an AI chat assistant, an instant first reply to new leads and analytics; whether that is worth the difference depends on how you handle inquiries. We could not confirm that Rela lacks equivalent features, so compare on Rela&rsquo;s own site.</p>
 
 <h3>Do any Rela alternatives offer AI chatbots?</h3>
 <p>Among the platforms reviewed in this article, ListingFlare is the only Rela alternative that offers an AI chatbot on listing pages. The chatbot is trained on each listing&rsquo;s specific details and engages buyers in real-time conversation to capture leads. Other platforms rely on static contact forms, which have significantly lower conversion rates than interactive chat.</p>
