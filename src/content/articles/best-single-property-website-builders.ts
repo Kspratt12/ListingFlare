@@ -417,7 +417,7 @@ export const article: BlogPost = {
 <p>An IDX website (like Placester or Real Geeks) displays all active MLS listings in your area. It is designed to attract buyers searching for homes in your market. A single property website is a standalone page for one specific listing. It is designed to market that one property and capture leads who are interested in it. Most successful listing agents use both: an IDX site for general lead generation and single property websites for targeted listing marketing.</p>
 
 <h3>Can I use my own domain name for a single property website?</h3>
-<p>Most builders on this list support custom domains on their paid plans. Rela, CribFlyer, and ListingFlare all allow you to connect a custom domain so your listing URL looks like 1847grandview.com instead of a platform subdomain. Some agents register a domain for their most important listings to create a more professional impression on marketing materials.</p>
+<p>Most builders on this list support custom domains on their paid plans. Rela and CribFlyer list custom domains, so your listing URL can look like 1847grandview.com instead of a platform subdomain. ListingFlare does not offer a custom domain today; its pages live on listingflare.com. Some agents register a domain for their most important listings to create a more professional impression on marketing materials.</p>
 </div>
 `,
 };

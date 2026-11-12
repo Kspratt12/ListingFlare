@@ -34,10 +34,10 @@ export default function Page() {
       h1="ListingFlare vs SinglePropertySites.com: Which Is Right for You?"
       intro="SinglePropertySites.com (SPS) is one of the longest-running single property website services, known for bundling a listing page with ready-made social posts, email templates and flyers. ListingFlare also builds a website for each listing, with the emphasis on AI chat, lead capture and an instant auto-reply. Full disclosure: we make ListingFlare, so we have tried to be fair."
       highlights={[
-        "SPS: a listing marketing bundle, usually priced per listing",
+        "SPS: a listing marketing bundle with a free tier and low monthly plans by number of active listings",
         "ListingFlare: AI chat, lead inbox and instant auto-reply, one flat price",
         "Both include lead forms, photo galleries and flyers",
-        "The better value depends on how many listings you run at once",
+        "On price alone, SPS is usually the cheaper option; the difference is AI chat and lead handling",
       ]}
       sections={[
         {
@@ -45,14 +45,14 @@ export default function Page() {
           body: [
             "You want a one-click marketing package. When a listing goes live, SPS generates social media posts, email-ready content and print flyers alongside the website.",
             "You are happy with a functional, more traditional-looking page and the bundle matters more than modern design.",
-            "You run only a listing or two at a time and a per-listing price suits you. Check the current package options, since pricing varies.",
+            "Price is your main concern. SPS lists a free tier and paid plans that start around $12 per month for one active listing, which is well below ListingFlare's $150 per month. Confirm current plans on its pricing page.",
           ],
         },
         {
           heading: "Choose ListingFlare if",
           body: [
             "You want the page to answer buyers for you. ListingFlare puts an AI chat assistant on every listing, auto-replies to new leads, and keeps conversations in a lead inbox with scoring and a pipeline.",
-            "You carry several listings at once and prefer one flat price for unlimited listings.",
+            "You want the page itself to answer buyers and follow up, and one flat price for unlimited listings is acceptable even though it costs more than SPS's listed plans.",
             "You also want open house QR sign-in, flyers, social captions and an analytics dashboard in the same place.",
           ],
         },
@@ -67,7 +67,7 @@ export default function Page() {
         heading: "ListingFlare vs SinglePropertySites.com at a glance",
         columns: ["", "ListingFlare", "SinglePropertySites.com"],
         rows: [
-          ["Pricing", "$150/month, unlimited listings, 14-day free trial", "Varies by package, typically $25 to $50 per listing"],
+          ["Pricing", "$150/month, unlimited listings, 14-day free trial", "Free tier; monthly plans listed from about $12 (1 active listing) to $29 (5) and $49 (10)"],
           ["Marketing bundle", "Flyers, social captions, QR sign-in", "Auto-generated social posts, email templates and flyers"],
           ["Design", "Modern, clean, mobile-friendly", "Functional, more traditional"],
           ["AI chat on the page", "Yes, answers from your listing details", "Not listed"],
@@ -78,7 +78,7 @@ export default function Page() {
       }}
       stepsHeading="How to decide in five minutes"
       steps={[
-        { title: "Count your active listings", text: "One or two at a time can favor per-listing pricing. Five or more tends to favor a flat plan." },
+        { title: "Compare the real monthly cost", text: "SPS lists plans by number of active listings, far below $150 per month for typical agent volumes. ListingFlare's flat price only makes sense if AI chat, lead inbox and follow-up are worth the difference to you." },
         { title: "Decide what you want automated", text: "A ready-made social and email bundle points to SPS. AI chat and an instant auto-reply for buyers points to ListingFlare." },
         { title: "Check the dealbreakers", text: "Need a custom URL on every listing? Confirm it with each vendor. Need AI chat? That is ListingFlare." },
         { title: "Test it", text: "ListingFlare has a 14-day free trial with no credit card required, and you can see a live example first." },
@@ -92,7 +92,7 @@ export default function Page() {
         ],
       }}
       faqs={[
-        { question: "Is ListingFlare cheaper than SinglePropertySites.com?", answer: "It depends on how many listings you have. ListingFlare is a flat $150 per month for unlimited listings. SPS prices per listing, typically $25 to $50, so a few listings can cost less there while many listings cost more. Check SPS's current pricing." },
+        { question: "Is ListingFlare cheaper than SinglePropertySites.com?", answer: "No. ListingFlare is a flat $150 per month for unlimited listings. SinglePropertySites.com lists a free tier and monthly plans by active listings (for example about $12 for one, $29 for five, $49 for ten, as shown on its pricing page when we checked). ListingFlare is a different product: it adds AI chat and a lead inbox. Confirm current SPS pricing on its site." },
         { question: "Does SinglePropertySites.com have AI chat?", answer: "Not that we could find in its public information when we compared. ListingFlare includes an AI chat assistant on every listing page." },
         { question: "Which one creates social posts automatically?", answer: "SPS is known for generating social posts and email templates automatically. ListingFlare offers social captions and flyers, with the main focus on the listing page, chat and follow-up." },
         { question: "Can I try ListingFlare before paying?", answer: "Yes. There is a 14-day free trial with no credit card required to start." },
