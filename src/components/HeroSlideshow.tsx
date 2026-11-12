@@ -37,16 +37,18 @@ export default function HeroSlideshow({ listing, priceReduction }: Props) {
   );
 
   useEffect(() => {
+    // Nothing to cycle with zero or one photo (and "% 0" would make the index NaN).
+    if (photos.length < 2) return;
     const timer = setInterval(next, 6000);
     return () => clearInterval(timer);
-  }, [next]);
+  }, [next, photos.length]);
 
   const scrollToDetails = () => {
     document.getElementById("details")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative h-screen w-full overflow-hidden bg-gray-900">
       {/* Background images */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -57,14 +59,17 @@ export default function HeroSlideshow({ listing, priceReduction }: Props) {
           transition={{ duration: 1.2, ease: "easeInOut" }}
           className="absolute inset-0"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={photos[current].src}
-            alt={photos[current].alt}
-            fetchPriority="high"
-            className="h-full w-full object-cover"
-            style={{ imageRendering: "auto", WebkitBackfaceVisibility: "hidden", backfaceVisibility: "hidden" }}
-          />
+          {/* A listing can exist without photos; show the dark background instead of crashing the page. */}
+          {photos[current] && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={photos[current].src}
+              alt={photos[current].alt}
+              fetchPriority="high"
+              className="h-full w-full object-cover"
+              style={{ imageRendering: "auto", WebkitBackfaceVisibility: "hidden", backfaceVisibility: "hidden" }}
+            />
+          )}
         </motion.div>
       </AnimatePresence>
 
