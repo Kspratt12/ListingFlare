@@ -25,6 +25,7 @@
 
 import { validateShowingRequest, type ShowingInput } from "./showingInput";
 import { labelShowingTime } from "./timezone";
+import { sameStart, slotsOverlap } from "./showingSlots";
 import {
   buildAgentRequestEmail,
   buildBuyerRequestEmail,
@@ -53,12 +54,11 @@ export interface BookingStore {
     listingId: string,
     email: string
   ): Promise<"reserved" | "limited" | "unavailable">;
-  // Showings that still hold the slot (requested or confirmed), read only.
+  // Showings on this listing and date that still hold time (requested or confirmed), read only.
   findSlotShowings(
     listingId: string,
-    date: string,
-    time: string
-  ): Promise<Array<{ id: string; email: string; status: string }>>;
+    date: string
+  ): Promise<Array<{ id: string; email: string; status: string; showing_time: string }>>;
   findLeadId(listingId: string, email: string): Promise<string | null>;
   insertLead(row: Record<string, unknown>): Promise<string | null>;
   updateLead(leadId: string, fields: Record<string, unknown>): Promise<void>;
@@ -145,12 +145,14 @@ export async function processBookingRequest(
 
   // 5. Duplicate / conflict (read only). Same buyer + same slot is a retry;
   // a slot already confirmed for someone else is taken.
-  const holders = await store.findSlotShowings(input.listingId, input.showingDate, input.showingTime);
-  const mine = holders.find((h) => h.email.toLowerCase() === input.email);
+  // Duplicate = same buyer, same start. Conflict = another buyer's CONFIRMED showing whose 30-minute
+  // interval overlaps (see showingSlots.ts).
+  const holders = await store.findSlotShowings(input.listingId, input.showingDate);
+  const mine = holders.find((h) => h.email.toLowerCase() === input.email && sameStart(h.showing_time, input.showingTime));
   if (mine) {
     return { status: 200, body: { ok: true, duplicate: true, showingId: mine.id, status: mine.status } };
   }
-  if (holders.some((h) => h.status === "confirmed")) {
+  if (holders.some((h) => h.status === "confirmed" && slotsOverlap(h.showing_time, input.showingTime))) {
     return {
       status: 409,
       body: { error: "That time is no longer available. Please choose another time." },
@@ -251,6 +253,7 @@ export async function processBookingRequest(
       formattedDate,
       showingTime: timeLabel,
       dashboardUrl: `${deps.appUrl}/dashboard/showings`,
+      needsTimeZone: !zone,
     });
     // A failed send is logged but never turns a saved request into an error.
     const sends = await Promise.allSettled([

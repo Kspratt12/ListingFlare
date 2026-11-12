@@ -43,10 +43,16 @@ export interface ShowingRow {
 
 export interface ResponseStore {
   getShowing(id: string): Promise<ShowingRow | null>;
-  // Another CONFIRMED showing for the same listing, date and time.
-  hasConfirmedConflict(listingId: string, date: string, time: string, excludeId: string): Promise<boolean>;
-  // One conditional update: only succeeds if the row is still "requested".
-  transitionFromRequested(id: string, to: "confirmed" | "declined", at: string): Promise<boolean>;
+  // Atomic confirm: one database call (confirm_showing_request) that takes a per-listing-per-date lock,
+  // re-reads the row, refuses an overlapping CONFIRMED showing, and only then flips requested -> confirmed.
+  // It also re-checks that the row belongs to agentId.
+  confirmAtomically(
+    showingId: string,
+    agentId: string,
+    at: string
+  ): Promise<"confirmed" | "already_confirmed" | "conflict" | "not_requested" | "not_found">;
+  // Decline: one conditional update that only matches a still-"requested" row owned by agentId.
+  declineIfRequested(showingId: string, agentId: string, at: string): Promise<boolean>;
   updateLead(leadId: string, fields: Record<string, unknown>): Promise<void>;
   getListing(listingId: string): Promise<{ street: string; city: string; state: string } | null>;
   // Effective property zone: listings.timezone, else agent_profiles.timezone, else null.
@@ -116,31 +122,49 @@ export async function processShowingResponse(
     // "Today" is the calendar date at the PROPERTY when its zone is known (never the
     // server's). Without a zone it falls back to the UTC date, so a same-day slot is
     // allowed and the agent judges the time of day.
+    // An explicit, valid property time zone is REQUIRED to confirm: the invite, the Google event and the
+    // times in every email depend on it, and it is never guessed from the server or the browser.
     const tz = await store.getTimeZone(showing.listing_id, showing.agent_id);
-    const today = tz ? localDateIn(deps.now(), tz) : deps.now().toISOString().slice(0, 10);
-    if (tz) {
-      const z = zonedTimeToUtc(showing.showing_date, showing.showing_time, tz);
-      if (z && z.status === "gap") {
-        return {
-          status: 409,
-          body: { error: "That local time does not exist on that date (clocks move forward). Decline it and ask the buyer for another time." },
-        };
-      }
+    if (!tz) {
+      return {
+        status: 409,
+        body: {
+          code: "timezone_required",
+          error: "Set your time zone in Settings before confirming showings, so the buyer's invite and your calendar show the right time. You can still decline.",
+        },
+      };
+    }
+    const today = localDateIn(deps.now(), tz);
+    const z = zonedTimeToUtc(showing.showing_date, showing.showing_time, tz);
+    if (z && z.status === "gap") {
+      return {
+        status: 409,
+        body: { error: "That local time does not exist on that date (clocks move forward). Decline it and ask the buyer for another time." },
+      };
     }
     if (showing.showing_date < today) {
       return { status: 409, body: { error: "That date has already passed. Decline it or ask the buyer for a new time." } };
     }
-    if (await store.hasConfirmedConflict(showing.listing_id, showing.showing_date, showing.showing_time, showing.id)) {
-      return {
-        status: 409,
-        body: { error: "You already confirmed another showing for this listing at that time. Decline this request or contact the buyer." },
-      };
-    }
   }
 
-  const won = await store.transitionFromRequested(showing.id, target, deps.now().toISOString());
-  if (!won) {
-    return { status: 409, body: { error: "This request was just changed. Refresh to see its current status." } };
+  if (action === "confirm") {
+    const result = await store.confirmAtomically(showing.id, showing.agent_id, deps.now().toISOString());
+    if (result === "not_found") return { status: 404, body: { error: "Showing not found" } };
+    if (result === "already_confirmed") return { status: 200, body: { ok: true, status: "confirmed", unchanged: true } };
+    if (result === "conflict") {
+      return {
+        status: 409,
+        body: { error: "You already confirmed another showing for this listing that overlaps this time (showings last 30 minutes). Decline this request or contact the buyer." },
+      };
+    }
+    if (result !== "confirmed") {
+      return { status: 409, body: { error: "This request was just changed. Refresh to see its current status." } };
+    }
+  } else {
+    const won = await store.declineIfRequested(showing.id, showing.agent_id, deps.now().toISOString());
+    if (!won) {
+      return { status: 409, body: { error: "This request was just changed. Refresh to see its current status." } };
+    }
   }
 
   const [listing, agent] = await Promise.all([
@@ -206,31 +230,23 @@ export async function processShowingResponse(
     }
   }
 
-  let calendar: "created_or_not_connected" | "skipped_no_timezone" | undefined;
   if (action === "confirm") {
-    if (zone) {
-      try {
-        await deps.addGoogleEvent(showing.agent_id, {
-          showingDate: showing.showing_date,
-          showingTime: showing.showing_time,
-          listingAddress,
-          name: showing.name,
-          email: showing.email,
-          phone: showing.phone,
-          message: showing.message,
-          timeZone: zone,
-        });
-      } catch (err) {
-        console.error("Google Calendar event creation failed:", err);
-      }
-      calendar = "created_or_not_connected";
-    } else {
-      // No property time zone is stored, so an exact calendar time cannot be computed.
-      // A wrong event is worse than none: skip it and tell the agent how to fix it.
-      calendar = "skipped_no_timezone";
+    try {
+      await deps.addGoogleEvent(showing.agent_id, {
+        showingDate: showing.showing_date,
+        showingTime: showing.showing_time,
+        listingAddress,
+        name: showing.name,
+        email: showing.email,
+        phone: showing.phone,
+        message: showing.message,
+        timeZone: zone as string,
+      });
+    } catch (err) {
+      console.error("Google Calendar event creation failed:", err);
     }
     deps.enrollShowingFollowUps(showing.lead_id, showing.listing_id, showing.agent_id);
   }
 
-  return { status: 200, body: { ok: true, status: target, ...(calendar ? { calendar } : {}) } };
+  return { status: 200, body: { ok: true, status: target } };
 }

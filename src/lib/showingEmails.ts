@@ -56,6 +56,8 @@ export interface AgentEmailInput {
   formattedDate: string;
   showingTime: string;
   dashboardUrl: string;
+  // True when no property time zone is stored: the agent must set one before confirming.
+  needsTimeZone?: boolean;
 }
 
 const BRAND_HEADER = `
@@ -237,6 +239,7 @@ export function buildAgentRequestEmail(i: AgentEmailInput): { subject: string; h
               </table>
               <p style="margin: 12px 0 0; color: #6b7280; font-size: 12px;">${LOCAL_TIME_NOTE}</p>
             </div>
+            ${i.needsTimeZone ? `<p style="margin: 0 0 16px; color: #92400e; font-size: 13px; background: #fef3c7; border: 1px solid #fde68a; border-radius: 8px; padding: 10px 14px;">Set your time zone in Settings first. It is required to confirm a showing, so the invite and calendar show the right time.</p>` : ""}
             <a href="${dashboardUrl}" style="display: inline-block; background: #b8965a; color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600;">Confirm or decline</a>
           </div>
         </div>

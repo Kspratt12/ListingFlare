@@ -400,6 +400,7 @@ export default function ShowingsPage() {
 
   const [responding, setResponding] = useState<string | null>(null);
   const [respondError, setRespondError] = useState("");
+  const [needsTimeZone, setNeedsTimeZone] = useState(false);
 
   // Confirm or decline a buyer request. Goes through the server so the buyer is
   // emailed, the slot is checked for conflicts and the calendar entry is created.
@@ -415,14 +416,14 @@ export default function ShowingsPage() {
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
         setRespondError(data.error || "Could not update this request. Please try again.");
+        setNeedsTimeZone(data.code === "timezone_required");
         return;
       }
+      setNeedsTimeZone(false);
       setShowings((prev) =>
         prev.map((s) => (s.id === id ? { ...s, status: (action === "confirm" ? "confirmed" : "declined") as Showing["status"] } : s))
       );
-      if (data.calendar === "skipped_no_timezone") {
-        setRespondError("Confirmed and the buyer was emailed. No calendar event was created because your time zone is not set. Set it in Settings.");
-      }
+
     } catch {
       setRespondError("Network problem. The request was not changed.");
     } finally {
@@ -515,7 +516,15 @@ export default function ShowingsPage() {
       )}
 
       {respondError && (
-        <p role="alert" className="mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{respondError}</p>
+        <p role="alert" className="mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+          {respondError}
+          {needsTimeZone && (
+            <>
+              {" "}
+              <Link href="/dashboard/settings" className="font-semibold underline">Open Settings</Link>
+            </>
+          )}
+        </p>
       )}
 
       {/* Filter tabs */}

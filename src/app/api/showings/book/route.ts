@@ -52,15 +52,14 @@ function buildStore(db: ReturnType<typeof getAdminClient>): BookingStore {
       return data === true ? "reserved" : "limited";
     },
     getTimeZone: (listingId, agentId) => getPropertyTimeZone(db, listingId, agentId),
-    async findSlotShowings(listingId, date, time) {
+    async findSlotShowings(listingId, date) {
       const { data } = await db
         .from("showings")
-        .select("id, email, status")
+        .select("id, email, status, showing_time")
         .eq("listing_id", listingId)
         .eq("showing_date", date)
-        .eq("showing_time", time)
         .in("status", ["requested", "confirmed"]);
-      return (data ?? []).map((s) => ({ id: s.id, email: String(s.email || ""), status: s.status }));
+      return (data ?? []).map((s) => ({ id: s.id, email: String(s.email || ""), status: s.status, showing_time: String(s.showing_time || "") }));
     },
     async findLeadId(listingId, email) {
       const { data } = await db

@@ -39,23 +39,17 @@ export async function POST(req: NextRequest) {
             .maybeSingle();
           return (data as ShowingRow | null) ?? null;
         },
-        async hasConfirmedConflict(listingId, date, time, excludeId) {
-          const { data } = await db
-            .from("showings")
-            .select("id")
-            .eq("listing_id", listingId)
-            .eq("showing_date", date)
-            .eq("showing_time", time)
-            .eq("status", "confirmed")
-            .neq("id", excludeId)
-            .limit(1);
-          return (data ?? []).length > 0;
+        async confirmAtomically(showingId, agentId, at) {
+          const { data, error } = await db.rpc("confirm_showing_request", { p_showing_id: showingId, p_agent_id: agentId, p_at: at });
+          if (error) throw error;
+          return data as "confirmed" | "already_confirmed" | "conflict" | "not_requested" | "not_found";
         },
-        async transitionFromRequested(id, to, at) {
+        async declineIfRequested(showingId, agentId, at) {
           const { data } = await db
             .from("showings")
-            .update({ status: to, responded_at: at })
-            .eq("id", id)
+            .update({ status: "declined", responded_at: at })
+            .eq("id", showingId)
+            .eq("agent_id", agentId)
             .eq("status", "requested")
             .select("id");
           return (data ?? []).length === 1;

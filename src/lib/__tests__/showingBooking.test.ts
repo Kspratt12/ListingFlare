@@ -35,7 +35,7 @@ interface Opts {
   emailEnabled?: boolean;
   sendEmail?: (m: OutgoingEmail) => Promise<void>;
   agentName?: string;
-  slot?: Array<{ id: string; email: string; status: string }>;
+  slot?: Array<{ id: string; email: string; status: string; showing_time?: string }>;
   tz?: string | null;
 }
 
@@ -68,7 +68,7 @@ function setup(o: Opts = {}) {
         calls.push({ name: "reserveBookingAttempt", args });
         return o.reserve ? o.reserve() : "reserved";
       },
-      findSlotShowings: recAsync("findSlotShowings", o.slot ?? []),
+      findSlotShowings: recAsync("findSlotShowings", (o.slot ?? []).map((x) => ({ showing_time: "10:00 AM", ...x }))),
       getTimeZone: recAsync("getTimeZone", o.tz === undefined ? null : o.tz),
       findLeadId: recAsync("findLeadId", o.existingLeadId ?? null),
       insertLead: recAsync("insertLead", "lead-new-1"),
@@ -362,6 +362,48 @@ test("with email disabled nothing is sent, but the booking is still saved", asyn
   assert.equal(r.status, 200);
   assert.deepEqual(emails, []);
   assert.ok(names(calls).includes("insertShowing"));
+});
+
+test("OVERLAP, not just identical start: a confirmed 10:15 showing (entered by the agent) blocks public 10:00 and 10:30 requests but not 9:30 or 11:00", async () => {
+  const held = [{ id: "s1", email: "other@example.test", status: "confirmed", showing_time: "10:15 AM" }];
+  assert.equal((await processBookingRequest(body({ showingTime: "10:00 AM" }), setup({ slot: held }).deps)).status, 409);
+  assert.equal((await processBookingRequest(body({ showingTime: "10:30 AM" }), setup({ slot: held }).deps)).status, 409);
+  assert.equal((await processBookingRequest(body({ showingTime: "9:30 AM" }), setup({ slot: held }).deps)).status, 200);
+  assert.equal((await processBookingRequest(body({ showingTime: "11:00 AM" }), setup({ slot: held }).deps)).status, 200);
+});
+
+test("two public 30-minute slots never overlap each other, so a confirmed 10:00 does not block the 10:30 slot", async () => {
+  const held = [{ id: "s1", email: "other@example.test", status: "confirmed", showing_time: "10:00 AM" }];
+  assert.equal((await processBookingRequest(body({ showingTime: "10:30 AM" }), setup({ slot: held }).deps)).status, 200);
+  assert.equal((await processBookingRequest(body({ showingTime: "10:00 AM" }), setup({ slot: held }).deps)).status, 409);
+});
+
+test("DUPLICATE means the same buyer and the same start: the same buyer asking for a different time is a new request", async () => {
+  const diff = setup({ slot: [{ id: "s1", email: "dana@example.test", status: "requested", showing_time: "9:00 AM" }] });
+  const r = await processBookingRequest(body({ showingTime: "10:00 AM" }), diff.deps);
+  assert.equal(r.status, 200);
+  assert.equal(r.body.duplicate, undefined);
+});
+
+test("a pending REQUEST from someone else never blocks, even at the identical time (only a confirmed showing does)", async () => {
+  const pending = setup({ slot: [{ id: "s1", email: "other@example.test", status: "requested", showing_time: "10:00 AM" }] });
+  assert.equal((await processBookingRequest(body(), pending.deps)).status, 200);
+});
+
+test("the agent's email says a time zone must be set when none is stored, and does not when one is", async () => {
+  const none = setup({ tz: null });
+  await processBookingRequest(body(), none.deps);
+  assert.match(none.emails[1].html, /Set your time zone in Settings/);
+  const some = setup({ tz: "America/New_York" });
+  await processBookingRequest(body(), some.deps);
+  assert.doesNotMatch(some.emails[1].html, /Set your time zone in Settings/);
+});
+
+test("BUYER request email and AGENT request email both show the same zone-labelled time", async () => {
+  const x = setup({ tz: "America/Denver" });
+  await processBookingRequest(body({ showingDate: "2026-12-15" }), x.deps);
+  assert.match(x.emails[0].html, /10:00 AM MST/);
+  assert.match(x.emails[1].html, /10:00 AM MST/);
 });
 
 test("no test in this file reached the network", () => {

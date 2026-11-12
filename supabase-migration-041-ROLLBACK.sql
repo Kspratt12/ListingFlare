@@ -14,6 +14,8 @@ create table if not exists public.showings_041_backup as
 update public.showings set status = 'canceled', updated_at = now() where status in ('requested', 'declined');
 
 drop index if exists public.showings_slot_idx;
+drop function if exists public.confirm_showing_request(uuid, uuid, timestamptz);
+drop function if exists public.showing_time_minutes(text);
 
 alter table public.showings drop constraint if exists showings_status_check;
 alter table public.showings

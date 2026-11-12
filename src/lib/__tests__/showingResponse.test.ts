@@ -29,7 +29,7 @@ function row(over: Partial<ShowingRow> = {}): ShowingRow {
   };
 }
 
-function setup(o: { showing?: ShowingRow | null; conflict?: boolean; raced?: boolean; sendFails?: boolean; emailEnabled?: boolean; tz?: string | null; now?: Date } = {}) {
+function setup(o: { showing?: ShowingRow | null; conflict?: boolean; raced?: boolean; confirmResult?: "confirmed" | "already_confirmed" | "conflict" | "not_requested" | "not_found"; sendFails?: boolean; emailEnabled?: boolean; tz?: string | null; now?: Date } = {}) {
   const calls: string[] = [];
   const emails: OutgoingEmail[] = [];
   const googleEvents: Array<{ timeZone: string; showingDate: string; showingTime: string }> = [];
@@ -38,9 +38,12 @@ function setup(o: { showing?: ShowingRow | null; conflict?: boolean; raced?: boo
     emailEnabled: o.emailEnabled ?? true,
     store: {
       getShowing: async () => (o.showing === undefined ? row() : o.showing),
-      hasConfirmedConflict: async () => !!o.conflict,
-      transitionFromRequested: async (_id, to) => {
-        calls.push("transition:" + to);
+      confirmAtomically: async (_id, agentId) => {
+        calls.push("confirm:" + agentId);
+        return o.confirmResult ?? (o.conflict ? "conflict" : o.raced ? "not_requested" : "confirmed");
+      },
+      declineIfRequested: async (_id, agentId) => {
+        calls.push("decline:" + agentId);
         return !o.raced;
       },
       updateLead: async (_id, f) => {
@@ -73,7 +76,7 @@ test("confirm: status moves requested -> confirmed, buyer gets ONE confirmation 
   const r = await processShowingResponse({ ...ok, action: "confirm" }, deps);
   assert.equal(r.status, 200);
   assert.equal(r.body.status, "confirmed");
-  assert.deepEqual(calls.filter((c) => !c.startsWith("updateLead")), ["transition:confirmed", "sendEmail", "addGoogleEvent", "enroll"]);
+  assert.deepEqual(calls.filter((c) => !c.startsWith("updateLead")), ["confirm:" + AGENT, "sendEmail", "addGoogleEvent", "enroll"]);
   assert.equal(emails.length, 1);
   assert.equal(emails[0].to, "dana@example.test");
   assert.match(emails[0].html, /Your Showing is Confirmed!/);
@@ -86,7 +89,7 @@ test("decline: buyer is told the time is not available, with NO invite, no calen
   const r = await processShowingResponse({ ...ok, action: "decline" }, deps);
   assert.equal(r.status, 200);
   assert.equal(r.body.status, "declined");
-  assert.deepEqual(calls, ["transition:declined", "sendEmail"]);
+  assert.deepEqual(calls, ["decline:" + AGENT, "sendEmail"]);
   assert.match(emails[0].html, /not available/i);
   assert.doesNotMatch(emails[0].html, /Confirmed/);
   assert.equal(emails[0].attachments, undefined);
@@ -131,8 +134,8 @@ test("confirm is refused when another showing is already confirmed for that slot
   const { deps, calls } = setup({ conflict: true });
   const r = await processShowingResponse({ ...ok, action: "confirm" }, deps);
   assert.equal(r.status, 409);
-  assert.match(String(r.body.error), /already confirmed another/);
-  assert.deepEqual(calls, []);
+  assert.match(String(r.body.error), /overlaps/);
+  assert.deepEqual(calls, ["confirm:" + AGENT]); // only the atomic check ran; nothing was sent
 });
 
 test("declining a conflicting request is still allowed", async () => {
@@ -151,7 +154,7 @@ test("a concurrent response that lost the conditional update gets 409 and sends 
   const { deps, calls } = setup({ raced: true });
   const r = await processShowingResponse({ ...ok, action: "confirm" }, deps);
   assert.equal(r.status, 409);
-  assert.deepEqual(calls, ["transition:confirmed"]);
+  assert.deepEqual(calls, ["confirm:" + AGENT]);
 });
 
 test("a failing email provider does not undo the confirmation", async () => {
@@ -182,22 +185,32 @@ test("confirm with a known zone: email shows the zone, the Google event carries 
   const { deps, emails, googleEvents, calls } = setup({ tz: "America/New_York" });
   const r = await processShowingResponse({ ...ok, action: "confirm" }, deps);
   assert.equal(r.status, 200);
-  assert.equal(r.body.calendar, "created_or_not_connected");
   assert.match(emails[0].html, /10:00 AM EST/);
   assert.equal(googleEvents.length, 1);
   assert.equal(googleEvents[0].timeZone, "America/New_York");
   assert.ok(calls.includes("addGoogleEvent"));
 });
 
-test("confirm with NO known zone: still confirms, but no Google event is created and the invite stays floating; the agent is told why", async () => {
-  const { deps, emails, calls } = setup({ tz: null });
+test("confirm with NO stored time zone is REFUSED before anything changes: no status change, no email, no calendar entry, and the agent is told to set the zone", async () => {
+  const { deps, calls } = setup({ tz: null });
   const r = await processShowingResponse({ ...ok, action: "confirm" }, deps);
+  assert.equal(r.status, 409);
+  assert.equal(r.body.code, "timezone_required");
+  assert.match(String(r.body.error), /Settings/);
+  assert.deepEqual(calls, []);
+});
+
+test("an invalid stored zone is treated as no zone (the store only returns validated zones)", async () => {
+  const { deps, calls } = setup({ tz: null });
+  assert.equal((await processShowingResponse({ ...ok, action: "confirm" }, deps)).status, 409);
+  assert.deepEqual(calls, []);
+});
+
+test("DECLINE needs no time zone: an agent can always say no", async () => {
+  const { deps, calls } = setup({ tz: null });
+  const r = await processShowingResponse({ ...ok, action: "decline" }, deps);
   assert.equal(r.status, 200);
-  assert.equal(r.body.calendar, "skipped_no_timezone");
-  assert.ok(!calls.includes("addGoogleEvent"));
-  const ics = Buffer.from(emails[0].attachments![0].content, "base64").toString("utf8");
-  assert.match(ics, /DTSTART:20261114T100000\r?\n/);
-  assert.doesNotMatch(emails[0].html, /10:00 AM E[SD]T/);
+  assert.deepEqual(calls, ["decline:" + AGENT, "sendEmail"]);
 });
 
 test("daylight-saving fall-back day: 10:00 AM on 2026-11-01 is EST (UTC-5); the day before it is EDT", async () => {
@@ -249,6 +262,84 @@ test("the server's own time zone has no effect on the result", async () => {
   } finally {
     if (before === undefined) delete process.env.TZ; else process.env.TZ = before;
   }
+});
+
+// ---- authorization, atomic confirm, interval conflicts, displayed times -------------
+
+test("AUTHORIZATION: another agent cannot confirm or decline this agent's request; nothing is read beyond the ownership check, written or sent", async () => {
+  for (const action of ["confirm", "decline"]) {
+    const { deps, calls, emails } = setup();
+    const r = await processShowingResponse({ agentId: OTHER_AGENT, showingId: SHOWING, action }, deps);
+    assert.equal(r.status, 404, action);
+    assert.deepEqual(calls, [], action);
+    assert.equal(emails.length, 0);
+  }
+});
+
+test("the agent id passed to the atomic confirm is the signed-in agent's, so the database function re-checks ownership itself", async () => {
+  const { deps, calls } = setup();
+  await processShowingResponse({ ...ok, action: "confirm" }, deps);
+  assert.ok(calls.includes("confirm:" + AGENT));
+});
+
+test("the database function reports not_found (wrong agent) -> 404, with no email, calendar or follow-up", async () => {
+  const { deps, calls } = setup({ confirmResult: "not_found" });
+  const r = await processShowingResponse({ ...ok, action: "confirm" }, deps);
+  assert.equal(r.status, 404);
+  assert.deepEqual(calls, ["confirm:" + AGENT]);
+});
+
+test("the atomic confirm finding an OVERLAPPING confirmed showing returns 409 and sends nothing", async () => {
+  const { deps, calls, emails } = setup({ confirmResult: "conflict" });
+  const r = await processShowingResponse({ ...ok, action: "confirm" }, deps);
+  assert.equal(r.status, 409);
+  assert.match(String(r.body.error), /overlaps/);
+  assert.deepEqual(calls, ["confirm:" + AGENT]);
+  assert.equal(emails.length, 0);
+});
+
+test("SIMULTANEOUS confirmations of two requests for one slot: the serialized database function lets exactly one win, the other gets a conflict and sends nothing", async () => {
+  // A fake that behaves like confirm_showing_request: a queue (the lock) so the second caller sees the first's result.
+  let winner: string | null = null;
+  const lock: Array<() => void> = [];
+  let held = false;
+  const acquire = () => new Promise<void>((res) => { if (!held) { held = true; res(); } else lock.push(res); });
+  const release = () => { const next = lock.shift(); if (next) next(); else held = false; };
+  const mk = (id: string) => {
+    const x = setup({ showing: row({ id }) });
+    x.deps.store.confirmAtomically = async (sid) => {
+      await acquire();
+      try {
+        await Promise.resolve();
+        if (winner && winner !== sid) return "conflict";
+        winner = sid;
+        return "confirmed";
+      } finally { release(); }
+    };
+    return x;
+  };
+  const a = mk("3f2504e0-4f89-41d3-9a0c-0305e82c3301");
+  const b = mk("3f2504e0-4f89-41d3-9a0c-0305e82c3302");
+  const [ra, rb] = await Promise.all([
+    processShowingResponse({ agentId: AGENT, showingId: "3f2504e0-4f89-41d3-9a0c-0305e82c3301", action: "confirm" }, a.deps),
+    processShowingResponse({ agentId: AGENT, showingId: "3f2504e0-4f89-41d3-9a0c-0305e82c3302", action: "confirm" }, b.deps),
+  ]);
+  assert.deepEqual([ra.status, rb.status].sort(), [200, 409]);
+  const sent = (a.emails.length > 0 ? 1 : 0) + (b.emails.length > 0 ? 1 : 0);
+  assert.equal(sent, 1, "exactly one buyer is told 'confirmed'");
+});
+
+test("TIMES SHOWN TO THE BUYER AND THE AGENT: every email carries the zone abbreviation for that date", async () => {
+  const conf = setup({ tz: "America/Chicago", showing: row({ showing_date: "2026-07-15" }), now: new Date("2026-07-01T12:00:00Z") });
+  await processShowingResponse({ ...ok, action: "confirm" }, conf.deps);
+  assert.match(conf.emails[0].html, /10:00 AM CDT/);
+  assert.match(conf.emails[0].subject, /Showing Confirmed/);
+  const dec = setup({ tz: "America/Chicago", showing: row({ showing_date: "2026-12-15" }) });
+  await processShowingResponse({ ...ok, action: "decline" }, dec.deps);
+  assert.match(dec.emails[0].html, /10:00 AM CST/);
+  const phx = setup({ tz: "America/Phoenix", showing: row({ showing_date: "2026-07-15" }), now: new Date("2026-07-01T12:00:00Z") });
+  await processShowingResponse({ ...ok, action: "confirm" }, phx.deps);
+  assert.match(phx.emails[0].html, /10:00 AM MST/);
 });
 
 test("no test in this file reached the network", () => {
