@@ -6,7 +6,7 @@ export const article: BlogPost = {
   description:
     "How to get leads as a real estate agent: 12 lead generation strategies, from single-property websites to social media, and what to try first.",
   date: "2026-03-15",
-  updated: "2026-10-25",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [
@@ -29,7 +29,7 @@ export const article: BlogPost = {
 
 <p>A dedicated listing page lets you showcase professional photography, virtual tours, floor plans, and neighborhood details in a distraction-free environment. More importantly, it gives you a unique URL you can use across every marketing channel: social posts, print flyers, email blasts, and even yard signs with QR codes. Every visitor who lands on the page is a potential lead.</p>
 
-<p>Tools like <a href="/signup">ListingFlare</a> make this easy by letting you spin up a polished single-property website in minutes, complete with an AI-powered chatbot that answers buyer questions and captures contact details 24/7. Instead of missing inquiries that come in after hours, the chatbot qualifies leads in real time so you wake up to warm prospects in your inbox. If you have not tried this approach, <a href="/demo">see a demo listing</a> to understand why top-producing agents are making it a standard part of their marketing toolkit.</p>
+<p>Tools like <a href="/signup">ListingFlare</a> make this easy by letting you spin up a polished single-property website, complete with an AI-powered chatbot that answers buyer questions and captures contact details 24/7. Instead of missing inquiries that come in after hours, the chatbot qualifies leads in real time so you wake up to warm prospects in your inbox. If you have not tried this approach, <a href="/demo">see a demo listing</a> to understand why top-producing agents are making it a standard part of their marketing toolkit.</p>
 
 <h2>2. Social Media Marketing</h2>
 
@@ -157,6 +157,6 @@ export const article: BlogPost = {
 
 <p>Learning <strong>how to get leads as a real estate agent</strong> is only the first step. Execution and consistency are what separate agents who struggle from those who thrive. You do not need to implement all 12 strategies at once. Pick two or three that match your current budget and strengths, commit to them for 90 days, and track your results.</p>
 
-<p>If you want to start with one of the highest-impact, lowest-effort strategies on this list, try creating single-property websites for your next listing. <a href="/signup">Sign up for ListingFlare</a> and build your first listing page in minutes, complete with AI-powered lead capture that works around the clock. Your future clients are already searching online. Make sure they find you.</p>
+<p>If you want to start with one of the highest-impact, lowest-effort strategies on this list, try creating single-property websites for your next listing. <a href="/signup">Sign up for ListingFlare</a> and build your first listing page, complete with AI-powered lead capture that works around the clock. Your future clients are already searching online. Make sure they find you.</p>
 `,
 };

@@ -78,7 +78,7 @@ export const article: BlogPost = {
 
 <p>Pull up a live example of a single-property website you have created for a past listing. Show them how the page highlights the home with full-screen photography, detailed descriptions, a floor plan, and neighborhood information, all on a distraction-free page without competing listings pulling the buyer's attention away. Then show them the AI chatbot that sits on the page, answering buyer questions 24/7 and capturing lead information even when you are asleep.</p>
 
-<p>When a seller sees that kind of technology, they immediately understand that you are operating at a different level. Tools like <a href="/signup">ListingFlare</a> let you create these property websites in minutes, and <a href="/demo">seeing a demo listing</a> in your presentation is often the moment a seller decides you are the right agent.</p>
+<p>When a seller sees that kind of technology, they immediately understand that you are operating at a different level. Tools like <a href="/signup">ListingFlare</a> let you create these property websites, and <a href="/demo">seeing a demo listing</a> in your presentation is often the moment a seller decides you are the right agent.</p>
 
 <h3>Show Examples of Past Results</h3>
 
@@ -217,6 +217,6 @@ export const article: BlogPost = {
 
 <p>Start by sharpening your prospecting routine so you never run out of listing opportunities. Build a visual marketing plan that shows sellers exactly what you will do for their home, week by week. Integrate technology like single-property websites with AI chatbots into your presentation so sellers see that you are operating at the highest level. And follow up with intention, including a sample property website of their home that makes the decision feel inevitable.</p>
 
-<p>If you are ready to add dedicated property websites to your listing toolkit, <a href="/signup">try ListingFlare</a> and see how easy it is to create a polished, AI-powered listing page in minutes. Your next listing presentation could be the one that changes your business.</p>
+<p>If you are ready to add dedicated property websites to your listing toolkit, <a href="/signup">try ListingFlare</a> and see how easy it is to create a polished, AI-powered listing page. Your next listing presentation could be the one that changes your business.</p>
 `,
 };

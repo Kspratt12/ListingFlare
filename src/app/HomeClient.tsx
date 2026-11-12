@@ -110,7 +110,7 @@ const walkthrough = [
   {
     step: "01",
     title: "Enter your property details",
-    description: "Address, price, beds, baths. The AI writes the description if you want. Two minutes.",
+    description: "Address, price, beds, baths. The AI writes the description if you want.",
     icon: PlusCircle,
     mockup: "create",
   },

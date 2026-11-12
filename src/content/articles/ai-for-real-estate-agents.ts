@@ -7,7 +7,7 @@ export const article: BlogPost = {
   description:
     "A practical look at AI for real estate agents: chatbots that capture leads, listing description tools, and which AI tools are worth using versus hype.",
   date: "2026-03-21",
-  updated: "2026-10-25",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [
@@ -271,7 +271,7 @@ export const article: BlogPost = {
 <h3>Quick Wins (Start This Week)</h3>
 
 <ol>
-<li><strong>Create a single-property website with AI chatbot</strong> - <a href="/signup">sign up for ListingFlare's free trial</a> and build your first listing page in under 5 minutes. The AI chatbot starts capturing leads immediately</li>
+<li><strong>Create a single-property website with AI chatbot</strong> - <a href="/signup">sign up for ListingFlare's free trial</a> and build your first listing page. The AI chatbot starts capturing leads immediately</li>
 <li><strong>Generate AI listing descriptions</strong> - stop spending 30 to 45 minutes per description. Let AI draft it, then refine with your personal touch</li>
 <li><strong>Set up AI auto-reply</strong> - make sure every lead gets a response within minutes, even when you are unavailable</li>
 </ol>

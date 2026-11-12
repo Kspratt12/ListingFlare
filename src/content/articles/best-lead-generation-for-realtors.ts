@@ -7,7 +7,7 @@ export const article: BlogPost = {
   description:
     "The 12 best lead generation methods for realtors, compared by cost, speed to results and effort, so you can choose what fits your pipeline and budget.",
   date: "2026-03-21",
-  updated: "2026-10-25",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [
@@ -116,7 +116,7 @@ export const article: BlogPost = {
 
 <p>The math is simple. Put the property URL on your yard sign, your flyers, your social media posts, and your email blasts. Every buyer who visits that page, whether they scan a QR code from the sidewalk at 10 PM or click a link from your Instagram post, lands on a distraction-free page with your branding, your photos, your contact form. No competing agents. No algorithm sending them elsewhere.</p>
 
-<p><a href="/signup">ListingFlare</a> lets you spin up a professional single-property website in under five minutes. Each page includes a full photo gallery, property details, neighborhood data, and an <strong>AI-powered chatbot</strong> that engages buyers in real time and captures their contact information 24/7. A buyer visits at midnight, asks "Is the basement finished?", and the chatbot answers and collects their name, email, and phone number. You wake up with a warm lead instead of losing that buyer to a late-night Zillow scroll.</p>
+<p><a href="/signup">ListingFlare</a> lets you spin up a professional single-property website. Each page includes a full photo gallery, property details, neighborhood data, and an <strong>AI-powered chatbot</strong> that engages buyers in real time and captures their contact information 24/7. A buyer visits at midnight, asks "Is the basement finished?", and the chatbot answers and collects their name, email, and phone number. You wake up with a warm lead instead of losing that buyer to a late-night Zillow scroll.</p>
 
 <p>The best part: every listing you take becomes a lead generation asset, not just a transaction. A single property website can generate <strong>15 to 40 buyer leads</strong> from one listing when promoted properly. <a href="/demo">See a live demo here.</a></p>
 
