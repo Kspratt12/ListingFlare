@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import type { Showing, Listing } from "@/lib/types";
@@ -389,6 +389,15 @@ export default function ShowingsPage() {
     };
   }, []);
 
+  // Open on the requests tab the first time pending requests are seen, so a new request is not missed.
+  const autoOpenedRequests = useRef(false);
+  useEffect(() => {
+    if (!autoOpenedRequests.current && showings.some((s) => s.status === "requested")) {
+      autoOpenedRequests.current = true;
+      setFilter("requests");
+    }
+  }, [showings]);
+
   const [responding, setResponding] = useState<string | null>(null);
   const [respondError, setRespondError] = useState("");
 
@@ -618,14 +627,14 @@ export default function ShowingsPage() {
                       className="rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-brand-200"
                     >
                       <div className="flex flex-wrap items-start justify-between gap-4">
-                        <div className="min-w-0 flex-1">
+                        <div className="min-w-0 basis-full sm:flex-1 sm:basis-0">
                           {/* Time + Address */}
                           <div className="flex flex-wrap items-center gap-3">
                             <span className="inline-flex items-center gap-1 rounded-lg bg-brand-50 px-2.5 py-1 text-sm font-semibold text-brand-700">
                               <Clock className="h-3.5 w-3.5" />
                               {showing.showing_time}
                             </span>
-                            <span className="flex items-center gap-1.5 truncate text-sm text-gray-600">
+                            <span className="flex items-start gap-1.5 text-sm text-gray-600 sm:items-center sm:truncate">
                               <MapPin className="h-3.5 w-3.5 flex-shrink-0 text-gray-400" />
                               {address}
                             </span>
