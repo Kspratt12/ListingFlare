@@ -691,8 +691,8 @@ export default function EditListingPage() {
           <h2 className="font-serif text-lg font-semibold text-gray-900">Address</h2>
           <div className="mt-4 space-y-4">
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">Street Address</label>
-              <AddressAutocomplete
+              <label htmlFor="edit-street-address" className="mb-1.5 block text-sm font-medium text-gray-700">Street Address</label>
+              <AddressAutocomplete id="edit-street-address"
                 value={street}
                 onChange={setStreet}
                 onSelect={(addr) => {
@@ -707,8 +707,8 @@ export default function EditListingPage() {
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">City</label>
-                <input
+                <label htmlFor="edit-city" className="mb-1.5 block text-sm font-medium text-gray-700">City</label>
+                <input id="edit-city"
                   type="text"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
@@ -717,8 +717,8 @@ export default function EditListingPage() {
                 />
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">State</label>
-                <select
+                <label htmlFor="edit-state" className="mb-1.5 block text-sm font-medium text-gray-700">State</label>
+                <select id="edit-state"
                   value={state}
                   onChange={(e) => setState(e.target.value)}
                   className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
@@ -729,8 +729,8 @@ export default function EditListingPage() {
                 </select>
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">ZIP Code</label>
-                <input
+                <label htmlFor="edit-zip-code" className="mb-1.5 block text-sm font-medium text-gray-700">ZIP Code</label>
+                <input id="edit-zip-code"
                   type="text"
                   value={zip}
                   onChange={(e) => setZip(e.target.value)}
@@ -747,38 +747,38 @@ export default function EditListingPage() {
           <h2 className="font-serif text-lg font-semibold text-gray-900">Property Details</h2>
           <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">Price ($)</label>
-              <input type="text" value={formatNumber(price)} onChange={(e) => setPrice(parseNumber(e.target.value))}
+              <label htmlFor="edit-price" className="mb-1.5 block text-sm font-medium text-gray-700">Price ($)</label>
+              <input id="edit-price" type="text" value={formatNumber(price)} onChange={(e) => setPrice(parseNumber(e.target.value))}
                 className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="4,750,000" />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">Bedrooms</label>
-              <input type="number" value={beds} onChange={(e) => setBeds(e.target.value)}
+              <label htmlFor="edit-bedrooms" className="mb-1.5 block text-sm font-medium text-gray-700">Bedrooms</label>
+              <input id="edit-bedrooms" type="number" value={beds} onChange={(e) => setBeds(e.target.value)}
                 className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="5" />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">Bathrooms</label>
-              <input type="number" step="0.5" value={baths} onChange={(e) => setBaths(e.target.value)}
+              <label htmlFor="edit-bathrooms" className="mb-1.5 block text-sm font-medium text-gray-700">Bathrooms</label>
+              <input id="edit-bathrooms" type="number" step="0.5" value={baths} onChange={(e) => setBaths(e.target.value)}
                 className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="4.5" />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">Square Feet</label>
-              <input type="text" value={formatNumber(sqft)} onChange={(e) => setSqft(parseNumber(e.target.value))}
+              <label htmlFor="edit-square-feet" className="mb-1.5 block text-sm font-medium text-gray-700">Square Feet</label>
+              <input id="edit-square-feet" type="text" value={formatNumber(sqft)} onChange={(e) => setSqft(parseNumber(e.target.value))}
                 className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="4,820" />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">Year Built</label>
-              <input type="number" value={yearBuilt} onChange={(e) => setYearBuilt(e.target.value)}
+              <label htmlFor="edit-year-built" className="mb-1.5 block text-sm font-medium text-gray-700">Year Built</label>
+              <input id="edit-year-built" type="number" value={yearBuilt} onChange={(e) => setYearBuilt(e.target.value)}
                 className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="2019" />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">Lot Size</label>
-              <input type="text" value={lotSize} onChange={(e) => setLotSize(formatLotSize(e.target.value))}
+              <label htmlFor="edit-lot-size" className="mb-1.5 block text-sm font-medium text-gray-700">Lot Size</label>
+              <input id="edit-lot-size" type="text" value={lotSize} onChange={(e) => setLotSize(formatLotSize(e.target.value))}
                 className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="10,000 sqft or 0.38 acres" />
             </div>
@@ -804,6 +804,7 @@ export default function EditListingPage() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={8}
+              aria-label="Description"
               className="w-full resize-none rounded-lg border border-gray-200 px-4 py-3 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
               placeholder="Describe the property in detail."
             />
@@ -832,6 +833,7 @@ export default function EditListingPage() {
               value={featuresText}
               onChange={(e) => setFeaturesText(e.target.value)}
               rows={6}
+              aria-label="Property highlights, one per line"
               className="w-full resize-none rounded-lg border border-gray-200 px-4 py-3 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
               placeholder={"Panoramic Ocean Views\nInfinity Edge Pool & Spa\nChef's Kitchen with Wine Room"}
             />
@@ -1030,7 +1032,7 @@ export default function EditListingPage() {
         <section className="rounded-xl border border-gray-200 bg-white p-6">
           <h2 className="font-serif text-lg font-semibold text-gray-900">Virtual Tour</h2>
           <p className="mt-1 text-sm text-gray-500">{TOUR_URL_HELP} The tour will be embedded directly on your listing page.</p>
-          <input
+          <input aria-label="Virtual tour URL"
             type="url"
             value={virtualTourUrl}
             onChange={(e) => setVirtualTourUrl(e.target.value)}
@@ -1082,7 +1084,7 @@ export default function EditListingPage() {
                 Buyers can ask questions and get instant answers about this property. Turns into leads automatically. Leave on unless you want full manual control on this one.
               </p>
             </div>
-            <button
+            <button aria-label="AI chat on this listing"
               type="button"
               role="switch"
               aria-checked={aiChatEnabled}
@@ -1108,38 +1110,38 @@ export default function EditListingPage() {
           </p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <div>
-              <label className="mb-1 block text-xs font-medium text-gray-600">Full name</label>
-              <input type="text" value={coAgentName} onChange={(e) => { setCoAgentName(e.target.value); setHasUnsavedChanges(true); }}
+              <label htmlFor="edit-full-name" className="mb-1 block text-xs font-medium text-gray-600">Full name</label>
+              <input id="edit-full-name" type="text" value={coAgentName} onChange={(e) => { setCoAgentName(e.target.value); setHasUnsavedChanges(true); }}
                 className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="Jane Doe" />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-gray-600">Title</label>
-              <input type="text" value={coAgentTitle} onChange={(e) => { setCoAgentTitle(e.target.value); setHasUnsavedChanges(true); }}
+              <label htmlFor="edit-title" className="mb-1 block text-xs font-medium text-gray-600">Title</label>
+              <input id="edit-title" type="text" value={coAgentTitle} onChange={(e) => { setCoAgentTitle(e.target.value); setHasUnsavedChanges(true); }}
                 className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="Real Estate Agent" />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-gray-600">Brokerage</label>
-              <input type="text" value={coAgentBrokerage} onChange={(e) => { setCoAgentBrokerage(e.target.value); setHasUnsavedChanges(true); }}
+              <label htmlFor="edit-brokerage" className="mb-1 block text-xs font-medium text-gray-600">Brokerage</label>
+              <input id="edit-brokerage" type="text" value={coAgentBrokerage} onChange={(e) => { setCoAgentBrokerage(e.target.value); setHasUnsavedChanges(true); }}
                 className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="Westside Realty" />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-gray-600">License #</label>
-              <input type="text" value={coAgentLicense} onChange={(e) => { setCoAgentLicense(e.target.value); setHasUnsavedChanges(true); }}
+              <label htmlFor="edit-license" className="mb-1 block text-xs font-medium text-gray-600">License #</label>
+              <input id="edit-license" type="text" value={coAgentLicense} onChange={(e) => { setCoAgentLicense(e.target.value); setHasUnsavedChanges(true); }}
                 className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="e.g. 300XXX" />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-gray-600">Phone</label>
-              <input type="tel" value={coAgentPhone} onChange={(e) => { setCoAgentPhone(e.target.value); setHasUnsavedChanges(true); }}
+              <label htmlFor="edit-phone" className="mb-1 block text-xs font-medium text-gray-600">Phone</label>
+              <input id="edit-phone" type="tel" value={coAgentPhone} onChange={(e) => { setCoAgentPhone(e.target.value); setHasUnsavedChanges(true); }}
                 className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="(555) 123-4567" />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-gray-600">Email</label>
-              <input type="email" value={coAgentEmail} onChange={(e) => { setCoAgentEmail(e.target.value); setHasUnsavedChanges(true); }}
+              <label htmlFor="edit-email" className="mb-1 block text-xs font-medium text-gray-600">Email</label>
+              <input id="edit-email" type="email" value={coAgentEmail} onChange={(e) => { setCoAgentEmail(e.target.value); setHasUnsavedChanges(true); }}
                 className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="jane@brokerage.com" />
             </div>
@@ -1168,8 +1170,8 @@ export default function EditListingPage() {
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div className="sm:col-span-2">
-                    <label className="mb-1 block text-xs font-medium text-gray-600">Address</label>
-                    <input
+                    <label htmlFor={`edit-comp-${i}-address`} className="mb-1 block text-xs font-medium text-gray-600">Address</label>
+                    <input id={`edit-comp-${i}-address`}
                       type="text"
                       value={c.address}
                       onChange={(e) => {
@@ -1180,8 +1182,8 @@ export default function EditListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-gray-600">Sold price</label>
-                    <input
+                    <label htmlFor={`edit-comp-${i}-sold-price`} className="mb-1 block text-xs font-medium text-gray-600">Sold price</label>
+                    <input id={`edit-comp-${i}-sold-price`}
                       type="text"
                       inputMode="numeric"
                       value={c.soldPrice ? formatNumber(String(c.soldPrice)) : ""}
@@ -1194,8 +1196,8 @@ export default function EditListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-gray-600">Sold date</label>
-                    <input
+                    <label htmlFor={`edit-comp-${i}-sold-date`} className="mb-1 block text-xs font-medium text-gray-600">Sold date</label>
+                    <input id={`edit-comp-${i}-sold-date`}
                       type="date"
                       value={c.soldDate || ""}
                       onChange={(e) => {
@@ -1205,8 +1207,8 @@ export default function EditListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-gray-600">Beds</label>
-                    <input
+                    <label htmlFor={`edit-comp-${i}-beds`} className="mb-1 block text-xs font-medium text-gray-600">Beds</label>
+                    <input id={`edit-comp-${i}-beds`}
                       type="text"
                       inputMode="numeric"
                       value={c.beds ?? ""}
@@ -1219,8 +1221,8 @@ export default function EditListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-gray-600">Baths</label>
-                    <input
+                    <label htmlFor={`edit-comp-${i}-baths`} className="mb-1 block text-xs font-medium text-gray-600">Baths</label>
+                    <input id={`edit-comp-${i}-baths`}
                       type="text"
                       inputMode="decimal"
                       value={c.baths ?? ""}
@@ -1233,8 +1235,8 @@ export default function EditListingPage() {
                     />
                   </div>
                   <div className="sm:col-span-2">
-                    <label className="mb-1 block text-xs font-medium text-gray-600">Sqft (optional)</label>
-                    <input
+                    <label htmlFor={`edit-comp-${i}-sqft-optional`} className="mb-1 block text-xs font-medium text-gray-600">Sqft (optional)</label>
+                    <input id={`edit-comp-${i}-sqft-optional`}
                       type="text"
                       inputMode="numeric"
                       value={c.sqft ? formatNumber(String(c.sqft)) : ""}
@@ -1318,8 +1320,8 @@ export default function EditListingPage() {
               {/* Identifiers */}
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-gray-700">MLS ID</label>
-                  <input
+                  <label htmlFor="edit-mls-id" className="mb-1.5 block text-sm font-medium text-gray-700">MLS ID</label>
+                  <input id="edit-mls-id"
                     type="text"
                     value={mlsId}
                     onChange={(e) => { setMlsId(e.target.value); setHasUnsavedChanges(true); }}
@@ -1328,8 +1330,8 @@ export default function EditListingPage() {
                   />
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-gray-700">County</label>
-                  <input
+                  <label htmlFor="edit-county" className="mb-1.5 block text-sm font-medium text-gray-700">County</label>
+                  <input id="edit-county"
                     type="text"
                     value={county}
                     onChange={(e) => { setCounty(e.target.value); setHasUnsavedChanges(true); }}
@@ -1338,8 +1340,8 @@ export default function EditListingPage() {
                   />
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-gray-700">Subdivision / Neighborhood</label>
-                  <input
+                  <label htmlFor="edit-subdivision-neighborhood" className="mb-1.5 block text-sm font-medium text-gray-700">Subdivision / Neighborhood</label>
+                  <input id="edit-subdivision-neighborhood"
                     type="text"
                     value={subdivision}
                     onChange={(e) => { setSubdivision(e.target.value); setHasUnsavedChanges(true); }}
@@ -1348,8 +1350,8 @@ export default function EditListingPage() {
                   />
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-gray-700">Property Type</label>
-                  <input
+                  <label htmlFor="edit-property-type" className="mb-1.5 block text-sm font-medium text-gray-700">Property Type</label>
+                  <input id="edit-property-type"
                     type="text"
                     value={propertySubtype}
                     onChange={(e) => { setPropertySubtype(e.target.value); setHasUnsavedChanges(true); }}
@@ -1358,8 +1360,8 @@ export default function EditListingPage() {
                   />
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-gray-700">Architectural Style</label>
-                  <input
+                  <label htmlFor="edit-architectural-style" className="mb-1.5 block text-sm font-medium text-gray-700">Architectural Style</label>
+                  <input id="edit-architectural-style"
                     type="text"
                     value={architecturalStyle}
                     onChange={(e) => { setArchitecturalStyle(e.target.value); setHasUnsavedChanges(true); }}
@@ -1369,8 +1371,8 @@ export default function EditListingPage() {
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Stories</label>
-                    <input
+                    <label htmlFor="edit-stories" className="mb-1.5 block text-sm font-medium text-gray-700">Stories</label>
+                    <input id="edit-stories"
                       type="number"
                       value={stories}
                       onChange={(e) => { setStories(e.target.value); setHasUnsavedChanges(true); }}
@@ -1379,8 +1381,8 @@ export default function EditListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Parking</label>
-                    <input
+                    <label htmlFor="edit-parking" className="mb-1.5 block text-sm font-medium text-gray-700">Parking</label>
+                    <input id="edit-parking"
                       type="number"
                       value={parkingSpaces}
                       onChange={(e) => { setParkingSpaces(e.target.value); setHasUnsavedChanges(true); }}
@@ -1396,8 +1398,8 @@ export default function EditListingPage() {
                 <h3 className="mb-3 text-sm font-semibold text-gray-900">Taxes & HOA</h3>
                 <div className="grid gap-4 sm:grid-cols-3">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Annual Property Tax ($)</label>
-                    <input
+                    <label htmlFor="edit-annual-property-tax" className="mb-1.5 block text-sm font-medium text-gray-700">Annual Property Tax ($)</label>
+                    <input id="edit-annual-property-tax"
                       type="text"
                       inputMode="numeric"
                       value={propertyTaxAnnual}
@@ -1418,8 +1420,8 @@ export default function EditListingPage() {
                     </label>
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">HOA ($/mo)</label>
-                    <input
+                    <label htmlFor="edit-hoa-mo" className="mb-1.5 block text-sm font-medium text-gray-700">HOA ($/mo)</label>
+                    <input id="edit-hoa-mo"
                       type="text"
                       inputMode="numeric"
                       value={hoaFeeMonthly}
@@ -1437,8 +1439,8 @@ export default function EditListingPage() {
                 <h3 className="mb-3 text-sm font-semibold text-gray-900">Systems</h3>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Heating</label>
-                    <input
+                    <label htmlFor="edit-heating" className="mb-1.5 block text-sm font-medium text-gray-700">Heating</label>
+                    <input id="edit-heating"
                       type="text"
                       value={heatingType}
                       onChange={(e) => { setHeatingType(e.target.value); setHasUnsavedChanges(true); }}
@@ -1447,8 +1449,8 @@ export default function EditListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Cooling</label>
-                    <input
+                    <label htmlFor="edit-cooling" className="mb-1.5 block text-sm font-medium text-gray-700">Cooling</label>
+                    <input id="edit-cooling"
                       type="text"
                       value={coolingType}
                       onChange={(e) => { setCoolingType(e.target.value); setHasUnsavedChanges(true); }}
@@ -1457,8 +1459,8 @@ export default function EditListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Water Source</label>
-                    <input
+                    <label htmlFor="edit-water-source" className="mb-1.5 block text-sm font-medium text-gray-700">Water Source</label>
+                    <input id="edit-water-source"
                       type="text"
                       value={waterSource}
                       onChange={(e) => { setWaterSource(e.target.value); setHasUnsavedChanges(true); }}
@@ -1467,8 +1469,8 @@ export default function EditListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Sewer</label>
-                    <input
+                    <label htmlFor="edit-sewer" className="mb-1.5 block text-sm font-medium text-gray-700">Sewer</label>
+                    <input id="edit-sewer"
                       type="text"
                       value={sewerType}
                       onChange={(e) => { setSewerType(e.target.value); setHasUnsavedChanges(true); }}
@@ -1484,8 +1486,8 @@ export default function EditListingPage() {
                 <h3 className="mb-3 text-sm font-semibold text-gray-900">Construction</h3>
                 <div className="grid gap-4 sm:grid-cols-3">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Roof</label>
-                    <input
+                    <label htmlFor="edit-roof" className="mb-1.5 block text-sm font-medium text-gray-700">Roof</label>
+                    <input id="edit-roof"
                       type="text"
                       value={roofType}
                       onChange={(e) => { setRoofType(e.target.value); setHasUnsavedChanges(true); }}
@@ -1494,8 +1496,8 @@ export default function EditListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Construction Material</label>
-                    <input
+                    <label htmlFor="edit-construction-material" className="mb-1.5 block text-sm font-medium text-gray-700">Construction Material</label>
+                    <input id="edit-construction-material"
                       type="text"
                       value={constructionMaterial}
                       onChange={(e) => { setConstructionMaterial(e.target.value); setHasUnsavedChanges(true); }}
@@ -1504,8 +1506,8 @@ export default function EditListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Foundation</label>
-                    <input
+                    <label htmlFor="edit-foundation" className="mb-1.5 block text-sm font-medium text-gray-700">Foundation</label>
+                    <input id="edit-foundation"
                       type="text"
                       value={foundationType}
                       onChange={(e) => { setFoundationType(e.target.value); setHasUnsavedChanges(true); }}
@@ -1518,8 +1520,8 @@ export default function EditListingPage() {
 
               {/* Appliances */}
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">Appliances Included (one per line)</label>
-                <textarea
+                <label htmlFor="edit-appliances-included-one-per-line" className="mb-1.5 block text-sm font-medium text-gray-700">Appliances Included (one per line)</label>
+                <textarea id="edit-appliances-included-one-per-line"
                   value={appliancesText}
                   onChange={(e) => { setAppliancesText(e.target.value); setHasUnsavedChanges(true); }}
                   rows={3}
@@ -1533,8 +1535,8 @@ export default function EditListingPage() {
                 <h3 className="mb-3 text-sm font-semibold text-gray-900">Interior Details</h3>
                 <div className="grid gap-4 sm:grid-cols-3">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Fireplaces</label>
-                    <input
+                    <label htmlFor="edit-fireplaces" className="mb-1.5 block text-sm font-medium text-gray-700">Fireplaces</label>
+                    <input id="edit-fireplaces"
                       type="number"
                       value={fireplaceCount}
                       onChange={(e) => { setFireplaceCount(e.target.value); setHasUnsavedChanges(true); }}
@@ -1543,8 +1545,8 @@ export default function EditListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Laundry</label>
-                    <input
+                    <label htmlFor="edit-laundry" className="mb-1.5 block text-sm font-medium text-gray-700">Laundry</label>
+                    <input id="edit-laundry"
                       type="text"
                       value={laundryLocation}
                       onChange={(e) => { setLaundryLocation(e.target.value); setHasUnsavedChanges(true); }}
@@ -1553,8 +1555,8 @@ export default function EditListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Basement</label>
-                    <input
+                    <label htmlFor="edit-basement" className="mb-1.5 block text-sm font-medium text-gray-700">Basement</label>
+                    <input id="edit-basement"
                       type="text"
                       value={basementType}
                       onChange={(e) => { setBasementType(e.target.value); setHasUnsavedChanges(true); }}
@@ -1563,8 +1565,8 @@ export default function EditListingPage() {
                     />
                   </div>
                   <div className="sm:col-span-3">
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Parcel Number (APN)</label>
-                    <input
+                    <label htmlFor="edit-parcel-number-apn" className="mb-1.5 block text-sm font-medium text-gray-700">Parcel Number (APN)</label>
+                    <input id="edit-parcel-number-apn"
                       type="text"
                       value={parcelNumber}
                       onChange={(e) => { setParcelNumber(e.target.value); setHasUnsavedChanges(true); }}
@@ -1580,8 +1582,8 @@ export default function EditListingPage() {
                 <h3 className="mb-3 text-sm font-semibold text-gray-900">Schools</h3>
                 <div className="grid gap-4 sm:grid-cols-3">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Elementary</label>
-                    <input
+                    <label htmlFor="edit-elementary" className="mb-1.5 block text-sm font-medium text-gray-700">Elementary</label>
+                    <input id="edit-elementary"
                       type="text"
                       value={schoolElementary}
                       onChange={(e) => { setSchoolElementary(e.target.value); setHasUnsavedChanges(true); }}
@@ -1589,8 +1591,8 @@ export default function EditListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Middle</label>
-                    <input
+                    <label htmlFor="edit-middle" className="mb-1.5 block text-sm font-medium text-gray-700">Middle</label>
+                    <input id="edit-middle"
                       type="text"
                       value={schoolMiddle}
                       onChange={(e) => { setSchoolMiddle(e.target.value); setHasUnsavedChanges(true); }}
@@ -1598,8 +1600,8 @@ export default function EditListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">High</label>
-                    <input
+                    <label htmlFor="edit-high" className="mb-1.5 block text-sm font-medium text-gray-700">High</label>
+                    <input id="edit-high"
                       type="text"
                       value={schoolHigh}
                       onChange={(e) => { setSchoolHigh(e.target.value); setHasUnsavedChanges(true); }}
@@ -1672,6 +1674,7 @@ export default function EditListingPage() {
             {currentStatus === "published" && (
               <div className="flex items-center gap-2">
                 <select
+                  aria-label="Listing status"
                   value={currentStatus}
                   onChange={(e) => handleSave(e.target.value)}
                   className="rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 cursor-pointer"
