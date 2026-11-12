@@ -1,0 +1,30 @@
+name: test
+
+# Reports test status on pull requests. It is NOT a required check unless the
+# repository owner adds it to branch protection (not done here).
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Typecheck
+        run: npx tsc --noEmit
+      - name: Tests
+        run: npm test
+        env:
+          # The suite blocks network access and scrubs secrets itself; none are provided.
+          CI: "true"
