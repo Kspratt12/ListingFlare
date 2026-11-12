@@ -148,7 +148,7 @@ export default function GettingStarted() {
         {
           id: "google",
           title: "Connect Google Calendar (optional)",
-          description: "Booked showings auto-create calendar events. Never double-book.",
+          description: "Confirmed showings auto-create calendar events.",
           icon: Calendar,
           done: googleConnected,
           action: googleConnected

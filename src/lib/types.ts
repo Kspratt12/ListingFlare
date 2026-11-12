@@ -217,7 +217,7 @@ export interface Showing {
   email: string;
   phone: string;
   message: string;
-  status: "confirmed" | "completed" | "canceled" | "no_show";
+  status: "requested" | "confirmed" | "declined" | "completed" | "canceled" | "no_show";
   reminder_sent: boolean;
   created_at: string;
   updated_at: string;
