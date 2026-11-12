@@ -13,6 +13,11 @@ interface AddressAutocompleteProps {
   }) => void;
   placeholder?: string;
   className?: string;
+  // Accessibility: lets a <label htmlFor> name the input, and connects an error message to it.
+  id?: string;
+  required?: boolean;
+  invalid?: boolean;
+  describedBy?: string;
 }
 
 interface Suggestion {
@@ -74,6 +79,10 @@ export default function AddressAutocomplete({
   onSelect,
   placeholder = "Start typing an address...",
   className = "",
+  id,
+  required,
+  invalid,
+  describedBy,
 }: AddressAutocompleteProps) {
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -188,6 +197,10 @@ export default function AddressAutocomplete({
         placeholder={placeholder}
         className={className}
         autoComplete="off"
+        id={id}
+        aria-required={required || undefined}
+        aria-invalid={invalid || undefined}
+        aria-describedby={describedBy}
       />
 
       {showDropdown && suggestions.length > 0 && (
