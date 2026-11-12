@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { AI_MODEL, createAnthropic } from "@/lib/ai";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { rateLimit } from "@/lib/rateLimit";
-import { hasActiveSubscription } from "@/lib/subscriptionGate";
+import { hasEntitlement } from "@/lib/entitlements";
 
 export const dynamic = "force-dynamic";
 
@@ -24,9 +24,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    if (!(await hasActiveSubscription(user.id))) {
+    if (!(await hasEntitlement(user.id, "socialPosts"))) {
       return NextResponse.json(
-        { error: "Subscription required. Upgrade to continue using AI features." },
+        { error: "Subscription required. Social captions are part of the paid plan.", code: "upgrade_required" },
         { status: 402 }
       );
     }

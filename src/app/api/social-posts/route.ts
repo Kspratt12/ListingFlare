@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
-import { hasActiveSubscription } from "@/lib/subscriptionGate";
+import { hasEntitlement, UPGRADE_REQUIRED } from "@/lib/entitlements";
 import { formatPhone } from "@/lib/formatters";
 
 export const dynamic = "force-dynamic";
@@ -22,9 +22,11 @@ export async function POST(req: NextRequest) {
     // Paywall: Social Media Pack is a paid feature. The client-side UI
     // already gates it, but a trial user could POST directly from devtools
     // — enforce on the server too so the price isn't honor-system.
-    if (!(await hasActiveSubscription(user.id))) {
+    // hasActiveSubscription() lets trialing accounts through, which is why this comment's
+    // promise was not true before: the Pack is paid-only (getSubscriptionLimits).
+    if (!(await hasEntitlement(user.id, "socialPosts"))) {
       return NextResponse.json(
-        { error: "Subscription required to generate Social Media Pack." },
+        { error: UPGRADE_REQUIRED.socialPosts, code: "upgrade_required" },
         { status: 402 }
       );
     }

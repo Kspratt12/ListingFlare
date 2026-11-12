@@ -18,12 +18,16 @@ import { createFakeBackend, type FakeBackend } from "./_fakeBackend";
 //  Tabs that can be mounted: the listings page and the offers page (both real); the other tabs are not mounted by these tests.
 // Modules are re-evaluated for every world, so each test starts with a fresh session manager and a fresh cache.
 
-const h = createHarness("mounted");
+// One compile cache per test process. node --test runs mountedDashboard and mountedTransition in parallel,
+// and the harness deletes and rebuilds its cache directory on start, so a shared directory made each file
+// delete the other's compiled modules mid-run ("Cannot find module .../components/Navbar.cjs").
+const HARNESS_NAME = `mounted-${process.pid}`;
+const h = createHarness(HARNESS_NAME);
 const { srcDir, nodeRequire, React, compile } = h;
 const dom = installMiniDom();
 const { createRoot } = nodeRequire("react-dom/client") as { createRoot: (el: unknown) => { render: (n: unknown) => void; unmount: () => void } };
 const { act } = nodeRequire("react-dom/test-utils") as { act: (fn: () => unknown) => Promise<void> };
-const outDir = path.join(path.resolve(srcDir, ".."), "node_modules", ".cache", "lf-component-render-mounted");
+const outDir = path.join(path.resolve(srcDir, ".."), "node_modules", ".cache", `lf-component-render-${HARNESS_NAME}`);
 
 export const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
 

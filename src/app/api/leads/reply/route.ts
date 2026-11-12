@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { Resend } from "resend";
 import { formatPhone } from "@/lib/formatters";
+import { hasEntitlement, UPGRADE_REQUIRED } from "@/lib/entitlements";
 
 export const dynamic = "force-dynamic";
 
@@ -21,6 +22,12 @@ export async function POST(req: NextRequest) {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    // Paid feature: the dashboard hides the reply box for trial accounts, and a direct POST
+    // must not bypass that. Same rule as the screen (getSubscriptionLimits).
+    if (!(await hasEntitlement(user.id, "replyToLeads"))) {
+      return NextResponse.json({ error: UPGRADE_REQUIRED.replyToLeads, code: "upgrade_required" }, { status: 402 });
     }
 
     // Get agent profile for reply-to info
