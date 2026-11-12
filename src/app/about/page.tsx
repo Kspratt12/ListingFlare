@@ -124,7 +124,7 @@ export default function AboutPage() {
             </li>
             <li className="flex items-start gap-3">
               <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-brand-500" />
-              <span>An instant AI reply so you never lose a lead to slow response time</span>
+              <span>An instant AI first reply, so new leads are not left waiting for you to respond</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-brand-500" />

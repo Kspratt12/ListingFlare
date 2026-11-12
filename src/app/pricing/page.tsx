@@ -96,7 +96,7 @@ const featureGroups = [
   },
   {
     icon: Zap,
-    title: "Automation That Never Sleeps",
+    title: "Automation in the Background",
     items: [
       "Open house QR sign-in that turns each visitor into a lead",
       "Agent activity feed (see what the AI did for you today)",
@@ -166,7 +166,7 @@ export default function PricingPage() {
                 <span className="text-lg text-gray-500">/month</span>
               </div>
               <p className="mt-2 text-sm text-gray-500">
-                That is $5 a day. One closed deal pays for years of the subscription.
+                That is about $5 a day. A single closed sale can cover many months of the subscription, but closings are never guaranteed.
               </p>
             </div>
             <div className="flex flex-col gap-3">
@@ -189,7 +189,7 @@ export default function PricingPage() {
             Everything included
           </p>
           <p className="mt-1 text-xs text-gray-500">
-            {featureGroups.reduce((sum, g) => sum + g.items.length, 0)} features across every piece of your workflow.
+            What the plan covers, grouped by task.
           </p>
 
           <div className="mt-6 space-y-6">
@@ -247,7 +247,7 @@ export default function PricingPage() {
             <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
               <h3 className="font-semibold text-gray-900">Is there a free trial?</h3>
               <p className="mt-2 text-sm text-gray-600">
-                Yes. You get 14 days free with full access to every feature. No credit card required to start. Cancel anytime.
+                Yes. You get 14 days free, no credit card required to start. The trial includes 1 listing with up to 5 photos. Video uploads, replying to leads from your dashboard and social post generation are part of the paid plan. Cancel anytime.
               </p>
             </div>
 
