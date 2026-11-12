@@ -1,5 +1,6 @@
 "use client";
 
+import { factsLine } from "@/lib/listingFacts";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
@@ -153,8 +154,7 @@ export default function SellerReportPage() {
                   {formatMoney(listing.price)}
                 </p>
                 <p className="mt-1 text-sm text-gray-500">
-                  {listing.beds} bed &middot; {listing.baths} bath &middot;{" "}
-                  {listing.sqft?.toLocaleString()} sqft
+                  {factsLine(listing)}
                 </p>
               </div>
               {hero && (

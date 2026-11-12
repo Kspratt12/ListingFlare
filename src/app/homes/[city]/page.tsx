@@ -1,3 +1,4 @@
+import { factsLine } from "@/lib/listingFacts";
 import Link from "next/link";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import Footer from "@/components/Footer";
@@ -198,8 +199,7 @@ export default async function CityPage({ params }: Props) {
                       {formatPrice(listing.price)}
                     </p>
                     <p className="mt-1 text-sm text-gray-600">
-                      {listing.beds} bed &middot; {listing.baths} bath
-                      &middot; {listing.sqft?.toLocaleString()} sqft
+                      {factsLine(listing)}
                     </p>
                     <p className="mt-1 text-sm text-gray-500">
                       {listing.street}, {listing.city}, {listing.state}

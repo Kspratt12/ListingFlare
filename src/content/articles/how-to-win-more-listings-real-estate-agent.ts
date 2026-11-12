@@ -6,7 +6,7 @@ export const article: BlogPost = {
   description:
     "Learn how to win more listings with a killer listing presentation, superior marketing plan, and the tools that top-producing agents use in 2026.",
   date: "2026-03-06",
-  updated: "2026-10-25",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Agent Growth",
   keywords: [
@@ -40,7 +40,7 @@ export const article: BlogPost = {
 
 <p>For-sale-by-owner sellers are trying to save money, and that is a perfectly rational goal. Rather than arguing with them, position yourself as a resource. Offer a free comparative market analysis, share neighborhood data, or invite them to an open house you are hosting nearby so they can see your marketing in action.</p>
 
-<p>The key insight with FSBOs is that most of them eventually list with an agent. According to the National Association of Realtors, only about 7 percent of home sales are true FSBO transactions. If you build the relationship early and demonstrate value without pressure, you will be the agent they call when they realize the process is more complex than they anticipated. Check in every two weeks with something useful: a new comp that sold, a market trend, or a quick video walkthrough tip they can use for their own showings.</p>
+<p>The key insight with FSBOs is that many of them end up hiring an agent. <a href="https://www.nar.realtor/news/real-estate-news/nar-2025-profile-of-home-buyers-sellers-reveals-market-extremes" target="_blank" rel="noopener noreferrer">NAR&rsquo;s 2025 Profile of Home Buyers and Sellers</a> (transactions July 2024 to June 2025) found that only 5% of homes sold as For Sale By Owner, a historic low. If you build the relationship early and demonstrate value without pressure, you will be the agent they call when they realize the process is more complex than they anticipated. Check in every two weeks with something useful: a new comp that sold, a market trend, or a quick video walkthrough tip they can use for their own showings.</p>
 
 <h3>Sphere of Influence Marketing</h3>
 

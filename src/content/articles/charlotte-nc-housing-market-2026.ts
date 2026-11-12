@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "Charlotte NC housing market analysis for 2026. Current home prices, inventory trends, mortgage rate outlook, and what buyers and sellers should expect in the Queen City.",
   date: "2026-03-02",
+  updated: "2026-11-12",
   noindex: true,
   author: "ListingFlare Team",
   category: "Market Reports",
@@ -130,7 +131,7 @@ export const article: BlogPost = {
   <li><strong>Population growth will keep demand elevated.</strong> Charlotte is consistently among the top 5 U.S. metros for net migration. People are moving here for jobs, affordability relative to coastal cities, and quality of life. That inflow provides a durable floor under home prices.</li>
   <li><strong>The banking and finance sector anchors stability.</strong> Unlike metros tied to a single volatile industry, Charlotte's economy is diversified across banking, energy, healthcare, logistics, and tech. Bank of America alone employs over 15,000 people in the metro, and Honeywell's headquarters relocation brought additional corporate investment.</li>
   <li><strong>New construction will moderate - not crash - prices.</strong> Builders are adding supply in the suburbs and exurbs, but land costs, labor shortages, and permitting timelines prevent the kind of overbuilding that could crater values. Expect new construction to absorb demand growth rather than flood the market.</li>
-  <li><strong>National sales volume is rising.</strong> The National Association of Realtors projects a <strong>14% increase in existing-home sales nationally</strong> in 2026, driven by improving rates and pent-up demand. Charlotte, as a top migration destination, is positioned to outperform the national trend.</li>
+  <li><strong>National outlook.</strong> NAR&rsquo;s chief economist forecast a 14% rise in existing-home sales for 2026 in November 2025, then cut that to about 4% in April 2026 (restated in June 2026), citing higher mortgage rates and softer job growth. Charlotte, as a migration destination, may do better or worse than the national figure.</li>
 </ol>
 
 <p>The most probable outcome: Mecklenburg County finishes 2026 with <strong>3–5% home price appreciation</strong>, higher transaction volume than 2025, and a market that feels genuinely balanced for the first time since before the pandemic.</p>
