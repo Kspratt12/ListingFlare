@@ -261,7 +261,7 @@ export default function PricingPage() {
             <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
               <h3 className="font-semibold text-gray-900">Is $150/month worth it?</h3>
               <p className="mt-2 text-sm text-gray-600">
-                A 3% commission on a $400,000 sale is $12,000 before splits. If one extra captured lead turns into a closed sale, that covers more than six years of ListingFlare at $150/month ($1,800 a year). Not every lead closes.
+                It depends on your listings and how many buyers you reach. A lead is not a sale, and most leads do not close. Use the break-even calculator above with your own numbers (it starts at zero additional sales, so it shows the plan as a cost until you assume otherwise). Nothing here is a guarantee of leads, showings or sales.
               </p>
             </div>
 
