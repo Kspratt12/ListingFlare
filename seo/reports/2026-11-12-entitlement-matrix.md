@@ -30,6 +30,9 @@
 - For every status x trial-date combination the server answer equals `getSubscriptionLimits` (cannot drift from the screen).
 - Static: the gate runs before any provider call or data read in all three routes.
 
+## Subscription states covered (added after review)
+The webhook stores Stripe's own status, so a customer on a Stripe-side trial is stored as `trialing` with the old free-trial date. The shared rule now treats `trialing` + a Stripe subscription id (only checkout creates one) as a paid plan, on screen and on the server, so that customer is neither blocked nor shown as expired. Free app trial (`trialing`, no Stripe id), `past_due`, `canceled` and `unpaid` stay denied. Tested for every status x trial date x Stripe-id combination.
+
 ## Risks
 - A paying customer whose Stripe status is momentarily `past_due` is already hidden from these controls by the dashboard; the server now agrees. If you prefer grace for `past_due`, change `getSubscriptionLimits` (one place) and both screen and server follow.
 - Not exercised against real Stripe/Supabase; unit and static tests only.

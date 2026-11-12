@@ -25,8 +25,12 @@ export function getSubscriptionLimits(profile: AgentProfile | null): Subscriptio
     };
   }
 
-  const isPaid = profile.subscription_status === "active";
-  const isTrialing = profile.subscription_status === "trialing";
+  // A customer on a Stripe-side trial is stored as "trialing" (the webhook copies Stripe's status),
+  // but they have a Stripe subscription, which only checkout creates. They are a paying plan, not
+  // the free app trial, and their stale trial_ends_at (the free-trial date) must not lock them.
+  const paidTrial = profile.subscription_status === "trialing" && !!profile.stripe_subscription_id;
+  const isPaid = profile.subscription_status === "active" || paidTrial;
+  const isTrialing = profile.subscription_status === "trialing" && !paidTrial;
   const trialEnd = new Date(profile.trial_ends_at);
   const now = new Date();
   const trialDaysLeft = Math.max(0, Math.ceil((trialEnd.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)));

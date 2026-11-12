@@ -17,7 +17,7 @@ const FLAG: Record<ServerEntitlement, keyof SubscriptionLimits> = {
 
 // Pure and synchronous so every status can be unit tested without a database.
 export function entitlementFor(
-  profile: Pick<AgentProfile, "subscription_status" | "trial_ends_at"> | null,
+  profile: Pick<AgentProfile, "subscription_status" | "trial_ends_at" | "stripe_subscription_id"> | null,
   key: ServerEntitlement
 ): boolean {
   if (!profile) return false;
@@ -28,7 +28,7 @@ export async function hasEntitlement(userId: string, key: ServerEntitlement): Pr
   const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
   const { data } = await db
     .from("agent_profiles")
-    .select("subscription_status, trial_ends_at")
+    .select("subscription_status, trial_ends_at, stripe_subscription_id")
     .eq("id", userId)
     .maybeSingle();
   return entitlementFor(data, key);

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
-import { hasActiveSubscription } from "@/lib/subscriptionGate";
 import { hasEntitlement, UPGRADE_REQUIRED } from "@/lib/entitlements";
 import { formatPhone } from "@/lib/formatters";
 
@@ -25,7 +24,7 @@ export async function POST(req: NextRequest) {
     // — enforce on the server too so the price isn't honor-system.
     // hasActiveSubscription() lets trialing accounts through, which is why this comment's
     // promise was not true before: the Pack is paid-only (getSubscriptionLimits).
-    if (!(await hasActiveSubscription(user.id)) || !(await hasEntitlement(user.id, "socialPosts"))) {
+    if (!(await hasEntitlement(user.id, "socialPosts"))) {
       return NextResponse.json(
         { error: UPGRADE_REQUIRED.socialPosts, code: "upgrade_required" },
         { status: 402 }
