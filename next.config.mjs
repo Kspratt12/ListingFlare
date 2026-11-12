@@ -20,6 +20,18 @@ const nextConfig = {
         destination: "https://www.listingflare.com/:path*",
         permanent: true,
       },
+      // Near-miss article URLs that Google found and that returned 404. Each maps to the one live
+      // article with the same topic. (The file names differ from the slugs; see src/lib/blog.ts.)
+      {
+        source: "/blog/best-lead-generation-tools-real-estate-agents",
+        destination: "/blog/best-lead-generation-tools-for-real-estate-agents",
+        permanent: true,
+      },
+      {
+        source: "/blog/real-estate-leads-new-agents",
+        destination: "/blog/real-estate-leads-for-new-agents",
+        permanent: true,
+      },
     ];
   },
   // Security + caching headers
