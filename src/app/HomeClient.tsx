@@ -1999,7 +1999,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               cover a year of ListingFlare.
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-lg text-gray-400">
-              50+ features across listing pages, AI, lead management, showing scheduler, and automation. One plan. Everything included.
+              Listing pages, AI chat, lead management, a showing scheduler and automation. One plan, with the full feature list on the pricing page.
             </p>
             <p className="mt-3 text-sm font-medium text-brand-400/80">
               At $150 a month, a year of ListingFlare is $1,800. Not every lead closes.
