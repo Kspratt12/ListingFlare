@@ -29,7 +29,7 @@ export const article: BlogPost = {
 
 <h3>ListingFlare</h3>
 
-<p>ListingFlare is purpose-built for single-property marketing and is our top pick in this category. You create a polished, branded property website in minutes by entering listing details and uploading photos. What sets it apart from generic page builders is the AI-powered chatbot that sits on every listing page. Buyers can ask questions about the property (square footage, school district, HOA fees) and get instant, accurate answers 24/7 without the agent lifting a finger.</p>
+<p>ListingFlare is purpose-built for single-property marketing and is our top pick in this category. You create a polished, branded property website by entering listing details and uploading photos. What sets it apart from generic page builders is the AI-powered chatbot that sits on every listing page. Buyers can ask questions about the property (square footage, school district, HOA fees) and get instant, accurate answers 24/7 without the agent lifting a finger.</p>
 
 <p>Every chatbot interaction and form submission is captured as a lead with full contact details. ListingFlare then sends instant follow-up emails automatically, so a prospect is not left waiting on a slow response. For agents who have struggled with leads going cold before they can reply, that feature alone is worth the subscription.</p>
 
@@ -64,7 +64,7 @@ export const article: BlogPost = {
 
 <p>Follow Up Boss has been a fan favorite among top-producing teams for years, and for good reason. It integrates with nearly every lead source (Zillow, Realtor.com, your website, Facebook ads) and routes leads to the right agent automatically. The action plans (automated text and email sequences) are easy to set up and highly customizable.</p>
 
-<p><strong>Pricing:</strong> Starting at $58/month per user for the Grow plan.</p>
+<p><strong>Pricing:</strong> Starting at $58/month per user (billed annually; $69 billed monthly) for the Grow plan.</p>
 
 <p><strong>Pros:</strong> Excellent integrations, intuitive interface, strong mobile app, responsive support team.</p>
 <p><strong>Cons:</strong> Gets expensive quickly for teams (per-user pricing adds up), limited built-in marketing features compared to all-in-one platforms.</p>

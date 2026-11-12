@@ -7,6 +7,7 @@ export const article: BlogPost = {
   description:
     "A single-property website keeps buyers and leads on your page; a portal listing shares the screen with other agents. When each wins, and how to use both.",
   date: "2026-10-22",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Listing Marketing",
   keywords: [
@@ -141,7 +142,7 @@ export const article: BlogPost = {
 <p>It helps for yard signs and print, since a short address is easier to remember, but it is not required. Many agents start with the standard link and add a custom domain for higher-priced listings.</p>
 
 <h3>How long does it take to create a single-property website?</h3>
-<p>With a purpose-built tool you can publish a listing page in a few minutes by uploading photos and entering the property details. Time per listing is one of the most important things to compare when choosing a builder.</p>
+<p>With a purpose-built tool you can publish a listing page by uploading photos and entering the property details. Time per listing is one of the most important things to compare when choosing a builder.</p>
 
 <h3>Does a single-property website help win listings?</h3>
 <p>It can. Showing a seller a dedicated page for their home is a visible, concrete example of your marketing, and it gives you something specific to offer that a generic template does not.</p>
