@@ -60,7 +60,7 @@ export const article: BlogPost = {
 
 <p><strong>How agents use it:</strong> You enter your property details and photos, and ListingFlare generates a polished property website with AI-written descriptions, photo captions, and an embedded chatbot. The chatbot engages buyers in natural conversation, answers their questions, and captures leads automatically. When a lead comes in, ListingFlare drafts a personalized follow-up email based on the conversation so you can respond quickly and intelligently. It also generates social media posts, open house flyers with QR codes, and provides analytics on which listings are generating the most interest.</p>
 
-<p><strong>Pricing:</strong> $150 per month for unlimited listings, unlimited leads, and all AI features. 14-day free trial with no credit card required.</p>
+<p><strong>Pricing:</strong> $150 per month for unlimited listings and leads, with the AI features included. 14-day free trial with no credit card required.</p>
 
 <p><strong>Best for:</strong> Listing agents who want to capture buyer leads from their own property pages instead of losing them to Zillow. <a href="/signup">Start your free trial</a> or <a href="/demo">see a live demo</a>.</p>
 

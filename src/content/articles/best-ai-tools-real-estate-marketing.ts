@@ -7,7 +7,7 @@ export const article: BlogPost = {
   description:
     "The 10 best AI tools for real estate marketing, from listing descriptions and video editing to headshots, ads and lead capture, with pricing and use cases.",
   date: "2026-03-22",
-  updated: "2026-10-25",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [
@@ -68,7 +68,7 @@ export const article: BlogPost = {
 <li><strong>Open house flyer generator</strong> - printable flyers with QR codes for digital lead capture</li>
 </ul>
 
-<p><strong>Pricing:</strong> $150 per month (unlimited listings, unlimited leads, all AI features included). Free 14-day trial with no credit card required.</p>
+<p><strong>Pricing:</strong> $150 per month (unlimited listings and leads, AI features included). Free 14-day trial with no credit card required.</p>
 
 <p><strong>Best for:</strong> Any agent who wants to turn every listing into a lead generation machine without duct-taping five different tools together. <a href="/signup">Start your free trial here</a> or <a href="/demo">see a live demo</a>.</p>
 
