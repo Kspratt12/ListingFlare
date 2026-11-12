@@ -7,7 +7,7 @@ export const article: BlogPost = {
   description:
     "Selling your home for the first time? This step-by-step guide covers everything from pricing to closing, so you sell faster and for top dollar.",
   date: "2026-03-05",
-  updated: "2026-10-25",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Home Selling",
   keywords: [
@@ -239,7 +239,7 @@ export const article: BlogPost = {
 <p>Plan for total selling costs of approximately <strong>8–10% of your sale price</strong>. This includes agent commissions (5–6%), closing costs (1–3%), and home preparation expenses. On a \$400,000 sale, you might pay \$32,000–\$40,000 in total costs.</p>
 
 <h3>Should I sell my house without a realtor?</h3>
-<p>Selling "For Sale By Owner" (FSBO) can save you the listing agent's commission (typically 2.5–3%), but FSBO homes often sell for less than agent-assisted homes, according to National Association of Realtors seller surveys. Unless you have real estate experience, the net savings often don't materialize, and you'll take on significant legal and financial risk. For first-time sellers especially, working with a qualified agent is strongly recommended.</p>
+<p>Selling "For Sale By Owner" (FSBO) can save you the listing agent's commission (typically 2.5–3%), but <a href="https://www.nar.realtor/news/real-estate-news/nar-2025-profile-of-home-buyers-sellers-reveals-market-extremes" target="_blank" rel="noopener noreferrer">NAR&rsquo;s 2025 Profile of Home Buyers and Sellers</a> (transactions July 2024 to June 2025) reports a median FSBO sale price of $360,000 versus $425,000 for agent-assisted homes. That compares different homes, so it does not show what an agent would have achieved for yours. Unless you have real estate experience, the net savings may not materialize, and you'll take on significant legal and financial risk. For first-time sellers especially, working with a qualified agent is strongly recommended.</p>
 
 <h3>What's the best month to sell a house?</h3>
 <p>Historically, homes listed in <strong>late April through June</strong> tend to sell faster and for higher prices. Spring brings more buyers into the market, days are longer for showings, and families want to move during summer break. That said, selling in fall or winter means less competition from other listings, so the "best" time depends on your local market and personal circumstances.</p>

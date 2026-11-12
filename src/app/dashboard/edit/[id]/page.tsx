@@ -1,5 +1,7 @@
 "use client";
 
+import PublishReviewNotice from "@/components/PublishReviewNotice";
+import { publishGaps } from "@/lib/listingFacts";
 import { useState, useRef, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter, useParams } from "next/navigation";
@@ -48,6 +50,7 @@ export default function EditListingPage() {
   const [publishing, setPublishing] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState("");
+  const [reviewGaps, setReviewGaps] = useState<string[] | null>(null);
   const [uploadingPhotos, setUploadingPhotos] = useState(false);
   const [profile, setProfile] = useState<AgentProfile | null>(null);
   const [dragIdx, setDragIdx] = useState<number | null>(null);
@@ -439,7 +442,7 @@ export default function EditListingPage() {
     setVideos((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const handleSave = async (status: string) => {
+  const handleSave = async (status: string, skipReview = false) => {
     if (status === "published" && !street.trim()) {
       setError("Street address is required to publish.");
       return;
@@ -452,6 +455,15 @@ export default function EditListingPage() {
       setError("Price is required to publish.");
       return;
     }
+    // Publishing a draft: show the same non-blocking review. Saving or editing a live listing never asks.
+    if (status === "published" && currentStatus !== "published" && !skipReview) {
+      const gaps = publishGaps({ photoCount: photos.length, beds, baths, sqft });
+      if (gaps.length > 0) {
+        setReviewGaps(gaps);
+        return;
+      }
+    }
+    setReviewGaps(null);
     if (virtualTourUrl.trim() !== loadedTourUrl.trim()) {
       const tourProblem = tourUrlProblem(virtualTourUrl);
       if (tourProblem) {
@@ -1639,6 +1651,16 @@ export default function EditListingPage() {
           <JustSoldBlast
             listingAddress={[street, city].filter(Boolean).join(", ") || "the home"}
             listingPrice={price ? Number(String(price).replace(/[^0-9.]/g, "")) : null}
+          />
+        )}
+
+        {reviewGaps && (
+          <PublishReviewNotice
+            idPrefix="edit"
+            gaps={reviewGaps}
+            busy={saving || publishing}
+            onPublishAnyway={() => handleSave("published", true)}
+            onGoBack={() => setReviewGaps(null)}
           />
         )}
 

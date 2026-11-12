@@ -4,7 +4,6 @@ export interface SubscriptionLimits {
   maxListings: number;
   maxPhotos: number;
   maxVideos: number;
-  maxLeads: number;
   canReplyToLeads: boolean;
   canGenerateSocialPosts: boolean;
   canGenerateOpenHouseFlyer: boolean;
@@ -18,7 +17,7 @@ export interface SubscriptionLimits {
 export function getSubscriptionLimits(profile: AgentProfile | null): SubscriptionLimits {
   if (!profile) {
     return {
-      maxListings: 0, maxPhotos: 0, maxVideos: 0, maxLeads: 0,
+      maxListings: 0, maxPhotos: 0, maxVideos: 0,
       canReplyToLeads: false, canGenerateSocialPosts: false,
       canGenerateOpenHouseFlyer: false, maxAiDescriptions: 0,
       isPaid: false, isTrialing: false, isExpired: true, trialDaysLeft: 0,
@@ -41,7 +40,6 @@ export function getSubscriptionLimits(profile: AgentProfile | null): Subscriptio
       maxListings: Infinity,
       maxPhotos: Infinity,
       maxVideos: 10,
-      maxLeads: Infinity,
       canReplyToLeads: true,
       canGenerateSocialPosts: true,
       canGenerateOpenHouseFlyer: true,
@@ -58,10 +56,11 @@ export function getSubscriptionLimits(profile: AgentProfile | null): Subscriptio
     maxListings: 1,
     maxPhotos: 5,
     maxVideos: 0,
-    maxLeads: 5,
     canReplyToLeads: false,
     canGenerateSocialPosts: false,
-    canGenerateOpenHouseFlyer: false,
+    // Flyers are available in the trial (this is what the product has always done and what the pricing page
+    // lists without exclusion). There is no lead cap: buyer inquiries are never hidden or dropped by plan.
+    canGenerateOpenHouseFlyer: true,
     maxAiDescriptions: 1,
     isPaid: false,
     // Only a genuinely trialing account counts as trialing. past_due,

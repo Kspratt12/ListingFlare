@@ -7,7 +7,7 @@ export const article: BlogPost = {
   description:
     "Real estate lead generation guide with 15 strategies for agents, from digital marketing and listing websites to referral systems and follow-up.",
   date: "2026-03-21",
-  updated: "2026-10-25",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [
@@ -198,7 +198,7 @@ export const article: BlogPost = {
 
 <h2>9. Build a Referral System That Generates Leads on Autopilot</h2>
 
-<p>Referrals remain the number-one source of business for top-producing agents. According to NAR, <strong>38 percent of buyers</strong> found their agent through a referral from a friend, neighbor, or relative. The problem is that most agents treat referrals as something that happens passively. The best agents build <strong>systems</strong> around referrals.</p>
+<p>Referrals remain the number-one source of business for top-producing agents. Referrals from friends, neighbors and past clients are a major source of new business for many agents. The problem is that most agents treat referrals as something that happens passively. The best agents build <strong>systems</strong> around referrals.</p>
 
 <p>A referral system includes:</p>
 

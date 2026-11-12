@@ -1,5 +1,6 @@
 "use client";
 
+import { factsLine } from "@/lib/listingFacts";
 import { useEffect, useState, useMemo } from "react";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
@@ -155,10 +156,12 @@ export default function SellerPortalPage() {
               Here&apos;s how <span className="font-semibold text-white">{listing.street}</span> is performing.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-gray-300">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 backdrop-blur-sm">
-                <Home className="h-3.5 w-3.5" />
-                {listing.beds} bd · {listing.baths} ba · {listing.sqft?.toLocaleString()} sqft
-              </span>
+              {factsLine(listing, " · ", { beds: "bd", baths: "ba", sqft: "sqft" }) && (
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 backdrop-blur-sm">
+                  <Home className="h-3.5 w-3.5" />
+                  {factsLine(listing, " · ", { beds: "bd", baths: "ba", sqft: "sqft" })}
+                </span>
+              )}
               <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 backdrop-blur-sm">
                 <Clock className="h-3.5 w-3.5" />
                 {stats.daysOnMarket} {stats.daysOnMarket === 1 ? "day" : "days"} on market

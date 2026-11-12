@@ -129,8 +129,9 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
       postalCode: listing.zip,
       addressCountry: "US",
     },
-    numberOfRooms: listing.beds,
-    numberOfBathroomsTotal: listing.baths,
+    // 0 is ambiguous (not provided, or not applicable), so it is left out rather than published as a fact.
+    numberOfRooms: listing.beds > 0 ? listing.beds : undefined,
+    numberOfBathroomsTotal: listing.baths > 0 ? listing.baths : undefined,
     floorSize: listing.sqft ? { "@type": "QuantitativeValue", value: listing.sqft, unitCode: "FTK" } : undefined,
   };
 
