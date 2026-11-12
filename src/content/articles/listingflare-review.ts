@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "An honest ListingFlare review from the team that built it: what it does, what it costs, what it does not do, and how to test it free for 14 days.",
   date: "2026-10-25",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Single Property Websites",
   keywords: [
@@ -50,7 +51,7 @@ export const article: BlogPost = {
 <h2>What It Does Well</h2>
 
 <ul>
-<li><strong>Speed to publish.</strong> Enter the details, add photos, publish. You can have a page live in minutes.</li>
+<li><strong>Speed to publish.</strong> Enter the details, add photos, publish. You can publish a page as soon as you enter the details and upload photos.</li>
 <li><strong>Everything in one dashboard.</strong> Page, chat, leads, scheduling, follow-up and seller reporting live together, so a lead does not fall between tools.</li>
 <li><strong>It does not hide the AI.</strong> You can read every conversation and review replies before they send.</li>
 <li><strong>Cost scales well with listings.</strong> If you carry several listings, the flat plan beats per-site pricing.</li>
