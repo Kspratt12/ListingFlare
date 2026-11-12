@@ -1,5 +1,6 @@
 "use client";
 
+import { AI_INPUT_LIMITS } from "@/lib/aiInput";
 import { useState, useRef, useEffect } from "react";
 import { Sparkles, Send, Loader2, User } from "lucide-react";
 
@@ -134,6 +135,8 @@ export default function AssistantPage() {
           <input
             ref={inputRef}
             value={input}
+            maxLength={AI_INPUT_LIMITS.chatMessage}
+            aria-label="Your question"
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask about your listings, leads, or get marketing help..."
             className="flex-1 rounded-xl border border-gray-200 bg-white px-5 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"

@@ -1,3 +1,4 @@
+import { checkGenerate, inputErrorResponse, readAiInput } from "@/lib/aiInput";
 import { NextRequest, NextResponse } from "next/server";
 import { AI_MODEL, createAnthropic } from "@/lib/ai";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
@@ -42,8 +43,11 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const body = await req.json();
-    const { type, property, existing } = body;
+    // Validated (size and field limits) before anything is sent to the model; too-long input is rejected, never truncated.
+    const checked = await readAiInput(req, checkGenerate);
+    if (!checked.ok) return inputErrorResponse(checked);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { type, property, existing } = checked.value as any;
 
     if (!type || !property) {
       return NextResponse.json(

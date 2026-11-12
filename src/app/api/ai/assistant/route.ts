@@ -1,3 +1,4 @@
+import { checkAssistant, inputErrorResponse, readAiInput } from "@/lib/aiInput";
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import Anthropic from "@anthropic-ai/sdk";
@@ -12,11 +13,6 @@ export async function POST(req: NextRequest) {
     const apiKey = process.env.ANTHROPIC_API_KEY;
     if (!apiKey) {
       return NextResponse.json({ error: "AI not configured" }, { status: 500 });
-    }
-
-    const { message, history } = await req.json();
-    if (!message) {
-      return NextResponse.json({ error: "Missing message" }, { status: 400 });
     }
 
     const supabase = createServerSupabaseClient();
@@ -43,6 +39,11 @@ export async function POST(req: NextRequest) {
         { status: 429 }
       );
     }
+
+    const checked = await readAiInput(req, checkAssistant);
+    if (!checked.ok) return inputErrorResponse(checked);
+    const message = checked.value.message as string;
+    const history = checked.value.history as Array<{ role?: string; text?: string }> | undefined;
 
     // Fetch agent's data for context
     const [profileRes, listingsRes, leadsRes] = await Promise.all([
@@ -92,6 +93,7 @@ HOW TO HELP:
     const messages: Anthropic.Messages.MessageParam[] = [];
     if (history && Array.isArray(history)) {
       for (const msg of history.slice(-8)) {
+        if (typeof msg.text !== "string" || !msg.text) continue;
         messages.push({
           role: msg.role === "user" ? "user" : "assistant",
           content: msg.text,

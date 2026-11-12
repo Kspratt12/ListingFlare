@@ -1,5 +1,6 @@
 "use client";
 
+import { AI_INPUT_LIMITS, codePoints } from "@/lib/aiInput";
 import PublishReviewNotice from "@/components/PublishReviewNotice";
 import { publishGaps } from "@/lib/listingFacts";
 import { useState, useRef, useEffect } from "react";
@@ -246,7 +247,7 @@ export default function CreateListingPage() {
     if (newPhotos.length === 0) return;
     setGeneratingCaptions(true);
     try {
-      const urls = newPhotos.map((p) => p.src);
+      const urls = newPhotos.slice(0, AI_INPUT_LIMITS.photoUrls).map((p) => p.src);
       const res = await fetch("/api/ai/caption", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -277,7 +278,7 @@ export default function CreateListingPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          photoUrls: photos.map((p) => p.src),
+          photoUrls: photos.slice(0, AI_INPUT_LIMITS.photoUrls).map((p) => p.src),
           property: { street, city, beds, baths, sqft },
         }),
       });
@@ -324,6 +325,11 @@ export default function CreateListingPage() {
 
   const handleAIGenerate = async (type: "description" | "features") => {
     const setter = type === "description" ? setGeneratingDesc : setGeneratingFeatures;
+    const startingText = type === "description" ? description : featuresText;
+    if (codePoints(startingText) > AI_INPUT_LIMITS.existingText) {
+      setError(`AI Generate works on text up to ${AI_INPUT_LIMITS.existingText.toLocaleString("en-US")} characters; yours is ${codePoints(startingText).toLocaleString("en-US")}. Shorten it to use AI Generate (you can still save it as is).`);
+      return;
+    }
     setter(true);
     setError("");
 
@@ -338,7 +344,10 @@ export default function CreateListingPage() {
         }),
       });
 
-      if (!res.ok) throw new Error("Failed to generate");
+      if (!res.ok) {
+        const info = await res.json().catch(() => ({}));
+        throw new Error(typeof info.error === "string" ? info.error : "Failed to generate");
+      }
 
       const { text } = await res.json();
       if (type === "description") {
@@ -831,9 +840,13 @@ export default function CreateListingPage() {
               onChange={(e) => setDescription(e.target.value)}
               rows={8}
               aria-label="Description"
+              aria-describedby="create-description-hint"
               className="w-full resize-none rounded-lg border border-gray-200 px-4 py-3 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
               placeholder="Describe the property in detail. Use blank lines between paragraphs for best formatting on the listing page."
             />
+            <p id="create-description-hint" className={`mt-1.5 text-xs ${codePoints(description) > AI_INPUT_LIMITS.existingText ? "text-red-600" : "text-gray-400"}`}>
+              {codePoints(description).toLocaleString("en-US")} / {AI_INPUT_LIMITS.existingText.toLocaleString("en-US")} characters for AI Generate. Longer text can still be saved.
+            </p>
           </div>
         </section>
 

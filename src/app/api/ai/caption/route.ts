@@ -1,3 +1,4 @@
+import { checkCaption, inputErrorResponse, readAiInput } from "@/lib/aiInput";
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { AI_MODEL, createAnthropic } from "@/lib/ai";
@@ -44,8 +45,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const body = await req.json();
-    const { photoUrls, property } = body;
+    const checked = await readAiInput(req, checkCaption);
+    if (!checked.ok) return inputErrorResponse(checked);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { photoUrls, property } = checked.value as any;
 
     if (!photoUrls || !Array.isArray(photoUrls) || photoUrls.length === 0) {
       return NextResponse.json(
