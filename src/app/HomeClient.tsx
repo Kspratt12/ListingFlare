@@ -2148,7 +2148,11 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               { href: "/listingflare-vs-singlepropertysites", title: "ListingFlare vs SinglePropertySites.com", text: "How the two compare." },
               { href: "/free-real-estate-templates", title: "Free Real Estate Templates", text: "Listing presentation, open house and seller update templates." },
               { href: "/homes", title: "Homes for Sale by City", text: "Browse listings published on ListingFlare, city by city." },
-            ].map((r) => (
+            ]
+              // Same rule as the footer link: the city directory is linked only once real customers have
+              // published listings. Before that it is an empty noindex page.
+              .filter((r) => r.href !== "/homes" || showHomesLink)
+              .map((r) => (
               <Link
                 key={r.href}
                 href={r.href}
