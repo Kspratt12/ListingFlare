@@ -1,3 +1,4 @@
+import { checkSocialCaption, inputErrorResponse, readAiInput } from "@/lib/aiInput";
 import { NextRequest, NextResponse } from "next/server";
 import { AI_MODEL, createAnthropic } from "@/lib/ai";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
@@ -43,7 +44,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const body = await req.json();
+    const checkedInput = await readAiInput(req, checkSocialCaption);
+    if (!checkedInput.ok) return inputErrorResponse(checkedInput);
+    const body = checkedInput.value;
     const {
       street,
       city,
