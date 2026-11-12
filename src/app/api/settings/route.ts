@@ -1,3 +1,4 @@
+import { isValidTimeZone } from "@/lib/timezone";
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { createClient } from "@supabase/supabase-js";
@@ -28,7 +29,7 @@ export async function PUT(req: NextRequest) {
       headshot_url, instagram, linkedin, zillow,
       realtor_com, facebook, website, weekly_emails,
       calendly_url, ai_approval_mode,
-      handle, brand_color,
+      handle, brand_color, timezone,
     } = body;
 
     // Normalize + validate handle (skip server-side if blank - means unset)
@@ -70,6 +71,7 @@ export async function PUT(req: NextRequest) {
       website: website || "",
       weekly_emails: weekly_emails !== false,
       calendly_url: calendly_url || "",
+      timezone: isValidTimeZone(timezone) ? timezone : null,
       ai_approval_mode: ai_approval_mode === true,
       handle: normalizedHandle,
       brand_color: normalizedColor,
@@ -85,6 +87,7 @@ export async function PUT(req: NextRequest) {
     if (updateError) {
       // Retry without newer optional columns in case migration hasn't run
       delete profileData.calendly_url;
+      delete profileData.timezone;
       delete profileData.ai_approval_mode;
       delete profileData.handle;
       delete profileData.brand_color;

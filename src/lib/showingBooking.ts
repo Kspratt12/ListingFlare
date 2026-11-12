@@ -10,18 +10,27 @@
 //   5. atomic booking-attempt reservation      - the first write
 //   6. find/create lead, insert showing, send emails, calendar, follow-up, push
 //
-// What this does NOT do: booking still sends the buyer an unverified
-// "confirmed" email (and an .ics invite) to whatever address was typed. That
-// stays until the separately approved showing-request phase.
+// This creates a showing REQUEST (status "requested"), never a confirmed booking.
+// The buyer email says so, no calendar invite or Google event is created, and
+// the follow-up sequence is not enrolled: those happen only when an agent
+// confirms (see showingResponse.ts).
+//
+// Duplicate and conflict handling (read-only checks, before the first write):
+//   - the same buyer re-submitting the same slot is answered ok + duplicate,
+//     with no write, no email and no limiter count (safe to double-click/retry);
+//   - a slot an agent has already CONFIRMED for someone else is refused (409);
+//   - several buyers may request the same open slot; the agent picks one.
+//     The check is not atomic with the insert, so two simultaneous requests
+//     can both be stored; confirmation re-checks and is the real gate.
 
 import { validateShowingRequest, type ShowingInput } from "./showingInput";
+import { labelShowingTime } from "./timezone";
+import { sameStart, slotsOverlap } from "./showingSlots";
 import {
-  buildAgentShowingEmail,
-  buildBuyerShowingEmail,
+  buildAgentRequestEmail,
+  buildBuyerRequestEmail,
   sanitizeDisplayName,
 } from "./showingEmails";
-import { generateShowingICS, icsToBase64 } from "./ics";
-import { formatPhone } from "./formatters";
 
 // Thresholds for the atomic limiter (enforced by public.reserve_booking_attempt).
 // A booking attempt is counted when it is accepted; rejected attempts are not
@@ -45,11 +54,18 @@ export interface BookingStore {
     listingId: string,
     email: string
   ): Promise<"reserved" | "limited" | "unavailable">;
+  // Showings on this listing and date that still hold time (requested or confirmed), read only.
+  findSlotShowings(
+    listingId: string,
+    date: string
+  ): Promise<Array<{ id: string; email: string; status: string; showing_time: string }>>;
   findLeadId(listingId: string, email: string): Promise<string | null>;
   insertLead(row: Record<string, unknown>): Promise<string | null>;
   updateLead(leadId: string, fields: Record<string, unknown>): Promise<void>;
   insertShowing(row: Record<string, unknown>): Promise<{ id: string } | null>;
   getListing(listingId: string): Promise<{ street: string; city: string; state: string } | null>;
+  // Effective property zone (listing, else agent), or null when none is stored.
+  getTimeZone(listingId: string, agentId: string): Promise<string | null>;
   getAgent(
     agentId: string
   ): Promise<{ name: string; phone: string; email: string; brokerage: string } | null>;
@@ -75,19 +91,6 @@ export interface BookingDeps {
   }): { ok: boolean };
   emailEnabled: boolean;
   sendEmail(msg: OutgoingEmail): Promise<void>;
-  addGoogleEvent(
-    agentId: string,
-    event: {
-      showingDate: string;
-      showingTime: string;
-      listingAddress: string;
-      name: string;
-      email: string;
-      phone: string;
-      message: string;
-    }
-  ): Promise<void>;
-  enrollShowingFollowUps(leadId: string, listingId: string, agentId: string): void;
   notifyAgentPush(
     agentId: string,
     payload: { title: string; body: string; url: string; tag: string }
@@ -140,7 +143,23 @@ export async function processBookingRequest(
     return { status: 429, body: { error: legacy.reason } };
   }
 
-  // 5. Atomic reservation: the check and the count are one database call, so
+  // 5. Duplicate / conflict (read only). Same buyer + same slot is a retry;
+  // a slot already confirmed for someone else is taken.
+  // Duplicate = same buyer, same start. Conflict = another buyer's CONFIRMED showing whose 30-minute
+  // interval overlaps (see showingSlots.ts).
+  const holders = await store.findSlotShowings(input.listingId, input.showingDate);
+  const mine = holders.find((h) => h.email.toLowerCase() === input.email && sameStart(h.showing_time, input.showingTime));
+  if (mine) {
+    return { status: 200, body: { ok: true, duplicate: true, showingId: mine.id, status: mine.status } };
+  }
+  if (holders.some((h) => h.status === "confirmed" && slotsOverlap(h.showing_time, input.showingTime))) {
+    return {
+      status: 409,
+      body: { error: "That time is no longer available. Please choose another time." },
+    };
+  }
+
+  // 6. Atomic reservation: the check and the count are one database call, so
   // concurrent requests cannot all pass a stale count. This is the first write.
   const reservation = await store.reserveBookingAttempt(input.listingId, input.email);
   if (reservation === "limited") {
@@ -151,15 +170,16 @@ export async function processBookingRequest(
     };
   }
   if (reservation === "unavailable") {
-    // Fail closed: if the limiter cannot run, no booking is created and nothing is sent.
+    // Fail closed: if the limiter cannot run, nothing is created or sent.
     return {
       status: 503,
       body: { error: "Booking is temporarily unavailable. Please try again shortly." },
     };
   }
 
-  // 6. Lead: always looked up by listing + email on the server; a client-sent
-  // leadId is never used.
+  // 7. Lead: looked up by listing + email on the server; a client-sent leadId
+  // is never used. A new lead starts as "new"; it becomes "showing_scheduled"
+  // only when an agent confirms. An existing lead keeps its status.
   let leadId = await store.findLeadId(input.listingId, input.email);
   if (!leadId) {
     leadId = await store.insertLead({
@@ -169,7 +189,7 @@ export async function processBookingRequest(
       email: input.email,
       phone: input.phone,
       message: input.message || `Showing requested for ${input.showingDate} at ${input.showingTime}`,
-      status: "showing_scheduled",
+      status: "new",
       pre_approved: input.preApproved,
       timeline: input.timeline,
       has_agent: input.hasAgent,
@@ -187,8 +207,6 @@ export async function processBookingRequest(
     return { status: 500, body: { error: "Failed to create lead" } };
   }
 
-  await store.updateLead(leadId, { status: "showing_scheduled", is_read: true });
-
   const showing = await store.insertShowing({
     lead_id: leadId,
     listing_id: input.listingId,
@@ -199,77 +217,45 @@ export async function processBookingRequest(
     email: input.email,
     phone: input.phone,
     message: input.message,
+    status: "requested",
   });
   if (!showing) {
-    return { status: 500, body: { error: "Failed to book showing" } };
+    return { status: 500, body: { error: "Failed to save showing request" } };
   }
 
   const [listing, agent] = await Promise.all([
     store.getListing(input.listingId),
     store.getAgent(agentId),
   ]);
-
   const listingAddress = listing
     ? `${listing.street}, ${listing.city}, ${listing.state}`
     : "the property";
-
-  const formattedDate = new Date(input.showingDate + "T12:00:00").toLocaleDateString("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
+  const formattedDate = formatShowingDate(input.showingDate);
+  const zone = await store.getTimeZone(input.listingId, agentId);
+  const timeLabel = labelShowingTime(input.showingDate, input.showingTime, zone);
 
   if (deps.emailEnabled && agent) {
-    const buyerMail = buildBuyerShowingEmail({
+    const buyerMail = buildBuyerRequestEmail({
       buyerName: input.name,
       listingAddress,
       formattedDate,
-      showingTime: input.showingTime,
+      showingTime: timeLabel,
       agentName: agent.name,
       agentPhone: agent.phone,
       agentEmail: agent.email,
     });
-    const agentMail = buildAgentShowingEmail({
+    const agentMail = buildAgentRequestEmail({
       buyerName: input.name,
       buyerEmail: input.email,
       buyerPhone: input.phone,
       message: input.message,
       listingAddress,
       formattedDate,
-      showingTime: input.showingTime,
-      dashboardUrl: `${deps.appUrl}/dashboard/leads`,
+      showingTime: timeLabel,
+      dashboardUrl: `${deps.appUrl}/dashboard/showings`,
+      needsTimeZone: !zone,
     });
-
-    const ics = generateShowingICS({
-      uid: showing.id,
-      date: input.showingDate,
-      time: input.showingTime,
-      durationMinutes: 30,
-      summary: `Property Showing - ${listingAddress}`,
-      description: [
-        `Showing with ${input.name}`,
-        agent.phone
-          ? `Agent: ${agent.name} (${formatPhone(agent.phone)})`
-          : `Agent: ${agent.name}`,
-        input.phone ? `Buyer phone: ${formatPhone(input.phone)}` : null,
-        input.message ? `Notes: ${input.message}` : null,
-      ]
-        .filter(Boolean)
-        .join("\n"),
-      location: listingAddress,
-      organizerName: agent.name || "Listing Agent",
-      organizerEmail: agent.email,
-      attendeeName: input.name,
-      attendeeEmail: input.email,
-    });
-    const attachment = {
-      filename: "showing.ics",
-      content: icsToBase64(ics),
-      contentType: "text/calendar",
-    };
-
-    // A failed send is logged but never turns a saved booking into an error.
+    // A failed send is logged but never turns a saved request into an error.
     const sends = await Promise.allSettled([
       deps.sendEmail({
         from: `${sanitizeDisplayName(agent.name)} via ListingFlare <leads@listingflare.com>`,
@@ -277,43 +263,34 @@ export async function processBookingRequest(
         replyTo: agent.email,
         subject: buyerMail.subject,
         html: buyerMail.html,
-        attachments: [attachment],
       }),
       deps.sendEmail({
         from: "ListingFlare <leads@listingflare.com>",
         to: agent.email,
         subject: agentMail.subject,
         html: agentMail.html,
-        attachments: [attachment],
       }),
     ]);
     for (const s of sends) {
-      if (s.status === "rejected") console.error("Showing email send failed:", s.reason);
+      if (s.status === "rejected") console.error("Showing request email send failed:", s.reason);
     }
   }
 
-  try {
-    await deps.addGoogleEvent(agentId, {
-      showingDate: input.showingDate,
-      showingTime: input.showingTime,
-      listingAddress,
-      name: input.name,
-      email: input.email,
-      phone: input.phone,
-      message: input.message,
-    });
-  } catch (err) {
-    console.error("Google Calendar event creation failed:", err);
-  }
-
-  deps.enrollShowingFollowUps(leadId, input.listingId, agentId);
-
   deps.notifyAgentPush(agentId, {
-    title: "New showing booked",
-    body: `${input.name} booked ${formattedDate} at ${input.showingTime}. Tap to view.`,
+    title: "New showing request",
+    body: `${input.name} requested ${formattedDate} at ${input.showingTime}. Tap to confirm or decline.`,
     url: "/dashboard/showings",
     tag: `showing-${showing.id}`,
   });
 
-  return { status: 200, body: { ok: true, showingId: showing.id } };
+  return { status: 200, body: { ok: true, showingId: showing.id, status: "requested" } };
+}
+
+export function formatShowingDate(date: string): string {
+  return new Date(date + "T12:00:00").toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 }

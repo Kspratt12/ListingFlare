@@ -74,8 +74,8 @@ export default function GoogleCalendarConnect() {
           </div>
           <p className="mt-0.5 text-sm text-gray-500">
             {connected
-              ? "Booked showings automatically create calendar events. Busy times block showing slots."
-              : "Connect once. Booked showings sync to your calendar. We'll hide times when you're already busy."}
+              ? "Confirmed showings automatically create calendar events. Busy times block showing slots."
+              : "Connect once. Confirmed showings sync to your calendar. We'll hide times when you're already busy."}
           </p>
           {status && (
             <p className="mt-2 text-xs font-medium text-brand-600">{status}</p>

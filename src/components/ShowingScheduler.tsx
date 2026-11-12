@@ -159,7 +159,12 @@ export default function ShowingScheduler({ listingId }: Props) {
     });
 
     if (!res.ok) {
-      setError("Failed to book showing. Please try again.");
+      const data = await res.json().catch(() => ({}));
+      setError(
+        res.status === 409 && typeof data.error === "string"
+          ? data.error
+          : "Failed to send your request. Please try again."
+      );
       setSubmitting(false);
       return;
     }
@@ -197,7 +202,7 @@ export default function ShowingScheduler({ listingId }: Props) {
             Schedule a Showing
           </h2>
           <p className="mt-4 text-lg text-gray-400">
-            Pick a date and time that works for you. We&apos;ll confirm instantly.
+            Pick the time you would like. The agent will confirm or suggest another time; it is not booked until you hear back.
           </p>
         </motion.div>
 
@@ -217,14 +222,13 @@ export default function ShowingScheduler({ listingId }: Props) {
               >
                 <CheckCircle className="mx-auto h-12 w-12 text-green-400" />
                 <h3 className="mt-4 font-serif text-2xl font-semibold text-white">
-                  Showing Confirmed!
+                  Request sent. Not confirmed yet.
                 </h3>
                 <p className="mt-2 text-gray-400">
                   {formatSelectedDate()} at {selectedTime}
                 </p>
                 <p className="mt-4 text-sm text-gray-500">
-                  Check your email for a confirmation with all the details.
-                  We&apos;ll send you a reminder before your showing.
+                  The agent has your request for this time and will confirm or suggest another. Check your email for a receipt now and a second email once it is confirmed. Times are in the property&apos;s local time.
                 </p>
               </motion.div>
             ) : (
@@ -555,11 +559,11 @@ export default function ShowingScheduler({ listingId }: Props) {
                         {submitting ? (
                           <>
                             <Loader2 className="h-4 w-4 animate-spin" />
-                            Booking...
+                            Sending request...
                           </>
                         ) : (
                           <>
-                            Confirm Showing
+                            Request Showing
                             <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                           </>
                         )}

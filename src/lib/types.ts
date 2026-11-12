@@ -21,6 +21,8 @@ export interface AgentProfile {
   setup_fee_paid: boolean;
   weekly_emails: boolean;
   calendly_url: string;
+  // IANA zone of the agent's market (default for showings). null = not set.
+  timezone?: string | null;
   ai_approval_mode: boolean;
   google_access_token: string | null;
   google_refresh_token: string | null;
@@ -217,7 +219,7 @@ export interface Showing {
   email: string;
   phone: string;
   message: string;
-  status: "confirmed" | "completed" | "canceled" | "no_show";
+  status: "requested" | "confirmed" | "declined" | "completed" | "canceled" | "no_show";
   reminder_sent: boolean;
   created_at: string;
   updated_at: string;

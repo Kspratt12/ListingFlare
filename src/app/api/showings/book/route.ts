@@ -1,14 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { internalHeaders } from "@/lib/internalAuth";
 import { createClient } from "@supabase/supabase-js";
-import { formatPhone } from "@/lib/formatters";
-import {
-  createCalendarEvent,
-  refreshAccessToken,
-  isGoogleConfigured,
-} from "@/lib/google/oauth";
 import { checkHoneypotAndTiming, checkRateLimits } from "@/lib/antiSpam";
 import { sendPushToAgent } from "@/lib/sendPush";
+import { getPropertyTimeZone } from "@/lib/propertyTimeZone";
 import {
   BOOKING_LIMITS,
   processBookingRequest,
@@ -57,6 +51,16 @@ function buildStore(db: ReturnType<typeof getAdminClient>): BookingStore {
       }
       return data === true ? "reserved" : "limited";
     },
+    getTimeZone: (listingId, agentId) => getPropertyTimeZone(db, listingId, agentId),
+    async findSlotShowings(listingId, date) {
+      const { data } = await db
+        .from("showings")
+        .select("id, email, status, showing_time")
+        .eq("listing_id", listingId)
+        .eq("showing_date", date)
+        .in("status", ["requested", "confirmed"]);
+      return (data ?? []).map((s) => ({ id: s.id, email: String(s.email || ""), status: s.status, showing_time: String(s.showing_time || "") }));
+    },
     async findLeadId(listingId, email) {
       const { data } = await db
         .from("leads")
@@ -102,70 +106,6 @@ function buildStore(db: ReturnType<typeof getAdminClient>): BookingStore {
   };
 }
 
-async function addGoogleEvent(
-  db: ReturnType<typeof getAdminClient>,
-  agentId: string,
-  e: Parameters<BookingDeps["addGoogleEvent"]>[1]
-) {
-  if (!isGoogleConfigured()) return;
-
-  const { data: fullAgent } = await db
-    .from("agent_profiles")
-    .select("google_access_token, google_refresh_token, google_token_expires_at")
-    .eq("id", agentId)
-    .single();
-  if (!fullAgent?.google_access_token) return;
-
-  let accessToken = fullAgent.google_access_token;
-  const expiresAt = fullAgent.google_token_expires_at
-    ? new Date(fullAgent.google_token_expires_at)
-    : null;
-
-  // Refresh token if expired/expiring soon
-  if (expiresAt && expiresAt < new Date() && fullAgent.google_refresh_token) {
-    const refreshed = await refreshAccessToken(fullAgent.google_refresh_token);
-    if (refreshed) {
-      accessToken = refreshed.access_token;
-      const newExpiresAt = new Date(Date.now() + (refreshed.expires_in - 60) * 1000).toISOString();
-      await db
-        .from("agent_profiles")
-        .update({ google_access_token: accessToken, google_token_expires_at: newExpiresAt })
-        .eq("id", agentId);
-    }
-  }
-
-  // Parse showing time to ISO strings.
-  // NOTE: new Date(y, m, d, h, min) uses the SERVER's timezone, and no agent or
-  // property timezone is stored, so the event time is only correct when the
-  // server timezone matches the agent's. Unchanged by this patch; the timezone
-  // phase replaces it.
-  const timeMatch = String(e.showingTime).match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
-  if (!timeMatch) return;
-  let hour = parseInt(timeMatch[1], 10);
-  const minute = parseInt(timeMatch[2], 10);
-  if (timeMatch[3].toUpperCase() === "PM" && hour !== 12) hour += 12;
-  if (timeMatch[3].toUpperCase() === "AM" && hour === 12) hour = 0;
-  const [yStr, mStr, dStr] = e.showingDate.split("-");
-  const startDate = new Date(parseInt(yStr), parseInt(mStr) - 1, parseInt(dStr), hour, minute);
-  const endDate = new Date(startDate.getTime() + 30 * 60 * 1000);
-
-  await createCalendarEvent(accessToken, {
-    summary: `Showing - ${e.listingAddress}`,
-    description: [
-      `Buyer: ${e.name}`,
-      e.phone ? `Phone: ${formatPhone(e.phone)}` : null,
-      e.message ? `Notes: ${e.message}` : null,
-    ]
-      .filter(Boolean)
-      .join("\n"),
-    location: e.listingAddress,
-    startISO: startDate.toISOString(),
-    endISO: endDate.toISOString(),
-    attendeeName: e.name,
-    attendeeEmail: e.email,
-  });
-}
-
 export async function POST(req: NextRequest) {
   try {
     let body: unknown;
@@ -200,14 +140,6 @@ export async function POST(req: NextRequest) {
           body: JSON.stringify(msg),
         });
         if (!res.ok) throw new Error(`Resend responded ${res.status}`);
-      },
-      addGoogleEvent: (agentId, e) => addGoogleEvent(db, agentId, e),
-      enrollShowingFollowUps(leadId, listingId, agentId) {
-        fetch(`${appUrl}/api/follow-ups/schedule`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", ...internalHeaders() },
-          body: JSON.stringify({ leadId, listingId, agentId, sequenceType: "showing" }),
-        }).catch((err) => console.error("Follow-up schedule error:", err));
       },
       notifyAgentPush(agentId, payload) {
         sendPushToAgent(agentId, payload).catch((err) => console.error("Push error:", err));

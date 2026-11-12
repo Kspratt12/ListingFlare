@@ -227,7 +227,7 @@ test("book: success order - reads, then the limiter call as the first write, the
   await withWeb({}, async (web) => {
     const res = await bookPOST(bookReq(goodBody({ showingDate: soon() })));
     assert.equal(res.status, 200);
-    assert.deepEqual(await res.json(), { ok: true, showingId: "showings-new-1" });
+    assert.deepEqual(await res.json(), { ok: true, showingId: "showings-new-1", status: "requested" });
     await new Promise((r) => setTimeout(r, 20)); // let the fire-and-forget follow-up call land
     const t = tag(web);
     const firstWrite = web.calls.findIndex((c) => c.method !== "GET" && c.method !== "HEAD");
@@ -235,14 +235,19 @@ test("book: success order - reads, then the limiter call as the first write, the
     assert.ok(t.indexOf("POST 127.0.0.1:1/rest/v1/leads") > firstWrite);
     assert.ok(t.indexOf("POST 127.0.0.1:1/rest/v1/showings") > t.indexOf("POST 127.0.0.1:1/rest/v1/leads"));
     assert.equal(t.filter((x) => x === "POST api.resend.com/emails").length, 2);
+    // a request does NOT enroll the follow-up sequence (that happens on confirmation)
     const follow = web.calls.filter((c) => c.host === "app.test" && c.path === "/api/follow-ups/schedule");
-    assert.equal(follow.length, 1);
-    assert.equal(follow[0].headers.get("x-internal-secret"), SECRET);
-    assert.deepEqual((follow[0].body as { sequenceType: string }).sequenceType, "showing");
-    // the buyer email goes to the lower-cased validated address and is still the unverified "confirmed" email
-    const buyer = web.calls.filter((c) => c.host === "api.resend.com")[0].body as { to: string; html: string };
+    assert.equal(follow.length, 0);
+    // the showing row is stored as a REQUEST
+    const showingPost = web.calls.find((c) => c.method === "POST" && c.path.endsWith("/rest/v1/showings"));
+    assert.equal((showingPost?.body as { status: string }).status, "requested");
+    // the buyer email goes to the lower-cased validated address, says received / not confirmed, and has no invite
+    const buyer = web.calls.filter((c) => c.host === "api.resend.com")[0].body as { to: string; html: string; attachments?: unknown[] };
     assert.equal(buyer.to, "dana@example.test");
-    assert.match(buyer.html, /Your Showing is Confirmed!/);
+    assert.match(buyer.html, /Showing request received/);
+    assert.match(buyer.html, /not confirmed yet/i);
+    assert.doesNotMatch(buyer.html, /Your Showing is Confirmed/);
+    assert.equal(buyer.attachments, undefined);
   });
 });
 

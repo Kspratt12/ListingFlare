@@ -140,7 +140,7 @@ export default function GettingStarted() {
         {
           id: "showing",
           title: "Book your first showing",
-          description: "Buyers pick a date/time from your listing page. Instant confirmations to both of you.",
+          description: "Buyers request a date/time from your listing page and you confirm or decline each one.",
           icon: Calendar,
           done: hasShowing,
           action: hasShowing ? { label: "View Showings", href: "/dashboard/showings" } : undefined,
@@ -148,7 +148,7 @@ export default function GettingStarted() {
         {
           id: "google",
           title: "Connect Google Calendar (optional)",
-          description: "Booked showings auto-create calendar events. Never double-book.",
+          description: "Confirmed showings auto-create calendar events.",
           icon: Calendar,
           done: googleConnected,
           action: googleConnected

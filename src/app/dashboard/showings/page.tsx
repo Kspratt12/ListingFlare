@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import type { Showing, Listing } from "@/lib/types";
@@ -33,6 +33,8 @@ type ShowingWithListing = Omit<Showing, "listing"> & {
 };
 
 const STATUS_OPTIONS = [
+  { value: "requested", label: "Requested", color: "bg-amber-50 text-amber-800 border-amber-300" },
+  { value: "declined", label: "Declined", color: "bg-gray-50 text-gray-500 border-gray-200" },
   { value: "confirmed", label: "Confirmed", color: "bg-blue-50 text-blue-700 border-blue-300" },
   { value: "completed", label: "Completed", color: "bg-emerald-50 text-emerald-700 border-emerald-300" },
   { value: "canceled", label: "Canceled", color: "bg-gray-50 text-gray-500 border-gray-200" },
@@ -330,7 +332,7 @@ export default function ShowingsPage() {
   );
   const [loading, setLoading] = useState(() => cacheGet("showings") === undefined);
   const { userId } = useAgentSession();
-  const [filter, setFilter] = useState<"upcoming" | "past" | "all">("upcoming");
+  const [filter, setFilter] = useState<"requests" | "upcoming" | "past" | "all">("upcoming");
   const [searchQuery, setSearchQuery] = useState("");
   const [editingShowing, setEditingShowing] = useState<ShowingWithListing | null>(null);
   const [creatingShowing, setCreatingShowing] = useState(false);
@@ -387,6 +389,48 @@ export default function ShowingsPage() {
     };
   }, []);
 
+  // Open on the requests tab the first time pending requests are seen, so a new request is not missed.
+  const autoOpenedRequests = useRef(false);
+  useEffect(() => {
+    if (!autoOpenedRequests.current && showings.some((s) => s.status === "requested")) {
+      autoOpenedRequests.current = true;
+      setFilter("requests");
+    }
+  }, [showings]);
+
+  const [responding, setResponding] = useState<string | null>(null);
+  const [respondError, setRespondError] = useState("");
+  const [needsTimeZone, setNeedsTimeZone] = useState(false);
+
+  // Confirm or decline a buyer request. Goes through the server so the buyer is
+  // emailed, the slot is checked for conflicts and the calendar entry is created.
+  const respond = async (id: string, action: "confirm" | "decline") => {
+    setResponding(id);
+    setRespondError("");
+    try {
+      const res = await fetch("/api/showings/respond", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ showingId: id, action }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setRespondError(data.error || "Could not update this request. Please try again.");
+        setNeedsTimeZone(data.code === "timezone_required");
+        return;
+      }
+      setNeedsTimeZone(false);
+      setShowings((prev) =>
+        prev.map((s) => (s.id === id ? { ...s, status: (action === "confirm" ? "confirmed" : "declined") as Showing["status"] } : s))
+      );
+
+    } catch {
+      setRespondError("Network problem. The request was not changed.");
+    } finally {
+      setResponding(null);
+    }
+  };
+
   const updateStatus = async (id: string, status: string) => {
     const supabase = createClient();
     await supabase.from("showings").update({ status }).eq("id", id);
@@ -411,10 +455,12 @@ export default function ShowingsPage() {
 
   const filtered = useMemo(() => {
     let base: ShowingWithListing[];
-    if (filter === "upcoming") {
+    if (filter === "requests") {
+      base = showings.filter((s) => s.status === "requested");
+    } else if (filter === "upcoming") {
       base = showings.filter((s) => s.showing_date >= today && s.status === "confirmed");
     } else if (filter === "past") {
-      base = showings.filter((s) => s.showing_date < today || s.status !== "confirmed");
+      base = showings.filter((s) => s.status !== "requested" && (s.showing_date < today || s.status !== "confirmed"));
       base = [...base].reverse();
     } else {
       base = showings;
@@ -429,8 +475,9 @@ export default function ShowingsPage() {
     const upcoming = showings.filter(
       (s) => s.showing_date >= today && s.status === "confirmed"
     ).length;
-    const past = showings.length - upcoming;
-    return { upcoming, past, all: showings.length };
+    const requests = showings.filter((s) => s.status === "requested").length;
+    const past = showings.length - upcoming - requests;
+    return { requests, upcoming, past, all: showings.length };
   }, [showings, today]);
 
   return (
@@ -441,7 +488,7 @@ export default function ShowingsPage() {
             Showings
           </h1>
           <p className="mt-1 text-gray-500">
-            Every property showing booked through your listings.
+            Buyer showing requests and your confirmed showings. A request is not a booking until you confirm it.
           </p>
         </div>
         <button
@@ -468,8 +515,30 @@ export default function ShowingsPage() {
         </div>
       )}
 
+      {respondError && (
+        <p role="alert" className="mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+          {respondError}
+          {needsTimeZone && (
+            <>
+              {" "}
+              <Link href="/dashboard/settings" className="font-semibold underline">Open Settings</Link>
+            </>
+          )}
+        </p>
+      )}
+
       {/* Filter tabs */}
       <div className="mt-4 flex flex-wrap gap-2">
+        <button
+          onClick={() => setFilter("requests")}
+          className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
+            filter === "requests"
+              ? "border-amber-700 bg-amber-700 text-white"
+              : "border-amber-300 bg-amber-50 text-amber-800 hover:bg-amber-100"
+          }`}
+        >
+          Requests to answer ({counts.requests})
+        </button>
         <button
           onClick={() => setFilter("upcoming")}
           className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
@@ -517,7 +586,7 @@ export default function ShowingsPage() {
             {filter === "upcoming" ? "No upcoming showings" : "No showings yet"}
           </h3>
           <p className="mt-2 text-gray-500">
-            When buyers book a showing from your listing pages, they&apos;ll appear here.
+            When buyers request a showing from your listing pages, the request appears here for you to confirm or decline.
           </p>
           {myListings.length === 0 ? (
             <Link
@@ -570,14 +639,14 @@ export default function ShowingsPage() {
                       className="rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-brand-200"
                     >
                       <div className="flex flex-wrap items-start justify-between gap-4">
-                        <div className="min-w-0 flex-1">
+                        <div className="min-w-0 basis-full sm:flex-1 sm:basis-0">
                           {/* Time + Address */}
                           <div className="flex flex-wrap items-center gap-3">
                             <span className="inline-flex items-center gap-1 rounded-lg bg-brand-50 px-2.5 py-1 text-sm font-semibold text-brand-700">
                               <Clock className="h-3.5 w-3.5" />
                               {showing.showing_time}
                             </span>
-                            <span className="flex items-center gap-1.5 truncate text-sm text-gray-600">
+                            <span className="flex items-start gap-1.5 text-sm text-gray-600 sm:items-center sm:truncate">
                               <MapPin className="h-3.5 w-3.5 flex-shrink-0 text-gray-400" />
                               {address}
                             </span>
@@ -628,13 +697,33 @@ export default function ShowingsPage() {
 
                         {/* Status + Edit */}
                         <div className="flex items-center gap-2">
+                          {showing.status === "requested" ? (
+                            <div className="flex items-center gap-2">
+                              <button
+                                onClick={() => respond(showing.id, "confirm")}
+                                disabled={responding === showing.id}
+                                className="inline-flex min-h-[40px] items-center rounded-lg bg-gray-950 px-3 text-xs font-semibold text-white hover:bg-gray-800 disabled:opacity-50"
+                              >
+                                Confirm
+                              </button>
+                              <button
+                                onClick={() => respond(showing.id, "decline")}
+                                disabled={responding === showing.id}
+                                className="inline-flex min-h-[40px] items-center rounded-lg border border-gray-300 bg-white px-3 text-xs font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+                              >
+                                Decline
+                              </button>
+                            </div>
+                          ) : showing.status === "declined" ? (
+                            <span className={`rounded-full border px-3 py-1 text-xs font-medium ${getStatusStyle("declined")}`}>Declined</span>
+                          ) : (
                           <div className="relative">
                             <select
                               value={showing.status}
                               onChange={(e) => updateStatus(showing.id, e.target.value)}
                               className={`cursor-pointer appearance-none rounded-full border py-1 pl-3 pr-7 text-xs font-medium ${getStatusStyle(showing.status)}`}
                             >
-                              {STATUS_OPTIONS.map((s) => (
+                              {STATUS_OPTIONS.filter((s) => s.value !== "requested" && s.value !== "declined").map((s) => (
                                 <option key={s.value} value={s.value}>
                                   {s.label}
                                 </option>
@@ -642,6 +731,7 @@ export default function ShowingsPage() {
                             </select>
                             <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 opacity-50" />
                           </div>
+                          )}
                           <button
                             onClick={() => setEditingShowing(showing)}
                             className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-700"

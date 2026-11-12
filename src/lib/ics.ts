@@ -3,6 +3,7 @@
 // to Google Calendar, Apple Calendar, Outlook, etc. with one click.
 
 import { isValidEmail } from "./showingInput";
+import { zonedTimeToUtc } from "./timezone";
 
 export interface ShowingInvite {
   uid: string;
@@ -16,6 +17,9 @@ export interface ShowingInvite {
   organizerEmail: string;
   attendeeName: string;
   attendeeEmail: string;
+  // IANA zone of the PROPERTY. When present the invite is written as an exact UTC time;
+  // when absent it stays "floating" (the same wall-clock time wherever it is opened).
+  timeZone?: string | null;
 }
 
 function parseTimeTo24h(time: string): { hour: number; minute: number } {
@@ -90,8 +94,14 @@ export function generateShowingICS(invite: ShowingInvite): string {
   const { hour, minute } = parseTimeTo24h(invite.time);
   const end = addMinutes(hour, minute, duration);
 
-  const dtStart = formatIcsDate(year, month, day, hour, minute);
-  const dtEnd = formatIcsDate(year, month, day, end.hour, end.minute);
+  let dtStart = formatIcsDate(year, month, day, hour, minute);
+  let dtEnd = formatIcsDate(year, month, day, end.hour, end.minute);
+  const zoned = invite.timeZone ? zonedTimeToUtc(invite.date, invite.time, invite.timeZone) : null;
+  if (zoned) {
+    const fmt = (d: Date) => d.toISOString().replace(/[-:]/g, "").replace(/\.[0-9]{3}Z$/, "Z");
+    dtStart = fmt(zoned.utc);
+    dtEnd = fmt(new Date(zoned.utc.getTime() + duration * 60000));
+  }
 
   const now = new Date();
   const dtStamp =
