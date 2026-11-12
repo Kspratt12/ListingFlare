@@ -243,7 +243,7 @@ export const article: BlogPost = {
 <div class="pros-card">
 <p>Pros</p>
 <ul>
-<li>Only platform with an AI chatbot on every listing page - captures leads 24/7</li>
+<li>AI chatbot on every listing page, available around the clock</li>
 <li>Automatic lead capture through natural conversation, not just static forms</li>
 <li>AI-drafted follow-up emails based on actual buyer conversations</li>
 <li>Detailed analytics dashboard with weekly reports</li>
@@ -430,11 +430,11 @@ export const article: BlogPost = {
 
 <p>Consider this scenario: a buyer finds your listing on Instagram at 9:45 PM on a Saturday. They love the kitchen but want to know if the backyard is fenced. On CribFlyer or Rela, they fill out a form and wait. Maybe they hear back Sunday morning - or maybe they have already moved on to another agent.</p>
 
-<p>On ListingFlare, the conversational AI answers their question in three seconds, then asks if they would like to see the home in person. You wake up Sunday morning with a qualified lead, a full conversation transcript, and a follow-up email already sent on your behalf. Industry research backs this up: buyers overwhelmingly work with the first agent who responds.</p>
+<p>On ListingFlare, the conversational AI answers their question from the listing details, then asks if they would like to see the home in person. You wake up Sunday morning with a qualified lead, a full conversation transcript, and a follow-up email already sent on your behalf. Industry research backs this up: buyers overwhelmingly work with the first agent who responds.</p>
 
 <p>If you are spending money on professional photography, virtual tours, drone footage, and staging, it makes no sense to send all that traffic to a page that cannot capture leads after business hours.</p>
 
-<p><a href="/signup">Start your free 14-day ListingFlare trial</a> and see the difference on your next listing. No credit card required. Your first page will be live in under five minutes.</p>
+<p><a href="/signup">Start your free 14-day ListingFlare trial</a> and see the difference on your next listing. No credit card required. Your first page goes live as soon as you publish.</p>
 
 <p>For more on building an effective listing marketing strategy, check out our guides on <a href="/blog/how-to-create-a-single-property-website">how to create a single property website</a> and <a href="/blog/best-single-property-website-builders">the best single property website builders for 2026</a>.</p>
 
@@ -451,7 +451,7 @@ export const article: BlogPost = {
 <p>For pure visual design, Rela has the edge with 20 premium templates built for high-end properties. However, luxury buyers have detailed questions and expect immediate answers. ListingFlare's chatbot provides that instant engagement while still offering clean, professional templates. The best choice depends on whether you prioritize design or lead conversion.</p>
 
 <h3>Can I switch from CribFlyer or Rela to ListingFlare?</h3>
-<p>Yes. <a href="/signup">Sign up for a free ListingFlare trial</a>, create your listing pages in under five minutes each, and update the links on your marketing materials. No data migration is needed since each platform hosts its own pages independently.</p>
+<p>Yes. <a href="/signup">Sign up for a free ListingFlare trial</a>, create your listing pages, and update the links on your marketing materials. No data migration is needed since each platform hosts its own pages independently.</p>
 
 <h3>Is $150/mo worth it for a single property website builder?</h3>
 <p>A lead is not a sale, and most leads do not close. If one extra sale in a year came from a captured inquiry, a 2.5% commission on a $400,000 home is $10,000 before your split and costs, which would cover the plan&rsquo;s $1,800 a year; but that is a what-if, not an expected result, and nothing guarantees an extra sale. Compare the price against how many inquiries you actually handle.</p>

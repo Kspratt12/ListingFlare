@@ -7,6 +7,7 @@ export const article: BlogPost = {
   description:
     "15 real estate listing marketing strategies for 2026, from professional photography to AI chatbots, to help your listing get more exposure and leads.",
   date: "2026-03-11",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Listing Marketing",
   keywords: [
@@ -38,7 +39,7 @@ export const article: BlogPost = {
 
 <p>A <strong>single-property website</strong> gives your listing its own dedicated URL, brand-free landing page, and full-screen media experience, something an MLS listing or Zillow page can never replicate. If you have not used this approach before, our complete guide on <a href="/blog/how-to-create-a-single-property-website">how to create a single property website</a> walks you through every step. It signals to your seller (and to prospective buyers) that this property deserves premium treatment.</p>
 
-<p>The best single-property websites go beyond a photo gallery. They include lead capture forms, instant notifications, and even AI-powered chatbots that answer buyer questions 24/7. <a href="/signup">ListingFlare</a> lets you spin up a professional property website in under two minutes, complete with AI chat, automatic lead capture, and an instant AI reply to new leads, so you can focus on selling instead of building web pages.</p>
+<p>The best single-property websites go beyond a photo gallery. They include lead capture forms, instant notifications, and even AI-powered chatbots that answer buyer questions 24/7. <a href="/signup">ListingFlare</a> lets you spin up a professional property website, complete with AI chat, automatic lead capture, and an instant AI reply to new leads, so you can focus on selling instead of building web pages.</p>
 
 <p><strong>Pro tip:</strong> Use your property website URL in every piece of marketing: yard signs, postcards, social posts, email blasts, and ads. One clean URL ties your entire campaign together and funnels every lead to one place.</p>
 
@@ -178,7 +179,7 @@ export const article: BlogPost = {
 
 <p>The key is consistency. Build a repeatable system so that every listing gets the same high-quality treatment, and then refine your approach based on what the data tells you. Track which channels generate the most leads, which ads produce the lowest cost-per-lead, and which strategies your sellers value most. Over time, you'll develop a listing marketing machine that wins you more listings and sells them faster.</p>
 
-<p>Ready to add single-property websites to your marketing toolkit? <a href="/signup">Try ListingFlare free</a> and launch your first property website in under two minutes.</p>
+<p>Ready to add single-property websites to your marketing toolkit? <a href="/signup">Try ListingFlare free</a> and launch your first property website.</p>
 
 <p><strong>More to read:</strong> <a href="/blog/real-estate-listing-page-checklist">listing landing page checklist</a></p>
 

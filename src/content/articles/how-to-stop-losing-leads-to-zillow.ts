@@ -6,7 +6,7 @@ export const article: BlogPost = {
   description:
     "Zillow can route your listing's buyer leads to other agents. Here are 9 strategies to capture leads directly from your own listings instead.",
   date: "2026-03-20",
-  updated: "2026-10-25",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [
@@ -62,7 +62,7 @@ export const article: BlogPost = {
 
 <p>Here is why this works: when you put a unique URL on your yard sign, your social media posts, your flyers, and your email blasts, every buyer who visits that page is interacting with you and only you. There is no sidebar showing "Other agents in the area." There is no algorithm redirecting them to a different property. Every lead that comes through that page is yours.</p>
 
-<p><a href="/signup">ListingFlare</a> lets you create a professional single-property website in under five minutes. Each page includes a full-screen photo gallery, property details, neighborhood information, and an <strong>AI-powered chatbot</strong> that answers buyer questions and captures contact information 24/7. When a buyer visits your listing page at 11 PM and asks "Does this home have a finished basement?", the chatbot answers the question and collects their name, email, and phone number. You wake up with a warm lead in your inbox instead of losing that buyer to a midnight Zillow browse. <a href="/demo">See a demo listing here.</a></p>
+<p><a href="/signup">ListingFlare</a> lets you create a professional single-property website. Each page includes a full-screen photo gallery, property details, neighborhood information, and an <strong>AI-powered chatbot</strong> that answers buyer questions and captures contact information 24/7. When a buyer visits your listing page at 11 PM and asks "Does this home have a finished basement?", the chatbot answers the question and collects their name, email, and phone number. You wake up with a warm lead in your inbox instead of losing that buyer to a midnight Zillow browse. <a href="/demo">See a demo listing here.</a></p>
 
 <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=800&h=450&fit=crop&q=80" alt="Modern single family home with professional photography perfect for a dedicated single property listing website" loading="lazy" width="800" height="450" />
 
@@ -301,6 +301,6 @@ export const article: BlogPost = {
 
 <p>The agents who will dominate in 2026 and beyond are the ones who <strong>own their lead generation</strong>. They create dedicated property websites. They drive traffic through social media, email, video, and local SEO. They capture every lead on pages they control. And they never pay a portal for a lead that should have been theirs in the first place.</p>
 
-<p>Ready to take control of your leads? <a href="/signup">Start your free 14-day trial with ListingFlare</a> and create your first single-property website in under five minutes. Your listings are already doing the work. It is time you got the credit.</p>
+<p>Ready to take control of your leads? <a href="/signup">Start your free 14-day trial with ListingFlare</a> and create your first single-property website. Your listings are already doing the work. It is time you got the credit.</p>
 `,
 };

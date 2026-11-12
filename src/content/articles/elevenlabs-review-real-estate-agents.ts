@@ -449,7 +449,7 @@ export const article: BlogPost = {
 
 <p>Post your finished video to Instagram Reels, TikTok, Facebook, and YouTube Shorts. In your caption, include a call-to-action directing viewers to your property page for more details.</p>
 
-<p>This is where the lead capture piece matters. If you are sending traffic to a generic Zillow listing, you lose control of the lead. If you are sending traffic to a <a href="/demo">ListingFlare property page</a>, you capture every lead with an AI chatbot that engages buyers in real time and collects their contact information automatically.</p>
+<p>This is where the lead capture piece matters. If you are sending traffic to a generic Zillow listing, you lose control of the lead. If you are sending traffic to a <a href="/demo">ListingFlare property page</a>, its AI chatbot can engage buyers in real time and collect their contact information.</p>
 
 <p>The voiceover got their attention. The property page converts them into a lead. That is the complete workflow.</p>
 

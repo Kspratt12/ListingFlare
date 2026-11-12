@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "Local real estate marketing ideas for Raleigh agents in 2026, from Triangle-specific strategies to tech tools that help your listings stand out.",
   date: "2026-03-03",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Listing Marketing",
   keywords: [
@@ -64,7 +65,7 @@ export const article: BlogPost = {
 
 <h3>Single-Property Websites for Every Listing</h3>
 
-<p>Here's what separates top-producing Raleigh agents from the rest: they treat every listing like a product launch. That means each property gets its own <strong>dedicated website with a clean URL, full-screen photos, and built-in lead capture</strong>. Tools like <a href="/signup">ListingFlare</a> let you create a professional single-property website in under two minutes, complete with an AI chatbot that answers buyer questions 24/7 and automatically captures leads while you sleep. Put the property URL on your yard sign, your postcards, your social ads, and every email blast. One URL ties your entire marketing campaign together.</p>
+<p>Here's what separates top-producing Raleigh agents from the rest: they treat every listing like a product launch. That means each property gets its own <strong>dedicated website with a clean URL, full-screen photos, and built-in lead capture</strong>. Tools like <a href="/signup">ListingFlare</a> let you create a professional single-property website, complete with an AI chatbot that answers buyer questions 24/7 and automatically captures leads while you sleep. Put the property URL on your yard sign, your postcards, your social ads, and every email blast. One URL ties your entire marketing campaign together.</p>
 
 <h3>Targeted Social Media Ads</h3>
 

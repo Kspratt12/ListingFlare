@@ -37,7 +37,7 @@ export const article: BlogPost = {
 <ol>
 <li><strong><a href="/signup">ListingFlare</a></strong> - Best overall. AI chatbot captures leads 24/7, auto follow-up emails, unlimited listings for $150/mo. Engages buyers after hours.</li>
 <li><strong>Rela HQ</strong> - Best for luxury visuals. Gorgeous templates, 3D tour integration, but no chatbot and per-listing pricing adds up.</li>
-<li><strong>CribFlyer</strong> - Best for flexibility. Free plan available, pay-per-listing model, but dated templates and no AI features.</li>
+<li><strong>CribFlyer</strong> - Best for flexibility. Low entry price, but dated templates and no AI features.</li>
 <li><strong>Spiro</strong> - Best for photographers. Branded and unbranded options with built-in showing scheduler.</li>
 <li><strong>SinglePropertySites.com</strong> - Best marketing bundle. Auto-generates social posts, emails, and flyers alongside the website.</li>
 <li><strong>HDphotohub</strong> - Best budget option. No monthly fee, pay per property only, but very basic features.</li>
@@ -108,7 +108,7 @@ export const article: BlogPost = {
 
 <h2>2. Rela HQ - Best for High-End Visual Presentation</h2>
 
-<p><strong>Price:</strong> Starts at $29/month per listing (varies by plan)</p>
+<p><strong>Price:</strong> Published plans (checked November 2026): $24/month for 1 active listing, $49/month for 5, $99/month for 25</p>
 
 <p>Rela is one of the most well-known names in single property websites, and for good reason. Their templates are polished, the photo galleries are gorgeous, and the 3D tour integration is seamless. If your primary goal is to make a listing look as premium as possible, Rela delivers. The platform has been around since the early days of single property websites and has built a strong reputation in the luxury market.</p>
 
@@ -131,17 +131,17 @@ export const article: BlogPost = {
 
 <h3>What Could Be Better</h3>
 
-<p>The lead capture is a static form. If a buyer visits at 10 PM and has a question about the property, they fill out a form and wait. There is no chatbot, no instant engagement, no automated follow-up. You get an email notification, and then it is on you to respond. The per-listing pricing also adds up quickly. At $29/listing/month, five active listings cost you $145/month, and you still do not get AI features or auto follow-up. There is no automated lead nurturing of any kind.</p>
+<p>The lead capture is a static form. If a buyer visits at 10 PM and has a question about the property, they fill out a form and wait. There is no chatbot, no instant engagement, no automated follow-up. You get an email notification, and then it is on you to respond. Pricing is tiered by the number of active listings. There is no automated lead nurturing of any kind.</p>
 
 <h3>Cost for 5 Listings</h3>
 
-<p>Approximately $145/month (5 x $29), depending on the plan tier.</p>
+<p>$49/month on the published 5-active-listing plan (checked November 2026).</p>
 
 <p><strong>Best for:</strong> Luxury agents who want the most visually impressive listing pages and do not mind handling lead follow-up manually.</p>
 
 <h2>3. CribFlyer - Best for Flexibility and Per-Listing Control</h2>
 
-<p><strong>Price:</strong> Free plan available | Paid plans from $15/listing/month</p>
+<p><strong>Price:</strong> Published plans (checked November 2026): $9/month for 1 site, $29/month for 10, $99/month for 100</p>
 
 <p>CribFlyer has been around for years and has earned a loyal following among agents who want simple, fast listing pages without a big commitment. Their free plan lets you try it out before paying, and the paid tiers let you upgrade or downgrade month to month depending on how many active listings you have. This flexibility is CribFlyer&rsquo;s biggest selling point.</p>
 
@@ -150,8 +150,8 @@ export const article: BlogPost = {
 <h3>Key Features</h3>
 
 <ul>
-<li><strong>Free plan.</strong> CribFlyer offers a genuinely free tier that lets you create a basic listing page with limited features. It is useful for testing the platform before committing to a paid plan.</li>
-<li><strong>Per-listing pricing.</strong> Paid plans start at $15/listing/month. You can upgrade or downgrade at any time. This makes CribFlyer one of the most budget-friendly options for agents who carry one or two listings at a time.</li>
+<li><strong>Low entry price.</strong> CribFlyer's published plans start at $9/month for one site (checked November 2026), which keeps the cost of testing the platform low.</li>
+<li><strong>Tiered pricing.</strong> Paid plans start at $9/month for one site. You can upgrade or downgrade at any time. This makes CribFlyer one of the most budget-friendly options for agents who carry one or two listings at a time.</li>
 <li><strong>Custom domain support.</strong> On paid plans, you can connect a custom domain to your listing page. This looks more professional than a cribflyer.com subdomain on marketing materials.</li>
 <li><strong>Photo gallery.</strong> Standard photo gallery with slideshow functionality. Not as polished as Rela, but functional and mobile-friendly.</li>
 <li><strong>Lead capture forms.</strong> Built-in forms on paid plans. Leads are delivered via email notification. The free plan does not include lead capture.</li>
@@ -168,7 +168,7 @@ export const article: BlogPost = {
 
 <h3>Cost for 5 Listings</h3>
 
-<p>$75/month (5 x $15) on the basic paid plan.</p>
+<p>$29/month on the published 10-site plan (checked November 2026).</p>
 
 <p><strong>Best for:</strong> Agents who want a pay-as-you-go model and only carry one or two listings at a time.</p>
 
@@ -209,7 +209,7 @@ export const article: BlogPost = {
 
 <h2>5. SinglePropertySites.com (SPS) - Best for Automated Marketing Bundles</h2>
 
-<p><strong>Price:</strong> Varies by package (typically $25-50/listing)</p>
+<p><strong>Price:</strong> Published plans (checked November 2026): free tier, $12/month for 1 property, $29/month for 5, $49/month for 10</p>
 
 <p>SPS has been in the single property website space for a long time. They were one of the first platforms to focus exclusively on individual listing pages, and their pitch is automation. When you publish a listing, SPS does not just create a website. It automatically generates social media posts, email campaign templates, and print-ready flyers alongside the website. It is a listing marketing bundle, not just a website builder.</p>
 
@@ -236,7 +236,7 @@ export const article: BlogPost = {
 
 <h3>Cost for 5 Listings</h3>
 
-<p>$125-250/month (5 x $25-50), depending on the package tier.</p>
+<p>$29/month on the published 5-property plan (checked November 2026).</p>
 
 <p><strong>Best for:</strong> Agents who want a full listing marketing bundle (website + social + email + print) generated automatically from a single listing entry, and are less concerned about cutting-edge design.</p>
 
@@ -315,13 +315,13 @@ export const article: BlogPost = {
 <tr><th>Feature</th><th>ListingFlare</th><th>Rela</th><th>CribFlyer</th><th>Spiro</th><th>SPS</th><th>HDphotohub</th><th>Placester</th></tr>
 </thead>
 <tbody>
-<tr><td>Pricing</td><td>$150/mo (unlimited listings)</td><td>about $29/listing/mo</td><td>Free plan, then $15/listing/mo</td><td>about $10/property</td><td>$25-50/listing</td><td>$15/property one-time</td><td>$99+/mo (full site)</td></tr>
+<tr><td>Pricing</td><td>$150/mo (unlimited listings)</td><td>From $24/mo (1 active listing); $49/mo for 5</td><td>From $9/mo (1 site); $29/mo for 10</td><td>about $10/property</td><td>Free tier; from $12/mo (1 property); $29/mo for 5</td><td>$15/property one-time</td><td>$99+/mo (full site)</td></tr>
 <tr><td>AI Chatbot for Lead Engagement</td><td>Yes, AI chatbot on every page that answers buyer questions 24/7</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
 <tr><td>Automated Follow-Up</td><td>Yes, automatic follow-up emails</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Basic CRM (manual follow-up)</td></tr>
 <tr><td>Design Quality</td><td>Modern, clean, mobile-optimized</td><td>Best-in-class luxury templates</td><td>Clean but dated</td><td>Clean, professional</td><td>Functional but dated</td><td>Basic</td><td>Professional (full site templates)</td></tr>
 <tr><td>3D Tour / Virtual Tour Integration</td><td>Yes (Matterport, YouTube, custom embed)</td><td>Yes (Matterport, iGuide, native)</td><td>Limited</td><td>Limited (iFrame workaround)</td><td>Limited</td><td>No</td><td>Yes (through IDX and embeds)</td></tr>
 <tr><td>Analytics Dashboard</td><td>Detailed (views, time on page, lead source, chatbot engagement)</td><td>Basic view counts</td><td>Basic view counts</td><td>Basic</td><td>Basic</td><td>None</td><td>Moderate (site-wide analytics)</td></tr>
-<tr><td>Cost for 5 Simultaneous Listings</td><td>$150/mo</td><td>about $145/mo</td><td>about $75/mo</td><td>about $50</td><td>about $125-250/mo</td><td>$75 one-time</td><td>$99+/mo</td></tr>
+<tr><td>Cost for 5 Simultaneous Listings</td><td>$150/mo</td><td>$49/mo</td><td>$29/mo</td><td>about $50</td><td>$29/mo</td><td>$75 one-time</td><td>$99+/mo</td></tr>
 </tbody>
 </table>
 

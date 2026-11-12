@@ -74,7 +74,7 @@ export const article: BlogPost = {
 
 <h3>Marketing That Cuts Through the Noise</h3>
 
-<p>With 20% more inventory on the market, your listing is competing for eyeballs against dozens of comparable homes. Professional photography is the bare minimum. The sellers winning in 2026 are investing in staging, drone footage, video walkthroughs, and <a href="/demo">dedicated single-property websites</a> that showcase their home in a distraction-free environment. Tools like <strong>ListingFlare</strong> let agents create polished property sites in minutes, giving each listing its own online presence that stands apart from crowded MLS pages and portal listings.</p>
+<p>With 20% more inventory on the market, your listing is competing for eyeballs against dozens of comparable homes. Professional photography is the bare minimum. The sellers winning in 2026 are investing in staging, drone footage, video walkthroughs, and <a href="/demo">dedicated single-property websites</a> that showcase their home in a distraction-free environment. Tools like <strong>ListingFlare</strong> let agents create polished property sites, giving each listing its own online presence that stands apart from crowded MLS pages and portal listings.</p>
 
 <h3>The Spring Window Is Real</h3>
 

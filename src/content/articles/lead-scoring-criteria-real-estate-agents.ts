@@ -7,6 +7,7 @@ export const article: BlogPost = {
   description:
     "Learn the lead scoring criteria real estate agents need. Prioritize hot prospects, save time and follow up faster with a simple scoring system.",
   date: "2026-03-08",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Lead Management",
   keywords: [
@@ -262,6 +263,6 @@ export const article: BlogPost = {
 
 <p>Implementing <strong>lead scoring criteria real estate agents</strong> can rely on doesn't require expensive software or hours of setup. Start with the six criteria in this guide, build a simple spreadsheet or use your CRM's built-in scoring, and commit to reviewing your scores weekly. Within a month, you'll notice a clear pattern: your conversion rate improves because you're spending your best hours on your best prospects.</p>
 
-<p>If you want to take it a step further, let technology handle the initial qualification for you. <a href="/signup">Try ListingFlare</a> to create single-property websites with an AI chatbot that pre-qualifies every lead by gathering their timeline, budget, and motivation during a natural conversation. By the time you get the notification, you'll already know exactly how to score that lead and what to do next. <a href="/demo">See how AI chat qualifies leads</a> and start closing more deals with less wasted time.</p>
+<p>If you want to take it a step further, let technology handle the initial qualification for you. <a href="/signup">Try ListingFlare</a> to create single-property websites with an AI chatbot that can ask about each buyer's timeline, budget and motivation during a natural conversation. By the time you get the notification, you'll already know exactly how to score that lead and what to do next. <a href="/demo">See how AI chat qualifies leads</a> and start closing more deals with less wasted time.</p>
 `,
 };

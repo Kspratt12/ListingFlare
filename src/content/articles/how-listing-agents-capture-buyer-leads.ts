@@ -7,7 +7,7 @@ export const article: BlogPost = {
   description:
     "Portals send buyer interest to competing agents. Here are 5 ways listing agents can capture buyer leads directly from their own listings, step by step.",
   date: "2026-03-27",
-  updated: "2026-10-25",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [
@@ -69,7 +69,7 @@ export const article: BlogPost = {
 
 <p>Compare that to the Zillow experience: the buyer searches the address, lands on a Zillow page, sees three other agent headshots, clicks "Contact Agent," and their information goes to a Premier Agent who pays $300 per lead for your zip code. Same buyer. Same interest in your listing. Completely different outcome for you.</p>
 
-<p><a href="/signup">ListingFlare</a> makes this easy. You can create a professional single property website in under five minutes. Enter the listing details, upload your photos, and you have a dedicated URL ready to share. Each page includes a full-screen photo gallery, detailed property information, neighborhood data, and a built-in lead capture system. No design skills required. No developer needed. Just a polished, conversion-focused property page that makes your listing look incredible and captures every lead.</p>
+<p><a href="/signup">ListingFlare</a> makes this easy. You can create a professional single property website. Enter the listing details, upload your photos, and you have a dedicated URL ready to share. Each page includes a full-screen photo gallery, detailed property information, neighborhood data, and a built-in lead capture system. No design skills required. No developer needed. Just a polished, conversion-focused property page that makes your listing look incredible and captures every lead.</p>
 
 <p>The agents who are winning in 2026 are creating a single property website for every listing, every time. It is the foundation that the rest of these strategies build on. If you want to see how the finished product looks, you can <a href="/demo">view a demo listing here</a>.</p>
 
@@ -186,7 +186,7 @@ export const article: BlogPost = {
 
 <p>The beauty of automated follow-up is that no lead falls through the cracks. Whether you capture five leads in a week or fifty, every single one gets a timely, relevant response. You are never the agent who "never got back to me." You are the agent who responded in two minutes at 10 PM on a Sunday.</p>
 
-<p>ListingFlare's built-in follow-up system sends instant emails to every lead captured through your property pages and chatbot. You get notified immediately so you can jump in when it matters, and the automation handles the rest. No separate email tool needed. No manual follow-up tasks to forget. The system works for you 24/7. If you want to go further with automated lead qualification, check out our comparison of the <a href="/blog/best-ai-isa-tools-real-estate">best AI ISA platforms for real estate teams</a>.</p>
+<p>ListingFlare's built-in follow-up system sends instant emails to leads captured through your property pages and chatbot. You get notified immediately so you can jump in when it matters, and the automation handles the rest. No separate email tool needed. No manual follow-up tasks to forget. The system works for you 24/7. If you want to go further with automated lead qualification, check out our comparison of the <a href="/blog/best-ai-isa-tools-real-estate">best AI ISA platforms for real estate teams</a>.</p>
 
 <h2>Putting It All Together - A Complete Lead Capture System</h2>
 
@@ -284,6 +284,6 @@ export const article: BlogPost = {
 
 <p>The math is simple. The technology is accessible. The agents who implement this system in 2026 will build bigger pipelines, close more deals, and stop paying for leads that their own listings generated for free.</p>
 
-<p>Ready to capture every buyer lead your listings generate? <a href="/signup">Start your free 14-day trial with ListingFlare</a> and build your first single property website in under five minutes. Your listings are already doing the hard work. It is time you got the leads.</p>
+<p>Ready to capture every buyer lead your listings generate? <a href="/signup">Start your free 14-day trial with ListingFlare</a> and build your first single property website. Your listings are already doing the hard work. It is time you got the leads.</p>
 `,
 };
