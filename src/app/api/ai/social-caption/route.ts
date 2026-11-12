@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { AI_MODEL, createAnthropic } from "@/lib/ai";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { rateLimit } from "@/lib/rateLimit";
-import { hasEntitlement, UPGRADE_REQUIRED } from "@/lib/entitlements";
+import { hasEntitlement } from "@/lib/entitlements";
 
 export const dynamic = "force-dynamic";
 
