@@ -7,7 +7,7 @@ export const article: BlogPost = {
   description:
     "ElevenLabs review for real estate agents: pricing, voice cloning, listing voiceovers and multilingual use, and whether AI voice is worth it for you.",
   date: "2026-03-27",
-  updated: "2026-10-23",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [

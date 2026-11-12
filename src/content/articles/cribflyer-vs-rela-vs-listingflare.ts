@@ -7,7 +7,7 @@ export const article: BlogPost = {
   description:
     "Rela vs CribFlyer vs ListingFlare compared on cost, features, lead capture and AI chat, with five-listing cost math. We make ListingFlare; confirm prices.",
   date: "2026-03-27",
-  updated: "2026-10-26",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Listing Marketing",
   keywords: [

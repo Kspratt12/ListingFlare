@@ -55,6 +55,7 @@ export default function BrandColorPicker({
             }
           }}
           maxLength={7}
+          aria-label="Brand color hex code"
           placeholder={fallbackLabel ? "Use agent default" : "#b8965a"}
           className="flex-1 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-mono text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
         />

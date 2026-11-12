@@ -53,7 +53,7 @@ const features = [
     icon: Globe,
     title: "Win the listing presentation",
     description:
-      "Show sellers a dedicated, branded website for their listing, built in minutes. It is a concrete way to stand out in a listing presentation.",
+      "Show sellers a dedicated, branded website for their listing, built from your listing details. It is a concrete way to stand out in a listing presentation.",
   },
   {
     icon: MessageCircle,

@@ -443,14 +443,17 @@ export default function CreateListingPage() {
   const handleSave = async (publish: boolean) => {
     if (publish && !street.trim()) {
       setError("Street address is required to publish.");
+      document.getElementById("create-street-address")?.focus();
       return;
     }
     if (publish && !city.trim()) {
       setError("City is required to publish.");
+      document.getElementById("create-city")?.focus();
       return;
     }
     if (publish && !price) {
       setError("Price is required to publish.");
+      document.getElementById("create-price")?.focus();
       return;
     }
     const tourProblem = tourUrlProblem(virtualTourUrl);
@@ -586,7 +589,7 @@ export default function CreateListingPage() {
       </div>
 
       {error && (
-        <div className="mt-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <div id="create-form-error" role="alert" className="mt-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {error}
         </div>
       )}
@@ -603,7 +606,7 @@ export default function CreateListingPage() {
           <p className="text-xs text-gray-500">
             Drop a Zillow / Realtor.com / brokerage URL, or paste the MLS description. We&apos;ll auto-fill the fields.
           </p>
-          <textarea
+          <textarea aria-label="Listing URL or MLS description to auto-fill from"
             value={pasteText}
             onChange={(e) => setPasteText(e.target.value)}
             rows={3}
@@ -644,10 +647,13 @@ export default function CreateListingPage() {
           </h2>
           <div className="mt-4 space-y-4">
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
+              <label htmlFor="create-street-address" className="mb-1.5 block text-sm font-medium text-gray-700">
                 Street Address
               </label>
-              <AddressAutocomplete
+              <AddressAutocomplete id="create-street-address"
+                required
+                invalid={!!error && /street address/i.test(error)}
+                describedBy={error && /street address/i.test(error) ? "create-form-error" : undefined}
                 value={street}
                 onChange={setStreet}
                 onSelect={(addr) => {
@@ -662,10 +668,10 @@ export default function CreateListingPage() {
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                <label htmlFor="create-city" className="mb-1.5 block text-sm font-medium text-gray-700">
                   City
                 </label>
-                <input
+                <input id="create-city" aria-required="true" aria-invalid={!!error && /^city is required/i.test(error) ? true : undefined} aria-describedby={error && /^city is required/i.test(error) ? "create-form-error" : undefined}
                   type="text"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
@@ -674,10 +680,10 @@ export default function CreateListingPage() {
                 />
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                <label htmlFor="create-state" className="mb-1.5 block text-sm font-medium text-gray-700">
                   State
                 </label>
-                <select
+                <select id="create-state"
                   value={state}
                   onChange={(e) => setState(e.target.value)}
                   className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
@@ -690,10 +696,10 @@ export default function CreateListingPage() {
                 </select>
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                <label htmlFor="create-zip-code" className="mb-1.5 block text-sm font-medium text-gray-700">
                   ZIP Code
                 </label>
-                <input
+                <input id="create-zip-code"
                   type="text"
                   value={zip}
                   onChange={(e) => setZip(e.target.value)}
@@ -712,10 +718,10 @@ export default function CreateListingPage() {
           </h2>
           <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
+              <label htmlFor="create-price" className="mb-1.5 block text-sm font-medium text-gray-700">
                 Price ($)
               </label>
-              <input
+              <input id="create-price" aria-required="true" aria-invalid={!!error && /^price is required/i.test(error) ? true : undefined} aria-describedby={error && /^price is required/i.test(error) ? "create-form-error" : undefined}
                 type="text"
                 value={formatNumber(price)}
                 onChange={(e) => setPrice(parseNumber(e.target.value))}
@@ -724,10 +730,10 @@ export default function CreateListingPage() {
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
+              <label htmlFor="create-bedrooms" className="mb-1.5 block text-sm font-medium text-gray-700">
                 Bedrooms
               </label>
-              <input
+              <input id="create-bedrooms"
                 type="number"
                 value={beds}
                 onChange={(e) => setBeds(e.target.value)}
@@ -736,10 +742,10 @@ export default function CreateListingPage() {
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
+              <label htmlFor="create-bathrooms" className="mb-1.5 block text-sm font-medium text-gray-700">
                 Bathrooms
               </label>
-              <input
+              <input id="create-bathrooms"
                 type="number"
                 step="0.5"
                 value={baths}
@@ -749,10 +755,10 @@ export default function CreateListingPage() {
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
+              <label htmlFor="create-square-feet" className="mb-1.5 block text-sm font-medium text-gray-700">
                 Square Feet
               </label>
-              <input
+              <input id="create-square-feet"
                 type="text"
                 value={formatNumber(sqft)}
                 onChange={(e) => setSqft(parseNumber(e.target.value))}
@@ -761,10 +767,10 @@ export default function CreateListingPage() {
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
+              <label htmlFor="create-year-built" className="mb-1.5 block text-sm font-medium text-gray-700">
                 Year Built
               </label>
-              <input
+              <input id="create-year-built"
                 type="number"
                 value={yearBuilt}
                 onChange={(e) => setYearBuilt(e.target.value)}
@@ -773,10 +779,10 @@ export default function CreateListingPage() {
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
+              <label htmlFor="create-lot-size" className="mb-1.5 block text-sm font-medium text-gray-700">
                 Lot Size
               </label>
-              <input
+              <input id="create-lot-size"
                 type="text"
                 value={lotSize}
                 onChange={(e) => setLotSize(formatLotSize(e.target.value))}
@@ -812,6 +818,7 @@ export default function CreateListingPage() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={8}
+              aria-label="Description"
               className="w-full resize-none rounded-lg border border-gray-200 px-4 py-3 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
               placeholder="Describe the property in detail. Use blank lines between paragraphs for best formatting on the listing page."
             />
@@ -848,6 +855,7 @@ export default function CreateListingPage() {
               value={featuresText}
               onChange={(e) => setFeaturesText(e.target.value)}
               rows={6}
+              aria-label="Property highlights, one per line"
               className="w-full resize-none rounded-lg border border-gray-200 px-4 py-3 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
               placeholder={"Panoramic Ocean Views\nInfinity Edge Pool & Spa\nChef's Kitchen with Wine Room"}
             />
@@ -1025,7 +1033,7 @@ export default function CreateListingPage() {
         <section className="rounded-xl border border-gray-200 bg-white p-6">
           <h2 className="font-serif text-lg font-semibold text-gray-900">Virtual Tour</h2>
           <p className="mt-1 text-sm text-gray-500">{TOUR_URL_HELP} The tour will be embedded directly on your listing page.</p>
-          <input
+          <input aria-label="Virtual tour URL"
             type="url"
             value={virtualTourUrl}
             onChange={(e) => setVirtualTourUrl(e.target.value)}
@@ -1063,7 +1071,7 @@ export default function CreateListingPage() {
                 Buyers can ask questions and get instant answers about this property. Turns into leads automatically. Leave on unless you want full manual control on this one.
               </p>
             </div>
-            <button
+            <button aria-label="AI chat on this listing"
               type="button"
               role="switch"
               aria-checked={aiChatEnabled}
@@ -1091,38 +1099,38 @@ export default function CreateListingPage() {
           </p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <div>
-              <label className="mb-1 block text-xs font-medium text-gray-600">Full name</label>
-              <input type="text" value={coAgentName} onChange={(e) => setCoAgentName(e.target.value)}
+              <label htmlFor="create-full-name" className="mb-1 block text-xs font-medium text-gray-600">Full name</label>
+              <input id="create-full-name" type="text" value={coAgentName} onChange={(e) => setCoAgentName(e.target.value)}
                 className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="Jane Doe" />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-gray-600">Title</label>
-              <input type="text" value={coAgentTitle} onChange={(e) => setCoAgentTitle(e.target.value)}
+              <label htmlFor="create-title" className="mb-1 block text-xs font-medium text-gray-600">Title</label>
+              <input id="create-title" type="text" value={coAgentTitle} onChange={(e) => setCoAgentTitle(e.target.value)}
                 className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="Real Estate Agent" />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-gray-600">Brokerage</label>
-              <input type="text" value={coAgentBrokerage} onChange={(e) => setCoAgentBrokerage(e.target.value)}
+              <label htmlFor="create-brokerage" className="mb-1 block text-xs font-medium text-gray-600">Brokerage</label>
+              <input id="create-brokerage" type="text" value={coAgentBrokerage} onChange={(e) => setCoAgentBrokerage(e.target.value)}
                 className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="Westside Realty" />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-gray-600">License #</label>
-              <input type="text" value={coAgentLicense} onChange={(e) => setCoAgentLicense(e.target.value)}
+              <label htmlFor="create-license" className="mb-1 block text-xs font-medium text-gray-600">License #</label>
+              <input id="create-license" type="text" value={coAgentLicense} onChange={(e) => setCoAgentLicense(e.target.value)}
                 className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="e.g. 300XXX" />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-gray-600">Phone</label>
-              <input type="tel" value={coAgentPhone} onChange={(e) => setCoAgentPhone(e.target.value)}
+              <label htmlFor="create-phone" className="mb-1 block text-xs font-medium text-gray-600">Phone</label>
+              <input id="create-phone" type="tel" value={coAgentPhone} onChange={(e) => setCoAgentPhone(e.target.value)}
                 className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="(555) 123-4567" />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-gray-600">Email</label>
-              <input type="email" value={coAgentEmail} onChange={(e) => setCoAgentEmail(e.target.value)}
+              <label htmlFor="create-email" className="mb-1 block text-xs font-medium text-gray-600">Email</label>
+              <input id="create-email" type="email" value={coAgentEmail} onChange={(e) => setCoAgentEmail(e.target.value)}
                 className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
                 placeholder="jane@brokerage.com" />
             </div>
@@ -1152,8 +1160,8 @@ export default function CreateListingPage() {
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div className="sm:col-span-2">
-                    <label className="mb-1 block text-xs font-medium text-gray-600">Address</label>
-                    <input
+                    <label htmlFor={`create-comp-${i}-address`} className="mb-1 block text-xs font-medium text-gray-600">Address</label>
+                    <input id={`create-comp-${i}-address`}
                       type="text"
                       value={c.address}
                       onChange={(e) => {
@@ -1164,8 +1172,8 @@ export default function CreateListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-gray-600">Sold price</label>
-                    <input
+                    <label htmlFor={`create-comp-${i}-sold-price`} className="mb-1 block text-xs font-medium text-gray-600">Sold price</label>
+                    <input id={`create-comp-${i}-sold-price`}
                       type="text"
                       inputMode="numeric"
                       value={c.soldPrice ? formatNumber(String(c.soldPrice)) : ""}
@@ -1178,8 +1186,8 @@ export default function CreateListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-gray-600">Sold date</label>
-                    <input
+                    <label htmlFor={`create-comp-${i}-sold-date`} className="mb-1 block text-xs font-medium text-gray-600">Sold date</label>
+                    <input id={`create-comp-${i}-sold-date`}
                       type="date"
                       value={c.soldDate || ""}
                       onChange={(e) => {
@@ -1189,8 +1197,8 @@ export default function CreateListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-gray-600">Beds</label>
-                    <input
+                    <label htmlFor={`create-comp-${i}-beds`} className="mb-1 block text-xs font-medium text-gray-600">Beds</label>
+                    <input id={`create-comp-${i}-beds`}
                       type="text"
                       inputMode="numeric"
                       value={c.beds ?? ""}
@@ -1203,8 +1211,8 @@ export default function CreateListingPage() {
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-gray-600">Baths</label>
-                    <input
+                    <label htmlFor={`create-comp-${i}-baths`} className="mb-1 block text-xs font-medium text-gray-600">Baths</label>
+                    <input id={`create-comp-${i}-baths`}
                       type="text"
                       inputMode="decimal"
                       value={c.baths ?? ""}
@@ -1217,8 +1225,8 @@ export default function CreateListingPage() {
                     />
                   </div>
                   <div className="sm:col-span-2">
-                    <label className="mb-1 block text-xs font-medium text-gray-600">Sqft (optional)</label>
-                    <input
+                    <label htmlFor={`create-comp-${i}-sqft-optional`} className="mb-1 block text-xs font-medium text-gray-600">Sqft (optional)</label>
+                    <input id={`create-comp-${i}-sqft-optional`}
                       type="text"
                       inputMode="numeric"
                       value={c.sqft ? formatNumber(String(c.sqft)) : ""}
@@ -1272,33 +1280,33 @@ export default function CreateListingPage() {
               {/* Identifiers */}
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-gray-700">MLS ID</label>
-                  <input type="text" value={mlsId} onChange={(e) => setMlsId(e.target.value)} placeholder="e.g. 10153182" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  <label htmlFor="create-mls-id" className="mb-1.5 block text-sm font-medium text-gray-700">MLS ID</label>
+                  <input id="create-mls-id" type="text" value={mlsId} onChange={(e) => setMlsId(e.target.value)} placeholder="e.g. 10153182" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-gray-700">County</label>
-                  <input type="text" value={county} onChange={(e) => setCounty(e.target.value)} placeholder="e.g. Wake" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  <label htmlFor="create-county" className="mb-1.5 block text-sm font-medium text-gray-700">County</label>
+                  <input id="create-county" type="text" value={county} onChange={(e) => setCounty(e.target.value)} placeholder="e.g. Wake" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-gray-700">Subdivision / Neighborhood</label>
-                  <input type="text" value={subdivision} onChange={(e) => setSubdivision(e.target.value)} placeholder="e.g. Pleasant Grove" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  <label htmlFor="create-subdivision-neighborhood" className="mb-1.5 block text-sm font-medium text-gray-700">Subdivision / Neighborhood</label>
+                  <input id="create-subdivision-neighborhood" type="text" value={subdivision} onChange={(e) => setSubdivision(e.target.value)} placeholder="e.g. Pleasant Grove" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-gray-700">Property Type</label>
-                  <input type="text" value={propertySubtype} onChange={(e) => setPropertySubtype(e.target.value)} placeholder="Single Family Residence" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  <label htmlFor="create-property-type" className="mb-1.5 block text-sm font-medium text-gray-700">Property Type</label>
+                  <input id="create-property-type" type="text" value={propertySubtype} onChange={(e) => setPropertySubtype(e.target.value)} placeholder="Single Family Residence" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-gray-700">Architectural Style</label>
-                  <input type="text" value={architecturalStyle} onChange={(e) => setArchitecturalStyle(e.target.value)} placeholder="Colonial, Ranch, Craftsman..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                  <label htmlFor="create-architectural-style" className="mb-1.5 block text-sm font-medium text-gray-700">Architectural Style</label>
+                  <input id="create-architectural-style" type="text" value={architecturalStyle} onChange={(e) => setArchitecturalStyle(e.target.value)} placeholder="Colonial, Ranch, Craftsman..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Stories</label>
-                    <input type="number" value={stories} onChange={(e) => setStories(e.target.value)} placeholder="2" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                    <label htmlFor="create-stories" className="mb-1.5 block text-sm font-medium text-gray-700">Stories</label>
+                    <input id="create-stories" type="number" value={stories} onChange={(e) => setStories(e.target.value)} placeholder="2" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Parking</label>
-                    <input type="number" value={parkingSpaces} onChange={(e) => setParkingSpaces(e.target.value)} placeholder="2" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                    <label htmlFor="create-parking" className="mb-1.5 block text-sm font-medium text-gray-700">Parking</label>
+                    <input id="create-parking" type="number" value={parkingSpaces} onChange={(e) => setParkingSpaces(e.target.value)} placeholder="2" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                   </div>
                 </div>
               </div>
@@ -1308,8 +1316,8 @@ export default function CreateListingPage() {
                 <h3 className="mb-3 text-sm font-semibold text-gray-900">Taxes & HOA</h3>
                 <div className="grid gap-4 sm:grid-cols-3">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Annual Property Tax ($)</label>
-                    <input type="text" inputMode="numeric" value={propertyTaxAnnual} onChange={(e) => setPropertyTaxAnnual(e.target.value.replace(/[^0-9.]/g, ""))} placeholder="2196" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                    <label htmlFor="create-annual-property-tax" className="mb-1.5 block text-sm font-medium text-gray-700">Annual Property Tax ($)</label>
+                    <input id="create-annual-property-tax" type="text" inputMode="numeric" value={propertyTaxAnnual} onChange={(e) => setPropertyTaxAnnual(e.target.value.replace(/[^0-9.]/g, ""))} placeholder="2196" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                   </div>
                   <div className="flex items-end">
                     <label className="flex items-center gap-2 pb-2">
@@ -1318,8 +1326,8 @@ export default function CreateListingPage() {
                     </label>
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">HOA ($/mo)</label>
-                    <input type="text" inputMode="numeric" value={hoaFeeMonthly} onChange={(e) => setHoaFeeMonthly(e.target.value.replace(/[^0-9.]/g, ""))} placeholder="0" disabled={!hoaRequired} className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400 disabled:bg-gray-100 disabled:text-gray-400" />
+                    <label htmlFor="create-hoa-mo" className="mb-1.5 block text-sm font-medium text-gray-700">HOA ($/mo)</label>
+                    <input id="create-hoa-mo" type="text" inputMode="numeric" value={hoaFeeMonthly} onChange={(e) => setHoaFeeMonthly(e.target.value.replace(/[^0-9.]/g, ""))} placeholder="0" disabled={!hoaRequired} className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400 disabled:bg-gray-100 disabled:text-gray-400" />
                   </div>
                 </div>
               </div>
@@ -1329,20 +1337,20 @@ export default function CreateListingPage() {
                 <h3 className="mb-3 text-sm font-semibold text-gray-900">Systems</h3>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Heating</label>
-                    <input type="text" value={heatingType} onChange={(e) => setHeatingType(e.target.value)} placeholder="Forced Air, Heat Pump, Electric..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                    <label htmlFor="create-heating" className="mb-1.5 block text-sm font-medium text-gray-700">Heating</label>
+                    <input id="create-heating" type="text" value={heatingType} onChange={(e) => setHeatingType(e.target.value)} placeholder="Forced Air, Heat Pump, Electric..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Cooling</label>
-                    <input type="text" value={coolingType} onChange={(e) => setCoolingType(e.target.value)} placeholder="Central Air, Zoned..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                    <label htmlFor="create-cooling" className="mb-1.5 block text-sm font-medium text-gray-700">Cooling</label>
+                    <input id="create-cooling" type="text" value={coolingType} onChange={(e) => setCoolingType(e.target.value)} placeholder="Central Air, Zoned..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Water Source</label>
-                    <input type="text" value={waterSource} onChange={(e) => setWaterSource(e.target.value)} placeholder="Public, Well..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                    <label htmlFor="create-water-source" className="mb-1.5 block text-sm font-medium text-gray-700">Water Source</label>
+                    <input id="create-water-source" type="text" value={waterSource} onChange={(e) => setWaterSource(e.target.value)} placeholder="Public, Well..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Sewer</label>
-                    <input type="text" value={sewerType} onChange={(e) => setSewerType(e.target.value)} placeholder="Public Sewer, Septic..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                    <label htmlFor="create-sewer" className="mb-1.5 block text-sm font-medium text-gray-700">Sewer</label>
+                    <input id="create-sewer" type="text" value={sewerType} onChange={(e) => setSewerType(e.target.value)} placeholder="Public Sewer, Septic..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                   </div>
                 </div>
               </div>
@@ -1352,24 +1360,24 @@ export default function CreateListingPage() {
                 <h3 className="mb-3 text-sm font-semibold text-gray-900">Construction</h3>
                 <div className="grid gap-4 sm:grid-cols-3">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Roof</label>
-                    <input type="text" value={roofType} onChange={(e) => setRoofType(e.target.value)} placeholder="Shingle, Metal..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                    <label htmlFor="create-roof" className="mb-1.5 block text-sm font-medium text-gray-700">Roof</label>
+                    <input id="create-roof" type="text" value={roofType} onChange={(e) => setRoofType(e.target.value)} placeholder="Shingle, Metal..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Construction Material</label>
-                    <input type="text" value={constructionMaterial} onChange={(e) => setConstructionMaterial(e.target.value)} placeholder="Brick, Stucco, Vinyl..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                    <label htmlFor="create-construction-material" className="mb-1.5 block text-sm font-medium text-gray-700">Construction Material</label>
+                    <input id="create-construction-material" type="text" value={constructionMaterial} onChange={(e) => setConstructionMaterial(e.target.value)} placeholder="Brick, Stucco, Vinyl..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Foundation</label>
-                    <input type="text" value={foundationType} onChange={(e) => setFoundationType(e.target.value)} placeholder="Slab, Crawl, Basement..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                    <label htmlFor="create-foundation" className="mb-1.5 block text-sm font-medium text-gray-700">Foundation</label>
+                    <input id="create-foundation" type="text" value={foundationType} onChange={(e) => setFoundationType(e.target.value)} placeholder="Slab, Crawl, Basement..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                   </div>
                 </div>
               </div>
 
               {/* Appliances */}
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">Appliances Included (one per line)</label>
-                <textarea value={appliancesText} onChange={(e) => setAppliancesText(e.target.value)} rows={3} placeholder={"Refrigerator\nDishwasher\nRange / Oven\nWasher\nDryer"} className="w-full resize-y rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                <label htmlFor="create-appliances-included-one-per-line" className="mb-1.5 block text-sm font-medium text-gray-700">Appliances Included (one per line)</label>
+                <textarea id="create-appliances-included-one-per-line" value={appliancesText} onChange={(e) => setAppliancesText(e.target.value)} rows={3} placeholder={"Refrigerator\nDishwasher\nRange / Oven\nWasher\nDryer"} className="w-full resize-y rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
               </div>
 
               {/* Interior Details */}
@@ -1377,20 +1385,20 @@ export default function CreateListingPage() {
                 <h3 className="mb-3 text-sm font-semibold text-gray-900">Interior Details</h3>
                 <div className="grid gap-4 sm:grid-cols-3">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Fireplaces</label>
-                    <input type="number" value={fireplaceCount} onChange={(e) => setFireplaceCount(e.target.value)} placeholder="0" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                    <label htmlFor="create-fireplaces" className="mb-1.5 block text-sm font-medium text-gray-700">Fireplaces</label>
+                    <input id="create-fireplaces" type="number" value={fireplaceCount} onChange={(e) => setFireplaceCount(e.target.value)} placeholder="0" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Laundry</label>
-                    <input type="text" value={laundryLocation} onChange={(e) => setLaundryLocation(e.target.value)} placeholder="Laundry Room, Main Level" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                    <label htmlFor="create-laundry" className="mb-1.5 block text-sm font-medium text-gray-700">Laundry</label>
+                    <input id="create-laundry" type="text" value={laundryLocation} onChange={(e) => setLaundryLocation(e.target.value)} placeholder="Laundry Room, Main Level" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Basement</label>
-                    <input type="text" value={basementType} onChange={(e) => setBasementType(e.target.value)} placeholder="Finished, Unfinished, None..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                    <label htmlFor="create-basement" className="mb-1.5 block text-sm font-medium text-gray-700">Basement</label>
+                    <input id="create-basement" type="text" value={basementType} onChange={(e) => setBasementType(e.target.value)} placeholder="Finished, Unfinished, None..." className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                   </div>
                   <div className="sm:col-span-3">
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Parcel Number (APN)</label>
-                    <input type="text" value={parcelNumber} onChange={(e) => setParcelNumber(e.target.value)} placeholder="e.g. 4412-018-024" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                    <label htmlFor="create-parcel-number-apn" className="mb-1.5 block text-sm font-medium text-gray-700">Parcel Number (APN)</label>
+                    <input id="create-parcel-number-apn" type="text" value={parcelNumber} onChange={(e) => setParcelNumber(e.target.value)} placeholder="e.g. 4412-018-024" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                   </div>
                 </div>
               </div>
@@ -1400,16 +1408,16 @@ export default function CreateListingPage() {
                 <h3 className="mb-3 text-sm font-semibold text-gray-900">Schools</h3>
                 <div className="grid gap-4 sm:grid-cols-3">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Elementary</label>
-                    <input type="text" value={schoolElementary} onChange={(e) => setSchoolElementary(e.target.value)} className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                    <label htmlFor="create-elementary" className="mb-1.5 block text-sm font-medium text-gray-700">Elementary</label>
+                    <input id="create-elementary" type="text" value={schoolElementary} onChange={(e) => setSchoolElementary(e.target.value)} className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Middle</label>
-                    <input type="text" value={schoolMiddle} onChange={(e) => setSchoolMiddle(e.target.value)} className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                    <label htmlFor="create-middle" className="mb-1.5 block text-sm font-medium text-gray-700">Middle</label>
+                    <input id="create-middle" type="text" value={schoolMiddle} onChange={(e) => setSchoolMiddle(e.target.value)} className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">High</label>
-                    <input type="text" value={schoolHigh} onChange={(e) => setSchoolHigh(e.target.value)} className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
+                    <label htmlFor="create-high" className="mb-1.5 block text-sm font-medium text-gray-700">High</label>
+                    <input id="create-high" type="text" value={schoolHigh} onChange={(e) => setSchoolHigh(e.target.value)} className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400" />
                   </div>
                 </div>
               </div>
