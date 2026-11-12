@@ -7,6 +7,7 @@ import { Loader2, Upload, CheckCircle } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
 import { validateUpload } from "@/lib/validateUpload";
 import GoogleCalendarConnect from "@/components/GoogleCalendarConnect";
+import { US_TIME_ZONES } from "@/lib/timezone";
 import PushNotificationSettings from "@/components/PushNotificationSettings";
 
 export default function SettingsPage() {
@@ -34,6 +35,7 @@ export default function SettingsPage() {
   const [website, setWebsite] = useState("");
   const [weeklyEmails, setWeeklyEmails] = useState(true);
   const [calendlyUrl, setCalendlyUrl] = useState("");
+  const [timezone, setTimezone] = useState("");
   const [aiApprovalMode, setAiApprovalMode] = useState(false);
   const [aiSavedAt, setAiSavedAt] = useState<number | null>(null);
   const [handle, setHandle] = useState("");
@@ -105,6 +107,7 @@ export default function SettingsPage() {
         setWebsite(profile.website || "");
         setWeeklyEmails(profile.weekly_emails !== false);
         setCalendlyUrl(profile.calendly_url || "");
+        setTimezone(profile.timezone || "");
         setAiApprovalMode(profile.ai_approval_mode === true);
         setHandle(profile.handle || "");
         setBrandColor(profile.brand_color || "#b8965a");
@@ -182,6 +185,7 @@ export default function SettingsPage() {
           website,
           weekly_emails: weeklyEmails,
           calendly_url: calendlyUrl,
+          timezone: timezone || null,
           ai_approval_mode: aiApprovalMode,
           handle: handle || null,
           brand_color: brandColor || null,
@@ -221,6 +225,7 @@ export default function SettingsPage() {
           setWebsite(p.website || "");
           setWeeklyEmails(p.weekly_emails !== false);
           setCalendlyUrl(p.calendly_url || "");
+          setTimezone(p.timezone || "");
           setHandle(p.handle || "");
           setBrandColor(p.brand_color || "#b8965a");
         }
@@ -595,6 +600,27 @@ export default function SettingsPage() {
             Add your Calendly link so buyers can book showings directly from the AI chat on your listings.
           </p>
           <div className="mt-4">
+            <label htmlFor="agent-timezone" className="mb-1.5 block text-sm font-medium text-gray-700">
+              Your listings&apos; time zone
+            </label>
+            <select
+              id="agent-timezone"
+              value={timezone}
+              onChange={(e) => setTimezone(e.target.value)}
+              className="w-full rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+            >
+              <option value="">Not set</option>
+              {US_TIME_ZONES.map((z) => (
+                <option key={z.value} value={z.value}>{z.label}</option>
+              ))}
+            </select>
+            <p className="mt-1.5 text-xs text-gray-400">
+              Showing times are in the property&apos;s local time. Set this so confirmation emails show the time zone and
+              confirmed showings are added to your Google Calendar at the right hour. If it is not set, no calendar
+              event is created.
+            </p>
+          </div>
+          <div className="mt-6">
             <label className="mb-1.5 block text-sm font-medium text-gray-700">
               Calendly URL
             </label>

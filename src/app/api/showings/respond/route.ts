@@ -4,6 +4,7 @@ import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { internalHeaders } from "@/lib/internalAuth";
 import { processShowingResponse, type ResponseDeps, type ShowingRow } from "@/lib/showingResponse";
 import { addGoogleEvent } from "@/lib/showingCalendar";
+import { getPropertyTimeZone } from "@/lib/propertyTimeZone";
 
 export const dynamic = "force-dynamic";
 
@@ -66,6 +67,7 @@ export async function POST(req: NextRequest) {
           const { data } = await db.from("listings").select("street, city, state").eq("id", listingId).maybeSingle();
           return data ?? null;
         },
+        getTimeZone: (listingId, agentId) => getPropertyTimeZone(db, listingId, agentId),
         async getAgent(agentId) {
           const { data } = await db.from("agent_profiles").select("name, phone, email").eq("id", agentId).maybeSingle();
           return data ?? null;

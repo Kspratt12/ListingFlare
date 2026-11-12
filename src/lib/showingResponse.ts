@@ -22,6 +22,7 @@ import {
 } from "./showingEmails";
 import { generateShowingICS, icsToBase64 } from "./ics";
 import { formatShowingDate } from "./showingBooking";
+import { labelShowingTime, localDateIn, zonedTimeToUtc } from "./timezone";
 import type { OutgoingEmail } from "./showingBooking";
 
 export type ShowingAction = "confirm" | "decline";
@@ -48,6 +49,8 @@ export interface ResponseStore {
   transitionFromRequested(id: string, to: "confirmed" | "declined", at: string): Promise<boolean>;
   updateLead(leadId: string, fields: Record<string, unknown>): Promise<void>;
   getListing(listingId: string): Promise<{ street: string; city: string; state: string } | null>;
+  // Effective property zone: listings.timezone, else agent_profiles.timezone, else null.
+  getTimeZone(listingId: string, agentId: string): Promise<string | null>;
   getAgent(agentId: string): Promise<{ name: string; phone: string; email: string } | null>;
 }
 
@@ -66,6 +69,7 @@ export interface ResponseDeps {
       email: string;
       phone: string;
       message: string;
+      timeZone: string;
     }
   ): Promise<void>;
   enrollShowingFollowUps(leadId: string, listingId: string, agentId: string): void;
@@ -109,9 +113,20 @@ export async function processShowingResponse(
   }
 
   if (action === "confirm") {
-    // Date is compared as a plain calendar date; no timezone is stored, so a
-    // same-day slot is allowed and the agent judges the time of day.
-    const today = deps.now().toISOString().slice(0, 10);
+    // "Today" is the calendar date at the PROPERTY when its zone is known (never the
+    // server's). Without a zone it falls back to the UTC date, so a same-day slot is
+    // allowed and the agent judges the time of day.
+    const tz = await store.getTimeZone(showing.listing_id, showing.agent_id);
+    const today = tz ? localDateIn(deps.now(), tz) : deps.now().toISOString().slice(0, 10);
+    if (tz) {
+      const z = zonedTimeToUtc(showing.showing_date, showing.showing_time, tz);
+      if (z && z.status === "gap") {
+        return {
+          status: 409,
+          body: { error: "That local time does not exist on that date (clocks move forward). Decline it and ask the buyer for another time." },
+        };
+      }
+    }
     if (showing.showing_date < today) {
       return { status: 409, body: { error: "That date has already passed. Decline it or ask the buyer for a new time." } };
     }
@@ -133,6 +148,8 @@ export async function processShowingResponse(
     store.getAgent(showing.agent_id),
   ]);
   const listingAddress = listing ? `${listing.street}, ${listing.city}, ${listing.state}` : "the property";
+  const zone = await store.getTimeZone(showing.listing_id, showing.agent_id);
+  const timeLabel = labelShowingTime(showing.showing_date, showing.showing_time, zone);
   const formattedDate = formatShowingDate(showing.showing_date);
 
   if (action === "confirm") {
@@ -144,7 +161,7 @@ export async function processShowingResponse(
       buyerName: showing.name,
       listingAddress,
       formattedDate,
-      showingTime: showing.showing_time,
+      showingTime: timeLabel,
       agentName: agent.name,
       agentPhone: agent.phone,
       agentEmail: agent.email,
@@ -159,6 +176,7 @@ export async function processShowingResponse(
           durationMinutes: 30,
           summary: `Property Showing - ${listingAddress}`,
           description: [`Showing with ${showing.name}`, `Agent: ${agent.name}`].join("\n"),
+          timeZone: zone,
           location: listingAddress,
           organizerName: agent.name || "Listing Agent",
           organizerEmail: agent.email,
@@ -188,22 +206,31 @@ export async function processShowingResponse(
     }
   }
 
+  let calendar: "created_or_not_connected" | "skipped_no_timezone" | undefined;
   if (action === "confirm") {
-    try {
-      await deps.addGoogleEvent(showing.agent_id, {
-        showingDate: showing.showing_date,
-        showingTime: showing.showing_time,
-        listingAddress,
-        name: showing.name,
-        email: showing.email,
-        phone: showing.phone,
-        message: showing.message,
-      });
-    } catch (err) {
-      console.error("Google Calendar event creation failed:", err);
+    if (zone) {
+      try {
+        await deps.addGoogleEvent(showing.agent_id, {
+          showingDate: showing.showing_date,
+          showingTime: showing.showing_time,
+          listingAddress,
+          name: showing.name,
+          email: showing.email,
+          phone: showing.phone,
+          message: showing.message,
+          timeZone: zone,
+        });
+      } catch (err) {
+        console.error("Google Calendar event creation failed:", err);
+      }
+      calendar = "created_or_not_connected";
+    } else {
+      // No property time zone is stored, so an exact calendar time cannot be computed.
+      // A wrong event is worse than none: skip it and tell the agent how to fix it.
+      calendar = "skipped_no_timezone";
     }
     deps.enrollShowingFollowUps(showing.lead_id, showing.listing_id, showing.agent_id);
   }
 
-  return { status: 200, body: { ok: true, status: target } };
+  return { status: 200, body: { ok: true, status: target, ...(calendar ? { calendar } : {}) } };
 }

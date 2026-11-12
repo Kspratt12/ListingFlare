@@ -36,6 +36,7 @@ interface Opts {
   sendEmail?: (m: OutgoingEmail) => Promise<void>;
   agentName?: string;
   slot?: Array<{ id: string; email: string; status: string }>;
+  tz?: string | null;
 }
 
 function setup(o: Opts = {}) {
@@ -68,6 +69,7 @@ function setup(o: Opts = {}) {
         return o.reserve ? o.reserve() : "reserved";
       },
       findSlotShowings: recAsync("findSlotShowings", o.slot ?? []),
+      getTimeZone: recAsync("getTimeZone", o.tz === undefined ? null : o.tz),
       findLeadId: recAsync("findLeadId", o.existingLeadId ?? null),
       insertLead: recAsync("insertLead", "lead-new-1"),
       updateLead: recAsync("updateLead", undefined),
@@ -364,4 +366,15 @@ test("with email disabled nothing is sent, but the booking is still saved", asyn
 
 test("no test in this file reached the network", () => {
   assertNoNetworkAttempts();
+});
+
+test("request emails show the property's zone when one is stored, and the time as entered when none is", async () => {
+  const withZone = setup({ tz: "America/New_York" });
+  await processBookingRequest(body({ showingDate: "2026-12-15" }), withZone.deps);
+  assert.match(withZone.emails[0].html, /10:00 AM EST/);
+  assert.match(withZone.emails[1].html, /10:00 AM EST/);
+  const noZone = setup({ tz: null });
+  await processBookingRequest(body({ showingDate: "2026-12-15" }), noZone.deps);
+  assert.doesNotMatch(noZone.emails[0].html, /10:00 AM E[SD]T/);
+  assert.match(noZone.emails[0].html, /10:00 AM/);
 });

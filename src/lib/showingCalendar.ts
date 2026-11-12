@@ -1,6 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { formatPhone } from "./formatters";
 import { createCalendarEvent, refreshAccessToken, isGoogleConfigured } from "./google/oauth";
+import { zonedTimeToUtc } from "./timezone";
 
 export interface GoogleShowingEvent {
   showingDate: string;
@@ -10,6 +11,8 @@ export interface GoogleShowingEvent {
   email: string;
   phone: string;
   message: string;
+  // IANA zone of the property. Required: the server's own zone is never used.
+  timeZone: string;
 }
 
 // Called only after an agent CONFIRMS a showing. Skips silently when Google is
@@ -46,19 +49,10 @@ export async function addGoogleEvent(
     }
   }
 
-  // Parse showing time to ISO strings.
-  // NOTE: new Date(y, m, d, h, min) uses the SERVER's timezone, and no agent or
-  // property timezone is stored, so the event time is only correct when the
-  // server timezone matches the agent's. Unchanged by this patch; the timezone
-  // phase replaces it.
-  const timeMatch = String(e.showingTime).match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
-  if (!timeMatch) return;
-  let hour = parseInt(timeMatch[1], 10);
-  const minute = parseInt(timeMatch[2], 10);
-  if (timeMatch[3].toUpperCase() === "PM" && hour !== 12) hour += 12;
-  if (timeMatch[3].toUpperCase() === "AM" && hour === 12) hour = 0;
-  const [yStr, mStr, dStr] = e.showingDate.split("-");
-  const startDate = new Date(parseInt(yStr), parseInt(mStr) - 1, parseInt(dStr), hour, minute);
+  // Exact instants from the property's own zone (daylight saving included); never the server's zone.
+  const zoned = zonedTimeToUtc(e.showingDate, e.showingTime, e.timeZone);
+  if (!zoned || zoned.status === "gap") return;
+  const startDate = zoned.utc;
   const endDate = new Date(startDate.getTime() + 30 * 60 * 1000);
 
   await createCalendarEvent(accessToken, {

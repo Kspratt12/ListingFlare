@@ -1,6 +1,6 @@
 -- 041: showing REQUESTS (additive). NOT APPLIED. Review, then run once in the Supabase SQL editor.
 --
--- Adds two statuses, "requested" and "declined", and a responded_at timestamp.
+-- Adds two statuses, "requested" and "declined", a responded_at timestamp and nullable timezone columns.
 -- Existing rows are NOT modified: every historical "confirmed" row stays "confirmed"
 -- (they were created by the old flow that already emailed the buyer a confirmation).
 --
@@ -31,10 +31,17 @@ alter table public.showings
   add constraint showings_status_check
   check (status in ('requested', 'confirmed', 'declined', 'completed', 'canceled', 'no_show'));
 
--- New rows should never default to "confirmed". The app always sets status explicitly.
-alter table public.showings alter column status set default 'requested';
+-- The column DEFAULT stays 'confirmed' on purpose. The code deployed today inserts showings without a
+-- status and relies on that default; changing it before the new code is live would store old-flow bookings
+-- as 'requested' while still emailing buyers a confirmation. The new code always sets status explicitly.
 
 alter table public.showings add column if not exists responded_at timestamptz;
+
+-- Property time zone (IANA name, e.g. America/New_York). Nullable: null means "not set", and the app then
+-- creates no Google Calendar event and writes floating (not exact) .ics times. Validated by the app.
+-- listings.timezone overrides agent_profiles.timezone when both are set.
+alter table public.agent_profiles add column if not exists timezone text;
+alter table public.listings add column if not exists timezone text;
 
 -- Fast slot lookups for duplicate / conflict checks.
 create index if not exists showings_slot_idx

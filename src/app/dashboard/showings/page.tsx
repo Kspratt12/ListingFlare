@@ -420,6 +420,9 @@ export default function ShowingsPage() {
       setShowings((prev) =>
         prev.map((s) => (s.id === id ? { ...s, status: (action === "confirm" ? "confirmed" : "declined") as Showing["status"] } : s))
       );
+      if (data.calendar === "skipped_no_timezone") {
+        setRespondError("Confirmed and the buyer was emailed. No calendar event was created because your time zone is not set. Set it in Settings.");
+      }
     } catch {
       setRespondError("Network problem. The request was not changed.");
     } finally {

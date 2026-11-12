@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { checkHoneypotAndTiming, checkRateLimits } from "@/lib/antiSpam";
 import { sendPushToAgent } from "@/lib/sendPush";
+import { getPropertyTimeZone } from "@/lib/propertyTimeZone";
 import {
   BOOKING_LIMITS,
   processBookingRequest,
@@ -50,6 +51,7 @@ function buildStore(db: ReturnType<typeof getAdminClient>): BookingStore {
       }
       return data === true ? "reserved" : "limited";
     },
+    getTimeZone: (listingId, agentId) => getPropertyTimeZone(db, listingId, agentId),
     async findSlotShowings(listingId, date, time) {
       const { data } = await db
         .from("showings")

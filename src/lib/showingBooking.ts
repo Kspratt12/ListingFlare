@@ -24,6 +24,7 @@
 //     can both be stored; confirmation re-checks and is the real gate.
 
 import { validateShowingRequest, type ShowingInput } from "./showingInput";
+import { labelShowingTime } from "./timezone";
 import {
   buildAgentRequestEmail,
   buildBuyerRequestEmail,
@@ -63,6 +64,8 @@ export interface BookingStore {
   updateLead(leadId: string, fields: Record<string, unknown>): Promise<void>;
   insertShowing(row: Record<string, unknown>): Promise<{ id: string } | null>;
   getListing(listingId: string): Promise<{ street: string; city: string; state: string } | null>;
+  // Effective property zone (listing, else agent), or null when none is stored.
+  getTimeZone(listingId: string, agentId: string): Promise<string | null>;
   getAgent(
     agentId: string
   ): Promise<{ name: string; phone: string; email: string; brokerage: string } | null>;
@@ -226,13 +229,15 @@ export async function processBookingRequest(
     ? `${listing.street}, ${listing.city}, ${listing.state}`
     : "the property";
   const formattedDate = formatShowingDate(input.showingDate);
+  const zone = await store.getTimeZone(input.listingId, agentId);
+  const timeLabel = labelShowingTime(input.showingDate, input.showingTime, zone);
 
   if (deps.emailEnabled && agent) {
     const buyerMail = buildBuyerRequestEmail({
       buyerName: input.name,
       listingAddress,
       formattedDate,
-      showingTime: input.showingTime,
+      showingTime: timeLabel,
       agentName: agent.name,
       agentPhone: agent.phone,
       agentEmail: agent.email,
@@ -244,7 +249,7 @@ export async function processBookingRequest(
       message: input.message,
       listingAddress,
       formattedDate,
-      showingTime: input.showingTime,
+      showingTime: timeLabel,
       dashboardUrl: `${deps.appUrl}/dashboard/showings`,
     });
     // A failed send is logged but never turns a saved request into an error.
