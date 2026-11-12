@@ -1,0 +1,40 @@
+name: test
+
+# Reports test status on pull requests. It is NOT a required check unless the
+# repository owner adds it to branch protection (not done here).
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Typecheck
+        run: npx tsc --noEmit
+      - name: Tests
+        run: npm test
+        env:
+          # The suite blocks network access and scrubs secrets itself; none are provided.
+          CI: "true"
+      - name: Build
+        run: npm run build
+        env:
+          # Inert placeholders only: the build needs these variables to exist, but nothing contacts
+          # Supabase or any provider. No real secrets are used in CI.
+          NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:9
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ci-inert
+          SUPABASE_SERVICE_ROLE_KEY: ci-inert
+          NEXT_PUBLIC_APP_URL: http://localhost:3000
+          NEXT_TELEMETRY_DISABLED: "1"
