@@ -816,11 +816,11 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
     },
     {
       question: "How is ListingFlare different from Zillow or Realtor.com?",
-      answer: "On Zillow, your listing sits next to competitor ads and other agents. Buyers who inquire can be routed to other agents. With ListingFlare, every page is yours. Your brand, your contact info, zero competing agents. Every lead goes directly to your dashboard, and your AI assistant responds before anyone else can.",
+      answer: "On Zillow, your listing sits next to competitor ads and other agents. Buyers who inquire can be routed to other agents. With ListingFlare, every page is yours. Your brand, your contact info, zero competing agents. Every lead goes directly to your dashboard, and the AI assistant can send an instant first reply, so buyers are not left waiting.",
     },
     {
       question: "How much does ListingFlare cost?",
-      answer: "ListingFlare is $150 per month with a 14-day free trial and no credit card required to start. That includes unlimited listing websites, AI chat on every page, lead capture, an instant AI reply to new leads, analytics, social media posts, open house flyers, and full agent branding. One deal from a lead you would have missed covers the cost many times over.",
+      answer: "ListingFlare is $150 per month with a 14-day free trial and no credit card required to start. That includes unlimited listing websites, AI chat on every page, lead capture, an instant AI reply to new leads, analytics, social media posts, open house flyers, and full agent branding. Results vary: one sale from a lead you would otherwise have missed would cover many months of the subscription, but no outcome is guaranteed.",
     },
     {
       question: "Do I need technical skills to use ListingFlare?",

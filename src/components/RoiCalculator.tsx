@@ -144,7 +144,7 @@ export default function RoiCalculator() {
       </div>
 
       <p className="mt-5 text-center text-xs text-gray-400">
-        This is an estimate. Your actual results depend on how well you use the platform.
+        Illustration only. It assumes the closings you enter actually happen; ListingFlare does not guarantee leads, showings or closed sales.
       </p>
     </div>
   );

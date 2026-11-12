@@ -166,7 +166,7 @@ export default function PricingPage() {
                 <span className="text-lg text-gray-500">/month</span>
               </div>
               <p className="mt-2 text-sm text-gray-500">
-                That is $5 a day. One closed deal pays for years of the subscription.
+                That is about $5 a day. A single closed sale can cover many months of the subscription, but closings are never guaranteed.
               </p>
             </div>
             <div className="flex flex-col gap-3">
@@ -247,7 +247,7 @@ export default function PricingPage() {
             <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
               <h3 className="font-semibold text-gray-900">Is there a free trial?</h3>
               <p className="mt-2 text-sm text-gray-600">
-                Yes. You get 14 days free with full access to every feature. No credit card required to start. Cancel anytime.
+                Yes. You get 14 days free, no credit card required to start. The trial includes 1 listing, up to 5 photos and up to 5 leads; lead replies, video uploads, social posts and open house flyers unlock on the paid plan. Cancel anytime.
               </p>
             </div>
 
