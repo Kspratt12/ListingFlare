@@ -87,7 +87,7 @@ Your browser does not support the video tag.
 
 <h3>1. No AI Chatbot on Listing Pages</h3>
 
-<p>This is the biggest gap. According to NAR&rsquo;s 2025 report, 97% of home buyers use the internet during their search, and a large portion of browsing happens outside of business hours. When a buyer visits your Rela page at 9 PM with a question about the HOA fees or the school district, there is nobody there to answer. They leave, and you never know they were interested.</p>
+<p>This is the biggest gap. Many buyers browse listings in the evening and on weekends, when agents are off. When a buyer visits your Rela page at 9 PM with a question about the HOA fees or the school district, there is nobody there to answer. They leave, and you never know they were interested.</p>
 
 <p>An AI chatbot changes that dynamic entirely. It engages the buyer in conversation, answers listing-specific questions using data you already provided, and captures their name, email, and phone number before they navigate away. This is not a nice-to-have feature anymore. It is the difference between a digital brochure and a lead generation tool.</p>
 

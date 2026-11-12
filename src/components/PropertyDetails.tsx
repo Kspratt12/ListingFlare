@@ -1,5 +1,6 @@
 "use client";
 
+import { visibleFacts } from "@/lib/listingFacts";
 import { motion } from "framer-motion";
 import {
   BedDouble,
@@ -15,17 +16,17 @@ interface Props {
   listing: PropertyListing;
 }
 
-const stats = (listing: PropertyListing) => [
-  { icon: BedDouble, label: "Bedrooms", value: listing.beds.toString() },
-  { icon: Bath, label: "Bathrooms", value: listing.baths.toString() },
-  {
-    icon: Maximize,
-    label: "Square Feet",
-    value: listing.sqft.toLocaleString(),
-  },
-  { icon: Calendar, label: "Year Built", value: listing.yearBuilt.toString() },
-  { icon: LandPlot, label: "Lot Size", value: listing.lotSize },
-];
+// Only facts the agent actually provided are shown (see lib/listingFacts.ts for the zero rules).
+const stats = (listing: PropertyListing) => {
+  const f = visibleFacts(listing);
+  return [
+    f.beds !== null ? { icon: BedDouble, label: "Bedrooms", value: f.beds.toString() } : null,
+    f.baths !== null ? { icon: Bath, label: "Bathrooms", value: f.baths.toString() } : null,
+    f.sqft !== null ? { icon: Maximize, label: "Square Feet", value: f.sqft.toLocaleString() } : null,
+    f.yearBuilt !== null ? { icon: Calendar, label: "Year Built", value: f.yearBuilt.toString() } : null,
+    f.lotSize !== null ? { icon: LandPlot, label: "Lot Size", value: f.lotSize } : null,
+  ].filter((s): s is { icon: typeof BedDouble; label: string; value: string } => s !== null);
+};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },

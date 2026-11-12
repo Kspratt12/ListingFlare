@@ -1,5 +1,6 @@
 "use client";
 
+import { visibleFacts } from "@/lib/listingFacts";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, TrendingDown } from "lucide-react";
@@ -26,6 +27,7 @@ function formatMoney(n: number): string {
 export default function HeroSlideshow({ listing, priceReduction }: Props) {
   const [current, setCurrent] = useState(0);
   const photos = listing.photos.slice(0, 5); // Use first 5 for hero
+  const facts = visibleFacts(listing);
 
   const next = useCallback(
     () => setCurrent((c) => (c + 1) % photos.length),
@@ -145,10 +147,12 @@ export default function HeroSlideshow({ listing, priceReduction }: Props) {
                 )}
               </div>
             </div>
-            <span className="hidden h-8 w-px bg-white/30 sm:block" />
-            <span>{listing.beds} Beds</span>
-            <span>{listing.baths} Baths</span>
-            <span>{listing.sqft.toLocaleString()} Sq Ft</span>
+            {(facts.beds !== null || facts.baths !== null || facts.sqft !== null) && (
+              <span className="hidden h-8 w-px bg-white/30 sm:block" />
+            )}
+            {facts.beds !== null && <span>{facts.beds} Beds</span>}
+            {facts.baths !== null && <span>{facts.baths} Baths</span>}
+            {facts.sqft !== null && <span>{facts.sqft.toLocaleString()} Sq Ft</span>}
           </div>
         </motion.div>
       </div>

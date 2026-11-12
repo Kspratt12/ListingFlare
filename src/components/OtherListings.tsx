@@ -1,5 +1,6 @@
 "use client";
 
+import { factsLine } from "@/lib/listingFacts";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
@@ -107,17 +108,11 @@ export default function OtherListings({ agentId, currentListingId, agentName }: 
                   </p>
                   <p className="mt-1 truncate text-sm text-gray-700">{l.street}</p>
                   <p className="truncate text-xs text-gray-500">{l.city}, {l.state}</p>
-                  <div className="mt-2 flex items-center gap-2 text-[11px] text-gray-600">
-                    <span>{l.beds} bd</span>
-                    <span className="text-gray-300">·</span>
-                    <span>{l.baths} ba</span>
-                    {l.sqft > 0 && (
-                      <>
-                        <span className="text-gray-300">·</span>
-                        <span>{l.sqft.toLocaleString()} sqft</span>
-                      </>
-                    )}
-                  </div>
+                  {factsLine(l, " · ", { beds: "bd", baths: "ba", sqft: "sqft" }) && (
+                    <div className="mt-2 text-[11px] text-gray-600">
+                      {factsLine(l, " · ", { beds: "bd", baths: "ba", sqft: "sqft" })}
+                    </div>
+                  )}
                   <div className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-brand-700 group-hover:underline">
                     View home
                     <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />

@@ -1063,8 +1063,8 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-8 md:gap-14">
               <div className="text-center">
-                <p className="font-serif text-3xl font-bold text-gray-900">5 min</p>
-                <p className="mt-1 text-sm text-gray-500">From setup to live</p>
+                <p className="font-serif text-3xl font-bold text-gray-900">3 steps</p>
+                <p className="mt-1 text-sm text-gray-500">From details to live page</p>
               </div>
               <div className="h-10 w-px bg-gray-200 hidden sm:block" />
               <div className="text-center">
@@ -1340,7 +1340,6 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               { feature: "Built-in showing scheduler (no Calendly needed)", us: true, zillow: false, kv: false },
               { feature: "Calendar invite (.ics) in confirmation emails", us: true, zillow: false, kv: false },
               { feature: "Leads belong to YOU (not sold to other agents)", us: true, zillow: false, kv: true },
-              { feature: "Setup time", us: "5 min", zillow: "N/A", kv: "Not listed" },
             ];
             return (
               <motion.div
@@ -1994,9 +1993,9 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               Simple Pricing
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-white md:text-display-sm">
-              One extra buyer lead can
+              One plan.
               <br />
-              cover a year of ListingFlare.
+              $150 a month, 14-day free trial.
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-lg text-gray-400">
               Listing pages, AI chat, lead management, a showing scheduler and automation. One plan, with the full feature list on the pricing page.

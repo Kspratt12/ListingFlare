@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "Speed to lead in real estate: what the research says about response time, a realistic reply target and how to answer buyers fast without living on your phone.",
   date: "2026-10-25",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Lead Management",
   keywords: [
@@ -41,7 +42,7 @@ export const article: BlogPost = {
 
 <h2>Why Speed Matters More on Listings</h2>
 
-<p>A buyer looking at a specific home is further along than someone downloading a generic guide. They have picked a property, probably compared it with others, and have a question that blocks the next step: Is the backyard fenced? Are there HOA fees? Can I see it Saturday? About half of buyers say they found the home they bought online, according to the <a href="https://www.nar.realtor/research-and-statistics/research-reports/highlights-from-the-profile-of-home-buyers-and-sellers" target="_blank" rel="noopener noreferrer">National Association of Realtors&rsquo; annual Profile of Home Buyers and Sellers</a>, which means a lot of your first impressions happen on a screen, often outside business hours.</p>
+<p>A buyer looking at a specific home is further along than someone downloading a generic guide. They have picked a property, probably compared it with others, and have a question that blocks the next step: Is the backyard fenced? Are there HOA fees? Can I see it Saturday? Agents still matter: <a href="https://www.nar.realtor/news/real-estate-news/nar-2025-profile-of-home-buyers-sellers-reveals-market-extremes" target="_blank" rel="noopener noreferrer">NAR&rsquo;s 2025 Profile of Home Buyers and Sellers</a> (primary-residence buyers, transactions July 2024 to June 2025) reports that 88% of buyers bought through an agent and calls agents the most trusted information source, ahead of online listings. Even so, many first impressions of a listing now happen on a screen, often outside business hours.</p>
 
 <p>If the question goes unanswered, the buyer does not wait. They open the next tab. You may never know they asked, which is the worst part: a lost inquiry leaves no trace.</p>
 

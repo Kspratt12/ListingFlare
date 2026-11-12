@@ -1,5 +1,7 @@
 "use client";
 
+import PublishReviewNotice from "@/components/PublishReviewNotice";
+import { publishGaps } from "@/lib/listingFacts";
 import { useState, useRef, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
@@ -38,6 +40,7 @@ export default function CreateListingPage() {
   const [saving, setSaving] = useState(false);
   const [publishing, setPublishing] = useState(false);
   const [error, setError] = useState("");
+  const [reviewGaps, setReviewGaps] = useState<string[] | null>(null);
   const [uploadingPhotos, setUploadingPhotos] = useState(false);
   const [profile, setProfile] = useState<AgentProfile | null>(null);
   const [listingCount, setListingCount] = useState(0);
@@ -440,7 +443,7 @@ export default function CreateListingPage() {
     setVideos((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const handleSave = async (publish: boolean) => {
+  const handleSave = async (publish: boolean, skipReview = false) => {
     if (publish && !street.trim()) {
       setError("Street address is required to publish.");
       document.getElementById("create-street-address")?.focus();
@@ -456,6 +459,15 @@ export default function CreateListingPage() {
       document.getElementById("create-price")?.focus();
       return;
     }
+    // Non-blocking review: never prevents publishing, never discards the draft.
+    if (publish && !skipReview) {
+      const gaps = publishGaps({ photoCount: photos.length, beds, baths, sqft });
+      if (gaps.length > 0) {
+        setReviewGaps(gaps);
+        return;
+      }
+    }
+    setReviewGaps(null);
     const tourProblem = tourUrlProblem(virtualTourUrl);
     if (tourProblem) {
       setError(tourProblem);
@@ -1424,6 +1436,16 @@ export default function CreateListingPage() {
             </div>
           )}
         </section>
+
+        {reviewGaps && (
+          <PublishReviewNotice
+            idPrefix="create"
+            gaps={reviewGaps}
+            busy={saving || publishing}
+            onPublishAnyway={() => handleSave(true, true)}
+            onGoBack={() => setReviewGaps(null)}
+          />
+        )}
 
         {/* Actions */}
         <div className="flex flex-col gap-3 pb-10 sm:flex-row sm:justify-end">
