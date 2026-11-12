@@ -38,7 +38,7 @@ export const article: BlogPost = {
 <p>If you are short on time, here is the summary before we get into the details:</p>
 
 <ul>
-<li><strong>Best for budget-conscious agents:</strong> CribFlyer. Plans start at $7/mo and you can upgrade or downgrade anytime. If you just need a clean page and do not care about AI or lead capture automation, CribFlyer gets the job done for less.</li>
+<li><strong>Best for budget-conscious agents:</strong> CribFlyer. Plans start at $9/mo for one property site and $29/mo for ten, month to month. If you just need a clean page and do not care about AI or lead capture automation, CribFlyer gets the job done for less.</li>
 <li><strong>Best for design quality:</strong> Rela. Twenty premium templates that look stunning, especially for luxury listings. If visual presentation is your top priority and you are comfortable with higher pricing, Rela delivers.</li>
 <li><strong>Best for lead capture and conversion:</strong> <a href="/signup">ListingFlare</a>. The only platform with an AI chatbot on every listing page, automatic lead capture, AI-drafted follow-up emails, and a full analytics dashboard. It costs more upfront, but it is the only option that actively generates leads instead of waiting for someone to fill out a form.</li>
 <li><strong>Best overall value:</strong> ListingFlare. A beautiful page that does not capture leads is a missed opportunity. ListingFlare combines professional design with actual lead generation tools that work 24/7.</li>
@@ -59,9 +59,9 @@ export const article: BlogPost = {
 <p>CribFlyer offers tiered pricing that starts low and scales with features:</p>
 
 <ul>
-<li><strong>Basic:</strong> $7/mo - Single page, basic templates, limited analytics</li>
-<li><strong>Standard:</strong> $15/mo - More templates, QR code generation, social sharing</li>
-<li><strong>Premium:</strong> $25/mo - Custom domain support, priority support, enhanced analytics</li>
+<li><strong>1 property site:</strong> $9/mo</li>
+<li><strong>10 property sites:</strong> $29/mo</li>
+<li><strong>100 property sites:</strong> $99/mo (custom domain optional, about $31/year per site; 7-day free trial)</li>
 </ul>
 
 <p>One thing CribFlyer does well is flexibility. You can upgrade or downgrade your plan monthly without penalty. If you have a luxury listing that justifies the premium tier but your next listing is a standard sale, you can adjust. That flexibility is useful for agents whose listing volume fluctuates.</p>
@@ -88,7 +88,7 @@ export const article: BlogPost = {
 <div class="pros-card">
 <p>Pros</p>
 <ul>
-<li>Cheapest option on this list - starts at just $7/mo</li>
+<li>Among the lowest-priced options on this list - from $9/mo for one property site</li>
 <li>Flexible monthly billing with easy plan changes</li>
 <li>Simple drag-and-drop editor with fast setup</li>
 <li>Custom domain support on premium plan</li>
@@ -119,12 +119,12 @@ export const article: BlogPost = {
 <p>Rela uses tiered pricing with per-listing costs on lower plans:</p>
 
 <ul>
-<li><strong>Starter:</strong> $24/mo - 1 active listing, basic templates</li>
-<li><strong>Pro:</strong> $49/mo - 5 active listings, premium templates, custom domain</li>
-<li><strong>Team:</strong> $99/mo - 15 active listings, all templates, team branding, priority support, Calendly integration</li>
+<li><strong>Starter:</strong> $24/mo - 1 active listing, 2 listing agents</li>
+<li><strong>Plus:</strong> $49/mo - 5 active listings, 5 listing agents</li>
+<li><strong>Pro:</strong> $99/mo - 25 active listings, 10 listing agents (prices from Rela&rsquo;s agents pricing page, 2026-11-12; annual billing is advertised at a 20% saving; 7-day free trial, no card)</li>
 </ul>
 
-<p>The jump from $24 to $99 is significant, and most serious listing agents will end up on the Pro or Team plan once they start using the platform regularly. If you carry more than one listing at a time, the Starter plan is not going to cut it.</p>
+<p>Rela&rsquo;s plans step up with the number of active listings. If you carry more than one listing at a time, compare the Plus plan rather than Starter.</p>
 
 <h3>Templates and Design</h3>
 
@@ -167,7 +167,7 @@ export const article: BlogPost = {
 <ul>
 <li>No automated buyer engagement or conversational lead capture</li>
 <li>No automated follow-up emails</li>
-<li>Gets expensive quickly - 15 active listings require $99/mo Team plan</li>
+<li>Plans step up with the number of active listings ($49/mo for 5, $99/mo for 25)</li>
 <li>Basic analytics without detailed buyer behavior data</li>
 <li>No social media post generation</li>
 <li>Lead capture limited to static forms and Calendly</li>
@@ -280,8 +280,8 @@ export const article: BlogPost = {
 <tbody>
 <tr>
 <td><strong>Price</strong></td>
-<td>$7-25/mo</td>
-<td>$24-99/mo</td>
+<td>$9-99/mo (1 to 100 sites)</td>
+<td>$24-99/mo (1 to 25 active listings)</td>
 <td>$150/mo (unlimited)</td>
 </tr>
 <tr>
@@ -349,25 +349,25 @@ export const article: BlogPost = {
 
 <p>The table makes the tradeoffs clear. CribFlyer wins on price. Rela wins on design. ListingFlare wins on lead capture, automation, and analytics. The question is which of those matters most for your business.</p>
 
-<h2>Cost for Five Active Listings: Do the Math With Your Own Prices</h2>
+<h2>What Each Plan Costs at Different Listing Counts</h2>
 
-<p>Per-listing pricing and flat pricing cross over at a predictable point. A flat $150 plan costs the same for one listing or twenty, so it comes out cheaper once your price per active listing multiplied by the number of listings you carry goes above $150. Use the table with whatever price you are actually quoted.</p>
+<p>Prices below are read from each vendor&rsquo;s own pricing page on 2026-11-12 (US). Plans change, so confirm before you buy. CribFlyer counts &ldquo;property sites&rdquo; and Rela counts &ldquo;active listings&rdquo;, which may not be the same thing, and Rela&rsquo;s page offers annual billing at a discount, so the figure you pay depends on billing choice.</p>
 
 <table>
 <thead>
-<tr><th>Price per active listing, per month</th><th>1 listing</th><th>3 listings</th><th>5 listings</th><th>8 listings</th><th>Flat $150 is cheaper from</th></tr>
+<tr><th>Active listings</th><th>CribFlyer</th><th>Rela</th><th>ListingFlare</th></tr>
 </thead>
 <tbody>
-<tr><td>$15</td><td>$15</td><td>$45</td><td>$75</td><td>$120</td><td>11 listings</td></tr>
-<tr><td>$25</td><td>$25</td><td>$75</td><td>$125</td><td>$200</td><td>7 listings</td></tr>
-<tr><td>$30</td><td>$30</td><td>$90</td><td>$150</td><td>$240</td><td>6 listings</td></tr>
-<tr><td>$49</td><td>$49</td><td>$147</td><td>$245</td><td>$392</td><td>4 listings</td></tr>
+<tr><td>1</td><td>$9/mo (1 site)</td><td>$24/mo (Starter)</td><td>$150/mo</td></tr>
+<tr><td>5</td><td>$29/mo (10-site plan)</td><td>$49/mo (Plus, 5 listings)</td><td>$150/mo</td></tr>
+<tr><td>10</td><td>$29/mo (10-site plan)</td><td>$99/mo (Pro, up to 25)</td><td>$150/mo</td></tr>
+<tr><td>25</td><td>$99/mo (100-site plan)</td><td>$99/mo (Pro, up to 25)</td><td>$150/mo</td></tr>
 </tbody>
 </table>
 
-<p>Two caveats keep this honest. First, some vendors sell tiers that cover several listings for one price (for example, a plan that includes a set number of active listings), so compare your plan&rsquo;s total rather than a per-listing figure. Second, price is only half the question. A $15 page without chat, scheduling or follow-up is a different product from a $150 platform that includes all three, and the cheaper page only wins if you do not need what the dearer one does.</p>
+<p>On price alone, ListingFlare is the most expensive option at every listing count shown here, and within these published plans there is no listing count where its flat price becomes the cheaper one. Custom domains add cost elsewhere (CribFlyer lists about $31 per year per website for a domain and SSL), and the three products do different things. What ListingFlare adds is an AI chat assistant on each listing page, a lead inbox and an instant first reply to new leads. Whether those are worth the difference depends on how you handle inquiries today; a table of prices cannot answer that.</p>
 
-<p>If you carry one listing at a time and want just a page, a per-listing tool is usually the better value. If you carry several at once, or you want captured leads answered quickly, the flat plan starts to make sense. See also <a href="/blog/single-property-website-cost">what a single property website really costs</a>.</p>
+<p>If you carry a few listings and mainly want a page to share, a lower-priced plan is the better value. If answering buyers quickly and keeping every inquiry in one place is the bottleneck, that is what the extra cost buys. See also <a href="/blog/single-property-website-cost">what a single property website really costs</a>.</p>
 
 <h2>The Same Buyer Question, Two Experiences</h2>
 
@@ -442,10 +442,10 @@ export const article: BlogPost = {
 <h2>Frequently Asked Questions</h2>
 
 <h3>Is CribFlyer free?</h3>
-<p>CribFlyer offers a limited free plan and paid plans starting at $7/mo. The free plan has significant restrictions on templates and features. Most agents need at least the Standard plan at $15/mo for useful functionality like QR codes and better templates.</p>
+<p>CribFlyer&rsquo;s plans page lists paid plans from $9/mo for one property site and advertises a 7-day free trial; we did not see a free plan there on 2026-11-12. A custom domain costs extra.</p>
 
 <h3>Does Rela have an AI chatbot?</h3>
-<p>No. Rela does not offer an AI chatbot on its listing pages. Lead capture is limited to static contact forms and Calendly integration on the Team plan ($99/mo). If a buyer visits after hours, they must fill out a form and wait. <a href="/signup">ListingFlare</a> is currently the only builder with an AI chatbot that engages buyers in real-time conversation.</p>
+<p>We did not find an AI chat assistant on Rela&rsquo;s public pages when we last compared, and we have not re-verified its lead capture features, so check Rela directly. <a href="/signup">ListingFlare</a> puts an AI chat assistant on every listing page that answers from the details the agent enters.</p>
 
 <h3>Which platform is best for luxury listings?</h3>
 <p>For pure visual design, Rela has the edge with 20 premium templates built for high-end properties. However, luxury buyers have detailed questions and expect immediate answers. ListingFlare's chatbot provides that instant engagement while still offering clean, professional templates. The best choice depends on whether you prioritize design or lead conversion.</p>
@@ -454,7 +454,7 @@ export const article: BlogPost = {
 <p>Yes. <a href="/signup">Sign up for a free ListingFlare trial</a>, create your listing pages in under five minutes each, and update the links on your marketing materials. No data migration is needed since each platform hosts its own pages independently.</p>
 
 <h3>Is $150/mo worth it for a single property website builder?</h3>
-<p>Consider what one lead is worth. If you close one additional deal per year from a lead the automated chat assistant captured, that is $6,000 to $15,000+ in commission from a $150/mo investment ($1,800/year). Most agents recoup the cost with a single additional transaction.</p>
+<p>A lead is not a sale, and most leads do not close. If one extra sale in a year came from a captured inquiry, a 2.5% commission on a $400,000 home is $10,000 before your split and costs, which would cover the plan&rsquo;s $1,800 a year; but that is a what-if, not an expected result, and nothing guarantees an extra sale. Compare the price against how many inquiries you actually handle.</p>
 
 <h3>Do any of these platforms integrate with my CRM?</h3>
 <p>ListingFlare sends lead notifications via email and provides a dashboard for exporting leads. Rela and CribFlyer offer basic integration options on higher-tier plans. None are full CRM platforms - most agents export leads into their primary CRM (Follow Up Boss, KVCore, LionDesk, etc.) for long-term nurturing.</p>
@@ -465,7 +465,7 @@ export const article: BlogPost = {
 <h3>What happens to my listing pages when a property sells?</h3>
 <p>On all three platforms, you can archive or deactivate listing pages when a property sells. On ListingFlare's unlimited plan, archiving is free. On CribFlyer and Rela's per-listing plans, deactivating may reduce your monthly charge. Some agents keep sold pages active as portfolio pieces for future listing presentations.</p>
 <h3>Which is cheapest for five active listings?</h3>
-<p>It depends on each vendor&rsquo;s current pricing. Multiply the per-listing price by five, or use the plan that covers five listings, and compare that total with a flat $150. The table above shows where the break-even falls at different per-listing prices.</p>
+<p>Not at the published plan prices in the table above: ListingFlare&rsquo;s flat $150 is higher than the CribFlyer and Rela plans shown at 1, 5, 10 and 25 listings. The reason to choose it is the AI chat and lead tools, not price.</p>
 
 <h3>Does ListingFlare pull listing data from the MLS?</h3>
 <p>No. You enter the listing details (address, price, bedrooms, bathrooms, features and description), and the assistant answers from what you entered. That keeps its answers tied to facts you have checked, and it also means a detail you leave out is a detail it cannot answer.</p>

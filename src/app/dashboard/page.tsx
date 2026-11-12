@@ -617,7 +617,7 @@ export default function MyListingsPage() {
           {!loadError && listings.length === 0 && (
             <div className="rounded-xl border border-brand-200 bg-gradient-to-br from-brand-50 to-white p-6">
               <h2 className="font-serif text-xl font-bold text-gray-900">
-                Get your first listing live in about 5 minutes
+                Get your first listing live in three steps
               </h2>
               <ol className="mt-3 space-y-1.5 text-sm text-gray-600">
                 <li><span className="font-semibold text-gray-900">1.</span> Paste a Zillow, Realtor.com or MLS link or description and we will auto-fill the details.</li>
