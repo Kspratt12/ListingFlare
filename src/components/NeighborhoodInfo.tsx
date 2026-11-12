@@ -29,7 +29,10 @@ export default function NeighborhoodInfo({
   const mapSrc = `https://www.google.com/maps?q=${encoded}&output=embed`;
 
   const walkScoreUrl = `https://www.walkscore.com/score/${encoded}`;
-  const greatSchoolsUrl = `https://www.greatschools.org/search/search.page?q=${encoded}`;
+  // GreatSchools shows "no results" for a full street address, but finds schools for a ZIP or a place name.
+  // (Walk Score and the map links above take the full address and work.)
+  const schoolsQuery = zip.trim() || [city, state].filter(Boolean).join(", ");
+  const greatSchoolsUrl = `https://www.greatschools.org/search/search.page?q=${encodeURIComponent(schoolsQuery)}`;
   const googleDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encoded}`;
   const streetViewUrl = `https://www.google.com/maps/@?api=1&map_action=pano&query=${encoded}`;
 
