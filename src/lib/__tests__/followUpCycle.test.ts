@@ -200,8 +200,8 @@ test("trial lifecycle stays switchable independently of the gate", async () => {
 test("the routes keep their own sent-state guards (source check: duplicate sends are prevented by the routes, not by this cycle)", () => {
   const read = (p: string) => fs.readFileSync(path.join(process.env.LF_SRC_DIR as string, p), "utf8");
   const rem = read("app/api/showings/reminders/route.ts");
-  assert.ok(rem.includes("!showing.reminder_24h_sent") && rem.includes("!showing.reminder_1h_sent"));
-  assert.ok(rem.includes("reminder_24h_sent: true") && rem.includes("reminder_1h_sent: true"));
+  // The reminder route claims the row (reminder_24h_sent false -> true) before sending, and releases it on failure.
+  assert.ok(rem.includes(".eq(\"reminder_24h_sent\", false)") && rem.includes("reminder_24h_sent: true") && rem.includes("reminder_24h_sent: false"));
   const tri = read("app/api/trial/lifecycle/route.ts");
   assert.ok(tri.includes("!a.trial_welcome_sent_at") && tri.includes("!a.trial_day3_sent_at") && tri.includes("trial_day12_sent_at"));
   assert.ok(tri.includes("[SENT_COLUMN[kind]]"));

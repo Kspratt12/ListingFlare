@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { formatPhone } from "@/lib/formatters";
 import { isCronAuthorized } from "@/lib/internalAuth";
+import { decideShowingReminder } from "@/lib/showingReminders";
+import { labelShowingTime } from "@/lib/timezone";
+import { escapeHtml } from "@/lib/escapeHtml";
 
 export const dynamic = "force-dynamic";
 
@@ -17,30 +20,14 @@ function isAuthorized(req: NextRequest) {
   return isCronAuthorized(req);
 }
 
-// Parse "10:00 AM" + "2026-04-25" into a Date
-function parseShowingDateTime(date: string, time: string): Date | null {
-  const match = time.trim().match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
-  if (!match) return null;
-  let hour = parseInt(match[1], 10);
-  const minute = parseInt(match[2], 10);
-  const meridiem = match[3].toUpperCase();
-  if (meridiem === "PM" && hour !== 12) hour += 12;
-  if (meridiem === "AM" && hour === 12) hour = 0;
-
-  const [yStr, mStr, dStr] = date.split("-");
-  return new Date(parseInt(yStr), parseInt(mStr) - 1, parseInt(dStr), hour, minute);
-}
-
 function formatReminderEmail(
-  type: "24h" | "1h",
   name: string,
   listingAddress: string,
   formattedDate: string,
   showingTime: string,
   agent: { name: string; phone: string; email: string }
 ): string {
-  const greeting = type === "24h" ? "Friendly reminder" : "Just a heads up";
-  const detail = type === "24h" ? "tomorrow" : "in about an hour";
+  const greeting = "Friendly reminder";
 
   return `
     <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto;">
@@ -48,15 +35,15 @@ function formatReminderEmail(
         <h1 style="color: #b8965a; margin: 0; font-size: 20px;">ListingFlare</h1>
       </div>
       <div style="background: #ffffff; padding: 32px; border: 1px solid #e5e7eb; border-top: 0; border-radius: 0 0 12px 12px;">
-        <h2 style="margin: 0 0 8px; color: #111827;">${greeting} - your showing is ${detail}</h2>
+        <h2 style="margin: 0 0 8px; color: #111827;">${greeting} - you have a showing coming up</h2>
         <p style="color: #6b7280; margin: 0 0 24px; font-size: 15px;">
-          Hi ${name.split(" ")[0]}, looking forward to seeing you at the showing.
+          Hi ${escapeHtml(name.split(" ")[0])}, looking forward to seeing you at the showing.
         </p>
         <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin: 0 0 24px;">
           <table style="width: 100%; border-collapse: collapse;">
             <tr>
               <td style="padding: 8px 0; color: #6b7280; font-size: 14px; width: 100px;">Property</td>
-              <td style="padding: 8px 0; color: #111827; font-weight: 600;">${listingAddress}</td>
+              <td style="padding: 8px 0; color: #111827; font-weight: 600;">${escapeHtml(listingAddress)}</td>
             </tr>
             <tr>
               <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Date</td>
@@ -64,7 +51,7 @@ function formatReminderEmail(
             </tr>
             <tr>
               <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Time</td>
-              <td style="padding: 8px 0; color: #111827; font-weight: 600;">${showingTime}</td>
+              <td style="padding: 8px 0; color: #111827; font-weight: 600;">${escapeHtml(showingTime)}</td>
             </tr>
           </table>
         </div>
@@ -72,9 +59,9 @@ function formatReminderEmail(
           Need to reschedule or have questions? Reply to this email or call ${agent.phone ? formatPhone(agent.phone) : "your agent"}.
         </p>
         <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #e5e7eb;">
-          <p style="margin: 0; font-weight: 600; color: #111827;">${agent.name}</p>
+          <p style="margin: 0; font-weight: 600; color: #111827;">${escapeHtml(agent.name)}</p>
           ${agent.phone ? `<p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${formatPhone(agent.phone)}</p>` : ""}
-          <p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${agent.email}</p>
+          <p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">${escapeHtml(agent.email)}</p>
         </div>
       </div>
     </div>
@@ -94,100 +81,118 @@ export async function GET(req: NextRequest) {
   const db = getAdminClient();
   const now = new Date();
 
-  // Pull all upcoming confirmed showings that still need reminders (window: next 26 hours)
-  const windowEnd = new Date(now.getTime() + 26 * 60 * 60 * 1000);
+  // Candidates: confirmed showings whose property-local date could fall inside the reminder window.
+  // The window is generous (UTC date +/- 2 days); the exact decision is made per showing in
+  // decideShowingReminder using the property's time zone.
+  const day = 24 * 60 * 60 * 1000;
+  const from = new Date(now.getTime() - day).toISOString().split("T")[0];
+  const to = new Date(now.getTime() + 2 * day).toISOString().split("T")[0];
 
-  const { data: showings } = await db
+  const { data: showings, error: listError } = await db
     .from("showings")
     .select("*")
     .eq("status", "confirmed")
-    .gte("showing_date", now.toISOString().split("T")[0])
-    .lte("showing_date", windowEnd.toISOString().split("T")[0]);
+    .eq("reminder_24h_sent", false)
+    .gte("showing_date", from)
+    .lte("showing_date", to);
 
+  if (listError) {
+    console.error("Showing reminders: lookup failed:", listError.message);
+    return NextResponse.json({ ok: false, error: "lookup_failed" }, { status: 500 });
+  }
   if (!showings || showings.length === 0) {
     return NextResponse.json({ ok: true, sent24h: 0, sent1h: 0 });
   }
 
   let sent24h = 0;
-  let sent1h = 0;
+  let failed = 0;
+  const skipped: Record<string, number> = {};
 
   await Promise.allSettled(
     showings.map(async (showing) => {
-      const showingAt = parseShowingDateTime(showing.showing_date, showing.showing_time);
-      if (!showingAt) return;
+      // Property time zone: the listing's, else the agent's (never the server's).
+      const [{ data: listing }, { data: agent }] = await Promise.all([
+        db.from("listings").select("street, city, state, timezone").eq("id", showing.listing_id).single(),
+        db.from("agent_profiles").select("name, phone, email, timezone").eq("id", showing.agent_id).single(),
+      ]);
+      if (!agent) {
+        skipped.no_agent = (skipped.no_agent || 0) + 1;
+        return;
+      }
+      const timeZone = listing?.timezone || agent.timezone || null;
 
-      const msUntil = showingAt.getTime() - now.getTime();
-      const hoursUntil = msUntil / (1000 * 60 * 60);
-
-      // Determine which reminder (if any) to send right now.
-      // 24h window: 20-28 hours before.   1h window: 30-90 min before.
-      let reminderType: "24h" | "1h" | null = null;
-      if (!showing.reminder_24h_sent && hoursUntil >= 20 && hoursUntil <= 28) {
-        reminderType = "24h";
-      } else if (!showing.reminder_1h_sent && hoursUntil >= 0.5 && hoursUntil <= 1.5) {
-        reminderType = "1h";
+      const decision = decideShowingReminder({
+        status: showing.status,
+        showingDate: showing.showing_date,
+        showingTime: showing.showing_time,
+        timeZone,
+        alreadySent: !!showing.reminder_24h_sent,
+        now,
+      });
+      if (!decision.send) {
+        skipped[decision.reason] = (skipped[decision.reason] || 0) + 1;
+        return;
       }
 
-      if (!reminderType) return;
-
-      // Fetch listing + agent
-      const [{ data: listing }, { data: agent }] = await Promise.all([
-        db.from("listings").select("street, city, state").eq("id", showing.listing_id).single(),
-        db.from("agent_profiles").select("name, phone, email").eq("id", showing.agent_id).single(),
-      ]);
-
-      if (!agent) return;
+      // Claim before sending so two overlapping runs cannot both send; release the claim if the send fails.
+      const { data: claimed } = await db
+        .from("showings")
+        .update({ reminder_24h_sent: true })
+        .eq("id", showing.id)
+        .eq("reminder_24h_sent", false)
+        .select("id");
+      if (!claimed || claimed.length === 0) {
+        skipped.already_sent = (skipped.already_sent || 0) + 1;
+        return;
+      }
 
       const listingAddress = listing
         ? `${listing.street}, ${listing.city}, ${listing.state}`
         : "your showing";
 
-      const formattedDate = new Date(showing.showing_date + "T12:00:00").toLocaleDateString("en-US", {
+      const formattedDate = new Date(showing.showing_date + "T12:00:00Z").toLocaleDateString("en-US", {
         weekday: "long",
         month: "long",
         day: "numeric",
+        timeZone: "UTC",
       });
+      const timeLabel = labelShowingTime(showing.showing_date, showing.showing_time, timeZone);
 
-      const html = formatReminderEmail(
-        reminderType,
-        showing.name,
-        listingAddress,
-        formattedDate,
-        showing.showing_time,
-        agent
-      );
+      const html = formatReminderEmail(showing.name, listingAddress, formattedDate, timeLabel, agent);
+      const subject = `Reminder: Showing on ${formattedDate} at ${timeLabel} - ${listingAddress}`.replace(/[\r\n]+/g, " ");
 
-      const subject =
-        reminderType === "24h"
-          ? `Reminder: Showing tomorrow at ${showing.showing_time} - ${listingAddress}`
-          : `Your showing starts soon - ${listingAddress}`;
+      let ok = false;
+      try {
+        const res = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${resendKey}`,
+          },
+          body: JSON.stringify({
+            from: `${String(agent.name).replace(/[<>"\r\n]/g, "")} via ListingFlare <leads@listingflare.com>`,
+            to: showing.email,
+            replyTo: agent.email,
+            subject,
+            html,
+          }),
+        });
+        ok = res.ok;
+        if (!ok) console.error("Showing reminders: provider rejected a send, status", res.status);
+      } catch (err) {
+        console.error("Showing reminders: send error:", err instanceof Error ? err.message : "unknown");
+      }
 
-      const res = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${resendKey}`,
-        },
-        body: JSON.stringify({
-          from: `${agent.name} via ListingFlare <leads@listingflare.com>`,
-          to: showing.email,
-          replyTo: agent.email,
-          subject,
-          html,
-        }),
-      });
-
-      if (res.ok) {
-        const updateFields =
-          reminderType === "24h"
-            ? { reminder_24h_sent: true }
-            : { reminder_1h_sent: true };
-        await db.from("showings").update(updateFields).eq("id", showing.id);
-        if (reminderType === "24h") sent24h++;
-        else sent1h++;
+      if (ok) {
+        sent24h++;
+      } else {
+        failed++;
+        await db.from("showings").update({ reminder_24h_sent: false }).eq("id", showing.id);
       }
     })
   );
 
-  return NextResponse.json({ ok: true, sent24h, sent1h });
+  console.log("Showing reminders: sent", sent24h, "failed", failed, "skipped", JSON.stringify(skipped));
+  const sent1h = 0;
+  return NextResponse.json({ ok: true, sent24h, sent1h, failed, skipped });
 }
