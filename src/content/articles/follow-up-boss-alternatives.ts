@@ -6,7 +6,7 @@ export const article: BlogPost = {
   description:
     "Looking for a Follow Up Boss alternative? Compare 9 real estate CRMs, including Lofty, Sierra Interactive and kvCORE, on features and who each one fits.",
   date: "2026-03-28",
-  updated: "2026-10-23",
+  updated: "2026-11-13",
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [
@@ -518,7 +518,7 @@ export const article: BlogPost = {
 
 <p>This is exactly what <a href="/signup">ListingFlare</a> was built to do. It is not a CRM. It does not compete with Follow Up Boss or any of the alternatives on this list. It fills the gap they all leave open. For a deeper look at how listing agents lose leads and how to fix it, read our guide on <a href="/blog/how-listing-agents-capture-buyer-leads">how listing agents capture buyer leads</a>.</p>
 
-<p>Every listing you have gets a dedicated property website with an AI-powered chatbot that engages buyers in real time, answers their questions about the home, captures their contact information, and sends automatic follow-up emails on your behalf. The leads flow to your dashboard with full conversation transcripts so you know exactly what the buyer cares about before you ever pick up the phone.</p>
+<p>Every listing you have gets a dedicated property website with an AI-powered chatbot that engages buyers in real time, answers their questions about the home, captures their contact information, and sends an instant AI reply to new leads, with an optional approval step. The leads flow to your dashboard with full conversation transcripts so you know exactly what the buyer cares about before you ever pick up the phone.</p>
 
 <p>The ideal tech stack for a listing agent in 2026 is not one tool. It is two: a CRM for lead management (FUB, Lofty, Wise Agent, whatever fits your budget and team size) plus ListingFlare for listing-specific lead capture. One manages leads. The other creates them. <a href="/demo">See it in action here</a>.</p>
 
