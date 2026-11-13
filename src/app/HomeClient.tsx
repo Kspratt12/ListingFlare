@@ -45,7 +45,6 @@ import {
   CalendarCheck,
   UserPlus,
   BellRing,
-  X,
 } from "lucide-react";
 
 const features = [
@@ -662,31 +661,6 @@ function HowItWorks() {
       </div>
     </section>
   );
-}
-
-function ComparisonCell({ value, highlight = false }: { value: boolean | string; highlight?: boolean }) {
-  if (value === true) {
-    return (
-      <span className={`inline-flex h-6 w-6 items-center justify-center rounded-full ${highlight ? "bg-brand-500" : "bg-emerald-500"}`}>
-        <Check className="h-3.5 w-3.5 text-white" strokeWidth={3} />
-      </span>
-    );
-  }
-  if (value === false) {
-    return (
-      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-100">
-        <X className="h-3.5 w-3.5 text-gray-400" strokeWidth={2.5} />
-      </span>
-    );
-  }
-  if (value === "partial") {
-    return (
-      <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-700">
-        Limited
-      </span>
-    );
-  }
-  return <span className={`text-xs font-medium ${highlight ? "text-brand-700" : "text-gray-500"}`}>{value}</span>;
 }
 
 function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[]; showHomesLink?: boolean }) {
@@ -1308,112 +1282,6 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               </div>
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* Comparison Table */}
-      <section className="bg-gray-50 py-14 md:py-20">
-        <div className="mx-auto max-w-5xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <p className="text-sm font-semibold uppercase tracking-widest text-brand-700">
-              Feature Comparison
-            </p>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
-              How we stack up
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-base text-gray-500">
-              Zillow Premier Agent is shown for context only. We could not confirm its current features from Zillow&apos;s own pages, so those cells say Not verified. Confirm details with Zillow.
-            </p>
-          </motion.div>
-
-          {(() => {
-            const rows: Array<{ feature: string; us: boolean | string; zillow: boolean | string }> = [
-              { feature: "Branded listing page you own", us: true, zillow: "Not verified" },
-              { feature: "AI chat that answers buyer questions 24/7", us: true, zillow: "Not verified" },
-              { feature: "Instant auto-reply to new leads", us: true, zillow: "Not verified" },
-              { feature: "Built-in showing requests (no Calendly needed)", us: true, zillow: "Not verified" },
-              { feature: "Calendar invite (.ics) in confirmation emails", us: true, zillow: "Not verified" },
-              { feature: "Inquiries go to you, not to other agents", us: true, zillow: "Can be routed to other agents" },
-            ];
-            return (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="mt-10"
-              >
-                {/* Desktop table - hidden on mobile */}
-                <div className="hidden overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm md:block">
-                  <table className="w-full text-left text-sm">
-                    <thead>
-                      <tr className="border-b border-gray-200 bg-gray-50/80">
-                        <th className="px-6 py-4 font-medium text-gray-500">Feature</th>
-                        <th className="px-6 py-4">
-                          <div className="font-serif text-base font-bold text-gray-900">ListingFlare</div>
-                          <div className="mt-0.5 text-xs font-normal text-brand-700">$150/mo</div>
-                        </th>
-                        <th className="px-6 py-4">
-                          <div className="text-base font-semibold text-gray-900">Zillow Premier</div>
-                          <div className="mt-0.5 text-xs font-normal text-gray-500">Pricing varies</div>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100">
-                      {rows.map((row, i) => (
-                        <tr key={i} className="hover:bg-gray-50/50">
-                          <td className="px-6 py-3.5 text-gray-700">{row.feature}</td>
-                          <td className="px-6 py-3.5"><ComparisonCell value={row.us} highlight /></td>
-                          <td className="px-6 py-3.5"><ComparisonCell value={row.zillow} /></td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-
-                {/* Mobile cards - one card per feature, three mini-pills */}
-                <div className="space-y-3 md:hidden">
-                  <div className="flex items-center justify-between rounded-xl border border-brand-200 bg-gradient-to-r from-brand-50 to-white px-4 py-3">
-                    <div>
-                      <div className="font-serif text-base font-bold text-gray-900">ListingFlare</div>
-                      <div className="text-xs text-brand-700">$150/mo</div>
-                    </div>
-                    <div className="flex gap-3 text-center">
-                      <div>
-                        <div className="text-sm font-semibold text-gray-700">Zillow</div>
-                        <div className="text-[10px] text-gray-500">Varies</div>
-                      </div>
-                    </div>
-                  </div>
-                  {rows.map((row, i) => (
-                    <div key={i} className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
-                      <p className="text-sm font-medium text-gray-800">{row.feature}</p>
-                      <div className="mt-3 grid grid-cols-2 gap-2">
-                        <div className="flex flex-col items-center rounded-lg bg-brand-50/60 p-2">
-                          <span className="text-[10px] font-medium uppercase tracking-wider text-brand-700">Us</span>
-                          <div className="mt-1"><ComparisonCell value={row.us} highlight /></div>
-                        </div>
-                        <div className="flex flex-col items-center rounded-lg bg-gray-50 p-2">
-                          <span className="text-[10px] font-medium uppercase tracking-wider text-gray-500">Zillow</span>
-                          <div className="mt-1"><ComparisonCell value={row.zillow} /></div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })()}
-
-          <p className="mt-6 text-center text-sm text-gray-500">
-            Competitor information has not been independently verified.
-          </p>
         </div>
       </section>
 

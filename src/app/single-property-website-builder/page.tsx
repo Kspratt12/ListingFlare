@@ -79,7 +79,7 @@ export default function Page() {
         ],
       }}
       faqs={[
-        { question: "How long does it take to create a single property website?", answer: "Most of the time goes into gathering photos and details. Once you have those, publishing is a short form and a photo upload." },
+        { question: "How long does it take to create a single property website?", answer: "Most of the time goes into gathering photos and details. Once you have those, you create a listing with its details and photos." },
         { question: "How much does it cost?", answer: "$150 per month for unlimited listing websites, with a 14-day free trial and no credit card required to start." },
         { question: "Do I need technical skills?", answer: "No. You fill in a form and upload photos. There is no code or design work." },
         { question: "Can I use my own branding?", answer: "Yes. Your headshot, name, brokerage and brand color appear on each listing page." },

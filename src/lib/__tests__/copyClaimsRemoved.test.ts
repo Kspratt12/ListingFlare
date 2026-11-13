@@ -46,10 +46,20 @@ test("the dashboard speed route and component keep the customer's own measuremen
   assert.doesNotMatch(read("components/SpeedToLead.tsx"), /industryAvg/);
 });
 
-test("the homepage comparison does not assert unverified competitor features", () => {
+test("the homepage has no competitor feature comparison (competitor claims could not be verified from first-party sources)", () => {
   const home = read("app/HomeClient.tsx");
-  assert.doesNotMatch(home, /kv: /);
-  assert.match(home, /Competitor information has not been independently verified/);
+  assert.doesNotMatch(home, /Feature Comparison|How we stack up|kvCORE|ComparisonCell/);
+});
+
+test("the leads page and API expose an implemented agent reply action (so the conversation-thread wording is accurate)", () => {
+  assert.match(read("components/LeadMessageThread.tsx"), /\/api\/messages\/send/);
+  assert.match(read("app/api/messages/send/route.ts"), /export async function POST/);
+});
+
+test("P7 wording does not promise a time", () => {
+  const p = read("app/single-property-website-builder/page.tsx");
+  assert.match(p, /you create a listing with its details and photos/);
+  assert.doesNotMatch(p, /takes a few minutes|short form/);
 });
 
 test("no test in this file reached the network", () => {
