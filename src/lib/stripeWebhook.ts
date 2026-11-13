@@ -46,6 +46,8 @@ export interface ProfileView {
   id: string;
   stripeSubscriptionId: string | null;
   status: string | null;
+  // Owner/complimentary accounts (migration 044) are never changed by billing events.
+  complimentary?: boolean;
 }
 
 export interface WebhookDeps {
@@ -119,6 +121,7 @@ export async function processStripeEvent(event: WebhookEventView, deps: WebhookD
       if (found.error) return RETRY("profile_lookup");
       if (!found.profile) { deps.log("warn", "Checkout for an unknown profile", { eventId: event.id, subscriptionId: sub.id }); return OK({ ignored: "unknown_profile" }); }
       const existing = found.profile;
+      if (existing.complimentary) { deps.log("warn", "Billing event for a complimentary owner account ignored", { eventId: event.id }); return OK({ ignored: "complimentary_account" }); }
       let existingIsLive = false;
       if (existing.stripeSubscriptionId && existing.stripeSubscriptionId !== sub.id) {
         // The stored subscription must be confirmed LIVE in Stripe; a stale (ended or missing) one does not block the new one.
@@ -162,6 +165,7 @@ export async function processStripeEvent(event: WebhookEventView, deps: WebhookD
         if (byId.profile && !byId.profile.stripeSubscriptionId) userId = byId.profile.id;
       }
       if (!userId) return OK({ ignored: "no_matching_profile" });
+      if (byStored.profile?.complimentary) { deps.log("warn", "Billing event for a complimentary owner account ignored", { eventId: event.id }); return OK({ ignored: "complimentary_account" }); }
       // A subscription that ended without a 'deleted' event (for example incomplete_expired) must free the profile for a new checkout.
       const ended = sub.status === "canceled" || sub.status === "incomplete_expired";
       const fields: Record<string, unknown> = ended && byStored.profile
@@ -180,6 +184,7 @@ export async function processStripeEvent(event: WebhookEventView, deps: WebhookD
       const byStored = await deps.findProfileBySubscription(subId);
       if (byStored.error) return RETRY("profile_lookup");
       if (!byStored.profile) return OK({ ignored: "no_matching_profile" }); // an old/other subscription: never touch a newer one
+      if (byStored.profile.complimentary) { deps.log("warn", "Billing event for a complimentary owner account ignored", { eventId: event.id }); return OK({ ignored: "complimentary_account" }); }
       const res = await deps.updateProfile(byStored.profile.id, { subscription_status: "canceled", stripe_subscription_id: null }, subId);
       if (res.error) return RETRY("profile_update");
       return OK({ applied: "canceled" });

@@ -47,8 +47,8 @@ export async function POST(request: NextRequest) {
     priceIds: (s.items?.data ?? []).map((i) => i.price?.id).filter((x): x is string => !!x),
     userIdMeta: s.metadata?.supabase_user_id || null,
   });
-  const toProfile = (r: { id: string; stripe_subscription_id: string | null; subscription_status: string | null } | null) =>
-    r ? { id: r.id, stripeSubscriptionId: r.stripe_subscription_id, status: r.subscription_status } : null;
+  const toProfile = (r: { id: string; stripe_subscription_id: string | null; subscription_status: string | null; complimentary_access?: string | null } | null) =>
+    r ? { id: r.id, stripeSubscriptionId: r.stripe_subscription_id, status: r.subscription_status, complimentary: r.complimentary_access === "owner" } : null;
 
   try {
     const outcome = await processStripeEvent(
@@ -64,11 +64,11 @@ export async function POST(request: NextRequest) {
           }
         },
         findProfileBySubscription: async (subId) => {
-          const { data, error } = await supabase.from("agent_profiles").select("id, stripe_subscription_id, subscription_status").eq("stripe_subscription_id", subId).limit(1);
+          const { data, error } = await supabase.from("agent_profiles").select("id, stripe_subscription_id, subscription_status, complimentary_access").eq("stripe_subscription_id", subId).limit(1);
           return { profile: toProfile(data?.[0] ?? null), error: !!error };
         },
         findProfileById: async (userId) => {
-          const { data, error } = await supabase.from("agent_profiles").select("id, stripe_subscription_id, subscription_status").eq("id", userId).limit(1);
+          const { data, error } = await supabase.from("agent_profiles").select("id, stripe_subscription_id, subscription_status, complimentary_access").eq("id", userId).limit(1);
           return { profile: toProfile(data?.[0] ?? null), error: !!error };
         },
         updateProfile: async (userId, fields, onlyIfSubscriptionId) => {

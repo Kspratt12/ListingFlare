@@ -63,6 +63,17 @@ export async function POST() {
 
       paused: () => process.env.CHECKOUT_PAUSED === "on",
 
+      verifyCustomer: async (customerId) => {
+        try {
+          const c = await getStripe().customers.retrieve(customerId);
+          return (c as { deleted?: boolean }).deleted ? "missing" : "ok";
+        } catch (err) {
+          const e = err as { code?: string; statusCode?: number };
+          if (e?.code === "resource_missing" || e?.statusCode === 404) return "missing"; // definitive
+          throw err;
+        }
+      },
+
       reconcileSubscription: async (subscriptionId) => {
         try {
           const s = await getStripe().subscriptions.retrieve(subscriptionId);

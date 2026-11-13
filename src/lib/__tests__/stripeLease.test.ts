@@ -268,3 +268,46 @@ test("C7. an owner/complimentary account never starts checkout and is never reco
   assert.deepEqual(calls, []);
   assert.equal(w.sessions.size, 0);
 });
+
+test("E1. a stored Stripe customer id from another mode (test id under a live key) is replaced, not used: checkout creates and saves a new customer", async () => {
+  const w = stripeWorld(); const s = reservationStore({ t: 1_000_000 });
+  let created = 0; const saved: string[] = [];
+  const d = deps(w, s, {
+    verifyCustomer: async () => "missing",
+    createCustomer: async () => { created++; return { id: "cus_live_new" }; },
+    saveCustomerId: async (_u, c) => { saved.push(c); return { rows: [{ id: "u1" }], error: null }; },
+  }, { stripe_customer_id: "cus_test_old" });
+  const out = await processCheckoutRequest(d.d);
+  assert.equal(out.status, 200); assert.equal(created, 1); assert.deepEqual(saved, ["cus_live_new"]);
+});
+
+test("E2. a transient failure verifying the stored customer refuses checkout and never replaces or creates anything (503)", async () => {
+  const w = stripeWorld(); const s = reservationStore({ t: 1_000_000 });
+  let created = 0;
+  const d = deps(w, s, { verifyCustomer: async () => { throw new Error("rate limited"); }, createCustomer: async () => { created++; return { id: "x" }; } }, { stripe_customer_id: "cus_1" });
+  assert.equal((await processCheckoutRequest(d.d)).status, 503);
+  assert.equal(created, 0); assert.equal(w.sessions.size, 0);
+});
+
+test("E3. webhooks never change an owner/complimentary account, by any event type", async () => {
+  const writes: unknown[] = []; const logs: string[] = [];
+  const sub: SubscriptionView = { id: "sub_stale", status: "canceled", customerId: "cus_x", priceIds: ["price_lf"], userIdMeta: "owner1" };
+  const prof = { id: "owner1", stripeSubscriptionId: "sub_stale", status: "active", complimentary: true };
+  const hook: WebhookDeps = {
+    configuredPriceId: "price_lf", retrieveSubscription: async () => sub,
+    findProfileBySubscription: async () => ({ profile: prof, error: false }),
+    findProfileById: async () => ({ profile: prof, error: false }),
+    updateProfile: async (_i, f) => { writes.push(f); return { error: false, rows: 1 }; },
+    log: (_l, m) => { logs.push(m); },
+  };
+  for (const ev of [
+    { id: "a", type: "customer.subscription.deleted", object: { id: "sub_stale" } },
+    { id: "b", type: "customer.subscription.updated", object: { id: "sub_stale" } },
+    { id: "c", type: "invoice.payment_failed", object: { parent: { subscription_details: { subscription: "sub_stale" } } } },
+    { id: "d", type: "checkout.session.completed", object: { id: "cs", mode: "subscription", subscription: "sub_new", customer: "cus_x", metadata: {} } },
+  ]) {
+    const r = await processStripeEvent(ev, hook);
+    assert.equal(r.status, 200); assert.equal(r.body.ignored, "complimentary_account", ev.type);
+  }
+  assert.equal(writes.length, 0);
+});

@@ -57,6 +57,9 @@ export interface CheckoutDeps {
   //   "live"    - exists and not ended (active, trialing, past_due, unpaid, paused, incomplete): blocks checkout.
   //   "ended"   - canceled / incomplete_expired: the stored id is stale.
   //   "missing" - Stripe answered definitively that no such subscription exists for this account and mode.
+  // Verify the stored Stripe customer exists for THIS key's account and mode. "missing" (a definitive answer, for example an id created
+  // in test mode but used with a live key) means a new customer is created and saved; any other failure throws (never guessed).
+  verifyCustomer?(customerId: string): Promise<"ok" | "missing">;
   reconcileSubscription?(subscriptionId: string): Promise<"live" | "ended" | "missing">;
   // Clear a stale id, only if the stored id still equals subscriptionId (conditional). Returns true when a row changed.
   clearSubscription?(userId: string, subscriptionId: string): Promise<boolean>;
@@ -170,6 +173,18 @@ export async function processCheckoutRequest(deps: CheckoutDeps): Promise<Checko
     }
 
     let customerId = profile.stripe_customer_id;
+
+    if (customerId && deps.verifyCustomer) {
+      try {
+        if ((await deps.verifyCustomer(customerId)) === "missing") {
+          deps.log("Stored Stripe customer does not exist for this account and mode; a new customer will be created", { userId: user.id, customerId });
+          customerId = null;
+        }
+      } catch (err) {
+        deps.log("Could not verify the stored Stripe customer; checkout refused, id kept", { userId: user.id, customerId, reason: err instanceof Error ? err.message : "unknown" });
+        return { status: 503, body: { error: BILLING_UNAVAILABLE_MESSAGE } };
+      }
+    }
 
     if (!customerId) {
       const customer = await deps.createCustomer({
