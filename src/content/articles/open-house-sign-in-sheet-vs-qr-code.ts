@@ -6,7 +6,7 @@ export const article: BlogPost = {
   description:
     "Paper sign-in sheets and QR code sign-ins both work at an open house but fail in different ways. Here is how to choose and follow up on leads.",
   date: "2026-10-23",
-  updated: "2026-10-25",
+  updated: "2026-11-13",
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [
@@ -104,7 +104,7 @@ export const article: BlogPost = {
 
 <!-- next-step -->
 <h2>Try the QR Version Free</h2>
-<p>The quickest way to compare the two formats is to run both at your next open house. ListingFlare&rsquo;s QR sign-in creates the lead, notifies you and starts the follow-up automatically. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+<p>The quickest way to compare the two formats is to run both at your next open house. ListingFlare&rsquo;s QR sign-in creates the lead, notifies you and can send an instant AI reply, with approval mode if you want to review it first. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
 
 <h2>Related Guides</h2>
 <ul>

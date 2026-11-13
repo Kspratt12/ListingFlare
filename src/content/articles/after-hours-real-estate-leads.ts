@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "Buyers browse listings in the evening and on weekends, when agents are off. How to handle after-hours leads with auto-replies, AI assistants and booking links.",
   date: "2026-10-25",
+  updated: "2026-11-13",
   author: "ListingFlare Team",
   category: "Lead Management",
   keywords: [
@@ -94,7 +95,7 @@ export const article: BlogPost = {
 <tr><td>9:41 PM</td><td>Assistant asks if they would like to see the home and offers the booking link</td><td>Assistant</td></tr>
 <tr><td>9:43 PM</td><td>Buyer leaves their number to book Saturday</td><td>Lead is created, you are notified</td></tr>
 <tr><td>7:45 AM</td><td>You read the conversation and send a personal confirmation text</td><td>You</td></tr>
-<tr><td>Saturday</td><td>Showing, then feedback request that evening</td><td>You and the scheduler</td></tr>
+<tr><td>Saturday</td><td>Showing, then you ask for feedback that evening</td><td>You</td></tr>
 </tbody>
 </table>
 <p>The buyer never waited. You spent two minutes the next morning, not an hour at midnight.</p>
