@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { formatPhone } from "@/lib/formatters";
 import { isCronAuthorized } from "@/lib/internalAuth";
-import { decideShowingReminder } from "@/lib/showingReminders";
+import { attemptShowingReminder } from "@/lib/showingReminderRun";
 import { labelShowingTime } from "@/lib/timezone";
 import { escapeHtml } from "@/lib/escapeHtml";
 
@@ -121,35 +121,9 @@ export async function GET(req: NextRequest) {
       }
       const timeZone = listing?.timezone || agent.timezone || null;
 
-      const decision = decideShowingReminder({
-        status: showing.status,
-        showingDate: showing.showing_date,
-        showingTime: showing.showing_time,
-        timeZone,
-        alreadySent: !!showing.reminder_24h_sent,
-        now,
-      });
-      if (!decision.send) {
-        skipped[decision.reason] = (skipped[decision.reason] || 0) + 1;
-        return;
-      }
-
-      // Claim before sending so two overlapping runs cannot both send; release the claim if the send fails.
-      const { data: claimed } = await db
-        .from("showings")
-        .update({ reminder_24h_sent: true })
-        .eq("id", showing.id)
-        .eq("reminder_24h_sent", false)
-        .select("id");
-      if (!claimed || claimed.length === 0) {
-        skipped.already_sent = (skipped.already_sent || 0) + 1;
-        return;
-      }
-
       const listingAddress = listing
         ? `${listing.street}, ${listing.city}, ${listing.state}`
         : "your showing";
-
       const formattedDate = new Date(showing.showing_date + "T12:00:00Z").toLocaleDateString("en-US", {
         weekday: "long",
         month: "long",
@@ -158,36 +132,47 @@ export async function GET(req: NextRequest) {
       });
       const timeLabel = labelShowingTime(showing.showing_date, showing.showing_time, timeZone);
 
-      const html = formatReminderEmail(showing.name, listingAddress, formattedDate, timeLabel, agent);
-      const subject = `Reminder: Showing on ${formattedDate} at ${timeLabel} - ${listingAddress}`.replace(/[\r\n]+/g, " ");
-
-      let ok = false;
-      try {
-        const res = await fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${resendKey}`,
-          },
-          body: JSON.stringify({
-            from: `${String(agent.name).replace(/[<>"\r\n]/g, "")} via ListingFlare <leads@listingflare.com>`,
-            to: showing.email,
-            replyTo: agent.email,
-            subject,
-            html,
-          }),
-        });
-        ok = res.ok;
-        if (!ok) console.error("Showing reminders: provider rejected a send, status", res.status);
-      } catch (err) {
-        console.error("Showing reminders: send error:", err instanceof Error ? err.message : "unknown");
-      }
-
-      if (ok) {
-        sent24h++;
-      } else {
-        failed++;
-        await db.from("showings").update({ reminder_24h_sent: false }).eq("id", showing.id);
+      const result = await attemptShowingReminder(showing, {
+        now,
+        timeZone,
+        claim: async (id) => {
+          const { data: claimed } = await db
+            .from("showings")
+            .update({ reminder_24h_sent: true })
+            .eq("id", id)
+            .eq("reminder_24h_sent", false)
+            .select("id");
+          return !!claimed && claimed.length > 0;
+        },
+        release: async (id) => {
+          await db.from("showings").update({ reminder_24h_sent: false }).eq("id", id);
+        },
+        send: async () => {
+          const html = formatReminderEmail(showing.name, listingAddress, formattedDate, timeLabel, agent);
+          const subject = `Reminder: Showing on ${formattedDate} at ${timeLabel} - ${listingAddress}`.replace(/[\r\n]+/g, " ");
+          const res = await fetch("https://api.resend.com/emails", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${resendKey}`,
+            },
+            body: JSON.stringify({
+              from: `${String(agent.name).replace(/[<>"\r\n]/g, "")} via ListingFlare <leads@listingflare.com>`,
+              to: showing.email,
+              replyTo: agent.email,
+              subject,
+              html,
+            }),
+          });
+          if (!res.ok) console.error("Showing reminders: provider rejected a send, status", res.status);
+          return res.ok;
+        },
+      });
+      if (result === "sent") sent24h++;
+      else if (result === "failed") failed++;
+      else {
+        const reason = result.slice("skipped:".length);
+        skipped[reason] = (skipped[reason] || 0) + 1;
       }
     })
   );

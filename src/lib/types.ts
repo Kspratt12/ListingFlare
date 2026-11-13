@@ -17,6 +17,8 @@ export interface AgentProfile {
   stripe_customer_id: string | null;
   stripe_subscription_id: string | null;
   subscription_status: "trialing" | "active" | "past_due" | "canceled" | "unpaid";
+  // Owner/complimentary marker (migration 044). Not billed through Stripe; set only server-side.
+  complimentary_access?: "owner" | null;
   trial_ends_at: string;
   setup_fee_paid: boolean;
   weekly_emails: boolean;
