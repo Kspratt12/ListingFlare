@@ -47,6 +47,9 @@ export interface CheckoutDeps {
   // Must update ONLY the row whose id is userId and report which rows it changed.
   saveCustomerId(userId: string, customerId: string): Promise<SaveCustomerResult>;
   isPricingConfigured(): boolean;
+  // Optional. Expires this customer's other OPEN Checkout Sessions so two sessions cannot both be paid (reduces, does not
+  // eliminate, duplicate subscriptions: two attempts created at the same instant can still both be open).
+  expireOpenSessions?(customerId: string): Promise<void>;
   createCheckoutSession(input: { customerId: string; userId: string }): Promise<{ url: string | null }>;
   log(message: string, detail?: unknown): void;
 }
@@ -123,6 +126,12 @@ export async function processCheckoutRequest(deps: CheckoutDeps): Promise<Checko
 
     if (!deps.isPricingConfigured()) {
       return { status: 500, body: { error: "Stripe pricing not configured" } };
+    }
+
+    if (deps.expireOpenSessions) {
+      try { await deps.expireOpenSessions(customerId); } catch (err) {
+        deps.log("Could not expire earlier open checkout sessions", { customerId, reason: err instanceof Error ? err.message : "unknown" });
+      }
     }
 
     const session = await deps.createCheckoutSession({ customerId, userId: user.id });

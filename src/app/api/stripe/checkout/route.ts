@@ -61,6 +61,11 @@ export async function POST() {
 
       isPricingConfigured: () => Boolean(process.env.STRIPE_MONTHLY_PRICE_ID),
 
+      expireOpenSessions: async (customerId) => {
+        const open = await getStripe().checkout.sessions.list({ customer: customerId, status: "open", limit: 10 });
+        for (const s of open.data) await getStripe().checkout.sessions.expire(s.id);
+      },
+
       createCheckoutSession: async ({ customerId, userId }) => {
         // Create checkout session with monthly subscription
         const priceId = process.env.STRIPE_MONTHLY_PRICE_ID as string;
