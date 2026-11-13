@@ -33,6 +33,7 @@ export interface CheckoutProfile {
   // Optional so older callers and fixtures keep working. When present they block a second subscription.
   stripe_subscription_id?: string | null;
   subscription_status?: string | null;
+  complimentary_access?: string | null;
 }
 
 export interface SaveCustomerResult {
@@ -140,6 +141,11 @@ export async function processCheckoutRequest(deps: CheckoutDeps): Promise<Checko
     // A live subscription already exists: starting another checkout could bill the customer twice.
     // Existing subscribers (including an unpaid or payment-pending one) manage their plan in the billing portal. A canceled
     // subscription has its id cleared by the webhook, so resubscribing is allowed.
+    // An owner/complimentary account (migration 044) has no Stripe subscription by design: never start or reconcile billing for it.
+    if (profile.complimentary_access === "owner") {
+      return { status: 409, body: { error: "This account has complimentary access and does not need a subscription." } };
+    }
+
     if (profile.stripe_subscription_id) {
       if (!deps.reconcileSubscription) {
         return { status: 409, body: { error: "You already have a subscription. Manage it from the billing page." } };

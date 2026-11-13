@@ -255,3 +255,16 @@ test("D2. with the reservation OFF (flag unset) simultaneous attempts are NOT pr
 test("no test in this file reached the network", () => {
   assertNoNetworkAttempts();
 });
+
+test("C7. an owner/complimentary account never starts checkout and is never reconciled or cleared (409)", async () => {
+  const calls: string[] = [];
+  const w = stripeWorld(); const s = reservationStore({ t: 1_000_000 });
+  const d = deps(w, s, {
+    reconcileSubscription: async () => { calls.push("reconcile"); return "missing"; },
+    clearSubscription: async () => { calls.push("clear"); return true; },
+  }, { complimentary_access: "owner", stripe_subscription_id: "sub_stale", subscription_status: "active" });
+  const out = await processCheckoutRequest(d.d);
+  assert.equal(out.status, 409);
+  assert.deepEqual(calls, []);
+  assert.equal(w.sessions.size, 0);
+});
