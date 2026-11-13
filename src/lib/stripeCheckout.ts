@@ -39,6 +39,8 @@ export interface SaveCustomerResult {
 
 export interface CheckoutDeps {
   getUser(): Promise<CheckoutUser | null>;
+  // Operational pause: when true, new checkouts get a 503 and nothing else is touched.
+  paused?(): boolean;
   getProfile(userId: string): Promise<CheckoutProfile | null>;
   createCustomer(input: { userId: string; email?: string; name?: string }): Promise<{ id: string }>;
   // Must update ONLY the row whose id is userId and report which rows it changed.
@@ -90,6 +92,10 @@ export async function processCheckoutRequest(deps: CheckoutDeps): Promise<Checko
     const user = await deps.getUser();
     if (!user) {
       return { status: 401, body: { error: "Unauthorized" } };
+    }
+
+    if (deps.paused?.()) {
+      return { status: 503, body: { error: BILLING_UNAVAILABLE_MESSAGE } };
     }
 
     const profile = await deps.getProfile(user.id);
