@@ -68,12 +68,12 @@ test("blog articles do not attribute the paused behaviours to ListingFlare (sent
   assert.deepEqual(found, []);
 });
 
-test("supported claims were NOT removed: the instant reply, approval mode, showing reminders and the weekly report are still advertised", () => {
+test("supported claims were NOT removed: the AI email reply with optional approval, approval mode, showing reminders and the weekly report are still advertised", () => {
   const pricing = read("app/pricing/page.tsx");
-  for (const must of ["Instant AI auto-reply to every new lead", "AI Approval Mode (review before sending)", "Showing reminder emails to buyers", "Weekly performance email"]) {
+  for (const must of ["AI email replies to new leads, with optional approval before sending", "AI Approval Mode (review before sending)", "Showing reminder emails to buyers", "Weekly performance email"]) {
     assert.ok(pricing.includes(must), "pricing still says: " + must);
   }
-  assert.ok(read("app/HomeClient.tsx").includes("AI auto-reply to every new lead"));
+  assert.ok(read("app/HomeClient.tsx").includes("AI email replies to new leads, with optional approval before sending"));
   assert.ok(read("app/real-estate-lead-capture-software/page.tsx").includes("Instant auto-reply to each new lead, with an optional approval step"));
 });
 

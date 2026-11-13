@@ -63,7 +63,7 @@ ${downloadBox("open-house-sign-in-sheet-template")}
 
 <!-- next-step -->
 <h2>Skip the Retyping: A QR Sign-In That Creates the Lead</h2>
-<p>The paper sheet works. The slow part is typing it up afterward. ListingFlare gives each listing an open house sign-in page you open from a QR code. It asks for name, email, phone and whether the visitor has an agent, creates the lead for you, emails you, and can send a first reply automatically. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>, no credit card needed.</p>
+<p>The paper sheet works. The slow part is typing it up afterward. ListingFlare gives each listing an open house sign-in page you open from a QR code. It asks for name, email, phone and whether the visitor has an agent, creates the lead for you, emails you, and can send a first reply automatically. Read <a href="/real-estate-lead-capture-software">how the QR sign-in and lead inbox work</a>, or <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>, no credit card needed.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

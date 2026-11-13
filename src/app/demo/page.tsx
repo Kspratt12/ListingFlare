@@ -158,6 +158,9 @@ export default function DemoPage() {
 
       <AgentBranding agent={demoListing.agent} agentId="demo" />
       <DemoLeadForm />
+      <p className="mx-auto max-w-2xl px-4 py-6 text-center text-xs text-gray-500">
+        This is a demonstration: no inquiry is sent to an agent. On a live listing, submitting an inquiry or showing request creates a lead in the agent&apos;s dashboard. Email notifications and AI replies follow the account&apos;s settings, including Approval Mode.
+      </p>
       <ListingChat
         listing={{
           street: demoListing.address.street,
