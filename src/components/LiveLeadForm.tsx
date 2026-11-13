@@ -92,7 +92,7 @@ export default function LiveLeadForm({ listingId }: Props) {
           </h2>
           <p className="mt-4 text-lg text-gray-400">
             Experience this exceptional property in person. Fill out the form
-            below and we&apos;ll be in touch within 24 hours.
+            below and the listing agent will be in touch.
           </p>
         </motion.div>
 
