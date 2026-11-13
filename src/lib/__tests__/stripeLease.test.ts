@@ -321,3 +321,23 @@ test("F1. mode isolation: a deployment ignores events from the other Stripe mode
   assert.equal(eventModeMatchesKey(true, "rk_live_x"), "match");
   assert.equal(eventModeMatchesKey(true, undefined), "unknown");
 });
+
+test("G1. concurrent first-time checkouts create exactly ONE Stripe customer (only the reservation winner creates it)", async () => {
+  const w = stripeWorld(); const s = reservationStore({ t: 1_000_000 });
+  let created = 0; let saved: string | null = null;
+  const d = deps(w, s, {
+    createCustomer: async () => { created++; await new Promise((r) => setTimeout(r, 5)); return { id: "cus_new_" + created }; },
+    saveCustomerId: async (_u, c) => { saved = c; return { rows: [{ id: "u1" }], error: null }; },
+  }, { stripe_customer_id: null });
+  const out = await Promise.all([processCheckoutRequest(d.d), processCheckoutRequest(d.d), processCheckoutRequest(d.d)]);
+  assert.equal(created, 1);
+  assert.equal(saved, "cus_new_1");
+  assert.equal(out.filter((o) => o.status === 200).length, 1);
+});
+
+test("G2. if saving the new customer fails after the claim, the claim is released and nothing is opened (503)", async () => {
+  const w = stripeWorld(); const s = reservationStore({ t: 1_000_000 });
+  const d = deps(w, s, { createCustomer: async () => ({ id: "cus_x" }), saveCustomerId: async () => ({ rows: null, error: { code: "x" } }) }, { stripe_customer_id: null });
+  const out = await processCheckoutRequest(d.d);
+  assert.equal(out.status, 503); assert.equal(w.sessions.size, 0); assert.equal(s.rows[0].status, "failed");
+});

@@ -186,24 +186,34 @@ export async function processCheckoutRequest(deps: CheckoutDeps): Promise<Checko
       }
     }
 
-    if (!customerId) {
+    // Creates and saves the Stripe customer when the profile has none. On the reservation path this runs ONLY for the request that
+    // won the claim, so concurrent first-time attempts cannot create several Stripe customers for one agent.
+    const ensureCustomer = async (): Promise<string | null> => {
+      if (customerId) return customerId;
       const customer = await deps.createCustomer({
         userId: user.id,
         email: profile.email || user.email || undefined,
         name: profile.name || undefined,
       });
+      if (!(await persistCustomerId(deps, user.id, customer.id))) return null;
       customerId = customer.id;
+      return customerId;
+    };
 
-      if (!(await persistCustomerId(deps, user.id, customerId))) {
-        return { status: 503, body: { error: BILLING_UNAVAILABLE_MESSAGE } };
+    if (deps.reservation) {
+      if (!deps.isPricingConfigured()) {
+        return { status: 500, body: { error: "Stripe pricing not configured" } };
       }
+      return reservedCheckout(deps, user.id, customerId, ensureCustomer);
+    }
+
+    if (!(await ensureCustomer()) || !customerId) {
+      return { status: 503, body: { error: BILLING_UNAVAILABLE_MESSAGE } };
     }
 
     if (!deps.isPricingConfigured()) {
       return { status: 500, body: { error: "Stripe pricing not configured" } };
     }
-
-    if (deps.reservation) return reservedCheckout(deps, user.id, customerId);
 
     if (deps.expireOpenSessions) {
       try { await deps.expireOpenSessions(customerId); } catch (err) {
@@ -224,12 +234,12 @@ export const CHECKOUT_IN_PROGRESS_MESSAGE = "Your checkout is being prepared. Pl
 
 // The durable path. Order: claim (atomic, one active attempt per agent) -> expire any orphaned open Stripe sessions for the
 // customer (crash recovery) -> create the session with the attempt id as the idempotency key -> record it.
-async function reservedCheckout(deps: CheckoutDeps, userId: string, customerId: string): Promise<CheckoutOutcome> {
+async function reservedCheckout(deps: CheckoutDeps, userId: string, knownCustomerId: string | null, ensureCustomer: () => Promise<string | null>): Promise<CheckoutOutcome> {
   const res = deps.reservation as CheckoutReservation;
   const priceId = "configured";
   let claim: ClaimResult;
   try {
-    claim = await res.claim(userId, customerId, priceId);
+    claim = await res.claim(userId, knownCustomerId ?? "", priceId);
   } catch (err) {
     deps.log("Could not claim a checkout attempt", { userId, reason: err instanceof Error ? err.message : "unknown" });
     return { status: 503, body: { error: BILLING_UNAVAILABLE_MESSAGE } };
@@ -242,6 +252,19 @@ async function reservedCheckout(deps: CheckoutDeps, userId: string, customerId: 
     return { status: 409, body: { error: CHECKOUT_IN_PROGRESS_MESSAGE } };
   }
   const attemptId = claim.attemptId;
+
+  // Only the claim winner may create a Stripe customer.
+  let customerId: string | null = knownCustomerId;
+  if (!customerId) {
+    try { customerId = await ensureCustomer(); } catch (err) {
+      try { await res.fail(attemptId); } catch { /* the lease lapses on its own */ }
+      throw err;
+    }
+    if (!customerId) {
+      try { await res.fail(attemptId); } catch { /* the lease lapses on its own */ }
+      return { status: 503, body: { error: BILLING_UNAVAILABLE_MESSAGE } };
+    }
+  }
 
   // Crash/takeover safety: before opening a payable session, confirm that no earlier session for this customer is still payable
   // and none has completed (or is completing) whose webhook has not run. If that cannot be confirmed, do NOT open another.
