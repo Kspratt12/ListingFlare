@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "How to use an AI chatbot on real estate listings without fair housing risk: steering, neighborhood questions, guardrails to require and a checklist for agents.",
   date: "2026-10-25",
+  updated: "2026-11-13",
   author: "ListingFlare Team",
   category: "Lead Management",
   keywords: [
@@ -88,7 +89,7 @@ export const article: BlogPost = {
 
 <h2>How ListingFlare Approaches It</h2>
 
-<p>The ListingFlare assistant is given the listing you entered and is instructed to answer from those details, to say it needs to check when it does not know, and not to give legal, financial or fair housing advice. You can read every conversation in your dashboard and turn on AI Approval Mode to review replies before they send. No AI is perfect, so review conversations and keep your listing details accurate. Read how it works on the <a href="/real-estate-ai-chatbot">AI chat page</a>, compare options in <a href="/blog/best-real-estate-chatbots">best real estate chatbots</a> or <a href="/demo">test it yourself</a> with the questions above.</p>
+<p>The ListingFlare assistant is given the listing details you entered and is instructed not to make up details that are not in them, to say it needs to check when it does not know, and to say plainly that it is an AI assistant if someone sincerely asks. Its instructions do not include a specific fair housing rule or a filter for questions about neighborhoods or the people who live there, so test it with the questions above before you rely on it. You can read every conversation in your dashboard. AI Approval Mode lets you review the automatic reply to a new lead before it is sent; answers in the live chat on the listing page are not held for approval. No AI is perfect, so review conversations and keep your listing details accurate. Read how it works on the <a href="/real-estate-ai-chatbot">AI chat page</a>, compare options in <a href="/blog/best-real-estate-chatbots">best real estate chatbots</a> or <a href="/demo">test it yourself</a> with the questions above.</p>
 
 <p>For general fair housing resources, start with <a href="https://www.hud.gov/program_offices/fair_housing_equal_opp" target="_blank" rel="noopener noreferrer">HUD&rsquo;s Office of Fair Housing and Equal Opportunity</a>.</p>
 

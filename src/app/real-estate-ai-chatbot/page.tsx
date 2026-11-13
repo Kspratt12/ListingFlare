@@ -68,7 +68,7 @@ export default function Page() {
         heading: "What the AI can and cannot do",
         items: [
           "It can answer questions about facts in the listing. It cannot know things you did not enter, such as HOA fees, school assignments or utility costs. In that case it offers to get the answer from you.",
-          "It is not a substitute for you. It does not negotiate or give legal, financial or fair housing advice, and it cannot make promises on your behalf.",
+          "It is not a substitute for you or for professional advice. It is not designed to negotiate, and it should not be relied on for legal, financial or fair housing guidance. Read its conversations, and treat anything it says as the listing details you entered, not as a commitment on your behalf.",
           "Chat messages per visitor are rate limited to protect against abuse.",
           "AI can occasionally be wrong. Keep your listing details accurate and review conversations in your dashboard.",
         ],
