@@ -7,7 +7,7 @@ export const article: BlogPost = {
   description:
     "Find out exactly how much it costs to sell a house in 2026. From agent commissions to closing costs, here's every fee sellers need to budget for.",
   date: "2026-02-18",
-  updated: "2026-10-25",
+  updated: "2026-11-13",
   author: "ListingFlare Team",
   category: "Home Selling",
   keywords: [
@@ -23,19 +23,19 @@ export const article: BlogPost = {
   coverImageAlt:
     "Home seller calculating how much it costs to sell a house with financial paperwork",
   content: `
-<p>Most homeowners focus on how much they'll make when they sell. But very few sit down and calculate how much it actually <strong>costs to sell a house</strong>. The truth is, selling a home is not free. Between agent commissions, closing costs, pre-sale prep, and potential taxes, sellers typically lose <strong>8 to 10 percent of the sale price</strong> to fees and expenses. On a \$400,000 home, that's \$32,000 to \$40,000 out of your proceeds.</p>
+<p>Most homeowners focus on how much they'll make when they sell. But very few sit down and calculate how much it actually <strong>costs to sell a house</strong>. The truth is, selling a home is not free. Between agent commissions, closing costs, pre-sale prep, and potential taxes, the costs can be large. The ranges in this guide are illustrative estimates, not market averages. On a \$400,000 home they add up to roughly <strong>\$22,000 to \$46,000</strong> before any taxes, and your own numbers will depend on your market, your agent and your home.</p>
 
 <p>If those numbers caught you off guard, you're not alone. Many sellers are surprised by the gap between their sale price and the amount they actually deposit into their bank account. This guide breaks down every cost you'll encounter so you can plan ahead, protect your equity, and avoid unpleasant surprises at closing. If you're selling for the first time, our <a href="/blog/first-time-home-sellers-guide">first-time home seller's guide</a> walks through the full process from start to finish.</p>
 
 <h2>Agent Commissions: The Biggest Cost of Selling</h2>
 
-<p>For most sellers, real estate agent commissions are the single largest expense. Traditionally, the seller paid a combined commission of 5 to 6 percent of the sale price, split between the listing agent and the buyer's agent. On a \$400,000 home, that's \$20,000 to \$24,000.</p>
+<p>For most sellers, real estate agent commissions are the single largest expense. Traditionally, the seller paid a combined commission that was commonly quoted at 5 to 6 percent of the sale price, split between the listing agent and the buyer's agent. Rates are negotiable and vary by market and agent, so this guide uses an illustrative range of 4 to 6 percent, which on a \$400,000 home is \$16,000 to \$24,000. We do not claim that range is a market average.</p>
 
 <h3>How Commissions Are Structured</h3>
 
 <ul>
-  <li><strong>Listing agent commission:</strong> Typically 2.5 to 3 percent of the sale price. This covers your agent's marketing, showing coordination, negotiations, and transaction management.</li>
-  <li><strong>Buyer's agent commission:</strong> Also typically 2.5 to 3 percent. Historically, sellers offered this to incentivize buyer's agents to show their property.</li>
+  <li><strong>Listing agent commission:</strong> Often quoted at around 2.5 to 3 percent of the sale price, and negotiable. This covers your agent's marketing, showing coordination, negotiations, and transaction management.</li>
+  <li><strong>Buyer's agent commission:</strong> Often quoted at a similar level, and negotiable. Historically, sellers offered this to incentivize buyer's agents to show their property.</li>
 </ul>
 
 <h3>The NAR Settlement and What It Means for You</h3>
@@ -44,15 +44,15 @@ export const article: BlogPost = {
 
 <p>That said, many sellers still choose to offer buyer's agent compensation because it keeps their home competitive. Homes that don't offer it may see less buyer traffic, particularly in markets where buyers are stretching to afford a purchase and can't absorb an additional fee.</p>
 
-<p>The bottom line: commissions on a \$400,000 home will likely run between <strong>\$16,000 and \$24,000</strong> depending on what you negotiate with your listing agent and whether you offer buyer's agent compensation.</p>
+<p>The bottom line: this guide's illustrative commission range on a \$400,000 home is <strong>\$16,000 to \$24,000</strong>, depending on what you negotiate with your listing agent and whether you offer buyer's agent compensation.</p>
 
 <h2>Closing Costs for Sellers</h2>
 
-<p>Beyond commissions, sellers are responsible for a variety of closing costs that typically total <strong>1 to 3 percent</strong> of the sale price. These are fees charged by title companies, attorneys, government agencies, and other parties involved in the transaction.</p>
+<p>Beyond commissions, sellers are responsible for a variety of closing costs that this guide illustrates at roughly <strong>1 to 3 percent</strong> of the sale price (it varies by state and transaction). These are fees charged by title companies, attorneys, government agencies, and other parties involved in the transaction.</p>
 
 <h3>Title Insurance</h3>
 
-<p>In most states, the seller pays for the owner's title insurance policy, which protects the buyer against any claims or liens on the property. Expect to pay <strong>\$1,000 to \$2,000</strong> depending on the sale price and your state's rates. Some states have regulated title insurance premiums, while others allow companies to set their own pricing.</p>
+<p>In many areas the seller customarily pays for the owner's title insurance policy (practice varies by state and region), which protects the buyer against any claims or liens on the property. Expect to pay <strong>\$1,000 to \$2,000</strong> depending on the sale price and your state's rates. Some states have regulated title insurance premiums, while others allow companies to set their own pricing.</p>
 
 <h3>Transfer Taxes</h3>
 
@@ -60,7 +60,7 @@ export const article: BlogPost = {
 
 <h3>Attorney Fees</h3>
 
-<p>In states that require an attorney to handle real estate closings (like New York, Massachusetts, and several others), you'll pay <strong>\$500 to \$1,500</strong> for legal representation. Even in states where an attorney isn't required, some sellers hire one for peace of mind, especially for complex transactions.</p>
+<p>In some states attorneys customarily handle real estate closings, and where they do you may pay <strong>\$500 to \$1,500</strong> for legal representation. Even in states where an attorney isn't required, some sellers hire one for peace of mind, especially for complex transactions.</p>
 
 <h3>Recording Fees</h3>
 
@@ -86,11 +86,11 @@ export const article: BlogPost = {
 
 <h3>Home Staging</h3>
 
-<p>Professional staging helps buyers visualize themselves in the space, and staged homes consistently sell faster and for more money. Professional staging costs <strong>\$1,500 to \$5,000</strong> for a full-service staging with rented furniture and decor. However, you can also stage your home yourself with minimal cost by decluttering, rearranging existing furniture, and adding a few strategic accessories. For specific tips on staging without breaking the bank, check out our <a href="/blog/home-staging-tips-to-sell-your-house-faster">home staging tips</a>.</p>
+<p>Staging is meant to help buyers visualize themselves in the space; how much it helps varies by home and market. Professional staging costs <strong>\$1,500 to \$5,000</strong> for a full-service staging with rented furniture and decor. However, you can also stage your home yourself with minimal cost by decluttering, rearranging existing furniture, and adding a few strategic accessories. For specific tips on staging without breaking the bank, check out our <a href="/blog/home-staging-tips-to-sell-your-house-faster">home staging tips</a>.</p>
 
 <h3>Professional Photography</h3>
 
-<p>In a world where over 95 percent of buyers start their search online, high-quality listing photos are non-negotiable. Professional real estate photography costs <strong>\$150 to \$400</strong> and typically includes 25 to 40 edited photos. Some photographers also offer drone shots, virtual tours, and video walkthroughs for an additional fee. Many listing agents include professional photography as part of their marketing package.</p>
+<p>Buyers browse listings online, so clear listing photos matter. Professional real estate photography costs <strong>\$150 to \$400</strong> and typically includes 25 to 40 edited photos. Some photographers also offer drone shots, virtual tours, and video walkthroughs for an additional fee. Many listing agents include professional photography as part of their marketing package.</p>
 
 <h3>Deep Cleaning</h3>
 
@@ -102,7 +102,7 @@ export const article: BlogPost = {
 
 <h3>Capital Gains Tax</h3>
 
-<p>If your home has appreciated significantly, you may owe capital gains tax on the profit. Most primary-residence sellers qualify for a generous exclusion: <strong>\$250,000 for single filers</strong> and <strong>\$500,000 for married couples filing jointly</strong>. To qualify, you must have owned and lived in the home for at least two of the last five years. If your profit exceeds these thresholds, you'll owe federal capital gains tax (typically 15 to 20 percent) on the excess amount, plus any applicable state taxes.</p>
+<p>Taxes are separate from the costs of the sale, and they depend on your situation. If you sell for more than your adjusted cost basis, the gain may be taxable, but a home you lived in as your main home may qualify for an exclusion. Under IRS rules you may be able to exclude up to <strong>\$250,000</strong> of gain, or up to <strong>\$500,000</strong> on a joint return, if you meet the ownership and use tests (generally owning and using the home as your main home for at least two of the five years before the sale; other conditions and limits apply, including how often you can claim the exclusion). Gain above the exclusion, or any gain if you do not qualify, can be taxable. Short-term gains (property held one year or less) are taxed as ordinary income, long-term gains can be taxed at lower federal rates, higher-income taxpayers may also owe the 3.8 percent net investment income tax, and your state may tax the gain too. This is general information, not tax advice. See the IRS pages on the <a href="https://www.irs.gov/taxtopics/tc701" target="_blank" rel="noopener noreferrer">home sale exclusion</a>, <a href="https://www.irs.gov/taxtopics/tc409" target="_blank" rel="noopener noreferrer">capital gains</a> and <a href="https://www.irs.gov/taxtopics/tc559" target="_blank" rel="noopener noreferrer">the net investment income tax</a>, or ask a tax professional.</p>
 
 <h3>Mortgage Payoff</h3>
 
@@ -118,21 +118,21 @@ export const article: BlogPost = {
 
 <h2>Total Cost to Sell a House: The Complete Breakdown</h2>
 
-<p>Here's a summary of all the costs a typical seller can expect, shown both as general ranges and applied to a \$400,000 home sale:</p>
+<p>Here is a summary of the illustrative ranges used in this guide, applied to a \$400,000 home sale. The total is the sum of the rows. It is not an average, and your costs may fall outside it:</p>
 
 <table>
   <thead>
     <tr>
       <th>Cost Category</th>
-      <th>Typical Range</th>
+      <th>Illustrative Range</th>
       <th>On a \$400K Home</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Agent commissions</td>
-      <td>5–6%</td>
-      <td>\$20,000–\$24,000</td>
+      <td>4–6%</td>
+      <td>\$16,000–\$24,000</td>
     </tr>
     <tr>
       <td>Closing costs</td>
@@ -146,8 +146,8 @@ export const article: BlogPost = {
     </tr>
     <tr>
       <td><strong>Total</strong></td>
-      <td><strong>8–10%</strong></td>
-      <td><strong>\$32,000–\$40,000</strong></td>
+      <td><strong>About 5.5–11.5%</strong></td>
+      <td><strong>\$22,000–\$46,000</strong></td>
     </tr>
   </tbody>
 </table>
@@ -178,11 +178,11 @@ export const article: BlogPost = {
 
 <h3>Consider Your Timing</h3>
 
-<p>Selling during peak season (spring and early summer in most markets) typically means more buyer competition, faster sales, and higher prices. The stronger your position, the less likely you are to make concessions that eat into your proceeds.</p>
+<p>Selling during peak season (spring and early summer in most markets) can mean more buyer competition in many markets, though the effect of timing varies. The stronger your position, the less likely you are to make concessions that eat into your proceeds.</p>
 
 <h3>Leverage Technology for Better Marketing</h3>
 
-<p>Getting maximum exposure for your listing doesn't have to be expensive. Tools like <a href="/demo">ListingFlare</a> help agents create stunning single-property websites that showcase homes with professional polish, helping attract serious buyers and potentially driving a higher sale price.</p>
+<p>Getting maximum exposure for your listing doesn't have to be expensive. Tools like <a href="/demo">ListingFlare</a> let agents give a home its own single-property page with its details and photos, so buyers can see it in one place.</p>
 
 <h2>Estimating Your Net Proceeds</h2>
 
@@ -191,8 +191,8 @@ export const article: BlogPost = {
 <ol>
   <li><strong>Start with your expected sale price.</strong> Your agent will provide a comparative market analysis (CMA) to help you land on a realistic number.</li>
   <li><strong>Subtract your remaining mortgage balance.</strong> Check your most recent statement for the payoff amount.</li>
-  <li><strong>Subtract commissions.</strong> Use 5 to 6 percent of the sale price as your estimate, or plug in the exact rate you've negotiated.</li>
-  <li><strong>Subtract closing costs.</strong> Use 1 to 3 percent as a starting estimate, then refine once you know your specific costs.</li>
+  <li><strong>Subtract commissions.</strong> Use your negotiated rate, or this guide's illustrative 4 to 6 percent if you do not have one yet.</li>
+  <li><strong>Subtract closing costs.</strong> Use this guide's illustrative 1 to 3 percent as a starting estimate, then refine once you know your specific costs.</li>
   <li><strong>Subtract pre-sale expenses.</strong> Add up what you've spent on repairs, staging, photography, and cleaning.</li>
   <li><strong>Account for any additional costs.</strong> Capital gains tax, HOA fees, home warranty, and prepayment penalties if applicable.</li>
 </ol>
@@ -203,16 +203,16 @@ export const article: BlogPost = {
 <h2>Frequently Asked Questions</h2>
 
 <h3>How much does the average person spend to sell a house?</h3>
-<p>The average seller spends 8 to 10 percent of their home's sale price on total selling costs. On a \$400,000 home, that comes out to roughly \$32,000 to \$40,000. The exact amount depends on your agent's commission rate, your state's closing costs, and how much pre-sale preparation your home needs.</p>
+<p>There is no single average we can responsibly give. Using this guide's illustrative ranges, a \$400,000 sale adds up to roughly \$22,000 to \$46,000 before any taxes. The exact amount depends on your agent's commission rate, your state's closing costs, and how much pre-sale preparation your home needs.</p>
 
 <h3>Do sellers pay closing costs?</h3>
-<p>Yes. Sellers are responsible for their own set of closing costs, which typically total 1 to 3 percent of the sale price. Common seller closing costs include title insurance, transfer taxes, attorney fees, recording fees, and escrow fees. These are separate from the buyer's closing costs, which the buyer pays.</p>
+<p>Yes. Sellers are responsible for their own set of closing costs, which this guide illustrates at roughly 1 to 3 percent of the sale price and which vary by state. Common seller closing costs include title insurance, transfer taxes, attorney fees, recording fees, and escrow fees. These are separate from the buyer's closing costs, which the buyer pays.</p>
 
 <h3>Can I sell my house without paying a commission?</h3>
-<p>You can sell your house without an agent (known as "for sale by owner" or FSBO), which eliminates the listing agent's commission. However, FSBO homes tend to sell for less than agent-assisted homes. You may still need to offer a buyer's agent commission to attract buyers working with agents.</p>
+<p>You can sell your house without an agent (known as "for sale by owner" or FSBO), which eliminates the listing agent's commission. Results vary, and you take on the marketing, negotiation and paperwork yourself. You may still need to offer a buyer's agent commission to attract buyers working with agents.</p>
 
 <h3>Are there tax implications when I sell my house?</h3>
-<p>If you've lived in your home as your primary residence for at least two of the past five years, you can exclude up to \$250,000 of profit (single) or \$500,000 (married filing jointly) from capital gains tax. Profit above those thresholds is taxed at the federal capital gains rate of 15 to 20 percent, plus any applicable state income tax. If you've owned the home for less than a year, the profit is taxed as ordinary income at your marginal tax rate.</p>
+<p>It can. If you sell for more than your adjusted basis, the gain may be taxable, but a main home may qualify for the IRS home sale exclusion (up to \$250,000 of gain, or \$500,000 on a joint return) when the ownership and use tests are met, with other conditions and limits. Gain above the exclusion, or without it, can be taxed at federal and state level, and short-term gains are taxed as ordinary income. The details depend on your facts, so read the IRS guidance linked in the capital gains section or ask a tax professional. This is general information, not tax advice.</p>
 
 <h3>What is the cheapest way to sell a house?</h3>
 <p>The cheapest way to sell is to go FSBO, handle your own staging and photography, and negotiate aggressively on closing costs. However, the cheapest approach isn't always the most profitable. The money you save on commissions may be offset by a lower sale price, longer time on market, and the risk of costly legal or contractual mistakes. A more balanced approach is to negotiate a competitive commission with a skilled agent who can maximize your sale price.</p>
@@ -222,7 +222,7 @@ export const article: BlogPost = {
 
 <p>Selling a home is a significant financial transaction, and the costs can add up quickly. By understanding every expense before you list, you can set realistic expectations, negotiate smarter, and make strategic decisions about where to invest and where to save.</p>
 
-<p>The key takeaways: agent commissions are your biggest expense at 5 to 6 percent, closing costs add another 1 to 3 percent, and pre-sale preparation can run \$2,000 to \$10,000 or more. All told, plan to spend 8 to 10 percent of your sale price on the cost of selling.</p>
+<p>The key takeaways: agent commissions are usually the largest cost (this guide illustrates 4 to 6 percent), closing costs add roughly 1 to 3 percent, and pre-sale preparation can run \$2,000 to \$10,000 or more. Using those illustrative ranges, a \$400,000 sale adds up to roughly \$22,000 to \$46,000 before taxes. That is a range, not an average, so build your own estimate with your agent's actual numbers.</p>
 
 <p>The silver lining is that many of these costs are within your control. You can negotiate commissions, choose which repairs to make, decide whether to stage professionally or DIY, and shop around for service providers. Armed with this cost breakdown, you're in a much stronger position to maximize your net proceeds and walk away from closing with a number that truly reflects your home's value.</p>
 `,
