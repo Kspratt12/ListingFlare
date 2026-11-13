@@ -311,3 +311,13 @@ test("E3. webhooks never change an owner/complimentary account, by any event typ
   }
   assert.equal(writes.length, 0);
 });
+
+import { eventModeMatchesKey } from "../stripeWebhook";
+test("F1. mode isolation: a deployment ignores events from the other Stripe mode, even if signed", () => {
+  assert.equal(eventModeMatchesKey(true, "sk_live_x"), "match");
+  assert.equal(eventModeMatchesKey(false, "sk_live_x"), "mismatch"); // test event delivered to a live deployment
+  assert.equal(eventModeMatchesKey(false, "sk_test_x"), "match");
+  assert.equal(eventModeMatchesKey(true, "sk_test_x"), "mismatch"); // live event delivered to a test/preview deployment
+  assert.equal(eventModeMatchesKey(true, "rk_live_x"), "match");
+  assert.equal(eventModeMatchesKey(true, undefined), "unknown");
+});

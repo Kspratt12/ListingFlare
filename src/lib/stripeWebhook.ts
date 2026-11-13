@@ -201,3 +201,12 @@ export async function processStripeEvent(event: WebhookEventView, deps: WebhookD
       return OK({ ignored: "unhandled_type" });
   }
 }
+
+// Mode isolation: an event must come from the SAME Stripe mode as this deployment's API key. A test-mode event delivered to a
+// live deployment (or the reverse) is acknowledged and ignored, never applied, even if its signature verified.
+export function eventModeMatchesKey(eventLivemode: boolean, secretKey: string | undefined): "match" | "mismatch" | "unknown" {
+  const key = secretKey || "";
+  if (key.startsWith("sk_live_") || key.startsWith("rk_live_")) return eventLivemode ? "match" : "mismatch";
+  if (key.startsWith("sk_test_") || key.startsWith("rk_test_")) return eventLivemode ? "mismatch" : "match";
+  return "unknown";
+}

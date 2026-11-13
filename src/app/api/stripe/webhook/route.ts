@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
 import { createClient } from "@supabase/supabase-js";
 import Stripe from "stripe";
-import { processStripeEvent } from "@/lib/stripeWebhook";
+import { eventModeMatchesKey, processStripeEvent } from "@/lib/stripeWebhook";
 
 // Use service role to bypass RLS in webhook handler
 function createAdminClient() {
@@ -35,6 +35,12 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     console.error("Webhook signature verification failed:", err);
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
+  }
+
+  // Mode isolation: never apply an event from the other Stripe mode (for example a test-mode event sent to a live deployment).
+  if (eventModeMatchesKey(event.livemode, process.env.STRIPE_SECRET_KEY) === "mismatch") {
+    console.warn("Stripe webhook: event from the other Stripe mode ignored", { eventId: event.id, livemode: event.livemode });
+    return NextResponse.json({ received: true, ignored: "mode_mismatch" });
   }
 
   const supabase = createAdminClient();
