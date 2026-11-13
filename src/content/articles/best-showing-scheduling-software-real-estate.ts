@@ -4,8 +4,9 @@ export const article: BlogPost = {
   slug: "best-showing-scheduling-software-real-estate",
   title: "Best Showing Scheduling Software for Real Estate (2026)",
   description:
-    "How to choose showing scheduling software in 2026: MLS tools, dedicated platforms, calendar links, and what to look for in reminders and feedback.",
+    "Showing coordination, appointment booking and property-page showing requests are different jobs. How to tell which you need, when your MLS tool or a calendar link is enough, and how ListingFlare handles requests.",
   date: "2026-10-25",
+  updated: "2026-11-12",
   author: "ListingFlare Team",
   category: "Listing Marketing",
   keywords: [
@@ -36,36 +37,47 @@ export const article: BlogPost = {
 <li><strong>Collect feedback</strong> after the showing so you can report to the seller.</li>
 </ol>
 
-<h2>Three Kinds of Tools</h2>
+<h2>Three Different Jobs, Often Sold as One Thing</h2>
 
-<h3>1. Your MLS or brokerage scheduling tool</h3>
-<p>Many MLS systems and brokerages include showing management, and <strong>ShowingTime</strong> is the best-known platform in this space. If the tool is already part of your MLS, it is often the easiest option, especially for buyer-agent requests and seller approvals. Its limits are that it is geared toward agent-to-agent requests and it does not capture a direct buyer as a lead on your own page.</p>
+<p>&ldquo;Showing software&rdquo; covers three separate jobs. Decide which one you actually have before you compare products.</p>
 
-<h3>2. Dedicated showing platforms</h3>
-<p>Directory sites list alternatives such as BrokerBay, Instashowing and others, which handle request, approval, feedback and reporting. They suit brokerages and busy listing agents who need structure and audit trails. Reviews on directory sites rely on small samples and vary by region, so test one on a real listing first.</p>
+<h3>1. Showing coordination (agent-to-agent)</h3>
+<p>Other agents request a time through your MLS or brokerage system, the seller or occupant approves, access is arranged and feedback comes back to you. <a href="https://www.showingtime.com/" target="_blank" rel="noopener noreferrer">ShowingTime</a> is the best-known example. Other platforms in this space include <a href="https://instashowing.com/pricing" target="_blank" rel="noopener noreferrer">InstaShowing</a>, which describes seller-approval and feedback features, and Supra&rsquo;s <a href="https://buildings.honeywell.com/us/en/brands/our-brands/supra-systems/what-we-do/showing-management" target="_blank" rel="noopener noreferrer">showing management</a>, which says availability depends on your association or MLS. Plans, prices and availability differ by vendor and market, so use each vendor&rsquo;s own pricing page and ask your MLS what it already includes.</p>
 
-<h3>3. A calendar link on your listing page</h3>
-<p>Calendly, Google Calendar appointment pages and similar tools let a buyer book a slot directly. This is simple and cheap and works well for direct buyer inquiries. It lacks seller approval workflows and feedback collection unless you add them.</p>
+<h3>2. Appointment booking (a calendar link)</h3>
+<p>A buyer picks an open slot on your calendar. <a href="https://calendly.com/pricing" target="_blank" rel="noopener noreferrer">Calendly</a> offers a free plan and paid plans, and Google Calendar offers booking pages (Google notes that <a href="https://support.google.com/calendar/answer/10729749" target="_blank" rel="noopener noreferrer">some appointment schedule features require an eligible Google Workspace or Google One subscription</a>). A calendar link books time. It does not know about seller approval, lockboxes or which listing the buyer was looking at unless you build that around it.</p>
+
+<h3>3. A showing request on the property page</h3>
+<p>The buyer asks for a time on the listing&rsquo;s own page, so the request, the buyer&rsquo;s contact details and the property stay together in your account. ListingFlare works this way (details below). The trade-off: it is built for buyers who land on your page, not for agent-to-agent requests, and it does not manage access to the home.</p>
 
 <h2>Comparison</h2>
 
 <table>
 <thead>
-<tr><th></th><th>MLS tool</th><th>Dedicated platform</th><th>Calendar link</th></tr>
+<tr><th></th><th>Showing coordination</th><th>Appointment booking</th><th>Property-page request</th></tr>
 </thead>
 <tbody>
-<tr><td>Best for</td><td>Agent-to-agent requests</td><td>Teams and brokerages</td><td>Direct buyer inquiries</td></tr>
-<tr><td>Seller approval</td><td>Yes</td><td>Yes</td><td>Manual</td></tr>
-<tr><td>Feedback collection</td><td>Often</td><td>Yes</td><td>Manual</td></tr>
-<tr><td>Captures the buyer as your lead</td><td>Not usually</td><td>Varies</td><td>Yes, if linked from your page</td></tr>
-<tr><td>Cost</td><td>Often included</td><td>Subscription</td><td>Free to low</td></tr>
+<tr><td>Typical requester</td><td>Other agents, via MLS or brokerage</td><td>Anyone with your link</td><td>Buyers on your listing page</td></tr>
+<tr><td>Seller approval step</td><td>Offered by some platforms</td><td>Not built in</td><td>You confirm or decline; no separate seller step</td></tr>
+<tr><td>Lockbox or access handling</td><td>Offered by some platforms</td><td>No</td><td>No</td></tr>
+<tr><td>Buyer contact details saved with the listing</td><td>Not usually</td><td>Only if you set that up</td><td>Yes, in your ListingFlare account</td></tr>
+<tr><td>Cost</td><td>Often included by the MLS or brokerage, otherwise vendor pricing</td><td>Free or low per seat</td><td>Included in the ListingFlare plan</td></tr>
 </tbody>
 </table>
+
+<h2>When Your MLS Tool or a Calendar Link Is Enough</h2>
+
+<ul>
+<li><strong>Your MLS or brokerage tool is enough</strong> if showings come almost entirely from other agents and the seller expects approvals and feedback through that system. There is no reason to replace it.</li>
+<li><strong>A calendar link is enough</strong> if you carry one or two listings, handle seller approvals by text and are happy to copy buyer details into your own contact list.</li>
+<li><strong>Add a property-page request</strong> if buyers reach your own listing page (a yard-sign QR code, social posts, email) and you want each request tied to that property and saved with their contact details.</li>
+</ul>
+<p>These tools do different jobs, so combining them makes sense when you receive both agent requests and direct buyer requests. If you only get one kind, you may only need one tool.</p>
 
 <h2>How to Choose</h2>
 
 <ul>
-<li><strong>Listing agent with direct leads:</strong> use a calendar link or a built-in scheduler on your own listing page, and keep your MLS tool for agent requests.</li>
+<li><strong>Listing agent with direct buyer inquiries:</strong> use a calendar link or a showing request on your own listing page for those buyers, and use your MLS tool for agent requests.</li>
 <li><strong>Busy team or brokerage:</strong> a dedicated platform gives you control and reporting.</li>
 <li><strong>Seller wants approvals:</strong> make sure the tool supports them, or agree a process by text.</li>
 </ul>
@@ -97,9 +109,9 @@ export const article: BlogPost = {
 <ol>
 <li><strong>Publish the listing page with a booking link.</strong> Put the link in the listing description, on the page, in your email signature and in any reply to a buyer.</li>
 <li><strong>Set your availability windows.</strong> Block times you can realistically attend, plus buffers for travel. Showings that you cannot attend lead to cancellations and bad reviews.</li>
-<li><strong>Agree the approval rule with the seller.</strong> For example: &ldquo;Any request within the windows is confirmed automatically. Requests outside them need my approval.&rdquo; Put it in writing.</li>
-<li><strong>Confirm instantly.</strong> The buyer should get an immediate confirmation with the address, time and your phone number.</li>
-<li><strong>Remind them the day before and the morning of.</strong> This is the single best fix for no-shows.</li>
+<li><strong>Agree the approval rule with the seller.</strong> For example: &ldquo;I confirm requests that fit the windows we agreed. Anything outside them needs your approval first.&rdquo; Put it in writing.</li>
+<li><strong>Confirm request.</strong> Reply to each request with a clear yes, no or alternative time, including the address and your phone number once confirmed.</li>
+<li><strong>Remind them before the showing.</strong> A reminder the day before gives buyers a chance to cancel or reschedule, which helps with no-shows.</li>
 <li><strong>Ask for feedback the same evening.</strong> Two or three short questions, sent while the visit is fresh.</li>
 <li><strong>Summarize weekly for the seller.</strong> Count showings, quote the themes in feedback and make a recommendation. See the <a href="/blog/seller-update-report-template">seller update report template</a>.</li>
 </ol>
@@ -118,15 +130,35 @@ export const article: BlogPost = {
 <h2>What to Measure</h2>
 <p>Track requests, confirmed showings, no-shows and feedback responses each week. If requests are high but confirmed showings are low, your windows are too narrow or your reply is slow. If no-shows are high, your reminders are not working. See <a href="/blog/listing-page-analytics-what-to-track">listing page analytics</a> for the full set of numbers worth watching.</p>
 
-<h2>Where ListingFlare Fits</h2>
+<h2>How ListingFlare Handles a Showing Request</h2>
 
-<p>ListingFlare includes a built-in showing scheduler synced to your Google Calendar, plus showing reminder emails and a seller portal where your clients can watch the listing activity. Buyers can book from the page, from the AI assistant&rsquo;s reply or from a message you send. It is not a replacement for your MLS&rsquo;s agent-to-agent tool, so most agents use both. <a href="/demo">See the demo</a> or <a href="/pricing">view pricing</a>. For a broader tool comparison, see <a href="/blog/best-real-estate-software-for-listing-agents">best real estate software for listing agents</a>.</p>
+<ol>
+<li>A buyer chooses a date and one of the offered time slots on your listing page and submits their name and contact details.</li>
+<li>The buyer receives an email saying the request was received and is <strong>not yet confirmed</strong>. You receive a request email, and the request appears in your dashboard.</li>
+<li>You confirm or decline. Several buyers can request the same open slot and you choose one. A slot that overlaps a showing you have already confirmed (30-minute interval) is refused.</li>
+<li>Confirming requires a time zone on the property or in your profile. Without one, the confirmation is refused rather than guessed.</li>
+<li>When you confirm, the system sends the buyer a confirmation email and adds an event to Google Calendar if you have connected it. Reminder emails for confirmed showings are scheduled through a once-a-day job, so their timing is approximate.</li>
+</ol>
 
-<div class="faq-section">
+<p>The buyer&rsquo;s name, email and phone number are saved with the request in your ListingFlare account. They are contact details the buyer chose to submit, and the buyer remains free to contact or work with any other agent.</p>
+
+<h3>Limitations</h3>
+<ul>
+<li>The time slots shown to buyers are a fixed daily list, not a live view of your calendar, so check your own calendar before you confirm.</li>
+<li>There is no separate seller-approval step, lockbox or access management, MLS agent-to-agent requests or post-showing feedback collection.</li>
+<li>It does not replace ShowingTime or a brokerage system.</li>
+</ul>
+
+<p>If buyers reach your own listing page, <a href="/demo">see the demo</a> or <a href="/pricing">view pricing</a>. For a broader tool comparison, see <a href="/blog/best-real-estate-software-for-listing-agents">best real estate software for listing agents</a>, and for other ways to fill your calendar, <a href="/blog/how-to-get-more-showings">how to get more showings</a>.</p>
+
 <h2>Frequently Asked Questions</h2>
 
 <h3>What is the best showing scheduling software?</h3>
 <p>It depends on your role. MLS tools suit agent-to-agent requests, dedicated platforms suit teams, and a calendar link suits direct buyer bookings.</p>
+
+<h3>What is the difference between showing software and a calendar link?</h3>
+
+<p>Showing software coordinates requests, approvals and access, often between agents. A calendar link only books a slot on your calendar. A showing request on your listing page keeps the request with the property and the buyer&rsquo;s contact details.</p>
 
 <h3>Do I need ShowingTime?</h3>
 <p>Not necessarily. If your MLS includes a showing tool, use it for agent requests. For direct buyers, a calendar link on your own listing page often works better.</p>

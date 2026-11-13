@@ -35,8 +35,7 @@ export const article: BlogPost = {
 <li><strong>Unlimited listing websites</strong> with your name, headshot and brokerage</li>
 <li><strong>AI chat</strong> that answers buyer questions from the details you enter and captures contact information</li>
 <li><strong>AI auto-reply</strong> to each new lead, with an approval mode if you want to review before sending</li>
-<li><strong>Showing scheduler</strong> synced to Google Calendar, plus reminders and feedback requests</li>
-<li><strong>Follow-up sequences</strong> on days 1, 3 and 7</li>
+<li><strong>Showing requests</strong> that you confirm or decline, with a Google Calendar event once confirmed if you connect it (<a href="/blog/best-showing-scheduling-software-real-estate">how this compares with MLS tools and calendar links</a>)</li>
 <li><strong>Lead dashboard</strong> with hot, warm and cold scoring and a drag-and-drop pipeline</li>
 <li><strong>One-tap texting</strong> from your own phone number</li>
 <li><strong>Open house QR sign-in, flyers and social posts</strong></li>
