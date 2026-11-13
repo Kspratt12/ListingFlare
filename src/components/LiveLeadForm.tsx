@@ -92,7 +92,7 @@ export default function LiveLeadForm({ listingId }: Props) {
           </h2>
           <p className="mt-4 text-lg text-gray-400">
             Experience this exceptional property in person. Fill out the form
-            below and the listing agent will be in touch.
+            below to send your inquiry to the listing agent.
           </p>
         </motion.div>
 
@@ -109,7 +109,7 @@ export default function LiveLeadForm({ listingId }: Props) {
                 Thank You
               </h3>
               <p className="mt-2 text-gray-400">
-                We&apos;ve received your request and will be in touch shortly.
+                Your inquiry has been sent to the listing agent.
               </p>
             </div>
           ) : (

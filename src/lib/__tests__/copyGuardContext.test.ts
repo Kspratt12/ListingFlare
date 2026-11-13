@@ -30,8 +30,11 @@ const OTHER_VENDORS = /\b(RealBird|Keap|Real Geeks|Mojo|kvCORE|BoomTown|Rela|Cri
 
 const strip = (s: string) => s.replace(/<[^>]*>/g, " ").replace(/&rsquo;|&lsquo;/g, "'").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ").trim();
 
-export function findImpliedPromises(html: string): string[] {
+export interface GuardStats { skippedManual: number; skippedCompetitor: number; skippedGeneric: number }
+
+export function findImpliedPromises(html: string, stats?: GuardStats): string[] {
   const found: string[] = [];
+  const bump = (k: keyof GuardStats) => { if (stats) stats[k]++; };
   let inLfSection = false;
   let lfCol = -1;
   const re = /<h[23][^>]*>([\s\S]*?)<\/h[23]>|<(p|li)(?:\s[^>]*)?>([\s\S]*?)<\/\2>|<tr(?:\s[^>]*)?>([\s\S]*?)<\/tr>/g;
@@ -49,9 +52,9 @@ export function findImpliedPromises(html: string): string[] {
     }
     const text = strip(m[3]);
     const names = /listingflare/i.test(text);
-    if (!names && !inLfSection) continue;
-    if (!names && OTHER_VENDORS.test(text)) continue;
-    if (MANUAL.test(text)) continue;
+    if (!names && !inLfSection) { if (PROMISES.some(([, rx]) => rx.test(text))) bump("skippedGeneric"); continue; }
+    if (!names && OTHER_VENDORS.test(text)) { if (PROMISES.some(([, rx]) => rx.test(text))) bump("skippedCompetitor"); continue; }
+    if (MANUAL.test(text)) { if (PROMISES.some(([, rx]) => rx.test(text))) bump("skippedManual"); continue; }
     for (const sentence of text.split(/(?<=[.!?])\s+/)) {
       for (const [name, rx] of PROMISES) {
         const mm = rx.exec(sentence);
@@ -63,8 +66,8 @@ export function findImpliedPromises(html: string): string[] {
         const ov = new RegExp(OTHER_VENDORS.source, "gi");
         let v: RegExpExecArray | null;
         while ((v = ov.exec(before))) other = v.index;
-        if (other > lf) continue; // a competitor owns it
-        if (lf < 0 && !inLfSection) continue;
+        if (other > lf) { bump("skippedCompetitor"); continue; } // a competitor owns it
+        if (lf < 0 && !inLfSection) { bump("skippedGeneric"); continue; }
         found.push(`[${name}] ${sentence.slice(0, 220)}`);
       }
     }
@@ -108,6 +111,16 @@ test("blog articles contain no implied ListingFlare feature promises for behavio
     for (const h of hits) found.push(`${f} ${h}`);
   }
   assert.deepEqual(found, []);
+});
+
+test("the guard really does skip generic advice, manual wording and competitor features across the real corpus (and still flags nothing)", () => {
+  const dir = path.join(process.env.LF_SRC_DIR as string, "content/articles");
+  const stats: GuardStats = { skippedManual: 0, skippedCompetitor: 0, skippedGeneric: 0 };
+  let flagged = 0;
+  for (const f of fs.readdirSync(dir)) flagged += findImpliedPromises(fs.readFileSync(path.join(dir, f), "utf8").replace(/\r\n/g, "\n"), stats).length;
+  assert.equal(flagged, 0);
+  assert.ok(stats.skippedGeneric > 0 && stats.skippedCompetitor > 0, JSON.stringify(stats)); // exemptions are exercised, not dead code
+  console.log("# copy guard exemptions exercised on the real corpus:", JSON.stringify(stats));
 });
 
 test("no test in this file reached the network", () => {

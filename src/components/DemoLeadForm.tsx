@@ -46,7 +46,7 @@ export default function DemoLeadForm() {
           </h2>
           <p className="mt-4 text-lg text-gray-400">
             Experience this exceptional property in person. Fill out the form
-            below and the listing agent will be in touch.
+            below to send your inquiry to the listing agent.
           </p>
         </motion.div>
 
@@ -63,8 +63,8 @@ export default function DemoLeadForm() {
                 Thank You
               </h3>
               <p className="mt-2 text-gray-400">
-                This is a demo. In a real listing, the agent would
-                receive your inquiry instantly.
+                This is a demo, so nothing was sent. On a real listing, your
+                inquiry is sent to the listing agent.
               </p>
             </div>
           ) : (
