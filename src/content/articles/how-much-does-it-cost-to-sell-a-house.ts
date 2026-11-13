@@ -23,7 +23,7 @@ export const article: BlogPost = {
   coverImageAlt:
     "Home seller calculating how much it costs to sell a house with financial paperwork",
   content: `
-<p>Most homeowners focus on how much they'll make when they sell. But very few sit down and calculate how much it actually <strong>costs to sell a house</strong>. The truth is, selling a home is not free. Between agent commissions, closing costs, pre-sale prep, and potential taxes, the costs can be large and they vary a lot. The individual dollar figures in this guide are rough planning figures, not sourced market data, and the worked example uses clearly hypothetical assumptions. Get quotes for your own situation.</p>
+<p>Most homeowners focus on how much they'll make when they sell. But very few sit down and calculate how much it actually <strong>costs to sell a house</strong>. The truth is, selling a home is not free. Between agent commissions, closing costs, pre-sale prep, and potential taxes, the costs can be large and they vary a lot. This guide does not claim market averages or price ranges for individual fees; the only dollar figures are in a clearly hypothetical worked example, and you should get quotes for your own situation.</p>
 
 <p>If those numbers caught you off guard, you're not alone. Many sellers are surprised by the gap between their sale price and the amount they actually deposit into their bank account. This guide breaks down every cost you'll encounter so you can plan ahead, protect your equity, and avoid unpleasant surprises at closing. If you're selling for the first time, our <a href="/blog/first-time-home-sellers-guide">first-time home seller's guide</a> walks through the full process from start to finish.</p>
 
@@ -48,27 +48,27 @@ export const article: BlogPost = {
 
 <h2>Closing Costs for Sellers</h2>
 
-<p>Beyond commissions, sellers are responsible for a variety of closing costs that vary widely by state, county and transaction. For the worked example we assume 2 percent of the sale price. These are fees charged by title companies, attorneys, government agencies, and other parties involved in the transaction. The dollar figures in this section are rough planning figures, not sourced market data; get quotes.</p>
+<p>Beyond commissions, sellers are responsible for a variety of closing costs that vary widely by state, county and transaction. For the hypothetical worked example we assume 2 percent of the sale price, which is our assumption and not a market figure. These are fees charged by title companies, attorneys, government agencies, and other parties involved in the transaction. This guide does not give market price ranges for these fees; get quotes for your own sale.</p>
 
 <h3>Title Insurance</h3>
 
-<p>In many areas the seller customarily pays for the owner's title insurance policy (practice varies by state and region), which protects the buyer against any claims or liens on the property. A rough planning figure is <strong>\$1,000 to \$2,000</strong> depending on the sale price and your state's rates. Some states have regulated title insurance premiums, while others allow companies to set their own pricing.</p>
+<p>In many areas the seller customarily pays for the owner's title insurance policy (practice varies by state and region), which protects the buyer against any claims or liens on the property. The cost depends on the sale price and your state's rates, so ask your title company or agent for a quote. Some states have regulated title insurance premiums, while others allow companies to set their own pricing.</p>
 
 <h3>Transfer Taxes</h3>
 
-<p>Transfer taxes (sometimes called excise taxes, documentary stamps, or deed taxes) are charged by state and local governments when property changes hands. Rates vary dramatically by location. Some states charge as little as 0.1 percent, while others charge up to 2 percent or more. A few states, like Texas, don't charge transfer taxes at all. On a \$400,000 home, transfer taxes could range from <strong>\$400 to \$8,000</strong> depending on where you live.</p>
+<p>Transfer taxes (sometimes called excise taxes, documentary stamps, or deed taxes) are charged by state and local governments when property changes hands. Rates vary dramatically by location, and some places charge none. Check your state and local rules, or ask your title company or agent what applies to your sale.</p>
 
 <h3>Attorney Fees</h3>
 
-<p>In some states attorneys customarily handle real estate closings, and where they do you may pay <strong>\$500 to \$1,500</strong> for legal representation. Even in states where an attorney isn't required, some sellers hire one for peace of mind, especially for complex transactions.</p>
+<p>In some states attorneys customarily handle real estate closings, and where they do you will pay for legal representation, and fees vary by attorney and location. Even in states where an attorney isn't required, some sellers hire one for peace of mind, especially for complex transactions.</p>
 
 <h3>Recording Fees</h3>
 
-<p>Your county charges a fee to record the deed transfer and any related documents. Recording fees are relatively modest, usually <strong>\$100 to \$500</strong>.</p>
+<p>Your county charges a fee to record the deed transfer and any related documents. Recording fees are set locally, so ask your title company what your county charges.</p>
 
 <h3>Escrow Fees</h3>
 
-<p>The escrow or settlement company that manages the closing process charges a fee for their services. This typically runs <strong>\$500 to \$2,000</strong>, and in some markets, the cost is split between buyer and seller.</p>
+<p>The escrow or settlement company that manages the closing process charges a fee for their services. The fee varies by company and market, and in some markets the cost is split between buyer and seller.</p>
 
 <h2>Pre-Sale Costs: Getting Your Home Market-Ready</h2>
 
@@ -76,25 +76,25 @@ export const article: BlogPost = {
 
 <h3>Pre-Listing Home Inspection</h3>
 
-<p>A growing number of sellers invest in a <strong>pre-listing inspection</strong> (\$300 to \$500) to identify issues before buyers discover them. This lets you address problems proactively, avoid renegotiations, and present your home with confidence. It's not mandatory, but it can save you thousands in last-minute repair concessions.</p>
+<p>Some sellers order a <strong>pre-listing inspection</strong> to identify issues before buyers discover them. This lets you address problems proactively, avoid renegotiations, and present your home with confidence. It's not mandatory, but it can save you thousands in last-minute repair concessions.</p>
 
 <h3>Repairs and Updates</h3>
 
-<p>Most homes need some work before listing. Common pre-sale repairs include fixing leaky faucets, patching drywall, replacing worn carpet, updating light fixtures, and addressing any deferred maintenance. Budget <strong>\$2,000 to \$10,000</strong> depending on your home's condition.</p>
+<p>Most homes need some work before listing. Common pre-sale repairs include fixing leaky faucets, patching drywall, replacing worn carpet, updating light fixtures, and addressing any deferred maintenance. What you spend depends on your home's condition, so get written quotes before you decide.</p>
 
 <p>Not every issue needs fixing, though. Some repairs simply aren't worth the investment. Our guide on <a href="/blog/what-not-to-fix-when-selling-a-house">what not to fix when selling a house</a> can help you decide where to spend and where to save.</p>
 
 <h3>Home Staging</h3>
 
-<p>Staging is meant to help buyers visualize themselves in the space; how much it helps varies by home and market. Professional staging costs <strong>\$1,500 to \$5,000</strong> for a full-service staging with rented furniture and decor. However, you can also stage your home yourself with minimal cost by decluttering, rearranging existing furniture, and adding a few strategic accessories. For specific tips on staging without breaking the bank, check out our <a href="/blog/home-staging-tips-to-sell-your-house-faster">home staging tips</a>.</p>
+<p>Staging is meant to help buyers visualize themselves in the space; how much it helps varies by home and market. Professional staging is a paid service, and quotes vary with the size of the home and what is included. However, you can also stage your home yourself with minimal cost by decluttering, rearranging existing furniture, and adding a few strategic accessories. For specific tips on staging without breaking the bank, check out our <a href="/blog/home-staging-tips-to-sell-your-house-faster">home staging tips</a>.</p>
 
 <h3>Professional Photography</h3>
 
-<p>Buyers browse listings online, so clear listing photos matter. Professional real estate photography costs <strong>\$150 to \$400</strong> and typically includes 25 to 40 edited photos. Some photographers also offer drone shots, virtual tours, and video walkthroughs for an additional fee. Many listing agents include professional photography as part of their marketing package.</p>
+<p>Buyers browse listings online, so clear listing photos matter. Professional real estate photography is a paid service, and packages and prices vary by photographer. Some photographers also offer drone shots, virtual tours, and video walkthroughs for an additional fee. Many listing agents include professional photography as part of their marketing package.</p>
 
 <h3>Deep Cleaning</h3>
 
-<p>A thorough deep cleaning makes your home shine for photos and showings. A rough planning figure is <strong>\$200 to \$500</strong> for a professional deep clean of a typical three- to four-bedroom home. This usually includes carpet cleaning, window washing, and detailed cleaning of kitchens and bathrooms.</p>
+<p>A thorough deep cleaning makes your home shine for photos and showings. Professional cleaning is priced by the size and condition of the home, so get a quote. This usually includes carpet cleaning, window washing, and detailed cleaning of kitchens and bathrooms.</p>
 
 <h2>Potential Additional Costs</h2>
 
@@ -110,11 +110,11 @@ export const article: BlogPost = {
 
 <h3>HOA Transfer Fees</h3>
 
-<p>If your home is in a homeowners association, there's usually a transfer fee when ownership changes. This fee covers the cost of updating records, providing HOA documents to the buyer, and issuing a resale certificate. HOA transfer fees typically range from <strong>\$200 to \$500</strong>, though some associations charge more.</p>
+<p>If your home is in a homeowners association, there's usually a transfer fee when ownership changes. This fee covers the cost of updating records, providing HOA documents to the buyer, and issuing a resale certificate. HOA transfer fees are set by each association or its management company, so ask for the amount.</p>
 
 <h3>Home Warranty for the Buyer</h3>
 
-<p>Some sellers offer a <strong>home warranty</strong> to the buyer as a negotiating tool or to provide peace of mind. A one-year home warranty typically costs <strong>\$400 to \$600</strong> and covers the repair or replacement of major systems and appliances. While not required, it can make your home more attractive to buyers and protect you from post-sale complaints about a broken water heater or aging HVAC system.</p>
+<p>Some sellers offer a <strong>home warranty</strong> to the buyer as a negotiating tool or to provide peace of mind. Home warranty plans vary in price and coverage, and they cover the repair or replacement of major systems and appliances. While not required, it can make your home more attractive to buyers and protect you from post-sale complaints about a broken water heater or aging HVAC system.</p>
 
 <h2>Total Cost to Sell a House: The Complete Breakdown</h2>
 
@@ -222,7 +222,7 @@ export const article: BlogPost = {
 
 <p>Selling a home is a significant financial transaction, and the costs can add up quickly. By understanding every expense before you list, you can set realistic expectations, negotiate smarter, and make strategic decisions about where to invest and where to save.</p>
 
-<p>The key takeaways: commissions are negotiable and are often the largest single cost, closing costs vary by state and transaction, and pre-sale preparation is optional and depends on your home. Our hypothetical \$400,000 example adds up to about \$33,000 before taxes. It is an example, not an average, so build your own estimate from real quotes.</p>
+<p>The key takeaways: commissions are negotiable and are often the largest single cost, closing costs vary by state and transaction, and pre-sale preparation is optional and depends on your home. Our hypothetical \$400,000 example adds up to about \$33,000 before taxes. It is arithmetic on assumptions we chose, not an average or a market estimate, so build your own estimate from real quotes.</p>
 
 <p>The silver lining is that many of these costs are within your control. You can negotiate commissions, choose which repairs to make, decide whether to stage professionally or DIY, and shop around for service providers. Armed with this cost breakdown, you're in a much stronger position to maximize your net proceeds and walk away from closing with a number that truly reflects your home's value.</p>
 `,

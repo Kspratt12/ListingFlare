@@ -725,7 +725,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
     },
     {
       question: "How is ListingFlare different from Zillow or Realtor.com?",
-      answer: "On Zillow, your listing sits next to competitor ads and other agents. Buyers who inquire can be routed to other agents. With ListingFlare, every page is yours. Your brand, your contact info, zero competing agents. Every lead goes directly to your dashboard, and the AI assistant can send an instant first reply, so buyers are not left waiting.",
+      answer: "ListingFlare is a listing marketing tool. It gives each of your listings its own branded page that you control, with your name and contact details, and inquiries from that page go to your dashboard, where the AI assistant can send an instant first reply. It does not syndicate your listing to the MLS or to portals such as Zillow or Realtor.com, so it works alongside them rather than replacing them.",
     },
     {
       question: "How much does ListingFlare cost?",
@@ -1015,76 +1015,6 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               With ListingFlare, every visitor who scans your QR code lands on a page with an AI that starts a conversation and captures their info before they drive away.
             </p>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Why Agents Switch From Zillow */}
-      <section className="bg-white py-12 md:py-16">
-        <div className="mx-auto max-w-4xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-700">
-              The Real Problem
-            </p>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
-              Why agents stop relying on Zillow.
-            </h2>
-          </motion.div>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5 }}
-              className="rounded-2xl border border-gray-200 bg-gray-50 p-6"
-            >
-              <p className="text-xs font-bold uppercase tracking-wider text-gray-500">On Zillow</p>
-              <ul className="mt-4 space-y-3">
-                <li className="flex items-start gap-3 text-sm text-gray-500">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
-                  Zillow can route your buyer inquiries to other agents
-                </li>
-                <li className="flex items-start gap-3 text-sm text-gray-500">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
-                  Other agents can be advertised on your listing
-                </li>
-                <li className="flex items-start gap-3 text-sm text-gray-500">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
-                  Buyer asks a question at 9 PM. No reply until tomorrow. They are gone.
-                </li>
-              </ul>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="rounded-2xl border border-brand-200 bg-brand-50/50 p-6"
-            >
-              <p className="text-xs font-bold uppercase tracking-wider text-brand-700">On ListingFlare</p>
-              <ul className="mt-4 space-y-3">
-                <li className="flex items-start gap-3 text-sm text-gray-700">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
-                  Every lead goes straight to you. Nobody else sees it.
-                </li>
-                <li className="flex items-start gap-3 text-sm text-gray-700">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
-                  Buyer gets an answer right away. Any hour.
-                </li>
-                <li className="flex items-start gap-3 text-sm text-gray-700">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
-                  Lead captured and showing requests sent to you. You are notified automatically.
-                </li>
-              </ul>
-            </motion.div>
-          </div>
         </div>
       </section>
 
