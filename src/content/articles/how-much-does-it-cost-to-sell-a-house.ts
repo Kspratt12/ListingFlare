@@ -110,7 +110,7 @@ export const article: BlogPost = {
 
 <h3>HOA Transfer Fees</h3>
 
-<p>If your home is in a homeowners association, there's usually a transfer fee when ownership changes. This fee covers the cost of updating records, providing HOA documents to the buyer, and issuing a resale certificate. HOA transfer fees typically range from <strong>\$200 to \$500</strong>, though some associations charge more.</p>
+<p>If your home is in a homeowners association, there's usually a transfer fee when ownership changes. This fee covers the cost of updating records, providing HOA documents to the buyer, and issuing a resale certificate. HOA transfer fees are set by each association or its management company, so ask for the amount.</p>
 
 <h3>Home Warranty for the Buyer</h3>
 
