@@ -29,7 +29,7 @@ export async function POST() {
       getProfile: async (userId) => {
         const { data } = await supabase
           .from("agent_profiles")
-          .select("stripe_customer_id, email, name")
+          .select("stripe_customer_id, email, name, stripe_subscription_id, subscription_status")
           .eq("id", userId)
           .single();
         return (data as CheckoutProfile | null) ?? null;

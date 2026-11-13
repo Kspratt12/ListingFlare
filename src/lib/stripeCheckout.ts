@@ -30,6 +30,9 @@ export interface CheckoutProfile {
   stripe_customer_id: string | null;
   email: string | null;
   name: string | null;
+  // Optional so older callers and fixtures keep working. When present they block a second subscription.
+  stripe_subscription_id?: string | null;
+  subscription_status?: string | null;
 }
 
 export interface SaveCustomerResult {
@@ -95,6 +98,12 @@ export async function processCheckoutRequest(deps: CheckoutDeps): Promise<Checko
     const profile = await deps.getProfile(user.id);
     if (!profile) {
       return { status: 404, body: { error: "Profile not found" } };
+    }
+
+    // A live subscription already exists: starting another checkout could bill the customer twice.
+    // Existing subscribers manage their plan in the billing portal. (A canceled or unpaid subscription may resubscribe.)
+    if (profile.stripe_subscription_id && ["active", "past_due", "trialing"].includes(profile.subscription_status || "")) {
+      return { status: 409, body: { error: "You already have a subscription. Manage it from the billing page." } };
     }
 
     let customerId = profile.stripe_customer_id;

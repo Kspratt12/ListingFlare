@@ -244,3 +244,19 @@ test("signup page: no direct profile write, and the signup name metadata is pres
 test("no test above reached the network", () => {
   assertNoNetworkAttempts();
 });
+
+test("an existing live subscription blocks a second checkout (409, no customer or session created); canceled/unpaid may resubscribe", async () => {
+  for (const status of ["active", "past_due", "trialing"]) {
+    const t = makeDeps({ profile: { ...PROFILE_NEW, stripe_customer_id: "cus_existing", stripe_subscription_id: "sub_live", subscription_status: status } });
+    const out = await processCheckoutRequest(t.deps);
+    assert.equal(out.status, 409, status);
+  }
+  for (const status of ["canceled", "unpaid"]) {
+    const t = makeDeps({ profile: { ...PROFILE_NEW, stripe_customer_id: "cus_existing", stripe_subscription_id: null, subscription_status: status } });
+    const out = await processCheckoutRequest(t.deps);
+    assert.equal(out.status, 200, status);
+  }
+  // An app-side trial (no Stripe subscription) can still subscribe.
+  const trial = makeDeps({ profile: { ...PROFILE_NEW, stripe_customer_id: null, stripe_subscription_id: null, subscription_status: "trialing" } });
+  assert.equal((await processCheckoutRequest(trial.deps)).status, 200);
+});
