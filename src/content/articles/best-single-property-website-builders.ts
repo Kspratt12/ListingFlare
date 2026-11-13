@@ -6,7 +6,7 @@ export const article: BlogPost = {
   description:
     "Compare the 7 best single property website builders for agents in 2026: pricing, pros, cons and lead capture. We make ListingFlare, one of the 7.",
   date: "2026-03-24",
-  updated: "2026-11-12",
+  updated: "2026-11-13",
   author: "ListingFlare Team",
   category: "Listing Marketing",
   keywords: [
@@ -176,7 +176,7 @@ export const article: BlogPost = {
 
 <h2>4. Spiro - Best for Branded and Unbranded Options</h2>
 
-<p><strong>Price:</strong> Starting at $10/property</p>
+<p><strong>Price:</strong> Not verified. We could not confirm current pricing from the vendor&rsquo;s own site on 2026-11-13, so no figure is shown here; check the vendor directly.</p>
 
 <p>Spiro takes a different approach than every other builder on this list. They offer both branded property pages (with your name, logo, and contact info) and unbranded pages (clean, no agent branding). This dual option is uniquely useful if you are a real estate photographer or marketing company creating sites for multiple agents, or if you want to create a page that feels more neutral for open houses where the seller does not want heavy agent branding.</p>
 
@@ -203,7 +203,7 @@ export const article: BlogPost = {
 
 <h3>Cost for 5 Listings</h3>
 
-<p>Approximately $50 (5 x $10), though pricing varies by package.</p>
+<p>Not verified; see the vendor&rsquo;s pricing.</p>
 
 <p><strong>Best for:</strong> Real estate photographers and marketing companies who create listing pages on behalf of agents, or agents who want the option to remove branding for certain listings.</p>
 
@@ -242,9 +242,9 @@ export const article: BlogPost = {
 
 <h2>6. HDphotohub - Best Budget Option</h2>
 
-<p><strong>Price:</strong> Starting at $15/property, no monthly fee</p>
+<p><strong>Price:</strong> Not verified. We could not confirm current pricing from the vendor&rsquo;s own site on 2026-11-13, so no figure is shown here; check the vendor directly.</p>
 
-<p>HDphotohub was mentioned repeatedly in Reddit threads and Facebook groups by agents looking for the cheapest possible option. The model is simple: pay once per property, no monthly subscription. The sites are basic but functional. You get a photo gallery, property details, and a lead form. That is about it.</p>
+<p>HDphotohub is positioned as a low-cost, per-property option rather than a monthly subscription. We have not verified its current plans or features from the vendor, so treat this section as a general description and confirm details on its site. The pages are described as basic: a photo gallery, property details and a lead form.</p>
 
 <p>The trade-off is obvious. You get what you pay for. The designs are not going to impress a luxury seller in a listing presentation, and the feature set is bare bones. But if you just need a quick, cheap page to send buyers to instead of a Zillow link, HDphotohub gets the job done at the lowest cost on this list.</p>
 
@@ -268,7 +268,7 @@ export const article: BlogPost = {
 
 <h3>Cost for 5 Listings</h3>
 
-<p>$75 one-time (5 x $15). No recurring charges.</p>
+<p>Not verified; see the vendor&rsquo;s pricing.</p>
 
 <p><strong>Best for:</strong> Budget-conscious agents who just need a basic property page and do not need lead engagement, analytics, or automation features.</p>
 
@@ -276,7 +276,7 @@ export const article: BlogPost = {
 
 <h2>7. Placester - Best for Full Agent Websites (With Property Pages Built In)</h2>
 
-<p><strong>Price:</strong> Starting at $99/month for a full agent website</p>
+<p><strong>Price:</strong> Not verified. We could not confirm current pricing from the vendor&rsquo;s own site on 2026-11-13, so no figure is shown here; check the vendor directly.</p>
 
 <p>Placester is not a single property website builder. It is a full real estate website platform that includes property pages as part of a larger agent site. I am including it because it shows up in search results for single property website builders, and some agents confuse the two categories. If you need a full agent website with IDX search, blog functionality, and property pages all in one place, Placester is a solid option. But if you just want dedicated single property landing pages for listing marketing, it is overkill and overpriced for that specific use case.</p>
 
@@ -294,15 +294,15 @@ export const article: BlogPost = {
 
 <h3>What I Like</h3>
 
-<p>If you do not have an agent website yet and you want everything under one roof, Placester is one of the better all-in-one options. The IDX integration works well, the templates look professional, and having a blog, CRM, and property pages in the same platform reduces tool sprawl. The JEEO tier offers done-for-you setup, which is helpful if you are not comfortable building a site yourself.</p>
+<p>If you do not have an agent website yet and you want everything under one roof, Placester is an all-in-one option that combines IDX, a blog, CRM and property pages on one platform, which can reduce tool sprawl. We have not tested it ourselves, so check the vendor&rsquo;s site for current plans, setup options and what is included.</p>
 
 <h3>What Could Be Better</h3>
 
-<p>The property pages within Placester are not standalone. They live under your agent website URL, which means they do not have the independent, shareable feel of a dedicated single property page from Rela or ListingFlare. There is no AI chatbot for after-hours buyer engagement. At $99+/month, you are paying for a lot of features (IDX, blog, CRM) that you may not need if you already have those tools elsewhere. Setup takes longer than any dedicated single property builder on this list. You are building a whole website, not just a listing page. And the property pages themselves are a secondary feature, not the platform&rsquo;s core focus.</p>
+<p>The property pages within Placester are not standalone. They live under your agent website URL, which means they do not have the independent, shareable feel of a dedicated single property page from Rela or ListingFlare. There is no AI chatbot for after-hours buyer engagement. You would be paying for a lot of features (IDX, blog, CRM) that you may not need if you already have those tools elsewhere. Setup takes longer than any dedicated single property builder on this list. You are building a whole website, not just a listing page. And the property pages themselves are a secondary feature, not the platform&rsquo;s core focus.</p>
 
 <h3>Cost for 5 Listings</h3>
 
-<p>$99+/month total (all listings included in the base price, since property pages are part of your full site).</p>
+<p>Not verified; see the vendor&rsquo;s pricing. Property pages are part of a full agent website rather than priced per listing.</p>
 
 <p><strong>Best for:</strong> Agents who need a full website AND property pages and want everything under one roof. Not ideal if you only want dedicated single property landing pages.</p>
 
@@ -315,13 +315,13 @@ export const article: BlogPost = {
 <tr><th>Feature</th><th>ListingFlare</th><th>Rela</th><th>CribFlyer</th><th>Spiro</th><th>SPS</th><th>HDphotohub</th><th>Placester</th></tr>
 </thead>
 <tbody>
-<tr><td>Pricing</td><td>$150/mo (unlimited listings)</td><td>From $24/mo (1 active listing); $49/mo for 5</td><td>From $9/mo (1 site); $29/mo for 10</td><td>about $10/property</td><td>Free tier; from $12/mo (1 property); $29/mo for 5</td><td>$15/property one-time</td><td>$99+/mo (full site)</td></tr>
+<tr><td>Pricing</td><td>$150/mo (unlimited listings)</td><td>From $24/mo (1 active listing); $49/mo for 5</td><td>From $9/mo (1 site); $29/mo for 10</td><td>Not verified</td><td>Free tier; from $12/mo (1 property); $29/mo for 5</td><td>Not verified</td><td>Not verified (full site)</td></tr>
 <tr><td>AI Chatbot for Lead Engagement</td><td>Yes, AI chatbot on every page that answers buyer questions 24/7</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
 <tr><td>Automated Follow-Up</td><td>Yes, automatic follow-up emails</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Basic CRM (manual follow-up)</td></tr>
 <tr><td>Design Quality</td><td>Modern, clean, mobile-optimized</td><td>Best-in-class luxury templates</td><td>Clean but dated</td><td>Clean, professional</td><td>Functional but dated</td><td>Basic</td><td>Professional (full site templates)</td></tr>
 <tr><td>3D Tour / Virtual Tour Integration</td><td>Yes (Matterport, YouTube, custom embed)</td><td>Yes (Matterport, iGuide, native)</td><td>Limited</td><td>Limited (iFrame workaround)</td><td>Limited</td><td>No</td><td>Yes (through IDX and embeds)</td></tr>
 <tr><td>Analytics Dashboard</td><td>Detailed (views, time on page, lead source, chatbot engagement)</td><td>Basic view counts</td><td>Basic view counts</td><td>Basic</td><td>Basic</td><td>None</td><td>Moderate (site-wide analytics)</td></tr>
-<tr><td>Cost for 5 Simultaneous Listings</td><td>$150/mo</td><td>$49/mo</td><td>$29/mo</td><td>about $50</td><td>$29/mo</td><td>$75 one-time</td><td>$99+/mo</td></tr>
+<tr><td>Cost for 5 Simultaneous Listings</td><td>$150/mo</td><td>$49/mo</td><td>$29/mo</td><td>Not verified</td><td>$29/mo</td><td>Not verified</td><td>Not verified</td></tr>
 </tbody>
 </table>
 
@@ -361,7 +361,7 @@ export const article: BlogPost = {
 <ul>
 <li><strong>If you carry 3+ listings and want every page to capture leads 24/7:</strong> <a href="/signup">ListingFlare</a>. The unlimited plan and AI chatbot make the math work at scale. You are paying for a lead generation system, not just a website builder.</li>
 <li><strong>If you specialize in luxury and visual presentation is everything:</strong> Rela. The templates are the best-looking on this list, and luxury sellers expect a premium online presence.</li>
-<li><strong>If you carry 1-2 listings and want to keep costs minimal:</strong> CribFlyer or HDphotohub. Per-listing pricing makes sense at low volume.</li>
+<li><strong>If you carry 1-2 listings and want to keep costs minimal:</strong> CribFlyer or SinglePropertySites, both of which publish entry-level plans (checked November 2026).</li>
 <li><strong>If you are a photographer or marketing vendor building pages for agents:</strong> Spiro. The unbranded option is designed for this exact use case.</li>
 <li><strong>If you want website + social + email + print from one listing entry:</strong> SPS. The multi-channel automation saves time if you market heavily across channels.</li>
 <li><strong>If you want a full agent website, not just listing pages:</strong> Placester. But expect to pay more and get features you may not need for listing marketing specifically.</li>
