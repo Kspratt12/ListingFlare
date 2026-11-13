@@ -22,6 +22,7 @@ interface BillingInfo {
   setup_fee_paid: boolean;
   stripe_customer_id: string | null;
   stripe_subscription_id: string | null;
+  complimentary_access?: string | null;
 }
 
 export default function BillingContent() {
@@ -45,7 +46,7 @@ export default function BillingContent() {
       const { data } = await supabase
         .from("agent_profiles")
         .select(
-          "subscription_status, trial_ends_at, setup_fee_paid, stripe_customer_id, stripe_subscription_id"
+          "subscription_status, trial_ends_at, setup_fee_paid, stripe_customer_id, stripe_subscription_id, complimentary_access"
         )
         .eq("id", user.id)
         .single();
@@ -126,9 +127,10 @@ export default function BillingContent() {
     },
   };
 
-  const status =
-    statusConfig[billing?.subscription_status || "trialing"] ||
-    statusConfig.trialing;
+  const isComplimentary = billing?.complimentary_access === "owner";
+  const status = isComplimentary
+    ? { label: "Complimentary owner access", color: "bg-purple-50 text-purple-700 border-purple-200", icon: CheckCircle }
+    : statusConfig[billing?.subscription_status || "trialing"] || statusConfig.trialing;
   const StatusIcon = status.icon;
 
   return (
@@ -266,7 +268,7 @@ export default function BillingContent() {
             </button>
           )}
 
-          {(isActive || isPastDue) && billing?.stripe_customer_id && (
+          {!isComplimentary && (isActive || isPastDue) && billing?.stripe_customer_id && (
             <button
               onClick={handlePortal}
               disabled={portalLoading}
