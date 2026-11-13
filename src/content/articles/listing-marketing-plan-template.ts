@@ -70,7 +70,7 @@ ${downloadBox("listing-marketing-plan-template")}
 
 <!-- next-step -->
 <h2>Turn the Plan Into a Live Listing</h2>
-<p>A plan is only useful once the pieces exist. ListingFlare gives you the listing page, a QR code for the sign, an open house flyer, social posts and lead follow-up in one dashboard, so most of the plan is already built. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+<p>A plan is only useful once the pieces exist. ListingFlare gives you the listing page, a QR code for the sign, an open house flyer, social posts and lead follow-up in one dashboard, so several pieces of the plan are ready to use. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

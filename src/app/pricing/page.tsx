@@ -50,7 +50,7 @@ const featureGroups = [
       "Photo gallery with drag-to-reorder",
       "Video uploads (10 per listing)",
       "Auto-generated SEO metadata and sitemaps",
-      "Public city directory pages (listingflare.com/homes/your-city)",
+      "Public city pages, eligible for search indexing once qualifying inventory requirements are met",
     ],
   },
   {
@@ -58,7 +58,7 @@ const featureGroups = [
     title: "AI That Works While You Sleep",
     items: [
       "AI chatbot answers buyer questions 24/7",
-      "Instant AI auto-reply to every new lead",
+      "AI email replies to new leads, with optional approval before sending",
       "AI Approval Mode (review before sending)",
       "AI business assistant (analyzes your listings and leads)",
       "AI listing description writer",
@@ -98,7 +98,7 @@ const featureGroups = [
     icon: Zap,
     title: "Automation in the Background",
     items: [
-      "Open house QR sign-in that turns each visitor into a lead",
+      "Open house QR sign-in that turns each submitted sign-in into a lead",
       "Agent activity feed (see what the AI did for you today)",
       "Weekly performance email (views, leads, conversions)",
       "Hot visitor alerts when buyers keep coming back",

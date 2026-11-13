@@ -57,13 +57,13 @@ const features = [
     icon: MessageCircle,
     title: "Answer buyers when you cannot",
     description:
-      "Every listing has an AI that answers buyer questions instantly. Bedrooms, backyard, neighborhood. The lead can be captured before they close the tab.",
+      "Every listing has an AI that answers buyer questions from the details you enter, such as bedrooms, features and the neighborhood description. A buyer can choose to share contact details before they close the tab.",
   },
   {
     icon: BarChart3,
-    title: "Reply to new leads right away",
+    title: "AI email replies to new leads",
     description:
-      "AI drafts a personalized reply as soon as a lead comes in, so a new lead hears back right away, even when you are away from your phone.",
+      "ListingFlare generates an AI reply for a new lead with an email address and sends it by email unless Approval Mode is enabled. With Approval Mode, the reply is held for your review.",
   },
   {
     icon: View,
@@ -94,7 +94,7 @@ const features = [
 const included = [
   "Unlimited listing websites with your branding",
   "AI chat answers buyer questions 24/7",
-  "AI auto-reply to every new lead",
+  "AI email replies to new leads, with optional approval before sending",
   "Built-in showing requests, with a Google Calendar event once you confirm (optional)",
   "Text leads with one tap from your real phone number",
   "Seller transparency portal so your clients watch their listing live",
@@ -721,15 +721,15 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
   const faqs = [
     {
       question: "What is ListingFlare?",
-      answer: "ListingFlare gives every listing its own branded property website with a built-in AI assistant. The AI answers buyer questions 24/7, captures their contact information, drafts a follow-up response instantly, and can share your Calendly link to help book showings. It answers from the listing details you enter, so buyers get quick answers without extra work from you.",
+      answer: "ListingFlare gives every listing its own branded property website with a built-in AI assistant. The AI answers buyer questions 24/7, captures their contact information, drafts a reply to a new lead who gives an email address, and can share your Calendly link to help book showings. It answers from the listing details you enter, so buyers get quick answers without extra work from you.",
     },
     {
       question: "How is ListingFlare different from Zillow or Realtor.com?",
-      answer: "ListingFlare is a listing marketing tool. It gives each of your listings its own branded page that you control, with your name and contact details, and inquiries from that page go to your dashboard, where the AI assistant can send an instant first reply. It does not syndicate your listing to the MLS or to portals such as Zillow or Realtor.com, so it works alongside them rather than replacing them.",
+      answer: "ListingFlare is a listing marketing tool. It gives each of your listings its own branded page that you control, with your name and contact details, and inquiries from that page go to your dashboard, where the AI assistant can email a first reply unless Approval Mode holds it for your review. It does not syndicate your listing to the MLS or to portals such as Zillow or Realtor.com, so it works alongside them rather than replacing them.",
     },
     {
       question: "How much does ListingFlare cost?",
-      answer: "ListingFlare is $150 per month with a 14-day free trial and no credit card required to start. That includes unlimited listing websites, AI chat on every page, lead capture, an instant AI reply to new leads, analytics, social media posts, open house flyers, and full agent branding. Results vary: one sale from a lead you would otherwise have missed would cover many months of the subscription, but no outcome is guaranteed.",
+      answer: "ListingFlare is $150 per month with a 14-day free trial and no credit card required to start. That includes unlimited listing websites, AI chat on every page, lead capture, AI email replies to new leads (with optional approval before sending), analytics, social media posts, open house flyers, and full agent branding. Results vary: one sale from a lead you would otherwise have missed would cover many months of the subscription, but no outcome is guaranteed.",
     },
     {
       question: "Do I need technical skills to use ListingFlare?",
@@ -863,12 +863,12 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
             </div>
             <h1 className="font-serif text-4xl font-bold leading-tight text-gray-900 md:text-display">
               <span className="mb-3 block text-base font-semibold tracking-wide text-brand-700 md:text-lg" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>Real Estate Software for Listing Agents</span>{" "}
-              Last night, a buyer asked about
+              Single-property websites
               <br />
-              your listing. You lost them.
+              with a listing-specific AI assistant
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-gray-500 md:text-xl">
-              Every listing gets its own branded page with an AI assistant that answers buyer questions at any hour, captures their contact info, and takes the showing request. You wake up to a new lead, not a lost one.
+              A branded page for each listing where buyers can explore the property, ask questions, and request a showing—even when you’re unavailable.
             </p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link
@@ -1012,7 +1012,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               Picture a Saturday open house: 14 people walk through and 2 sign the guest book. The other 12 leave without giving you a name, an email, or any way to follow up.
             </p>
             <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-gray-300">
-              With ListingFlare, every visitor who scans your QR code lands on a page with an AI that starts a conversation and captures their info before they drive away.
+              With ListingFlare, visitors who scan your QR code land on your listing page, where they can ask the AI questions and choose to share their contact details.
             </p>
           </motion.div>
         </div>
@@ -1109,7 +1109,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               Log in and see what ListingFlare did for you
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-base text-gray-500">
-              Every response time, every showing request, every reply sent. Visible in one place so you actually know your software is working.
+              Response times, showing requests, and replies sent through ListingFlare, in one place so you can see what your software did.
             </p>
             <p className="mx-auto mt-2 max-w-2xl text-xs text-gray-500">
               Sample dashboard with illustrative numbers. Your dashboard shows your own leads and response times.
@@ -1296,7 +1296,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               is interested.
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-lg text-gray-500">
-              This is exactly how buyers interact with your listing. Not a static page. A working assistant that handles the conversation, captures the lead, and passes the showing request to you.
+              This is exactly how buyers interact with your listing. Not a static page. A working assistant that answers from your listing details and collects contact details when a buyer chooses to share them. Showing requests go through the page&apos;s separate scheduling workflow.
             </p>
           </motion.div>
 

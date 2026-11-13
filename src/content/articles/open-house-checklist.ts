@@ -77,7 +77,7 @@ ${downloadBox("open-house-checklist-template")}
 
 <!-- next-step -->
 <h2>Run the Whole Day From One Place</h2>
-<p>Most of this checklist is the follow-through after the doors close. ListingFlare covers the digital half: a QR sign-in that turns each visitor into a lead, a printable flyer with a QR code, and an instant AI-drafted reply to each sign-in. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+<p>Most of this checklist is the follow-through after the doors close. ListingFlare covers the digital half: a QR sign-in that turns each submitted sign-in into a lead, a printable flyer with a QR code, and an AI reply to each sign-in that includes an email address (sent unless Approval Mode holds it for your review). You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

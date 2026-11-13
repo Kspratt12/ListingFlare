@@ -53,7 +53,7 @@ export default function Page() {
           heading: "What is on a ListingFlare listing page",
           body: [
             "Each page has a photo gallery, price, beds, baths and square footage, a description, property attributes, a mortgage calculator, neighborhood information, your branding and a way to request a showing or ask a question. Pages have standard page titles, descriptions and RealEstateListing structured data, so search engines can read them.",
-            "Published listings are also grouped on city pages at listingflare.com/homes/your-city. A city page is only indexed by search engines once it has at least three listings, so thin pages stay out of Google.",
+            "Published listings are also grouped on city pages at listingflare.com/homes/your-city. A city page becomes eligible for search indexing and is added to the sitemap once it contains at least three qualifying published listings. Listings that are not published do not count, nor do demo-account listings or listings from accounts whose free trial has expired. Eligibility does not guarantee that Google will index the page.",
           ],
         },
         {
