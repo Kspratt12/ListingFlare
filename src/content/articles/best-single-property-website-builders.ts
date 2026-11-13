@@ -186,7 +186,7 @@ export const article: BlogPost = {
 
 <ul>
 <li><strong>Branded and unbranded options.</strong> Toggle agent branding on or off per listing. The unbranded version focuses entirely on the property, which some sellers prefer. The branded version includes your photo, name, phone, and brokerage details.</li>
-<li><strong>Built-in showing scheduler.</strong> Buyers can request a showing time directly from the listing page. You get a notification and can confirm or suggest an alternative time. This removes a step from the lead-to-showing pipeline.</li>
+<li><strong>Built-in showing scheduler.</strong> Buyers can request a showing time directly from the listing page. You get a notification and can confirm or suggest an alternative time. This removes a step from the lead-to-showing pipeline. For how request forms compare with MLS tools and calendar links, see <a href="/blog/best-showing-scheduling-software-real-estate">our showing scheduling guide</a>.</li>
 <li><strong>Photo and video galleries.</strong> Standard gallery with full-screen viewing. Photos auto-resize for mobile. Video embedding is supported for YouTube and Vimeo links.</li>
 <li><strong>Lead capture.</strong> Basic lead capture form with name, email, phone, and message fields. Leads are delivered via email.</li>
 <li><strong>Property details section.</strong> Standard beds, baths, sqft, price, and description layout. You can also add custom sections for school districts, HOA info, or neighborhood highlights.</li>
