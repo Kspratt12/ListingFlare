@@ -52,13 +52,13 @@ export default function Page() {
           heading: "What happens after someone submits",
           body: [
             "You are notified, and the lead lands in your dashboard with the property they asked about. An AI-written reply goes out right away, or waits for your approval if you turn on Approval Mode. Later follow-ups are yours to send from the lead's conversation thread.",
-            "Replies come back into a threaded inbox, and you can text a lead from your own phone with one tap. Leads are scored hot, warm or cold, and you can move them through a drag-and-drop pipeline.",
+            "You can reply from each lead's conversation thread, and you can text a lead from your own phone with one tap. Leads are scored hot, warm or cold, and you can move them through a drag-and-drop pipeline.",
           ],
         },
         {
           heading: "Speed to lead",
           body: [
-            "Response speed is widely treated as one of the biggest factors in winning a lead. ListingFlare measures how long you actually take to respond to each lead and compares it with a 47-minute industry average, so you can see your own number rather than guess at it.",
+            "Response speed is widely treated as one of the biggest factors in winning a lead. ListingFlare measures how long you actually take to respond to each lead, so you can see your own number rather than guess at it.",
           ],
         },
       ]}

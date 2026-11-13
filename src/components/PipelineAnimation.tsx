@@ -41,7 +41,7 @@ export default function PipelineAnimation() {
             Every lead, tracked from first click to closing day.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base text-gray-500">
-            Watch a buyer move through the pipeline in real time. Drag-and-drop when you want control. Auto-updates when a showing is booked or a deal closes.
+            Watch a buyer move through the pipeline in real time. Drag a lead between columns to update its status.
           </p>
         </div>
 

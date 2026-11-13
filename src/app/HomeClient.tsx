@@ -45,7 +45,6 @@ import {
   CalendarCheck,
   UserPlus,
   BellRing,
-  X,
 } from "lucide-react";
 
 const features = [
@@ -97,7 +96,7 @@ const included = [
   "Unlimited listing websites with your branding",
   "AI chat answers buyer questions 24/7",
   "AI auto-reply to every new lead",
-  "Built-in showing scheduler synced to your Google Calendar",
+  "Built-in showing requests, with a Google Calendar event once you confirm (optional)",
   "Text leads with one tap from your real phone number",
   "Seller transparency portal so your clients watch their listing live",
   "Hot Lead scoring + drag-and-drop pipeline view",
@@ -664,31 +663,6 @@ function HowItWorks() {
   );
 }
 
-function ComparisonCell({ value, highlight = false }: { value: boolean | string; highlight?: boolean }) {
-  if (value === true) {
-    return (
-      <span className={`inline-flex h-6 w-6 items-center justify-center rounded-full ${highlight ? "bg-brand-500" : "bg-emerald-500"}`}>
-        <Check className="h-3.5 w-3.5 text-white" strokeWidth={3} />
-      </span>
-    );
-  }
-  if (value === false) {
-    return (
-      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-100">
-        <X className="h-3.5 w-3.5 text-gray-400" strokeWidth={2.5} />
-      </span>
-    );
-  }
-  if (value === "partial") {
-    return (
-      <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-700">
-        Limited
-      </span>
-    );
-  }
-  return <span className={`text-xs font-medium ${highlight ? "text-brand-700" : "text-gray-500"}`}>{value}</span>;
-}
-
 function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[]; showHomesLink?: boolean }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
@@ -828,7 +802,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
     },
     {
       question: "What does the AI chatbot actually do?",
-      answer: "It answers buyer questions using the listing details you enter, such as bedrooms, square footage, and features. When a buyer engages, the AI can capture their name, email, and phone number and invite them to book a showing. Because it only knows what you entered, it can be wrong or incomplete if those details are, and it does not negotiate or give legal or financial advice. If it does not know something, it offers to have you follow up.",
+      answer: "It answers buyer questions using the listing details you enter, such as bedrooms, square footage, and features. When a buyer engages, the AI can capture their name, email, and phone number and invite them to book a showing. Because it only knows what you entered, it can be wrong or incomplete if those details are, and it is not designed to negotiate and should not be relied on for legal or financial advice. If it does not know something, it offers to have you follow up.",
     },
     {
       question: "Can I use ListingFlare with my brokerage branding?",
@@ -959,7 +933,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               your listing. You lost them.
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-gray-500 md:text-xl">
-              Every listing gets its own branded page with an AI assistant that answers buyer questions at any hour, captures their contact info, and books the showing. You wake up to a new lead, not a lost one.
+              Every listing gets its own branded page with an AI assistant that answers buyer questions at any hour, captures their contact info, and takes the showing request. You wake up to a new lead, not a lost one.
             </p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link
@@ -1304,129 +1278,10 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               </div>
               <div className="mt-4 text-center">
                 <p className="text-sm font-medium text-gray-900">Your listing on ListingFlare</p>
-                <p className="mt-1 text-xs text-gray-500">Your page. Your brand. Buyer answered in seconds. Lead in your dashboard. Showing on your calendar. Nobody else involved.</p>
+                <p className="mt-1 text-xs text-gray-500">Your page. Your brand. Buyer answered in seconds. Lead in your dashboard. Showing request for you to confirm. Nobody else involved.</p>
               </div>
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* Comparison Table */}
-      <section className="bg-gray-50 py-14 md:py-20">
-        <div className="mx-auto max-w-5xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <p className="text-sm font-semibold uppercase tracking-widest text-brand-700">
-              Feature Comparison
-            </p>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
-              How we stack up
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-base text-gray-500">
-              Based on each vendor&apos;s public pricing and feature information as of October 2026. An X means we did not find the feature listed; it may still exist. Confirm current details on each vendor&apos;s site.
-            </p>
-          </motion.div>
-
-          {(() => {
-            const rows: Array<{ feature: string; us: boolean | string; zillow: boolean | string; kv: boolean | string }> = [
-              { feature: "Branded listing page you own", us: true, zillow: false, kv: "partial" },
-              { feature: "AI chat that answers buyer questions 24/7", us: true, zillow: false, kv: false },
-              { feature: "Instant auto-reply to new leads", us: true, zillow: false, kv: true },
-              { feature: "Built-in showing scheduler (no Calendly needed)", us: true, zillow: false, kv: false },
-              { feature: "Calendar invite (.ics) in confirmation emails", us: true, zillow: false, kv: false },
-              { feature: "Leads belong to YOU (not sold to other agents)", us: true, zillow: false, kv: true },
-            ];
-            return (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="mt-10"
-              >
-                {/* Desktop table - hidden on mobile */}
-                <div className="hidden overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm md:block">
-                  <table className="w-full text-left text-sm">
-                    <thead>
-                      <tr className="border-b border-gray-200 bg-gray-50/80">
-                        <th className="px-6 py-4 font-medium text-gray-500">Feature</th>
-                        <th className="px-6 py-4">
-                          <div className="font-serif text-base font-bold text-gray-900">ListingFlare</div>
-                          <div className="mt-0.5 text-xs font-normal text-brand-700">$150/mo</div>
-                        </th>
-                        <th className="px-6 py-4">
-                          <div className="text-base font-semibold text-gray-900">Zillow Premier</div>
-                          <div className="mt-0.5 text-xs font-normal text-gray-500">Pricing varies</div>
-                        </th>
-                        <th className="px-6 py-4">
-                          <div className="text-base font-semibold text-gray-900">kvCORE</div>
-                          <div className="mt-0.5 text-xs font-normal text-gray-500">Pricing varies</div>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100">
-                      {rows.map((row, i) => (
-                        <tr key={i} className="hover:bg-gray-50/50">
-                          <td className="px-6 py-3.5 text-gray-700">{row.feature}</td>
-                          <td className="px-6 py-3.5"><ComparisonCell value={row.us} highlight /></td>
-                          <td className="px-6 py-3.5"><ComparisonCell value={row.zillow} /></td>
-                          <td className="px-6 py-3.5"><ComparisonCell value={row.kv} /></td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-
-                {/* Mobile cards - one card per feature, three mini-pills */}
-                <div className="space-y-3 md:hidden">
-                  <div className="flex items-center justify-between rounded-xl border border-brand-200 bg-gradient-to-r from-brand-50 to-white px-4 py-3">
-                    <div>
-                      <div className="font-serif text-base font-bold text-gray-900">ListingFlare</div>
-                      <div className="text-xs text-brand-700">$150/mo</div>
-                    </div>
-                    <div className="flex gap-3 text-center">
-                      <div>
-                        <div className="text-sm font-semibold text-gray-700">Zillow</div>
-                        <div className="text-[10px] text-gray-500">Varies</div>
-                      </div>
-                      <div>
-                        <div className="text-sm font-semibold text-gray-700">kvCORE</div>
-                        <div className="text-[10px] text-gray-500">Varies</div>
-                      </div>
-                    </div>
-                  </div>
-                  {rows.map((row, i) => (
-                    <div key={i} className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
-                      <p className="text-sm font-medium text-gray-800">{row.feature}</p>
-                      <div className="mt-3 grid grid-cols-3 gap-2">
-                        <div className="flex flex-col items-center rounded-lg bg-brand-50/60 p-2">
-                          <span className="text-[10px] font-medium uppercase tracking-wider text-brand-700">Us</span>
-                          <div className="mt-1"><ComparisonCell value={row.us} highlight /></div>
-                        </div>
-                        <div className="flex flex-col items-center rounded-lg bg-gray-50 p-2">
-                          <span className="text-[10px] font-medium uppercase tracking-wider text-gray-500">Zillow</span>
-                          <div className="mt-1"><ComparisonCell value={row.zillow} /></div>
-                        </div>
-                        <div className="flex flex-col items-center rounded-lg bg-gray-50 p-2">
-                          <span className="text-[10px] font-medium uppercase tracking-wider text-gray-500">kvCORE</span>
-                          <div className="mt-1"><ComparisonCell value={row.kv} /></div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })()}
-
-          <p className="mt-6 text-center text-sm text-gray-500">
-            Pricing and features as of {new Date().getFullYear()}. Competitor info from public pricing pages.
-          </p>
         </div>
       </section>
 
@@ -1614,7 +1469,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               Log in and see what ListingFlare did for you
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-base text-gray-500">
-              Every response time, every showing booked, every follow-up sent. Visible in one place so you actually know your software is working.
+              Every response time, every showing request, every reply sent. Visible in one place so you actually know your software is working.
             </p>
             <p className="mx-auto mt-2 max-w-2xl text-xs text-gray-500">
               Sample dashboard with illustrative numbers. Your dashboard shows your own leads and response times.
