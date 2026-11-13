@@ -4,7 +4,7 @@ export const article: BlogPost = {
   slug: "best-showing-scheduling-software-real-estate",
   title: "Best Showing Scheduling Software for Real Estate (2026)",
   description:
-    "Showing coordination, appointment booking and property-page showing requests are different jobs. How to tell which you need, when your MLS tool or a calendar link is enough, and how ListingFlare handles requests.",
+    "Showing coordination, appointment booking and property-page requests are different jobs. Which one you need, and how ListingFlare handles showing requests.",
   date: "2026-10-25",
   updated: "2026-11-12",
   author: "ListingFlare Team",
