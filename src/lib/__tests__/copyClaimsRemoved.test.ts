@@ -27,6 +27,7 @@ const REMOVED: Array<[string, RegExp]> = [
   ["unsourced 47-minute industry benchmark", /47-minute|47 minutes|industryAvg/i],
   ["unsupported publishing-time promise", /publishing takes a few minutes/i],
   ["24-hour contact promise", /in touch within 24 hours|will be in touch shortly/i],
+  ["unverified Zillow before/after block", /On Zillow, you lose the lead|Leads sold off|Your listing, their rules/i],
   ["threaded inbox for buyer replies", /Replies come back into a threaded inbox/i],
 ];
 
@@ -60,6 +61,18 @@ test("P7 wording does not promise a time", () => {
   const p = read("app/single-property-website-builder/page.tsx");
   assert.match(p, /you create a listing with its details and photos/);
   assert.doesNotMatch(p, /takes a few minutes|short form/);
+});
+
+test("the cost-to-sell article presents a hypothetical scenario, says commissions are negotiable, and keeps no unsupported averages", () => {
+  const a = read("content/articles/how-much-does-it-cost-to-sell-a-house.ts");
+  assert.match(a, /hypothetical/i);
+  assert.match(a, /negotiable/i);
+  assert.doesNotMatch(a, /8 to 10 percent|8–10%|over 95 percent|consistently sell faster|tend to sell for less|typically 15 to 20|15 to 20 percent/i);
+  // the worked example adds up: 5% + 2% of $400,000 + $5,000 = $33,000
+  assert.equal(0.05 * 400000 + 0.02 * 400000 + 5000, 33000);
+  assert.match(a, /\$33,000/);
+  // IRS material stays in its own tax section with sources
+  assert.match(a, /irs\.gov\/taxtopics\/tc701/);
 });
 
 test("no test in this file reached the network", () => {
