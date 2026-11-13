@@ -43,8 +43,6 @@ export interface SaveCustomerResult {
 
 export interface CheckoutDeps {
   getUser(): Promise<CheckoutUser | null>;
-  // Operational pause: when true, new checkouts get a 503 and nothing else is touched.
-  paused?(): boolean;
   getProfile(userId: string): Promise<CheckoutProfile | null>;
   createCustomer(input: { userId: string; email?: string; name?: string }): Promise<{ id: string }>;
   // Must update ONLY the row whose id is userId and report which rows it changed.
