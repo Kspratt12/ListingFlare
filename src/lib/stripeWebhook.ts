@@ -56,7 +56,8 @@ export interface WebhookDeps {
   // Applies fields to ONE profile; when onlyIfSubscriptionId is given the update matches only if the stored id equals it.
   updateProfile(userId: string, fields: Record<string, unknown>, onlyIfSubscriptionId?: string | null): Promise<{ error: boolean; rows: number }>;
   // Optional checkout-reservation bookkeeping (migration 042). Failures are logged, never fail the webhook: the lease heals state.
-  markCheckoutCompleted?(sessionId: string, subscriptionId: string): Promise<void>;
+  // Returns false when the paid session is not a recorded attempt (an orphan).
+  markCheckoutCompleted?(sessionId: string, subscriptionId: string): Promise<boolean | void>;
   markCheckoutExpired?(sessionId: string): Promise<void>;
   log(level: "info" | "warn" | "error", message: string, detail?: Record<string, unknown>): void;
 }
@@ -95,7 +96,10 @@ function notOurs(deps: WebhookDeps, sub: SubscriptionView, eventId: string): Web
 
 async function markCompleted(deps: WebhookDeps, sessionId: string | undefined, subscriptionId: string) {
   if (!sessionId || !deps.markCheckoutCompleted) return;
-  try { await deps.markCheckoutCompleted(sessionId, subscriptionId); } catch { deps.log("warn", "Could not mark a checkout attempt completed", { subscriptionId }); }
+  try {
+    const recorded = await deps.markCheckoutCompleted(sessionId, subscriptionId);
+    if (recorded === false) deps.log("error", "ORPHAN CHECKOUT PAID: the completed session was not a recorded checkout attempt (created by a request that lost its reservation). Check for a duplicate subscription.", { sessionId, subscriptionId });
+  } catch { deps.log("warn", "Could not mark a checkout attempt completed", { subscriptionId }); }
 }
 
 export async function processStripeEvent(event: WebhookEventView, deps: WebhookDeps): Promise<WebhookOutcome> {
@@ -115,7 +119,13 @@ export async function processStripeEvent(event: WebhookEventView, deps: WebhookD
       if (found.error) return RETRY("profile_lookup");
       if (!found.profile) { deps.log("warn", "Checkout for an unknown profile", { eventId: event.id, subscriptionId: sub.id }); return OK({ ignored: "unknown_profile" }); }
       const existing = found.profile;
-      if (existing.stripeSubscriptionId && existing.stripeSubscriptionId !== sub.id && ["active", "trialing", "past_due"].includes(existing.status || "")) {
+      let existingIsLive = false;
+      if (existing.stripeSubscriptionId && existing.stripeSubscriptionId !== sub.id) {
+        // The stored subscription must be confirmed LIVE in Stripe; a stale (ended or missing) one does not block the new one.
+        const current = await deps.retrieveSubscription(existing.stripeSubscriptionId); // throws on transient failure => retry, no write
+        existingIsLive = !!current && current.status !== "canceled" && current.status !== "incomplete_expired";
+      }
+      if (existingIsLive) {
         deps.log("error", "DUPLICATE SUBSCRIPTION: profile already has a live subscription; the new one was NOT applied. Owner action needed (no automatic refund or cancel).", { userId, keptSubscriptionId: existing.stripeSubscriptionId, newSubscriptionId: sub.id, eventId: event.id });
         await markCompleted(deps, o.id, sub.id);
         return OK({ ignored: "duplicate_subscription" });

@@ -61,6 +61,50 @@ export async function POST() {
 
       isPricingConfigured: () => Boolean(process.env.STRIPE_MONTHLY_PRICE_ID),
 
+      paused: () => process.env.CHECKOUT_PAUSED === "on",
+
+      reconcileSubscription: async (subscriptionId) => {
+        try {
+          const s = await getStripe().subscriptions.retrieve(subscriptionId);
+          return s.status === "canceled" || s.status === "incomplete_expired" ? "ended" : "live";
+        } catch (err) {
+          const e = err as { code?: string; statusCode?: number };
+          if (e?.code === "resource_missing" || e?.statusCode === 404) return "missing"; // definitive answer
+          throw err; // network, rate limit, 5xx, auth: never treated as "missing"
+        }
+      },
+      clearSubscription: async (userId, subscriptionId) => {
+        const { data, error } = await getAdminClient()
+          .from("agent_profiles")
+          .update({ subscription_status: "canceled", stripe_subscription_id: null })
+          .eq("id", userId)
+          .eq("stripe_subscription_id", subscriptionId)
+          .select("id");
+        return !error && !!data && data.length > 0;
+      },
+
+      sweepOpenSessions: async (customerId, exceptSessionId) => {
+        const stripe = getStripe();
+        const open = await stripe.checkout.sessions.list({ customer: customerId, status: "open", limit: 100 });
+        let completedRecently = 0;
+        for (const s of open.data) {
+          if (s.id === exceptSessionId) continue;
+          try {
+            await stripe.checkout.sessions.expire(s.id);
+          } catch {
+            const cur = await stripe.checkout.sessions.retrieve(s.id);
+            if (cur.status === "complete") completedRecently++;
+          }
+        }
+        // Verify: nothing else is still open, and nothing completed in the last 35 minutes (its webhook may not have run).
+        const again = await stripe.checkout.sessions.list({ customer: customerId, status: "open", limit: 100 });
+        const stillOpen = again.data.filter((s) => s.id !== exceptSessionId).length;
+        const since = Math.floor(Date.now() / 1000) - 35 * 60;
+        const done = await stripe.checkout.sessions.list({ customer: customerId, status: "complete", limit: 10, created: { gte: since } });
+        completedRecently += done.data.filter((s) => s.id !== exceptSessionId).length;
+        return { stillOpen, completedRecently };
+      },
+
       expireOpenSessions: async (customerId) => {
         const open = await getStripe().checkout.sessions.list({ customer: customerId, status: "open", limit: 10 });
         for (const s of open.data) await getStripe().checkout.sessions.expire(s.id);
@@ -72,6 +116,7 @@ export async function POST() {
         const expiresAt = Math.floor(Date.now() / 1000) + 31 * 60; // Stripe minimum is 30 minutes
         const session = await getStripe().checkout.sessions.create({
           expires_at: expiresAt,
+          client_reference_id: attemptId, // ties a paid session to its reservation row
           customer: customerId,
           mode: "subscription",
           line_items: [

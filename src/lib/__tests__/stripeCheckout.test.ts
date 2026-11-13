@@ -211,9 +211,14 @@ test("the user id used for the save always comes from the verified session user"
 const srcDir = process.env.LF_SRC_DIR as string;
 const read = (rel: string) => fs.readFileSync(path.join(srcDir, rel), "utf8").replace(/\r/g, "");
 
-test("checkout route: the only agent_profiles write is the admin-client, id-scoped, row-confirming save", () => {
+test("checkout route: the only agent_profiles writes are admin-client, id-scoped and row-confirming (customer id save; conditional stale-subscription clear)", () => {
   const route = read("app/api/stripe/checkout/route.ts");
-  assert.equal((route.match(/\.update\(/g) || []).length, 1, "exactly one update call");
+  // update() calls: the customer id save, and the conditional clear of a stale subscription id (reservation work).
+  assert.equal((route.match(/\.update\(/g) || []).length, 2, "exactly two update calls");
+  assert.match(
+    route,
+    /getAdminClient\(\)\s*\.from\("agent_profiles"\)\s*\.update\(\{ subscription_status: "canceled", stripe_subscription_id: null \}\)\s*\.eq\("id", userId\)\s*\.eq\("stripe_subscription_id", subscriptionId\)\s*\.select\("id"\)/
+  );
   assert.match(
     route,
     /getAdminClient\(\)\s*\.from\("agent_profiles"\)\s*\.update\(\{ stripe_customer_id: customerId \}\)\s*\.eq\("id", userId\)\s*\.select\("id"\)/

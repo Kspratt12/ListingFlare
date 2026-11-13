@@ -50,11 +50,25 @@ export interface CheckoutDeps {
   // Optional. Expires this customer's other OPEN Checkout Sessions so two sessions cannot both be paid (reduces, does not
   // eliminate, duplicate subscriptions: two attempts created at the same instant can still both be open).
   expireOpenSessions?(customerId: string): Promise<void>;
+  // Operational pause: when true, new checkouts get a 503 and nothing else is touched.
+  paused?(): boolean;
+  // Reconcile a stored subscription id with Stripe's CURRENT state. Throws on any transient failure (never guess).
+  //   "live"    - exists and not ended (active, trialing, past_due, unpaid, paused, incomplete): blocks checkout.
+  //   "ended"   - canceled / incomplete_expired: the stored id is stale.
+  //   "missing" - Stripe answered definitively that no such subscription exists for this account and mode.
+  reconcileSubscription?(subscriptionId: string): Promise<"live" | "ended" | "missing">;
+  // Clear a stale id, only if the stored id still equals subscriptionId (conditional). Returns true when a row changed.
+  clearSubscription?(userId: string, subscriptionId: string): Promise<boolean>;
+  // Reservation path: expire this customer's open sessions, then VERIFY. stillOpen > 0 = an orphan could not be confirmed expired.
+  // completedRecently > 0 = a session completed (or is completing) within the last ~35 minutes whose webhook may not have run.
+  sweepOpenSessions?(customerId: string, exceptSessionId?: string): Promise<SweepResult>;
   createCheckoutSession(input: { customerId: string; userId: string; attemptId?: string }): Promise<{ url: string | null; sessionId?: string; expiresAt?: Date }>;
   // Optional durable one-active-checkout-per-agent reservation (migration 042). When present it is authoritative.
   reservation?: CheckoutReservation;
   log(message: string, detail?: unknown): void;
 }
+
+export interface SweepResult { stillOpen: number; completedRecently: number }
 
 export interface ClaimResult {
   outcome: "claimed" | "existing_open" | "in_progress";
@@ -114,6 +128,10 @@ export async function processCheckoutRequest(deps: CheckoutDeps): Promise<Checko
       return { status: 401, body: { error: "Unauthorized" } };
     }
 
+    if (deps.paused?.()) {
+      return { status: 503, body: { error: BILLING_UNAVAILABLE_MESSAGE } };
+    }
+
     const profile = await deps.getProfile(user.id);
     if (!profile) {
       return { status: 404, body: { error: "Profile not found" } };
@@ -123,7 +141,26 @@ export async function processCheckoutRequest(deps: CheckoutDeps): Promise<Checko
     // Existing subscribers (including an unpaid or payment-pending one) manage their plan in the billing portal. A canceled
     // subscription has its id cleared by the webhook, so resubscribing is allowed.
     if (profile.stripe_subscription_id) {
-      return { status: 409, body: { error: "You already have a subscription. Manage it from the billing page." } };
+      if (!deps.reconcileSubscription) {
+        return { status: 409, body: { error: "You already have a subscription. Manage it from the billing page." } };
+      }
+      let verdict: "live" | "ended" | "missing";
+      try {
+        verdict = await deps.reconcileSubscription(profile.stripe_subscription_id);
+      } catch (err) {
+        // A temporary Stripe failure must neither clear the id nor allow a second subscription.
+        deps.log("Could not verify the stored subscription; checkout refused, id kept", { userId: user.id, subscriptionId: profile.stripe_subscription_id, reason: err instanceof Error ? err.message : "unknown" });
+        return { status: 503, body: { error: BILLING_UNAVAILABLE_MESSAGE } };
+      }
+      if (verdict === "live") {
+        return { status: 409, body: { error: "You already have a subscription. Manage it from the billing page." } };
+      }
+      // Stale (ended) or definitively missing: clear exactly this id so resubscribing is possible. Conditional on the stored id.
+      const cleared = deps.clearSubscription ? await deps.clearSubscription(user.id, profile.stripe_subscription_id) : false;
+      deps.log("Stale stored subscription id", { userId: user.id, subscriptionId: profile.stripe_subscription_id, verdict, cleared });
+      if (!deps.clearSubscription) return { status: 409, body: { error: "You already have a subscription. Manage it from the billing page." } };
+      // The conditional clear changed nothing: the profile changed under us (for example a webhook just applied a subscription). Do not proceed.
+      if (!cleared) return { status: 409, body: { error: CHECKOUT_IN_PROGRESS_MESSAGE } };
     }
 
     let customerId = profile.stripe_customer_id;
@@ -161,6 +198,7 @@ export async function processCheckoutRequest(deps: CheckoutDeps): Promise<Checko
   }
 }
 
+export const CHECKOUT_PAYMENT_PROCESSING_MESSAGE = "A payment for this account may still be processing. Please wait a few minutes and check your billing page before trying again.";
 export const CHECKOUT_IN_PROGRESS_MESSAGE = "Your checkout is being prepared. Please wait a few seconds and try again.";
 
 // The durable path. Order: claim (atomic, one active attempt per agent) -> expire any orphaned open Stripe sessions for the
@@ -184,7 +222,27 @@ async function reservedCheckout(deps: CheckoutDeps, userId: string, customerId: 
   }
   const attemptId = claim.attemptId;
 
-  if (deps.expireOpenSessions) {
+  // Crash/takeover safety: before opening a payable session, confirm that no earlier session for this customer is still payable
+  // and none has completed (or is completing) whose webhook has not run. If that cannot be confirmed, do NOT open another.
+  if (deps.sweepOpenSessions) {
+    let sweep: SweepResult;
+    try {
+      sweep = await deps.sweepOpenSessions(customerId);
+    } catch (err) {
+      deps.log("Could not confirm earlier checkout sessions are closed; no new session opened", { customerId, reason: err instanceof Error ? err.message : "unknown" });
+      try { await res.fail(attemptId); } catch { /* the lease lapses on its own */ }
+      return { status: 503, body: { error: BILLING_UNAVAILABLE_MESSAGE } };
+    }
+    if (sweep.completedRecently > 0) {
+      try { await res.fail(attemptId); } catch { /* the lease lapses on its own */ }
+      return { status: 409, body: { error: CHECKOUT_PAYMENT_PROCESSING_MESSAGE } };
+    }
+    if (sweep.stillOpen > 0) {
+      deps.log("An earlier checkout session could not be confirmed expired; no new session opened", { customerId, stillOpen: sweep.stillOpen });
+      try { await res.fail(attemptId); } catch { /* the lease lapses on its own */ }
+      return { status: 503, body: { error: BILLING_UNAVAILABLE_MESSAGE } };
+    }
+  } else if (deps.expireOpenSessions) {
     try { await deps.expireOpenSessions(customerId); } catch (err) {
       deps.log("Could not expire earlier open checkout sessions", { customerId, reason: err instanceof Error ? err.message : "unknown" });
     }
@@ -210,9 +268,16 @@ async function reservedCheckout(deps: CheckoutDeps, userId: string, customerId: 
   if (!recorded) {
     // Our claim was swept (slow request) or the write failed: this session is not owned, so it must not stay payable.
     try { await res.expireSession(session.sessionId); } catch (err) {
-      deps.log("Could not expire an unowned checkout session", { sessionId: session.sessionId, reason: err instanceof Error ? err.message : "unknown" });
+      deps.log("ORPHAN CHECKOUT SESSION may remain payable until it expires on its own (about 31 minutes). If it is paid the webhook will flag it.", { attemptId, sessionId: session.sessionId, reason: err instanceof Error ? err.message : "unknown" });
     }
     return { status: 409, body: { error: CHECKOUT_IN_PROGRESS_MESSAGE } };
+  }
+  // Best-effort second sweep: an orphan created by a slow predecessor AFTER the first sweep is closed here if it already exists.
+  if (deps.sweepOpenSessions) {
+    try {
+      const after = await deps.sweepOpenSessions(customerId, session.sessionId);
+      if (after.stillOpen > 0) deps.log("ORPHAN CHECKOUT SESSION still open next to the reserved one; the webhook will flag it if paid", { customerId, stillOpen: after.stillOpen, keptSessionId: session.sessionId });
+    } catch { /* best effort */ }
   }
   return { status: 200, body: { url: session.url } };
 }

@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
           return { error: !!error, rows: data?.length ?? 0 };
         },
         ...(process.env.CHECKOUT_RESERVATION === "on" ? {
-          markCheckoutCompleted: async (sessionId: string, subscriptionId: string) => { await supabase.rpc("complete_checkout_session", { p_session: sessionId, p_subscription: subscriptionId }); },
+          markCheckoutCompleted: async (sessionId: string, subscriptionId: string) => { const { data } = await supabase.rpc("complete_checkout_session", { p_session: sessionId, p_subscription: subscriptionId }); return data === true; },
           markCheckoutExpired: async (sessionId: string) => { await supabase.rpc("expire_checkout_session", { p_session: sessionId }); },
         } : {}),
         // Ids and reasons only: no emails, names or payloads.

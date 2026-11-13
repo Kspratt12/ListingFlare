@@ -92,11 +92,17 @@ returns void language sql security definer set search_path = public as $$
 $$;
 
 -- Webhook side: mark by Stripe session id.
+-- Returns TRUE when the session belonged to a recorded, still-active attempt. FALSE means the paid session is NOT a recorded
+-- attempt (an orphan created by a request that lost its claim): the webhook logs that loudly for the owner.
 create or replace function public.complete_checkout_session(p_session text, p_subscription text)
-returns void language sql security definer set search_path = public as $$
+returns boolean language plpgsql security definer set search_path = public as $$
+declare v_n int;
+begin
   update public.checkout_attempts set status = 'completed', completed_subscription_id = p_subscription, updated_at = now()
    where stripe_session_id = p_session and status in ('open', 'creating');
-$$;
+  get diagnostics v_n = row_count;
+  return v_n > 0;
+end $$;
 
 create or replace function public.expire_checkout_session(p_session text)
 returns void language sql security definer set search_path = public as $$
