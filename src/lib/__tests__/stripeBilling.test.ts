@@ -71,7 +71,7 @@ test("access is granted only from a signed Stripe event: the success page parame
 });
 
 test("the intended price is accepted and an unrelated product is excluded; an event for an old subscription cannot replace the current one", async () => {
-  const w = webhookWorld({ sub_old: S("sub_old", "canceled"), sub_cur: S("sub_cur", "active"), sub_x: S("sub_x", "active", "price_other") }, { id: "u1", sub: "sub_cur", status: "active" });
+  const w = webhookWorld({ sub_old: S("sub_old", "canceled"), sub_cur: S("sub_cur", "active"), sub_x: { ...S("sub_x", "active", "price_other"), userIdMeta: null } }, { id: "u1", sub: "sub_cur", status: "active" });
   assert.equal((await processStripeEvent({ id: "a", type: "customer.subscription.deleted", object: { id: "sub_old" } }, w.deps)).body.ignored, "no_matching_profile");
   assert.equal((await processStripeEvent({ id: "b", type: "customer.subscription.updated", object: { id: "sub_x" } }, w.deps)).body.ignored, "other_product");
   assert.equal((await processStripeEvent({ id: "c", type: "customer.subscription.updated", object: { id: "sub_cur" } }, w.deps)).body.applied, "active");
@@ -121,10 +121,12 @@ test("RESIDUAL RISK, stated plainly: two attempts created at the same instant ca
   assert.ok(w.logs.some((l) => l.level === "error" && /DUPLICATE/.test(l.message)), "logged for the owner; billing for sub_2 is NOT stopped by this code");
 });
 
-test("a second checkout on a different ListingFlare price is not recognised as ListingFlare's by the single-price filter (only one price is configured today)", async () => {
+test("a second ListingFlare-marked checkout on a DIFFERENT price is never silent: not applied, logged at error level for investigation", async () => {
   const w = webhookWorld({ sub_1: S("sub_1", "active"), sub_2: S("sub_2", "active", "price_listingflare_annual") }, { id: "u1", sub: "sub_1", status: "active" });
   const r = await processStripeEvent(done("sub_2"), w.deps);
-  assert.equal(r.body.ignored, "other_product"); // neither applied nor logged as a duplicate: a gap if a second price is ever sold
+  assert.equal(r.body.ignored, "unknown_price");
+  assert.ok(w.logs.some((l) => l.level === "error" && /UNRECOGNISED PRICE/.test(l.message)));
+  assert.equal(w.row.sub, "sub_1");
 });
 
 test("if expiring earlier sessions fails, checkout still proceeds (and logs) rather than blocking a paying customer", async () => {

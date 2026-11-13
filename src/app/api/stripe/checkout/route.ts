@@ -66,10 +66,12 @@ export async function POST() {
         for (const s of open.data) await getStripe().checkout.sessions.expire(s.id);
       },
 
-      createCheckoutSession: async ({ customerId, userId }) => {
+      createCheckoutSession: async ({ customerId, userId, attemptId }) => {
         // Create checkout session with monthly subscription
         const priceId = process.env.STRIPE_MONTHLY_PRICE_ID as string;
+        const expiresAt = Math.floor(Date.now() / 1000) + 31 * 60; // Stripe minimum is 30 minutes
         const session = await getStripe().checkout.sessions.create({
+          expires_at: expiresAt,
           customer: customerId,
           mode: "subscription",
           line_items: [
@@ -83,9 +85,26 @@ export async function POST() {
           subscription_data: {
             metadata: { supabase_user_id: userId },
           },
-        });
-        return { url: session.url };
+        }, attemptId ? { idempotencyKey: "checkout-" + attemptId } : undefined);
+        return { url: session.url, sessionId: session.id, expiresAt: new Date(expiresAt * 1000) };
       },
+
+      reservation: process.env.CHECKOUT_RESERVATION === "on" ? {
+        // Requires migration 042. Off by default so the code can ship before the migration is applied.
+        claim: async (agentId, customerId, priceId) => {
+          const { data, error } = await getAdminClient().rpc("claim_checkout_attempt", { p_agent: agentId, p_customer: customerId, p_price: priceId });
+          if (error || !data || !data[0]) throw new Error(error?.code || "claim_failed");
+          const r = data[0] as { outcome: "claimed" | "existing_open" | "in_progress"; attempt_id?: string; session_id?: string | null; checkout_url?: string | null };
+          return { outcome: r.outcome, attemptId: r.attempt_id, sessionId: r.session_id, url: r.checkout_url };
+        },
+        record: async (attemptId, sessionId, url, expiresAt) => {
+          const { data, error } = await getAdminClient().rpc("record_checkout_session", { p_attempt: attemptId, p_session: sessionId, p_url: url, p_session_expires_at: expiresAt.toISOString() });
+          if (error) throw new Error(error.code || "record_failed");
+          return data === true;
+        },
+        fail: async (attemptId) => { await getAdminClient().rpc("fail_checkout_attempt", { p_attempt: attemptId }); },
+        expireSession: async (sessionId) => { await getStripe().checkout.sessions.expire(sessionId); },
+      } : undefined,
 
       log: (message, detail) => console.error(message, detail),
     });

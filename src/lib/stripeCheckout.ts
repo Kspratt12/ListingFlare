@@ -50,8 +50,24 @@ export interface CheckoutDeps {
   // Optional. Expires this customer's other OPEN Checkout Sessions so two sessions cannot both be paid (reduces, does not
   // eliminate, duplicate subscriptions: two attempts created at the same instant can still both be open).
   expireOpenSessions?(customerId: string): Promise<void>;
-  createCheckoutSession(input: { customerId: string; userId: string }): Promise<{ url: string | null }>;
+  createCheckoutSession(input: { customerId: string; userId: string; attemptId?: string }): Promise<{ url: string | null; sessionId?: string; expiresAt?: Date }>;
+  // Optional durable one-active-checkout-per-agent reservation (migration 042). When present it is authoritative.
+  reservation?: CheckoutReservation;
   log(message: string, detail?: unknown): void;
+}
+
+export interface ClaimResult {
+  outcome: "claimed" | "existing_open" | "in_progress";
+  attemptId?: string;
+  sessionId?: string | null;
+  url?: string | null;
+}
+
+export interface CheckoutReservation {
+  claim(agentId: string, customerId: string, priceId: string): Promise<ClaimResult>; // atomic; may throw
+  record(attemptId: string, sessionId: string, url: string | null, expiresAt: Date): Promise<boolean>; // false = the claim was swept
+  fail(attemptId: string): Promise<void>; // release a claim whose session was never created
+  expireSession(sessionId: string): Promise<void>; // expire a Stripe session this caller no longer owns
 }
 
 export interface CheckoutOutcome {
@@ -104,8 +120,9 @@ export async function processCheckoutRequest(deps: CheckoutDeps): Promise<Checko
     }
 
     // A live subscription already exists: starting another checkout could bill the customer twice.
-    // Existing subscribers manage their plan in the billing portal. (A canceled or unpaid subscription may resubscribe.)
-    if (profile.stripe_subscription_id && ["active", "past_due", "trialing"].includes(profile.subscription_status || "")) {
+    // Existing subscribers (including an unpaid or payment-pending one) manage their plan in the billing portal. A canceled
+    // subscription has its id cleared by the webhook, so resubscribing is allowed.
+    if (profile.stripe_subscription_id) {
       return { status: 409, body: { error: "You already have a subscription. Manage it from the billing page." } };
     }
 
@@ -128,6 +145,8 @@ export async function processCheckoutRequest(deps: CheckoutDeps): Promise<Checko
       return { status: 500, body: { error: "Stripe pricing not configured" } };
     }
 
+    if (deps.reservation) return reservedCheckout(deps, user.id, customerId);
+
     if (deps.expireOpenSessions) {
       try { await deps.expireOpenSessions(customerId); } catch (err) {
         deps.log("Could not expire earlier open checkout sessions", { customerId, reason: err instanceof Error ? err.message : "unknown" });
@@ -140,4 +159,60 @@ export async function processCheckoutRequest(deps: CheckoutDeps): Promise<Checko
     deps.log("Stripe checkout error:", err);
     return { status: 500, body: { error: "Failed to create checkout session" } };
   }
+}
+
+export const CHECKOUT_IN_PROGRESS_MESSAGE = "Your checkout is being prepared. Please wait a few seconds and try again.";
+
+// The durable path. Order: claim (atomic, one active attempt per agent) -> expire any orphaned open Stripe sessions for the
+// customer (crash recovery) -> create the session with the attempt id as the idempotency key -> record it.
+async function reservedCheckout(deps: CheckoutDeps, userId: string, customerId: string): Promise<CheckoutOutcome> {
+  const res = deps.reservation as CheckoutReservation;
+  const priceId = "configured";
+  let claim: ClaimResult;
+  try {
+    claim = await res.claim(userId, customerId, priceId);
+  } catch (err) {
+    deps.log("Could not claim a checkout attempt", { userId, reason: err instanceof Error ? err.message : "unknown" });
+    return { status: 503, body: { error: BILLING_UNAVAILABLE_MESSAGE } };
+  }
+  if (claim.outcome === "existing_open") {
+    // Double click, retry, lost response, or a session already paid whose webhook has not arrived: same session, no new one.
+    return { status: 200, body: { url: claim.url ?? null } };
+  }
+  if (claim.outcome === "in_progress" || !claim.attemptId) {
+    return { status: 409, body: { error: CHECKOUT_IN_PROGRESS_MESSAGE } };
+  }
+  const attemptId = claim.attemptId;
+
+  if (deps.expireOpenSessions) {
+    try { await deps.expireOpenSessions(customerId); } catch (err) {
+      deps.log("Could not expire earlier open checkout sessions", { customerId, reason: err instanceof Error ? err.message : "unknown" });
+    }
+  }
+
+  let session: { url: string | null; sessionId?: string; expiresAt?: Date };
+  try {
+    session = await deps.createCheckoutSession({ customerId, userId, attemptId });
+  } catch (err) {
+    try { await res.fail(attemptId); } catch { /* the lease lapses on its own */ }
+    throw err;
+  }
+  if (!session.sessionId) {
+    try { await res.fail(attemptId); } catch { /* the lease lapses on its own */ }
+    return { status: 503, body: { error: BILLING_UNAVAILABLE_MESSAGE } };
+  }
+  let recorded = false;
+  try {
+    recorded = await res.record(attemptId, session.sessionId, session.url, session.expiresAt ?? new Date(Date.now() + 30 * 60_000));
+  } catch (err) {
+    deps.log("Could not record checkout session", { attemptId, sessionId: session.sessionId, reason: err instanceof Error ? err.message : "unknown" });
+  }
+  if (!recorded) {
+    // Our claim was swept (slow request) or the write failed: this session is not owned, so it must not stay payable.
+    try { await res.expireSession(session.sessionId); } catch (err) {
+      deps.log("Could not expire an unowned checkout session", { sessionId: session.sessionId, reason: err instanceof Error ? err.message : "unknown" });
+    }
+    return { status: 409, body: { error: CHECKOUT_IN_PROGRESS_MESSAGE } };
+  }
+  return { status: 200, body: { url: session.url } };
 }

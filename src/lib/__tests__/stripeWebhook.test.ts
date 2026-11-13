@@ -80,13 +80,23 @@ test("a delayed payment (incomplete) is NOT activated at checkout completion, an
 });
 
 test("events about another product in the shared Stripe account are ignored", async () => {
-  const w = world({ rows: [row({ stripe_subscription_id: "sub_x", subscription_status: "active" })], subs: { sub_x: sub("sub_x", "canceled", "u1", OTHER) } });
+  const w = world({ rows: [row({ stripe_subscription_id: "sub_x", subscription_status: "active" })], subs: { sub_x: sub("sub_x", "canceled", null, OTHER) } });
   for (const ev of [updated("sub_x"), deleted("sub_x"), checkout("sub_x"), failedInvoice("sub_x")]) {
     const r = await processStripeEvent(ev, w.deps);
     assert.equal(r.status, 200); assert.equal(r.body.ignored, "other_product", ev.type);
   }
   assert.equal(w.writes.length, 0);
   assert.equal(w.rows[0].subscription_status, "active");
+});
+
+test("a ListingFlare-marked subscription on an unrecognised price is NOT applied and NOT silent (logged at error level)", async () => {
+  const w = world({ rows: [row({ stripe_subscription_id: "sub_1", subscription_status: "active" })], subs: { sub_9: sub("sub_9", "active", "u1", OTHER) } });
+  for (const ev of [checkout("sub_9"), updated("sub_9"), deleted("sub_9")]) {
+    const r = await processStripeEvent(ev, w.deps);
+    assert.equal(r.body.ignored, "unknown_price", ev.type);
+  }
+  assert.equal(w.writes.length, 0);
+  assert.ok(w.logs.filter((l) => l.level === "error" && /UNRECOGNISED PRICE/.test(l.message)).length === 3);
 });
 
 test("non-subscription checkouts and unknown users are ignored without writing", async () => {

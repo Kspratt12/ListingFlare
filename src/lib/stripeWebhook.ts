@@ -55,6 +55,9 @@ export interface WebhookDeps {
   findProfileById(userId: string): Promise<{ profile: ProfileView | null; error: boolean }>;
   // Applies fields to ONE profile; when onlyIfSubscriptionId is given the update matches only if the stored id equals it.
   updateProfile(userId: string, fields: Record<string, unknown>, onlyIfSubscriptionId?: string | null): Promise<{ error: boolean; rows: number }>;
+  // Optional checkout-reservation bookkeeping (migration 042). Failures are logged, never fail the webhook: the lease heals state.
+  markCheckoutCompleted?(sessionId: string, subscriptionId: string): Promise<void>;
+  markCheckoutExpired?(sessionId: string): Promise<void>;
   log(level: "info" | "warn" | "error", message: string, detail?: Record<string, unknown>): void;
 }
 
@@ -69,8 +72,30 @@ export interface WebhookOutcome { status: number; body: Record<string, unknown> 
 const OK = (extra: Record<string, unknown> = {}): WebhookOutcome => ({ status: 200, body: { received: true, ...extra } });
 const RETRY = (reason: string): WebhookOutcome => ({ status: 500, body: { error: "Webhook handler failed", reason } });
 
-function ownsPrice(deps: WebhookDeps, sub: SubscriptionView): boolean {
-  return !deps.configuredPriceId || sub.priceIds.includes(deps.configuredPriceId);
+// Three cases, kept distinct:
+//   "ours"      - the configured ListingFlare price (or no price configured: old behaviour).
+//   "unrelated" - another product in the shared Stripe account (no ListingFlare marker): ignored silently.
+//   "unknown"   - carries ListingFlare's own marker (metadata.supabase_user_id, set only by our checkout) but not the configured
+//                 price: possibly a second legitimate ListingFlare price or a misconfiguration. NEVER applied and NEVER silent:
+//                 logged at error level for the owner to investigate. No additional plans are assumed.
+export type PriceClass = "ours" | "unrelated" | "unknown";
+function classify(deps: WebhookDeps, sub: SubscriptionView): PriceClass {
+  if (!deps.configuredPriceId || sub.priceIds.includes(deps.configuredPriceId)) return "ours";
+  return sub.userIdMeta ? "unknown" : "unrelated";
+}
+function notOurs(deps: WebhookDeps, sub: SubscriptionView, eventId: string): WebhookOutcome | null {
+  const c = classify(deps, sub);
+  if (c === "ours") return null;
+  if (c === "unknown") {
+    deps.log("error", "UNRECOGNISED PRICE on a ListingFlare-linked subscription: not applied; investigate (possible duplicate or second plan).", { eventId, subscriptionId: sub.id, priceIds: sub.priceIds });
+    return OK({ ignored: "unknown_price" });
+  }
+  return OK({ ignored: "other_product" });
+}
+
+async function markCompleted(deps: WebhookDeps, sessionId: string | undefined, subscriptionId: string) {
+  if (!sessionId || !deps.markCheckoutCompleted) return;
+  try { await deps.markCheckoutCompleted(sessionId, subscriptionId); } catch { deps.log("warn", "Could not mark a checkout attempt completed", { subscriptionId }); }
 }
 
 export async function processStripeEvent(event: WebhookEventView, deps: WebhookDeps): Promise<WebhookOutcome> {
@@ -82,7 +107,8 @@ export async function processStripeEvent(event: WebhookEventView, deps: WebhookD
       if (o.mode !== "subscription" || !subId) return OK({ ignored: "not_a_subscription_checkout" });
       const sub = await deps.retrieveSubscription(subId);
       if (!sub) return OK({ ignored: "subscription_not_found" });
-      if (!ownsPrice(deps, sub)) return OK({ ignored: "other_product" });
+      const skip = notOurs(deps, sub, event.id);
+      if (skip) return skip;
       const userId = sub.userIdMeta || o.metadata?.supabase_user_id || null;
       if (!userId) { deps.log("warn", "Checkout completed without a supabase_user_id", { eventId: event.id, subscriptionId: sub.id }); return OK({ ignored: "no_user" }); }
       const found = await deps.findProfileById(userId);
@@ -91,6 +117,7 @@ export async function processStripeEvent(event: WebhookEventView, deps: WebhookD
       const existing = found.profile;
       if (existing.stripeSubscriptionId && existing.stripeSubscriptionId !== sub.id && ["active", "trialing", "past_due"].includes(existing.status || "")) {
         deps.log("error", "DUPLICATE SUBSCRIPTION: profile already has a live subscription; the new one was NOT applied. Owner action needed (no automatic refund or cancel).", { userId, keptSubscriptionId: existing.stripeSubscriptionId, newSubscriptionId: sub.id, eventId: event.id });
+        await markCompleted(deps, o.id, sub.id);
         return OK({ ignored: "duplicate_subscription" });
       }
       const status = mapStripeStatus(sub.status);
@@ -101,6 +128,7 @@ export async function processStripeEvent(event: WebhookEventView, deps: WebhookD
         setup_fee_paid: status === "active" || status === "trialing",
       });
       if (res.error) return RETRY("profile_update");
+      await markCompleted(deps, o.id, sub.id);
       return OK({ applied: status });
     }
 
@@ -112,7 +140,8 @@ export async function processStripeEvent(event: WebhookEventView, deps: WebhookD
       if (!subId) return OK({ ignored: "no_subscription" });
       const sub = await deps.retrieveSubscription(subId); // current state, not the (possibly stale) payload
       if (!sub) return OK({ ignored: "subscription_not_found" });
-      if (!ownsPrice(deps, sub)) return OK({ ignored: "other_product" });
+      const skip = notOurs(deps, sub, event.id);
+      if (skip) return skip;
       const byStored = await deps.findProfileBySubscription(sub.id);
       if (byStored.error) return RETRY("profile_lookup");
       let userId = byStored.profile?.id || null;
@@ -123,7 +152,11 @@ export async function processStripeEvent(event: WebhookEventView, deps: WebhookD
         if (byId.profile && !byId.profile.stripeSubscriptionId) userId = byId.profile.id;
       }
       if (!userId) return OK({ ignored: "no_matching_profile" });
-      const fields: Record<string, unknown> = { subscription_status: mapStripeStatus(sub.status) };
+      // A subscription that ended without a 'deleted' event (for example incomplete_expired) must free the profile for a new checkout.
+      const ended = sub.status === "canceled" || sub.status === "incomplete_expired";
+      const fields: Record<string, unknown> = ended && byStored.profile
+        ? { subscription_status: "canceled", stripe_subscription_id: null }
+        : { subscription_status: mapStripeStatus(sub.status) };
       const res = await deps.updateProfile(userId, fields, byStored.profile ? sub.id : null);
       if (res.error) return RETRY("profile_update");
       return OK({ applied: fields.subscription_status });
@@ -133,13 +166,20 @@ export async function processStripeEvent(event: WebhookEventView, deps: WebhookD
       const subId = o.id || null;
       if (!subId) return OK({ ignored: "no_subscription" });
       const sub = await deps.retrieveSubscription(subId);
-      if (sub && !ownsPrice(deps, sub)) return OK({ ignored: "other_product" });
+      if (sub) { const skip = notOurs(deps, sub, event.id); if (skip) return skip; }
       const byStored = await deps.findProfileBySubscription(subId);
       if (byStored.error) return RETRY("profile_lookup");
       if (!byStored.profile) return OK({ ignored: "no_matching_profile" }); // an old/other subscription: never touch a newer one
       const res = await deps.updateProfile(byStored.profile.id, { subscription_status: "canceled", stripe_subscription_id: null }, subId);
       if (res.error) return RETRY("profile_update");
       return OK({ applied: "canceled" });
+    }
+
+    case "checkout.session.expired": {
+      if (typeof o.id === "string" && deps.markCheckoutExpired) {
+        try { await deps.markCheckoutExpired(o.id); } catch { deps.log("warn", "Could not mark a checkout attempt expired", { eventId: event.id }); }
+      }
+      return OK({ applied: "checkout_expired" });
     }
 
     default:
