@@ -78,7 +78,7 @@ export const article: BlogPost = {
 
 <p>Here is what makes it different from everything else on this list: the chatbot is trained on your listing details. A buyer asks &ldquo;Does this home have a pool?&rdquo; and gets an instant, accurate answer. Then the chatbot captures their name, email, and phone number before they leave. That lead goes directly to your dashboard with the full conversation attached.</p>
 
-<p>You also get automatic follow-up emails, so if a buyer visits your page but does not fill out a form, the system re-engages them. The analytics dashboard shows you exactly who visited, how long they stayed, and what they looked at.</p>
+<p>The analytics dashboard shows you exactly who visited, how long they stayed, and what they looked at.</p>
 
 <h3>Key Features</h3>
 
@@ -317,7 +317,7 @@ export const article: BlogPost = {
 <tbody>
 <tr><td>Pricing</td><td>$150/mo (unlimited listings)</td><td>From $24/mo (1 active listing); $49/mo for 5</td><td>From $9/mo (1 site); $29/mo for 10</td><td>Not verified</td><td>Free tier; from $12/mo (1 property); $29/mo for 5</td><td>Not verified</td><td>Not verified (full site)</td></tr>
 <tr><td>AI Chatbot for Lead Engagement</td><td>Yes, AI chatbot on every page that answers buyer questions 24/7</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
-<tr><td>Automated Follow-Up</td><td>Yes, automatic follow-up emails</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Basic CRM (manual follow-up)</td></tr>
+<tr><td>Automated Follow-Up</td><td>Instant AI reply to each new lead; later follow-ups are manual</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Basic CRM (manual follow-up)</td></tr>
 <tr><td>Design Quality</td><td>Modern, clean, mobile-optimized</td><td>Best-in-class luxury templates</td><td>Clean but dated</td><td>Clean, professional</td><td>Functional but dated</td><td>Basic</td><td>Professional (full site templates)</td></tr>
 <tr><td>3D Tour / Virtual Tour Integration</td><td>Yes (Matterport, YouTube, custom embed)</td><td>Yes (Matterport, iGuide, native)</td><td>Limited</td><td>Limited (iFrame workaround)</td><td>Limited</td><td>No</td><td>Yes (through IDX and embeds)</td></tr>
 <tr><td>Analytics Dashboard</td><td>Detailed (views, time on page, lead source, chatbot engagement)</td><td>Basic view counts</td><td>Basic view counts</td><td>Basic</td><td>Basic</td><td>None</td><td>Moderate (site-wide analytics)</td></tr>

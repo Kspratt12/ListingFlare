@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "Comparing the best PropertySimple alternatives for real estate agents, with pricing, features and which tool fits your listing marketing needs.",
   date: "2026-03-27",
+  updated: "2026-11-13",
   author: "ListingFlare Team",
   category: "Listing Marketing",
   keywords: [
@@ -74,7 +75,7 @@ export const article: BlogPost = {
 
 <p>The chatbot is what separates ListingFlare from everything else on this list. It is trained on your listing details - square footage, bedroom count, neighborhood info, HOA fees, school districts, and anything else you provide. When a buyer asks a question at 11 PM, the chatbot answers accurately and captures their contact information before they leave the page. The lead goes directly to your dashboard with the full conversation attached.</p>
 
-<p>Beyond the chatbot, you get automatic follow-up emails for leads who visit but do not convert immediately, an analytics dashboard that shows visitor behavior and engagement, and the ability to share listing pages via QR codes, text, email, and social media. For a deeper look at AI-powered marketing tools, check out our <a href="/blog/best-ai-tools-real-estate-marketing">guide to the best AI tools for real estate marketing</a>.</p>
+<p>Beyond the chatbot, you get an instant AI reply to new leads, an analytics dashboard that shows visitor behavior and engagement, and the ability to share listing pages via QR codes, text, email, and social media. For a deeper look at AI-powered marketing tools, check out our <a href="/blog/best-ai-tools-real-estate-marketing">guide to the best AI tools for real estate marketing</a>.</p>
 
 <div class="pros-cons">
 <div class="pros-card">

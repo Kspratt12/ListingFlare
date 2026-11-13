@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "A simple real estate lead follow-up sequence for days 1, 3 and 7 with copy-and-paste email and text templates, plus what to avoid and rules to check.",
   date: "2026-10-25",
+  updated: "2026-11-13",
   author: "ListingFlare Team",
   category: "Lead Generation",
   keywords: [
@@ -84,7 +85,7 @@ export const article: BlogPost = {
 <h2>Automating the Sequence With ListingFlare</h2>
 <p>Doing this by hand is fine for a few leads and hard to keep up when a listing is busy. When someone inquires through a ListingFlare listing page or signs in at an open house, ListingFlare creates the lead, emails you a notification, and sends an AI-written first reply right away unless you have approval mode on to review messages first.</p>
 
-<p>It also schedules a day 1, day 3 and day 7 follow-up email sequence, with a separate sequence for people who have been to a showing. The messages are AI-written, so review how they sound and make sure they match how you work. You can also reply to leads yourself from the inbox.</p>
+<p>The later follow-ups (day 1, day 3, day 7 and after a showing) are yours to send; the templates above are written for that. The first reply is AI-written, so review how it sounds and make sure it matches how you work. You can also reply to leads yourself from the inbox.</p>
 
 <p>For more on keeping leads from slipping away, see <a href="/blog/how-to-stop-losing-leads-to-zillow">how to stop losing leads to Zillow</a>, <a href="/blog/how-listing-agents-capture-buyer-leads">how listing agents capture buyer leads</a>, <a href="/blog/lead-scoring-criteria-real-estate-agents">lead scoring criteria</a> and our <a href="/blog/open-house-follow-up">open house follow-up templates</a>.</p>
 
