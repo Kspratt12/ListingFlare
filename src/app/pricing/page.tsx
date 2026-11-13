@@ -88,7 +88,7 @@ const featureGroups = [
       "3-step date, time, and info flow (no Calendly needed)",
       "Automatic .ics calendar invites in confirmations",
       "Showing reminder emails to buyers",
-      "Google Calendar 2-way sync (optional)",
+      "Google Calendar events for confirmed showings (optional)",
       "Manual showing creation for phone or text bookings",
       "Edit, reschedule, or cancel any showing",
       "Showings page grouped by date",
