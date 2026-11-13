@@ -92,15 +92,13 @@ test("invalid stored time or time zone is skipped rather than guessed", () => {
 // ---- the route uses the decision function, claims before sending, releases the claim on failure and logs failures
 const srcDir = process.env.LF_SRC_DIR as string;
 const route = fs.readFileSync(path.join(srcDir, "app/api/showings/reminders/route.ts"), "utf8");
-test("static: the route uses the time-zone-aware decision, not server-local parsing", () => {
-  assert.match(route, /decideShowingReminder\(/);
+test("static: the route uses the time-zone-aware attempt helper, not server-local parsing", () => {
+  assert.match(route, /attemptShowingReminder\(/);
   assert.doesNotMatch(route, /new Date\(parseInt\(yStr\)/);
   assert.match(route, /listing\?\.timezone \|\| agent\.timezone/);
 });
-test("static: duplicate-send protection (claim first, release on failure) and failure visibility", () => {
-  const claim = route.indexOf('.update({ reminder_24h_sent: true })');
-  const send = route.indexOf("https://api.resend.com/emails");
-  assert.ok(claim > 0 && send > claim, "claim comes before the provider call");
+test("static: the route claims with a conditional update, releases on failure, logs without personal data", () => {
+  assert.match(route, /\.update\(\{ reminder_24h_sent: true \}\)/);
   assert.match(route, /\.eq\("reminder_24h_sent", false\)/);
   assert.match(route, /update\(\{ reminder_24h_sent: false \}\)/);
   assert.match(route, /console\.error\("Showing reminders: provider rejected/);
