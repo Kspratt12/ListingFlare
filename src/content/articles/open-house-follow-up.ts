@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "How to follow up after an open house: a simple timeline, email and text templates for visitors with and without an agent, and what to avoid.",
   date: "2026-10-25",
+  updated: "2026-11-13",
   author: "ListingFlare Team",
   category: "Open Houses",
   keywords: [
@@ -77,7 +78,6 @@ export const article: BlogPost = {
 <li>Creates a lead tagged as an open house sign-in</li>
 <li>Emails you a notification about the new lead</li>
 <li>Drafts an AI reply to the visitor, which is sent right away unless you turn on approval mode to review messages first</li>
-<li>Schedules a follow-up email sequence for day 1, day 3 and day 7</li>
 </ul>
 <p>You can still send your own personal notes on top of that. Compare the sign-in options in <a href="/blog/open-house-sign-in-sheet-vs-qr-code">sign-in sheet vs QR code</a>, get ideas in <a href="/blog/open-house-ideas-to-attract-more-buyers">open house ideas</a>, and see our <a href="/blog/open-house-flyer-generator">open house flyer generator</a> for a flyer with a QR code.</p>
 

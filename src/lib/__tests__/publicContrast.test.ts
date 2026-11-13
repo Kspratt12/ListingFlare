@@ -54,13 +54,12 @@ test("pricing page: the trial reassurance under the main button and both buttons
   need("bottom button hover", WHITE, hexOf(cta![2]));
 });
 
-test("homepage: the gold step labels and the $150/mo labels reach 4.5:1 on the backgrounds the review measured", () => {
+test("homepage: the gold step labels reach 4.5:1 on the backgrounds the review measured", () => {
   const h = src("app/HomeClient.tsx");
   const step = classOf(h, /<span className="([^"]*)">Step \{item\.step\}<\/span>/).split(/\s+/).find((t) => t.startsWith("text-brand-"))!;
   for (const bg of [WHITE, TAILWIND_GRAY["50"]]) need("step label", hexOf(step), bg);
-  const prices: string[] = Array.from(h.matchAll(/<div className="([^"]*)">\$150\/mo<\/div>/g)).map((m) => m[1].split(/\s+/).find((t: string) => t.startsWith("text-brand-"))!);
-  assert.equal(prices.length, 2);
-  for (const t of prices) for (const bg of [WHITE, TAILWIND_GRAY["50"]]) need("price label", hexOf(t), bg);
+  // The $150/mo labels were in the competitor comparison table, which was removed; nothing else renders them in that style.
+  assert.equal(Array.from(h.matchAll(/<div className="([^"]*)">\$150\/mo<\/div>/g)).length, 0);
 });
 
 test("homepage dark sections: the three grey lines reach 4.5:1 on the near-black background", () => {

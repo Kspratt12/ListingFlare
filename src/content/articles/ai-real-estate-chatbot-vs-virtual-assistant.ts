@@ -6,6 +6,7 @@ export const article: BlogPost = {
   description:
     "AI real estate chatbot or a human virtual assistant? What each does, what each costs you in setup and oversight, where they overlap, and how to choose.",
   date: "2026-10-25",
+  updated: "2026-11-13",
   author: "ListingFlare Team",
   category: "Lead Management",
   keywords: [
@@ -89,7 +90,7 @@ export const article: BlogPost = {
 <h2>How ListingFlare's Chat Assistant Works</h2>
 <p>ListingFlare adds an AI chat assistant to each listing page. It answers from the details of that listing, keeps replies short, is told not to invent information, and says so when it does not have an answer, such as an HOA fee that was not entered. If a visitor sincerely asks whether they are talking to a person, it tells them it is the agent's AI assistant. When someone is interested, it can share a scheduling link or capture their contact details as a lead.</p>
 
-<p>Each new lead triggers a notification to you, an instant draft reply, and a day 1, 3 and 7 email sequence, with an optional approval step if you want to review messages before they go out. It is a chat and lead tool, not a replacement for a human assistant, and you should read the conversations and keep the listing details accurate. See the <a href="/real-estate-ai-chatbot">AI chatbot for real estate listings</a> page for the feature details, or <a href="/demo">try the live demo</a>.</p>
+<p>Each new lead triggers a notification to you and an instant draft reply, with an optional approval step if you want to review messages before they go out. It is a chat and lead tool, not a replacement for a human assistant, and you should read the conversations and keep the listing details accurate. See the <a href="/real-estate-ai-chatbot">AI chatbot for real estate listings</a> page for the feature details, or <a href="/demo">try the live demo</a>.</p>
 <p>For wider options, see our comparison of the <a href="/blog/best-ai-isa-tools-real-estate">best AI ISA tools for real estate</a>, the guide to <a href="/blog/ai-for-real-estate-agents">AI for real estate agents</a>, and <a href="/blog/how-listing-agents-capture-buyer-leads">how listing agents capture buyer leads</a>.</p>
 
 <h2>Related Guides</h2>

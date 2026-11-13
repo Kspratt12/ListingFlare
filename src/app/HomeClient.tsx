@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
-import LazyVideo from "@/components/LazyVideo";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -45,7 +44,6 @@ import {
   CalendarCheck,
   UserPlus,
   BellRing,
-  X,
 } from "lucide-react";
 
 const features = [
@@ -97,7 +95,7 @@ const included = [
   "Unlimited listing websites with your branding",
   "AI chat answers buyer questions 24/7",
   "AI auto-reply to every new lead",
-  "Built-in showing scheduler synced to your Google Calendar",
+  "Built-in showing requests, with a Google Calendar event once you confirm (optional)",
   "Text leads with one tap from your real phone number",
   "Seller transparency portal so your clients watch their listing live",
   "Hot Lead scoring + drag-and-drop pipeline view",
@@ -457,70 +455,6 @@ function DashboardMockup({ activeStep }: { activeStep: string }) {
   );
 }
 
-const comparisonHeroPhotos = [
-  "photo-1613490493576-7fde63acd811",  // Pool with landscape
-  "photo-1600596542815-ffad4c1539a9",  // Modern exterior at dusk
-  "photo-1600607687939-ce8a6c25118c",  // Living room windows
-  "photo-1600585154340-be6161a56a0c",  // Modern exterior with pool twilight
-  "photo-1616594039964-ae9021a400a0",  // Spa bathroom
-];
-
-function ComparisonHeroSlideshow() {
-  const [heroIdx, setHeroIdx] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setHeroIdx((i) => (i + 1) % comparisonHeroPhotos.length);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, []);
-
-  return (
-    <div className="relative h-48 overflow-hidden">
-      <AnimatePresence initial={false}>
-        <motion.div
-          key={heroIdx}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
-          className="absolute inset-0"
-        >
-          <ListingPhoto
-            index={heroIdx}
-            forceSrc={heroIdx === 0 ? "/luxury.webp" : `https://images.unsplash.com/${comparisonHeroPhotos[heroIdx]}?w=800&h=450&fit=crop&q=90`}
-            fallback={`https://images.unsplash.com/${comparisonHeroPhotos[heroIdx]}?w=800&h=450&fit=crop&q=90`}
-            alt="Luxury home"
-            width={800}
-            height={450}
-            sizes="(max-width: 1024px) 90vw, 480px"
-            className="h-full w-full object-cover"
-          />
-        </motion.div>
-      </AnimatePresence>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/20" />
-      {/* Slide indicators */}
-      <div className="absolute top-3 left-1/2 flex -translate-x-1/2 gap-1.5">
-        {comparisonHeroPhotos.map((_, i) => (
-          <div key={i} className={`h-1 rounded-full transition-all duration-500 ${i === heroIdx ? "w-8 bg-white" : "w-3 bg-white/40"}`} />
-        ))}
-      </div>
-      <div className="absolute bottom-3 left-4 right-4 text-white">
-        <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-white/50">Example Listing</p>
-        <p className="mt-0.5 font-serif text-xl font-bold leading-tight">1847 Grandview Terrace</p>
-        <p className="text-[11px] text-white/70">Pacific Palisades, CA 90272</p>
-        <div className="mt-1 flex items-center gap-3 text-xs text-white/90">
-          <span className="font-serif text-base font-semibold">$4,750,000</span>
-          <span className="h-3 w-px bg-white/30" />
-          <span>5 Beds</span>
-          <span>4.5 Baths</span>
-          <span>4,820 Sq Ft</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function HowItWorks() {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -664,31 +598,6 @@ function HowItWorks() {
   );
 }
 
-function ComparisonCell({ value, highlight = false }: { value: boolean | string; highlight?: boolean }) {
-  if (value === true) {
-    return (
-      <span className={`inline-flex h-6 w-6 items-center justify-center rounded-full ${highlight ? "bg-brand-500" : "bg-emerald-500"}`}>
-        <Check className="h-3.5 w-3.5 text-white" strokeWidth={3} />
-      </span>
-    );
-  }
-  if (value === false) {
-    return (
-      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-100">
-        <X className="h-3.5 w-3.5 text-gray-400" strokeWidth={2.5} />
-      </span>
-    );
-  }
-  if (value === "partial") {
-    return (
-      <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-700">
-        Limited
-      </span>
-    );
-  }
-  return <span className={`text-xs font-medium ${highlight ? "text-brand-700" : "text-gray-500"}`}>{value}</span>;
-}
-
 function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[]; showHomesLink?: boolean }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
@@ -816,7 +725,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
     },
     {
       question: "How is ListingFlare different from Zillow or Realtor.com?",
-      answer: "On Zillow, your listing sits next to competitor ads and other agents. Buyers who inquire can be routed to other agents. With ListingFlare, every page is yours. Your brand, your contact info, zero competing agents. Every lead goes directly to your dashboard, and the AI assistant can send an instant first reply, so buyers are not left waiting.",
+      answer: "ListingFlare is a listing marketing tool. It gives each of your listings its own branded page that you control, with your name and contact details, and inquiries from that page go to your dashboard, where the AI assistant can send an instant first reply. It does not syndicate your listing to the MLS or to portals such as Zillow or Realtor.com, so it works alongside them rather than replacing them.",
     },
     {
       question: "How much does ListingFlare cost?",
@@ -828,7 +737,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
     },
     {
       question: "What does the AI chatbot actually do?",
-      answer: "It answers buyer questions using the listing details you enter, such as bedrooms, square footage, and features. When a buyer engages, the AI can capture their name, email, and phone number and invite them to book a showing. Because it only knows what you entered, it can be wrong or incomplete if those details are, and it does not negotiate or give legal or financial advice. If it does not know something, it offers to have you follow up.",
+      answer: "It answers buyer questions using the listing details you enter, such as bedrooms, square footage, and features. When a buyer engages, the AI can capture their name, email, and phone number and invite them to book a showing. Because it only knows what you entered, it can be wrong or incomplete if those details are, and it is not designed to negotiate and should not be relied on for legal or financial advice. If it does not know something, it offers to have you follow up.",
     },
     {
       question: "Can I use ListingFlare with my brokerage branding?",
@@ -959,7 +868,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               your listing. You lost them.
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-gray-500 md:text-xl">
-              Every listing gets its own branded page with an AI assistant that answers buyer questions at any hour, captures their contact info, and books the showing. You wake up to a new lead, not a lost one.
+              Every listing gets its own branded page with an AI assistant that answers buyer questions at any hour, captures their contact info, and takes the showing request. You wake up to a new lead, not a lost one.
             </p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link
@@ -1086,350 +995,6 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
         </div>
       </section>
 
-      {/* Before / After - Zillow vs ListingFlare */}
-      <section className="overflow-x-clip bg-white py-14 md:py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-700">
-              See The Difference
-            </p>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
-              On Zillow, you lose the lead.
-              <br />
-              On ListingFlare, you own it.
-            </h2>
-          </motion.div>
-
-          <div className="mt-16 grid gap-8 md:grid-cols-2 [&>*]:min-w-0">
-            {/* Zillow - Before */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="overflow-hidden rounded-xl border-2 border-gray-200 bg-white">
-                <div className="border-b border-gray-100 bg-gray-50 px-4 py-2.5">
-                  <div className="flex items-center gap-2">
-                    <div className="flex gap-1.5">
-                      <div className="h-2.5 w-2.5 rounded-full bg-gray-200" />
-                      <div className="h-2.5 w-2.5 rounded-full bg-gray-200" />
-                      <div className="h-2.5 w-2.5 rounded-full bg-gray-200" />
-                    </div>
-                    <div className="mx-auto min-w-0 truncate rounded-md border border-gray-100 bg-white px-3 py-1 text-xs text-gray-500 sm:px-8">
-                      zillow.com/homedetails/...
-                    </div>
-                  </div>
-                </div>
-                <div className="text-left">
-                  {/* Zillow nav bar */}
-                  <div className="flex items-center gap-4 border-b border-gray-100 px-4 py-2 text-[10px] font-medium text-blue-600">
-                    <span>Buy</span><span>Rent</span><span>Sell</span><span className="text-gray-500">Get a mortgage</span>
-                    <span className="ml-auto text-gray-500">Sign in</span>
-                  </div>
-                  {/* Photo */}
-                  <div className="relative">
-                    <Image
-                      src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=280&fit=crop&q=80"
-                      alt="Real estate listing on Zillow showing competing agent ads and distractions"
-                      width={600}
-                      height={280}
-                      sizes="(max-width: 768px) 90vw, 400px"
-                      className="h-36 w-full object-cover"
-                    />
-                    <div className="absolute right-2 top-2 flex gap-1.5">
-                      <span className="rounded bg-white/90 px-1.5 py-0.5 text-[9px] text-gray-600">Save</span>
-                      <span className="rounded bg-white/90 px-1.5 py-0.5 text-[9px] text-gray-600">Share</span>
-                    </div>
-                  </div>
-                  {/* Listing info */}
-                  <div className="px-4 py-3 space-y-2.5">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <p className="text-lg font-bold text-gray-900">$400,000</p>
-                        <p className="text-[11px] text-gray-500">4423 Austin Dekota Dr, Charlotte, NC</p>
-                      </div>
-                      <div className="text-right">
-                        <div className="flex gap-3 text-[11px] text-gray-700">
-                          <span><strong>4</strong> beds</span>
-                          <span><strong>3</strong> baths</span>
-                          <span><strong>2,864</strong> sqft</span>
-                        </div>
-                      </div>
-                    </div>
-                    {/* Zillow CTA */}
-                    <div className="rounded-md bg-[#006AFF] px-3 py-2 text-center text-[11px] font-semibold text-white">
-                      Request a tour
-                    </div>
-                    {/* Competing listings sidebar hint */}
-                    <div className="border-t border-gray-100 pt-2.5">
-                      <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Homes For You</p>
-                      <div className="mt-1.5 flex gap-2">
-                        <div className="flex-1 rounded border border-gray-100 p-1.5">
-                          <div className="h-10 rounded bg-gray-100" />
-                          <p className="mt-1 text-[9px] font-semibold text-gray-700">$410,000</p>
-                          <p className="text-[8px] text-gray-500">1418 Summerville Rd</p>
-                        </div>
-                        <div className="flex-1 rounded border border-gray-100 p-1.5">
-                          <div className="h-10 rounded bg-gray-100" />
-                          <p className="mt-1 text-[9px] font-semibold text-gray-700">$389,000</p>
-                          <p className="text-[8px] text-gray-500">2431 Brathay Ct</p>
-                        </div>
-                        <div className="hidden sm:block flex-1 rounded border border-gray-100 p-1.5">
-                          <div className="h-10 rounded bg-gray-100" />
-                          <p className="mt-1 text-[9px] font-semibold text-gray-700">$425,000</p>
-                          <p className="text-[8px] text-gray-500">901 Kensington Dr</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-4 text-center">
-                <p className="text-sm font-medium text-[#006AFF]">Your listing on Zillow</p>
-                <p className="mt-1 text-xs text-gray-500">Your listing, their rules. Competing agents advertised. Leads sold off. Buyer messages ignored for hours. That deal is gone.</p>
-              </div>
-            </motion.div>
-
-            {/* ListingFlare - After */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-            >
-              <div className="overflow-hidden rounded-xl border-2 border-brand-300 bg-white shadow-xl shadow-brand-100/50">
-                <div className="border-b border-gray-100 bg-gray-50 px-4 py-2.5">
-                  <div className="flex items-center gap-2">
-                    <div className="flex gap-1.5">
-                      <div className="h-2.5 w-2.5 rounded-full bg-red-300" />
-                      <div className="h-2.5 w-2.5 rounded-full bg-yellow-300" />
-                      <div className="h-2.5 w-2.5 rounded-full bg-green-300" />
-                    </div>
-                    <div className="mx-auto min-w-0 truncate rounded-md border border-gray-100 bg-white px-3 py-1 text-xs text-gray-500 sm:px-8">
-                      listingflare.com/listing/your-property
-                    </div>
-                  </div>
-                </div>
-                {/* Full-bleed hero with cycling photos */}
-                <ComparisonHeroSlideshow />
-                {/* Gallery grid with live video */}
-                <div className="grid grid-cols-4 gap-1 p-1.5 bg-gray-50">
-                  {/* Photo thumbnails */}
-                  {[
-                    "photo-1600607687939-ce8a6c25118c",
-                    "photo-1600566753086-00f18fb6b3ea",
-                    "photo-1616594039964-ae9021a400a0",
-                  ].map((id, i) => (
-                    <ListingPhoto
-                      key={id}
-                      index={i + 2}
-                      forceSrc={`https://images.unsplash.com/${id}?w=200&h=150&fit=crop&q=80`}
-                      fallback={`https://images.unsplash.com/${id}?w=200&h=150&fit=crop&q=80`}
-                      alt="Property photo gallery thumbnail on ListingFlare listing page"
-                      width={200}
-                      height={150}
-                      sizes="100px"
-                      className="aspect-[4/3] w-full rounded object-cover"
-                    />
-                  ))}
-                  {/* Live auto-playing luxury home video */}
-                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded">
-                    <LazyVideo
-                      src="https://videos.pexels.com/video-files/7578552/7578552-sd_640_360_30fps.mp4"
-                      poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=150&fit=crop&q=80"
-                      className="h-full w-full object-cover"
-                    />
-                    <span className="absolute top-1 left-1 rounded bg-black/70 px-1.5 py-0.5 text-[7px] font-bold text-white flex items-center gap-0.5">
-                      <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
-                      8K VIDEO
-                    </span>
-                  </div>
-                </div>
-                {/* Features + Agent + CTA */}
-                <div className="p-4 space-y-3">
-                  {/* Features row */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {["Ocean Views", "Infinity Pool", "Chef\u2019s Kitchen", "Smart Home"].map((f) => (
-                      <span key={f} className="rounded-full bg-brand-50 border border-brand-100 px-2 py-0.5 text-[9px] font-medium text-brand-700">{f}</span>
-                    ))}
-                    <span className="rounded-full bg-purple-50 border border-purple-200 px-2 py-0.5 text-[9px] font-medium text-purple-700 flex items-center gap-0.5">
-                      <Sparkles className="h-2.5 w-2.5" /> AI Descriptions
-                    </span>
-                    <span className="rounded-full bg-blue-50 border border-blue-200 px-2 py-0.5 text-[9px] font-medium text-blue-700 flex items-center gap-0.5">
-                      <Send className="h-2.5 w-2.5" /> Share to Social
-                    </span>
-                    <span className="rounded-full bg-green-50 border border-green-200 px-2 py-0.5 text-[9px] font-medium text-green-700 flex items-center gap-0.5">
-                      <Bell className="h-2.5 w-2.5" /> Instant Lead Alerts
-                    </span>
-                    <span className="rounded-full bg-amber-50 border border-amber-200 px-2 py-0.5 text-[9px] font-medium text-amber-700 flex items-center gap-0.5">
-                      <Sparkles className="h-2.5 w-2.5" /> AI Auto-Reply
-                    </span>
-                    <span className="rounded-full bg-orange-50 border border-orange-200 px-2 py-0.5 text-[9px] font-medium text-orange-700 flex items-center gap-0.5">
-                      <Eye className="h-2.5 w-2.5" /> Open House Flyers
-                    </span>
-                    <span className="rounded-full bg-rose-50 border border-rose-200 px-2 py-0.5 text-[9px] font-medium text-rose-700 flex items-center gap-0.5">
-                      <Upload className="h-2.5 w-2.5" /> 8K Video Upload
-                    </span>
-                    <span className="rounded-full bg-cyan-50 border border-cyan-200 px-2 py-0.5 text-[9px] font-medium text-cyan-700 flex items-center gap-0.5">
-                      <BarChart3 className="h-2.5 w-2.5" /> Weekly Reports
-                    </span>
-                    <span className="rounded-full bg-indigo-50 border border-indigo-200 px-2 py-0.5 text-[9px] font-medium text-indigo-700 flex items-center gap-0.5">
-                      <MessageCircle className="h-2.5 w-2.5" /> 24/7 AI Chat
-                    </span>
-                    <span className="rounded-full bg-teal-50 border border-teal-200 px-2 py-0.5 text-[9px] font-medium text-teal-700 flex items-center gap-0.5">
-                      <View className="h-2.5 w-2.5" /> Virtual Tours
-                    </span>
-                  </div>
-                  {/* Agent branding */}
-                  <div className="flex items-center gap-3 border-t border-gray-100 pt-3">
-                    <div className="h-10 w-10 overflow-hidden rounded-full border-2 border-brand-100">
-                      <Image src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&q=80" alt="Real estate agent profile photo on ListingFlare listing page" width={80} height={80} sizes="40px" className="h-full w-full object-cover" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-semibold text-gray-900">Victoria Ashworth</p>
-                      <p className="text-[10px] text-brand-700">Luxury Property Specialist &middot; Westside Luxury Realty</p>
-                    </div>
-                  </div>
-                  <div className="rounded-lg bg-gray-950 px-4 py-2.5 text-center text-xs font-medium text-white">
-                    Schedule a Private Showing
-                  </div>
-                </div>
-              </div>
-              <div className="mt-4 text-center">
-                <p className="text-sm font-medium text-gray-900">Your listing on ListingFlare</p>
-                <p className="mt-1 text-xs text-gray-500">Your page. Your brand. Buyer answered in seconds. Lead in your dashboard. Showing on your calendar. Nobody else involved.</p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Comparison Table */}
-      <section className="bg-gray-50 py-14 md:py-20">
-        <div className="mx-auto max-w-5xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <p className="text-sm font-semibold uppercase tracking-widest text-brand-700">
-              Feature Comparison
-            </p>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
-              How we stack up
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-base text-gray-500">
-              Based on each vendor&apos;s public pricing and feature information as of October 2026. An X means we did not find the feature listed; it may still exist. Confirm current details on each vendor&apos;s site.
-            </p>
-          </motion.div>
-
-          {(() => {
-            const rows: Array<{ feature: string; us: boolean | string; zillow: boolean | string; kv: boolean | string }> = [
-              { feature: "Branded listing page you own", us: true, zillow: false, kv: "partial" },
-              { feature: "AI chat that answers buyer questions 24/7", us: true, zillow: false, kv: false },
-              { feature: "Instant auto-reply to new leads", us: true, zillow: false, kv: true },
-              { feature: "Built-in showing scheduler (no Calendly needed)", us: true, zillow: false, kv: false },
-              { feature: "Calendar invite (.ics) in confirmation emails", us: true, zillow: false, kv: false },
-              { feature: "Leads belong to YOU (not sold to other agents)", us: true, zillow: false, kv: true },
-            ];
-            return (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="mt-10"
-              >
-                {/* Desktop table - hidden on mobile */}
-                <div className="hidden overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm md:block">
-                  <table className="w-full text-left text-sm">
-                    <thead>
-                      <tr className="border-b border-gray-200 bg-gray-50/80">
-                        <th className="px-6 py-4 font-medium text-gray-500">Feature</th>
-                        <th className="px-6 py-4">
-                          <div className="font-serif text-base font-bold text-gray-900">ListingFlare</div>
-                          <div className="mt-0.5 text-xs font-normal text-brand-700">$150/mo</div>
-                        </th>
-                        <th className="px-6 py-4">
-                          <div className="text-base font-semibold text-gray-900">Zillow Premier</div>
-                          <div className="mt-0.5 text-xs font-normal text-gray-500">Pricing varies</div>
-                        </th>
-                        <th className="px-6 py-4">
-                          <div className="text-base font-semibold text-gray-900">kvCORE</div>
-                          <div className="mt-0.5 text-xs font-normal text-gray-500">Pricing varies</div>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100">
-                      {rows.map((row, i) => (
-                        <tr key={i} className="hover:bg-gray-50/50">
-                          <td className="px-6 py-3.5 text-gray-700">{row.feature}</td>
-                          <td className="px-6 py-3.5"><ComparisonCell value={row.us} highlight /></td>
-                          <td className="px-6 py-3.5"><ComparisonCell value={row.zillow} /></td>
-                          <td className="px-6 py-3.5"><ComparisonCell value={row.kv} /></td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-
-                {/* Mobile cards - one card per feature, three mini-pills */}
-                <div className="space-y-3 md:hidden">
-                  <div className="flex items-center justify-between rounded-xl border border-brand-200 bg-gradient-to-r from-brand-50 to-white px-4 py-3">
-                    <div>
-                      <div className="font-serif text-base font-bold text-gray-900">ListingFlare</div>
-                      <div className="text-xs text-brand-700">$150/mo</div>
-                    </div>
-                    <div className="flex gap-3 text-center">
-                      <div>
-                        <div className="text-sm font-semibold text-gray-700">Zillow</div>
-                        <div className="text-[10px] text-gray-500">Varies</div>
-                      </div>
-                      <div>
-                        <div className="text-sm font-semibold text-gray-700">kvCORE</div>
-                        <div className="text-[10px] text-gray-500">Varies</div>
-                      </div>
-                    </div>
-                  </div>
-                  {rows.map((row, i) => (
-                    <div key={i} className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
-                      <p className="text-sm font-medium text-gray-800">{row.feature}</p>
-                      <div className="mt-3 grid grid-cols-3 gap-2">
-                        <div className="flex flex-col items-center rounded-lg bg-brand-50/60 p-2">
-                          <span className="text-[10px] font-medium uppercase tracking-wider text-brand-700">Us</span>
-                          <div className="mt-1"><ComparisonCell value={row.us} highlight /></div>
-                        </div>
-                        <div className="flex flex-col items-center rounded-lg bg-gray-50 p-2">
-                          <span className="text-[10px] font-medium uppercase tracking-wider text-gray-500">Zillow</span>
-                          <div className="mt-1"><ComparisonCell value={row.zillow} /></div>
-                        </div>
-                        <div className="flex flex-col items-center rounded-lg bg-gray-50 p-2">
-                          <span className="text-[10px] font-medium uppercase tracking-wider text-gray-500">kvCORE</span>
-                          <div className="mt-1"><ComparisonCell value={row.kv} /></div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })()}
-
-          <p className="mt-6 text-center text-sm text-gray-500">
-            Pricing and features as of {new Date().getFullYear()}. Competitor info from public pricing pages.
-          </p>
-        </div>
-      </section>
-
       {/* Urgency Section */}
       <section className="bg-gray-950 py-12 md:py-16">
         <div className="mx-auto max-w-3xl px-6">
@@ -1450,76 +1015,6 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               With ListingFlare, every visitor who scans your QR code lands on a page with an AI that starts a conversation and captures their info before they drive away.
             </p>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Why Agents Switch From Zillow */}
-      <section className="bg-white py-12 md:py-16">
-        <div className="mx-auto max-w-4xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-700">
-              The Real Problem
-            </p>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-gray-900 md:text-display-sm">
-              Why agents stop relying on Zillow.
-            </h2>
-          </motion.div>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5 }}
-              className="rounded-2xl border border-gray-200 bg-gray-50 p-6"
-            >
-              <p className="text-xs font-bold uppercase tracking-wider text-gray-500">On Zillow</p>
-              <ul className="mt-4 space-y-3">
-                <li className="flex items-start gap-3 text-sm text-gray-500">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
-                  Zillow can route your buyer inquiries to other agents
-                </li>
-                <li className="flex items-start gap-3 text-sm text-gray-500">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
-                  Other agents can be advertised on your listing
-                </li>
-                <li className="flex items-start gap-3 text-sm text-gray-500">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500 text-xs font-bold">&times;</span>
-                  Buyer asks a question at 9 PM. No reply until tomorrow. They are gone.
-                </li>
-              </ul>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="rounded-2xl border border-brand-200 bg-brand-50/50 p-6"
-            >
-              <p className="text-xs font-bold uppercase tracking-wider text-brand-700">On ListingFlare</p>
-              <ul className="mt-4 space-y-3">
-                <li className="flex items-start gap-3 text-sm text-gray-700">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
-                  Every lead goes straight to you. Nobody else sees it.
-                </li>
-                <li className="flex items-start gap-3 text-sm text-gray-700">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
-                  Buyer gets an answer right away. Any hour.
-                </li>
-                <li className="flex items-start gap-3 text-sm text-gray-700">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600"><Check className="h-3 w-3" /></span>
-                  Lead captured and showing requests sent to you. You are notified automatically.
-                </li>
-              </ul>
-            </motion.div>
-          </div>
         </div>
       </section>
 
@@ -1614,7 +1109,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               Log in and see what ListingFlare did for you
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-base text-gray-500">
-              Every response time, every showing booked, every follow-up sent. Visible in one place so you actually know your software is working.
+              Every response time, every showing request, every reply sent. Visible in one place so you actually know your software is working.
             </p>
             <p className="mx-auto mt-2 max-w-2xl text-xs text-gray-500">
               Sample dashboard with illustrative numbers. Your dashboard shows your own leads and response times.
