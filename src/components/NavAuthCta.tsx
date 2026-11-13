@@ -46,9 +46,15 @@ export default function NavAuthCta({
       </Link>
     );
   }
+  // Returning customers need a way in from every marketing page, including on phones where there is no header menu.
   return (
-    <Link href="/signup" className={className}>
-      {label}
-    </Link>
+    <span className="flex items-center gap-3 sm:gap-4">
+      <Link href="/login" className="text-sm font-medium text-gray-600 hover:text-gray-900">
+        Sign In
+      </Link>
+      <Link href="/signup" className={className}>
+        {label}
+      </Link>
+    </span>
   );
 }
