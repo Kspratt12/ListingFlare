@@ -110,7 +110,7 @@ test("A3. if expiring the lost session ALSO fails, it stays payable: that is sta
     findProfileBySubscription: async () => ({ profile: null, error: false }),
     findProfileById: async () => ({ profile: { id: "u1", stripeSubscriptionId: null, status: "trialing" }, error: false }),
     updateProfile: async () => ({ error: false, rows: 1 }),
-    markCheckoutCompleted: async (sid, subId) => { const r = s.complete(sid); marks.push(r); return r; },
+    markCheckoutCompleted: async (sid) => { const r = s.complete(sid); marks.push(r); return r; },
     log: (_l, m) => { wlogs.push(m); },
   };
   await processStripeEvent({ id: "e", type: "checkout.session.completed", object: { id: "cs_1", mode: "subscription", subscription: "sub_9", customer: "cus_1", metadata: {} } }, hook);
