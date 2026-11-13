@@ -5,7 +5,6 @@ import { Zap, TrendingDown } from "lucide-react";
 
 interface Stats {
   avgSeconds: number | null;
-  industryAvgSeconds: number;
   count: number;
   fastestSeconds?: number;
 }

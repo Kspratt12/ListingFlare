@@ -3,8 +3,6 @@ import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
-// Industry average response time (published research): ~47 minutes for first response
-const INDUSTRY_AVG_SECONDS = 47 * 60;
 
 export async function GET() {
   const authClient = createServerSupabaseClient();
@@ -52,7 +50,6 @@ export async function GET() {
   if (responseTimes.length === 0) {
     return NextResponse.json({
       avgSeconds: null,
-      industryAvgSeconds: INDUSTRY_AVG_SECONDS,
       count: 0,
     });
   }
@@ -63,7 +60,6 @@ export async function GET() {
 
   return NextResponse.json({
     avgSeconds,
-    industryAvgSeconds: INDUSTRY_AVG_SECONDS,
     count: responseTimes.length,
     fastestSeconds: Math.round(Math.min(...responseTimes)),
   });

@@ -97,7 +97,7 @@ const included = [
   "Unlimited listing websites with your branding",
   "AI chat answers buyer questions 24/7",
   "AI auto-reply to every new lead",
-  "Built-in showing scheduler synced to your Google Calendar",
+  "Built-in showing requests, with a Google Calendar event once you confirm (optional)",
   "Text leads with one tap from your real phone number",
   "Seller transparency portal so your clients watch their listing live",
   "Hot Lead scoring + drag-and-drop pipeline view",
@@ -828,7 +828,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
     },
     {
       question: "What does the AI chatbot actually do?",
-      answer: "It answers buyer questions using the listing details you enter, such as bedrooms, square footage, and features. When a buyer engages, the AI can capture their name, email, and phone number and invite them to book a showing. Because it only knows what you entered, it can be wrong or incomplete if those details are, and it does not negotiate or give legal or financial advice. If it does not know something, it offers to have you follow up.",
+      answer: "It answers buyer questions using the listing details you enter, such as bedrooms, square footage, and features. When a buyer engages, the AI can capture their name, email, and phone number and invite them to book a showing. Because it only knows what you entered, it can be wrong or incomplete if those details are, and it is not designed to negotiate and should not be relied on for legal or financial advice. If it does not know something, it offers to have you follow up.",
     },
     {
       question: "Can I use ListingFlare with my brokerage branding?",
@@ -959,7 +959,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               your listing. You lost them.
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-gray-500 md:text-xl">
-              Every listing gets its own branded page with an AI assistant that answers buyer questions at any hour, captures their contact info, and books the showing. You wake up to a new lead, not a lost one.
+              Every listing gets its own branded page with an AI assistant that answers buyer questions at any hour, captures their contact info, and takes the showing request. You wake up to a new lead, not a lost one.
             </p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link
@@ -1304,7 +1304,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               </div>
               <div className="mt-4 text-center">
                 <p className="text-sm font-medium text-gray-900">Your listing on ListingFlare</p>
-                <p className="mt-1 text-xs text-gray-500">Your page. Your brand. Buyer answered in seconds. Lead in your dashboard. Showing on your calendar. Nobody else involved.</p>
+                <p className="mt-1 text-xs text-gray-500">Your page. Your brand. Buyer answered in seconds. Lead in your dashboard. Showing request for you to confirm. Nobody else involved.</p>
               </div>
             </motion.div>
           </div>
@@ -1328,18 +1328,18 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               How we stack up
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-base text-gray-500">
-              Based on each vendor&apos;s public pricing and feature information as of October 2026. An X means we did not find the feature listed; it may still exist. Confirm current details on each vendor&apos;s site.
+              Zillow Premier Agent is shown for context only. We could not confirm its current features from Zillow&apos;s own pages, so those cells say Not verified. Confirm details with Zillow.
             </p>
           </motion.div>
 
           {(() => {
-            const rows: Array<{ feature: string; us: boolean | string; zillow: boolean | string; kv: boolean | string }> = [
-              { feature: "Branded listing page you own", us: true, zillow: false, kv: "partial" },
-              { feature: "AI chat that answers buyer questions 24/7", us: true, zillow: false, kv: false },
-              { feature: "Instant auto-reply to new leads", us: true, zillow: false, kv: true },
-              { feature: "Built-in showing scheduler (no Calendly needed)", us: true, zillow: false, kv: false },
-              { feature: "Calendar invite (.ics) in confirmation emails", us: true, zillow: false, kv: false },
-              { feature: "Leads belong to YOU (not sold to other agents)", us: true, zillow: false, kv: true },
+            const rows: Array<{ feature: string; us: boolean | string; zillow: boolean | string }> = [
+              { feature: "Branded listing page you own", us: true, zillow: "Not verified" },
+              { feature: "AI chat that answers buyer questions 24/7", us: true, zillow: "Not verified" },
+              { feature: "Instant auto-reply to new leads", us: true, zillow: "Not verified" },
+              { feature: "Built-in showing requests (no Calendly needed)", us: true, zillow: "Not verified" },
+              { feature: "Calendar invite (.ics) in confirmation emails", us: true, zillow: "Not verified" },
+              { feature: "Inquiries go to you, not to other agents", us: true, zillow: "Can be routed to other agents" },
             ];
             return (
               <motion.div
@@ -1363,10 +1363,6 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
                           <div className="text-base font-semibold text-gray-900">Zillow Premier</div>
                           <div className="mt-0.5 text-xs font-normal text-gray-500">Pricing varies</div>
                         </th>
-                        <th className="px-6 py-4">
-                          <div className="text-base font-semibold text-gray-900">kvCORE</div>
-                          <div className="mt-0.5 text-xs font-normal text-gray-500">Pricing varies</div>
-                        </th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
@@ -1375,7 +1371,6 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
                           <td className="px-6 py-3.5 text-gray-700">{row.feature}</td>
                           <td className="px-6 py-3.5"><ComparisonCell value={row.us} highlight /></td>
                           <td className="px-6 py-3.5"><ComparisonCell value={row.zillow} /></td>
-                          <td className="px-6 py-3.5"><ComparisonCell value={row.kv} /></td>
                         </tr>
                       ))}
                     </tbody>
@@ -1394,16 +1389,12 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
                         <div className="text-sm font-semibold text-gray-700">Zillow</div>
                         <div className="text-[10px] text-gray-500">Varies</div>
                       </div>
-                      <div>
-                        <div className="text-sm font-semibold text-gray-700">kvCORE</div>
-                        <div className="text-[10px] text-gray-500">Varies</div>
-                      </div>
                     </div>
                   </div>
                   {rows.map((row, i) => (
                     <div key={i} className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
                       <p className="text-sm font-medium text-gray-800">{row.feature}</p>
-                      <div className="mt-3 grid grid-cols-3 gap-2">
+                      <div className="mt-3 grid grid-cols-2 gap-2">
                         <div className="flex flex-col items-center rounded-lg bg-brand-50/60 p-2">
                           <span className="text-[10px] font-medium uppercase tracking-wider text-brand-700">Us</span>
                           <div className="mt-1"><ComparisonCell value={row.us} highlight /></div>
@@ -1411,10 +1402,6 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
                         <div className="flex flex-col items-center rounded-lg bg-gray-50 p-2">
                           <span className="text-[10px] font-medium uppercase tracking-wider text-gray-500">Zillow</span>
                           <div className="mt-1"><ComparisonCell value={row.zillow} /></div>
-                        </div>
-                        <div className="flex flex-col items-center rounded-lg bg-gray-50 p-2">
-                          <span className="text-[10px] font-medium uppercase tracking-wider text-gray-500">kvCORE</span>
-                          <div className="mt-1"><ComparisonCell value={row.kv} /></div>
                         </div>
                       </div>
                     </div>
@@ -1425,7 +1412,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
           })()}
 
           <p className="mt-6 text-center text-sm text-gray-500">
-            Pricing and features as of {new Date().getFullYear()}. Competitor info from public pricing pages.
+            Competitor information has not been independently verified.
           </p>
         </div>
       </section>
@@ -1614,7 +1601,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               Log in and see what ListingFlare did for you
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-base text-gray-500">
-              Every response time, every showing booked, every follow-up sent. Visible in one place so you actually know your software is working.
+              Every response time, every showing request, every reply sent. Visible in one place so you actually know your software is working.
             </p>
             <p className="mx-auto mt-2 max-w-2xl text-xs text-gray-500">
               Sample dashboard with illustrative numbers. Your dashboard shows your own leads and response times.
