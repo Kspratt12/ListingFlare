@@ -26,6 +26,8 @@ export async function POST() {
         return user ? { id: user.id, email: user.email } : null;
       },
 
+      paused: () => process.env.CHECKOUT_PAUSED === "on",
+
       getProfile: async (userId) => {
         const { data } = await supabase
           .from("agent_profiles")
