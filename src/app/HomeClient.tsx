@@ -868,7 +868,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               with a listing-specific AI assistant
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-gray-500 md:text-xl">
-              A branded page for each listing where buyers can explore the property, ask questions, and request a showing—even when you’re unavailable.
+              A branded page for each listing where buyers can explore the property, ask questions, and request a showing even when you’re unavailable.
             </p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link
