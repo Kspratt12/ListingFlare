@@ -124,7 +124,7 @@ export const article: BlogPost = {
 
 <!-- next-step -->
 <h2>Try a Lighter Option First</h2>
-<p>If most of your leads come from your own listings, you may not need a full CRM yet. ListingFlare keeps those leads in one pipeline with scoring and an instant AI reply to each new lead. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+<p>If most of your leads come from your own listings, you may not need a full CRM yet. ListingFlare keeps those leads in one pipeline with scoring and an AI email reply to each new lead. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

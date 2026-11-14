@@ -271,7 +271,7 @@ export const article: BlogPost = {
 <h3>Quick Wins (Start This Week)</h3>
 
 <ol>
-<li><strong>Create a single-property website with AI chatbot</strong> - <a href="/signup">sign up for ListingFlare's free trial</a> and build your first listing page. The AI chatbot starts capturing leads immediately</li>
+<li><strong>Create a single-property website with AI chatbot</strong> - <a href="/signup">sign up for ListingFlare's free trial</a> and build your first listing page. The AI chatbot can start collecting contact details from visitors once the page is live</li>
 <li><strong>Generate AI listing descriptions</strong> - stop spending 30 to 45 minutes per description. Let AI draft it, then refine with your personal touch</li>
 <li><strong>Set up AI auto-reply</strong> - make sure every lead gets a response within minutes, even when you are unavailable</li>
 </ol>
@@ -350,7 +350,7 @@ export const article: BlogPost = {
 <h2>Frequently Asked Questions About AI for Real Estate Agents</h2>
 
 <h3>What is the best AI tool for real estate agents?</h3>
-<p>The best AI tool depends on your specific needs. For listing marketing and lead capture, ListingFlare offers the most comprehensive AI-powered solution with chatbots, auto-generated descriptions, instant follow-up emails, social media content, and a built-in business assistant, all for $150 per month. For general writing and brainstorming, ChatGPT or Claude work well at $20 per month. For visual content, Canva AI is excellent. The key is choosing tools where AI is integrated into your workflow, not a separate step you have to manage.</p>
+<p>The best AI tool depends on your specific needs. For listing marketing and lead capture, ListingFlare offers the most comprehensive AI-powered solution with chatbots, auto-generated descriptions, AI email replies to new leads, social media content, and a built-in business assistant, all for $150 per month. For general writing and brainstorming, ChatGPT or Claude work well at $20 per month. For visual content, Canva AI is excellent. The key is choosing tools where AI is integrated into your workflow, not a separate step you have to manage.</p>
 
 <h3>Will AI replace real estate agents?</h3>
 <p>No. AI will not replace real estate agents, but agents who use AI will replace agents who do not. Real estate is fundamentally a relationship and negotiation business that requires human judgment, local expertise, and emotional intelligence. AI handles the repetitive, time-consuming tasks like writing descriptions, responding to inquiries, creating marketing materials, and analyzing data so you can focus on the high-value human activities that actually close deals.</p>
@@ -359,7 +359,7 @@ export const article: BlogPost = {
 <p>AI tools for real estate range from free to several hundred dollars per month. ChatGPT and Claude offer free tiers for basic use. ListingFlare provides a complete AI-powered listing and lead generation platform for $150 per month with a free 14-day trial. Enterprise CRM platforms like kvCORE and Lofty with AI features start at $449 to $499 per month. Most agents see positive ROI within the first month by saving time on content creation and capturing leads they would otherwise miss.</p>
 
 <h3>How do AI chatbots work on real estate listing pages?</h3>
-<p>AI chatbots on listing pages are trained on the specific property's data, including bedrooms, bathrooms, square footage, features, neighborhood information, and pricing. When a buyer visits the page and asks a question, the chatbot provides an instant, accurate, conversational response. After a few exchanges, it prompts for the buyer's contact information. The lead is captured and sent to the agent's dashboard with the full conversation transcript, so the agent knows exactly what the buyer is interested in before they even make contact.</p>
+<p>AI chatbots on listing pages are trained on the specific property's data, including bedrooms, bathrooms, square footage, features, neighborhood information, and pricing. When a buyer visits the page and asks a question, the chatbot answers conversationally from the listing details you entered. After a few exchanges, it prompts for the buyer's contact information. The lead is captured and sent to the agent's dashboard with the full conversation transcript, so the agent knows exactly what the buyer is interested in before they even make contact.</p>
 
 <h3>Can AI write listing descriptions that sound natural?</h3>
 <p>Yes, modern AI produces listing descriptions that are often indistinguishable from human-written copy. The key is using AI tools specifically trained for real estate, not generic text generators. ListingFlare's AI generates luxury-quality descriptions that highlight a property's unique features, use persuasive language, and read naturally. The best practice is to let AI generate the draft and then add your personal knowledge like local details, seller motivations, or community context that only you know.</p>

@@ -127,7 +127,7 @@ export const article: BlogPost = {
 
 <h3>Single-Property Websites with AI Chat</h3>
 
-<p>We mentioned this earlier, but it bears repeating: giving each listing its own website with an <strong>AI-powered chatbot</strong> is a genuine competitive advantage in 2026. Buyers browsing at 11 PM get instant answers to their questions, and you wake up to captured lead information. <a href="/demo">See a demo</a> of how this works with ListingFlare. It takes less than two minutes to set up per listing and handles lead capture and follow-up automatically.</p>
+<p>We mentioned this earlier, but it bears repeating: giving each listing its own website with an <strong>AI-powered chatbot</strong> is a genuine competitive advantage in 2026. Buyers browsing at 11 PM can get answers drawn from your listing details, and you may wake up to captured lead information. <a href="/demo">See a demo</a> of how this works with ListingFlare. It takes less than two minutes to set up per listing and handles lead capture and follow-up automatically.</p>
 
 <h3>Social Media Scheduling</h3>
 

@@ -48,7 +48,7 @@ export const article: BlogPost = {
 <tr><td>Curb Hero</td><td>Reported as free for agents, with paid extras</td><td>Free entry point, offline use</td><td>Advanced features and marketing may cost extra</td></tr>
 <tr><td>Open Home Pro</td><td>Free tier, with a reported premium plan around $25 a month</td><td>Simple, budget-friendly sign-in</td><td>Automation sits in the paid tier</td></tr>
 <tr><td>Happy Open House</td><td>Reports vary from about $10 to $29 a month</td><td>Straightforward sign-in</td><td>Check current plan details</td></tr>
-<tr><td>ListingFlare</td><td>Included in the $150 monthly plan</td><td>QR sign-in tied to the listing page, instant lead creation, instant AI-drafted reply</td><td>Part of a full listing platform, not a standalone sign-in tool</td></tr>
+<tr><td>ListingFlare</td><td>Included in the $150 monthly plan</td><td>QR sign-in tied to the listing page, lead creation, AI email reply</td><td>Part of a full listing platform, not a standalone sign-in tool</td></tr>
 </tbody>
 </table>
 
@@ -140,7 +140,7 @@ ${downloadBox("open-house-checklist-template")}
 
 <!-- next-step -->
 <h2>Test the Open House Tools on a Real Listing</h2>
-<p>Whichever app you pick, test it on a real open house before you commit. ListingFlare&rsquo;s QR sign-in is included with the platform and ties each visitor to the listing page and an instant AI-drafted reply. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+<p>Whichever app you pick, test it on a real open house before you commit. ListingFlare&rsquo;s QR sign-in is included with the platform and ties each visitor to the listing page and an AI email reply. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

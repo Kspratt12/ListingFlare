@@ -55,7 +55,7 @@ export const article: BlogPost = {
 
 <h3>No Per-Listing AI Chatbot</h3>
 
-<p>PropertySimple has AI follow-up, but it is designed for general lead nurturing across your pipeline. It does not offer an AI chatbot that lives on a specific listing page and answers buyer questions about that particular home. Imagine a buyer visits your listing page at 10 PM and asks, &ldquo;Does this home have a fenced backyard?&rdquo; Without a per-listing chatbot, that question goes unanswered until you check your messages the next morning. By then, the buyer has moved on. A per-listing AI chatbot answers instantly, captures the lead, and keeps the conversation going while you sleep.</p>
+<p>PropertySimple has AI follow-up, but it is designed for general lead nurturing across your pipeline. It does not offer an AI chatbot that lives on a specific listing page and answers buyer questions about that particular home. Imagine a buyer visits your listing page at 10 PM and asks, &ldquo;Does this home have a fenced backyard?&rdquo; Without a per-listing chatbot, that question goes unanswered until you check your messages the next morning. By then, the buyer has moved on. A per-listing AI chatbot answers at any hour, can collect contact details, and keeps the conversation going while you sleep.</p>
 
 <h3>Pricing vs. Value for Listing-Focused Agents</h3>
 
@@ -75,7 +75,7 @@ export const article: BlogPost = {
 
 <p>The chatbot is what separates ListingFlare from everything else on this list. It is trained on your listing details - square footage, bedroom count, neighborhood info, HOA fees, school districts, and anything else you provide. When a buyer asks a question at 11 PM, the chatbot answers accurately and captures their contact information before they leave the page. The lead goes directly to your dashboard with the full conversation attached.</p>
 
-<p>Beyond the chatbot, you get an instant AI reply to new leads, an analytics dashboard that shows visitor behavior and engagement, and the ability to share listing pages via QR codes, text, email, and social media. For a deeper look at AI-powered marketing tools, check out our <a href="/blog/best-ai-tools-real-estate-marketing">guide to the best AI tools for real estate marketing</a>.</p>
+<p>Beyond the chatbot, you get AI email replies to new leads, an analytics dashboard that shows visitor behavior and engagement, and the ability to share listing pages via QR codes, text, email, and social media. For a deeper look at AI-powered marketing tools, check out our <a href="/blog/best-ai-tools-real-estate-marketing">guide to the best AI tools for real estate marketing</a>.</p>
 
 <div class="pros-cons">
 <div class="pros-card">
@@ -338,7 +338,7 @@ export const article: BlogPost = {
 
 <p>The best alternative depends on what you actually need from a marketing platform. Here is a quick decision guide based on common agent profiles.</p>
 
-<p><strong>Choose <a href="/signup">ListingFlare</a> if:</strong> You are a listing agent who wants to capture more buyer leads from your active listings. You want every listing to have its own website with an AI chatbot that engages buyers 24/7. You want an instant AI reply to new leads and analytics that show you exactly how each listing is performing. You want to impress sellers during listing presentations with dedicated property marketing. This is the best fit for agents moving away from PropertySimple because they want listing-focused tools instead of social-focused tools.</p>
+<p><strong>Choose <a href="/signup">ListingFlare</a> if:</strong> You are a listing agent who wants to capture more buyer leads from your active listings. You want every listing to have its own website with an AI chatbot that engages buyers 24/7. You want AI email replies to new leads and analytics that show you exactly how each listing is performing. You want to impress sellers during listing presentations with dedicated property marketing. This is the best fit for agents moving away from PropertySimple because they want listing-focused tools instead of social-focused tools.</p>
 
 <p><strong>Choose Listings to Leads if:</strong> You want a broad set of marketing tools at the lowest possible price. You are comfortable with traditional lead capture forms and do not need AI-powered conversations. You want print materials, social templates, and email campaigns bundled together.</p>
 
@@ -348,7 +348,7 @@ export const article: BlogPost = {
 
 <p><strong>Choose Brivity if:</strong> You need a CRM first and marketing tools second. You want pipeline management, transaction tracking, and automated drip campaigns in one platform. Listing marketing is a nice-to-have, not your primary focus.</p>
 
-<p>For most listing agents who are leaving PropertySimple, the common thread is this: they want their marketing to work at the listing level, not just the brand level. PropertySimple helps you build your presence on social media. But when a seller asks, &ldquo;What are you going to do to market my specific home?&rdquo; you need a tool that answers that question with a dedicated website, intelligent lead capture, and an instant AI reply tied to that property. That is where <a href="/signup">ListingFlare</a> fits.</p>
+<p>For most listing agents who are leaving PropertySimple, the common thread is this: they want their marketing to work at the listing level, not just the brand level. PropertySimple helps you build your presence on social media. But when a seller asks, &ldquo;What are you going to do to market my specific home?&rdquo; you need a tool that answers that question with a dedicated website, intelligent lead capture, and an AI email reply tied to that property. That is where <a href="/signup">ListingFlare</a> fits.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

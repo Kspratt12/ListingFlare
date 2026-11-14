@@ -129,7 +129,7 @@ export const article: BlogPost = {
 
 <h2>How ListingFlare Does It</h2>
 
-<p>Every ListingFlare listing page has an AI assistant that answers buyer questions at any hour, captures their name and contact information and offers your scheduling link. New leads get an instant AI-drafted reply (with approval mode if you want to review first), and you get a notification. You wake up to leads instead of silence. It works only from the details you enter and can still be wrong, so review the conversations. <a href="/demo">Try the demo</a> or <a href="/signup">start the free trial</a>.</p>
+<p>Every ListingFlare listing page has an AI assistant that answers buyer questions at any hour, captures their name and contact information and offers your scheduling link. New leads get an AI email reply (with approval mode if you want to review first), and you get a notification. You wake up to leads instead of silence. It works only from the details you enter and can still be wrong, so review the conversations. <a href="/demo">Try the demo</a> or <a href="/signup">start the free trial</a>.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

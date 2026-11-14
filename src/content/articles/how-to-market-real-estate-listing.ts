@@ -39,7 +39,7 @@ export const article: BlogPost = {
 
 <p>A <strong>single-property website</strong> gives your listing its own dedicated URL, brand-free landing page, and full-screen media experience, something an MLS listing or Zillow page can never replicate. If you have not used this approach before, our complete guide on <a href="/blog/how-to-create-a-single-property-website">how to create a single property website</a> walks you through every step. It signals to your seller (and to prospective buyers) that this property deserves premium treatment.</p>
 
-<p>The best single-property websites go beyond a photo gallery. They include lead capture forms, instant notifications, and even AI-powered chatbots that answer buyer questions 24/7. <a href="/signup">ListingFlare</a> lets you spin up a professional property website, complete with AI chat, automatic lead capture, and an instant AI reply to new leads, so you can focus on selling instead of building web pages.</p>
+<p>The best single-property websites go beyond a photo gallery. They include lead capture forms, instant notifications, and even AI-powered chatbots that answer buyer questions 24/7. <a href="/signup">ListingFlare</a> lets you spin up a professional property website, complete with AI chat, automatic lead capture, and AI email replies to new leads, so you can focus on selling instead of building web pages.</p>
 
 <p><strong>Pro tip:</strong> Use your property website URL in every piece of marketing: yard signs, postcards, social posts, email blasts, and ads. One clean URL ties your entire campaign together and funnels every lead to one place.</p>
 
@@ -201,7 +201,7 @@ export const article: BlogPost = {
 <p>Most top-producing agents invest between \$500 and \$2,000 per listing on marketing, depending on the property's price point and market conditions. This typically covers professional photography (\$150–\$400), a property website (\$15–\$50/month), social media ads (\$100–\$300), print materials (\$100–\$200), and a virtual tour (\$200–\$500). Treat these costs as an investment in your reputation. Sellers notice when an agent goes above and beyond, and that translates into referrals and repeat business.</p>
 
 <h3>What is the most effective way to market a real estate listing?</h3>
-<p>There's no single "most effective" method. The power is in the combination. That said, professional photography and a dedicated single-property website consistently deliver the highest ROI because they serve as the foundation for every other channel. Great photos fuel your social media, email, and ad campaigns. A property website gives every marketing touchpoint a destination that captures leads and provides instant follow-up.</p>
+<p>There's no single "most effective" method. The power is in the combination. That said, professional photography and a dedicated single-property website consistently deliver the highest ROI because they serve as the foundation for every other channel. Great photos fuel your social media, email, and ad campaigns. A property website gives every marketing touchpoint a destination that captures leads and supports quick follow-up.</p>
 
 <h3>How do I market a listing with a small budget?</h3>
 <p>Start with the highest-impact, lowest-cost strategies: professional photos (negotiate volume pricing if you list frequently), organic social media posts, email blasts to your existing database, and a single-property website. These four strategies alone can generate significant exposure without major ad spend. Add neighborhood door-knocking and QR codes on your yard sign for additional offline reach at minimal cost.</p>
@@ -210,7 +210,7 @@ export const article: BlogPost = {
 <p>Begin your "Coming Soon" pre-marketing campaign 5–7 days before your MLS launch date. This gives you time to tease the property on social media, send a preview email to your database, and generate early interest. Make sure your professional photos, property website, and all marketing materials are finalized and ready to deploy the moment the listing goes active.</p>
 
 <h3>Do single-property websites actually help sell homes faster?</h3>
-<p>Yes. Single-property websites provide a distraction-free experience that keeps buyers focused on your listing, unlike portal sites where buyers are constantly shown competing properties. They also capture leads that would otherwise be lost (yard sign drive-bys, social media clicks, QR code scans) and enable instant follow-up through automated sequences and AI chatbots. Agents who use dedicated property websites consistently report higher lead capture rates and stronger seller satisfaction.</p>
+<p>Yes. Single-property websites provide a distraction-free experience that keeps buyers focused on your listing, unlike portal sites where buyers are constantly shown competing properties. They also capture leads that would otherwise be lost (yard sign drive-bys, social media clicks, QR code scans) and support quick follow-up through AI chatbots and automated replies. Agents who use dedicated property websites consistently report higher lead capture rates and stronger seller satisfaction.</p>
 </div>
 `,
 };

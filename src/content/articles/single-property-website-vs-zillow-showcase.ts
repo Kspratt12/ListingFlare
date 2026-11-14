@@ -118,7 +118,7 @@ export const article: BlogPost = {
 <li><strong>Simple pricing across listings.</strong> A flat price per month beats paying per property when you carry several listings.</li>
 </ul>
 
-<p>ListingFlare is built around exactly this: a branded page per listing, an AI chat assistant that captures leads around the clock, a lead dashboard with an instant AI reply to new leads, and unlimited listings on one plan, with a free trial so you can test it on a real listing. See <a href="/pricing">pricing</a> or try the <a href="/demo">live demo</a>.</p>
+<p>ListingFlare is built around exactly this: a branded page per listing, an AI chat assistant that captures leads around the clock, a lead dashboard with AI email replies to new leads, and unlimited listings on one plan, with a free trial so you can test it on a real listing. See <a href="/pricing">pricing</a> or try the <a href="/demo">live demo</a>.</p>
 
 <h2>The Bottom Line</h2>
 

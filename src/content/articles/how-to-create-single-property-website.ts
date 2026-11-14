@@ -36,7 +36,7 @@ export const article: BlogPost = {
   <li><strong>Sellers love them-and they help you win listing presentations.</strong> When you show a potential seller that you will build a dedicated website for their home, complete with professional photos, an AI chatbot, and lead tracking, you immediately stand out from agents who pitch &ldquo;I will put it on the MLS and Zillow.&rdquo; Single property websites signal that you take marketing seriously.</li>
   <li><strong>A unique, shareable URL for every channel.</strong> You get a clean link to use in social media posts, email blasts, text messages, open house flyers, and even yard sign riders. One URL that looks professional on every platform.</li>
   <li><strong>You control the brand.</strong> Your headshot, your contact information, your brokerage logo-not Zillow&rsquo;s. No competitor ads. No &ldquo;see other agents in your area&rdquo; modules. Every element on the page works for you.</li>
-  <li><strong>AI chatbot answers buyer questions around the clock.</strong> Modern single property websites can include an AI-powered chatbot that answers common buyer questions-square footage, school districts, HOA details, lot size-instantly, even at 11 PM on a Sunday when you are with your family.</li>
+  <li><strong>AI chatbot answers buyer questions around the clock.</strong> Modern single property websites can include an AI-powered chatbot that answers common buyer questions-square footage, school districts, HOA details, lot size-even at 11 PM on a Sunday when you are with your family.</li>
   <li><strong>Leads go directly to you.</strong> Every form submission, every chatbot conversation, every inquiry goes straight to your inbox. No lead sharing, no referral fees, no middleman.</li>
 </ul>
 
@@ -103,7 +103,7 @@ export const article: BlogPost = {
 
 <p>Here is the angle that many agents overlook: single property websites are not just a marketing tool for active listings. They are a listing presentation weapon.</p>
 
-<p>During your next listing presentation, pull up a live example of a single property website you have already created. Show the seller the full-screen photos, the property details, the AI chatbot in action. Tell them: &ldquo;I create a dedicated website for every listing I take. It has an AI assistant that answers buyer questions 24 hours a day, 7 days a week. Every inquiry comes directly to me, and buyers get an instant follow-up email so they never feel ignored.&rdquo;</p>
+<p>During your next listing presentation, pull up a live example of a single property website you have already created. Show the seller the full-screen photos, the property details, the AI chatbot in action. Tell them: &ldquo;I create a dedicated website for every listing I take. It has an AI assistant that answers buyer questions 24 hours a day, 7 days a week. Every inquiry comes directly to me, and buyers get an AI-written email reply, so they are not left waiting.&rdquo;</p>
 
 <p>Now compare that to what most agents say: &ldquo;I will put it on the MLS and it will syndicate to Zillow and Realtor.com.&rdquo; Every agent says that, because every agent does that. It is the bare minimum. A single property website shows sellers that you are investing real effort and technology into marketing their home.</p>
 
@@ -118,7 +118,7 @@ export const article: BlogPost = {
 <ul>
   <li><strong>More qualified leads.</strong> Single property websites are a proven <a href="/blog/how-to-get-leads-as-a-real-estate-agent">lead generation strategy for real estate agents</a>. Buyers who arrive through a single property website have already spent time exploring the listing in detail. They have scrolled through every photo, read the description, and often interacted with the AI chatbot. By the time they fill out a contact form or call you, they are significantly more informed and more serious than a typical MLS inquiry.</li>
   <li><strong>Higher engagement through AI chat.</strong> An AI chatbot captures intent data that a static contact form never could. You can see what questions buyers asked, what features they cared about, and how long they spent on the page. This gives you valuable context before you ever pick up the phone.</li>
-  <li><strong>Faster response times with automated follow-up.</strong> The number one complaint from buyers about real estate agents is slow response times. Auto follow-up emails solve this instantly. The moment a buyer submits a form or chats with the AI, they receive a professional response. You buy yourself time to respond personally without the buyer feeling ignored.</li>
+  <li><strong>Faster response times with an automated first reply.</strong> The number one complaint from buyers about real estate agents is slow response times. A quick first reply helps. When a buyer submits a form or shares their details in the chat, an AI-written email reply can go out right away unless you hold it for approval. You buy yourself time to respond personally without the buyer feeling ignored.</li>
   <li><strong>Sellers become your biggest promoters.</strong> Sellers love sharing their single property website. They send the link to friends, family, and coworkers. They post it on their own social media. They show it off at work. Every share is free marketing for you-and every visitor who sees your branding on that page is a potential future client.</li>
 </ul>
 
@@ -147,7 +147,7 @@ export const article: BlogPost = {
 <p>Ideally, yes. Creating a dedicated website for every listing signals professionalism and gives you a consistent lead capture system across your entire portfolio. With a platform that lets you create pages from your listing details, there is no reason not to. That said, if you are just getting started, begin with your most important listings and expand from there.</p>
 
 <h3>Can buyers actually chat with the AI about the property?</h3>
-<p>Yes. Modern single property website platforms like ListingFlare include an AI chatbot that is trained on your specific listing details. Buyers can ask natural questions like &ldquo;How big is the backyard?&rdquo; or &ldquo;What school district is this in?&rdquo; and get accurate, instant answers. The AI also captures the buyer&rsquo;s contact information, so every chat conversation becomes a lead in your dashboard.</p>
+<p>Yes. Modern single property website platforms like ListingFlare include an AI chatbot that is trained on your specific listing details. Buyers can ask natural questions like &ldquo;How big is the backyard?&rdquo; or &ldquo;What school district is this in?&rdquo; and get answers drawn from the listing details. The AI can also collect the buyer&rsquo;s contact information, so when a buyer shares their details in the chat, it becomes a lead in your dashboard.</p>
 
 <h3>Will a single property website help me win more listings?</h3>
 <p>Absolutely. Showing a seller a live example of a dedicated property website with an AI chatbot during your listing presentation is one of the most powerful differentiators available today. It proves that you will invest in marketing their home beyond the MLS. Agents who use this strategy consistently report winning listings over competitors who rely on traditional marketing pitches.</p>
@@ -160,6 +160,6 @@ export const article: BlogPost = {
 
 <p>Single property websites are no longer a luxury reserved for agents with big marketing budgets and tech teams. They are an essential part of a modern listing marketing strategy. Pair them with a compelling <a href="/blog/real-estate-listing-description-examples">listing description</a> that tells a story, and you give buyers an experience that MLS syndication alone cannot match, and the agents who adopt them are winning more listings, capturing more leads, and closing faster than those who rely on MLS syndication alone.</p>
 
-<p>If you are ready to create your first single property website, <a href="/signup">try ListingFlare free</a> and see how fast you can go from listing photos to a live, AI-powered property page with built-in lead capture and an instant AI reply to new leads. Your next listing deserves more than a MLS page.</p>
+<p>If you are ready to create your first single property website, <a href="/signup">try ListingFlare free</a> and see how fast you can go from listing photos to a live, AI-powered property page with built-in lead capture and AI email replies to new leads. Your next listing deserves more than a MLS page.</p>
 `,
 };

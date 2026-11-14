@@ -142,7 +142,7 @@ export const article: BlogPost = {
 
 <h3>AI-Powered Tools</h3>
 
-<p>Highlight how AI-powered tools give you an edge. An AI chatbot on the property website answers buyer questions instantly, any time of day, so no lead goes cold while you are in a showing or asleep. This is not a gimmick. It is a practical tool that captures and qualifies leads around the clock. When you explain to a seller that their listing is actively engaging buyers at 11 PM on a Tuesday, they understand immediately why this matters.</p>
+<p>Highlight how AI-powered tools give you an edge. An AI chatbot on the property website answers buyer questions any time of day, so no lead goes cold while you are in a showing or asleep. This is not a gimmick. It is a practical tool that captures and qualifies leads around the clock. When you explain to a seller that their listing is actively engaging buyers at 11 PM on a Tuesday, they understand immediately why this matters.</p>
 
 <h3>Your Track Record and Reviews</h3>
 
