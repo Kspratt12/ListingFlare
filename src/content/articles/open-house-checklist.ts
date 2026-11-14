@@ -27,6 +27,8 @@ export const article: BlogPost = {
 
 ${downloadBox("open-house-checklist-template")}
 
+<p>Need a flyer for the day? Use the free <a href="/blog/open-house-flyer-template">open house flyer template</a>. Hosting online instead or as well? See <a href="/blog/virtual-open-house">how to host a virtual open house</a>.</p>
+
 <h2>A Week Before</h2>
 <ul>
 <li><strong>Confirm the date and time with the seller,</strong> and agree on what they need to do to prepare.</li>

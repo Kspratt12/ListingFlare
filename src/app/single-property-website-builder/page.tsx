@@ -57,6 +57,13 @@ export default function Page() {
           ],
         },
         {
+          heading: "A real estate listing website, explained",
+          body: [
+            "A real estate listing website is a website for a home that is for sale. Some are portals that list many homes from many agents. Others, like the pages ListingFlare builds, are single-property websites: one page for one home, with that agent's name and contact details on it.",
+            "If you are searching for a listing website for real estate agents, the choice is usually between a page you control for each listing and a general agent website that covers all your listings in one site. Many agents use both.",
+          ],
+        },
+        {
           heading: "How it compares with an MLS listing or a portal",
           body: [
             "A listing website does not replace the MLS. The MLS is how your listing reaches other agents and the portals. A listing website is the page you control, which you send traffic to from social posts, email, flyers and signs.",
@@ -102,6 +109,7 @@ export default function Page() {
       }}
       faqs={[
         { question: "How long does it take to create a single property website?", answer: "Most of the time goes into gathering photos and details. Once you have those, you create a listing with its details and photos." },
+        { question: "What is a real estate listing website?", answer: "A website for a home that is for sale. Portals list many homes from many agents, while a single-property website is one page for one home, with the listing agent's branding and contact details. ListingFlare builds the second kind." },
         { question: "How much does it cost?", answer: "$150 per month for unlimited listing websites, with a 14-day free trial and no credit card required to start." },
         { question: "Do I need technical skills?", answer: "No. You fill in a form and upload photos. There is no code or design work." },
         { question: "Can I use my own branding?", answer: "Yes. Your headshot, name, brokerage and brand color appear on each listing page." },

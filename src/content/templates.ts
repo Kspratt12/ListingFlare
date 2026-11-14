@@ -86,7 +86,17 @@ export const TEMPLATES: Template[] = [
     files: [
       { label: "PDF", href: "/downloads/open-house-sign-in-sheet-template.pdf", note: "Print and keep at the door" },
       { label: "Word", href: "/downloads/open-house-sign-in-sheet-template.docx", note: "Edit the wording first" },
+      { label: "Excel / Google Sheets", href: "/downloads/open-house-sign-in-sheet-template.xlsx", note: "Type into it, or import it into Google Sheets" },
     ],
+  },
+  {
+    id: "open-house-flyer-template",
+    title: "Open house flyer template",
+    description:
+      "A flyer to fill in, print or edit: event details, price and facts, a photo box, highlights, a QR code line, your contact details and a before-you-print checklist.",
+    guideHref: "/blog/open-house-flyer-template",
+    guideLabel: "How to use it",
+    files: [pdf("open-house-flyer-template"), fillable("open-house-flyer-template"), word("open-house-flyer-template")],
   },
   {
     id: "seller-update-report-template",

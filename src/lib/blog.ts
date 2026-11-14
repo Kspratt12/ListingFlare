@@ -78,6 +78,8 @@ import { article as sellerUpdateTemplate } from "@/content/articles/seller-updat
 import { article as leadFollowUpSequence } from "@/content/articles/real-estate-lead-follow-up-sequence";
 import { article as singlePropertyTemplate } from "@/content/articles/single-property-website-template";
 import { article as openHouseChecklist } from "@/content/articles/open-house-checklist";
+import { article as openHouseFlyerTemplate } from "@/content/articles/open-house-flyer-template";
+import { article as virtualOpenHouse } from "@/content/articles/virtual-open-house";
 import { article as listingMarketingPlan } from "@/content/articles/listing-marketing-plan-template";
 import { article as preListingChecklist } from "@/content/articles/pre-listing-checklist";
 import { article as priceReductionScripts } from "@/content/articles/seller-price-reduction-scripts";
@@ -169,6 +171,8 @@ const allPosts: BlogPost[] = [
   leadFollowUpSequence,
   singlePropertyTemplate,
   openHouseChecklist,
+  openHouseFlyerTemplate,
+  virtualOpenHouse,
   listingMarketingPlan,
   preListingChecklist,
   priceReductionScripts,

@@ -125,7 +125,7 @@ const featureGroups = [
       "Per-listing performance breakdown",
       "Lead pipeline stats with click-to-filter",
       "Social media post generator (Instagram, Facebook, Stories)",
-      "Open house flyer generator (PDF with QR)",
+      "Open house flyer generator (printable, with QR code)",
       "QR code generator for every listing",
     ],
   },

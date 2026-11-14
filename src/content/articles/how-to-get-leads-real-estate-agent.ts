@@ -23,6 +23,8 @@ export const article: BlogPost = {
 
 <p>In this guide we break down 12 proven strategies for <strong>lead generation for real estate agents</strong> that are working right now. Whether you are a solo agent building your first pipeline or a team leader looking to scale, you will find actionable tactics you can implement this week. Let's dive in.</p>
 
+<p>For the full set of methods in one place, see our <a href="/blog/real-estate-lead-generation">complete guide to real estate lead generation</a>.</p>
+
 <h2>1. Single-Property Websites</h2>
 
 <p>One of the most effective yet underused strategies for real estate agent lead generation is creating a dedicated website for each listing. Instead of sending prospects to a crowded MLS page where they can click away to competing properties, a single-property website keeps all attention on your listing and captures visitor information in the process.</p>

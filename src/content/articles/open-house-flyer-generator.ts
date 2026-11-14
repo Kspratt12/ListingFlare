@@ -26,6 +26,8 @@ export const article: BlogPost = {
 
 <p>That is the part of an open house that should not take any time at all. Every piece of the flyer already exists in the listing. This guide walks through how an <strong>open house flyer generator</strong> turns that data into a print-ready page in one click, what belongs on a good flyer, and where this beats starting from a blank Canva design.</p>
 
+<p>Prefer to build your own? Use our free <a href="/blog/open-house-flyer-template">open house flyer template</a> as a printable PDF, fillable PDF or Word file.</p>
+
 <h2>What a Good Open House Flyer Needs</h2>
 
 <p>A flyer has one job. It makes someone who glances at it for a few seconds want to walk through the door, and it makes it easy to reach you afterward. The flyers that work tend to have the same ingredients.</p>
