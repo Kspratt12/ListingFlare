@@ -16,7 +16,7 @@ import RoiCalculator from "@/components/RoiCalculator";
 export const metadata: Metadata = {
   title: "Pricing: $150/Month, Unlimited Listing Sites",
   description:
-    "ListingFlare pricing: $150/month for unlimited listing websites with AI chat, lead capture and an instant AI reply to new leads. 14-day free trial, no card required.",
+    "$150/month for unlimited listing websites, AI chat, lead capture and AI email replies with optional approval. 14-day free trial, no card required.",
   alternates: {
     canonical: "https://www.listingflare.com/pricing",
   },
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     title: "Pricing: $150/Month, Unlimited Listing Sites | ListingFlare",
     description:
-      "ListingFlare pricing: $150/month for unlimited listing websites with AI chat, lead capture and an instant AI reply to new leads. 14-day free trial, no card required.",
+      "$150/month for unlimited listing websites, AI chat, lead capture and AI email replies with optional approval. 14-day free trial, no card required.",
     url: "https://www.listingflare.com/pricing",
     images: [{ url: "https://www.listingflare.com/opengraph-image", width: 1200, height: 630, alt: "ListingFlare" }],
   },
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Pricing: $150/Month, Unlimited Listing Sites | ListingFlare",
     description:
-      "ListingFlare pricing: $150/month for unlimited listing websites with AI chat, lead capture and an instant AI reply to new leads. 14-day free trial, no card required.",
+      "$150/month for unlimited listing websites, AI chat, lead capture and AI email replies with optional approval. 14-day free trial, no card required.",
   },
 };
 

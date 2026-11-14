@@ -87,7 +87,7 @@ export const article: BlogPost = {
 
 <h2>Try Before You Pay</h2>
 
-<p>Whatever you choose, build a real listing on a free trial first. ListingFlare offers a 14-day free trial with no credit card required, and you can <a href="/demo">see a live example</a> before you sign up. For a head-to-head, read <a href="/listingflare-vs-rela">ListingFlare vs Rela</a>.</p>
+<p>Whatever you choose, build a real listing on a free trial first. ListingFlare offers a 14-day free trial with no credit card required, and you can <a href="/demo">see a live example</a> before you sign up. To see what a page includes, read about the <a href="/single-property-website-builder">ListingFlare single property website builder</a>. For a head-to-head, read <a href="/listingflare-vs-rela">ListingFlare vs Rela</a>.</p>
 
 <!-- expanded --><h2>Hidden Costs to Check</h2>
 <ul>

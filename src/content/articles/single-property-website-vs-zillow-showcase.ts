@@ -58,7 +58,7 @@ export const article: BlogPost = {
 
 <h3>You own the lead</h3>
 
-<p>When a buyer fills out a form or chats on your page, the inquiry comes to you, with the name, phone, email, and what they asked about. You decide how fast and how personally to respond. With a tool like <a href="/signup">ListingFlare</a>, new leads also land in a dashboard with status tracking, so follow-up does not depend on a notification you might miss.</p>
+<p>When a buyer fills out a form or chats on your page, the inquiry comes to you, with the name, phone, email, and what they asked about. You decide how fast and how personally to respond. With a <a href="/single-property-website-builder">single property website builder</a> like ListingFlare, new leads also land in a dashboard with status tracking, so follow-up does not depend on a notification you might miss.</p>
 
 <h3>One link works everywhere</h3>
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import NavAuthCta from "@/components/NavAuthCta";
 import { ArrowRight, Check } from "lucide-react";
 
@@ -22,6 +23,14 @@ export interface LandingLink {
   label: string;
 }
 
+export interface LandingFigure {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+}
+
 export interface SeoLandingPageProps {
   path: string;
   eyebrow: string;
@@ -31,6 +40,8 @@ export interface SeoLandingPageProps {
   sections: LandingSection[];
   // Optional side-by-side table shown after the sections (comparison pages)
   comparison?: { heading: string; columns: string[]; rows: string[][]; note?: string };
+  // Optional screenshots of the public demo, shown after the sections
+  figures?: { heading: string; intro: string; items: LandingFigure[]; cta: LandingLink };
   stepsHeading: string;
   steps: LandingStep[];
   limits: { heading: string; items: string[] };
@@ -50,6 +61,7 @@ export default function SeoLandingPage({
   highlights,
   sections,
   comparison,
+  figures,
   stepsHeading,
   steps,
   limits,
@@ -142,6 +154,32 @@ export default function SeoLandingPage({
             ))}
           </section>
         ))}
+
+        {figures && (
+          <section className="mt-14">
+            <h2 className="font-serif text-2xl font-bold text-gray-900 md:text-3xl">{figures.heading}</h2>
+            <p className="mt-4 text-base leading-relaxed text-gray-600">{figures.intro}</p>
+            <div className="mt-6 space-y-8">
+              {figures.items.map((f) => (
+                <figure key={f.src}>
+                  <Image
+                    src={f.src}
+                    alt={f.alt}
+                    width={f.width}
+                    height={f.height}
+                    sizes="(min-width: 768px) 768px, 100vw"
+                    className="h-auto w-full rounded-xl border border-gray-200"
+                  />
+                  <figcaption className="mt-2 text-sm text-gray-500">{f.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+            <Link href={figures.cta.href} className="mt-6 inline-flex items-center gap-2 font-semibold text-brand-700 hover:text-brand-800">
+              {figures.cta.label}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </section>
+        )}
 
         {comparison && (
           <section className="mt-14">
