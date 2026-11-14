@@ -89,6 +89,15 @@ test("lead scoring and flyer pages carry the new FAQ entries inside the structur
   assert.ok(fl.keywords.includes("property flyer template") && fl.keywords.includes("just listed flyer template"));
 });
 
+test("the three newest guides each have their own cover image (no sharing with another article)", () => {
+  for (const slug of ["open-house-flyer-template", "virtual-open-house", "real-estate-buyer-questionnaire"]) {
+    const p = post(slug);
+    assert.equal(p.coverImage, "/blog/" + slug + "/hero.jpg");
+    assert.equal(posts.filter((x) => x.coverImage === p.coverImage).length, 1, slug + " cover is used by one article");
+    assert.ok(fs.existsSync(path.join(PUBLIC, p.coverImage)));
+  }
+});
+
 test("no test in this file reached the network", () => {
   assertNoNetworkAttempts();
 });

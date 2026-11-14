@@ -20,8 +20,8 @@ export const article: BlogPost = {
     "just listed flyer template",
   ],
   readingTime: 5,
-  coverImage: "/blog/open-house-flyer-generator/hero.jpg",
-  coverImageAlt: "Agent welcoming a smiling couple into an empty, bright home",
+  coverImage: "/blog/open-house-flyer-template/hero.jpg",
+  coverImageAlt: "Real estate agent in a light blazer talking with a couple in front of a two-story home on a sunny day",
   content: `
 <p>An open house flyer is a one-page handout that tells people when and where the open house is, what the home offers and how to reach you. The template below has blanks for the event details, price and facts, a photo, highlights, a QR code link and your contact details. Download it as a printable PDF, a fillable PDF you type into on screen, or a Word file you can edit, where you can also add your own photo and branding. Change the headline and it works as a property flyer or a just listed flyer too.</p>
 

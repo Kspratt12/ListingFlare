@@ -17,8 +17,8 @@ export const article: BlogPost = {
     "questions to ask a home buyer",
   ],
   readingTime: 6,
-  coverImage: "/blog/best-open-house-apps/hero.jpg",
-  coverImageAlt: "Agent with a tablet showing a couple around a bright open-plan home",
+  coverImage: "/blog/real-estate-buyer-questionnaire/hero.jpg",
+  coverImageAlt: "Real estate agent reviewing paperwork with a couple on a sofa, with a laptop on the table",
   content: `
 <p>A real estate buyer questionnaire is a short form an agent uses with a new buyer to learn their timeline, budget, the kind of home they want and how they like to work. It turns a first conversation into a clear starting brief, so you can search with real criteria instead of guesses. The template below covers contact details, timeline, budget and financing, the home itself, working with an agent, showings, and a fair housing reminder. Download it as a printable PDF, a fillable PDF you type into on screen, or a Word file you can edit.</p>
 
