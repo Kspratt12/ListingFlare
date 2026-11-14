@@ -113,6 +113,41 @@ const openHouseFlyer = {
   ],
 }
 
+const buyerQuestionnaire = {
+  file: "real-estate-buyer-questionnaire-template",
+  title: "Buyer Questionnaire",
+  subtitle: "Use it before the first call or at the first meeting. Ask only what you will use, and let the buyer skip anything they prefer not to answer.",
+  blocks: [
+    { t: "h2", text: "Buyer details" },
+    { t: "fields", rows: [["Buyer name(s)"], ["Phone", "Email"], ["Best way to reach you", "Best time"], ["How did you hear about me"]] },
+    { t: "h2", text: "Timeline and situation" },
+    { t: "fields", rows: [["Ideal move date", "Reason for moving"], ["Renting or owning now"], ["Lease end date (if renting)", "Need to sell a home first? (Y/N)"]] },
+    { t: "h2", text: "Budget and financing" },
+    { t: "note", text: "Ask only what you will use, and do not give financial advice. Refer financing questions to a licensed lender." },
+    { t: "fields", rows: [["Price range you are comfortable with"], ["Pre-approved? (Y/N)", "Lender (if any)"]] },
+    { t: "h2", text: "The home you want" },
+    { t: "fields", rows: [["Areas or neighborhoods"], ["Property type", "Bedrooms and bathrooms"], ["Minimum size (sq ft)", "Parking needs"]] },
+    { t: "note", text: "Must-haves: the home needs these." },
+    { t: "lines", n: 3 },
+    { t: "note", text: "Nice-to-haves: good if the home has them." },
+    { t: "lines", n: 2 },
+    { t: "note", text: "Deal-breakers: the buyer would not consider a home with these." },
+    { t: "lines", n: 2 },
+    { t: "h2", text: "Getting around" },
+    { t: "fields", rows: [["Places you travel to often (work, family, other)"], ["Things nearby that matter to you (parks, transit, shops)"]] },
+    { t: "h2", text: "Working with an agent" },
+    { t: "fields", rows: [["Working with another agent? (Y/N)"], ["Buyer agreement in place? (Y/N)"]] },
+    { t: "note", text: "Follow your brokerage's rules about buyer representation agreements and about working with a buyer who already has an agent." },
+    { t: "h2", text: "Showings" },
+    { t: "fields", rows: [["Days and times you are free for showings"], ["Anyone else who should attend"]] },
+    { t: "h2", text: "Fair housing" },
+    { t: "note", text: "Ask about the home and what the buyer needs from it. Do not ask about or record anything related to race, color, religion, sex, national origin, disability or family status, or other characteristics protected where you work, and do not steer buyers toward or away from areas. Follow your brokerage's policies." },
+    { t: "h2", text: "Notes and next steps" },
+    { t: "lines", n: 3 },
+    { t: "fields", rows: [["Next step", "Follow-up date"]] },
+  ],
+}
+
 const sellerUpdate = {
   file: "seller-update-report-template",
   title: "Seller Update Report",
@@ -665,6 +700,39 @@ async function buildSignInXlsx() {
   return zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" })
 }
 
+// Lead follow-up tracker as an .xlsx (same hand-written package as the sign-in sheet).
+async function buildTrackerXlsx() {
+  const COLS = ["A", "B", "C", "D", "E", "F", "G", "H"]
+  const HEADERS = ["Lead name", "Source", "First reply (time)", "Day 1", "Day 3", "Day 7", "Status", "Next step"]
+  const WIDTHS = [24, 16, 18, 12, 12, 12, 18, 30]
+  const cell = (ref, text, style) => `<c r="${ref}"${style ? ` s="${style}"` : ""} t="inlineStr"><is><t xml:space="preserve">${xmlEsc(text)}</t></is></c>`
+  const blank = (ref, style) => `<c r="${ref}" s="${style}"/>`
+  const rows = []
+  rows.push(`<row r="1" ht="24" customHeight="1">${cell("A1", "LEAD FOLLOW-UP TRACKER", 3)}</row>`)
+  rows.push(`<row r="2">${cell("A2", "Listing or campaign", 4)}${blank("B2", 2)}${blank("C2", 2)}${cell("D2", "Week of", 4)}${blank("E2", 2)}</row>`)
+  rows.push(`<row r="3">${cell("A3", "One row per lead. The goal is simple: no lead goes more than a day without a note on what happens next.", 5)}</row>`)
+  rows.push(`<row r="5">${HEADERS.map((h, i) => cell(COLS[i] + "5", h, 1)).join("")}</row>`)
+  for (let r = 6; r <= 40; r++) rows.push(`<row r="${r}" ht="22" customHeight="1">${COLS.map((c) => blank(c + r, 2)).join("")}</row>`)
+  rows.push(`<row r="42">${cell("A42", "Status ideas: new, replied, showing booked, toured, offer stage, not interested. Record only what you need, and remove people who ask you to stop.", 5)}</row>`)
+  rows.push(`<row r="43">${cell("A43", "Free template from ListingFlare (listingflare.com). General guidance, not legal advice.", 5)}</row>`)
+  const sheet = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetPr><pageSetUpPr fitToPage="1"/></sheetPr><dimension ref="A1:H43"/><sheetViews><sheetView workbookViewId="0"><pane ySplit="5" topLeftCell="A6" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews><sheetFormatPr defaultRowHeight="15"/><cols>${WIDTHS.map((w, i) => `<col min="${i + 1}" max="${i + 1}" width="${w}" customWidth="1"/>`).join("")}</cols><sheetData>${rows.join("")}</sheetData><pageMargins left="0.5" right="0.5" top="0.5" bottom="0.5" header="0.3" footer="0.3"/><pageSetup orientation="landscape" fitToWidth="1" fitToHeight="0"/></worksheet>`
+  const styles = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><fonts count="4"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="14"/><name val="Calibri"/></font><font><i/><sz val="9"/><color rgb="FF646464"/><name val="Calibri"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FFEDEFF5"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="2"><border><left/><right/><top/><bottom/><diagonal/></border><border><left style="thin"><color rgb="FFBBBBBB"/></left><right style="thin"><color rgb="FFBBBBBB"/></right><top style="thin"><color rgb="FFBBBBBB"/></top><bottom style="thin"><color rgb="FFBBBBBB"/></bottom><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="6"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1"/><xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyFont="1"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/><xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyFont="1"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>`
+  const zip = new JSZip()
+  zip.file("[Content_Types].xml", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>`)
+  zip.file("_rels/.rels", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`)
+  zip.file("xl/workbook.xml", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Lead tracker" sheetId="1" r:id="rId1"/></sheets></workbook>`)
+  zip.file("xl/_rels/workbook.xml.rels", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`)
+  zip.file("xl/worksheets/sheet1.xml", sheet)
+  zip.file("xl/styles.xml", styles)
+  return zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" })
+}
+
 // ───────────────────────── write ─────────────────────────
 
 const ONLY = process.env.ONLY || ""
@@ -689,3 +757,9 @@ write(`${openHouseFlyer.file}.pdf`, buildPdf(openHouseFlyer))
 write(`${openHouseFlyer.file}-fillable.pdf`, buildPdf(openHouseFlyer, { fillable: true }))
 write(`${openHouseFlyer.file}.docx`, await buildDocx(openHouseFlyer))
 write(`${openHouseSignIn.file}.xlsx`, await buildSignInXlsx())
+
+// New: buyer questionnaire template and the spreadsheet version of the lead follow-up tracker.
+write(`${buyerQuestionnaire.file}.pdf`, buildPdf(buyerQuestionnaire))
+write(`${buyerQuestionnaire.file}-fillable.pdf`, buildPdf(buyerQuestionnaire, { fillable: true }))
+write(`${buyerQuestionnaire.file}.docx`, await buildDocx(buyerQuestionnaire))
+write(`${leadFollowUpTracker.file}.xlsx`, await buildTrackerXlsx())

@@ -132,7 +132,21 @@ export const TEMPLATES: Template[] = [
       "A one-page tracker for each lead's first reply time, day 1, day 3 and day 7 touches, status and next step.",
     guideHref: "/blog/real-estate-lead-nurture-campaign",
     guideLabel: "How to nurture leads",
-    files: [pdf("lead-follow-up-tracker"), fillable("lead-follow-up-tracker"), word("lead-follow-up-tracker")],
+    files: [
+      pdf("lead-follow-up-tracker"),
+      fillable("lead-follow-up-tracker"),
+      word("lead-follow-up-tracker"),
+      { label: "Excel / Google Sheets", href: "/downloads/lead-follow-up-tracker.xlsx", note: "Type into it, or import it into Google Sheets" },
+    ],
+  },
+  {
+    id: "real-estate-buyer-questionnaire-template",
+    title: "Buyer questionnaire",
+    description:
+      "An intake form for a new buyer: contact details, timeline, budget and financing, the home they want, working with an agent, showings and a fair housing reminder.",
+    guideHref: "/blog/real-estate-buyer-questionnaire",
+    guideLabel: "How to use it",
+    files: [pdf("real-estate-buyer-questionnaire-template"), fillable("real-estate-buyer-questionnaire-template"), word("real-estate-buyer-questionnaire-template")],
   },
 ];
 
