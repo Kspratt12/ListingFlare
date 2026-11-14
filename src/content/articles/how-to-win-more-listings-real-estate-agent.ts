@@ -4,9 +4,9 @@ export const article: BlogPost = {
   slug: "how-to-win-more-listings-as-a-real-estate-agent",
   title: "How to Win More Listings as a Real Estate Agent",
   description:
-    "Learn how to win more listings with a killer listing presentation, superior marketing plan, and the tools that top-producing agents use in 2026.",
+    "How to get more listings as a real estate agent: prospecting that works, a 30-day starter plan, a winning listing presentation and the tools top agents use.",
   date: "2026-03-06",
-  updated: "2026-11-12",
+  updated: "2026-11-14",
   author: "ListingFlare Team",
   category: "Agent Growth",
   keywords: [
@@ -53,6 +53,22 @@ export const article: BlogPost = {
 <p>Pick a neighborhood of 300 to 500 homes and commit to it for at least 12 months. Send monthly just-sold postcards, host community events, and position yourself as the local market expert. Geographic farming is a long game, but agents who stick with it consistently report that their farm becomes a self-sustaining source of two to four listings per quarter once they hit critical mass.</p>
 
 <p>Combine direct mail with digital touchpoints. Run Facebook ads targeting homeowners in your farm area, create a neighborhood landing page on your website, and post Instagram Reels featuring local businesses and market stats. The more channels a homeowner sees your name on, the more likely they are to call you when it is time to sell.</p>
+
+<h2>How to Get Listings: A 30-Day Starter Plan</h2>
+
+<p>If you are asking how to get listings as a real estate agent, a simple plan beats a long list of ideas. Use the channels above and work through them in order.</p>
+
+<table>
+<thead><tr><th>Week</th><th>Focus</th><th>What to do</th></tr></thead>
+<tbody>
+<tr><td>Week 1</td><td>Build your list</td><td>List every past client, friend and local contact who owns a home, plus expired listings and for-sale-by-owner homes in your area. Put them in a tracker so you can see who you contacted and when.</td></tr>
+<tr><td>Week 2</td><td>Reach your sphere</td><td>Send each contact a short, personal message: say you are focusing on listings, ask if they know anyone thinking of selling, and offer a free home value conversation. Follow your brokerage's rules and the consent rules for calls and texts.</td></tr>
+<tr><td>Week 3</td><td>Be visible</td><td>Host an open house, with the listing agent's permission if it is not your listing, or invite neighbors to one, and keep a sign-in sheet.</td></tr>
+<tr><td>Week 4</td><td>Follow up and book</td><td>Contact everyone who showed interest, offer a listing appointment, and have your presentation, marketing plan and pre-listing checklist ready.</td></tr>
+</tbody>
+</table>
+
+<p>Our free <a href="/blog/real-estate-listing-presentation-template">listing presentation template</a>, <a href="/blog/listing-marketing-plan-template">marketing plan template</a> and <a href="/blog/pre-listing-checklist">pre-listing checklist</a> help you be ready when a seller says yes, and a <a href="/blog/real-estate-lead-nurture-campaign">follow-up tracker</a> keeps your contacts organized. For the rules on calls and texts, see <a href="/blog/real-estate-text-message-rules-tcpa-can-spam">texting rules and CAN-SPAM</a>.</p>
 
 <h2>The Listing Presentation That Wins</h2>
 
@@ -209,6 +225,9 @@ export const article: BlogPost = {
 
 <h3>How do I handle a seller who wants to list at an unrealistic price?</h3>
 <p>Start by acknowledging their perspective. Then walk through the comparable sales data methodically, highlighting homes that are most similar in size, condition, and location. Show them what happens to listings that are overpriced: extended days on market, fewer showings, and eventual price reductions that often result in a final sale price below where they would have sold if priced correctly from the start. Offer a pricing strategy with a competitive initial price and a review period. Most sellers respond well to data-driven honesty when it is delivered with respect.</p>
+
+<h3>How do I get listings as a real estate agent?</h3>
+<p>Start with people who already know you: past clients, friends and local contacts. Add one or two repeatable channels, such as open houses, expired listings or for-sale-by-owner outreach, and be ready with a clear presentation and marketing plan. The 30-day starter plan above puts this in order.</p>
 </div>
 
 <h2>Start Winning More Listings Today</h2>
