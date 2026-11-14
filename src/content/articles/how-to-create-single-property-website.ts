@@ -81,7 +81,7 @@ export const article: BlogPost = {
 
 <p>Purpose-built single property website platforms solve the problems of both approaches above. <a href="/single-property-website-builder">ListingFlare</a>, for example, lets you create a professional, fully branded property website without a developer. You enter your property details, upload photos, and publish.</p>
 
-<p>What makes a dedicated platform different from a generic website builder is everything that comes built in: an AI chatbot that answers buyer questions using your listing details, automatic lead capture on every interaction, instant follow-up emails so no lead goes cold, virtual tour embeds, agent branding, and a lead management dashboard. You do not need to install plugins, hire a developer, or configure anything. <a href="/demo">See a demo listing</a> to understand the difference.</p>
+<p>What makes a dedicated platform different from a generic website builder is everything that comes built in: an AI chatbot that answers buyer questions using your listing details, automatic lead capture on every interaction, AI email replies to new leads (with optional approval before sending), virtual tour embeds, agent branding, and a lead management dashboard. You do not need to install plugins, hire a developer, or configure anything. <a href="/demo">See a demo listing</a> to understand the difference.</p>
 
 <p>For agents who want professional results without the time investment or cost of custom development, a dedicated platform is the clear winner.</p>
 

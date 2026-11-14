@@ -74,7 +74,7 @@ test("supported claims were NOT removed: the AI email reply with optional approv
     assert.ok(pricing.includes(must), "pricing still says: " + must);
   }
   assert.ok(read("app/HomeClient.tsx").includes("AI email replies to new leads, with optional approval before sending"));
-  assert.ok(read("app/real-estate-lead-capture-software/page.tsx").includes("Instant auto-reply to each new lead, with an optional approval step"));
+  assert.ok(read("app/real-estate-lead-capture-software/page.tsx").includes("AI email reply to each new lead, with an optional approval step"));
 });
 
 assertNoNetworkAttempts();
