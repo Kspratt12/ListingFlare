@@ -176,7 +176,7 @@ export const article: BlogPost = {
 
 <p>Different tools suit different jobs. Rela's public pages describe a large template library, custom domains and floor plan features, which suits agents who care most about design. ListingFlare focuses on the lead side: an AI chat assistant on each listing page that answers from the details you enter, and instant replies. It has one design with your branding rather than a template library, and its pages live on a listingflare.com address, so check current options if a custom domain matters to you. We cover the tradeoff in <a href="/listingflare-vs-rela">ListingFlare vs Rela</a>. Confirm current pricing and features on each vendor's site, since they change.</p>
 
-<p>If you mainly want to see how a listing page works in practice, the <a href="/demo">live demo</a> shows an example page with its chat and showing request. You can also <a href="/signup">start a 14-day free trial</a>.</p>
+<p>If you mainly want to see how a listing page works in practice, the <a href="/demo">live demo</a> shows an example page with its chat and showing request, and the <a href="/single-property-website-builder">single property website builder</a> page explains what each page includes. You can also <a href="/signup">start a 14-day free trial</a>.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

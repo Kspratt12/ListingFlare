@@ -35,7 +35,7 @@ export const article: BlogPost = {
 <h2>Short on Time? Here Are the Top Picks</h2>
 
 <ol>
-<li><strong><a href="/signup">ListingFlare</a></strong> - Best overall. AI chatbot captures leads 24/7, auto follow-up emails, unlimited listings for $150/mo. Engages buyers after hours.</li>
+<li><strong><a href="/single-property-website-builder">ListingFlare</a></strong> - Best overall. AI chatbot captures leads 24/7, auto follow-up emails, unlimited listings for $150/mo. Engages buyers after hours.</li>
 <li><strong>Rela HQ</strong> - Best for luxury visuals. Gorgeous templates, 3D tour integration, but no chatbot and per-listing pricing adds up.</li>
 <li><strong>CribFlyer</strong> - Best for flexibility. Low entry price, but dated templates and no AI features.</li>
 <li><strong>Spiro</strong> - Best for photographers. Branded and unbranded options with built-in showing scheduler.</li>

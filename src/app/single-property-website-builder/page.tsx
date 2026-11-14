@@ -63,6 +63,28 @@ export default function Page() {
           ],
         },
       ]}
+      figures={{
+        heading: "See an actual ListingFlare listing page",
+        intro:
+          "These are screenshots of our public demo listing, a sample home. It is a demonstration, not a customer listing. Open the live demo to scroll through the full page and try the AI assistant.",
+        items: [
+          {
+            src: "/images/builder/demo-listing-page.jpg",
+            alt: "Top of the ListingFlare demo listing page: a full-width photo slideshow of a sample home with price, beds, baths and square footage, a Schedule Showing button, and an AI property assistant prompt, under a banner marking it as a demo.",
+            caption: "The top of the demo listing page: photo slideshow, price and key facts, a Schedule Showing button and the AI assistant. The banner marks it as a demo.",
+            width: 1282,
+            height: 633,
+          },
+          {
+            src: "/images/builder/demo-listing-details.jpg",
+            alt: "The About This Property section of the demo listing, with the property description and a Property Highlights list under the branded page header.",
+            caption: "The details section: the property description and a highlights list, under the agent's branded header.",
+            width: 1282,
+            height: 633,
+          },
+        ],
+        cta: { href: "/demo", label: "Open the live demo listing" },
+      }}
       stepsHeading="How to publish a listing page"
       steps={[
         { title: "Enter the property details", text: "Address, price, beds, baths, square footage and features. The AI can draft the listing description and photo captions for you to edit." },

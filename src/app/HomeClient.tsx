@@ -643,7 +643,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
       height: 512,
     },
     description:
-      "Real estate software company building listing marketing tools for real estate agents. AI-powered property websites, lead capture, and an instant AI reply to new leads.",
+      "Real estate software company building listing marketing tools for real estate agents. AI-powered property websites, lead capture, and AI email replies to new leads with optional approval.",
     foundingDate: "2026",
     founder: {
       "@type": "Person",
@@ -678,7 +678,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
     alternateName: "ListingFlare Real Estate Software",
     url: "https://www.listingflare.com",
     description:
-      "Real estate software for listing agents. Create property websites, capture leads with an AI chatbot, and reply to new leads instantly.",
+      "Real estate software for listing agents. Create property websites, capture leads with an AI chatbot, and send AI email replies to new leads with optional approval.",
     publisher: {
       "@type": "Organization",
       name: "ListingFlare",
@@ -695,7 +695,7 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
     applicationSubCategory: "Real Estate Software",
     operatingSystem: "Web",
     description:
-      "Real estate software that helps listing agents create stunning single-property websites, capture buyer leads with an AI chatbot, and reply to new leads instantly. The all-in-one listing marketing platform for real estate professionals.",
+      "Real estate software that helps listing agents create stunning single-property websites, capture buyer leads with an AI chatbot, and send AI email replies to new leads with optional approval. The all-in-one listing marketing platform for real estate professionals.",
     offers: {
       "@type": "Offer",
       price: "150",

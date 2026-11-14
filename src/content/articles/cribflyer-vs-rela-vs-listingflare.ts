@@ -420,7 +420,7 @@ export const article: BlogPost = {
 
 <p>ListingFlare costs more than CribFlyer and Rela, but it does more. Significantly more. The AI-powered chat alone changes what a single property website can do for your business. Instead of hoping buyers fill out a form, you have a system that actively engages them, answers their questions, captures their info, and follows up. That is not a website. That is a lead generation system.</p>
 
-<p><a href="/demo">See the 24/7 chat assistant in action on a live listing page</a> to understand the difference.</p>
+<p><a href="/demo">See the 24/7 chat assistant in action on a live listing page</a> to understand the difference, or read how the <a href="/single-property-website-builder">ListingFlare single property website builder</a> works.</p>
 
 <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=450&fit=crop&q=80" alt="Professional real estate agent working on her laptop to manage listing leads and marketing" loading="lazy" width="800" height="450" />
 
