@@ -5,7 +5,7 @@ export const article: BlogPost = {
   slug: "open-house-sign-in-sheet-template",
   title: "Open House Sign-In Sheet Template (Free Printable PDF)",
   description:
-    "A free printable open house sign-in sheet as a PDF or Word file, plus what to put on it, how to word consent, and what to do with the names afterward.",
+    "A free open house sign-in sheet as a printable PDF, Word file or Excel / Google Sheets spreadsheet, plus what to put on it and how to word consent.",
   date: "2026-10-25",
   updated: "2026-11-13",
   author: "ListingFlare Team",
@@ -23,7 +23,7 @@ export const article: BlogPost = {
   coverImageAlt:
     "Red and white Open House sign in front of a two-story home with a garage",
   content: `
-<p>An open house sign-in sheet is a one-page form at the door where visitors write their name and contact details, so you can follow up after the event. The template below is a printable one-page sheet with a header for the property, a spot for your consent wording, and a table for name, phone, email, whether the visitor has an agent, and notes. Download it as a PDF or a Word file.</p>
+<p>An open house sign-in sheet is a one-page form at the door where visitors write their name and contact details, so you can follow up after the event. The template below is a printable one-page sheet with a header for the property, a spot for your consent wording, and a table for name, phone, email, whether the visitor has an agent, and notes. Download it as a PDF, a Word file or an Excel / Google Sheets spreadsheet.</p>
 
 <p><em>Disclosure: we make ListingFlare, which offers a QR code sign-in as an alternative, mentioned near the end. The sheet works on its own.</em></p>
 
@@ -65,6 +65,7 @@ ${downloadBox("open-house-sign-in-sheet-template")}
 <ul>
 <li><strong>PDF:</strong> print it as it is. This is the quickest option.</li>
 <li><strong>Word:</strong> open it to add your name, your brokerage, the property address, your consent line or extra columns before printing.</li>
+<li><strong>Excel / Google Sheets:</strong> open it in Excel, or upload it to Google Drive and open it in Google Sheets. Use it to type names in on a laptop or tablet, or print it. Add columns if you want them.</li>
 </ul>
 
 <h3>Make Your Own in Word or Google Docs</h3>
@@ -106,7 +107,7 @@ ${downloadBox("open-house-sign-in-sheet-template")}
 <p>The property address and date, a short consent line, and columns for name, phone, email, whether the visitor has an agent, and notes.</p>
 
 <h3>Is there a free open house sign-in sheet template?</h3>
-<p>Yes. This page offers a free printable PDF and an editable Word version of a one-page sheet.</p>
+<p>Yes. This page offers a free printable PDF, an editable Word version and an Excel / Google Sheets spreadsheet of the same sheet.</p>
 
 <h3>Do I need consent wording on a sign-in sheet?</h3>
 <p>It is good practice to tell visitors how you will use their details, and rules on calls, texts and marketing emails vary. Check your brokerage's guidance and the rules where you work.</p>
@@ -118,6 +119,9 @@ ${downloadBox("open-house-sign-in-sheet-template")}
 <p>Each has trade-offs. Paper needs no phone but you must type it up. A QR sign-in saves the details automatically but depends on visitors using their phones. Many agents offer both.</p>
 <h3>Is an open house sign-up sheet the same as a sign-in sheet?</h3>
 <p>Yes. Agents use both names for the form visitors fill in at the door, and the same template works for either.</p>
+
+<h3>Is there a Google Sheets or Excel version of the open house sign-in sheet?</h3>
+<p>Yes. The spreadsheet version above opens in Excel, and you can upload it to Google Drive to open it in Google Sheets. It has the same columns as the printable sheet.</p>
 
 <h3>Can I make my own open house sign-in sheet in Word or Google Docs?</h3>
 <p>Yes. Add a header with the property address and date, a consent line, and a table with columns for name, phone, email, whether the visitor has an agent, and notes. The steps are in the section above.</p>

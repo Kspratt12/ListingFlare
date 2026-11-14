@@ -18,6 +18,7 @@ import fs from "node:fs"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 import { jsPDF, AcroFormTextField, AcroFormCheckBox } from "jspdf"
+import JSZip from "jszip"
 import {
   Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, WidthType, BorderStyle,
   ShadingType, AlignmentType, Footer, PageNumber, PageBreak,
@@ -84,6 +85,31 @@ const openHouseSignIn = {
     { t: "lines", n: 2 },
     { t: "table", cols: [["Name", 24], ["Phone", 17], ["Email", 27], ["Has agent? Y/N", 15], ["Notes", 17]], rows: 18 },
     { t: "note", text: "Visitors choose what to share. Do not require contact details to enter, and keep the sheet face-down or covered so visitors cannot read each other's details." },
+  ],
+}
+
+const openHouseFlyer = {
+  file: "open-house-flyer-template",
+  title: "Open House Flyer",
+  subtitle: "A flyer to fill in, print or edit. In the Word version, add your listing photo and your brokerage branding before you print.",
+  blocks: [
+    { t: "h2", text: "Event and price" },
+    { t: "fields", rows: [["Headline (for example, Open House)"], ["Date", "Time"], ["Property address"], ["Price", "Beds and baths"], ["Square feet", "Year built"]] },
+    { t: "note", text: "Copy the price and facts from the MLS listing so the flyer and the listing match." },
+    { t: "table", cols: [["Place your best exterior or living room photo here (in Word, insert a picture)", 100]], rows: 4 },
+    { t: "h2", text: "Highlights" },
+    { t: "note", text: "List three to five specific features that are true for this home. Describe the property, not the people who might live there." },
+    { t: "lines", n: 3 },
+    { t: "h2", text: "See more and contact" },
+    { t: "fields", rows: [["Link the QR code points to"], ["Agent name", "Brokerage"], ["Phone", "Email"]] },
+    { t: "checks", items: ["QR code added next to the link and tested with a phone"] },
+    { t: "note", text: "Add your brokerage logo, license number and any disclosures your brokerage or state requires." },
+    { t: "h2", text: "Before you print" },
+    { t: "checks", items: [
+      "Date, time, address, price and facts match the MLS listing",
+      "Wording follows your brokerage's advertising and fair housing rules",
+      "Printed one copy and read it start to finish",
+    ] },
   ],
 }
 
@@ -598,9 +624,51 @@ function buildDocx(model) {
   return Packer.toBuffer(doc)
 }
 
+// ───────────────────────── spreadsheet ─────────────────────────
+// A plain .xlsx written by hand (it is a zip of XML parts), so it opens in Excel and imports into Google Sheets.
+
+const xmlEsc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;")
+
+async function buildSignInXlsx() {
+  const COLS = ["A", "B", "C", "D", "E"]
+  const HEADERS = ["Name", "Phone", "Email", "Has agent? (Y/N)", "Notes"]
+  const WIDTHS = [28, 18, 32, 18, 36]
+  const cell = (ref, text, style) => `<c r="${ref}"${style ? ` s="${style}"` : ""} t="inlineStr"><is><t xml:space="preserve">${xmlEsc(text)}</t></is></c>`
+  const blank = (ref, style) => `<c r="${ref}" s="${style}"/>`
+  const rows = []
+  rows.push(`<row r="1" ht="24" customHeight="1">${cell("A1", "OPEN HOUSE SIGN-IN SHEET", 3)}</row>`)
+  rows.push(`<row r="2">${cell("A2", "Property address", 4)}${blank("B2", 2)}${blank("C2", 2)}</row>`)
+  rows.push(`<row r="3">${cell("A3", "Open house date", 4)}${blank("B3", 2)}${cell("C3", "Hosted by", 4)}${blank("D3", 2)}</row>`)
+  rows.push(`<row r="4">${cell("A4", "Consent wording to edit and place here (example): By signing in, I agree that the host may contact me about this property. Check your brokerage's rules, and the rules where you work, before you use it. This is general guidance, not legal advice.", 5)}</row>`)
+  rows.push(`<row r="6">${HEADERS.map((h, i) => cell(COLS[i] + "6", h, 1)).join("")}</row>`)
+  for (let r = 7; r <= 36; r++) rows.push(`<row r="${r}" ht="22" customHeight="1">${COLS.map((c) => blank(c + r, 2)).join("")}</row>`)
+  rows.push(`<row r="38">${cell("A38", "Visitors choose what to share. Do not require contact details to enter, and keep the sheet covered so visitors cannot read each other's details.", 5)}</row>`)
+  rows.push(`<row r="39">${cell("A39", "Free template from ListingFlare (listingflare.com). General guidance, not legal advice.", 5)}</row>`)
+
+  const sheet = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetPr><pageSetUpPr fitToPage="1"/></sheetPr><dimension ref="A1:E39"/><sheetViews><sheetView workbookViewId="0"/></sheetViews><sheetFormatPr defaultRowHeight="15"/><cols>${WIDTHS.map((w, i) => `<col min="${i + 1}" max="${i + 1}" width="${w}" customWidth="1"/>`).join("")}</cols><sheetData>${rows.join("")}</sheetData><pageMargins left="0.5" right="0.5" top="0.5" bottom="0.5" header="0.3" footer="0.3"/><pageSetup orientation="landscape" fitToWidth="1" fitToHeight="0"/></worksheet>`
+
+  const styles = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><fonts count="4"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="14"/><name val="Calibri"/></font><font><i/><sz val="9"/><color rgb="FF646464"/><name val="Calibri"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FFEDEFF5"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="2"><border><left/><right/><top/><bottom/><diagonal/></border><border><left style="thin"><color rgb="FFBBBBBB"/></left><right style="thin"><color rgb="FFBBBBBB"/></right><top style="thin"><color rgb="FFBBBBBB"/></top><bottom style="thin"><color rgb="FFBBBBBB"/></bottom><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="6"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1"/><xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyFont="1"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/><xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyFont="1"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>`
+
+  const zip = new JSZip()
+  zip.file("[Content_Types].xml", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>`)
+  zip.file("_rels/.rels", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`)
+  zip.file("xl/workbook.xml", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Sign-in sheet" sheetId="1" r:id="rId1"/></sheets></workbook>`)
+  zip.file("xl/_rels/workbook.xml.rels", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`)
+  zip.file("xl/worksheets/sheet1.xml", sheet)
+  zip.file("xl/styles.xml", styles)
+  return zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" })
+}
+
 // ───────────────────────── write ─────────────────────────
 
-const write = (name, buf) => { fs.writeFileSync(path.join(OUT, name), buf); console.log(name.padEnd(54), (buf.length / 1024).toFixed(1) + " KB") }
+const ONLY = process.env.ONLY || ""
+const write = (name, buf) => { if (ONLY && !name.startsWith(ONLY)) return; fs.writeFileSync(path.join(OUT, name), buf); console.log(name.padEnd(54), (buf.length / 1024).toFixed(1) + " KB") }
 
 for (const model of [listingPresentation, sellerUpdate, propertyWebsite, marketingPlan, leadResponseScripts, listingFaqWorksheet, leadFollowUpTracker]) {
   write(`${model.file}.pdf`, buildPdf(model))
@@ -615,3 +683,9 @@ for (const model of [openHouseChecklist, preListing]) {
   write(`${model.file}.pdf`, buildPdf(model))
   write(`${model.file}.docx`, await buildDocx(model))
 }
+
+// New: open house flyer template and the spreadsheet version of the sign-in sheet.
+write(`${openHouseFlyer.file}.pdf`, buildPdf(openHouseFlyer))
+write(`${openHouseFlyer.file}-fillable.pdf`, buildPdf(openHouseFlyer, { fillable: true }))
+write(`${openHouseFlyer.file}.docx`, await buildDocx(openHouseFlyer))
+write(`${openHouseSignIn.file}.xlsx`, await buildSignInXlsx())

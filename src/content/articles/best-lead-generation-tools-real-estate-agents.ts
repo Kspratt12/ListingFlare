@@ -23,6 +23,8 @@ export const article: BlogPost = {
 
 <p>If you are still building your overall lead generation strategy, start with our guide on <a href="/blog/how-to-get-leads-as-a-real-estate-agent">how to get leads as a real estate agent</a> for 12 proven tactics. Once your strategy is set, the right tools make all the difference. In this guide, we break down the best lead generation tools for real estate agents across six categories: single-property website builders, CRM systems, lead generation platforms, social media tools, email marketing, and website builders. We reviewed each tool on this list using its public information, and we will share pros and cons so you can build a tech stack that actually converts without blowing your marketing budget.</p>
 
+<p>For the full set of methods in one place, see our <a href="/blog/real-estate-lead-generation">complete guide to real estate lead generation</a>.</p>
+
 <h2>1. Single-Property Website Builders</h2>
 
 <p>Single-property websites are one of the most underrated lead generation strategies in real estate. Instead of sending buyers to a cluttered MLS page or your brokerage site, you give each listing its own dedicated URL with professional photos, detailed descriptions, and, most importantly, a focused lead capture experience. There are no competing listings to distract the buyer. Every visitor is a potential lead for that specific property.</p>
