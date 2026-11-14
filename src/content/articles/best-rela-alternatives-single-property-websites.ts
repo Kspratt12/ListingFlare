@@ -115,7 +115,7 @@ Your browser does not support the video tag.
 
 <p><a href="/signup">ListingFlare</a> is the strongest Rela alternative for agents who want their listing pages to actually generate business. While Rela focuses on presentation, ListingFlare focuses on conversion - and it does not sacrifice design quality to get there.</p>
 
-<p>The standout feature is the per-listing AI chatbot. Every property page you create gets its own AI assistant trained on that specific listing&rsquo;s details. When a buyer asks about the square footage, the garage, or the neighborhood, the chatbot answers from the listing details you entered. Then it captures the buyer&rsquo;s contact information naturally as part of the conversation. This is not a generic chat widget. It knows your listing.</p>
+<p>The standout feature is the per-listing AI chatbot. Every property page you create gets its own AI assistant that answers from that specific listing&rsquo;s details. When a buyer asks about the square footage, the garage, or the neighborhood, the chatbot answers from the listing details you entered. Then it captures the buyer&rsquo;s contact information naturally as part of the conversation. This is not a generic chat widget. It knows your listing.</p>
 
 <p>Beyond the chatbot, ListingFlare includes automated lead follow-up emails, a detailed analytics dashboard showing engagement metrics, and built-in social media post generation so you can market your listing across platforms without hiring a separate tool.</p>
 
@@ -517,7 +517,7 @@ Your browser does not support the video tag.
 <p>RealBird&rsquo;s free basic plan and SinglePropertySites&rsquo; free tier are the lowest-cost options we know of; CribFlyer starts at $9/month for one site. Keep in mind that cheaper platforms typically lack AI chatbot features and automated lead follow-up, which can mean saving on the tool but handling more inquiries by hand.</p>
 
 <h3>Can I switch from Rela to ListingFlare easily?</h3>
-<p>Yes. ListingFlare is designed for quick setup. You can recreate your listing pages in under 15 minutes per property. Simply upload your photos, enter the property details, and the AI chatbot is automatically trained on your listing data. Most agents complete the switch in a single afternoon.</p>
+<p>Yes. ListingFlare is designed for quick setup. You can recreate your listing pages in under 15 minutes per property. Simply upload your photos, enter the property details, and the AI chatbot automatically answers from your listing data. Most agents complete the switch in a single afternoon.</p>
 
 <h3>Do I need a single property website if I already have a Zillow listing?</h3>
 <p>Absolutely. Your Zillow listing sits next to competing properties and sends buyer leads to agents who pay for that zip code - not necessarily to you. A single property website gives you a dedicated page with no competing listings, your branding, and your lead capture. Every buyer who visits goes to you, not to a random Zillow Premier Agent.</p>

@@ -511,7 +511,7 @@ export const article: BlogPost = {
 
 <ul>
 <li><strong>Creates a dedicated property website for each listing.</strong> One URL, one property, your branding. No competing listings. No distractions. Just your home and a clear path for the buyer to engage.</li>
-<li><strong>Puts an AI chatbot on that page.</strong> Not a generic chatbot that says "How can I help you?" but one trained on the specific listing details - bedrooms, square footage, HOA fees, school district, walkability score. When a buyer asks "Does this home have a finished basement?" the chatbot answers accurately and captures the lead.</li>
+<li><strong>Puts an AI chatbot on that page.</strong> Not a generic chatbot that says "How can I help you?" but one that answers from the specific listing details - bedrooms, square footage, HOA fees, school district, walkability score. When a buyer asks "Does this home have a finished basement?" the chatbot answers accurately and captures the lead.</li>
 <li><strong>Generates listing-specific follow-up.</strong> When a lead comes in from a specific property page, the follow-up should reference that property. "Thanks for checking out 123 Oak Street. You asked about the backyard - here are a few more details." Not a generic "Thanks for your inquiry."</li>
 <li><strong>Works alongside your CRM.</strong> Not a replacement, but a complement. The listing marketing tool captures the lead, and your CRM manages the relationship from there.</li>
 </ul>
@@ -534,7 +534,7 @@ export const article: BlogPost = {
 
 <h3>Layer 2: ListingFlare for Listing-Specific Lead Capture</h3>
 
-<p>For every active listing, create a dedicated property page on <a href="/signup">ListingFlare</a>. Upload your listing photos, enter the property details, and the platform generates a branded single property website with an AI chatbot trained on that specific home. Share the listing page link on social media, in email campaigns, on your flyers (via QR code), and anywhere else you promote the listing.</p>
+<p>For every active listing, create a dedicated property page on <a href="/signup">ListingFlare</a>. Upload your listing photos, enter the property details, and the platform generates a branded single property website with an AI chatbot that answers from that specific home's details. Share the listing page link on social media, in email campaigns, on your flyers (via QR code), and anywhere else you promote the listing.</p>
 
 <h3>The Workflow in Practice</h3>
 
