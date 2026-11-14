@@ -76,7 +76,7 @@ export const article: BlogPost = {
 
 <p>ListingFlare is built specifically for listing agents who want to capture and convert buyer leads, not just display photos. Every listing page comes with an AI-powered chatbot that answers buyer questions in real time, even at 11 PM on a Tuesday when you are at dinner with your family.</p>
 
-<p>Here is what makes it different from everything else on this list: the chatbot is trained on your listing details. A buyer asks &ldquo;Does this home have a pool?&rdquo; and gets an answer drawn from the listing details. Then the chatbot captures their name, email, and phone number before they leave. That lead goes directly to your dashboard with the full conversation attached.</p>
+<p>Here is what makes it different from everything else on this list: the chatbot answers from your listing details. A buyer asks &ldquo;Does this home have a pool?&rdquo; and gets an answer drawn from the listing details. Then the chatbot captures their name, email, and phone number before they leave. That lead goes directly to your dashboard with the full conversation attached.</p>
 
 <p>The analytics dashboard shows you exactly who visited, how long they stayed, and what they looked at.</p>
 

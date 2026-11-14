@@ -68,7 +68,7 @@ export const article: BlogPost = {
 
 <p>This is the biggest gap in 2026. Buyers expect instant answers. They are browsing listings on their phone at 9 PM, on a lunch break, or during a commute. If they land on your listing page and have a question - Does the backyard face south? How far is the nearest school? Is the seller flexible on closing date? - they want an answer now.</p>
 
-<p>A static contact form does not cut it. A conversational AI trained on your listing details can answer those questions at any hour, build rapport with the buyer, and capture their contact information before they move on to the next listing. Listings to Leads does not offer this.</p>
+<p>A static contact form does not cut it. A conversational AI working from your listing details can answer those questions at any hour, build rapport with the buyer, and capture their contact information before they move on to the next listing. Listings to Leads does not offer this.</p>
 
 <h3>Landing Pages Lack Interactive Engagement</h3>
 
@@ -86,7 +86,7 @@ export const article: BlogPost = {
 
 <p><strong>Price:</strong> $150/month (unlimited listings) | 14-day free trial, no credit card required</p>
 
-<p><a href="/signup">ListingFlare</a> is purpose-built for listing agents who want their property pages to actively capture and convert buyer leads - not just display photos. Every listing page comes with an AI-powered chatbot that is trained on your specific listing details. When a buyer visits your page and asks "Does this home have a finished basement?" the chatbot answers based on the information you provided. Then it naturally collects the buyer&rsquo;s name, email, and phone number.</p>
+<p><a href="/signup">ListingFlare</a> is purpose-built for listing agents who want their property pages to actively capture and convert buyer leads - not just display photos. Every listing page comes with an AI-powered chatbot that answers from your specific listing details. When a buyer visits your page and asks "Does this home have a finished basement?" the chatbot answers based on the information you provided. Then it naturally collects the buyer&rsquo;s name, email, and phone number.</p>
 
 <p>This is not a generic chatbot that gives vague responses. It knows your listing inside and out - the number of bedrooms, the lot size, the HOA fees, the school district, the recent upgrades. Buyers get real answers, and you get qualified leads with full conversation transcripts so you know exactly what the buyer cares about before you even pick up the phone.</p>
 

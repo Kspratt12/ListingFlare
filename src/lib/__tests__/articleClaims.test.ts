@@ -16,6 +16,8 @@ const BANNED: RegExp[] = [
   /every chat conversation becomes a lead/i,
   /chatbot (gives|provides) an? (accurate, )?instant/i,
   /answers? (buyer )?questions? instantly with accurate/i,
+  // the chatbot is given the listing details to answer from; it is not trained on them
+  /(chatbot|assistant|AI)[^<.]{0,50}trained on (the |your |that |each |individual |its )?(specific |individual )?(listing|property|home)/i,
 ];
 
 test("no article makes an unconditional instant-reply, instant-follow-up or lead-generation promise about ListingFlare", () => {

@@ -73,7 +73,7 @@ export const article: BlogPost = {
 
 <p>ListingFlare is purpose-built for listing agents. Instead of spreading your marketing across social channels, it focuses on one thing: turning every listing into a lead capture machine. Each listing gets its own single property website with an AI-powered chatbot that answers buyer questions about that specific home in real time.</p>
 
-<p>The chatbot is what separates ListingFlare from everything else on this list. It is trained on your listing details - square footage, bedroom count, neighborhood info, HOA fees, school districts, and anything else you provide. When a buyer asks a question at 11 PM, the chatbot answers accurately and captures their contact information before they leave the page. The lead goes directly to your dashboard with the full conversation attached.</p>
+<p>The chatbot is what separates ListingFlare from everything else on this list. It answers from your listing details - square footage, bedroom count, neighborhood info, HOA fees, school districts, and anything else you provide. When a buyer asks a question at 11 PM, the chatbot answers accurately and captures their contact information before they leave the page. The lead goes directly to your dashboard with the full conversation attached.</p>
 
 <p>Beyond the chatbot, you get AI email replies to new leads, an analytics dashboard that shows visitor behavior and engagement, and the ability to share listing pages via QR codes, text, email, and social media. For a deeper look at AI-powered marketing tools, check out our <a href="/blog/best-ai-tools-real-estate-marketing">guide to the best AI tools for real estate marketing</a>.</p>
 
@@ -369,7 +369,7 @@ export const article: BlogPost = {
 <p>Rela starts at $24 per month for its basic plan, making it the most affordable option on this list. Listings to Leads starts at $60 per month. However, the cheapest option is not always the best value. Consider which features you actually need and whether the platform captures leads effectively before choosing based on price alone.</p>
 
 <h3>Do any PropertySimple alternatives include an AI chatbot?</h3>
-<p>ListingFlare is the only alternative on this list that includes a per-listing AI chatbot. The chatbot is trained on your listing details and answers buyer questions in real time, 24/7. Ylopo offers AI text and voice follow-up, but it is not tied to individual listing pages and costs significantly more.</p>
+<p>ListingFlare is the only alternative on this list that includes a per-listing AI chatbot. The chatbot works from your listing details and answers buyer questions in real time, 24/7. Ylopo offers AI text and voice follow-up, but it is not tied to individual listing pages and costs significantly more.</p>
 
 <h3>Can I create single property websites with PropertySimple?</h3>
 <p>No. PropertySimple does not offer single property websites. It focuses on social media marketing and lead follow-up. If you need dedicated single property pages for your listings, you will need a separate tool like ListingFlare, Rela, or Listings to Leads.</p>
