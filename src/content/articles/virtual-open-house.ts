@@ -17,7 +17,7 @@ export const article: BlogPost = {
   ],
   readingTime: 6,
   coverImage: "/blog/virtual-open-house/hero.jpg",
-  coverImageAlt: "Woman standing in a bright living room holding up a phone to record a video tour",
+  coverImageAlt: "Three people in a modern dark kitchen, one holding up a phone to film the oven and cabinets",
   content: `
 <p>A virtual open house lets buyers see a home online instead of walking through the door. It can be a live video walkthrough at a set time, a recorded video tour, or an interactive 3D tour. This guide covers the three formats, a step-by-step plan for a live event, an equipment checklist, and how to collect contact details and follow up with the people who watch.</p>
 
