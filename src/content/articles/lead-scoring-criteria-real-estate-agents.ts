@@ -257,6 +257,8 @@ export const article: BlogPost = {
 
 <h3>What's the biggest mistake agents make with lead scoring?</h3>
 <p>The biggest mistake is building a scoring system and then not acting on it. Your scores need to drive specific behaviors. A hot lead must get an immediate call. A warm lead must enter a defined nurture sequence. A cold lead must go into a drip campaign. If every lead gets the same follow-up regardless of score, you've wasted the effort of scoring them in the first place.</p>
+<h3>What is lead scoring and should real estate agents use it?</h3>
+<p>Lead scoring is a way to rank leads by how likely they are to act soon, using criteria such as timeline, financial readiness, engagement, lead source, responsiveness and motivation. Most agents benefit from a simple version, because it shows who to contact first. Treat the score as a guide for where to spend your time, not as a rule.</p>
 </div>
 
 <h2>Start Scoring Your Leads Today</h2>

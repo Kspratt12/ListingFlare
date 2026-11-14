@@ -7,6 +7,7 @@ export const article: BlogPost = {
   description:
     "A free open house flyer template as a printable PDF, fillable PDF and Word file, plus what to put on the flyer, wording tips and how to add a QR code.",
   date: "2026-11-14",
+  updated: "2026-11-14",
   author: "ListingFlare Team",
   category: "Open Houses",
   keywords: [
@@ -15,12 +16,14 @@ export const article: BlogPost = {
     "free open house flyer template",
     "open house flyer template word",
     "open house flyer pdf",
+    "property flyer template",
+    "just listed flyer template",
   ],
   readingTime: 5,
   coverImage: "/blog/open-house-flyer-generator/hero.jpg",
   coverImageAlt: "Agent welcoming a smiling couple into an empty, bright home",
   content: `
-<p>An open house flyer is a one-page handout that tells people when and where the open house is, what the home offers and how to reach you. The template below has blanks for the event details, price and facts, a photo, highlights, a QR code link and your contact details. Download it as a printable PDF, a fillable PDF you type into on screen, or a Word file you can edit, where you can also add your own photo and branding.</p>
+<p>An open house flyer is a one-page handout that tells people when and where the open house is, what the home offers and how to reach you. The template below has blanks for the event details, price and facts, a photo, highlights, a QR code link and your contact details. Download it as a printable PDF, a fillable PDF you type into on screen, or a Word file you can edit, where you can also add your own photo and branding. Change the headline and it works as a property flyer or a just listed flyer too.</p>
 
 <p><em>Disclosure: we make ListingFlare, which includes an open house flyer generator, mentioned near the end. The template works on its own.</em></p>
 
@@ -97,6 +100,9 @@ ${downloadBox("open-house-flyer-template")}
 
 <h3>What wording rules apply to a flyer?</h3>
 <p>Check your brokerage's advertising rules and the requirements in your state, and follow fair housing guidelines by describing the home rather than who should live there. This is general guidance, not legal advice.</p>
+
+<h3>Can I use this as a property flyer or just listed flyer template?</h3>
+<p>Yes. Change the headline from "Open House" to "Just Listed" or the property name, and replace the date and time with the details you want to show. The rest of the template works the same way.</p>
 </div>
 `,
 };

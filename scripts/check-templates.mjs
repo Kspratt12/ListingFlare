@@ -23,6 +23,7 @@ const SENTINELS = {
   "real-estate-listing-presentation-template": ["LISTING PRESENTATION", "About you", "Pricing recommendation", "Marketing plan", "Next steps"],
   "open-house-sign-in-sheet-template": ["OPEN HOUSE SIGN-IN SHEET", "Property address", "Consent wording", "Has agent"],
   "open-house-flyer-template": ["OPEN HOUSE FLYER", "Event and price", "Highlights", "Before you print"],
+  "real-estate-buyer-questionnaire-template": ["BUYER QUESTIONNAIRE", "Timeline and situation", "Budget and financing", "Fair housing"],
   "seller-update-report-template": ["SELLER UPDATE REPORT", "Activity this period", "Showing feedback", "Recommendation and next steps"],
   "single-property-website-template": ["SINGLE PROPERTY WEBSITE", "Property basics", "Questions buyers ask", "Call to action", "Fair housing"],
   "listing-marketing-plan-template": ["LISTING MARKETING PLAN", "Pricing and timeline", "Marketing activities", "Acknowledgement"],
@@ -78,7 +79,7 @@ for (const href of hrefs) {
     const sheet = await zip.file("xl/worksheets/sheet1.xml").async("string")
     ok(sheet.trimEnd().endsWith("</worksheet>"), href + " sheet is cut short")
     const text = [...sheet.matchAll(/<t(?:\s[^>]*)?>([^<]*)<\/t>/g)].map((m) => m[1]).join(" ")
-    for (const needle of ["OPEN HOUSE SIGN-IN SHEET", "Property address", "Has agent", "not legal advice"]) ok(text.includes(needle), href + " is missing: " + needle)
+    for (const needle of [...(SENTINELS[id] || []), "not legal advice"]) ok(text.includes(needle), href + " is missing: " + needle)
   } else if (href.endsWith(".docx")) {
     const zip = await JSZip.loadAsync(buf)
     for (const part of ["[Content_Types].xml", "_rels/.rels", "word/document.xml"]) ok(zip.file(part), href + " lacks " + part)
