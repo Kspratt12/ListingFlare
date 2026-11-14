@@ -118,7 +118,7 @@ export const article: BlogPost = {
 
 <h2>How ListingFlare Helps With Speed</h2>
 
-<p>Every ListingFlare listing page includes an AI chat assistant that answers buyer questions from the details you entered, captures contact information and shares your scheduling link. New leads trigger an instant AI-drafted reply (you can switch on approval mode to review messages before they send). You see everything in one dashboard. The assistant can be wrong if your listing details are incomplete, so review conversations. <a href="/demo">See the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+<p>Every ListingFlare listing page includes an AI chat assistant that answers buyer questions from the details you entered, captures contact information and shares your scheduling link. New leads trigger an AI email reply (you can switch on approval mode to review messages before they send). You see everything in one dashboard. The assistant can be wrong if your listing details are incomplete, so review conversations. <a href="/demo">See the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

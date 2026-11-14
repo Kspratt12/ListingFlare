@@ -104,7 +104,7 @@ export const article: BlogPost = {
 
 <!-- next-step -->
 <h2>Try the QR Version Free</h2>
-<p>The quickest way to compare the two formats is to run both at your next open house. ListingFlare&rsquo;s QR sign-in creates the lead, notifies you and can send an instant AI reply, with approval mode if you want to review it first. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
+<p>The quickest way to compare the two formats is to run both at your next open house. ListingFlare&rsquo;s QR sign-in creates the lead, notifies you and can send an AI email reply, with approval mode if you want to review it first. You can <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>.</p>
 
 <h2>Related Guides</h2>
 <ul>

@@ -154,7 +154,7 @@ export const article: BlogPost = {
 
 <p>This is the single biggest mistake in real estate, and new agents are the worst offenders. Research consistently shows that <strong>80% of sales happen after the fifth follow-up</strong>, but most agents give up after one or two attempts. Every lead you do not follow up with is a commission check you are handing to another agent.</p>
 
-<p>Build a follow-up system from day one. Use a CRM, set reminders, and create a sequence: call on day one, text on day three, email on day seven, call again on day fourteen. Repeat until they buy, sell, or tell you to stop. Automated reply tools, like the instant AI reply built into platforms such as ListingFlare, can handle the initial outreach so you never let a lead slip through the cracks. As your pipeline grows, implementing <a href="/blog/lead-scoring-criteria-real-estate-agents">lead scoring criteria</a> will help you prioritize which prospects deserve your immediate attention.</p>
+<p>Build a follow-up system from day one. Use a CRM, set reminders, and create a sequence: call on day one, text on day three, email on day seven, call again on day fourteen. Repeat until they buy, sell, or tell you to stop. Automated reply tools, like the AI email reply built into platforms such as ListingFlare, can handle the initial outreach so you never let a lead slip through the cracks. As your pipeline grows, implementing <a href="/blog/lead-scoring-criteria-real-estate-agents">lead scoring criteria</a> will help you prioritize which prospects deserve your immediate attention.</p>
 
 <h3>Trying to Be Everything to Everyone</h3>
 
@@ -235,6 +235,6 @@ export const article: BlogPost = {
 
 <p>The only question left is whether you will actually do the work. Pick one strategy from this guide and start today. Not tomorrow, not Monday. Today. Your future self will thank you.</p>
 
-<p>Ready to make your first listing look like it belongs to a top producer? <a href="/signup">Start with ListingFlare</a> and create a professional single-property website in minutes, complete with AI chatbot, lead capture, and an instant AI reply to new leads.</p>
+<p>Ready to make your first listing look like it belongs to a top producer? <a href="/signup">Start with ListingFlare</a> and create a professional single-property website in minutes, complete with AI chatbot, lead capture, and AI email replies to new leads.</p>
 `,
 };

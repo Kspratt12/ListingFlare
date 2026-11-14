@@ -518,7 +518,7 @@ export const article: BlogPost = {
 
 <p>This is exactly what <a href="/signup">ListingFlare</a> was built to do. It is not a CRM. It does not compete with Follow Up Boss or any of the alternatives on this list. It fills the gap they all leave open. For a deeper look at how listing agents lose leads and how to fix it, read our guide on <a href="/blog/how-listing-agents-capture-buyer-leads">how listing agents capture buyer leads</a>.</p>
 
-<p>Every listing you have gets a dedicated property website with an AI-powered chatbot that engages buyers in real time, answers their questions about the home, captures their contact information, and sends an instant AI reply to new leads, with an optional approval step. The leads flow to your dashboard with full conversation transcripts so you know exactly what the buyer cares about before you ever pick up the phone.</p>
+<p>Every listing you have gets a dedicated property website with an AI-powered chatbot that engages buyers in real time, answers their questions about the home, captures their contact information, and sends AI email replies to new leads, with an optional approval step. The leads flow to your dashboard with full conversation transcripts so you know exactly what the buyer cares about before you ever pick up the phone.</p>
 
 <p>The ideal tech stack for a listing agent in 2026 is not one tool. It is two: a CRM for lead management (FUB, Lofty, Wise Agent, whatever fits your budget and team size) plus ListingFlare for listing-specific lead capture. One manages leads. The other creates them. <a href="/demo">See it in action here</a>.</p>
 
@@ -542,9 +542,9 @@ export const article: BlogPost = {
 
 <ol>
 <li><strong>Buyer discovers your listing.</strong> Maybe through a Facebook ad, a flyer at an open house, or a link in an email blast. They click through to your ListingFlare property page.</li>
-<li><strong>AI chatbot engages the buyer.</strong> The buyer asks about the home - school district, lot size, whether the seller is flexible on closing. The chatbot answers instantly with accurate, listing-specific information.</li>
+<li><strong>AI chatbot engages the buyer.</strong> The buyer asks about the home - school district, lot size, whether the seller is flexible on closing. The chatbot answers from the listing details you entered.</li>
 <li><strong>Lead is captured.</strong> During the conversation, the chatbot naturally collects the buyer's name, email, and phone number. The lead appears in your ListingFlare dashboard with the full chat transcript.</li>
-<li><strong>Instant AI reply.</strong> ListingFlare drafts a personalized reply referencing the specific property and the questions the buyer asked, and sends it right away unless you turned on approval mode.</li>
+<li><strong>AI email reply.</strong> ListingFlare writes a personalized reply referencing the specific property and the questions the buyer asked, and sends it by email unless you turned on approval mode.</li>
 <li><strong>Lead enters your CRM.</strong> The lead notification hits your inbox. You add the contact to your CRM (or it syncs automatically depending on your setup). Now your CRM takes over - drip campaigns, task reminders, pipeline tracking.</li>
 <li><strong>You follow up with context.</strong> Because you have the full conversation transcript, you know exactly what the buyer cares about. Your first call is not a cold outreach - it is a warm conversation with a buyer who already got their questions answered.</li>
 </ol>
@@ -579,7 +579,7 @@ export const article: BlogPost = {
 
 <p>Regardless of which CRM you choose, add <a href="/signup">ListingFlare</a> for listing marketing. No CRM on this list creates dedicated property websites or puts AI chatbots on your listing pages. That gap exists whether you use FUB, Lofty, or any of the other seven alternatives. ListingFlare fills it.</p>
 
-<p><strong>About ListingFlare:</strong> we make ListingFlare. It is built around listings rather than as a full CRM. See how its <a href="/real-estate-lead-capture-software">lead capture software</a> works, including the inbox, instant auto-reply and CSV export, to judge whether it fits alongside or instead of your current tools.</p>
+<p><strong>About ListingFlare:</strong> we make ListingFlare. It is built around listings rather than as a full CRM. See how its <a href="/real-estate-lead-capture-software">lead capture software</a> works, including the inbox, AI email reply and CSV export, to judge whether it fits alongside or instead of your current tools.</p>
 
 <h2>Related Guides</h2>
 <ul>
@@ -621,7 +621,7 @@ export const article: BlogPost = {
 <p>Zillow Group completed its acquisition of Follow Up Boss in December 2023. Check Zillow&rsquo;s latest filings and announcements for anything that has changed since.</p>
 
 <h3>Is there a lightweight Follow Up Boss alternative for solo listing agents?</h3>
-<p>Yes. A solo agent who mainly wants to capture and follow up listing leads often does not need a full CRM. A listing platform with a lead dashboard, instant replies and automatic follow-up can cover that, and you can add a CRM later if your database grows. See our guide to the <a href="/blog/best-crm-for-solo-real-estate-agents">best CRM for solo real estate agents</a>.</p>
+<p>Yes. A solo agent who mainly wants to capture and follow up listing leads often does not need a full CRM. A listing platform with a lead dashboard, AI email replies and a conversation thread for follow-up can cover that, and you can add a CRM later if your database grows. See our guide to the <a href="/blog/best-crm-for-solo-real-estate-agents">best CRM for solo real estate agents</a>.</p>
 
 </div>
 `,

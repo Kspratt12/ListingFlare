@@ -478,7 +478,7 @@ export const article: BlogPost = {
 
 <h3>Solo Agents (Under $200K GCI)</h3>
 
-<p>You probably cannot justify $500+ per month for an AI ISA platform, and you definitely cannot afford a human ISA. Start with two things: a basic CRM with automated drip campaigns (even the free tier of Follow Up Boss or a simple tool like LionDesk) and a property-specific AI chatbot like <a href="/signup">ListingFlare</a> for your listings. This covers your most urgent need - responding to listing leads instantly - for under $200 per month. As your business grows, add a standalone AI ISA like Structurely.</p>
+<p>You probably cannot justify $500+ per month for an AI ISA platform, and you definitely cannot afford a human ISA. Start with two things: a basic CRM with automated drip campaigns (even the free tier of Follow Up Boss or a simple tool like LionDesk) and a property-specific AI chatbot like <a href="/signup">ListingFlare</a> for your listings. This covers your most urgent need - responding to listing leads quickly - for under $200 per month. As your business grows, add a standalone AI ISA like Structurely.</p>
 
 <h3>Small Teams (2-5 Agents, $500K-1M GCI)</h3>
 

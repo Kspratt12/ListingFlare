@@ -90,7 +90,7 @@ export const article: BlogPost = {
 
 <h2>Where ListingFlare Fits</h2>
 
-<p>ListingFlare is not a lead marketplace. It does not sell you buyers. It gives each of your listings a branded page with an AI assistant, lead capture, a showing scheduler and an instant AI reply to new leads, so the buyers who find your listing contact <em>you</em>. It is $150 a month with a 14-day free trial and no credit card required. <a href="/pricing">See pricing</a>, <a href="/demo">try the demo</a> or read the <a href="/real-estate-lead-capture-software">lead capture software overview</a>.</p>
+<p>ListingFlare is not a lead marketplace. It does not sell you buyers. It gives each of your listings a branded page with an AI assistant, lead capture, a showing scheduler and AI email replies to new leads, so the buyers who find your listing contact <em>you</em>. It is $150 a month with a 14-day free trial and no credit card required. <a href="/pricing">See pricing</a>, <a href="/demo">try the demo</a> or read the <a href="/real-estate-lead-capture-software">lead capture software overview</a>.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

@@ -202,7 +202,7 @@ Your own private retreat on 8 scenic acres. This custom-built 4-bedroom, 3-bathr
 <p>Don't let your description trail off. End with a direct, clear invitation: "Schedule your private showing today," "This one won't last, book your tour," or "Contact us for a walkthrough this weekend." A strong call to action converts passive interest into active leads. A polished listing description is also one of the most persuasive assets you can bring to a seller meeting. Learn how to leverage it in our guide on <a href="/blog/how-to-win-more-listings-as-a-real-estate-agent">how to win more listings</a>.</p>
 
 <h3>Let AI Do the Heavy Lifting</h3>
-<p>Writing compelling descriptions for every listing takes time, especially when you're managing multiple properties. AI-powered tools can draft polished, professional descriptions in seconds. <a href="/signup">ListingFlare can generate AI-powered listing descriptions for you</a>, along with single-property websites complete with lead capture and an instant AI reply to new leads, so you spend less time writing and more time closing.</p>
+<p>Writing compelling descriptions for every listing takes time, especially when you're managing multiple properties. AI-powered tools can draft polished, professional descriptions in seconds. <a href="/signup">ListingFlare can generate AI-powered listing descriptions for you</a>, along with single-property websites complete with lead capture and AI email replies to new leads, so you spend less time writing and more time closing.</p>
 
 <h2>How to Customize These Templates</h2>
 

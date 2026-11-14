@@ -116,7 +116,7 @@ export const article: BlogPost = {
 
 <h2>Where ListingFlare Fits</h2>
 
-<p>ListingFlare is built for the listing agent&rsquo;s stack in one dashboard: a branded page for every listing, an AI assistant that answers buyer questions from your listing details, lead capture, a scheduler synced to Google Calendar, an instant AI reply to new leads, open house QR sign-in, flyers and a seller portal. It is $150 a month with unlimited listing sites and a 14-day free trial, no credit card required. It is not an IDX website or a full team CRM, and it does not generate leads from a marketplace. See <a href="/pricing">pricing</a>, <a href="/demo">the live demo</a> or our honest <a href="/blog/listingflare-review">ListingFlare review</a>.</p>
+<p>ListingFlare is built for the listing agent&rsquo;s stack in one dashboard: a branded page for every listing, an AI assistant that answers buyer questions from your listing details, lead capture, a scheduler synced to Google Calendar, AI email replies to new leads, open house QR sign-in, flyers and a seller portal. It is $150 a month with unlimited listing sites and a 14-day free trial, no credit card required. It is not an IDX website or a full team CRM, and it does not generate leads from a marketplace. See <a href="/pricing">pricing</a>, <a href="/demo">the live demo</a> or our honest <a href="/blog/listingflare-review">ListingFlare review</a>.</p>
 
 <h2>How to Choose: A Five-Question Checklist</h2>
 

@@ -131,7 +131,7 @@ export const article: BlogPost = {
 
 <h2>Where ListingFlare Fits</h2>
 
-<p>ListingFlare listing pages capture leads through the AI assistant, forms, showing requests and open house sign-ins, and can send an instant AI-drafted reply. You can see every lead and conversation in the dashboard, and reply with your fact sheet or flyer link. <a href="/real-estate-lead-capture-software">Learn about lead capture</a> or <a href="/signup">start free</a>.</p>
+<p>ListingFlare listing pages capture leads through the AI assistant, forms, showing requests and open house sign-ins, and can send an AI-written email reply. You can see every lead and conversation in the dashboard, and reply with your fact sheet or flyer link. <a href="/real-estate-lead-capture-software">Learn about lead capture</a> or <a href="/signup">start free</a>.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

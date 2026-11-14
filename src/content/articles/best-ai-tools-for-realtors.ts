@@ -56,7 +56,7 @@ export const article: BlogPost = {
 
 <h3>1. ListingFlare - AI Chatbot and Lead Capture for Listings</h3>
 
-<p><strong>What it does:</strong> <a href="/signup">ListingFlare</a> is an AI-powered lead capture platform built specifically for listing agents. It creates single-property websites with an intelligent AI chatbot that answers buyer questions about your listings around the clock. When a buyer visits your listing page at 2 AM and wants to know about the school district, parking situation, or HOA fees, the chatbot responds instantly using real property data and captures their contact information.</p>
+<p><strong>What it does:</strong> <a href="/signup">ListingFlare</a> is an AI-powered lead capture platform built specifically for listing agents. It creates single-property websites with an intelligent AI chatbot that answers buyer questions about your listings around the clock. When a buyer visits your listing page at 2 AM and wants to know about the school district, parking situation, or HOA fees, the chatbot responds using the listing details you entered and can capture their contact information.</p>
 
 <p><strong>How agents use it:</strong> You enter your property details and photos, and ListingFlare generates a polished property website with AI-written descriptions, photo captions, and an embedded chatbot. The chatbot engages buyers in natural conversation, answers their questions, and captures leads automatically. When a lead comes in, ListingFlare drafts a personalized follow-up email based on the conversation so you can respond quickly and intelligently. It also generates social media posts, open house flyers with QR codes, and provides analytics on which listings are generating the most interest.</p>
 

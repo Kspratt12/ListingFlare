@@ -76,15 +76,15 @@ export const article: BlogPost = {
 
 <p>ListingFlare is built specifically for listing agents who want to capture and convert buyer leads, not just display photos. Every listing page comes with an AI-powered chatbot that answers buyer questions in real time, even at 11 PM on a Tuesday when you are at dinner with your family.</p>
 
-<p>Here is what makes it different from everything else on this list: the chatbot is trained on your listing details. A buyer asks &ldquo;Does this home have a pool?&rdquo; and gets an instant, accurate answer. Then the chatbot captures their name, email, and phone number before they leave. That lead goes directly to your dashboard with the full conversation attached.</p>
+<p>Here is what makes it different from everything else on this list: the chatbot is trained on your listing details. A buyer asks &ldquo;Does this home have a pool?&rdquo; and gets an answer drawn from the listing details. Then the chatbot captures their name, email, and phone number before they leave. That lead goes directly to your dashboard with the full conversation attached.</p>
 
 <p>The analytics dashboard shows you exactly who visited, how long they stayed, and what they looked at.</p>
 
 <h3>Key Features</h3>
 
 <ul>
-<li><strong>AI chatbot on every listing page.</strong> This is the standout feature. The chatbot uses your listing details (beds, baths, price, features, neighborhood info) to answer buyer questions instantly. It does not give generic responses. It gives specific, accurate answers about your property. When the buyer is engaged, the chatbot naturally collects their contact info. You get the lead with the full chat transcript so you know exactly what the buyer cares about.</li>
-<li><strong>Instant AI reply to new leads.</strong> When a lead comes in, ListingFlare can send an AI-written first reply on your behalf, or hold it for your approval. You do not have to remember to reply at 7 AM the next morning.</li>
+<li><strong>AI chatbot on every listing page.</strong> This is the standout feature. The chatbot uses your listing details (beds, baths, price, features, neighborhood info) to answer buyer questions at any hour. It does not give generic responses. It gives specific, accurate answers about your property. When the buyer is engaged, the chatbot naturally collects their contact info. You get the lead with the full chat transcript so you know exactly what the buyer cares about.</li>
+<li><strong>AI email reply to new leads.</strong> When a lead comes in, ListingFlare can send an AI-written first reply on your behalf, or hold it for your approval. You do not have to remember to reply at 7 AM the next morning.</li>
 <li><strong>AI-generated listing descriptions.</strong> Enter your property details and ListingFlare writes the listing description for you. You can edit it, regenerate it, or write your own. It also generates photo captions automatically, which saves time when you have 30+ photos to upload.</li>
 <li><strong>Full-screen photo gallery and virtual tour embed.</strong> Photos display in a full-screen slideshow that looks like a custom-built site, not a template. You can embed Matterport tours, YouTube videos, or any other virtual tour directly on the page.</li>
 <li><strong>Analytics dashboard.</strong> See how many people visited your listing page, where they came from, how long they stayed, which photos they viewed, and whether they engaged with the chatbot. This data is useful for seller updates and for understanding which marketing channels are working.</li>
@@ -317,7 +317,7 @@ export const article: BlogPost = {
 <tbody>
 <tr><td>Pricing</td><td>$150/mo (unlimited listings)</td><td>From $24/mo (1 active listing); $49/mo for 5</td><td>From $9/mo (1 site); $29/mo for 10</td><td>Not verified</td><td>Free tier; from $12/mo (1 property); $29/mo for 5</td><td>Not verified</td><td>Not verified (full site)</td></tr>
 <tr><td>AI Chatbot for Lead Engagement</td><td>Yes, AI chatbot on every page that answers buyer questions 24/7</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
-<tr><td>Automated Follow-Up</td><td>Instant AI reply to each new lead; later follow-ups are manual</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Basic CRM (manual follow-up)</td></tr>
+<tr><td>Automated Follow-Up</td><td>AI email reply to each new lead; later follow-ups are manual</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Basic CRM (manual follow-up)</td></tr>
 <tr><td>Design Quality</td><td>Modern, clean, mobile-optimized</td><td>Best-in-class luxury templates</td><td>Clean but dated</td><td>Clean, professional</td><td>Functional but dated</td><td>Basic</td><td>Professional (full site templates)</td></tr>
 <tr><td>3D Tour / Virtual Tour Integration</td><td>Yes (Matterport, YouTube, custom embed)</td><td>Yes (Matterport, iGuide, native)</td><td>Limited</td><td>Limited (iFrame workaround)</td><td>Limited</td><td>No</td><td>Yes (through IDX and embeds)</td></tr>
 <tr><td>Analytics Dashboard</td><td>Detailed (views, time on page, lead source, chatbot engagement)</td><td>Basic view counts</td><td>Basic view counts</td><td>Basic</td><td>Basic</td><td>None</td><td>Moderate (site-wide analytics)</td></tr>
@@ -335,7 +335,7 @@ export const article: BlogPost = {
 
 <p>Research consistently shows that buyers tend to work with the first agent who responds to their inquiry. Not the best agent. Not the most experienced agent. The first one who picks up the phone or replies to the message. Speed wins.</p>
 
-<p>The difference with a platform like ListingFlare is that the page is working while you are not. A buyer visits at 10:47 PM, asks the chatbot if the kitchen was recently renovated, gets an instant answer, and then the chatbot says, &ldquo;Want to schedule a showing? I can set that up for you.&rdquo; The buyer gives their name and number. You wake up to a qualified lead with full context.</p>
+<p>The difference with a platform like ListingFlare is that the page is working while you are not. A buyer visits at 10:47 PM, asks the chatbot if the kitchen was recently renovated, gets an answer, and then the chatbot says, &ldquo;Want to schedule a showing? I can set that up for you.&rdquo; The buyer gives their name and number. You wake up to a qualified lead with full context.</p>
 
 <p>That is not a small difference. That is the difference between getting the lead and losing the lead. For more on why response time matters so much in real estate, read our breakdown of <a href="/blog/how-to-stop-losing-leads-to-zillow">how to stop losing buyer leads to Zillow</a>.</p>
 
@@ -402,7 +402,7 @@ export const article: BlogPost = {
 <p>A lead is not a closing. Most leads never become a sale, and commission is revenue before splits, brokerage fees and taxes, not profit. As an illustration only: a 2.5% commission on a $400,000 sale is $10,000 before splits, so one extra sale in a year would cover a $150/month plan ($1,800 a year) several times over, but nothing guarantees any extra sale. The practical question is whether a dedicated listing page keeps your own buyers and inquiries with you instead of a portal that may share them with other agents, at a price that fits how many listings you carry.</p>
 
 <h3>Which single property website builder has the best lead capture?</h3>
-<p>ListingFlare puts an AI chat assistant on every listing page that engages buyers in conversation, captures their contact info, and can send an instant AI-drafted reply. With a static form, a buyer who visits at 10 PM and has a question fills out the form and waits for you to respond, and by then they may have moved on. Check each builder&rsquo;s current features, since several vendors now offer some AI. <a href="/demo">See how the ListingFlare chatbot works on a live listing</a>.</p>
+<p>ListingFlare puts an AI chat assistant on every listing page that engages buyers in conversation, captures their contact info, and can send an AI-written email reply. With a static form, a buyer who visits at 10 PM and has a question fills out the form and waits for you to respond, and by then they may have moved on. Check each builder&rsquo;s current features, since several vendors now offer some AI. <a href="/demo">See how the ListingFlare chatbot works on a live listing</a>.</p>
 
 <h3>Can I use a single property website for listing presentations?</h3>
 <p>Absolutely. Showing a seller that you will create a dedicated, professional website for their home is one of the most effective ways to win a listing. It signals that you take marketing seriously and that their property will not just sit on the MLS waiting for organic traffic. Pull up a live example on your phone during the presentation and let the seller interact with it. For more strategies on winning listings, read our article on <a href="/blog/how-to-win-more-listings-as-a-real-estate-agent">how to win more listings as a real estate agent</a>.</p>
