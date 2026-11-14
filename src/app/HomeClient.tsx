@@ -977,8 +977,8 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
               </div>
               <div className="h-10 w-px bg-gray-200 hidden sm:block" />
               <div className="text-center">
-                <p className="font-serif text-3xl font-bold text-gray-900">Instant</p>
-                <p className="mt-1 text-sm text-gray-500">Buyer gets an answer</p>
+                <p className="font-serif text-3xl font-bold text-gray-900">Fast</p>
+                <p className="mt-1 text-sm text-gray-500">Buyer gets an answer from your details</p>
               </div>
               <div className="h-10 w-px bg-gray-200 hidden sm:block" />
               <div className="text-center">

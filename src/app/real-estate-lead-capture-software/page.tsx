@@ -4,7 +4,7 @@ import SeoLandingPage from "@/components/SeoLandingPage";
 export const metadata: Metadata = {
   title: "Real Estate Lead Capture Software for Agents",
   description:
-    "Capture buyer leads from listing pages and open houses, reply instantly and follow up automatically. Lead inbox and QR sign-in. 14-day free trial.",
+    "Capture buyer leads from listing pages and open houses with a lead inbox, QR sign-in and AI email replies with optional approval. 14-day free trial.",
   alternates: {
     canonical: "https://www.listingflare.com/real-estate-lead-capture-software",
   },
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     title: "Real Estate Lead Capture Software for Agents | ListingFlare",
     description:
-      "Capture buyer leads from listing pages and open houses, reply instantly and follow up automatically. Lead inbox and QR sign-in. 14-day free trial.",
+      "Capture buyer leads from listing pages and open houses with a lead inbox, QR sign-in and AI email replies with optional approval. 14-day free trial.",
     url: "https://www.listingflare.com/real-estate-lead-capture-software",
     images: [{ url: "https://www.listingflare.com/opengraph-image", width: 1200, height: 630, alt: "ListingFlare" }],
   },
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Real Estate Lead Capture Software for Agents | ListingFlare",
     description:
-      "Capture buyer leads from listing pages and open houses, reply instantly and follow up automatically. Lead inbox and QR sign-in. 14-day free trial.",
+      "Capture buyer leads from listing pages and open houses with a lead inbox, QR sign-in and AI email replies with optional approval. 14-day free trial.",
   },
 };
 
@@ -36,7 +36,7 @@ export default function Page() {
       highlights={[
         "Lead forms and AI chat on every listing page",
         "QR code sign-in for open houses",
-        "Instant auto-reply to each new lead, with an optional approval step",
+        "AI email reply to each new lead, with an optional approval step",
         "Lead inbox with conversation thread, pipeline view and hot, warm and cold scoring",
         "CSV export and a speed-to-lead tracker",
       ]}

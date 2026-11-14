@@ -40,7 +40,7 @@ export const article: BlogPost = {
 <ul>
 <li><strong>Best for budget-conscious agents:</strong> CribFlyer. Plans start at $9/mo for one property site and $29/mo for ten, month to month. If you just need a clean page and do not care about AI or lead capture automation, CribFlyer gets the job done for less.</li>
 <li><strong>Best for design quality:</strong> Rela. Twenty premium templates that look stunning, especially for luxury listings. If visual presentation is your top priority and you are comfortable with higher pricing, Rela delivers.</li>
-<li><strong>Best for lead capture and conversion:</strong> <a href="/signup">ListingFlare</a>. The only platform with an AI chatbot on every listing page, automatic lead capture, AI-drafted follow-up emails, and a full analytics dashboard. It costs more upfront, but it is the only option that actively generates leads instead of waiting for someone to fill out a form.</li>
+<li><strong>Best for lead capture and conversion:</strong> <a href="/signup">ListingFlare</a>. It puts an AI chatbot on every listing page that can collect a buyer's contact details, writes an AI email reply to new leads (sent unless you turn on approval), and includes an analytics dashboard. It costs more upfront, but it is built to capture inquiries from the people you send to the page rather than waiting for someone to find and fill out a form. It does not generate traffic or guarantee leads.</li>
 <li><strong>Best overall value:</strong> ListingFlare. A beautiful page that does not capture leads is a missed opportunity. ListingFlare combines professional design with actual lead generation tools that work 24/7.</li>
 </ul>
 

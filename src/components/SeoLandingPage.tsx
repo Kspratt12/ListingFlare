@@ -167,7 +167,7 @@ export default function SeoLandingPage({
                     alt={f.alt}
                     width={f.width}
                     height={f.height}
-                    sizes="(min-width: 768px) 768px, 100vw"
+                    sizes="(min-width: 768px) 848px, 100vw"
                     className="h-auto w-full rounded-xl border border-gray-200"
                   />
                   <figcaption className="mt-2 text-sm text-gray-500">{f.caption}</figcaption>
