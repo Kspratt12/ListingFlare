@@ -6,7 +6,7 @@ export const article: BlogPost = {
   description:
     "Speed to lead in real estate: what the research says about response time, a realistic reply target and how to answer buyers fast without living on your phone.",
   date: "2026-10-25",
-  updated: "2026-11-12",
+  updated: "2026-11-13",
   author: "ListingFlare Team",
   category: "Lead Management",
   keywords: [
@@ -46,7 +46,7 @@ export const article: BlogPost = {
 
 <p>If the question goes unanswered, the buyer does not wait. They open the next tab. You may never know they asked, which is the worst part: a lost inquiry leaves no trace.</p>
 
-<h2>A Realistic Response-Time Target</h2>
+<h2>A Realistic Lead Response Time Target</h2>
 
 <p>You do not need to reply in seconds to beat most agents. Use tiers:</p>
 
@@ -73,6 +73,18 @@ export const article: BlogPost = {
 </ol>
 
 <p>Our <a href="/blog/how-to-respond-to-real-estate-leads">guide to responding to real estate leads</a> has word-for-word text, email and voicemail scripts, and you can grab the <a href="/free-real-estate-templates">free lead response scripts</a> as a PDF or Word file.</p>
+
+<h2>Examples of a Fast First Reply</h2>
+
+<p>Each example answers the question, offers one next step and invites a reply. Change the details to match the listing and your own voice.</p>
+
+<ul>
+<li><strong>Daytime listing inquiry (text):</strong> &ldquo;Hi [Name], this is [Agent] with [Brokerage]. Yes, [address] is still available. Would Saturday at 10 or Sunday at 2 work for a showing?&rdquo;</li>
+<li><strong>Evening inquiry (auto-reply or email):</strong> &ldquo;Thanks for your question about [address]. I received it and will reply personally by [time]. If you would like to pick a showing time now, here is my calendar: [link].&rdquo;</li>
+<li><strong>Open house sign-in (email, same evening):</strong> &ldquo;Thanks for stopping by [address] today. Here is the listing link: [link]. If you have questions or want a second look, reply here or text me at [number].&rdquo;</li>
+</ul>
+
+<p>Only state a fact about the home if you know it is true for that listing. If you are not sure, say you will check and when you will reply.</p>
 
 <h2>Five Ways to Answer Fast Without Being Glued to Your Phone</h2>
 
@@ -125,6 +137,11 @@ export const article: BlogPost = {
 
 <h3>How do I measure my response time?</h3>
 <p>Log the time each inquiry arrives and the time of your first reply for two weeks, then review outcomes. A spreadsheet or the free tracker works.</p>
+<h3>What is a good lead response time in real estate?</h3>
+<p>No single number applies everywhere. A practical target is a first reply within about 5 to 15 minutes during your working hours, an immediate acknowledgement outside them, and a personal reply by early the next morning. The tiers above show how to set this up.</p>
+
+<h3>How should I reply to a real estate lead?</h3>
+<p>Answer the question or say you will check, offer one next step such as a showing time, and make it easy to reply on the channel they used. The examples above show what that looks like.</p>
 </div>
 `,
 };

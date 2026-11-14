@@ -7,6 +7,7 @@ export const article: BlogPost = {
   description:
     "Free real estate listing presentation template as a printable PDF, fillable PDF and Word file, plus how to fill in each section and what sellers want to see.",
   date: "2026-10-25",
+  updated: "2026-11-13",
   author: "ListingFlare Team",
   category: "Agent Growth",
   keywords: [
@@ -69,6 +70,42 @@ ${downloadBox("real-estate-listing-presentation-template")}
 <li><strong>Do not overpromise.</strong> Avoid guarantees about price, days on market or results.</li>
 </ul>
 
+<h2>Listing Presentation Example: A Sample 45-Minute Agenda</h2>
+
+<p>If you are not sure how to pace the meeting, here is one way to divide it. Adjust the times to your style and to what the seller wants to talk about.</p>
+
+<table>
+<thead><tr><th>Time</th><th>Section</th><th>What to do</th></tr></thead>
+<tbody>
+<tr><td>0 to 5 minutes</td><td>Sections 1 and 2</td><td>Introduce yourself briefly, then ask about the seller's goals and timeline and listen</td></tr>
+<tr><td>5 to 15 minutes</td><td>Section 3</td><td>Walk through the comparable homes and explain your adjustments</td></tr>
+<tr><td>15 to 25 minutes</td><td>Section 4</td><td>Give your price recommendation and the reasons, then pause for questions</td></tr>
+<tr><td>25 to 35 minutes</td><td>Section 5</td><td>Go through the marketing plan item by item, ticking only what you will do</td></tr>
+<tr><td>35 to 45 minutes</td><td>Sections 6 to 8</td><td>Cover updates, fees and the agreement, then agree one next step and a date</td></tr>
+</tbody>
+</table>
+
+<h2>Sample Wording You Can Adapt</h2>
+
+<p>These lines show tone. They are not scripts to read aloud, so change them to fit the seller, your market and your brokerage's rules.</p>
+
+<ul>
+<li><strong>Opening the pricing discussion:</strong> &ldquo;Here are the homes that sold nearby recently and how each compares with yours. Let me walk you through the adjustments I made and why.&rdquo;</li>
+<li><strong>Recommending a price below the seller's hope:</strong> &ldquo;I know you were hoping for a higher number. These sales show what buyers have actually paid, so I would price in this range. Which of these comparisons would you like to look at more closely?&rdquo;</li>
+<li><strong>Describing your marketing plan:</strong> &ldquo;This is what I will do for your home and when. I cannot promise a specific result, but I will report back on showings and feedback on the schedule we agree.&rdquo;</li>
+<li><strong>Closing the meeting:</strong> &ldquo;The next step is [step], and I will follow up on [date]. Is there anything you would like me to cover before we finish?&rdquo;</li>
+</ul>
+
+<h2>Before You Walk In: A Preparation Checklist</h2>
+
+<ul>
+<li>Pull recent comparable sales and active listings, and check every number.</li>
+<li>Fill in sections 1, 3 and 5 in the fillable PDF or Word file ahead of time.</li>
+<li>Check what your brokerage requires: forms, disclosures, branding and fee wording.</li>
+<li>Bring printed copies or a charged tablet.</li>
+<li>Write down two or three questions about the seller's goals and timeline.</li>
+</ul>
+
 <h2>Where a Listing Page Fits in the Marketing Plan</h2>
 <p>Many agents include a dedicated web page for the listing in section 5. <a href="/single-property-website-builder">ListingFlare</a> builds a page for each listing with a photo gallery, a QR code and link, a lead form, and an AI assistant that answers buyer questions and captures leads. It is one option among several, and you can list any tool you really use in your plan. See our guides on <a href="/blog/real-estate-listing-presentation-outline">what to include in a listing presentation</a>, <a href="/blog/how-to-win-more-listings-as-a-real-estate-agent">how to win more listings</a> and a <a href="/blog/real-estate-listing-page-checklist">listing page checklist</a>.</p>
 
@@ -93,6 +130,11 @@ ${downloadBox("real-estate-listing-presentation-template")}
 
 <h3>What is the difference between a listing presentation and a marketing plan?</h3>
 <p>A listing presentation is the whole meeting: who you are, pricing and your plan. The marketing plan is one section of it, covering how you will find buyers for this home.</p>
+<h3>What is an example of a listing presentation?</h3>
+<p>A common structure is a 30 to 60 minute meeting that moves from the seller's goals to comparable homes, a pricing recommendation, your marketing plan, how you will communicate, fees and next steps. The sample agenda above shows one way to pace it.</p>
+
+<h3>Should I use the PDF or the Word version?</h3>
+<p>Use the fillable PDF to type into before the meeting, the printable PDF to write on during it, and the Word file when you want to change the wording or add your branding.</p>
 </div>
 `,
 };

@@ -7,6 +7,7 @@ export const article: BlogPost = {
   description:
     "A free printable open house sign-in sheet as a PDF or Word file, plus what to put on it, how to word consent, and what to do with the names afterward.",
   date: "2026-10-25",
+  updated: "2026-11-13",
   author: "ListingFlare Team",
   category: "Open Houses",
   keywords: [
@@ -42,6 +43,39 @@ ${downloadBox("open-house-sign-in-sheet-template")}
 </table>
 
 <p>Ask only for what you will use. A short sheet is easier and quicker to fill in than a long one.</p>
+
+<h2>Optional Columns: Add Only What You Will Use</h2>
+
+<table>
+<thead><tr><th>Optional column</th><th>When it helps</th></tr></thead>
+<tbody>
+<tr><td>How did you hear about this open house?</td><td>Shows whether the sign, the online listing, a flyer or another agent brought people in, so you know what to repeat</td></tr>
+<tr><td>Timeline to move</td><td>Helps you decide who to call first</td></tr>
+<tr><td>Pre-approved? (Y/N)</td><td>Only if you will use the answer, and only if your brokerage's rules allow asking</td></tr>
+<tr><td>Interested in similar homes?</td><td>Lets you send other listings later, if the visitor agrees to be contacted</td></tr>
+</tbody>
+</table>
+
+<p>Every extra column makes the sheet slower to fill in, so add one or two at most.</p>
+
+<h2>Sign-In Sheet, Sign-Up Sheet, PDF or Word: Which File to Use</h2>
+
+<p>Agents say &ldquo;open house sign-in sheet&rdquo; and &ldquo;open house sign-up sheet&rdquo; for the same page: the form visitors fill in at the door. The files above differ only in format:</p>
+
+<ul>
+<li><strong>PDF:</strong> print it as it is. This is the quickest option.</li>
+<li><strong>Word:</strong> open it to add your name, your brokerage, the property address, your consent line or extra columns before printing.</li>
+</ul>
+
+<h3>Make Your Own in Word or Google Docs</h3>
+
+<ol>
+<li>Start a new document and add a header line with the property address, the date and your name.</li>
+<li>Type your consent line under the header.</li>
+<li>Insert a table with one row per visitor (about 15 rows is a reasonable start) and a column for each field in the tables above.</li>
+<li>Make the text large enough to write in, and leave space between rows.</li>
+<li>Print more copies than you expect to need.</li>
+</ol>
 
 <h2>Add Consent Wording</h2>
 <p>Visitors should know what their details will be used for. The template has a spot at the top for a short consent line. An example you can adapt: <em>By signing in, I agree that the host may contact me about this property.</em> Rules on calls, texts and marketing emails vary, and your brokerage may have its own required wording, so check both before you print. This is general guidance, not legal advice. The <a href="https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business" target="_blank" rel="noopener noreferrer">FTC&rsquo;s CAN-SPAM compliance guide for business</a> is a good starting point for marketing emails.</p>
@@ -82,6 +116,11 @@ ${downloadBox("open-house-sign-in-sheet-template")}
 
 <h3>Is a QR code better than a paper sign-in sheet?</h3>
 <p>Each has trade-offs. Paper needs no phone but you must type it up. A QR sign-in saves the details automatically but depends on visitors using their phones. Many agents offer both.</p>
+<h3>Is an open house sign-up sheet the same as a sign-in sheet?</h3>
+<p>Yes. Agents use both names for the form visitors fill in at the door, and the same template works for either.</p>
+
+<h3>Can I make my own open house sign-in sheet in Word or Google Docs?</h3>
+<p>Yes. Add a header with the property address and date, a consent line, and a table with columns for name, phone, email, whether the visitor has an agent, and notes. The steps are in the section above.</p>
 </div>
 `,
 };
