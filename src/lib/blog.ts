@@ -81,6 +81,7 @@ import { article as openHouseChecklist } from "@/content/articles/open-house-che
 import { article as openHouseFlyerTemplate } from "@/content/articles/open-house-flyer-template";
 import { article as virtualOpenHouse } from "@/content/articles/virtual-open-house";
 import { article as buyerQuestionnaire } from "@/content/articles/real-estate-buyer-questionnaire";
+import { article as whatIsRealEstateIsa } from "@/content/articles/what-is-a-real-estate-isa";
 import { article as listingMarketingPlan } from "@/content/articles/listing-marketing-plan-template";
 import { article as preListingChecklist } from "@/content/articles/pre-listing-checklist";
 import { article as priceReductionScripts } from "@/content/articles/seller-price-reduction-scripts";
@@ -175,6 +176,7 @@ const allPosts: BlogPost[] = [
   openHouseFlyerTemplate,
   virtualOpenHouse,
   buyerQuestionnaire,
+  whatIsRealEstateIsa,
   listingMarketingPlan,
   preListingChecklist,
   priceReductionScripts,

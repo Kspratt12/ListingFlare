@@ -61,6 +61,7 @@ export default function Page() {
           body: [
             "A real estate listing website is a website for a home that is for sale. Some are portals that list many homes from many agents. Others, like the pages ListingFlare builds, are single-property websites: one page for one home, with that agent's name and contact details on it.",
             "If you are searching for a listing website for real estate agents, the choice is usually between a page you control for each listing and a general agent website that covers all your listings in one site. Many agents use both.",
+            "If you are comparing real estate listing software or a listing platform, note what kind of tool it is. ListingFlare is listing marketing software: it builds a page for each listing and captures inquiries. It does not syndicate your listing to the MLS or to portals.",
           ],
         },
         {
@@ -110,6 +111,7 @@ export default function Page() {
       faqs={[
         { question: "How long does it take to create a single property website?", answer: "Most of the time goes into gathering photos and details. Once you have those, you create a listing with its details and photos." },
         { question: "What is a real estate listing website?", answer: "A website for a home that is for sale. Portals list many homes from many agents, while a single-property website is one page for one home, with the listing agent's branding and contact details. ListingFlare builds the second kind." },
+        { question: "Is ListingFlare real estate listing software?", answer: "It is listing marketing software. It builds a branded page for each listing and captures inquiries with an AI assistant, a showing request option and a lead inbox. It does not syndicate your listing to the MLS or to portals." },
         { question: "How much does it cost?", answer: "$150 per month for unlimited listing websites, with a 14-day free trial and no credit card required to start." },
         { question: "Do I need technical skills?", answer: "No. You fill in a form and upload photos. There is no code or design work." },
         { question: "Can I use my own branding?", answer: "Yes. Your headshot, name, brokerage and brand color appear on each listing page." },
