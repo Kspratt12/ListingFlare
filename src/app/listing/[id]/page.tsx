@@ -1,14 +1,15 @@
 import { factsLine } from "@/lib/listingFacts";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
-import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
 import { PUBLIC_AGENT_COLUMNS, type Listing, type PublicAgentProfile } from "@/lib/types";
 import type { Metadata } from "next";
-import { cache } from "react";
 import { cookies, headers } from "next/headers";
 import ListingPageClient from "./ListingPageClient";
 import { isAgentInactive } from "@/lib/listingVisibility";
 import { isDemoAgentId } from "@/lib/demoAgents";
+import { NON_PUBLIC_STATUSES } from "@/lib/listingAiContext";
+import { agentProfilePath, type SiteListing } from "@/lib/agentSite";
+import { agentShowsOtherListings, getAdminClient, getListingRow, loadOtherListings } from "./listingData";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
@@ -18,40 +19,6 @@ export const revalidate = 0;
 interface Props {
   params: { id: string };
 }
-
-function getAdminClient() {
-  return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
-    {
-      global: {
-        fetch: (url: string | URL | Request, init?: RequestInit) =>
-          fetch(url, { ...init, cache: "no-store" }),
-      },
-    }
-  );
-}
-
-// Everything the public listing page renders. Deliberately excludes
-// updated_at and anything not shown to visitors.
-const LISTING_PAGE_COLUMNS =
-  "id, agent_id, status, launch_date, video_intro_url, brand_color, slug, street, city, state, zip, price, beds, baths, sqft, year_built, lot_size, description, features, photos, videos, virtual_tour_url, view_count, created_at, price_history, mls_id, county, subdivision, architectural_style, property_subtype, stories, parking_spaces, property_tax_annual, hoa_required, hoa_fee_monthly, heating_type, cooling_type, water_source, sewer_type, roof_type, construction_material, foundation_type, appliances_included, school_elementary, school_middle, school_high, parcel_number, fireplace_count, laundry_location, basement_type, published_at, ai_chat_enabled, comparable_sales, co_agent_name, co_agent_title, co_agent_brokerage, co_agent_license, co_agent_phone, co_agent_email, co_agent_headshot_url";
-
-const isUUIDFormat = (s: string) =>
-  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(s);
-
-// One lookup per request, shared by generateMetadata and the page itself
-// (React cache() dedupes it), instead of each running its own queries.
-// UUID links try the id first and fall back to the slug.
-const getListingRow = cache(async (idOrSlug: string) => {
-  const db = getAdminClient();
-  if (isUUIDFormat(idOrSlug)) {
-    const { data } = await db.from("listings").select(LISTING_PAGE_COLUMNS).eq("id", idOrSlug).single();
-    if (data) return data;
-  }
-  const { data } = await db.from("listings").select(LISTING_PAGE_COLUMNS).eq("slug", idOrSlug).single();
-  return data;
-});
 
 // Crawlers and link-preview fetchers shouldn't inflate a listing's view count
 const BOT_UA = /bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|lighthouse|headless|monitor/i;
@@ -70,6 +37,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = data?.slug || params.id;
 
   if (!data) return { title: "Listing Not Found" };
+  // Drafts and archived listings are only ever seen by their owner as a private preview.
+  if (NON_PUBLIC_STATUSES.has(data.status)) {
+    return { title: `Preview: ${data.street || "Untitled listing"}`, robots: { index: false, follow: false } };
+  }
 
   const price = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -143,6 +114,25 @@ function InactiveListingPage() {
   );
 }
 
+function PreviewBanner({ listingId, status }: { listingId: string; status: string }) {
+  return (
+    <div className="fixed left-0 right-0 top-0 z-50 bg-amber-500 text-gray-950">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-3 px-4 py-2.5 text-sm">
+        <span>
+          <strong>Private preview.</strong> This listing is {status === "archived" ? "archived" : "a draft"}: only you can see
+          this page. Visitors get &ldquo;not found&rdquo; until you publish.
+        </span>
+        <Link
+          href={`/dashboard/edit/${listingId}`}
+          className="rounded-full bg-gray-950 px-4 py-1 text-xs font-semibold text-white hover:bg-gray-800"
+        >
+          Back to editing
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 export default async function ListingPage({ params }: Props) {
   // Admin client for ALL database queries - bypasses RLS for anonymous visitors
   const db = getAdminClient();
@@ -157,7 +147,9 @@ export default async function ListingPage({ params }: Props) {
   const listing = await getListingRow(params.id);
 
   if (!listing) notFound();
-  if (listing.status === "draft" || listing.status === "archived") notFound();
+  const isNonPublic = NON_PUBLIC_STATUSES.has(listing.status);
+  // Anonymous visitors never see drafts or archived listings.
+  if (isNonPublic && !hasAuthCookie) notFound();
 
   const typedListing = listing as unknown as Listing;
 
@@ -182,7 +174,7 @@ export default async function ListingPage({ params }: Props) {
       .eq("id", typedListing.agent_id)
       .single(),
     userIdPromise,
-    !hasAuthCookie && !isBot ? countView() : Promise.resolve(),
+    !hasAuthCookie && !isBot && !isNonPublic ? countView() : Promise.resolve(),
   ]);
 
   const agent = agentRes.data;
@@ -191,6 +183,19 @@ export default async function ListingPage({ params }: Props) {
   const typedAgent = agent as unknown as PublicAgentProfile;
 
   const isOwner = !!signedInUserId && signedInUserId === typedListing.agent_id;
+
+  // Drafts / archived: the owner gets a private preview; everyone else gets not-found.
+  if (isNonPublic) {
+    if (!isOwner) notFound();
+    return (
+      <div>
+        <PreviewBanner listingId={typedListing.id} status={typedListing.status} />
+        <div className="pt-12">
+          <ListingPageClient listing={typedListing} agent={typedAgent} isOwner />
+        </div>
+      </div>
+    );
+  }
 
   // Signed-in visitors: count the view only once we know they aren't the owner
   if (hasAuthCookie && !isOwner && !isBot) {
@@ -228,7 +233,19 @@ export default async function ListingPage({ params }: Props) {
     return <InactiveListingPage />;
   }
 
+  // Optional "More listings from this agent" (agent opt-in, this agent's active listings only).
+  let otherListings: SiteListing[] = [];
+  if (await agentShowsOtherListings(typedAgent.id)) {
+    otherListings = await loadOtherListings(typedAgent.id, typedListing.id);
+  }
+
   return (
-    <ListingPageClient listing={typedListing} agent={typedAgent} isOwner={isOwner} />
+    <ListingPageClient
+      listing={typedListing}
+      agent={typedAgent}
+      isOwner={isOwner}
+      otherListings={otherListings}
+      agentProfileHref={agentProfilePath(typedAgent)}
+    />
   );
 }

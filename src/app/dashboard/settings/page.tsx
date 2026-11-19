@@ -9,6 +9,7 @@ import { validateUpload } from "@/lib/validateUpload";
 import GoogleCalendarConnect from "@/components/GoogleCalendarConnect";
 import { US_TIME_ZONES } from "@/lib/timezone";
 import PushNotificationSettings from "@/components/PushNotificationSettings";
+import CustomDomainCard from "@/components/CustomDomainCard";
 
 export default function SettingsPage() {
   const supabase = createClient();
@@ -62,6 +63,30 @@ export default function SettingsPage() {
     { state: "idle" | "checking" | "ok" | "taken" | "invalid"; reason?: string }
   >({ state: "idle" });
   const [themeSectionOpen, setThemeSectionOpen] = useState(false);
+  const [profileId, setProfileId] = useState("");
+  const [showOtherListings, setShowOtherListings] = useState(false);
+  const [otherListingsState, setOtherListingsState] = useState<"idle" | "saving" | "saved" | "error">("idle");
+
+  // Saved immediately and verified: the switch only stays on if the database accepted it.
+  const toggleOtherListings = async (checked: boolean) => {
+    setShowOtherListings(checked);
+    setOtherListingsState("saving");
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error("Not signed in");
+      const { data, error } = await supabase
+        .from("agent_profiles")
+        .update({ show_other_listings: checked })
+        .eq("id", user.id)
+        .select("show_other_listings");
+      if (error || !data || data.length === 0) throw error || new Error("Not saved");
+      setOtherListingsState("saved");
+      setTimeout(() => setOtherListingsState("idle"), 2000);
+    } catch {
+      setShowOtherListings(!checked);
+      setOtherListingsState("error");
+    }
+  };
 
   const toggleAiApproval = async (checked: boolean) => {
     setAiApprovalMode(checked);
@@ -111,6 +136,8 @@ export default function SettingsPage() {
         setAiApprovalMode(profile.ai_approval_mode === true);
         setHandle(profile.handle || "");
         setBrandColor(profile.brand_color || "#b8965a");
+        setProfileId(profile.id);
+        setShowOtherListings(profile.show_other_listings === true);
       }
       setLoading(false);
     }
@@ -591,6 +618,48 @@ export default function SettingsPage() {
             </div>
           </div>
           )}
+        </section>
+
+        <CustomDomainCard handle={handle} />
+
+        {/* Agent site: profile page + optional "More listings" */}
+        <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex-1">
+              <h2 className="font-serif text-lg font-semibold text-gray-900">Show my other listings</h2>
+              <p className="mt-1 text-sm text-gray-500">
+                Adds a &ldquo;More listings from this agent&rdquo; section near the bottom of each of your property pages,
+                with your other published, coming-soon and pending homes. Only your own listings appear; drafts and
+                archived listings never do.
+              </p>
+              {profileId && (
+                <p className="mt-2 text-sm">
+                  <a href={`/agent/${handle || profileId}`} target="_blank" rel="noopener noreferrer" className="font-medium text-brand-700 hover:underline">
+                    View your agent page
+                  </a>
+                  <span className="text-gray-400"> (lists all your current and recently sold homes)</span>
+                </p>
+              )}
+              <p className="mt-1 min-h-[18px] text-xs" aria-live="polite">
+                {otherListingsState === "saving" && <span className="text-gray-500">Saving…</span>}
+                {otherListingsState === "saved" && <span className="text-emerald-600">Saved</span>}
+                {otherListingsState === "error" && (
+                  <span className="text-red-600">Couldn&apos;t save this setting. The database may need the latest update (migration 045).</span>
+                )}
+              </p>
+            </div>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={showOtherListings}
+              aria-label="Show my other listings on each property page"
+              disabled={otherListingsState === "saving"}
+              onClick={() => toggleOtherListings(!showOtherListings)}
+              className={`relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full transition-colors disabled:opacity-50 ${showOtherListings ? "bg-brand-500" : "bg-gray-300"}`}
+            >
+              <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${showOtherListings ? "translate-x-6" : "translate-x-1"}`} />
+            </button>
+          </div>
         </section>
 
         {/* Scheduling */}

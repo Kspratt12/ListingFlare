@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { buildSellerReport } from "@/lib/sellerReport";
+import { nurtureSendsEnabled } from "@/lib/automationFlags";
 
 export const dynamic = "force-dynamic";
 
@@ -11,8 +13,8 @@ function getAdminClient() {
   );
 }
 
-// Returns aggregated stats for a seller report. Called from the /reports/[listingId] page.
-// Auth'd - only the listing owner can see it.
+// Seller report for one listing. Only the listing owner can load it. Returns counts with their
+// period and definition (lib/sellerReport.ts); no buyer names, contacts or transcripts.
 export async function GET(req: NextRequest) {
   const authClient = createServerSupabaseClient();
   const {
@@ -22,54 +24,49 @@ export async function GET(req: NextRequest) {
 
   const listingId = req.nextUrl.searchParams.get("listingId");
   if (!listingId) return NextResponse.json({ error: "Missing listingId" }, { status: 400 });
+  const days = Number(req.nextUrl.searchParams.get("days"));
+  const periodDays = [7, 14, 30].includes(days) ? days : 7;
 
   const db = getAdminClient();
 
-  // Verify ownership
   const { data: listing } = await db
     .from("listings")
-    .select("*")
+    .select("id, agent_id, street, city, state, zip, price, beds, baths, sqft, photos, status, view_count, slug, created_at, published_at, ai_chat_enabled")
     .eq("id", listingId)
-    .single();
+    .maybeSingle();
 
   if (!listing || listing.agent_id !== user.id) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  const { data: agent } = await db
-    .from("agent_profiles")
-    .select("name, phone, email, brokerage, headshot_url")
-    .eq("id", listing.agent_id)
-    .single();
-
-  const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
-
-  const [{ count: leadsThisWeek }, { count: leadsTotal }, { count: showingsTotal }, { data: recentLeads }] = await Promise.all([
+  const [{ data: agent }, { data: leads, error: leadsError }, { data: showings, error: showingsError }] = await Promise.all([
     db
-      .from("leads")
-      .select("id", { count: "exact", head: true })
-      .eq("listing_id", listingId)
-      .gte("created_at", sevenDaysAgo),
-    db
-      .from("leads")
-      .select("id", { count: "exact", head: true })
-      .eq("listing_id", listingId),
-    db
-      .from("showings")
-      .select("id", { count: "exact", head: true })
-      .eq("listing_id", listingId),
-    db
-      .from("leads")
-      .select("id, name, created_at, status")
-      .eq("listing_id", listingId)
-      .order("created_at", { ascending: false })
-      .limit(5),
+      .from("agent_profiles")
+      .select("name, phone, email, brokerage, headshot_url, google_refresh_token, ai_approval_mode")
+      .eq("id", listing.agent_id)
+      .maybeSingle(),
+    // Timestamps only: the report never needs to know who the buyers are.
+    db.from("leads").select("created_at").eq("listing_id", listingId),
+    db.from("showings").select("status, created_at").eq("listing_id", listingId),
   ]);
 
-  // Views aren't per-week tracked, so we derive a weekly estimate from listing age
-  const createdAt = new Date(listing.created_at);
-  const weeksActive = Math.max(1, Math.ceil((Date.now() - createdAt.getTime()) / (7 * 24 * 60 * 60 * 1000)));
-  const avgViewsPerWeek = Math.round((listing.view_count || 0) / weeksActive);
+  if (leadsError || showingsError) {
+    return NextResponse.json({ error: "Couldn't load the activity for this report. Please try again." }, { status: 502 });
+  }
+
+  const report = buildSellerReport({
+    now: new Date(),
+    periodDays,
+    listing: { created_at: listing.created_at, published_at: listing.published_at, status: listing.status, view_count: listing.view_count },
+    leadCreatedAt: (leads || []).map((l) => l.created_at as string),
+    showings: (showings || []) as Array<{ status: string; created_at: string }>,
+    automation: {
+      aiChatOn: listing.ai_chat_enabled !== false,
+      calendarConnected: !!agent?.google_refresh_token,
+      followUpEmailsOn: nurtureSendsEnabled(),
+      approvalMode: agent?.ai_approval_mode === true,
+    },
+  });
 
   return NextResponse.json({
     listing: {
@@ -84,18 +81,13 @@ export async function GET(req: NextRequest) {
       sqft: listing.sqft,
       photos: listing.photos,
       status: listing.status,
-      view_count: listing.view_count || 0,
       slug: listing.slug,
       created_at: listing.created_at,
     },
-    agent: agent || null,
-    stats: {
-      totalViews: listing.view_count || 0,
-      avgViewsPerWeek,
-      leadsThisWeek: leadsThisWeek || 0,
-      leadsTotal: leadsTotal || 0,
-      showingsTotal: showingsTotal || 0,
-      recentLeadCount: (recentLeads || []).length,
-    },
+    // Public contact fields only; the calendar token is reduced to a yes/no above and never returned.
+    agent: agent
+      ? { name: agent.name, phone: agent.phone, email: agent.email, brokerage: agent.brokerage, headshot_url: agent.headshot_url }
+      : null,
+    report,
   });
 }

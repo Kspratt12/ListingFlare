@@ -17,9 +17,10 @@ import { serializeJsonLd } from "@/lib/jsonLd";
 import { safeTourEmbedUrl } from "@/lib/tourUrl";
 import MortgageCalculator from "@/components/MortgageCalculator";
 import NeighborhoodInfo from "@/components/NeighborhoodInfo";
-// OtherListings intentionally removed from the listing page — luxury
-// listings tell one property's story without cross-selling siblings.
-// The agent's full portfolio is still visible on the /agent/[id] page.
+// "More listings from this agent" is OFF unless the agent turns it on in Settings
+// (agent_profiles.show_other_listings). The data is selected on the server for this agent only.
+import OtherListings from "@/components/OtherListings";
+import type { SiteListing } from "@/lib/agentSite";
 import PriceHistory from "@/components/PriceHistory";
 import PropertyAttributes from "@/components/PropertyAttributes";
 import ComparableSales from "@/components/ComparableSales";
@@ -41,6 +42,11 @@ interface Props {
   listing: Listing;
   agent: PublicAgentProfile;
   isOwner?: boolean;
+  otherListings?: SiteListing[];
+  agentProfileHref?: string;
+  // MLS-style unbranded page: no agent/brokerage identity, contact details, lead forms, chat,
+  // co-agent, testimonials or cross-links. Facts, photos, video and tour only.
+  unbranded?: boolean;
 }
 
 function toPropertyListing(listing: Listing, agent: PublicAgentProfile): PropertyListing {
@@ -78,12 +84,12 @@ function toPropertyListing(listing: Listing, agent: PublicAgentProfile): Propert
   };
 }
 
-export default function ListingPageClient({ listing, agent, isOwner }: Props) {
+export default function ListingPageClient({ listing, agent, isOwner, otherListings, agentProfileHref, unbranded = false }: Props) {
   const propertyData = toPropertyListing(listing, agent);
 
   // Track repeat visits - alert agent when someone views 3+ times
   useEffect(() => {
-    if (isOwner) return;
+    if (isOwner || unbranded) return;
     try {
       const key = `lf_views_${listing.id}`;
       const prev = parseInt(localStorage.getItem(key) || "0", 10);
@@ -105,7 +111,7 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
     } catch {
       // localStorage not available
     }
-  }, [listing.id, listing.agent_id, isOwner]);
+  }, [listing.id, listing.agent_id, isOwner, unbranded]);
 
   // Structured data for Google rich results
   const jsonLd = {
@@ -138,8 +144,8 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
   // Only a supported https tour link is ever embedded; any other stored value renders nothing.
   const tourSrc = safeTourEmbedUrl(listing.virtual_tour_url);
 
-  // Per-listing color overrides the agent's default color
-  const effectiveBrandColor = listing.brand_color || agent.brand_color || null;
+  // Per-listing color overrides the agent's default color (the unbranded page stays neutral)
+  const effectiveBrandColor = unbranded ? null : listing.brand_color || agent.brand_color || null;
 
   return (
     <main className={effectiveBrandColor ? "agent-brand-override" : undefined}>
@@ -171,13 +177,21 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
       {effectiveBrandColor && (
         <style>{`:root { --agent-brand: ${effectiveBrandColor}; }`}</style>
       )}
-      <Navbar
-        shareTitle={`${listing.street}, ${listing.city}`}
-        shareUrl={listing.slug ? `/listing/${listing.slug}` : `/listing/${listing.id}`}
-        showPrint
-      />
+      {unbranded ? (
+        <header className="border-b border-gray-100 bg-white px-6 py-4">
+          <p className="mx-auto max-w-6xl text-sm font-medium text-gray-700">
+            {[listing.street, listing.city, listing.state].filter(Boolean).join(", ")}
+          </p>
+        </header>
+      ) : (
+        <Navbar
+          shareTitle={`${listing.street}, ${listing.city}`}
+          shareUrl={listing.slug ? `/listing/${listing.slug}` : `/listing/${listing.id}`}
+          showPrint
+        />
+      )}
 
-      {listing.status === "coming_soon" ? (
+      {listing.status === "coming_soon" && !unbranded ? (
         <ComingSoonBanner
           listingId={listing.id}
           listingAddress={`${listing.street}, ${listing.city}, ${listing.state}`}
@@ -218,7 +232,7 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
       />
       <PropertyDetails listing={propertyData} />
 
-      {listing.video_intro_url && (
+      {listing.video_intro_url && !unbranded && (
         <AgentVideoIntro
           videoUrl={listing.video_intro_url}
           agentName={agent.name || ""}
@@ -288,6 +302,12 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
         />
       )}
 
+      {unbranded ? (
+        <footer className="border-t border-gray-100 bg-gray-50 px-6 py-8 text-center text-xs text-gray-500">
+          Property information is provided by the listing source and is not guaranteed. Verify all details independently.
+        </footer>
+      ) : (
+      <>
       <ListingAlertSignup
         listingId={listing.id}
         listingAddress={`${listing.street}, ${listing.city}, ${listing.state}`}
@@ -314,6 +334,10 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
       />
       <ShowingScheduler listingId={listing.id} agentId={listing.agent_id} />
 
+      {otherListings && otherListings.length > 0 && agentProfileHref && (
+        <OtherListings listings={otherListings} agentName={agent.name} profileHref={agentProfileHref} />
+      )}
+
       {/* AI chat is on by default for every listing, but agents can
           flip it off per-listing from the Create/Edit form when they
           want full manual control on a specific property. */}
@@ -338,6 +362,7 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
           listingId={listing.id}
           agentId={listing.agent_id}
           calendlyUrl={agent.calendly_url || undefined}
+          testMode={!!isOwner}
         />
       )}
       <Footer
@@ -349,6 +374,8 @@ export default function ListingPageClient({ listing, agent, isOwner }: Props) {
         coAgentBrokerage={listing.co_agent_brokerage}
         coAgentLicense={listing.co_agent_license}
       />
+      </>
+      )}
     </main>
   );
 }
