@@ -56,6 +56,34 @@ Docs: `docs/scheduled-seller-reports.md`, `docs/custom-domains.md`.
 delivery, a real Vercel domain/DNS/certificate, real Supabase RLS and Storage, and the production schema's
 existing grants.
 
+## Release checks on real infrastructure (2026-11-19)
+
+- **Vercel (read via API):** team `kelvin-spratts-projects` (Pro), project `listing-flare`
+  (`prj_qklauYeqRnRTkzcom89iDpVdB4ge`) → https://www.listingflare.com. Connected to GitHub
+  `Kspratt12/ListingFlare`; production branch `main`; every pushed branch creates a Preview. Previews sit
+  behind Vercel sign-in. There are no deploy hooks; the existing two crons run only in Production.
+- **Preview isolation:** the shared Supabase, Resend, Anthropic and `CRON_SECRET` variables cover
+  production, preview and development. For `feature/listing-workflow-integrity` only, branch-scoped
+  Preview overrides point Supabase at an unreachable address and give Resend/Anthropic/`CRON_SECRET`
+  inert values. Shared and Production entries are unchanged. The Preview of this branch therefore
+  cannot reach production services (and its database-backed pages do not work).
+- **GitHub:** `main` requires a PR plus passing `test` (Actions) and `Vercel` checks; 0 reviews required.
+- **Production permissions (catalog-only, project `pvnsirpfofxklqgxwdiz`):**
+  - `authenticated` can UPDATE only `name`, `brand_color`, `ai_approval_mode` among the checked
+    `agent_profiles` columns.
+  - `subscription_status`, `trial_ends_at`, `stripe_customer_id`, `stripe_subscription_id`,
+    `complimentary_access`, `setup_fee_paid` and `google_refresh_token` are not updatable by `anon` or
+    `authenticated`.
+  - RLS is on and the policy is owner-only; there are no triggers.
+  - None of the objects from 045-048 exist yet.
+  - `listings` has table-level UPDATE/INSERT for both roles, with RLS deciding rows.
+  - **Migration 049 is not needed in production** and is not applied: its revoke-then-grant could remove
+    other existing column grants.
+- **Real-Supabase test project: not created.** The Supabase organization is on the Pro plan, so an
+  extra project would be billed. Creating a separate free organization was refused by the tool's
+  permission check as outside the explicit authorization. Real-Supabase RLS behaviour for the new
+  tables therefore remains verified only locally (PGlite + shim) plus the production catalog checks.
+
 ## Pre-existing finding (not caused by this work)
 
 On a database built from the repo's migrations alone, a signed-in agent can update their own
