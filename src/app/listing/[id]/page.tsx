@@ -9,7 +9,8 @@ import { isAgentInactive } from "@/lib/listingVisibility";
 import { isDemoAgentId } from "@/lib/demoAgents";
 import { NON_PUBLIC_STATUSES } from "@/lib/listingAiContext";
 import { agentProfilePath, type SiteListing } from "@/lib/agentSite";
-import { agentShowsOtherListings, getAdminClient, getListingRow, loadOtherListings } from "./listingData";
+import { SITE_AGENT_HEADER, siteAgentFor } from "@/lib/customDomain";
+import { agentShowsOtherListings, getAdminClient, getListingRow, loadFloorPlan, loadOtherListings } from "./listingData";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
@@ -147,6 +148,9 @@ export default async function ListingPage({ params }: Props) {
   const listing = await getListingRow(params.id);
 
   if (!listing) notFound();
+  // On a customer's own domain only that agent's listings exist.
+  const siteAgent = siteAgentFor(headers().get("host"), headers().get(SITE_AGENT_HEADER));
+  if (siteAgent && listing.agent_id !== siteAgent) notFound();
   const isNonPublic = NON_PUBLIC_STATUSES.has(listing.status);
   // Anonymous visitors never see drafts or archived listings.
   if (isNonPublic && !hasAuthCookie) notFound();
@@ -185,13 +189,14 @@ export default async function ListingPage({ params }: Props) {
   const isOwner = !!signedInUserId && signedInUserId === typedListing.agent_id;
 
   // Drafts / archived: the owner gets a private preview; everyone else gets not-found.
+  if (isNonPublic && !isOwner) notFound();
+  const floorPlan = await loadFloorPlan(typedListing.id, (typedListing.photos || []).map((p) => p.src));
   if (isNonPublic) {
-    if (!isOwner) notFound();
     return (
       <div>
         <PreviewBanner listingId={typedListing.id} status={typedListing.status} />
         <div className="pt-12">
-          <ListingPageClient listing={typedListing} agent={typedAgent} isOwner />
+          <ListingPageClient listing={typedListing} agent={typedAgent} isOwner floorPlan={floorPlan} />
         </div>
       </div>
     );
@@ -225,7 +230,7 @@ export default async function ListingPage({ params }: Props) {
             </div>
           </div>
           <div className="pt-12">
-            <ListingPageClient listing={typedListing} agent={typedAgent} isOwner={isOwner} />
+            <ListingPageClient listing={typedListing} agent={typedAgent} isOwner={isOwner} floorPlan={floorPlan} />
           </div>
         </div>
       );
@@ -245,7 +250,8 @@ export default async function ListingPage({ params }: Props) {
       agent={typedAgent}
       isOwner={isOwner}
       otherListings={otherListings}
-      agentProfileHref={agentProfilePath(typedAgent)}
+      agentProfileHref={siteAgent ? "/" : agentProfilePath(typedAgent)}
+      floorPlan={floorPlan}
     />
   );
 }

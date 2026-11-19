@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
+import { SITE_AGENT_HEADER, siteAgentFor } from "@/lib/customDomain";
 import type { Metadata } from "next";
 import type { Listing, PublicAgentProfile } from "@/lib/types";
 import { isAgentInactive } from "@/lib/listingVisibility";
 import { NON_PUBLIC_STATUSES } from "@/lib/listingAiContext";
 import ListingPageClient from "../ListingPageClient";
-import { getListingRow, getPublicAgent } from "../listingData";
+import { getListingRow, getPublicAgent, loadFloorPlan } from "../listingData";
 
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
@@ -36,12 +38,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function UnbrandedListingPage({ params }: Props) {
   const listing = await getListingRow(params.id);
   if (!listing || NON_PUBLIC_STATUSES.has(listing.status)) notFound();
+  const siteAgent = siteAgentFor(headers().get("host"), headers().get(SITE_AGENT_HEADER));
+  if (siteAgent && listing.agent_id !== siteAgent) notFound();
   const typedListing = listing as unknown as Listing;
   const agent = await getPublicAgent(typedListing.agent_id);
   // Same rule as the branded page: an expired trial hides the listing from visitors.
   if (!agent || isAgentInactive(agent)) notFound();
   // Props are serialized into the page source, so identity must be removed here, not just hidden.
-  return <ListingPageClient listing={unbrandedListing(typedListing)} agent={UNBRANDED_AGENT} unbranded />;
+  const floorPlan = await loadFloorPlan(typedListing.id, (typedListing.photos || []).map((p) => p.src));
+  return <ListingPageClient listing={unbrandedListing(typedListing)} agent={UNBRANDED_AGENT} unbranded floorPlan={floorPlan} />;
 }
 
 // Every agent field the client could render or serialize, blanked.

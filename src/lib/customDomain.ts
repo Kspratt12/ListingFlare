@@ -1,14 +1,65 @@
-// Custom domains for an agent's site (e.g. homes.janesmith.com).
+// Custom domains for an agent's site (e.g. homes.janesmith.com): the agent's public listing collection
+// (their /agent page) and their listing pages, served on a hostname the agent owns.
 //
-// STATUS: NOT AVAILABLE. Nothing in the app connects a domain today. Activating it needs work
-// outside this codebase (see docs/custom-domains.md): adding each domain to the hosting project,
-// TLS certificates, and the middleware host mapping. Until then the UI only checks the format of
-// a domain and explains what is supported now (handle.listingflare.com).
+// Availability is decided on the server by customDomainsConfigured(): the feature flag AND the hosting
+// provider credentials must all be set (lib/domainProvider.ts). Without them the Settings card only
+// checks the format of a domain and explains what works today. See docs/custom-domains.md.
 //
-// This module holds the parts that can be built and tested locally: input normalisation, format
-// validation, and the ownership/verification state machine a future activation will use.
+// This module is pure: input normalisation, format validation, platform-host rules and the lifecycle.
 
-export const CUSTOM_DOMAINS_AVAILABLE = false;
+// Routing switch read by the middleware (which does not need provider credentials).
+export function customDomainsEnabledFlag(env: Record<string, string | undefined> = process.env): boolean {
+  return env.CUSTOM_DOMAINS_ENABLED === "1";
+}
+
+// Header the middleware sets (overwriting any visitor value) on customer-domain requests to name the
+// agent whose site it is.
+export const SITE_AGENT_HEADER = "x-lf-site-agent";
+
+// The agent a request is scoped to, or null for platform hosts. A header on a platform host is ignored,
+// so it can't be used to change what listingflare.com serves.
+export function siteAgentFor(host: string | null, headerValue: string | null, env: Record<string, string | undefined> = process.env): string | null {
+  if (!customDomainsEnabledFlag(env) || !host || isPlatformHost(host, env)) return null;
+  return headerValue && /^[0-9a-f-]{36}$/i.test(headerValue) ? headerValue : null;
+}
+
+export function customDomainsConfigured(env: Record<string, string | undefined> = process.env): boolean {
+  return env.CUSTOM_DOMAINS_ENABLED === "1" && !!env.VERCEL_API_TOKEN && !!env.VERCEL_PROJECT_ID;
+}
+
+// Hosts that always serve the normal ListingFlare site (dashboard, login, marketing pages). Requests
+// for any other host are treated as a possible customer domain. Extra platform hosts (for example a
+// staging domain) can be listed in PLATFORM_HOSTS, comma-separated.
+export function isPlatformHost(host: string, env: Record<string, string | undefined> = process.env): boolean {
+  const h = host.split(":")[0].toLowerCase().replace(/\.$/, "");
+  if (!h) return true;
+  if (h === "listingflare.com" || h.endsWith(".listingflare.com")) return true;
+  if (h === "localhost" || h.endsWith(".localhost") || h === "127.0.0.1" || h === "[::1]") return true;
+  if (h.endsWith(".vercel.app")) return true;
+  const extra = (env.PLATFORM_HOSTS || "").split(",").map((s) => s.trim().toLowerCase()).filter(Boolean);
+  return extra.includes(h);
+}
+
+// Paths a customer domain may serve. Everything else (dashboard, login, signup, settings, blog...) is
+// sent to the main ListingFlare site, so sign-in cookies never live on a customer's domain.
+const CUSTOM_DOMAIN_API = new Set([
+  "/api/ai/chat",
+  "/api/leads/create",
+  "/api/leads/hot-visitor",
+  "/api/showings/book",
+  "/api/listings/alerts/subscribe",
+  "/api/listings/alerts/unsubscribe",
+]);
+
+export type CustomHostRoute = { kind: "agent_home" } | { kind: "listing" } | { kind: "asset" } | { kind: "api" } | { kind: "platform_redirect" };
+
+export function routeCustomHostPath(pathname: string): CustomHostRoute {
+  if (pathname === "/" || pathname === "") return { kind: "agent_home" };
+  if (/^\/listing\/[^/]+(\/unbranded)?\/?$/.test(pathname)) return { kind: "listing" };
+  if (pathname.startsWith("/_next/") || /^\/[^/]+\.(png|jpg|jpeg|svg|ico|webp|txt|webmanifest|js)$/.test(pathname)) return { kind: "asset" };
+  if (CUSTOM_DOMAIN_API.has(pathname)) return { kind: "api" };
+  return { kind: "platform_redirect" };
+}
 
 export type DomainCheck =
   | { ok: true; domain: string; kind: "apex" | "subdomain" }
@@ -59,33 +110,47 @@ export function checkCustomDomain(input: unknown): DomainCheck {
   return { ok: true, domain, kind: labels.length === apexLabels ? "apex" : "subdomain" };
 }
 
-// Ownership and connection lifecycle for a future activation. A domain is only ever "active" after
-// the hosting provider confirms both DNS and the certificate; nothing here can mark it active by itself.
-export type DomainState = "pending_dns" | "verifying" | "active" | "failed" | "removed";
-export type DomainEvent =
-  | "dns_found"
-  | "dns_missing"
-  | "provider_verified"
-  | "provider_failed"
-  | "retry"
-  | "remove";
+// Lifecycle. A domain is only "connected" when the hosting provider reports it verified AND correctly
+// configured; nothing in the app can mark it connected on its own.
+export type DomainState = "pending" | "configuration_needed" | "verifying" | "connected" | "error" | "removing" | "removed";
 
-const TRANSITIONS: Record<DomainState, Partial<Record<DomainEvent, DomainState>>> = {
-  pending_dns: { dns_found: "verifying", dns_missing: "pending_dns", remove: "removed" },
-  verifying: { provider_verified: "active", provider_failed: "failed", dns_missing: "pending_dns", remove: "removed" },
-  active: { dns_missing: "failed", provider_failed: "failed", remove: "removed" },
-  failed: { retry: "pending_dns", remove: "removed" },
-  removed: {},
-};
+export interface DnsRecord {
+  type: string;
+  name: string;
+  value: string;
+  reason?: string;
+}
 
-export function nextDomainState(current: DomainState, event: DomainEvent): DomainState {
-  return TRANSITIONS[current][event] ?? current;
+// What the hosting provider reports about a domain. Records come only from the provider's response.
+export interface ProviderDomainStatus {
+  // provider confirmed ownership (no outstanding TXT verification)
+  verified: boolean;
+  // provider reports DNS does not yet point at the hosting project
+  misconfigured: boolean;
+  // ownership-verification records the provider asks for (e.g. TXT)
+  verification: DnsRecord[];
+  // routing records the provider recommends (A / CNAME); may be empty if the provider gave none
+  routing: DnsRecord[];
+}
+
+export function stateFromProvider(p: ProviderDomainStatus): DomainState {
+  if (!p.verified) return "verifying";
+  if (p.misconfigured) return "configuration_needed";
+  return "connected";
 }
 
 export const DOMAIN_STATE_LABELS: Record<DomainState, string> = {
-  pending_dns: "Waiting for DNS records",
-  verifying: "DNS found, verifying with the host",
-  active: "Connected",
-  failed: "Not connected (check DNS)",
+  pending: "Adding the domain",
+  configuration_needed: "DNS records needed",
+  verifying: "Ownership verification needed",
+  connected: "Connected",
+  error: "Problem connecting",
+  removing: "Removing",
   removed: "Removed",
 };
+
+// Manual "check again": at most once per 30 seconds per domain; automatic checks back off.
+export const RECHECK_MIN_MS = 30_000;
+export function nextCheckDelayMs(checkCount: number): number {
+  return Math.min(6 * 60 * 60 * 1000, RECHECK_MIN_MS * 2 ** Math.max(0, Math.min(checkCount, 12)));
+}

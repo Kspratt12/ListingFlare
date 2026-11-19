@@ -21,6 +21,8 @@ import NeighborhoodInfo from "@/components/NeighborhoodInfo";
 // (agent_profiles.show_other_listings). The data is selected on the server for this agent only.
 import OtherListings from "@/components/OtherListings";
 import type { SiteListing } from "@/lib/agentSite";
+import FloorPlanViewer from "@/components/FloorPlanViewer";
+import type { FloorPlan } from "@/lib/floorPlan";
 import PriceHistory from "@/components/PriceHistory";
 import PropertyAttributes from "@/components/PropertyAttributes";
 import ComparableSales from "@/components/ComparableSales";
@@ -47,6 +49,8 @@ interface Props {
   // MLS-style unbranded page: no agent/brokerage identity, contact details, lead forms, chat,
   // co-agent, testimonials or cross-links. Facts, photos, video and tour only.
   unbranded?: boolean;
+  // Interactive floor plan, already sanitized on the server (lib/floorPlan.ts).
+  floorPlan?: FloorPlan | null;
 }
 
 function toPropertyListing(listing: Listing, agent: PublicAgentProfile): PropertyListing {
@@ -84,7 +88,7 @@ function toPropertyListing(listing: Listing, agent: PublicAgentProfile): Propert
   };
 }
 
-export default function ListingPageClient({ listing, agent, isOwner, otherListings, agentProfileHref, unbranded = false }: Props) {
+export default function ListingPageClient({ listing, agent, isOwner, otherListings, agentProfileHref, unbranded = false, floorPlan = null }: Props) {
   const propertyData = toPropertyListing(listing, agent);
 
   // Track repeat visits - alert agent when someone views 3+ times
@@ -242,6 +246,8 @@ export default function ListingPageClient({ listing, agent, isOwner, otherListin
       )}
 
       <PhotoGallery photos={propertyData.photos} videos={listing.videos} />
+
+      {floorPlan && <FloorPlanViewer floorPlan={floorPlan} photos={propertyData.photos} />}
 
       {tourSrc && <VirtualTourEmbed src={tourSrc} />}
 

@@ -75,11 +75,12 @@ test("More listings: cards link to each listing, badge non-standard statuses, an
   assert.equal(H.h(OtherListings, { listings: [], agentName: "x", profileHref: "/agent/x" }), "");
 });
 
-test("custom domain card: says it is not available and shows the working subdomain", () => {
+test("custom domain card: before the server answers it shows loading, not a connect form or a connected state", () => {
+  // Availability comes from GET /api/domains (server-side flag + provider credentials), so the first
+  // render must not offer to connect or claim anything is connected.
   const html = H.h(CustomDomainCard, { handle: "fictional" });
-  assert.match(html, /Not available yet/);
-  assert.match(html, /fictional\.listingflare\.com/);
-  assert.match(H.h(CustomDomainCard, { handle: "" }), /once you pick a handle/);
+  assert.match(html, /Loading/);
+  assert.ok(!/Connect domain|Connected|DNS records needed/.test(html));
 });
 
 test("no test in this file reached the network", () => {

@@ -28,6 +28,9 @@ import { validateUpload } from "@/lib/validateUpload";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import { safeTourEmbedUrl, tourUrlProblem, TOUR_URL_HELP } from "@/lib/tourUrl";
 import SellerPortalCard from "@/components/SellerPortalCard";
+import SellerReportScheduleCard from "@/components/SellerReportScheduleCard";
+import FloorPlanEditor from "@/components/FloorPlanEditor";
+import { sanitizeFloorPlan, type FloorPlan } from "@/lib/floorPlan";
 import JustSoldBlast from "@/components/JustSoldBlast";
 import BrandColorPicker from "@/components/BrandColorPicker";
 import CopyLinkButton from "@/components/CopyLinkButton";
@@ -84,6 +87,9 @@ export default function EditListingPage() {
   const [loadedAiKnowledge, setLoadedAiKnowledge] = useState("");
   const [privateNotes, setPrivateNotes] = useState("");
   const [loadedPrivateNotes, setLoadedPrivateNotes] = useState("");
+  // Interactive floor plan (migration 048); compared as JSON to detect changes.
+  const [floorPlan, setFloorPlan] = useState<FloorPlan | null>(null);
+  const [loadedFloorPlanJson, setLoadedFloorPlanJson] = useState("null");
 
   // Form state
   const [street, setStreet] = useState("");
@@ -319,6 +325,9 @@ export default function EditListingPage() {
       setAiChatEnabled(data.ai_chat_enabled !== false);
       setAiKnowledge(typeof data.ai_knowledge === "string" ? data.ai_knowledge : "");
       setLoadedAiKnowledge(typeof data.ai_knowledge === "string" ? data.ai_knowledge : "");
+      const loadedPlan = sanitizeFloorPlan(data.floor_plan);
+      setFloorPlan(loadedPlan);
+      setLoadedFloorPlanJson(JSON.stringify(loadedPlan));
       // Private notes live in an owner-only table; a missing table (migration 045 not applied) just means none.
       supabase
         .from("listing_private_notes")
@@ -607,6 +616,16 @@ export default function EditListingPage() {
           setAiKnowledge(cleanKnowledge);
         } else {
           partialProblems.push("the extra AI assistant details");
+        }
+      }
+      const cleanPlan = sanitizeFloorPlan(floorPlan, photos.map((p) => p.src));
+      if (JSON.stringify(cleanPlan) !== loadedFloorPlanJson) {
+        const fp = await supabase.from("listings").update({ floor_plan: cleanPlan }).eq("id", listingId).select("id");
+        if (updateWasApplied(fp)) {
+          setFloorPlan(cleanPlan);
+          setLoadedFloorPlanJson(JSON.stringify(cleanPlan));
+        } else {
+          partialProblems.push("the floor plan");
         }
       }
       if (privateNotes !== loadedPrivateNotes) {
@@ -1149,6 +1168,12 @@ export default function EditListingPage() {
             />
           </div>
         </section>
+
+        <FloorPlanEditor
+          value={floorPlan}
+          onChange={(next) => { setFloorPlan(next); setHasUnsavedChanges(true); }}
+          photos={photos}
+        />
 
         {/* AI chat toggle — per-listing override. */}
         <section className="rounded-xl border border-gray-200 bg-white p-6">
@@ -1751,6 +1776,9 @@ export default function EditListingPage() {
 
         {/* Seller Portal */}
         <SellerPortalCard listingId={listingId} />
+
+        {/* Scheduled seller reports use the seller portal's email as the recipient. */}
+        <SellerReportScheduleCard listingId={listingId} />
 
         {/* Just Sold blast - only appears once the listing is closed/sold */}
         {currentStatus === "closed" && (

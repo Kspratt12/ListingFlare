@@ -13,7 +13,7 @@ import {
   timeRangeProblem,
 } from "../flyerOptions";
 import { buildSellerReport } from "../sellerReport";
-import { CUSTOM_DOMAINS_AVAILABLE, checkCustomDomain, nextDomainState, normalizeDomainInput } from "../customDomain";
+import { checkCustomDomain, customDomainsConfigured, normalizeDomainInput, stateFromProvider } from "../customDomain";
 
 const src = process.env.LF_SRC_DIR as string;
 const read = (rel: string) => fs.readFileSync(path.join(src, rel), "utf8").replace(/\r\n/g, "\n");
@@ -136,8 +136,11 @@ test("seller report: only automations that are actually on are listed; no buyer 
 
 // ---------- custom domains ----------
 
-test("custom domains: off, with honest validation", () => {
-  assert.equal(CUSTOM_DOMAINS_AVAILABLE, false);
+test("custom domains: off unless the flag and provider credentials are all set; honest validation", () => {
+  assert.equal(customDomainsConfigured({}), false);
+  assert.equal(customDomainsConfigured({ CUSTOM_DOMAINS_ENABLED: "1" }), false, "flag without credentials stays off");
+  assert.equal(customDomainsConfigured({ CUSTOM_DOMAINS_ENABLED: "true", VERCEL_API_TOKEN: "t", VERCEL_PROJECT_ID: "p" }), false, "only exactly 1 enables");
+  assert.equal(customDomainsConfigured({ CUSTOM_DOMAINS_ENABLED: "1", VERCEL_API_TOKEN: "t", VERCEL_PROJECT_ID: "p" }), true);
   assert.equal(normalizeDomainInput("  HTTPS://Homes.JaneSmith.com:443/path?q=1 "), "homes.janesmith.com");
   assert.deepEqual(checkCustomDomain("homes.janesmith.com"), { ok: true, domain: "homes.janesmith.com", kind: "subdomain" });
   assert.deepEqual(checkCustomDomain("janesmith.com"), { ok: true, domain: "janesmith.com", kind: "apex" });
@@ -147,17 +150,14 @@ test("custom domains: off, with honest validation", () => {
   }
 });
 
-test("custom domains: a domain only becomes active after provider verification", () => {
-  assert.equal(nextDomainState("pending_dns", "provider_verified"), "pending_dns", "cannot skip DNS");
-  assert.equal(nextDomainState("pending_dns", "dns_found"), "verifying");
-  assert.equal(nextDomainState("verifying", "provider_verified"), "active");
-  assert.equal(nextDomainState("active", "dns_missing"), "failed");
-  assert.equal(nextDomainState("failed", "retry"), "pending_dns");
-  assert.equal(nextDomainState("removed", "retry"), "removed");
+test("custom domains: connected only when the provider reports verified AND configured", () => {
+  assert.equal(stateFromProvider({ verified: false, misconfigured: false, verification: [], routing: [] }), "verifying");
+  assert.equal(stateFromProvider({ verified: true, misconfigured: true, verification: [], routing: [] }), "configuration_needed");
+  assert.equal(stateFromProvider({ verified: true, misconfigured: false, verification: [], routing: [] }), "connected");
   const card = read("components/CustomDomainCard.tsx");
-  assert.match(card, /isn&apos;t available yet/);
-  assert.ok(!/fetch\(|supabase/.test(card), "the card saves nothing and calls nothing");
-  assert.ok(!/one[- ]click/i.test(card));
+  assert.match(card, /isn&apos;t available yet/, "still says so when the server reports it unavailable");
+  assert.match(card, /You keep the domain at your registrar/);
+  assert.ok(!/one[- ]click|instant/i.test(card));
 });
 
 test("no test in this file reached the network", () => {

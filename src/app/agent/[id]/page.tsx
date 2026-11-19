@@ -9,6 +9,8 @@ import Footer from "@/components/Footer";
 import { isAgentInactive } from "@/lib/listingVisibility";
 import { isDemoAgentId } from "@/lib/demoAgents";
 import { PROFILE_LISTING_STATUSES, groupProfileListings, statusBadge } from "@/lib/agentSite";
+import { headers } from "next/headers";
+import { SITE_AGENT_HEADER, siteAgentFor } from "@/lib/customDomain";
 
 export const dynamic = "force-dynamic";
 
@@ -53,6 +55,9 @@ export default async function AgentProfilePage({ params }: Props) {
 
   const typedAgent = agent as unknown as PublicAgentProfile;
   const agentId = typedAgent.id;
+  // On a customer's own domain this page is only that agent's site.
+  const siteAgent = siteAgentFor(headers().get("host"), headers().get(SITE_AGENT_HEADER));
+  if (siteAgent && siteAgent !== agentId) notFound();
   const supabase = getAdminClient();
 
   // Same visibility rule as each listing page: once a trial ends without a subscription, the

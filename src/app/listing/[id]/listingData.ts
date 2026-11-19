@@ -3,6 +3,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { cache } from "react";
 import { PUBLIC_AGENT_COLUMNS, type PublicAgentProfile } from "@/lib/types";
+import { sanitizeFloorPlan, type FloorPlan } from "@/lib/floorPlan";
 import { ACTIVE_LISTING_STATUSES, SITE_LISTING_COLUMNS, OTHER_LISTINGS_LIMIT, selectOtherListings, type SiteListing } from "@/lib/agentSite";
 
 export function getAdminClient() {
@@ -57,6 +58,19 @@ export async function agentShowsOtherListings(agentId: string): Promise<boolean>
     return (data as { show_other_listings?: boolean | null }).show_other_listings === true;
   } catch {
     return false;
+  }
+}
+
+// The listing's interactive floor plan (migration 048). Read on its own so a database without the
+// column just shows no floor plan instead of breaking the page.
+export async function loadFloorPlan(listingId: string, photoSrcs: string[]): Promise<FloorPlan | null> {
+  try {
+    const { data, error } = await getAdminClient().from("listings").select("floor_plan").eq("id", listingId).maybeSingle();
+    if (error || !data) return null;
+    // Links to photos that are no longer on the listing are cleared here, before reaching the page.
+    return sanitizeFloorPlan((data as { floor_plan?: unknown }).floor_plan, photoSrcs);
+  } catch {
+    return null;
   }
 }
 

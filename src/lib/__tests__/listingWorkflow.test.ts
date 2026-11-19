@@ -99,7 +99,7 @@ test("source: the editor saves with the current status, verifies the row, stays 
 test("source: the public page lets only the owner preview drafts/archived, never counts their views, and keeps them out of search", () => {
   const page = read("app/listing/[id]/page.tsx");
   assert.match(page, /if \(isNonPublic && !hasAuthCookie\) notFound\(\)/);
-  assert.match(page, /if \(!isOwner\) notFound\(\)/);
+  assert.match(page, /if \(isNonPublic && !isOwner\) notFound\(\)/);
   assert.match(page, /!isNonPublic \? countView\(\)/);
   assert.match(page, /robots: \{ index: false, follow: false \}/);
   assert.match(page, /Private preview\./);
@@ -282,7 +282,7 @@ test("source: the unbranded page hides agent identity, lead capture and chat, an
   assert.match(page, /isAgentInactive\(agent\)\) notFound\(\)/);
   assert.match(page, /robots: \{ index: false, follow: false \}/);
   // Props are serialized into the HTML, so the real agent object must never be passed.
-  assert.match(page, /<ListingPageClient listing=\{unbrandedListing\(typedListing\)\} agent=\{UNBRANDED_AGENT\} unbranded \/>/);
+  assert.match(page, /<ListingPageClient listing=\{unbrandedListing\(typedListing\)\} agent=\{UNBRANDED_AGENT\} unbranded floorPlan=\{floorPlan\} \/>/);
   assert.ok(!/agent=\{agent\}/.test(page));
   const blank = page.slice(page.indexOf("const UNBRANDED_AGENT"), page.indexOf("function unbrandedListing"));
   for (const f of ["name", "brokerage", "phone", "email", "license_number", "website"]) assert.match(blank, new RegExp(`\\b${f}: (""|null)`), f);
