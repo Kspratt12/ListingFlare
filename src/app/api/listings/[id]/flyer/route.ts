@@ -7,6 +7,7 @@ import {
   type FlyerListing,
   type PublicAgentProfile,
 } from "@/lib/types";
+import { qrDestination } from "@/lib/flyerOptions";
 
 export const dynamic = "force-dynamic";
 
@@ -48,13 +49,15 @@ export async function GET(_req: NextRequest, { params }: { params: { id: string 
   const agent = agentRes.data as unknown as PublicAgentProfile;
 
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.listingflare.com";
-  const listingUrl = `${appUrl}/listing/${listing.slug || listing.id}`;
-  const qrDataUrl = await QRCode.toDataURL(listingUrl, {
-    width: 240,
-    margin: 1,
-    color: { dark: "#0f172a", light: "#ffffff" },
-  });
+  // Both possible QR destinations; the flyer editor lets the agent pick one.
+  const listingUrl = qrDestination(appUrl, listing, "listing");
+  const signInUrl = qrDestination(appUrl, listing, "signin");
+  const qrOptions = { width: 320, margin: 1, color: { dark: "#0f172a", light: "#ffffff" } };
+  const [qrDataUrl, signInQrDataUrl] = await Promise.all([
+    QRCode.toDataURL(listingUrl, qrOptions),
+    QRCode.toDataURL(signInUrl, qrOptions),
+  ]);
 
-  const body: FlyerData = { listing, agent, listingUrl, qrDataUrl };
+  const body: FlyerData = { listing, agent, listingUrl, qrDataUrl, signInUrl, signInQrDataUrl };
   return NextResponse.json(body);
 }

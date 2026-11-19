@@ -63,9 +63,10 @@ test("flyer template: registered with PDF, fillable PDF and Word files that exis
   assert.match(post("open-house-flyer-template").content, /downloadBox|class="[^"]*download|Download PDF/);
 });
 
-test("flyer guide describes the generator as a printable flyer whose QR opens the sign-in page, not a PDF", () => {
+test("flyer guide describes the generator as a printable flyer whose QR opens the listing or sign-in page, not a PDF", () => {
   const c = post("open-house-flyer-template").content;
-  assert.match(c, /builds a printable flyer from a listing's details, with a QR code that opens that listing's open house sign-in page/);
+  // The flyer editor lets the agent choose the QR destination (lib/flyerOptions.ts qrDestination).
+  assert.match(c, /builds a printable flyer from a listing's saved details, with three layouts, an editable headline, date and time, and a QR code that opens either the listing page or that listing's open house sign-in page/);
   assert.doesNotMatch(c, /flyer PDF with a QR code/);
   assert.match(read("app/pricing/page.tsx"), /Open house flyer generator \(printable, with QR code\)/);
   assert.doesNotMatch(read("app/pricing/page.tsx"), /PDF with QR/);

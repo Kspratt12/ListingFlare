@@ -33,10 +33,14 @@ interface Props {
   // agentId kept optional for backward compat - server derives from listingId
   agentId?: string;
   isDemo?: boolean;
+  // Kept for compatibility; the server now reads the scheduling link from the agent's saved profile.
   calendlyUrl?: string;
+  // The signed-in owner is viewing their own listing: private test session. Lead capture is off and
+  // nothing is sent to the lead inbox, notifications or analytics.
+  testMode?: boolean;
 }
 
-export default function ListingChat({ listing, listingId, isDemo = false, calendlyUrl }: Props) {
+export default function ListingChat({ listing, listingId, isDemo = false, testMode = false }: Props) {
   const [open, setOpen] = useState(false);
   const [showHint, setShowHint] = useState(true);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -71,12 +75,13 @@ export default function ListingChat({ listing, listingId, isDemo = false, calend
     }
   }, [open, messages.length, listing.street]);
 
-  // Prompt lead capture after 3 messages
+  // Prompt lead capture after 3 messages (never in the owner's test session)
   useEffect(() => {
+    if (testMode) return;
     if (messageCount >= 3 && !leadCaptured && !showLeadCapture) {
       setShowLeadCapture(true);
     }
-  }, [messageCount, leadCaptured, showLeadCapture]);
+  }, [messageCount, leadCaptured, showLeadCapture, testMode]);
 
   const sendMessage = async () => {
     if (!input.trim() || sending) return;
@@ -91,21 +96,29 @@ export default function ListingChat({ listing, listingId, isDemo = false, calend
       const res = await fetch("/api/ai/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        // Only the listing id is sent: the server answers from the saved listing.
         body: JSON.stringify({
           message: userMessage,
-          listing,
+          listingId,
           history: messages,
-          calendlyUrl,
         }),
       });
 
+      if (res.status === 403 || res.status === 404) {
+        const info = await res.json().catch(() => ({}));
+        setMessages((prev) => [...prev, {
+          role: "assistant",
+          text: typeof info.error === "string" ? `${info.error}. The agent's contact details are on this page.` : "The assistant isn't available for this listing.",
+        }]);
+        return;
+      }
       if (!res.ok) throw new Error("Failed");
       const { reply } = await res.json();
       setMessages((prev) => [...prev, { role: "assistant", text: reply }]);
     } catch {
       setMessages((prev) => [...prev, {
         role: "assistant",
-        text: "My bad, something glitched. Try asking again?",
+        text: "Something went wrong and I couldn't answer. Please try again, or contact the agent using the details on this page.",
       }]);
     } finally {
       setSending(false);
@@ -115,6 +128,7 @@ export default function ListingChat({ listing, listingId, isDemo = false, calend
 
   const captureLead = async () => {
     if (!leadName || !leadEmail) return;
+    if (testMode) return;
 
     if (isDemo) {
       setLeadCaptured(true);
@@ -240,6 +254,13 @@ export default function ListingChat({ listing, listingId, isDemo = false, calend
                 <X className="h-5 w-5" />
               </button>
             </div>
+
+            {testMode && (
+              <div className="border-b border-amber-200 bg-amber-50 px-4 py-2 text-[11px] leading-snug text-amber-800">
+                <strong>Test mode.</strong> You own this listing, so this is a private test: the assistant answers from
+                your saved listing, but no lead is created and nothing is counted or sent.
+              </div>
+            )}
 
             {/* Messages */}
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3" style={{ minHeight: "280px", maxHeight: "400px" }}>

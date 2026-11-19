@@ -289,7 +289,7 @@ test("source: no other component renders virtual_tour_url", () => {
     "app/dashboard/edit/[id]/page.tsx",      // form, validated on save and before preview
     "app/dashboard/page.tsx",                // copies a listing; the copy is rendered only through the validated path
     "app/listing/[id]/ListingPageClient.tsx",// public page, validated at render
-    "app/listing/[id]/page.tsx",             // only names the column in the select list
+    "app/listing/[id]/listingData.ts",       // only names the column in the select list (shared by the branded and unbranded pages)
     "lib/types.ts",
   ].sort());
 });

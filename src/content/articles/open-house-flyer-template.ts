@@ -78,7 +78,7 @@ ${downloadBox("open-house-flyer-template")}
 <!-- next-step -->
 <h2>Make the Flyer Faster: Generate It From the Listing</h2>
 
-<p>If you make a flyer for every listing, retyping the same details gets old. ListingFlare has an open house flyer generator that builds a printable flyer from a listing's details, with a QR code that opens that listing's open house sign-in page. Read <a href="/blog/open-house-flyer-generator">how the open house flyer generator works</a>, or <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>, no credit card needed.</p>
+<p>If you make a flyer for every listing, retyping the same details gets old. ListingFlare has an open house flyer generator that builds a printable flyer from a listing's saved details, with three layouts, an editable headline, date and time, and a QR code that opens either the listing page or that listing's open house sign-in page. Read <a href="/blog/open-house-flyer-generator">how the open house flyer generator works</a>, or <a href="/demo">see the live demo</a> or <a href="/signup">start the 14-day free trial</a>, no credit card needed.</p>
 
 <div class="faq-section">
 <h2>Frequently Asked Questions</h2>

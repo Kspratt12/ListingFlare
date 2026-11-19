@@ -6,6 +6,11 @@ import Link from "next/link";
 import { Phone, Mail, MapPin, Star, Quote } from "lucide-react";
 import { formatPhone } from "@/lib/formatters";
 import Footer from "@/components/Footer";
+import { isAgentInactive } from "@/lib/listingVisibility";
+import { isDemoAgentId } from "@/lib/demoAgents";
+import { PROFILE_LISTING_STATUSES, groupProfileListings, statusBadge } from "@/lib/agentSite";
+import { headers } from "next/headers";
+import { SITE_AGENT_HEADER, siteAgentFor } from "@/lib/customDomain";
 
 export const dynamic = "force-dynamic";
 
@@ -34,10 +39,12 @@ async function findAgent(idOrHandle: string) {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { data } = await findAgent(params.id);
   if (!data) return { title: "Agent Not Found" };
+  const hidden = isAgentInactive(data) || isDemoAgentId(data.id);
 
   return {
-    title: `${data.name || "Agent"} - ${data.brokerage || ""} | ListingFlare`,
-    description: `View all property listings by ${data.name} at ${data.brokerage}.`,
+    title: [data.name || "Agent", data.brokerage].filter(Boolean).join(" - ") + " | ListingFlare",
+    description: `Property listings from ${data.name || "this agent"}${data.brokerage ? ` at ${data.brokerage}` : ""}.`,
+    ...(hidden ? { robots: { index: false, follow: true } } : {}),
   };
 }
 
@@ -48,16 +55,26 @@ export default async function AgentProfilePage({ params }: Props) {
 
   const typedAgent = agent as unknown as PublicAgentProfile;
   const agentId = typedAgent.id;
+  // On a customer's own domain this page is only that agent's site.
+  const siteAgent = siteAgentFor(headers().get("host"), headers().get(SITE_AGENT_HEADER));
+  if (siteAgent && siteAgent !== agentId) notFound();
   const supabase = getAdminClient();
 
-  const { data: listings } = await supabase
-    .from("listings")
-    .select("*")
-    .eq("agent_id", agentId)
-    .eq("status", "published")
-    .order("created_at", { ascending: false });
+  // Same visibility rule as each listing page: once a trial ends without a subscription, the
+  // agent's listings are hidden from visitors, so the profile shows no listings either.
+  const inactive = isAgentInactive(typedAgent);
 
-  const typedListings = (listings || []) as Listing[];
+  // This agent's visitor-visible listings only: never drafts or archived, never another agent's.
+  const { data: listings } = inactive
+    ? { data: [] as Listing[] }
+    : await supabase
+        .from("listings")
+        .select("*")
+        .eq("agent_id", agentId)
+        .in("status", [...PROFILE_LISTING_STATUSES])
+        .order("created_at", { ascending: false });
+
+  const { active: typedListings, sold: soldListings } = groupProfileListings((listings || []) as Listing[]);
 
   // Fetch approved testimonials
   const { data: testimonialsData } = await supabase
@@ -196,20 +213,38 @@ export default async function AgentProfilePage({ params }: Props) {
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-center font-serif text-2xl font-bold text-gray-900 md:text-3xl">
             {typedListings.length > 0
-              ? `${typedListings.length} Active Listing${typedListings.length !== 1 ? "s" : ""}`
-              : "No Active Listings"}
+              ? `${typedListings.length} Current Listing${typedListings.length !== 1 ? "s" : ""}`
+              : "No Current Listings"}
           </h2>
+          {typedListings.length === 0 && (
+            <p className="mx-auto mt-3 max-w-md text-center text-sm text-gray-500">
+              {inactive
+                ? "This agent's listings are not available right now. Please contact the agent directly."
+                : `${typedAgent.name || "This agent"} has no homes listed here right now. Reach out using the contact details above.`}
+            </p>
+          )}
 
-          {typedListings.length > 0 && (
+          {[{ key: "active", items: typedListings, title: null as string | null }, { key: "sold", items: soldListings, title: "Recently sold" }]
+            .filter((g) => g.items.length > 0)
+            .map((group) => (
+            <div key={group.key}>
+            {group.title && (
+              <h2 className="mt-16 text-center font-serif text-xl font-bold text-gray-900 md:text-2xl">{group.title}</h2>
+            )}
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {typedListings.map((listing) => (
+              {group.items.map((listing) => (
                 <Link
                   key={listing.id}
                   href={`/listing/${listing.slug || listing.id}`}
                   className="group overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow hover:shadow-lg"
                 >
                   <div className="relative h-48 overflow-hidden bg-gray-100">
-                    {listing.photos.length > 0 ? (
+                    {statusBadge(listing.status) && (
+                      <span className="absolute left-3 top-3 z-10 rounded-full bg-gray-950/85 px-2.5 py-1 text-[11px] font-semibold text-white">
+                        {statusBadge(listing.status)}
+                      </span>
+                    )}
+                    {listing.photos?.length > 0 ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src={listing.photos[0].src}
@@ -243,7 +278,8 @@ export default async function AgentProfilePage({ params }: Props) {
                 </Link>
               ))}
             </div>
-          )}
+            </div>
+          ))}
         </div>
       </section>
 

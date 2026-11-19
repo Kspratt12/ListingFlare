@@ -28,8 +28,15 @@ import { validateUpload } from "@/lib/validateUpload";
 import { getSubscriptionLimits } from "@/lib/subscription";
 import { safeTourEmbedUrl, tourUrlProblem, TOUR_URL_HELP } from "@/lib/tourUrl";
 import SellerPortalCard from "@/components/SellerPortalCard";
+import SellerReportScheduleCard from "@/components/SellerReportScheduleCard";
+import FloorPlanEditor from "@/components/FloorPlanEditor";
+import { sanitizeFloorPlan, type FloorPlan } from "@/lib/floorPlan";
 import JustSoldBlast from "@/components/JustSoldBlast";
 import BrandColorPicker from "@/components/BrandColorPicker";
+import CopyLinkButton from "@/components/CopyLinkButton";
+import FlyerModal from "@/components/FlyerModal";
+import { LISTING_STATUSES, STATUS_LABELS, isVisitorVisible, statusForSaveChanges, updateWasApplied } from "@/lib/listingStatus";
+import { AI_KNOWLEDGE_MAX, sanitizeKnowledge } from "@/lib/listingAiContext";
 // UpgradePrompt available if needed for future gating
 
 const US_STATES = [
@@ -71,6 +78,18 @@ export default function EditListingPage() {
   }, [hasUnsavedChanges]);
   const [currentStatus, setCurrentStatus] = useState("draft");
   const [currentSlug, setCurrentSlug] = useState("");
+  // Truthful save state shown next to the action buttons.
+  const [savedAt, setSavedAt] = useState<Date | null>(null);
+  const [saveNotice, setSaveNotice] = useState("");
+  const [showFlyer, setShowFlyer] = useState(false);
+  // Buyer-facing extra knowledge for the AI assistant (migration 045) and agent-only notes.
+  const [aiKnowledge, setAiKnowledge] = useState("");
+  const [loadedAiKnowledge, setLoadedAiKnowledge] = useState("");
+  const [privateNotes, setPrivateNotes] = useState("");
+  const [loadedPrivateNotes, setLoadedPrivateNotes] = useState("");
+  // Interactive floor plan (migration 048); compared as JSON to detect changes.
+  const [floorPlan, setFloorPlan] = useState<FloorPlan | null>(null);
+  const [loadedFloorPlanJson, setLoadedFloorPlanJson] = useState("null");
 
   // Form state
   const [street, setStreet] = useState("");
@@ -95,7 +114,6 @@ export default function EditListingPage() {
   const [generatingDesc, setGeneratingDesc] = useState(false);
   const [generatingFeatures, setGeneratingFeatures] = useState(false);
   const [generatingCaptions, setGeneratingCaptions] = useState(false);
-  const [generatingFlyer, setGeneratingFlyer] = useState(false);
 
   // MLS-parity fields - all optional, collapsed by default
   const [advancedOpen, setAdvancedOpen] = useState(false);
@@ -190,28 +208,9 @@ export default function EditListingPage() {
     }
   };
 
-  const handleGenerateFlyer = async () => {
-    setGeneratingFlyer(true);
-    try {
-      const res = await fetch("/api/open-house/flyer", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ listingId }),
-      });
-      if (!res.ok) throw new Error("Failed to generate flyer");
-      const html = await res.text();
-      const win = window.open("", "_blank");
-      if (win) {
-        win.document.write(html);
-        win.document.close();
-        setTimeout(() => win.print(), 500);
-      }
-    } catch {
-      setError("Failed to generate open house flyer");
-    } finally {
-      setGeneratingFlyer(false);
-    }
-  };
+  // Same customizable flyer editor as the dashboard (components/FlyerModal.tsx). It includes the
+  // open-house sign-in QR option that the old HTML flyer route used to provide.
+  const handleGenerateFlyer = () => setShowFlyer(true);
 
   const getPropertyContext = () => ({
     street, city, state, zip, price, beds, baths, sqft, yearBuilt, lotSize,
@@ -324,6 +323,22 @@ export default function EditListingPage() {
       setVideoIntroUrl(data.video_intro_url || "");
       setBrandColor(data.brand_color || "");
       setAiChatEnabled(data.ai_chat_enabled !== false);
+      setAiKnowledge(typeof data.ai_knowledge === "string" ? data.ai_knowledge : "");
+      setLoadedAiKnowledge(typeof data.ai_knowledge === "string" ? data.ai_knowledge : "");
+      const loadedPlan = sanitizeFloorPlan(data.floor_plan);
+      setFloorPlan(loadedPlan);
+      setLoadedFloorPlanJson(JSON.stringify(loadedPlan));
+      // Private notes live in an owner-only table; a missing table (migration 045 not applied) just means none.
+      supabase
+        .from("listing_private_notes")
+        .select("notes")
+        .eq("listing_id", listingId)
+        .maybeSingle()
+        .then(({ data: n }) => {
+          const notes = (n as { notes?: string } | null)?.notes || "";
+          setPrivateNotes(notes);
+          setLoadedPrivateNotes(notes);
+        });
       setComps(Array.isArray(data.comparable_sales) ? data.comparable_sales : []);
       setCoAgentName(data.co_agent_name || "");
       setCoAgentTitle(data.co_agent_title || "");
@@ -486,6 +501,7 @@ export default function EditListingPage() {
       setSaving(true);
     }
     setError("");
+    setSaveNotice("");
 
     try {
       const features = featuresText
@@ -521,7 +537,7 @@ export default function EditListingPage() {
         nextHistory.push({ date: nowIso, price: newPrice, event: "sold" });
       }
 
-      const { error: updateError } = await supabase
+      const updateResult = await supabase
         .from("listings")
         .update({
           status,
@@ -581,9 +597,48 @@ export default function EditListingPage() {
           price_history: nextHistory,
           updated_at: new Date().toISOString(),
         })
-        .eq("id", listingId);
+        .eq("id", listingId)
+        .select("id");
 
-      if (updateError) throw updateError;
+      if (updateResult.error) throw updateResult.error;
+      if (!updateWasApplied(updateResult)) {
+        throw new Error("Your changes were not saved: the listing could not be updated. Reload the page and try again.");
+      }
+
+      // Newer optional fields are saved separately so a database without migration 045 can still
+      // save everything else. Any failure here is reported, never hidden.
+      const partialProblems: string[] = [];
+      const cleanKnowledge = sanitizeKnowledge(aiKnowledge);
+      if (cleanKnowledge !== loadedAiKnowledge) {
+        const k = await supabase.from("listings").update({ ai_knowledge: cleanKnowledge }).eq("id", listingId).select("id");
+        if (updateWasApplied(k)) {
+          setLoadedAiKnowledge(cleanKnowledge);
+          setAiKnowledge(cleanKnowledge);
+        } else {
+          partialProblems.push("the extra AI assistant details");
+        }
+      }
+      const cleanPlan = sanitizeFloorPlan(floorPlan, photos.map((p) => p.src));
+      if (JSON.stringify(cleanPlan) !== loadedFloorPlanJson) {
+        const fp = await supabase.from("listings").update({ floor_plan: cleanPlan }).eq("id", listingId).select("id");
+        if (updateWasApplied(fp)) {
+          setFloorPlan(cleanPlan);
+          setLoadedFloorPlanJson(JSON.stringify(cleanPlan));
+        } else {
+          partialProblems.push("the floor plan");
+        }
+      }
+      if (privateNotes !== loadedPrivateNotes) {
+        const { data: { user: me } } = await supabase.auth.getUser();
+        const n = me
+          ? await supabase
+              .from("listing_private_notes")
+              .upsert({ listing_id: listingId, agent_id: me.id, notes: privateNotes.slice(0, 10000), updated_at: new Date().toISOString() })
+              .select("listing_id")
+          : { error: new Error("Not signed in"), data: null };
+        if (!n.error && Array.isArray(n.data) && n.data.length > 0) setLoadedPrivateNotes(privateNotes);
+        else partialProblems.push("your private notes");
+      }
 
       setPriceHistory(nextHistory);
       setLoadedPrice(newPrice);
@@ -626,10 +681,24 @@ export default function EditListingPage() {
 
       setCurrentStatus(status);
       setCurrentSlug(slug);
-      setHasUnsavedChanges(false);
-      router.push("/dashboard");
+      // Stay on the page so the agent can keep editing, preview, or copy the link.
+      setSavedAt(new Date());
+      if (partialProblems.length > 0) {
+        setHasUnsavedChanges(true);
+        setError(`The listing was saved, but ${partialProblems.join(" and ")} could not be saved. The database may need the latest update (migration 045). Your text is still in the form.`);
+      } else {
+        setHasUnsavedChanges(false);
+      }
+      setSaveNotice(
+        isNewlyPublished
+          ? "Published. Your listing is live."
+          : isVisitorVisible(status)
+          ? "Saved. Visitors see these changes now."
+          : "Saved. This listing is not public; only you can preview it."
+      );
       router.refresh();
     } catch (err) {
+      setSaveNotice("");
       setError(err instanceof Error ? err.message : "Failed to save");
     } finally {
       setSaving(false);
@@ -1100,13 +1169,20 @@ export default function EditListingPage() {
           </div>
         </section>
 
+        <FloorPlanEditor
+          value={floorPlan}
+          onChange={(next) => { setFloorPlan(next); setHasUnsavedChanges(true); }}
+          photos={photos}
+        />
+
         {/* AI chat toggle — per-listing override. */}
         <section className="rounded-xl border border-gray-200 bg-white p-6">
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
               <h2 className="font-serif text-lg font-semibold text-gray-900">AI chat on this listing</h2>
               <p className="mt-1 text-sm text-gray-500">
-                Buyers can ask questions and get instant answers about this property. Turns into leads automatically. Leave on unless you want full manual control on this one.
+                Buyers can ask questions and get instant answers from the details you saved on this listing. If a buyer
+                leaves their name and email in the chat, it becomes a lead. Leave on unless you want full manual control on this one.
               </p>
             </div>
             <button aria-label="AI chat on this listing"
@@ -1124,6 +1200,48 @@ export default function EditListingPage() {
                 }`}
               />
             </button>
+          </div>
+
+          <div className="mt-5 space-y-5 border-t border-gray-100 pt-5">
+            <div>
+              <label htmlFor="edit-ai-knowledge" className="mb-1.5 block text-sm font-medium text-gray-700">
+                Extra details the assistant may share with buyers
+              </label>
+              <textarea
+                id="edit-ai-knowledge"
+                value={aiKnowledge}
+                onChange={(e) => { setAiKnowledge(e.target.value.slice(0, AI_KNOWLEDGE_MAX)); setHasUnsavedChanges(true); }}
+                rows={4}
+                placeholder={"Roof replaced in 2022.\nHOA covers trash, lawn care and the pool.\nSellers prefer a 30-day close."}
+                className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+              />
+              <p className="mt-1 text-xs text-gray-500">
+                <strong>Buyer-facing.</strong> Anything here may be repeated to buyers word for word, so only add facts you
+                have verified and are allowed to share. The assistant also uses every saved field on this page; when a
+                question is not covered, it says it doesn&apos;t know and offers to have you follow up.
+                {" "}{aiKnowledge.length.toLocaleString("en-US")}/{AI_KNOWLEDGE_MAX.toLocaleString("en-US")}
+              </p>
+            </div>
+            <div>
+              <label htmlFor="edit-private-notes" className="mb-1.5 flex items-center gap-1.5 text-sm font-medium text-gray-700">
+                <Lock className="h-3.5 w-3.5" /> Private notes (only you)
+              </label>
+              <textarea
+                id="edit-private-notes"
+                value={privateNotes}
+                onChange={(e) => { setPrivateNotes(e.target.value.slice(0, 10000)); setHasUnsavedChanges(true); }}
+                rows={3}
+                placeholder="Lockbox code changes weekly. Seller relocating in March."
+                className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm text-gray-900 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+              />
+              <p className="mt-1 text-xs text-gray-500">
+                Never shown on the listing page, never sent to the AI assistant, and not included in seller reports.
+              </p>
+            </div>
+            <p className="text-xs text-gray-500">
+              <strong>Test it privately:</strong> save, then open your listing while signed in. The chat runs in test
+              mode for you: it answers from your saved listing, but creates no lead and sends no notifications.
+            </p>
           </div>
         </section>
 
@@ -1659,6 +1777,9 @@ export default function EditListingPage() {
         {/* Seller Portal */}
         <SellerPortalCard listingId={listingId} />
 
+        {/* Scheduled seller reports use the seller portal's email as the recipient. */}
+        <SellerReportScheduleCard listingId={listingId} />
+
         {/* Just Sold blast - only appears once the listing is closed/sold */}
         {currentStatus === "closed" && (
           <JustSoldBlast
@@ -1706,32 +1827,42 @@ export default function EditListingPage() {
                 </button>
               </div>
             )}
-            {currentStatus === "published" && (
+            {currentStatus !== "draft" && (
               <div className="flex items-center gap-2">
+                {/* Changing the status saves the whole form with the new status. */}
                 <select
                   aria-label="Listing status"
                   value={currentStatus}
+                  disabled={saving || publishing}
                   onChange={(e) => handleSave(e.target.value)}
-                  className="rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 cursor-pointer"
+                  className="rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 cursor-pointer disabled:opacity-50"
                 >
-                  <option value="coming_soon">Coming Soon</option>
-                  <option value="published">Published</option>
-                  <option value="pending">Pending</option>
-                  <option value="closed">Closed</option>
-                  <option value="archived">Archived</option>
+                  {LISTING_STATUSES.map((s) => (
+                    <option key={s} value={s}>{s === "draft" ? "Draft (unpublish)" : STATUS_LABELS[s]}</option>
+                  ))}
                 </select>
               </div>
             )}
           </div>
 
           <div className="flex flex-wrap gap-3">
+            {!isVisitorVisible(currentStatus) && (
+              <Link
+                href={`/listing/${currentSlug || listingId}`}
+                target="_blank"
+                className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+                title="Opens a private preview of your last saved version"
+              >
+                <ExternalLink className="h-4 w-4" />
+                Preview
+              </Link>
+            )}
             {currentStatus === "published" && (
               <button
                 onClick={handleGenerateFlyer}
-                disabled={generatingFlyer}
                 className="flex items-center justify-center gap-2 rounded-lg border border-purple-200 bg-purple-50/50 px-4 py-2.5 text-sm font-medium text-purple-700 transition-colors hover:bg-purple-100 disabled:opacity-50"
               >
-                {generatingFlyer ? <Loader2 className="h-4 w-4 animate-spin" /> : <QrCode className="h-4 w-4" />}
+                <QrCode className="h-4 w-4" />
                 Open House Flyer
               </button>
             )}
@@ -1746,14 +1877,14 @@ export default function EditListingPage() {
               </Link>
             )}
             <button
-              onClick={() => handleSave(currentStatus === "published" ? "published" : "draft")}
+              onClick={() => handleSave(statusForSaveChanges(currentStatus))}
               disabled={saving || publishing}
               className="flex items-center justify-center gap-2 rounded-lg bg-gray-950 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800 disabled:opacity-50"
             >
               {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
               Save Changes
             </button>
-            {currentStatus !== "published" && (
+            {(currentStatus === "draft" || currentStatus === "archived") && (
               <button
                 onClick={() => handleSave("published")}
                 disabled={saving || publishing}
@@ -1765,7 +1896,39 @@ export default function EditListingPage() {
             )}
           </div>
         </div>
+
+        {/* Save state: always reflects what the database actually accepted. */}
+        <div className="-mt-6 pb-10 text-sm" aria-live="polite">
+          {saving || publishing ? (
+            <p className="text-gray-500">Saving…</p>
+          ) : hasUnsavedChanges ? (
+            <p className="text-amber-700">
+              Unsaved changes.{!isVisitorVisible(currentStatus) && " The preview shows your last saved version, so save first to preview these changes."}
+            </p>
+          ) : saveNotice && savedAt ? (
+            <div className="flex flex-wrap items-center gap-3 text-emerald-700">
+              <span>
+                {saveNotice} ({savedAt.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })})
+              </span>
+              {isVisitorVisible(currentStatus) && typeof window !== "undefined" && (
+                <>
+                  <span className="truncate text-gray-600">{`${window.location.origin}/listing/${currentSlug || listingId}`}</span>
+                  <CopyLinkButton url={`${window.location.origin}/listing/${currentSlug || listingId}`} />
+                </>
+              )}
+            </div>
+          ) : null}
+          {isVisitorVisible(currentStatus) && (
+            <p className="mt-2 text-xs text-gray-500">
+              Need a link without your name or brokerage (for example an MLS &ldquo;unbranded tour&rdquo; field)? Use{" "}
+              <code className="rounded bg-gray-100 px-1">/listing/{currentSlug || listingId}/unbranded</code>. Check your MLS&apos;s
+              rules for what an unbranded link may contain.
+            </p>
+          )}
+        </div>
       </div>
+      {/* Outside the form wrapper: React events bubble through portals, and flyer edits are not listing edits. */}
+      {showFlyer && <FlyerModal listingId={listingId} onClose={() => setShowFlyer(false)} />}
     </div>
   );
 }

@@ -56,15 +56,17 @@ export const article: BlogPost = {
 <ol>
 <li><strong>Open your dashboard</strong> and find the published listing.</li>
 <li><strong>Click Flyer</strong> on the listing card.</li>
-<li><strong>Add the open house date and time</strong> in the field at the top. It appears on the flyer instantly in the preview.</li>
+<li><strong>Pick a layout and color.</strong> Choose Classic, Modern or Minimal, and either your brand color or one of a short set of print-friendly colors.</li>
+<li><strong>Set the headline, date and time.</strong> Use Open House, Just Listed, Price Improved or your own words, add the open house date and start and end times, and an optional short message such as parking or refreshments. The preview updates as you type.</li>
+<li><strong>Choose what the QR code opens:</strong> the listing page, or the open house sign-in page for visitors at the door.</li>
 <li><strong>Click Print / Save PDF.</strong> The flyer is laid out on a standard US Letter page, ready to print or save as a PDF to email or text.</li>
 </ol>
 
-<p>The generated layout includes a large hero photo with an Open House banner, the price and address, three supporting photos, the bed, bath, square footage, and year built row, the description with a short feature list, and a footer with your headshot, brokerage, phone, email, license number, and a QR code linking to the live listing page.</p>
+<p>Every layout pulls the photos, price, address and facts from your saved listing, so they match your listing page. Facts you left blank are left off rather than printed as zero. You can hide the description, the feature list or your headshot, and the footer carries your name, brokerage, phone, email and license number. The flyer is a static, printable page; it does not make video.</p>
 
 <h3>Why the QR code matters</h3>
 
-<p>Paper is a dead end unless it leads somewhere. The QR code takes a visitor from the printed flyer to your single-property page, where they can see every photo, ask the AI chat assistant a question, or request a showing. That is also where the lead gets captured, so the flyer feeds your pipeline instead of just decorating a table. If you want ideas for the event itself, see our list of <a href="/blog/open-house-ideas-to-attract-more-buyers">open house ideas that attract more buyers</a>.</p>
+<p>Paper is a dead end unless it leads somewhere. The QR code takes a visitor from the printed flyer to your single-property page, where they can see every photo, ask the AI chat assistant a question, or request a showing. A scan on its own does not tell you who someone is; a person becomes a lead only if they send their details, and leads that arrive this way are tagged with the source &ldquo;flyer&rdquo;. If you want ideas for the event itself, see our list of <a href="/blog/open-house-ideas-to-attract-more-buyers">open house ideas that attract more buyers</a>.</p>
 
 <h2>Flyer Generator vs Canva: An Honest Comparison</h2>
 

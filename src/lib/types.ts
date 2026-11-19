@@ -31,6 +31,8 @@ export interface AgentProfile {
   google_calendar_id: string | null;
   google_token_expires_at: string | null;
   license_number?: string | null;
+  // Opt-in "More listings from this agent" on property pages (migration 045)
+  show_other_listings?: boolean;
   created_at: string;
   updated_at: string;
 }
@@ -103,6 +105,8 @@ export interface Listing {
   // Per-listing AI chat toggle. True by default — set to false to hide
   // the AI chat bubble on that specific listing.
   ai_chat_enabled?: boolean;
+  // Buyer-facing extra facts for the AI assistant (migration 045). Never private information.
+  ai_knowledge?: string;
   comparable_sales?: ComparableSale[];
   // Optional co-listing agent — shown alongside the primary agent on
   // the listing page when any of these fields are set.
@@ -350,6 +354,10 @@ export type FlyerListing = Pick<
 export interface FlyerData {
   listing: FlyerListing;
   agent: PublicAgentProfile;
+  // QR destination: the public listing page (tagged ?src=flyer)
   listingUrl: string;
   qrDataUrl: string;
+  // QR destination: the open-house sign-in page
+  signInUrl?: string;
+  signInQrDataUrl?: string;
 }
