@@ -55,7 +55,7 @@ export type CustomHostRoute = { kind: "agent_home" } | { kind: "listing" } | { k
 
 export function routeCustomHostPath(pathname: string): CustomHostRoute {
   if (pathname === "/" || pathname === "") return { kind: "agent_home" };
-  if (/^\/listing\/[^/]+(\/unbranded)?\/?$/.test(pathname)) return { kind: "listing" };
+  if (/^\/listing\/[^/]+(\/unbranded(\/media\/(photo|floorplan)\/\d{1,3})?)?\/?$/.test(pathname)) return { kind: "listing" };
   if (pathname.startsWith("/_next/") || /^\/[^/]+\.(png|jpg|jpeg|svg|ico|webp|txt|webmanifest|js)$/.test(pathname)) return { kind: "asset" };
   if (CUSTOM_DOMAIN_API.has(pathname)) return { kind: "api" };
   return { kind: "platform_redirect" };

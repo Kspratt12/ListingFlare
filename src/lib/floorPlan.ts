@@ -27,9 +27,13 @@ const round4 = (n: number) => Math.round(n * 10000) / 10000;
 
 export function isSafeImageUrl(src: unknown): src is string {
   if (typeof src !== "string" || src.length > 2048) return false;
+  // Same-site media route used by the unbranded page (lib/unbrandedMedia.ts).
+  if (/^\/listing\/[^/?#]+\/unbranded\/media\/(photo|floorplan)\/\d{1,3}$/.test(src)) return true;
   try {
     const u = new URL(src);
-    return u.protocol === "https:" && !u.username && !u.password;
+    if (u.username || u.password) return false;
+    // Plain http is accepted only for loopback (local development storage); everything real is https.
+    return u.protocol === "https:" || (u.protocol === "http:" && (u.hostname === "127.0.0.1" || u.hostname === "localhost"));
   } catch {
     return false;
   }

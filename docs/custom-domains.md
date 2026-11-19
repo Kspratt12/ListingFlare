@@ -1,43 +1,72 @@
-# Custom domains: status and activation requirements
+# Custom domains (bring your own domain)
 
-**Status: not available.** `CUSTOM_DOMAINS_AVAILABLE = false` in `src/lib/customDomain.ts`. The Settings
-page shows a "Custom domain: Not available yet" card that checks the format of a domain and saves
-nothing. No DNS, certificate or hosting change is made by the app.
+Agents connect a domain they already own (for example `homes.janesmith.com`) to their ListingFlare
+site: the domain's `/` shows their listing collection (the `/agent/<handle>` page) and
+`/listing/<slug>` shows their listings. Buying, transferring or renewing domains is out of scope.
 
-## What works today
+## Status
 
-- Agent subdomain: `handle.listingflare.com` rewrites `/` to `/agent/<handle>` (`src/middleware.ts`).
-  This depends on a wildcard `*.listingflare.com` DNS record and domain on the hosting project. That
-  existing setup was not re-verified in this change.
-- Per-listing pages: `https://www.listingflare.com/listing/<slug>`, plus `/listing/<slug>/unbranded`.
+Implemented and tested locally against a mocked hosting-provider API. **Off** until all of these are set
+in the deployment environment (names only):
 
-## What exists in code (tested locally, not connected)
+| Variable | Purpose |
+| --- | --- |
+| `CUSTOM_DOMAINS_ENABLED` | must be exactly `1`; also switches on host routing in the middleware |
+| `VERCEL_API_TOKEN` | Vercel token with access to the project (server only) |
+| `VERCEL_PROJECT_ID` | the ListingFlare Vercel project |
+| `VERCEL_TEAM_ID` | only if the project belongs to a Vercel team |
+| `PLATFORM_HOSTS` | optional, comma-separated: any extra hostname that must keep serving the normal site |
 
-- `normalizeDomainInput` / `checkCustomDomain`: format validation (rejects IPs, reserved names,
-  listingflare.com and hosting-provider domains, malformed labels, non-ASCII without the `xn--` form).
-- `nextDomainState`: lifecycle `pending_dns -> verifying -> active`, with `failed` and `removed`.
-  A domain can only become `active` after a provider-verified event.
-- `supabase-migration-046-custom-domains-NOT-RUN.sql`: table for future use. **Do not run it** until
-  activation is approved; nothing reads it today.
+With the flag off the middleware behaves exactly as before this feature, and Settings shows "Not available yet".
 
-## Required before it can be switched on (each needs separate approval)
+**Not verified:** a real domain, real DNS, a real Vercel API call, or certificate issuance.
 
-1. **Hosting provider API access.** The app is deployed on Vercel. Adding a customer domain to the
-   project, and reading its verification and certificate status, needs a Vercel API token with project
-   access stored as a server secret. No such token or integration exists in this repository.
-2. **Per-domain DNS by the agent.** The agent adds the DNS records the hosting provider shows for their
-   domain (typically a CNAME for a subdomain, or A records for a root domain). Use the values the
-   provider returns at the time; do not hard-code them from memory.
-3. **TLS certificates** are issued by the hosting provider after DNS verifies. The app must show
-   "Connected" only after the provider reports both DNS and certificate as valid.
-4. **Middleware host mapping.** Extend `src/middleware.ts` to map a verified custom host to
-   `/agent/<handle>` (and listing paths), using a cached lookup of `active` domains only. Unknown hosts
-   must fall through to the normal site.
-5. **Limits and support.** Decide per-plan limits (proposal: one domain on the paid plan), what happens
-   when a subscription lapses (proposal: the domain stops serving listing pages, same as listings), and
-   a self-service "remove domain" action, so this does not create manual support work.
-6. **Copy.** Do not describe it as "one click": the agent must still edit DNS at their registrar.
+## How it works
 
-## Explicitly out of scope
+- **Settings → Custom domain.** The agent enters a hostname. Full URLs are reduced to the hostname. Platform
+  hosts (`*.listingflare.com`, `*.vercel.app`, localhost) are refused.
+- **Claim.** A row in `agent_custom_domains` (migration 046). Partial unique indexes allow one live claim
+  per hostname and one live domain per agent, so two agents racing for the same name cannot both win.
+  A removed hostname can be claimed again.
+- **Provider.** `lib/domainProvider.ts` adds the domain to the Vercel project, reads verification and
+  configuration, and shows **only the DNS records Vercel returns** (TXT for ownership verification when the
+  domain is used elsewhere; the recommended A or CNAME value). Nothing is hard-coded.
+- **States.** pending → *DNS records needed* / *Ownership verification needed* → *Connected*, plus
+  *Problem connecting*, *Removing* and *Removed*. "Connected" requires Vercel to report the domain verified
+  AND correctly configured. HTTPS certificates are issued by Vercel afterwards; the UI says so rather
+  than reporting a certificate state it cannot see.
+- **Check again** is limited to once per 30 seconds per domain, plus 10 domain actions per minute per agent.
+  A temporary provider outage keeps the last known state.
+- **Remove** stops serving immediately (status `removing`) and then removes the domain from Vercel. If
+  the provider call fails, the agent sees that and can retry; the domain does not serve in the meantime.
+- **Routing (middleware).** For a non-platform host, the middleware asks the database function
+  `resolve_custom_domain(host)`. It returns only the agent id and handle, and only for `connected` rows.
+  Results, including "not connected", are cached for 60 seconds per server instance, so a removal takes
+  effect within a minute.
+  - Unknown or not-yet-connected hosts get a plain 404.
+  - `/` is rewritten to the agent page; `/listing/<slug>` is served only if the listing belongs to that agent.
+  - The public APIs the listing page calls (chat, inquiry, showing request, price alerts) are allowed.
+  - Everything else (dashboard, login, signup, settings, other APIs, blog) gets a 308 redirect to
+    `https://www.listingflare.com`. Sign-in cookies are therefore never set on a customer's domain.
+  - Routing uses the `Host` header as delivered by Vercel (which only routes domains attached to the
+    project). `X-Forwarded-Host` is never used.
+  - The middleware sets the `x-lf-site-agent` header itself. Pages honour it only on non-platform hosts,
+    so a visitor sending it to listingflare.com changes nothing.
+- **Canonical URLs** for listing pages stay on `www.listingflare.com` (unchanged); customer-domain copies
+  point there.
 
-Buying domains, editing customer DNS, or provisioning certificates on anyone's behalf.
+## What the agent is told
+
+They keep the domain at their registrar and only add the records shown. DNS can take minutes, and up to
+48 hours. A subdomain is easiest. If the domain belongs to another account, they're told to remove it
+there or add the TXT verification record shown.
+
+## Activation steps (each needs approval)
+
+1. Apply migration 046 to the production Supabase project. Then check that anonymous callers can execute
+   `resolve_custom_domain` but cannot select from `agent_custom_domains`.
+2. Create a Vercel token scoped to the project and set the variables above in Production. Add
+   `PLATFORM_HOSTS` if any other hostname serves the site.
+3. Redeploy, then connect one approved test domain owned by you. Check DNS → Connected → https works →
+   `/` shows the agent page → `/dashboard` redirects → another agent's listing 404s.
+4. Disable by removing the domains in Settings (or in Vercel), then unsetting `CUSTOM_DOMAINS_ENABLED`.

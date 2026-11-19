@@ -40,7 +40,9 @@ export async function loadActivity(db: SupabaseClient, listingId: string) {
 async function resendSend(email: ReportEmail, idempotencyKey: string): Promise<{ id: string | null }> {
   const key = process.env.RESEND_API_KEY;
   if (!key) throw new Error("email_not_configured");
-  const res = await fetch("https://api.resend.com/emails", {
+  // RESEND_API_BASE_URL exists only so local verification can point at a mock; unset means Resend.
+  const base = (process.env.RESEND_API_BASE_URL || "https://api.resend.com").replace(/\/+$/, "");
+  const res = await fetch(`${base}/emails`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}`, "Idempotency-Key": idempotencyKey },
     body: JSON.stringify({

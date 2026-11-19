@@ -1,0 +1,71 @@
+PASS editing shows 'Unsaved changes.'
+PASS Save Changes keeps a Pending listing Pending
+PASS editor stays on the page after saving
+PASS saved notice shows the live link
+PASS a save that updates no row shows 'Your changes were not saved'
+PASS Save Changes keeps coming_soon
+PASS Save Changes keeps closed
+PASS owner sees the private draft preview
+PASS another agent gets 404 for the draft
+PASS another agent gets 404 for an archived listing
+PASS anonymous visitor gets 404 for the draft
+PASS draft preview and denied requests add no views
+PASS Settings switch (keyboard) saves show_other_listings
+PASS More listings shows pending and coming-soon homes
+PASS More listings excludes draft, archived, sold and other agents
+PASS agent page: active + recently sold, no drafts
+PASS unbranded page source has no agent identity (incl. account id in media URLs)
+PASS unbranded photos are served through the media route
+PASS media route refuses non-public listings
+PASS unbranded page is noindex
+PASS renamed non-image is rejected before upload
+PASS floor plan uploaded into the agent's own storage folder
+PASS markers saved with normalized positions (incl. keyboard nudge)
+PASS marker linked to a listing photo
+PASS floor plan photo dialog opens with Enter and closes with Escape
+PASS marker stays at the same relative spot on a phone-sized viewport
+PASS no horizontal overflow on the listing page at 390px
+PASS all three flyer layouts render the edited headline and date
+PASS QR set to the sign-in page shows its destination
+PASS QR set to the listing page shows ?src=flyer
+PASS print output of the flyer is one Letter page
+PASS seller report shows the honest zero state for a listing with no activity
+PASS seller report shows no buyer names or messages
+PASS schedule card shows the seller portal recipient
+PASS email preview has no buyer names
+PASS next run shown in the chosen time zone
+PASS schedule controls do not mark the listing as unsaved
+PASS cron entry point rejects unauthenticated calls
+PASS due report sent once through the (mock) provider
+PASS second cron run does not send again
+PASS sent to the seller with an idempotency key
+PASS sent email contains no buyer identity or transcript
+PASS cron response contains no email addresses
+PASS delivery status shown as 'accepted by the provider', not 'delivered'
+PASS pause disables the schedule
+PASS no lead capture in the owner's test chat
+PASS owner test chat created no lead
+PASS AI context is the saved listing, marked as a test session, with no private notes
+PASS DNS record shown exactly as the provider returned it
+PASS copy button copies the record value
+PASS rechecks are rate limited
+PASS another agent's claim of the same domain is refused
+PASS unknown host gets 'not connected' 404
+PASS domain does not serve until connected
+PASS connected domain serves the agent's site at /
+PASS agent's listing serves on the custom domain
+PASS another agent's listing 404s on this domain
+PASS dashboard on a customer domain redirects to the main site (not followed)
+PASS no session cookie set on the customer domain
+PASS a visitor-supplied site header is ignored on the platform host
+PASS remove cleans up at the provider and marks the domain removed
+PASS login page still renders
+PASS dashboard still renders for the owner
+PASS no horizontal overflow on Settings at 390px
+PASS no horizontal overflow on the editor at 390px
+FAIL the browser made no other external requests https://www.google.com
+PASS no uncaught page errors in the owner session
+PASS fake backend saw no unexpected requests
+
+67 passed, 1 failed
+blocked origins: https://www.google.com

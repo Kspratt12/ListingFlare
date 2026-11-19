@@ -282,7 +282,14 @@ test("source: the unbranded page hides agent identity, lead capture and chat, an
   assert.match(page, /isAgentInactive\(agent\)\) notFound\(\)/);
   assert.match(page, /robots: \{ index: false, follow: false \}/);
   // Props are serialized into the HTML, so the real agent object must never be passed.
-  assert.match(page, /<ListingPageClient listing=\{unbrandedListing\(typedListing\)\} agent=\{UNBRANDED_AGENT\} unbranded floorPlan=\{floorPlan\} \/>/);
+  assert.match(page, /<ListingPageClient listing=\{unbrandedListing\(typedListing\)\} agent=\{UNBRANDED_AGENT\} unbranded floorPlan=\{unbrandedFloorPlan\(typedListing, floorPlan\)\} \/>/);
+  // storage URLs contain the account id: photos and the floor plan go through the media route; uploaded videos are dropped
+  assert.match(page, /photos: proxiedPhotos\(l\)/);
+  assert.match(page, /videos: \[\]/);
+  assert.match(page, /src: unbrandedMediaPath\(l\.id, "floorplan"\)/);
+  const media = read("app/listing/[id]/unbranded/media/[kind]/[n]/route.ts");
+  assert.match(media, /if \(!isOwnStorageUrl\(src, process\.env\.NEXT_PUBLIC_SUPABASE_URL\)\) return notFound\(\)/, "media route only fetches own storage");
+  assert.match(media, /NON_PUBLIC_STATUSES\.has\(listing\.status\)\) return notFound\(\)/);
   assert.ok(!/agent=\{agent\}/.test(page));
   const blank = page.slice(page.indexOf("const UNBRANDED_AGENT"), page.indexOf("function unbrandedListing"));
   for (const f of ["name", "brokerage", "phone", "email", "license_number", "website"]) assert.match(blank, new RegExp(`\\b${f}: (""|null)`), f);

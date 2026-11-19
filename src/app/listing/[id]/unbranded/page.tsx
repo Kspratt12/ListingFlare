@@ -7,6 +7,8 @@ import { isAgentInactive } from "@/lib/listingVisibility";
 import { NON_PUBLIC_STATUSES } from "@/lib/listingAiContext";
 import ListingPageClient from "../ListingPageClient";
 import { getListingRow, getPublicAgent, loadFloorPlan } from "../listingData";
+import { unbrandedMediaPath } from "@/lib/unbrandedMedia";
+import type { FloorPlan } from "@/lib/floorPlan";
 
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
@@ -46,7 +48,21 @@ export default async function UnbrandedListingPage({ params }: Props) {
   if (!agent || isAgentInactive(agent)) notFound();
   // Props are serialized into the page source, so identity must be removed here, not just hidden.
   const floorPlan = await loadFloorPlan(typedListing.id, (typedListing.photos || []).map((p) => p.src));
-  return <ListingPageClient listing={unbrandedListing(typedListing)} agent={UNBRANDED_AGENT} unbranded floorPlan={floorPlan} />;
+  return <ListingPageClient listing={unbrandedListing(typedListing)} agent={UNBRANDED_AGENT} unbranded floorPlan={unbrandedFloorPlan(typedListing, floorPlan)} />;
+}
+
+// Storage addresses contain the agent's account id, so media goes through the unbranded media route.
+function proxiedPhotos(l: Listing) {
+  return (l.photos || []).map((p, i) => ({ ...p, src: unbrandedMediaPath(l.id, "photo", i) }));
+}
+
+function unbrandedFloorPlan(l: Listing, plan: FloorPlan | null): FloorPlan | null {
+  if (!plan) return null;
+  const index = new Map((l.photos || []).map((p, i) => [p.src, i]));
+  return {
+    image: { ...plan.image, src: unbrandedMediaPath(l.id, "floorplan") },
+    markers: plan.markers.map((m) => ({ ...m, photoSrc: m.photoSrc && index.has(m.photoSrc) ? unbrandedMediaPath(l.id, "photo", index.get(m.photoSrc)!) : null })),
+  };
 }
 
 // Every agent field the client could render or serialize, blanked.
@@ -78,6 +94,9 @@ function unbrandedListing(l: Listing): Listing {
     agent_id: "",
     brand_color: null,
     video_intro_url: null,
+    photos: proxiedPhotos(l),
+    // Uploaded videos are not shown here: their storage address would reveal the account.
+    videos: [],
     co_agent_name: null,
     co_agent_title: null,
     co_agent_brokerage: null,
