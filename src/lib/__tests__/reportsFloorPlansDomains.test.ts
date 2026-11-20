@@ -209,13 +209,14 @@ test("email: escapes seller/agent text, omits the portal link when asked, never 
   assert.ok(!/[<>"\r\n]/.test(e.fromName), "sender name cannot inject headers");
 });
 
-test("source: the cron entry point authenticates, is off by default, and is not scheduled in vercel.json", () => {
+test("source: the cron entry point authenticates, is off by default, and is scheduled hourly in vercel.json", () => {
   const route = read("app/api/cron/seller-reports/route.ts");
   const auth = route.indexOf("isCronAuthorized(req)");
   const flag = route.indexOf("sellerReportsEnabled()");
   const dbRead = route.indexOf('.from("seller_report_schedules")');
   assert.ok(auth > 0 && auth < flag && flag < dbRead, "auth, then the flag, before any database read");
-  assert.ok(!/seller-reports/.test(fs.readFileSync(path.join(src, "..", "vercel.json"), "utf8")), "activation is a separate step");
+  const crons = JSON.parse(fs.readFileSync(path.join(src, "..", "vercel.json"), "utf8")).crons;
+  assert.deepEqual(crons.filter((c: { path: string }) => c.path === "/api/cron/seller-reports"), [{ path: "/api/cron/seller-reports", schedule: "0 * * * *" }], "scheduled once, hourly; sending still needs SELLER_REPORTS_ENABLED=1");
   const store = read("lib/sellerReportStore.ts");
   assert.match(store, /"Idempotency-Key": idempotencyKey/, "provider-level duplicate protection");
   assert.match(store, /\.eq\("attempts", r\.attempts\)/, "re-claims are conditional");

@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 const BATCH = 50;
 
 // Sends seller reports that are due. Called by a scheduler with "Authorization: Bearer <CRON_SECRET>".
-// It is NOT in vercel.json: activation is a separate, approved step (docs/scheduled-seller-reports.md).
+// Scheduled hourly by Vercel Cron (vercel.json); Vercel sends CRON_SECRET as the bearer token.
 // Fails closed: no CRON_SECRET -> 401; SELLER_REPORTS_ENABLED not "1" -> nothing is read or sent.
 // Responses contain counts only, never addresses or report contents.
 export async function GET(req: NextRequest) {
