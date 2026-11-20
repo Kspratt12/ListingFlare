@@ -1,7 +1,22 @@
 # Implementation checkpoint (branch `feature/listing-workflow-integrity`)
 
-Local commits only. Nothing has been pushed, deployed or migrated, and no real email, AI, Vercel or
-Supabase call has been made.
+## Release status (2026-11-19, evening)
+
+- **Production:** PR #84 merged as `4c3cfdc` and deployed by Vercel to www.listingflare.com (deployment
+  `dpl_8y17KMpJMwZTFEQ7ZUqssb8UCWSd`, READY). Follow-up PR #85 (homepage copy, flyer template, template headers) merged as `e93a701` and deployed
+  (`dpl_FnoVbwN9Eg8nwSTyCicK2wGxuvNM`, READY). The live homepage and the live flyer PDF match the release.
+- **Production migrations applied** to `pvnsirpfofxklqgxwdiz` through the Supabase Management API, in
+  this order and after the code deploy: 045, 046, 047, 048. **049 not applied** (production already
+  protects billing fields). Post-checks: catalog privileges and policies as intended, and anonymous
+  PostgREST requests to the four new tables are refused (401 / 42501).
+- **Flags:** `SELLER_REPORTS_ENABLED` and `CUSTOM_DOMAINS_ENABLED` are not set in any environment, so
+  scheduled sending and custom domains are deployed but off. No cron was added.
+- **Smoke checks (public, read-only):** home, pricing, login, blog 200; dashboard redirects to login;
+  unknown listing 404; cron, domain and schedule APIs 401 signed out; chat without a listing 400; demo
+  agent page and listing 200; demo unbranded page is noindex with no raw storage URLs or agent id; the
+  media route serves the photo. There were no runtime errors in Vercel logs after the deploy.
+- **Not verified live:** signed-in owner/other-agent flows (no synthetic production account was
+  designated) and real-Supabase RLS for owner/other-user paths. Those are covered locally only.
 
 ## Feature status
 
