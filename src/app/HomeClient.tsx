@@ -98,6 +98,7 @@ const included = [
   "Built-in showing requests, with a Google Calendar event once you confirm (optional)",
   "Text leads with one tap from your real phone number",
   "Seller transparency portal so your clients watch their listing live",
+  "Printable seller activity reports for the last 7, 14 or 30 days",
   "Hot Lead scoring + drag-and-drop pipeline view",
   "Showing reminder emails to buyers",
   "Social posts, QR sign-in, analytics",
