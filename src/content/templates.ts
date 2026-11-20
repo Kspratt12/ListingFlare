@@ -19,6 +19,8 @@ export interface Template {
   guideHref: string;
   guideLabel: string;
   files: TemplateFile[];
+  /** Optional image of page 1, rendered from the PDF (public/templates), shown with the download. */
+  preview?: { src: string; alt: string; width: number; height: number };
 }
 
 const pdf = (id: string) => ({ label: "PDF", href: `/downloads/${id}.pdf`, note: "Print and fill in by hand" });
@@ -93,10 +95,16 @@ export const TEMPLATES: Template[] = [
     id: "open-house-flyer-template",
     title: "Open house flyer template",
     description:
-      "A flyer to fill in, print or edit: event details, price and facts, a photo box, highlights, a QR code line, your contact details and a before-you-print checklist.",
+      "Laid out like a finished flyer, ready to fill in, print or edit: a headline band with date and time, a large photo area, price, address and fact tiles, highlights, and a contact bar with a QR code square. A before-you-print checklist is on page 2.",
     guideHref: "/blog/open-house-flyer-template",
     guideLabel: "How to use it",
     files: [pdf("open-house-flyer-template"), fillable("open-house-flyer-template"), word("open-house-flyer-template")],
+    preview: {
+      src: "/templates/open-house-flyer-template-preview.jpg",
+      alt: "Preview of the open house flyer template: navy headline band, large photo area, price and address, fact tiles, highlights and a contact bar with a QR code square",
+      width: 765,
+      height: 990,
+    },
   },
   {
     id: "seller-update-report-template",
@@ -169,8 +177,16 @@ export function downloadBox(id: string): string {
     )
     .join("");
   const hasFillable = t.files.some((f) => f.label === "Fillable PDF");
+  // Optional page-1 preview, linked to the printable PDF. Wraps above the text on narrow screens.
+  const printable = t.files.find((f) => f.label === "PDF");
+  const preview = t.preview
+    ? '<a href="' + (printable ? printable.href : t.files[0].href) + '" style="flex:0 0 170px;display:block;max-width:170px;">' +
+      '<img src="' + t.preview.src + '" alt="' + t.preview.alt.replace(/"/g, "&quot;") + '" width="' + t.preview.width + '" height="' + t.preview.height + '" loading="lazy" style="display:block;width:100%;height:auto;border:1px solid #ddd8c8;border-radius:6px;box-shadow:0 4px 14px rgba(15,23,42,0.18);" /></a>'
+    : "";
   return (
-    '<div style="margin:24px 0;padding:20px;border:1px solid #ddd8c8;border-radius:12px;background:#f8f7f4;">' +
+    '<div style="margin:24px 0;padding:20px;border:1px solid #ddd8c8;border-radius:12px;background:#f8f7f4;' + (preview ? "display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;" : "") + '">' +
+    preview +
+    (preview ? '<div style="flex:1 1 280px;min-width:0;">' : "") +
     '<div style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#75634a;">Free download</div>' +
     '<div style="margin-top:4px;font-size:18px;font-weight:700;color:#111827;">' +
     t.title +
@@ -185,6 +201,7 @@ export function downloadBox(id: string): string {
       ? '<div style="margin-top:6px;font-size:12px;color:#6b7280;">Fillable PDF: open it in a PDF reader such as Adobe Acrobat Reader to type into the blanks. Some phone and browser previews cannot.</div>'
       : "") +
     '<div style="margin-top:6px;font-size:12px;color:#6b7280;">No email or sign-up needed. General guidance, not legal advice. Adjust it to your brokerage&rsquo;s and local requirements.</div>' +
+    (preview ? "</div>" : "") +
     "</div>"
   );
 }

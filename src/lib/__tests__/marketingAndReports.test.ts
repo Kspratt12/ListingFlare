@@ -13,6 +13,7 @@ import {
   timeRangeProblem,
 } from "../flyerOptions";
 import { buildSellerReport } from "../sellerReport";
+import { downloadBox, TEMPLATES } from "../../content/templates";
 import { checkCustomDomain, customDomainsConfigured, normalizeDomainInput, stateFromProvider } from "../customDomain";
 
 const src = process.env.LF_SRC_DIR as string;
@@ -73,6 +74,16 @@ test("source: the flyer never prints zero or blank facts and has no video claims
   assert.match(flyer, /visibleFacts\(/);
   assert.ok(!/video/i.test(flyer));
   assert.ok(!/dangerouslySetInnerHTML/.test(flyer));
+});
+
+test("flyer template download box shows the rendered preview linked to the printable PDF; other templates are unchanged", () => {
+  const box = downloadBox("open-house-flyer-template");
+  assert.match(box, /<a href="\/downloads\/open-house-flyer-template\.pdf"[^>]*><img src="\/templates\/open-house-flyer-template-preview\.jpg"/);
+  assert.match(box, /alt="Preview of the open house flyer template/);
+  assert.ok(fs.existsSync(path.join(src, "..", "public", "templates", "open-house-flyer-template-preview.jpg")));
+  assert.ok(fs.statSync(path.join(src, "..", "public", "templates", "open-house-flyer-template-preview.jpg")).size < 200 * 1024, "preview stays light");
+  for (const t of TEMPLATES.filter((x) => x.id !== "open-house-flyer-template")) assert.ok(!/<img/.test(downloadBox(t.id)), t.id);
+  assert.ok(!/photo box, highlights, a QR code line/.test(box), "old worksheet description replaced");
 });
 
 // ---------- seller report ----------

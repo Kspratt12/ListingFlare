@@ -582,14 +582,16 @@ function buildFlyerPdf({ fillable = false } = {}) {
   const CW = W - M * 2
   const NAVY = [15, 23, 42], GOLD = [184, 150, 90], INK = [30, 30, 40], MUTED = [110, 110, 120], LINE = [205, 205, 212]
   let n = 0
-  const field = (x, y, w, h, name, size = 10, align = 0, white = false) => {
+  const field = (x, y, w, h, name, size = 10, align = 0, onDark = false) => {
     if (!fillable) return
+    // jsPDF writes no per-field text colour (typed text is always black), so fields on the dark bands
+    // get a white input box behind them; otherwise typed text is unreadable.
+    if (onDark) { doc.setFillColor(255, 255, 255); doc.roundedRect(x - 0.6, y - 0.3, w + 1.2, h + 0.6, 0.8, 0.8, "F") }
     const f = new AcroFormTextField()
     f.fieldName = `${name}_${++n}`
     f.Rect = [x, y, w, h]
     f.fontSize = size
     f.textAlign = align === 1 ? "center" : "left"
-    if (white) f.color = "#FFFFFF"
     doc.addField(f)
   }
   const blank = (x, y, w, light = false) => { doc.setDrawColor(...(light ? [120, 130, 150] : LINE)); doc.setLineWidth(0.3); doc.line(x, y, x + w, y) }
@@ -797,6 +799,98 @@ function buildDocx(model) {
   return Packer.toBuffer(doc)
 }
 
+// Word version of the open house flyer, laid out like the PDF flyer with editable table cells.
+function buildFlyerDocx() {
+  const NAVY = "0F172A", GOLD = "B8965A", TILE = "F8F6F1", PHOTO = "F1F3F7"
+  const cell = (children, o = {}) => new TableCell({ borders: noBorders, margins: { top: 80, bottom: 80, left: 140, right: 140 }, ...o, children })
+  const p = (text, o = {}, po = {}) => new Paragraph({ ...po, children: [run(text, o)] })
+  const blankLine = (label, color, w) => cell([p(label.toUpperCase(), { bold: true, size: 14, color: GOLD }), p(" ", { size: 20, color })], { width: { size: w, type: WidthType.DXA }, shading: { type: ShadingType.CLEAR, color: "auto", fill: NAVY }, borders: { ...noBorders, bottom: { style: BorderStyle.SINGLE, size: 4, color: "7882A0" } } })
+  const kids = []
+
+  // header band
+  kids.push(new Table({ width: { size: TW, type: WidthType.DXA }, columnWidths: [TW], borders: { ...noBorders, insideHorizontal: NONE, insideVertical: NONE }, rows: [
+    new TableRow({ children: [cell([
+      p("OPEN HOUSE FLYER · EVENT AND PRICE", { bold: true, size: 14, color: "BEAF8C" }),
+      p("OPEN HOUSE", { bold: true, size: 64, color: "FFFFFF" }, { spacing: { before: 60, after: 60 } }),
+      p("Change the headline if you like: Just Listed, Price Improved, Coming Soon.", { size: 15, color: "A0AAC0", italics: true }),
+    ], { shading: { type: ShadingType.CLEAR, color: "auto", fill: NAVY }, margins: { top: 200, bottom: 120, left: 240, right: 240 } })] }),
+  ] }))
+  kids.push(new Table({ width: { size: TW, type: WidthType.DXA }, columnWidths: [5120, 5120], borders: { ...noBorders, insideHorizontal: NONE, insideVertical: NONE }, rows: [
+    new TableRow({ children: [blankLine("Date", "FFFFFF", 5120), blankLine("Time", "FFFFFF", 5120)] }),
+  ] }))
+  kids.push(new Paragraph({ border: { top: { style: BorderStyle.SINGLE, size: 24, color: GOLD, space: 0 } }, spacing: { after: 120 }, children: [] }))
+
+  // photo
+  kids.push(new Table({ width: { size: TW, type: WidthType.DXA }, columnWidths: [TW], rows: [
+    new TableRow({ height: { value: 4600, rule: "exact" }, children: [new TableCell({
+      shading: { type: ShadingType.CLEAR, color: "auto", fill: PHOTO }, verticalAlign: "center",
+      borders: { top: gridBorder, bottom: gridBorder, left: gridBorder, right: gridBorder },
+      children: [p("Your best exterior or living-room photo", { size: 22, color: "6E6E78" }, { alignment: AlignmentType.CENTER }), p("Click here and use Insert > Pictures. Delete this text after you add the photo.", { size: 16, color: "8C8C96" }, { alignment: AlignmentType.CENTER })],
+    })] }),
+  ] }))
+
+  // price + address
+  const labelled = (label, w, size) => cell([p(label.toUpperCase(), { bold: true, size: 14, color: "6E6E78" }), p(" ", { size })], { width: { size: w, type: WidthType.DXA }, borders: { ...noBorders, bottom: lineBorder } })
+  kids.push(new Paragraph({ spacing: { after: 60 }, children: [] }))
+  kids.push(new Table({ width: { size: TW, type: WidthType.DXA }, columnWidths: [3600, 400, 6240], borders: { ...noBorders, insideHorizontal: NONE, insideVertical: NONE }, rows: [
+    new TableRow({ children: [labelled("Price", 3600, 32), cell([p(" ")], { width: { size: 400, type: WidthType.DXA } }), labelled("Property address", 6240, 24)] }),
+  ] }))
+  // fact tiles
+  kids.push(new Paragraph({ spacing: { after: 100 }, children: [] }))
+  const tileW = 2420, gap = 186
+  const tile = (label) => new TableCell({ width: { size: tileW, type: WidthType.DXA }, shading: { type: ShadingType.CLEAR, color: "auto", fill: TILE }, margins: { top: 120, bottom: 80 },
+    borders: { top: { style: BorderStyle.SINGLE, size: 4, color: "E1D7C3" }, bottom: { style: BorderStyle.SINGLE, size: 4, color: "E1D7C3" }, left: { style: BorderStyle.SINGLE, size: 4, color: "E1D7C3" }, right: { style: BorderStyle.SINGLE, size: 4, color: "E1D7C3" } },
+    children: [p(" ", { size: 30, bold: true }, { alignment: AlignmentType.CENTER }), p(label.toUpperCase(), { bold: true, size: 14, color: GOLD }, { alignment: AlignmentType.CENTER })] })
+  const spacer = () => new TableCell({ width: { size: gap, type: WidthType.DXA }, borders: noBorders, children: [p(" ")] })
+  kids.push(new Table({ width: { size: TW, type: WidthType.DXA }, columnWidths: [tileW, gap, tileW, gap, tileW, gap, tileW], borders: { ...noBorders, insideHorizontal: NONE, insideVertical: NONE }, rows: [
+    new TableRow({ children: [tile("Beds"), spacer(), tile("Baths"), spacer(), tile("Square feet"), spacer(), tile("Year built")] }),
+  ] }))
+  // highlights
+  kids.push(p("Highlights", { bold: true, size: 22 }, { spacing: { before: 200, after: 60 } }))
+  for (let i = 0; i < 4; i++) kids.push(new Paragraph({ spacing: { before: 80, after: 20 }, border: { bottom: { style: BorderStyle.SINGLE, size: 4, color: "C8C8D0", space: 1 } }, children: [run("•  ", { size: 20, color: GOLD, bold: true }), run(" ", { size: 20 })] }))
+  // agent bar with QR cell
+  kids.push(new Paragraph({ spacing: { after: 160 }, children: [] }))
+  const navyCell = (children, w) => cell(children, { width: { size: w, type: WidthType.DXA }, shading: { type: ShadingType.CLEAR, color: "auto", fill: NAVY } })
+  const agentLine = (label) => p(`${label.toUpperCase()}:  `, { bold: true, size: 15, color: GOLD }, { spacing: { after: 80 } })
+  kids.push(new Table({ width: { size: TW, type: WidthType.DXA }, columnWidths: [3900, 3900, 2440], borders: { ...noBorders, insideHorizontal: NONE, insideVertical: NONE }, rows: [
+    new TableRow({ children: [
+      navyCell([agentLine("Agent"), agentLine("Phone"), agentLine("QR link")], 3900),
+      navyCell([agentLine("Brokerage"), agentLine("Email"), p("License # / disclosures:", { size: 13, color: "A0AAC0" })], 3900),
+      navyCell([new Table({ width: { size: 1700, type: WidthType.DXA }, columnWidths: [1700], rows: [new TableRow({ height: { value: 1500, rule: "exact" }, children: [new TableCell({ shading: { type: ShadingType.CLEAR, color: "auto", fill: "FFFFFF" }, verticalAlign: "center", children: [p("Your QR code", { size: 14, color: "6E6E78" }, { alignment: AlignmentType.CENTER })] })] })] }), p("SCAN FOR PHOTOS & DETAILS", { bold: true, size: 12, color: GOLD })], 2440),
+    ] }),
+  ] }))
+
+  // page 2: guidance
+  kids.push(new Paragraph({ children: [new PageBreak()] }))
+  kids.push(p("OPEN HOUSE FLYER: HOW TO FILL IT IN", { bold: true, size: 34 }, { spacing: { after: 80 }, border: { bottom: { style: BorderStyle.SINGLE, size: 12, color: GOLD, space: 4 } } }))
+  const h = (t) => kids.push(p(t, { bold: true, size: 22 }, { spacing: { before: 200, after: 60 } }))
+  const para = (t) => kids.push(p(t, { size: 19 }, { spacing: { after: 80 } }))
+  h("Event and price"); para("Use a short headline (Open House, Just Listed, Price Improved), the date and start/end time, the price and the key facts. Copy the price and facts from the MLS listing so the flyer and the listing match.")
+  h("Photo"); para("One strong exterior or living-room photo does more than several small ones. Click the photo box and insert a picture.")
+  h("Highlights"); para("Three to five specific features that are true for this home. Describe the property, not the people who might live there.")
+  h("QR code and contact details"); para("Generate a QR code for the listing link (or your sign-in page), place it in the white square, and test it with a phone before printing. Add your name, brokerage, phone, email, license number and any disclosures your brokerage or state requires.")
+  h("Before you print")
+  for (const item of ["Date, time, address, price and facts match the MLS listing", "Wording follows your brokerage's advertising and fair housing rules", "QR code scanned with a phone and opens the right page", "Printed one copy and read it start to finish"]) {
+    kids.push(new Paragraph({ spacing: { after: 40 }, indent: { left: 360, hanging: 360 }, children: [run("☐\t", { size: 19 }), run(item, { size: 19 })] }))
+  }
+  kids.push(p("ListingFlare members can also build a flyer from a saved listing, using its own photos, facts and a QR code, in three layouts.", { size: 17, italics: true, color: "6E6E78" }, { spacing: { before: 200 } }))
+
+  const doc = new Document({
+    creator: "ListingFlare", title: "Open House Flyer", description: "Free template from ListingFlare",
+    sections: [{
+      properties: { page: { size: { width: 12240, height: 15840 }, margin: { top: 700, right: 1000, bottom: 800, left: 1000 } } },
+      footers: { default: new Footer({ children: [new Paragraph({ alignment: AlignmentType.CENTER, children: [
+        run(FOOTER + "   Page ", { size: 14, color: "969696" }),
+        new TextRun({ children: [PageNumber.CURRENT], size: 14, color: "969696", font: "Calibri" }),
+        run(" of ", { size: 14, color: "969696" }),
+        new TextRun({ children: [PageNumber.TOTAL_PAGES], size: 14, color: "969696", font: "Calibri" }),
+      ] })] }) },
+      children: kids,
+    }],
+  })
+  return Packer.toBuffer(doc)
+}
+
 // ───────────────────────── spreadsheet ─────────────────────────
 // A plain .xlsx written by hand (it is a zip of XML parts), so it opens in Excel and imports into Google Sheets.
 
@@ -893,7 +987,7 @@ for (const model of [openHouseChecklist, preListing]) {
 // New: open house flyer template and the spreadsheet version of the sign-in sheet.
 write(`${openHouseFlyer.file}.pdf`, buildFlyerPdf())
 write(`${openHouseFlyer.file}-fillable.pdf`, buildFlyerPdf({ fillable: true }))
-write(`${openHouseFlyer.file}.docx`, await buildDocx(openHouseFlyer))
+write(`${openHouseFlyer.file}.docx`, await buildFlyerDocx())
 write(`${openHouseSignIn.file}.xlsx`, await buildSignInXlsx())
 
 // New: buyer questionnaire template and the spreadsheet version of the lead follow-up tracker.

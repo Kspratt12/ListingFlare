@@ -95,6 +95,9 @@ for (const href of hrefs) {
   }
 }
 
+// Every preview image a template declares must exist.
+for (const m of registry.matchAll(/src:\s*"(\/templates\/[^"]+)"/g)) ok(fs.existsSync(path.join(ROOT, "public", m[1])), "missing preview image " + m[1])
+
 // Every download an article embeds must come from the registry.
 const articlesDir = path.join(ROOT, "src/content/articles")
 for (const f of fs.readdirSync(articlesDir)) {
