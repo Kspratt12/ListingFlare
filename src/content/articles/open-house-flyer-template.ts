@@ -87,7 +87,7 @@ ${downloadBox("open-house-flyer-template")}
 <p>The headline, date and time, address, price, key facts such as beds, baths and square feet, one strong photo, a few highlights, a QR code or link for more details, and your contact details and brokerage branding.</p>
 
 <h3>Is there a free open house flyer template?</h3>
-<p>Yes. This page offers one as a printable PDF, a fillable PDF and an editable Word file. It has blanks for your own details, and nothing is prefilled.</p>
+<p>Yes. This page offers one as a printable PDF, a fillable PDF and an editable Word file. It is laid out like a finished flyer, with blanks for your own details; nothing about the property is prefilled.</p>
 
 <h3>Can I edit the flyer in Word?</h3>
 <p>Yes. Use the Word version to change the wording, insert your listing photo and add your brokerage logo before you print.</p>
