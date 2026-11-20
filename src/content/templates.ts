@@ -19,13 +19,25 @@ export interface Template {
   guideHref: string;
   guideLabel: string;
   files: TemplateFile[];
-  /** Optional image of page 1, rendered from the PDF (public/templates), shown with the download. */
-  preview?: { src: string; alt: string; width: number; height: number };
+  /**
+   * Optional designs shown as a gallery. Previews (public/templates) are page 1 rendered with fictional
+   * sample text and original illustrations; the downloads themselves are blank.
+   */
+  designs?: TemplateDesign[];
+}
+
+export interface TemplateDesign {
+  name: string;
+  blurb: string;
+  files: TemplateFile[];
+  preview: { src: string; alt: string; width: number; height: number };
 }
 
 const pdf = (id: string) => ({ label: "PDF", href: `/downloads/${id}.pdf`, note: "Print and fill in by hand" });
 const fillable = (id: string) => ({ label: "Fillable PDF", href: `/downloads/${id}-fillable.pdf`, note: "Type into it on screen, then save or print" });
 const word = (id: string) => ({ label: "Word", href: `/downloads/${id}.docx`, note: "Edit on your computer" });
+// The Modern flyer design keeps the original file names, so links shared before the gallery keep working.
+const FLYER_MODERN_FILES = [pdf("open-house-flyer-template"), fillable("open-house-flyer-template"), word("open-house-flyer-template")];
 
 export const TEMPLATES: Template[] = [
   {
@@ -93,18 +105,48 @@ export const TEMPLATES: Template[] = [
   },
   {
     id: "open-house-flyer-template",
-    title: "Open house flyer template",
+    title: "Open house flyer templates",
     description:
-      "Laid out like a finished flyer, ready to fill in, print or edit: a headline band with date and time, a large photo area, price, address and fact tiles, highlights, and a contact bar with a QR code square. A before-you-print checklist is on page 2.",
+      "Three designs laid out like finished flyers, ready to fill in, print or edit. Each has the event details, price and facts, photo space, highlights and a contact bar with a QR code square, plus a before-you-print checklist on page 2.",
     guideHref: "/blog/open-house-flyer-template",
     guideLabel: "How to use it",
-    files: [pdf("open-house-flyer-template"), fillable("open-house-flyer-template"), word("open-house-flyer-template")],
-    preview: {
-      src: "/templates/open-house-flyer-template-preview.jpg",
-      alt: "Preview of the open house flyer template: navy headline band, large photo area, price and address, fact tiles, highlights and a contact bar with a QR code square",
-      width: 765,
-      height: 990,
-    },
+    // Modern keeps the original file names, so existing links keep working.
+    files: FLYER_MODERN_FILES,
+    designs: [
+      {
+        name: "Classic",
+        blurb: "Full-width photo with an Open House banner, a strip of three photos, facts, a short description and highlights.",
+        files: [pdf("open-house-flyer-template-classic"), fillable("open-house-flyer-template-classic"), word("open-house-flyer-template-classic")],
+        preview: {
+          src: "/templates/open-house-flyer-classic-preview.jpg",
+          alt: "Classic open house flyer template sample: large house photo with a gold Open House banner, date, time, price and address band, three room photos, home facts, description, highlights and an agent contact bar with a QR code",
+          width: 826,
+          height: 1069,
+        },
+      },
+      {
+        name: "Modern",
+        blurb: "Navy headline band with the date and time, one large photo, price and address, fact tiles and highlights.",
+        files: FLYER_MODERN_FILES,
+        preview: {
+          src: "/templates/open-house-flyer-modern-preview.jpg",
+          alt: "Modern open house flyer template sample: navy Open House headline band with date and time, large house photo, price and address, four fact tiles, highlights and an agent contact bar with a QR code",
+          width: 826,
+          height: 1069,
+        },
+      },
+      {
+        name: "Minimal",
+        blurb: "White space, one photo and large type, with the event details centered and a light contact section.",
+        files: [pdf("open-house-flyer-template-minimal"), fillable("open-house-flyer-template-minimal"), word("open-house-flyer-template-minimal")],
+        preview: {
+          src: "/templates/open-house-flyer-minimal-preview.jpg",
+          alt: "Minimal open house flyer template sample: house photo, centered Open House title in serif type, date and time, street address, city and price, home facts, a short message and contact details with a QR code",
+          width: 826,
+          height: 1069,
+        },
+      },
+    ],
   },
   {
     id: "seller-update-report-template",
@@ -162,46 +204,64 @@ export function getTemplate(id: string): Template | undefined {
   return TEMPLATES.find((t) => t.id === id);
 }
 
+const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+
+function fileButton(f: TemplateFile, compact = false): string {
+  const style = compact
+    ? "display:block;margin:0 0 6px;padding:8px 10px;border-radius:8px;background:#9a8866;color:#ffffff;font-weight:600;font-size:13px;text-decoration:none;text-align:center;"
+    : "display:inline-block;margin:0 8px 8px 0;padding:10px 16px;border-radius:8px;background:#9a8866;color:#ffffff;font-weight:600;font-size:14px;text-decoration:none;";
+  return (
+    '<a href="' + f.href + '" download style="' + style + '">Download ' + f.label +
+    '<span style="display:block;font-size:11px;font-weight:400;opacity:0.9;">' + f.note + "</span></a>"
+  );
+}
+
+const FILLABLE_NOTE =
+  '<div style="margin-top:6px;font-size:12px;color:#6b7280;">Fillable PDF: open it in a PDF reader such as Adobe Acrobat Reader to type into the blanks. Some phone and browser previews cannot.</div>';
+const GENERAL_NOTE =
+  '<div style="margin-top:6px;font-size:12px;color:#6b7280;">No email or sign-up needed. General guidance, not legal advice. Adjust it to your brokerage&rsquo;s and local requirements.</div>';
+
+/** One card per design: a sample preview (linked to that design's printable PDF) and its own downloads. */
+function designCard(d: TemplateDesign): string {
+  const printable = d.files.find((f) => f.label === "PDF") || d.files[0];
+  return (
+    '<div style="min-width:0;padding:10px;border:1px solid #ddd8c8;border-radius:10px;background:#ffffff;">' +
+    '<a href="' + printable.href + '" aria-label="' + esc(d.name + " design: open the printable PDF") + '" style="display:block;">' +
+    '<img src="' + d.preview.src + '" alt="' + esc(d.preview.alt) + '" width="' + d.preview.width + '" height="' + d.preview.height +
+    '" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;aspect-ratio:' + d.preview.width + " / " + d.preview.height +
+    ';border:1px solid #ddd8c8;border-radius:6px;box-shadow:0 4px 14px rgba(15,23,42,0.14);" />' +
+    "</a>" +
+    '<div style="margin-top:8px;"><span style="display:inline-block;padding:2px 8px;border-radius:999px;background:#eceae3;color:#374151;font-size:11px;font-weight:600;">Sample preview</span></div>' +
+    '<div style="margin:4px 0 2px;font-size:16px;font-weight:700;color:#111827;">' + d.name + "</div>" +
+    '<div style="margin:0 0 10px;font-size:13px;color:#4b5563;">' + d.blurb + "</div>" +
+    d.files.map((f) => fileButton(f, true)).join("") +
+    "</div>"
+  );
+}
+
 /** HTML for the free-download box used inside article content and on the templates page. */
 export function downloadBox(id: string): string {
   const t = getTemplate(id);
   if (!t) throw new Error("Unknown template id: " + id);
-  const buttons = t.files
-    .map(
-      (f) =>
-        '<a href="' + f.href + '" download style="display:inline-block;margin:0 8px 8px 0;padding:10px 16px;border-radius:8px;background:#9a8866;color:#ffffff;font-weight:600;font-size:14px;text-decoration:none;">Download ' +
-        f.label +
-        '<span style="display:block;font-size:11px;font-weight:400;opacity:0.9;">' +
-        f.note +
-        "</span></a>"
-    )
-    .join("");
-  const hasFillable = t.files.some((f) => f.label === "Fillable PDF");
-  // Optional page-1 preview, linked to the printable PDF. Wraps above the text on narrow screens.
-  const printable = t.files.find((f) => f.label === "PDF");
-  const preview = t.preview
-    ? '<a href="' + (printable ? printable.href : t.files[0].href) + '" style="flex:0 0 170px;display:block;max-width:170px;">' +
-      '<img src="' + t.preview.src + '" alt="' + t.preview.alt.replace(/"/g, "&quot;") + '" width="' + t.preview.width + '" height="' + t.preview.height + '" loading="lazy" style="display:block;width:100%;height:auto;border:1px solid #ddd8c8;border-radius:6px;box-shadow:0 4px 14px rgba(15,23,42,0.18);" /></a>'
-    : "";
-  return (
-    '<div style="margin:24px 0;padding:20px;border:1px solid #ddd8c8;border-radius:12px;background:#f8f7f4;' + (preview ? "display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;" : "") + '">' +
-    preview +
-    (preview ? '<div style="flex:1 1 280px;min-width:0;">' : "") +
+  const all = t.designs ? t.designs.flatMap((d) => d.files) : t.files;
+  const hasFillable = all.some((f) => f.label === "Fillable PDF");
+  const header =
     '<div style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#75634a;">Free download</div>' +
-    '<div style="margin-top:4px;font-size:18px;font-weight:700;color:#111827;">' +
-    t.title +
-    "</div>" +
-    '<div style="margin:4px 0 14px;font-size:14px;color:#4b5563;">' +
-    t.description +
-    "</div>" +
-    "<div>" +
-    buttons +
-    "</div>" +
-    (hasFillable
-      ? '<div style="margin-top:6px;font-size:12px;color:#6b7280;">Fillable PDF: open it in a PDF reader such as Adobe Acrobat Reader to type into the blanks. Some phone and browser previews cannot.</div>'
-      : "") +
-    '<div style="margin-top:6px;font-size:12px;color:#6b7280;">No email or sign-up needed. General guidance, not legal advice. Adjust it to your brokerage&rsquo;s and local requirements.</div>' +
-    (preview ? "</div>" : "") +
-    "</div>"
-  );
+    '<div style="margin-top:4px;font-size:18px;font-weight:700;color:#111827;">' + t.title + "</div>" +
+    '<div style="margin:4px 0 14px;font-size:14px;color:#4b5563;">' + t.description + "</div>";
+  const open = '<div style="margin:24px 0;padding:20px;border:1px solid #ddd8c8;border-radius:12px;background:#f8f7f4;">';
+  if (t.designs) {
+    return (
+      open +
+      header +
+      '<div style="margin:0 0 12px;font-size:13px;font-weight:600;color:#374151;">US Letter 8.5 &times; 11 in &middot; PDF, fillable PDF and Word &middot; Free downloads, no sign-up</div>' +
+      '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;">' + t.designs.map(designCard).join("") + "</div>" +
+      '<div style="margin-top:12px;font-size:12px;color:#6b7280;">Previews show fictional sample text and illustrations, not a real property or agent. The downloads are blank, ready for your own details and photos.</div>' +
+      (hasFillable ? FILLABLE_NOTE : "") +
+      GENERAL_NOTE +
+      '<div style="margin-top:10px;font-size:13px;color:#374151;">Rather build it from a listing? <a href="/signup" style="color:#75634a;font-weight:600;">Customize a flyer online in ListingFlare</a>. That needs a ListingFlare account; the 14-day free trial needs no credit card.</div>' +
+      "</div>"
+    );
+  }
+  return open + header + "<div>" + t.files.map((f) => fileButton(f)).join("") + "</div>" + (hasFillable ? FILLABLE_NOTE : "") + GENERAL_NOTE + "</div>";
 }

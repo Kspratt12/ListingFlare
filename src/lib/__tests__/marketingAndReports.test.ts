@@ -76,14 +76,30 @@ test("source: the flyer never prints zero or blank facts and has no video claims
   assert.ok(!/dangerouslySetInnerHTML/.test(flyer));
 });
 
-test("flyer template download box shows the rendered preview linked to the printable PDF; other templates are unchanged", () => {
+test("flyer gallery: three designs, each with a labelled sample preview and its own three downloads; other templates unchanged", () => {
   const box = downloadBox("open-house-flyer-template");
-  assert.match(box, /<a href="\/downloads\/open-house-flyer-template\.pdf"[^>]*><img src="\/templates\/open-house-flyer-template-preview\.jpg"/);
-  assert.match(box, /alt="Preview of the open house flyer template/);
-  assert.ok(fs.existsSync(path.join(src, "..", "public", "templates", "open-house-flyer-template-preview.jpg")));
-  assert.ok(fs.statSync(path.join(src, "..", "public", "templates", "open-house-flyer-template-preview.jpg")).size < 200 * 1024, "preview stays light");
+  const pub = path.join(src, "..", "public");
+  const flyer = TEMPLATES.find((x) => x.id === "open-house-flyer-template")!;
+  assert.deepEqual(flyer.designs!.map((d) => d.name), ["Classic", "Modern", "Minimal"]);
+  for (const d of flyer.designs!) {
+    assert.deepEqual(d.files.map((f) => f.label), ["PDF", "Fillable PDF", "Word"], d.name);
+    for (const f of d.files) {
+      assert.ok(box.includes('href="' + f.href + '" download'), f.href);
+      assert.ok(fs.existsSync(path.join(pub, f.href)), f.href + " exists");
+    }
+    const pdf = d.files[0].href.replace(/\./g, "\\.");
+    assert.match(box, new RegExp('<a href="' + pdf + '"[^>]*><img src="' + d.preview.src.replace(/\./g, "\\.") + '"[^>]*width="826" height="1069" loading="lazy"'));
+    assert.ok(fs.statSync(path.join(pub, d.preview.src)).size < 200 * 1024, "preview stays light");
+    assert.ok(d.preview.alt.length > 60, "descriptive alt");
+  }
+  assert.equal(box.match(/>Sample preview</g)!.length, 3);
+  assert.match(box, /fictional sample text and illustrations/);
+  assert.match(box, /downloads are blank/);
+  assert.match(box, /US Letter 8\.5 &times; 11 in/);
+  assert.match(box, /<a href="\/signup"[^>]*>Customize a flyer online/);
+  assert.match(box, /needs a ListingFlare account; the 14-day free trial needs no credit card/);
+  assert.ok(!fs.existsSync(path.join(pub, "templates", "open-house-flyer-template-preview.jpg")), "old single preview removed");
   for (const t of TEMPLATES.filter((x) => x.id !== "open-house-flyer-template")) assert.ok(!/<img/.test(downloadBox(t.id)), t.id);
-  assert.ok(!/photo box, highlights, a QR code line/.test(box), "old worksheet description replaced");
 });
 
 // ---------- seller report ----------
