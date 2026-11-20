@@ -21,6 +21,11 @@ With the flag off the middleware behaves exactly as before this feature, and Set
 
 **Not verified:** a real domain, real DNS, a real Vercel API call, or certificate issuance.
 
+**2026-11-20:** still off. Migration 046 is applied. `VERCEL_API_TOKEN` is the blocker: the Vercel CLI sign-in cannot create
+access tokens (403), so the owner must create one at vercel.com/account/tokens (scope: the kelvin-spratts-projects team)
+and add it to Production as a sensitive variable. Then set `CUSTOM_DOMAINS_ENABLED=1`, `VERCEL_PROJECT_ID` and
+`VERCEL_TEAM_ID`, redeploy, and test with `lf-test.parpercision.com` (that domain is on Vercel DNS, so no registrar change).
+
 ## How it works
 
 - **Settings → Custom domain.** The agent enters a hostname. Full URLs are reduced to the hostname. Platform

@@ -35,17 +35,16 @@ A report is skipped, recorded once, and the schedule moves on when any of these 
 - Status `accepted` means the provider accepted the message. The UI says inbox delivery is not confirmed.
 - Responses and logs contain counts and short codes only.
 
-## Activation (each needs approval)
+## Activation status (2026-11-20)
 
-1. Apply migration 047 (after 017) to the production database.
-2. Set `SELLER_REPORTS_ENABLED=1` (exactly). `RESEND_API_KEY` and `CRON_SECRET` already exist for other jobs.
-3. Schedule `GET /api/cron/seller-reports` with `Authorization: Bearer <CRON_SECRET>`. It is **not** in
-   `vercel.json` yet. To use Vercel Cron, add:
-   `{ "path": "/api/cron/seller-reports", "schedule": "0 * * * *" }`
-   Hourly crons need a paid Vercel plan; on Hobby, use a daily schedule (reports then go out once a
-   day, on the first run after their planned time) or an external scheduler.
-4. Check with one schedule for a test listing whose seller portal uses your own email address.
+1. Migration 047 is applied in production.
+2. `SELLER_REPORTS_ENABLED=1` is set in Production. `RESEND_API_KEY` and `CRON_SECRET` already existed.
+3. `/api/cron/seller-reports` runs hourly via Vercel Cron (`vercel.json`, Pro plan). Unauthenticated calls get 401.
+4. Checked live on a draft test listing: the seller email is picked up from the portal, and Preview refuses a
+   draft ("no report was sent"). **Not yet done:** one real send to the owner address. It needs a *published*
+   test listing, and publishing was held for approval. Publishing also emails past leads in the same city and
+   state, so use a city no other listing uses.
 
 **Disable:** unset `SELLER_REPORTS_ENABLED`. Nothing is sent, and schedules and history are kept.
 
-**Not verified:** a real Resend send, real inbox delivery, or a real scheduler invocation.
+**Not verified:** a real Resend send, real inbox delivery, or a real scheduler-triggered send.
