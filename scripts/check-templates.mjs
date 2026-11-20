@@ -57,7 +57,9 @@ for (const href of hrefs) {
     ok(text.includes("not legal advice") && text.includes("ListingFlare"), href + " has the footer")
     for (const s of SENTINELS[id] || []) ok(text.includes(s), href + " is missing: " + s)
     const fills = [...text.matchAll(/([\d.]+ [\d.]+ [\d.]+) rg\n[^\n]* re\nB\n/g)].map((m) => m[1])
-    if (/\/Type\s*\/Page[^s]/.test(text) && (text.match(/ re\nB\n/g) || []).length) {
+    // The open house flyer is laid out as a real flyer (colour bands, photo box, fact tiles), so the
+    // light-grey table-header rule for the worksheet-style templates does not apply to it.
+    if (id !== "open-house-flyer-template" && /\/Type\s*\/Page[^s]/.test(text) && (text.match(/ re\nB\n/g) || []).length) {
       ok(fills.length > 0 && fills.every((c) => c === "0.93 0.94 0.96"), href + " table headers are light grey")
     }
     const widgets = (text.match(/\/Subtype\s*\/Widget/g) || []).length

@@ -471,13 +471,19 @@ function buildPdf(model, { fillable = false } = {}) {
     return Math.min(h, 75)
   }
 
-  // title
-  doc.setFont("helvetica", "bold"); doc.setFontSize(20); dark()
-  doc.text(model.title.toUpperCase(), M, y + 6); y += 10
-  doc.setFont("helvetica", "normal"); doc.setFontSize(9); gray()
+  // title band (fill-only, so the light-grey table-header check is unaffected)
+  doc.setFont("helvetica", "normal"); doc.setFontSize(9)
   const sub = doc.splitTextToSize(model.subtitle, CW)
-  doc.text(sub, M, y); y += sub.length * 4.2 + 1
-  doc.setDrawColor(154, 136, 102); doc.setLineWidth(0.8); doc.line(M, y, W - M, y); y += 6
+  const bandH = 22 + sub.length * 4.2
+  doc.setFillColor(15, 23, 42); doc.rect(0, 0, W, bandH, "F")
+  doc.setFillColor(184, 150, 90); doc.rect(0, bandH, W, 1.4, "F")
+  doc.setFont("helvetica", "bold"); doc.setFontSize(6.5); doc.setTextColor(190, 175, 140)
+  doc.text("FREE TEMPLATE  ·  LISTINGFLARE", M, 9, { charSpace: 0.3 })
+  doc.setFontSize(20); doc.setTextColor(255, 255, 255)
+  doc.text(model.title.toUpperCase(), M, 18)
+  doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(200, 205, 215)
+  doc.text(sub, M, 24.5)
+  y = bandH + 9
 
   for (const [bi, b] of model.blocks.entries()) {
     if (b.t === "h2") {
@@ -562,6 +568,138 @@ function buildPdf(model, { fillable = false } = {}) {
     doc.text(`Page ${p} of ${pages}`, W - M, H - 8, { align: "right" })
   }
   doc.setProperties({ title: model.title, subject: "Free template from ListingFlare", creator: "ListingFlare" })
+  return Buffer.from(doc.output("arraybuffer"))
+}
+
+// Open house flyer: laid out as an actual flyer (page 1) with the guidance on page 2, instead of the
+// generic form layout. Same content as the article: event details, price and facts, a photo, highlights,
+// a QR code link, contact details, and a before-you-print checklist.
+function buildFlyerPdf({ fillable = false } = {}) {
+  const doc = new jsPDF({ unit: "mm", format: "letter" })
+  const W = doc.internal.pageSize.getWidth()
+  const H = doc.internal.pageSize.getHeight()
+  const M = 12
+  const CW = W - M * 2
+  const NAVY = [15, 23, 42], GOLD = [184, 150, 90], INK = [30, 30, 40], MUTED = [110, 110, 120], LINE = [205, 205, 212]
+  let n = 0
+  const field = (x, y, w, h, name, size = 10, align = 0, white = false) => {
+    if (!fillable) return
+    const f = new AcroFormTextField()
+    f.fieldName = `${name}_${++n}`
+    f.Rect = [x, y, w, h]
+    f.fontSize = size
+    f.textAlign = align === 1 ? "center" : "left"
+    if (white) f.color = "#FFFFFF"
+    doc.addField(f)
+  }
+  const blank = (x, y, w, light = false) => { doc.setDrawColor(...(light ? [120, 130, 150] : LINE)); doc.setLineWidth(0.3); doc.line(x, y, x + w, y) }
+  const label = (text, x, y, color = MUTED, size = 7) => { doc.setFont("helvetica", "bold"); doc.setFontSize(size); doc.setTextColor(...color); doc.text(text.toUpperCase(), x, y, { charSpace: 0.3 }) }
+
+  // ---- page 1: the flyer ----
+  // header band
+  doc.setFillColor(...NAVY); doc.rect(0, 0, W, 46, "F")
+  doc.setFillColor(...GOLD); doc.rect(0, 46, W, 1.6, "F")
+  label("Open house flyer · Event and price", M, 9, [190, 175, 140], 6.5)
+  doc.setFont("helvetica", "bold"); doc.setFontSize(30); doc.setTextColor(255, 255, 255)
+  if (!fillable) doc.text("OPEN HOUSE", M, 25)
+  field(M, 14, CW * 0.7, 14, "headline", 26, 0, true)
+  if (fillable) label("Headline: Open House, Just Listed, Price Improved...", M, 31, [150, 160, 180], 6)
+  label("Date", M, 38.5, [190, 175, 140]); blank(M + 9, 39, 58, true); field(M + 9, 34.5, 58, 5.5, "date", 10, 0, true)
+  label("Time", M + 74, 38.5, [190, 175, 140]); blank(M + 83, 39, 40, true); field(M + 83, 34.5, 40, 5.5, "time", 10, 0, true)
+
+  // photo area
+  const py = 52, ph = 98
+  doc.setFillColor(241, 243, 247); doc.setDrawColor(...LINE); doc.setLineWidth(0.4); doc.rect(M, py, CW, ph, "FD")
+  doc.setDrawColor(170, 175, 190); doc.setLineWidth(0.6)
+  const cx = W / 2, cy = py + ph / 2 - 6
+  doc.roundedRect(cx - 12, cy - 8, 24, 16, 2, 2); doc.circle(cx, cy, 4.5); doc.rect(cx - 5, cy - 10.5, 10, 2.5)
+  doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...MUTED)
+  doc.text("Your best exterior or living-room photo", cx, cy + 16, { align: "center" })
+  doc.setFontSize(7.5); doc.text("In Word, insert a picture here. In a PDF editor, add an image over this box.", cx, cy + 21, { align: "center" })
+
+  // price + address
+  let y = py + ph + 11
+  label("Price", M, y - 5)
+  doc.setDrawColor(...LINE); blank(M, y + 2, 70); field(M, y - 5, 70, 8, "price", 18)
+  label("Property address", M + 78, y - 5); blank(M + 78, y + 2, CW - 78); field(M + 78, y - 5, CW - 78, 8, "address", 12)
+  y += 9
+  // fact tiles
+  const facts = ["Beds", "Baths", "Square feet", "Year built"]
+  const tw = (CW - 3 * 4) / 4
+  facts.forEach((f, i) => {
+    const x = M + i * (tw + 4)
+    doc.setFillColor(248, 246, 241); doc.setDrawColor(225, 215, 195); doc.setLineWidth(0.3); doc.roundedRect(x, y, tw, 15, 1.5, 1.5, "FD")
+    field(x + 2, y + 1.5, tw - 4, 8, `fact_${f}`, 14, 1)
+    label(f, x + tw / 2 - doc.getTextWidth(f.toUpperCase()) / 2, y + 12.5, GOLD, 7)
+  })
+  y += 22
+  // highlights
+  doc.setFont("helvetica", "bold"); doc.setFontSize(10.5); doc.setTextColor(...INK); doc.text("Highlights", M, y)
+  y += 6
+  for (let i = 0; i < 4; i++) {
+    doc.setFillColor(...GOLD); doc.circle(M + 1.3, y - 1.2, 0.9, "F")
+    blank(M + 5, y + 0.8, CW - 5); field(M + 5, y - 4, CW - 5, 5.4, `highlight_${i + 1}`, 10)
+    y += 7
+  }
+
+  // agent bar with QR
+  const by = H - 40
+  doc.setFillColor(...NAVY); doc.rect(0, by, W, 40, "F")
+  doc.setFillColor(...GOLD); doc.rect(0, by, W, 1.2, "F")
+  const qx = W - M - 28
+  doc.setFillColor(255, 255, 255); doc.rect(qx, by + 5, 28, 28, "F")
+  doc.setFont("helvetica", "normal"); doc.setFontSize(6.5); doc.setTextColor(...MUTED)
+  doc.text("Your QR code", qx + 14, by + 18, { align: "center" }); doc.text("(scan to test)", qx + 14, by + 21.5, { align: "center" })
+  doc.setFont("helvetica", "bold"); doc.setFontSize(5.5); doc.setTextColor(190, 175, 140)
+  doc.text("SCAN FOR PHOTOS & DETAILS", qx + 14, by + 36.5, { align: "center" })
+  const ax = M, aw = qx - M - 8
+  const row = (lab, yy, w, name, x = ax) => { label(lab, x, yy, [190, 175, 140], 6.5); blank(x + 20, yy + 0.5, w - 20, true); field(x + 20, yy - 4.2, w - 20, 5.2, name, 9.5, 0, true) }
+  row("Agent", by + 10, aw / 2 - 3, "agent_name"); row("Brokerage", by + 10, aw / 2 - 3, "brokerage", ax + aw / 2 + 3)
+  row("Phone", by + 18, aw / 2 - 3, "phone"); row("Email", by + 18, aw / 2 - 3, "email", ax + aw / 2 + 3)
+  row("QR link", by + 26, aw, "qr_link")
+  doc.setFont("helvetica", "normal"); doc.setFontSize(6); doc.setTextColor(150, 160, 180)
+  doc.text("License # / brokerage disclosures: ______________________", ax, by + 34)
+
+  // ---- page 2: guidance ----
+  doc.addPage()
+  y = 18
+  doc.setFont("helvetica", "bold"); doc.setFontSize(18); doc.setTextColor(...INK); doc.text("OPEN HOUSE FLYER: HOW TO FILL IT IN", M, y)
+  y += 3; doc.setDrawColor(...GOLD); doc.setLineWidth(0.8); doc.line(M, y, W - M, y); y += 9
+  const para = (t, size = 9.5, color = INK, style = "normal") => { doc.setFont("helvetica", style); doc.setFontSize(size); doc.setTextColor(...color); const l = doc.splitTextToSize(t, CW); doc.text(l, M, y); y += l.length * 4.6 + 2 }
+  const h = (t) => { y += 2; doc.setFont("helvetica", "bold"); doc.setFontSize(11); doc.setTextColor(...INK); doc.text(t, M, y); y += 6 }
+  h("Event and price")
+  para("Use a short headline (Open House, Just Listed, Price Improved), the date and start/end time, the price and the key facts. Copy the price and facts from the MLS listing so the flyer and the listing match.")
+  h("Photo")
+  para("One strong exterior or living-room photo does more than several small ones. In the Word version, click the photo box and insert a picture.")
+  h("Highlights")
+  para("Three to five specific features that are true for this home. Describe the property, not the people who might live there.")
+  h("QR code and contact details")
+  para("Generate a QR code for the listing link (or your sign-in page), place it in the white square, and test it with a phone before printing. Add your name, brokerage, phone, email, license number and any disclosures your brokerage or state requires.")
+  h("Before you print")
+  for (const item of [
+    "Date, time, address, price and facts match the MLS listing",
+    "Wording follows your brokerage's advertising and fair housing rules",
+    "QR code scanned with a phone and opens the right page",
+    "Printed one copy and read it start to finish",
+  ]) {
+    doc.setDrawColor(90, 90, 100); doc.setLineWidth(0.3); doc.rect(M, y - 3, 3.4, 3.4)
+    if (fillable) { const c = new AcroFormCheckBox(); c.fieldName = `check_${++n}`; c.Rect = [M, y - 3, 3.4, 3.4]; c.appearanceState = "Off"; c.value = "Off"; doc.addField(c) }
+    doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); doc.setTextColor(...INK); doc.text(item, M + 6, y); y += 6.5
+  }
+  y += 4
+  para("ListingFlare members can also build a flyer from a saved listing, using its own photos, facts and a QR code, in three layouts.", 8.5, MUTED, "italic")
+
+  const pages = doc.getNumberOfPages()
+  for (let p = 1; p <= pages; p++) {
+    doc.setPage(p)
+    doc.setFont("helvetica", "normal"); doc.setFontSize(6); doc.setTextColor(150, 160, 180)
+    const fy = p === 1 ? H - 2.5 : H - 8
+    doc.text(FOOTER, M, fy)
+    // On page 1 the right edge holds the QR caption, so the page number sits after the footer text.
+    if (p === 1) doc.text(`Page 1 of ${pages}`, M + doc.getTextWidth(FOOTER) + 4, fy)
+    else doc.text(`Page ${p} of ${pages}`, W - M, fy, { align: "right" })
+  }
+  doc.setProperties({ title: "Open House Flyer", subject: "Free template from ListingFlare", creator: "ListingFlare" })
   return Buffer.from(doc.output("arraybuffer"))
 }
 
@@ -753,8 +891,8 @@ for (const model of [openHouseChecklist, preListing]) {
 }
 
 // New: open house flyer template and the spreadsheet version of the sign-in sheet.
-write(`${openHouseFlyer.file}.pdf`, buildPdf(openHouseFlyer))
-write(`${openHouseFlyer.file}-fillable.pdf`, buildPdf(openHouseFlyer, { fillable: true }))
+write(`${openHouseFlyer.file}.pdf`, buildFlyerPdf())
+write(`${openHouseFlyer.file}-fillable.pdf`, buildFlyerPdf({ fillable: true }))
 write(`${openHouseFlyer.file}.docx`, await buildDocx(openHouseFlyer))
 write(`${openHouseSignIn.file}.xlsx`, await buildSignInXlsx())
 
