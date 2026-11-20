@@ -3,11 +3,11 @@ import { downloadBox } from "@/content/templates";
 
 export const article: BlogPost = {
   slug: "open-house-flyer-template",
-  title: "Open House Flyer Template (Free Printable PDF & Word)",
+  title: "Open House Flyer Templates: 3 Free Designs (PDF & Word)",
   description:
-    "A free open house flyer template as a printable PDF, fillable PDF and Word file, plus what to put on the flyer, wording tips and how to add a QR code.",
+    "Three free open house flyer templates (Classic, Modern and Minimal), each as a printable PDF, fillable PDF and Word file, plus what to put on a flyer.",
   date: "2026-11-14",
-  updated: "2026-11-14",
+  updated: "2026-11-20",
   author: "ListingFlare Team",
   category: "Open Houses",
   keywords: [
@@ -23,7 +23,7 @@ export const article: BlogPost = {
   coverImage: "/blog/open-house-flyer-template/hero.jpg",
   coverImageAlt: "Real estate agent in a light blazer talking with a couple in front of a two-story home on a sunny day",
   content: `
-<p>An open house flyer is a one-page handout that tells people when and where the open house is, what the home offers and how to reach you. The template below has blanks for the event details, price and facts, a photo, highlights, a QR code link and your contact details. Download it as a printable PDF, a fillable PDF you type into on screen, or a Word file you can edit, where you can also add your own photo and branding. Change the headline and it works as a property flyer or a just listed flyer too.</p>
+<p>An open house flyer is a one-page handout that tells people when and where the open house is, what the home offers and how to reach you. Pick one of the three designs below. Each has blanks for the event details, price and facts, photos, highlights, a QR code link and your contact details. Download it as a printable PDF, a fillable PDF you type into on screen, or a Word file you can edit, where you can also add your own photo and branding. Change the headline and it works as a property flyer or a just listed flyer too.</p>
 
 <p><em>Disclosure: we make ListingFlare, which includes an open house flyer generator, mentioned near the end. The template works on its own.</em></p>
 
@@ -87,7 +87,7 @@ ${downloadBox("open-house-flyer-template")}
 <p>The headline, date and time, address, price, key facts such as beds, baths and square feet, one strong photo, a few highlights, a QR code or link for more details, and your contact details and brokerage branding.</p>
 
 <h3>Is there a free open house flyer template?</h3>
-<p>Yes. This page offers one as a printable PDF, a fillable PDF and an editable Word file. It is laid out like a finished flyer, with blanks for your own details; nothing about the property is prefilled.</p>
+<p>Yes. This page offers three designs (Classic, Modern and Minimal), each as a printable PDF, a fillable PDF and an editable Word file. They are laid out like finished flyers, with blanks for your own details; nothing about the property is prefilled. The previews show fictional details and illustrations.</p>
 
 <h3>Can I edit the flyer in Word?</h3>
 <p>Yes. Use the Word version to change the wording, insert your listing photo and add your brokerage logo before you print.</p>
