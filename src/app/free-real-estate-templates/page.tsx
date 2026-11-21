@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import NavAuthCta from "@/components/NavAuthCta";
 import Link from "next/link";
 import { TEMPLATES, downloadBox } from "@/content/templates";
+import TemplateCustomizerMount from "@/components/TemplateCustomizer";
 
 const baseUrl = "https://www.listingflare.com";
 const path = "/free-real-estate-templates";
@@ -109,6 +110,7 @@ export default function Page() {
               </p>
             </div>
           ))}
+          <TemplateCustomizerMount />
         </div>
 
         <section className="mt-12 rounded-xl border border-brand-200 bg-brand-50 p-6 text-center">

@@ -14,6 +14,8 @@ import {
 } from "../flyerOptions";
 import { buildSellerReport } from "../sellerReport";
 import { downloadBox, TEMPLATES } from "../../content/templates";
+import * as TP from "../templatePdf.mjs";
+import * as FP from "../flyerPdf.mjs";
 import { checkCustomDomain, customDomainsConfigured, normalizeDomainInput, stateFromProvider } from "../customDomain";
 
 const src = process.env.LF_SRC_DIR as string;
@@ -110,6 +112,78 @@ test("flyer gallery: three designs, each with a labelled sample preview and its 
   }
   assert.deepEqual(TEMPLATES.filter((t) => t.preview).map((t) => t.id).sort(), ["lead-follow-up-tracker", "listing-marketing-plan-template", "open-house-sign-in-sheet-template", "real-estate-listing-presentation-template", "single-property-website-template"]);
   assert.match(downloadBox("open-house-sign-in-sheet-template"), /US Letter 8.5 &times; 11 in &middot; PDF, Word and Excel &middot; Free download, no sign-up/);
+});
+
+test("template customizer: every template box has a placeholder, including the flyer gallery", () => {
+  for (const t of TEMPLATES) {
+    const box = downloadBox(t.id);
+    if (t.id === "open-house-flyer-template") { assert.ok(box.includes('<div data-template-customizer="open-house-flyer-template" data-kind="flyer" style="min-height:48px;"></div>'), t.id); continue; }
+    assert.match(box, new RegExp('<div data-template-customizer="' + t.id + '" data-title="[^"]+" data-subtitle="[^"]+" style="min-height:48px;"></div>'), t.id);
+  }
+  const blog = read("app/blog/[slug]/page.tsx");
+  assert.ok(blog.includes('contentWithIds.includes("data-template-customizer") && <TemplateCustomizerMount />'));
+  const ui = read("components/TemplateCustomizer.tsx");
+  assert.ok(ui.includes('await import("@/lib/templatePdf.mjs")') && ui.includes('await import("@/lib/flyerPdf.mjs")'), "the PDF library loads only when someone downloads");
+  assert.ok(!ui.includes("fetch("), "nothing typed in the customizer is sent anywhere");
+});
+
+test("template PDF builder: default output keeps the published look; custom colors, title and details are applied safely", () => {
+  type Build = (m: unknown, o?: Record<string, unknown>) => ArrayBuffer;
+  const build = TP.buildTemplatePdf as unknown as Build;
+  const models = TP.TEMPLATE_MODELS as Record<string, { title: string }>;
+  const text = (b: ArrayBuffer) => Buffer.from(b).toString("latin1");
+  const plain = text(build(models["seller-update-report-template"]));
+  assert.match(plain, /0\.06 0\.09 0\.16 rg/, "navy band");
+  assert.match(plain, /SELLER UPDATE REPORT/);
+  assert.ok(!plain.includes("Prepared by"));
+  assert.match(plain, /0\.72 0\.59 0\.35 rg/, "gold stripe");
+  const custom = text(build(models["seller-update-report-template"], {
+    theme: { band: [127, 29, 29], accent: null },
+    title: "Weekly Seller Update \u{1F3E0}",
+    branding: { name: "Jordan Avery", brokerage: "Example Realty Group", contact: "(555) 010-2468" },
+  }));
+  assert.match(custom, /0\.5 0\.11 0\.11 rg/, "custom band color");
+  assert.match(custom, /\(WEEKLY SELLER UPDATE\)/, "title override, emoji removed");
+  assert.match(custom, /Prepared by Jordan Avery/);
+  assert.ok(!/0\.72 0\.59 0\.35 rg/.test(custom), "no gold stripe when none is chosen");
+  const resolve = TP.resolveTheme as unknown as (t: unknown) => { title: number[]; heading: number[] };
+  assert.deepEqual(resolve({ band: [236, 226, 206] }).title, [17, 24, 39], "dark text on a light header");
+  assert.deepEqual(resolve({ band: [20, 83, 45] }).title, [255, 255, 255]);
+  assert.deepEqual(resolve({ band: ["x", 1] }).title, [255, 255, 255], "invalid input falls back to navy");
+  const clean = TP.cleanText as unknown as (v: unknown, n: number) => string;
+  assert.equal(clean("  Jos\u00e9\u200b  O\u2019Neil  ", 60), "Jos\u00e9 ONeil");
+  assert.equal(clean("x".repeat(100), 60).length, 60);
+  const line = TP.brandingLine as unknown as (b: unknown) => string;
+  assert.equal(line({ name: " ", brokerage: "", contact: "" }), "");
+  const fill = text(build(models["seller-update-report-template"], { fillable: true, theme: { band: [17, 94, 89] } }));
+  assert.match(fill, /\/AcroForm/);
+});
+
+test("flyer PDF builder: blank by default; custom colors, headline and agent details are applied and kept readable", () => {
+  type Build = (d: string, o?: Record<string, unknown>) => ArrayBuffer;
+  const build = FP.buildFlyerPdf as unknown as Build;
+  const text = (b: ArrayBuffer) => Buffer.from(b).toString("latin1");
+  const plain = text(build("modern"));
+  assert.match(plain, /\(OPEN HOUSE\)/);
+  assert.match(plain, /0\.06 0\.09 0\.16 rg/, "navy band");
+  assert.ok(!plain.includes("Jordan Avery"));
+  const custom = text(build("classic", {
+    theme: { band: [20, 83, 45], accent: [248, 113, 113] },
+    prefill: { headline: "Just Listed", name: "Jordan Avery", brokerage: "Example Realty Group", phone: "(555) 010-2468", email: "jordan@example.com" },
+  }));
+  assert.match(custom, /\(JUST LISTED\)/);
+  // PDF text escapes parentheses, so the phone number is checked without them.
+  for (const v of ["Jordan Avery", "Example Realty Group", "010-2468", "jordan@example.com"]) assert.ok(custom.includes(v), v);
+  assert.match(custom, /0\.08 0\.33 0\.18 rg/, "forest band");
+  const fill = text(build("modern", { fillable: true, prefill: { name: "Jordan Avery" } }));
+  assert.match(fill, /\/AcroForm/);
+  assert.match(fill, /\/V \(Jordan Avery\)/, "fillable version starts with the agent name filled in");
+  const colors = TP.flyerColors as unknown as (t: unknown) => { band: number[]; accent: number[] };
+  const lum = ([r, g, b]: number[]) => [r, g, b].map((c) => { c /= 255; return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4 }).reduce((a, c, i) => a + c * [0.2126, 0.7152, 0.0722][i], 0);
+  const pale = colors({ band: [200, 220, 240], accent: [170, 176, 186] });
+  assert.ok(lum(pale.band) <= 0.12, "light band deepened for white text");
+  assert.ok(lum(pale.accent) <= 0.3, "pale accent deepened for labels on white");
+  assert.deepEqual(colors(null).band, [15, 23, 42]);
 });
 
 // ---------- seller report ----------
