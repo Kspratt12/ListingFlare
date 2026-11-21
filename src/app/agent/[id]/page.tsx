@@ -42,7 +42,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const hidden = isAgentInactive(data) || isDemoAgentId(data.id);
 
   return {
-    title: [data.name || "Agent", data.brokerage].filter(Boolean).join(" - ") + " | ListingFlare",
+    // The root layout template already adds "| ListingFlare".
+    title: { absolute: [data.name || "Agent", data.brokerage].filter(Boolean).join(" - ") + " | ListingFlare" },
     description: `Property listings from ${data.name || "this agent"}${data.brokerage ? ` at ${data.brokerage}` : ""}.`,
     ...(hidden ? { robots: { index: false, follow: true } } : {}),
   };

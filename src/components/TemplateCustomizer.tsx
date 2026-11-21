@@ -37,6 +37,10 @@ function Customizer({ id, kind, title, subtitle }: Props) {
   const [band, setBand] = useState<string>("navy");
   const [customHex, setCustomHex] = useState("#1e3a8a");
   const [accent, setAccent] = useState<string>("gold");
+  const [accentHex, setAccentHex] = useState("#d4a373");
+  const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+  // Browsers with a built-in PDF viewer (desktop Chrome, Edge, Firefox, Safari) show the real PDF as a live preview.
+  const [inlinePdf] = useState(() => typeof navigator !== "undefined" && (navigator as Navigator & { pdfViewerEnabled?: boolean }).pdfViewerEnabled === true);
   const [heading, setHeading] = useState("");
   const [name, setName] = useState("");
   const [brokerage, setBrokerage] = useState("");
@@ -49,7 +53,7 @@ function Customizer({ id, kind, title, subtitle }: Props) {
   const accents = flyer ? ACCENT_COLORS.filter((c) => c.rgb) : ACCENT_COLORS;
 
   const bandRgb: RGB = band === "custom" ? hexToRgb(customHex) || [15, 23, 42] : (BAND_COLORS.find((c) => c.id === band)?.rgb as RGB);
-  const accentRgb = (ACCENT_COLORS.find((c) => c.id === accent)?.rgb ?? null) as RGB | null;
+  const accentRgb = (accent === "custom" ? hexToRgb(accentHex) || [184, 150, 90] : ACCENT_COLORS.find((c) => c.id === accent)?.rgb ?? null) as RGB | null;
   const theme = band === "navy" && accent === "gold" ? null : { band: bandRgb, accent: accentRgb };
   const contact = [phone, email].map((v) => cleanText(v, 40)).filter(Boolean).join("  ·  ");
 
@@ -60,13 +64,10 @@ function Customizer({ id, kind, title, subtitle }: Props) {
   const brand = brandingLine({ name, brokerage, contact });
 
   const reset = () => {
-    setBand("navy"); setAccent("gold"); setHeading(""); setName(""); setBrokerage(""); setPhone(""); setEmail(""); setFillable(false); setError("");
+    setBand("navy"); setAccent("gold"); setDesign("modern"); setHeading(""); setName(""); setBrokerage(""); setPhone(""); setEmail(""); setFillable(false); setError("");
   };
 
-  const download = async () => {
-    setBusy(true);
-    setError("");
-    try {
+  const buildPdf = async (): Promise<{ buf: ArrayBuffer; file: string }> => {
       let buf: ArrayBuffer;
       let file: string;
       if (flyer) {
@@ -82,6 +83,33 @@ function Customizer({ id, kind, title, subtitle }: Props) {
         buf = build(model, { fillable: canFill && fillable, theme, title: heading, branding: { name, brokerage, contact } });
         file = `${id}${canFill && fillable ? "-fillable" : ""}-custom.pdf`;
       }
+      return { buf, file };
+  };
+
+  // Live preview: rebuild the PDF shortly after each change while the panel is open.
+  useEffect(() => {
+    if (!open || !inlinePdf) return;
+    let cancelled = false;
+    const timer = setTimeout(async () => {
+      try {
+        const { buf } = await buildPdf();
+        if (cancelled) return;
+        const next = URL.createObjectURL(new Blob([buf], { type: "application/pdf" }));
+        setPdfUrl((old) => { if (old) URL.revokeObjectURL(old); return next; });
+      } catch {
+        /* the sketch preview and the download button still work */
+      }
+    }, 450);
+    return () => { cancelled = true; clearTimeout(timer); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, inlinePdf, design, band, customHex, accent, accentHex, heading, name, brokerage, phone, email, fillable]);
+  useEffect(() => () => { setPdfUrl((old) => { if (old) URL.revokeObjectURL(old); return null; }); }, []);
+
+  const download = async () => {
+    setBusy(true);
+    setError("");
+    try {
+      const { buf, file } = await buildPdf();
       const url = URL.createObjectURL(new Blob([buf], { type: "application/pdf" }));
       const a = document.createElement("a");
       a.href = url;
@@ -127,6 +155,12 @@ function Customizer({ id, kind, title, subtitle }: Props) {
               className={`${swatchClass} ${accent === c.id ? "ring-2 ring-gray-900 ring-offset-2" : ""} ${c.rgb ? "" : "bg-[repeating-linear-gradient(45deg,#fff,#fff_3px,#e5e7eb_3px,#e5e7eb_6px)]"}`}
               style={c.rgb ? { background: css(c.rgb as RGB) } : undefined} />
           ))}
+          <label className={`inline-flex h-7 items-center gap-1 rounded-full border px-2 text-xs font-medium ${accent === "custom" ? "border-gray-900 text-gray-900" : "border-gray-300 text-gray-600"}`}>
+            <input type="color" value={accentHex} aria-label="Custom accent color"
+              onChange={(e) => { setAccentHex(e.target.value); setAccent("custom"); }}
+              className="h-4 w-4 cursor-pointer rounded-full border-0 bg-transparent p-0" />
+            Custom
+          </label>
         </div>
       </fieldset>
     </>
@@ -197,15 +231,33 @@ function Customizer({ id, kind, title, subtitle }: Props) {
 
       {open && (
         <div id={`${uid}-panel`} className="mt-3 rounded-lg border border-[#ddd8c8] bg-white p-4 text-left">
-          <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
+          <div className={`grid gap-5 ${inlinePdf ? "md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]" : "md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]"}`}>
             <div>
               <div className="text-xs font-semibold uppercase tracking-wider text-gray-500">Preview</div>
-              <div className="mt-2">{preview}</div>
-              <div className="mt-2 text-xs text-gray-500">
-                {flyer
-                  ? "A sketch of your choices. The flyer keeps the same layout as the free download, with blanks for the event details and photo space."
-                  : "The rest of the template keeps the same wording and layout as the standard PDF."}
-              </div>
+              {inlinePdf ? (
+                <>
+                  <div className="mt-2 overflow-hidden rounded-md border border-gray-200 bg-gray-50 shadow-sm">
+                    {pdfUrl ? (
+                      <iframe title="Live preview of your customized PDF" src={pdfUrl + "#toolbar=0&navpanes=0&view=FitH"} className="block w-full" style={{ aspectRatio: "8.5 / 11" }} />
+                    ) : (
+                      <div className="flex w-full items-center justify-center text-sm text-gray-500" style={{ aspectRatio: "8.5 / 11" }}>Building your preview…</div>
+                    )}
+                  </div>
+                  <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-xs text-gray-500">
+                    <span>This is the actual PDF, updated as you make changes.</span>
+                    {pdfUrl && <a href={pdfUrl} target="_blank" rel="noopener" className="font-medium text-[#75634a] underline underline-offset-2">Open full size</a>}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="mt-2">{preview}</div>
+                  <div className="mt-2 text-xs text-gray-500">
+                    {flyer
+                      ? "A sketch of your choices. The flyer keeps the same layout as the free download, with blanks for the event details and photo space."
+                      : "The rest of the template keeps the same wording and layout as the standard PDF."}
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="space-y-4">

@@ -81,6 +81,7 @@ export const TEMPLATES: Template[] = [
       "Paperwork, pricing, home preparation, photos and media, marketing setup and go-live steps to finish before a listing goes live.",
     guideHref: "/blog/pre-listing-checklist",
     guideLabel: "How to use the checklist",
+    preview: { src: "/templates/pre-listing-checklist-template-preview.jpg", alt: "Page 1 of the pre-listing checklist: navy title band, property and seller lines, and tick boxes for paperwork, pricing, home preparation, photos and media, and marketing setup", width: 826, height: 1069 },
     files: [
       { label: "PDF", href: "/downloads/pre-listing-checklist-template.pdf", note: "Print and tick off by hand" },
       word("pre-listing-checklist-template"),
@@ -92,6 +93,7 @@ export const TEMPLATES: Template[] = [
     description: "What to do a week before, the day before, at the open house and afterward, with a spot for your brokerage's safety guidance.",
     guideHref: "/blog/open-house-checklist",
     guideLabel: "How to run the day",
+    preview: { src: "/templates/open-house-checklist-template-preview.jpg", alt: "Page 1 of the open house checklist: navy title band, property and host lines, and tick boxes for a week before, the day before, at the open house and after", width: 826, height: 1069 },
     files: [
       { label: "PDF", href: "/downloads/open-house-checklist-template.pdf", note: "Print and tick off by hand" },
       word("open-house-checklist-template"),
@@ -163,6 +165,7 @@ export const TEMPLATES: Template[] = [
       "A short weekly update for a listing's seller: activity, showing feedback, what you did, nearby market activity and your recommendation.",
     guideHref: "/blog/seller-update-report-template",
     guideLabel: "How to write the update",
+    preview: { src: "/templates/seller-update-report-template-preview.jpg", alt: "Page 1 of the seller update report template: navy title band, blank lines for the listing and period, an activity table comparing this period with the last, showing feedback lines and a what I did this period checklist", width: 826, height: 1069 },
     files: [pdf("seller-update-report-template"), fillable("seller-update-report-template"), word("seller-update-report-template")],
   },
   {
@@ -172,6 +175,7 @@ export const TEMPLATES: Template[] = [
       "Edit-and-paste first replies for text and email, an after-hours auto-reply, a voicemail script, showing confirmations and day 3 and day 7 check-ins.",
     guideHref: "/blog/how-to-respond-to-real-estate-leads",
     guideLabel: "How to respond to leads",
+    preview: { src: "/templates/real-estate-lead-response-scripts-preview.jpg", alt: "Page 1 of the lead response scripts template: navy title band, your details, and example scripts with blank lines for a first text reply, a first email reply, an after-hours auto-reply and a voicemail", width: 826, height: 1069 },
     files: [pdf("real-estate-lead-response-scripts"), fillable("real-estate-lead-response-scripts"), word("real-estate-lead-response-scripts")],
   },
   {
@@ -181,6 +185,7 @@ export const TEMPLATES: Template[] = [
       "The questions buyers ask most, with blanks for your answers. Fill it in before you publish so your listing page and AI chat give accurate answers.",
     guideHref: "/blog/listing-faq-questions-buyers-ask",
     guideLabel: "Why it matters",
+    preview: { src: "/templates/listing-faq-worksheet-preview.jpg", alt: "Page 1 of the listing FAQ worksheet: navy title band and blank lines for cost and terms, the home, showing and offers, and community and logistics", width: 826, height: 1069 },
     files: [pdf("listing-faq-worksheet"), fillable("listing-faq-worksheet"), word("listing-faq-worksheet")],
   },
   {
@@ -205,6 +210,7 @@ export const TEMPLATES: Template[] = [
       "An intake form for a new buyer: contact details, timeline, budget and financing, the home they want, working with an agent, showings and a fair housing reminder.",
     guideHref: "/blog/real-estate-buyer-questionnaire",
     guideLabel: "How to use it",
+    preview: { src: "/templates/real-estate-buyer-questionnaire-template-preview.jpg", alt: "Page 1 of the buyer questionnaire template: navy title band, blank lines for buyer details, timeline and situation, budget and financing, and the home they want, with must-haves, nice-to-haves and deal-breakers", width: 826, height: 1069 },
     files: [pdf("real-estate-buyer-questionnaire-template"), fillable("real-estate-buyer-questionnaire-template"), word("real-estate-buyer-questionnaire-template")],
   },
 ];
@@ -215,13 +221,24 @@ export function getTemplate(id: string): Template | undefined {
 
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 
+const FORMAT_BADGES: Record<string, { text: string; color: string }> = {
+  PDF: { text: "PDF", color: "#b91c1c" },
+  "Fillable PDF": { text: "FILL", color: "#c2410c" },
+  Word: { text: "DOC", color: "#1d4ed8" },
+  "Excel / Google Sheets": { text: "XLS", color: "#15803d" },
+};
+
 function fileButton(f: TemplateFile, compact = false): string {
   const style = compact
-    ? "display:block;margin:0 0 6px;padding:8px 10px;border-radius:8px;background:#9a8866;color:#ffffff;font-weight:600;font-size:13px;text-decoration:none;text-align:center;"
-    : "display:inline-block;margin:0 8px 8px 0;padding:10px 16px;border-radius:8px;background:#9a8866;color:#ffffff;font-weight:600;font-size:14px;text-decoration:none;";
+    ? "display:flex;align-items:center;gap:8px;margin:0 0 6px;padding:8px 10px;border-radius:8px;background:#9a8866;color:#ffffff;font-weight:600;font-size:13px;text-decoration:none;text-align:left;"
+    : "display:inline-flex;align-items:center;gap:10px;margin:0 4px 8px;padding:10px 16px;border-radius:8px;background:#9a8866;color:#ffffff;font-weight:600;font-size:14px;text-decoration:none;text-align:left;vertical-align:top;";
+  const b = FORMAT_BADGES[f.label];
+  const badge = b
+    ? '<span aria-hidden="true" style="flex:none;display:inline-block;min-width:30px;padding:3px 5px;border-radius:4px;background:#ffffff;color:' + b.color + ';font-size:10px;font-weight:800;letter-spacing:0.04em;text-align:center;line-height:1.2;">' + b.text + "</span>"
+    : "";
   return (
-    '<a href="' + f.href + '" download style="' + style + '">Download ' + f.label +
-    '<span style="display:block;font-size:11px;font-weight:400;opacity:0.9;">' + f.note + "</span></a>"
+    '<a href="' + f.href + '" download style="' + style + '">' + badge + "<span>Download " + f.label +
+    '<span style="display:block;font-size:11px;font-weight:400;opacity:0.9;">' + f.note + "</span></span></a>"
   );
 }
 
@@ -290,20 +307,20 @@ export function downloadBox(id: string): string {
       "</div>"
     );
   }
-  const body = header + detailsStrip(t.files) + "<div>" + t.files.map((f) => fileButton(f)).join("") + "</div>" + customizerSlot(t.id) + (hasFillable ? FILLABLE_NOTE : "") + GENERAL_NOTE;
-  if (!t.preview) return open + body + "</div>";
-  // Page-1 preview beside the downloads; it stacks above them on narrow screens.
+  const buttons = '<div style="text-align:center;">' + t.files.map((f) => fileButton(f)).join("") + customizerSlot(t.id) + "</div>";
+  const notes = (hasFillable ? FILLABLE_NOTE : "") + GENERAL_NOTE;
+  if (!t.preview) return open + header + detailsStrip(t.files) + buttons + notes + "</div>";
+  // Page-1 preview between the description and the downloads, large enough to read the layout.
   const printable = t.files.find((f) => f.label === "PDF") || t.files[0];
   return (
-    open.replace('">', 'display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;">') +
-    '<div style="flex:0 1 230px;min-width:180px;max-width:100%;margin:0 auto;">' +
+    open + header + detailsStrip(t.files) +
+    '<div style="max-width:340px;margin:6px auto 16px;">' +
     '<a href="' + printable.href + '" aria-label="' + esc(t.title + ": open the printable PDF") + '" style="display:block;">' +
     '<img src="' + t.preview.src + '" alt="' + esc(t.preview.alt) + '" width="' + t.preview.width + '" height="' + t.preview.height +
     '" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;aspect-ratio:' + t.preview.width + " / " + t.preview.height +
-    ';border:1px solid #ddd8c8;border-radius:6px;background:#ffffff;box-shadow:0 4px 14px rgba(15,23,42,0.14);" /></a>' +
+    ';border:1px solid #ddd8c8;border-radius:6px;background:#ffffff;box-shadow:0 6px 18px rgba(15,23,42,0.16);" /></a>' +
     '<div style="margin-top:8px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:999px;background:#eceae3;color:#374151;font-size:11px;font-weight:600;">Page 1 preview</span></div>' +
     "</div>" +
-    '<div style="flex:1 1 300px;min-width:0;">' + body + "</div>" +
-    "</div>"
+    buttons + notes + "</div>"
   );
 }

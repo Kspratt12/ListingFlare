@@ -40,11 +40,11 @@ A report is skipped, recorded once, and the schedule moves on when any of these 
 1. Migration 047 is applied in production.
 2. `SELLER_REPORTS_ENABLED=1` is set in Production. `RESEND_API_KEY` and `CRON_SECRET` already existed.
 3. `/api/cron/seller-reports` runs hourly via Vercel Cron (`vercel.json`, Pro plan). Unauthenticated calls get 401.
-4. Checked live on a draft test listing: the seller email is picked up from the portal, and Preview refuses a
-   draft ("no report was sent"). **Not yet done:** one real send to the owner address. It needs a *published*
-   test listing, and publishing was held for approval. Publishing also emails past leads in the same city and
-   state, so use a city no other listing uses.
+4. Verified live on 2026-11-20 with a published synthetic listing whose seller portal used the owner's address
+   (zero other notification recipients, checked with the same filters the app uses). The hourly cron sent one report
+   at the scheduled hour; Resend accepted it on the first attempt, and the owner confirmed it arrived. The listing, its
+   portal, schedule, send log and uploads were then deleted (deletion cascades to the schedule, so nothing else sends).
 
 **Disable:** unset `SELLER_REPORTS_ENABLED`. Nothing is sent, and schedules and history are kept.
 
-**Not verified:** a real Resend send, real inbox delivery, or a real scheduler-triggered send.
+**Not verified:** delivery to inboxes other than the owner's test address.

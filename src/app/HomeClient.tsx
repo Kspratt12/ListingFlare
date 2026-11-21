@@ -99,6 +99,8 @@ const included = [
   "Text leads with one tap from your real phone number",
   "Seller transparency portal so your clients watch their listing live",
   "Printable seller activity reports for the last 7, 14 or 30 days",
+  "Optional scheduled seller report emails, weekly, every two weeks or monthly",
+  "Use a domain you own, like homes.yourname.com, for your agent and listing pages",
   "Hot Lead scoring + drag-and-drop pipeline view",
   "Showing reminder emails to buyers",
   "Social posts, QR sign-in, analytics",
@@ -750,6 +752,14 @@ function LandingPageInner({ posts, showHomesLink = false }: { posts: LatestPost[
     {
       question: "Can I use ListingFlare with my brokerage branding?",
       answer: "Yes. Your headshot, name, brokerage logo, phone number, and social links appear on every listing page. Sellers see a polished, professional presentation. Buyers see a premium experience that builds trust in you as their agent.",
+    },
+    {
+      question: "Can I use my own domain name?",
+      answer: "Yes, if you already own one. In Settings, enter a domain or subdomain you own, such as homes.yourname.com. ListingFlare shows the exact DNS records to add at your domain registrar, usually one record for a subdomain. Changes can take a few minutes and up to 48 hours to work everywhere. Once the domain is connected, your agent page and listing pages load on it, and the secure (https) certificate is set up automatically. You keep the domain with your registrar; ListingFlare does not sell or renew domains.",
+    },
+    {
+      question: "Can my seller get activity reports automatically?",
+      answer: "Yes. You can print a seller activity report for the last 7, 14 or 30 days at any time. You can also turn on scheduled report emails for a listing: choose weekly, every two weeks or monthly, plus a day and time, and each email covers the 7, 14 or 30 days before it is sent. Reports go to the seller email on that listing's seller portal, show counts with plain-language definitions, and never include buyer names, contact details or conversations.",
     },
   ];
 

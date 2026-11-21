@@ -110,7 +110,16 @@ test("flyer gallery: three designs, each with a labelled sample preview and its 
     assert.ok(fs.statSync(path.join(pub, t.preview.src)).size < 200 * 1024, t.id + " preview stays light");
     assert.match(b, />Page 1 preview</);
   }
-  assert.deepEqual(TEMPLATES.filter((t) => t.preview).map((t) => t.id).sort(), ["lead-follow-up-tracker", "listing-marketing-plan-template", "open-house-sign-in-sheet-template", "real-estate-listing-presentation-template", "single-property-website-template"]);
+  // Every template has a page-1 preview (the flyer has its three design previews instead).
+  assert.deepEqual(TEMPLATES.filter((t) => !t.preview).map((t) => t.id), ["open-house-flyer-template"]);
+  // Format badges: one per button, matching the file type.
+  const signIn = downloadBox("open-house-sign-in-sheet-template");
+  for (const [label, badge] of [["PDF", "PDF"], ["Word", "DOC"], ["Excel / Google Sheets", "XLS"]]) {
+    assert.ok(new RegExp(">" + badge + "</span><span>Download " + label.replace(/[/]/g, "\/")).test(signIn), label);
+  }
+  assert.ok(downloadBox("seller-update-report-template").includes(">FILL</span><span>Download Fillable PDF"));
+  // Stacked layout: the preview comes before the download buttons.
+  assert.ok(signIn.indexOf("<img ") < signIn.indexOf(" download "), "preview above the buttons");
   assert.match(downloadBox("open-house-sign-in-sheet-template"), /US Letter 8.5 &times; 11 in &middot; PDF, Word and Excel &middot; Free download, no sign-up/);
 });
 
