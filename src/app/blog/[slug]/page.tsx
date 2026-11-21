@@ -276,35 +276,23 @@ export default async function BlogPostPage({ params }: Props) {
           <h1 className="mt-3 font-serif text-3xl font-bold leading-tight text-gray-900 md:text-4xl">
             {post.title}
           </h1>
-          <div className="mt-4 flex items-center gap-3 text-sm text-gray-500">
-            <a href="/about" className="font-medium text-gray-700 hover:text-brand-600 transition-colors">Kelvin Spratt</a>
-            <span>&middot;</span>
-            <time dateTime={post.date}>
-              {new Date(post.date).toLocaleDateString("en-US", {
-                timeZone: "UTC",
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}
+          {/* Byline. Each item stays on one line; on phones the original date is hidden when there is an update. */}
+          <div className="mt-4 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[13px] text-gray-500 sm:gap-x-2 sm:text-sm">
+            <a href="/about" className="whitespace-nowrap font-medium text-gray-700 hover:text-brand-600 transition-colors">Kelvin Spratt</a>
+            <span aria-hidden="true" className={post.updated && post.updated !== post.date ? "hidden sm:inline" : undefined}>&middot;</span>
+            <time dateTime={post.date} className={post.updated && post.updated !== post.date ? "hidden whitespace-nowrap sm:inline" : "whitespace-nowrap"}>
+              {new Date(post.date).toLocaleDateString("en-US", { timeZone: "UTC", month: "short", day: "numeric", year: "numeric" })}
             </time>
             {post.updated && post.updated !== post.date && (
               <>
-                <span>&middot;</span>
-                <span>
-                  Updated{" "}
-                  <time dateTime={post.updated}>
-                    {new Date(post.updated).toLocaleDateString("en-US", {
-                      timeZone: "UTC",
-                      month: "long",
-                      day: "numeric",
-                      year: "numeric",
-                    })}
-                  </time>
+                <span aria-hidden="true">&middot;</span>
+                <span className="whitespace-nowrap">
+                  Updated <time dateTime={post.updated}>{new Date(post.updated).toLocaleDateString("en-US", { timeZone: "UTC", month: "short", day: "numeric", year: "numeric" })}</time>
                 </span>
               </>
             )}
-            <span>&middot;</span>
-            <span>{post.readingTime} min read</span>
+            <span aria-hidden="true">&middot;</span>
+            <span className="whitespace-nowrap">{post.readingTime} min read</span>
           </div>
         </header>
 
@@ -555,7 +543,7 @@ export default async function BlogPostPage({ params }: Props) {
           </h2>
           <p className="mt-3 text-gray-600">
             ListingFlare creates stunning single-property websites with AI
-            chatbot, lead capture, and instant follow-up - so you never miss a
+            chatbot, lead capture, and instant follow-up, so you never miss a
             buyer.
           </p>
           <div className="mt-6 flex items-center justify-center gap-4">

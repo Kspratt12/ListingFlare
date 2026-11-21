@@ -24,6 +24,8 @@ export interface Template {
    * sample text and original illustrations; the downloads themselves are blank.
    */
   designs?: TemplateDesign[];
+  /** Page 1 of the blank PDF, rendered to public/templates (826x1069), shown beside the downloads. */
+  preview?: { src: string; alt: string; width: number; height: number };
 }
 
 export interface TemplateDesign {
@@ -47,6 +49,7 @@ export const TEMPLATES: Template[] = [
       "Agent details, seller goals, comparable homes, pricing, a marketing plan checklist, communication plan, fees and next steps.",
     guideHref: "/blog/real-estate-listing-presentation-template",
     guideLabel: "How to fill it in",
+    preview: { src: "/templates/real-estate-listing-presentation-template-preview.jpg", alt: "Page 1 of the listing presentation template: navy title band, About you and The seller and the home sections with blank lines, a comparable homes table and a pricing recommendation section", width: 826, height: 1069 },
     files: [pdf("real-estate-listing-presentation-template"), fillable("real-estate-listing-presentation-template"), word("real-estate-listing-presentation-template")],
   },
   {
@@ -56,6 +59,7 @@ export const TEMPLATES: Template[] = [
       "A one-to-two page plan for a seller: goals, pricing and timeline, marketing activities, online and in-person steps, and how you will report progress.",
     guideHref: "/blog/listing-marketing-plan-template",
     guideLabel: "How to write the plan",
+    preview: { src: "/templates/listing-marketing-plan-template-preview.jpg", alt: "Page 1 of the listing marketing plan template: navy title band, blank lines for the listing and seller, goals, pricing and timeline, and a marketing activities table with what you will do, when and a done column", width: 826, height: 1069 },
     files: [pdf("listing-marketing-plan-template"), fillable("listing-marketing-plan-template"), word("listing-marketing-plan-template")],
   },
   {
@@ -65,6 +69,7 @@ export const TEMPLATES: Template[] = [
       "Everything to gather before you build a page for one listing: basics, headline, description, features, neighborhood, media, buyer questions and call to action.",
     guideHref: "/blog/single-property-website-template",
     guideLabel: "How to use it",
+    preview: { src: "/templates/single-property-website-template-preview.jpg", alt: "Page 1 of the single property website content template: navy title band, blank lines for property basics, a headline and hero photo, the description, and a key features table", width: 826, height: 1069 },
     files: [pdf("single-property-website-template"), fillable("single-property-website-template"), word("single-property-website-template")],
   },
   {
@@ -97,6 +102,7 @@ export const TEMPLATES: Template[] = [
       "A printable one-page sign-in sheet with room for a consent line, name, phone, email, whether the visitor has an agent, and notes.",
     guideHref: "/blog/open-house-sign-in-sheet-template",
     guideLabel: "What to put on it",
+    preview: { src: "/templates/open-house-sign-in-sheet-template-preview.jpg", alt: "Page 1 of the open house sign-in sheet: navy title band, property address, date and host lines, a consent wording line, and a table with columns for name, phone, email, has agent and notes", width: 826, height: 1069 },
     files: [
       { label: "PDF", href: "/downloads/open-house-sign-in-sheet-template.pdf", note: "Print and keep at the door" },
       { label: "Word", href: "/downloads/open-house-sign-in-sheet-template.docx", note: "Edit the wording first" },
@@ -182,6 +188,7 @@ export const TEMPLATES: Template[] = [
       "A one-page tracker for each lead's first reply time, day 1, day 3 and day 7 touches, status and next step.",
     guideHref: "/blog/real-estate-lead-nurture-campaign",
     guideLabel: "How to nurture leads",
+    preview: { src: "/templates/lead-follow-up-tracker-preview.jpg", alt: "Page 1 of the lead follow-up tracker: navy title band and a table with columns for lead name, source, first reply time, day 1, day 3 and day 7 follow-ups, status and next step", width: 826, height: 1069 },
     files: [
       pdf("lead-follow-up-tracker"),
       fillable("lead-follow-up-tracker"),
@@ -214,6 +221,13 @@ function fileButton(f: TemplateFile, compact = false): string {
     '<a href="' + f.href + '" download style="' + style + '">Download ' + f.label +
     '<span style="display:block;font-size:11px;font-weight:400;opacity:0.9;">' + f.note + "</span></a>"
   );
+}
+
+const FORMAT_NAMES: Record<string, string> = { PDF: "PDF", "Fillable PDF": "fillable PDF", Word: "Word", "Excel / Google Sheets": "Excel" };
+function detailsStrip(files: TemplateFile[]): string {
+  const names = Array.from(new Set(files.map((f) => FORMAT_NAMES[f.label] || f.label)));
+  const list = names.length > 1 ? names.slice(0, -1).join(", ") + " and " + names[names.length - 1] : names[0];
+  return '<div style="margin:0 0 12px;font-size:13px;font-weight:600;color:#374151;">US Letter 8.5 &times; 11 in &middot; ' + list + " &middot; Free download, no sign-up</div>";
 }
 
 const FILLABLE_NOTE =
@@ -254,7 +268,7 @@ export function downloadBox(id: string): string {
     return (
       open +
       header +
-      '<div style="margin:0 0 12px;font-size:13px;font-weight:600;color:#374151;">US Letter 8.5 &times; 11 in &middot; PDF, fillable PDF and Word &middot; Free downloads, no sign-up</div>' +
+      detailsStrip(all).replace("Free download,", "Free downloads,") +
       '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;">' + t.designs.map(designCard).join("") + "</div>" +
       '<div style="margin-top:12px;font-size:12px;color:#6b7280;">Previews show fictional sample text and illustrations, not a real property or agent. The downloads are blank, ready for your own details and photos.</div>' +
       (hasFillable ? FILLABLE_NOTE : "") +
@@ -263,5 +277,20 @@ export function downloadBox(id: string): string {
       "</div>"
     );
   }
-  return open + header + "<div>" + t.files.map((f) => fileButton(f)).join("") + "</div>" + (hasFillable ? FILLABLE_NOTE : "") + GENERAL_NOTE + "</div>";
+  const body = header + detailsStrip(t.files) + "<div>" + t.files.map((f) => fileButton(f)).join("") + "</div>" + (hasFillable ? FILLABLE_NOTE : "") + GENERAL_NOTE;
+  if (!t.preview) return open + body + "</div>";
+  // Page-1 preview beside the downloads; it stacks above them on narrow screens.
+  const printable = t.files.find((f) => f.label === "PDF") || t.files[0];
+  return (
+    open.replace('">', 'display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;">') +
+    '<div style="flex:0 1 230px;min-width:180px;max-width:100%;margin:0 auto;">' +
+    '<a href="' + printable.href + '" aria-label="' + esc(t.title + ": open the printable PDF") + '" style="display:block;">' +
+    '<img src="' + t.preview.src + '" alt="' + esc(t.preview.alt) + '" width="' + t.preview.width + '" height="' + t.preview.height +
+    '" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;aspect-ratio:' + t.preview.width + " / " + t.preview.height +
+    ';border:1px solid #ddd8c8;border-radius:6px;background:#ffffff;box-shadow:0 4px 14px rgba(15,23,42,0.14);" /></a>' +
+    '<div style="margin-top:8px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:999px;background:#eceae3;color:#374151;font-size:11px;font-weight:600;">Page 1 preview</span></div>' +
+    "</div>" +
+    '<div style="flex:1 1 300px;min-width:0;">' + body + "</div>" +
+    "</div>"
+  );
 }
