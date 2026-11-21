@@ -52,6 +52,7 @@ const featureGroups = [
       "Interactive floor plans: tap a room to see its photo",
       "Unbranded property links for MLS virtual-tour fields",
       "Your own agent page with all your listings, plus optional “more listings” on each property page",
+      "Connect a domain you own (like homes.yourname.com): add the DNS records shown in Settings, and https is set up automatically",
       "Auto-generated SEO metadata and sitemaps",
       "Public city pages, eligible for search indexing once qualifying inventory requirements are met",
     ],
@@ -119,6 +120,7 @@ const featureGroups = [
       "Magic-link invite email with your brand, sent with one click",
       "Visit tracking so you know when your seller checks in",
       "Printable seller activity report for the last 7, 14 or 30 days, with what each number means",
+      "Optional scheduled seller report emails: weekly, every two weeks or monthly",
     ],
   },
   {

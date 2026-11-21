@@ -19,12 +19,15 @@ in the deployment environment (names only):
 
 With the flag off the middleware behaves exactly as before this feature, and Settings shows "Not available yet".
 
-**Not verified:** a real domain, real DNS, a real Vercel API call, or certificate issuance.
+**Verified live 2026-11-21** (see below).
 
-**2026-11-20:** still off. Migration 046 is applied. `VERCEL_API_TOKEN` is the blocker: the Vercel CLI sign-in cannot create
-access tokens (403), so the owner must create one at vercel.com/account/tokens (scope: the kelvin-spratts-projects team)
-and add it to Production as a sensitive variable. Then set `CUSTOM_DOMAINS_ENABLED=1`, `VERCEL_PROJECT_ID` and
-`VERCEL_TEAM_ID`, redeploy, and test with `lf-test.parpercision.com` (that domain is on Vercel DNS, so no registrar change).
+**2026-11-21: on in Production.** `CUSTOM_DOMAINS_ENABLED=1`, `VERCEL_API_TOKEN` (team-scoped token
+"listingflare-custom-domains", expires 2027-11-21, stored as a sensitive Production variable), `VERCEL_PROJECT_ID` and
+`VERCEL_TEAM_ID`. Verified live with `lf-test.parpercision.com` (on Vercel DNS, so no DNS change was needed): Connected
+immediately, valid HTTPS certificate, `/` showed the agent page, the agent's listing loaded, an unknown listing returned 404,
+and `/dashboard`, `/login`, `/blog` and other APIs redirected to www.listingflare.com. Removing it took it off the Vercel
+project and the host returned 404 within a minute. Not verified live: another agent's listing on a customer domain
+(covered by automated tests), and a domain whose DNS is hosted outside Vercel. Rotate the token before it expires.
 
 ## How it works
 
