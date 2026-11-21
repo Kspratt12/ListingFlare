@@ -129,6 +129,13 @@ test("template customizer: every template box has a placeholder, including the f
     if (t.id === "open-house-flyer-template") { assert.ok(box.includes('<div data-template-customizer="open-house-flyer-template" data-kind="flyer" style="min-height:48px;"></div>'), t.id); continue; }
     assert.match(box, new RegExp('<div data-template-customizer="' + t.id + '" data-title="[^"]+" data-subtitle="[^"]+" style="min-height:48px;"></div>'), t.id);
   }
+  // Standard templates: the customizer panel opens full width below the preview and downloads.
+  for (const t of TEMPLATES.filter((x) => x.id !== "open-house-flyer-template")) {
+    const box = downloadBox(t.id);
+    assert.ok(box.startsWith("<div data-template-box "), t.id);
+    assert.ok(box.includes('<div data-customizer-panel="' + t.id + '"></div>'), t.id);
+    assert.ok(box.indexOf("data-template-customizer=") < box.indexOf("data-customizer-panel="), t.id);
+  }
   const blog = read("app/blog/[slug]/page.tsx");
   assert.ok(blog.includes('contentWithIds.includes("data-template-customizer") && <TemplateCustomizerMount />'));
   const ui = read("components/TemplateCustomizer.tsx");
