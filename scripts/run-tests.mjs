@@ -39,6 +39,8 @@ function compile(file) {
     if (spec.startsWith("@/")) resolved = path.join(srcDir, spec.slice(2));
     else if (spec.startsWith(".")) resolved = path.resolve(path.dirname(file), spec);
     if (!resolved) return m;
+    // Plain JS modules (for example src/lib/templateModels.mjs) are imported as they are.
+    if (/\.m?js$/.test(resolved) && fs.existsSync(resolved)) return `from "${pathToFileURL(resolved).href}"`;
     const tsFile = [".ts", ".tsx"].map((e) => resolved + e).find((f) => fs.existsSync(f));
     if (!tsFile) return m;
     compile(tsFile);

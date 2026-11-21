@@ -4,6 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getPostBySlug, getAllPosts, getRelatedPosts } from "@/lib/blog";
 import CopyLinkButton from "@/components/CopyLinkButton";
+import TemplateCustomizerMount from "@/components/TemplateCustomizer";
 import type { Metadata } from "next";
 
 interface Props {
@@ -391,6 +392,7 @@ export default async function BlogPostPage({ params }: Props) {
           className="blog-content mt-10 text-gray-700 leading-relaxed"
           dangerouslySetInnerHTML={{ __html: contentWithIds }}
         />
+        {contentWithIds.includes("data-template-customizer") && <TemplateCustomizerMount />}
 
         {/* Social Share Bottom */}
         <div className="mt-10 flex items-center gap-3 border-t border-gray-100 pt-6">

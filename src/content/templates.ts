@@ -5,6 +5,8 @@
  * file here exists and is valid.
  */
 
+import { TEMPLATE_MODELS } from "@/lib/templateModels.mjs";
+
 export interface TemplateFile {
   label: string;
   href: string;
@@ -230,6 +232,16 @@ function detailsStrip(files: TemplateFile[]): string {
   return '<div style="margin:0 0 12px;font-size:13px;font-weight:600;color:#374151;">US Letter 8.5 &times; 11 in &middot; ' + list + " &middot; Free download, no sign-up</div>";
 }
 
+/**
+ * Placeholder for the in-browser customizer (components/TemplateCustomizer.tsx): colors, title and the agent's
+ * details, built with the same PDF builder as the published file. Space is reserved so the page does not shift.
+ */
+function customizerSlot(id: string): string {
+  const model = (TEMPLATE_MODELS as Record<string, { title: string; subtitle: string }>)[id];
+  if (!model) return "";
+  return '<div data-template-customizer="' + id + '" data-title="' + esc(model.title) + '" data-subtitle="' + esc(model.subtitle) + '" style="min-height:48px;"></div>';
+}
+
 const FILLABLE_NOTE =
   '<div style="margin-top:6px;font-size:12px;color:#6b7280;">Fillable PDF: open it in a PDF reader such as Adobe Acrobat Reader to type into the blanks. Some phone and browser previews cannot.</div>';
 const GENERAL_NOTE =
@@ -270,6 +282,7 @@ export function downloadBox(id: string): string {
       header +
       detailsStrip(all).replace("Free download,", "Free downloads,") +
       '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;">' + t.designs.map(designCard).join("") + "</div>" +
+      '<div data-template-customizer="' + t.id + '" data-kind="flyer" style="min-height:48px;"></div>' +
       '<div style="margin-top:12px;font-size:12px;color:#6b7280;">Previews show fictional sample text and illustrations, not a real property or agent. The downloads are blank, ready for your own details and photos.</div>' +
       (hasFillable ? FILLABLE_NOTE : "") +
       GENERAL_NOTE +
@@ -277,7 +290,7 @@ export function downloadBox(id: string): string {
       "</div>"
     );
   }
-  const body = header + detailsStrip(t.files) + "<div>" + t.files.map((f) => fileButton(f)).join("") + "</div>" + (hasFillable ? FILLABLE_NOTE : "") + GENERAL_NOTE;
+  const body = header + detailsStrip(t.files) + "<div>" + t.files.map((f) => fileButton(f)).join("") + "</div>" + customizerSlot(t.id) + (hasFillable ? FILLABLE_NOTE : "") + GENERAL_NOTE;
   if (!t.preview) return open + body + "</div>";
   // Page-1 preview beside the downloads; it stacks above them on narrow screens.
   const printable = t.files.find((f) => f.label === "PDF") || t.files[0];

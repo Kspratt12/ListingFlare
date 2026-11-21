@@ -52,7 +52,7 @@ test("buyer questionnaire template: registered with three files that exist, and 
   assert.equal(t!.guideHref, "/blog/real-estate-buyer-questionnaire");
   assert.equal(t!.files.length, 3);
   for (const f of t!.files) assert.ok(fs.existsSync(path.join(PUBLIC, f.href)), f.href);
-  const script = fs.readFileSync(path.join(SRC, "..", "scripts", "build-templates.mjs"), "utf8");
+  const script = fs.readFileSync(path.join(SRC, "lib", "templateModels.mjs"), "utf8");
   assert.match(script, /Do not ask about or record anything related to race, color, religion, sex, national origin, disability or family status/);
   assert.match(post("real-estate-buyer-questionnaire").content, /Do not ask about or record race, color, religion, sex, national origin, disability or family status/);
 });
