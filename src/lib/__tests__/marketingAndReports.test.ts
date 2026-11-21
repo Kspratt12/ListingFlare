@@ -99,7 +99,17 @@ test("flyer gallery: three designs, each with a labelled sample preview and its 
   assert.match(box, /<a href="\/signup"[^>]*>Customize a flyer online/);
   assert.match(box, /needs a ListingFlare account; the 14-day free trial needs no credit card/);
   assert.ok(!fs.existsSync(path.join(pub, "templates", "open-house-flyer-template-preview.jpg")), "old single preview removed");
-  for (const t of TEMPLATES.filter((x) => x.id !== "open-house-flyer-template")) assert.ok(!/<img/.test(downloadBox(t.id)), t.id);
+  // Templates with a page-1 preview show exactly one lazy image linked to their printable PDF; the rest show none.
+  for (const t of TEMPLATES.filter((x) => x.id !== "open-house-flyer-template")) {
+    const b = downloadBox(t.id);
+    if (!t.preview) { assert.ok(!/<img/.test(b), t.id); continue; }
+    assert.equal(b.match(/<img /g)!.length, 1, t.id);
+    assert.match(b, new RegExp('<a href="/downloads/' + t.id + '\.pdf"[^>]*><img src="' + t.preview.src + '"[^>]*width="826" height="1069" loading="lazy"'), t.id);
+    assert.ok(fs.statSync(path.join(pub, t.preview.src)).size < 200 * 1024, t.id + " preview stays light");
+    assert.match(b, />Page 1 preview</);
+  }
+  assert.deepEqual(TEMPLATES.filter((t) => t.preview).map((t) => t.id).sort(), ["lead-follow-up-tracker", "listing-marketing-plan-template", "open-house-sign-in-sheet-template", "real-estate-listing-presentation-template", "single-property-website-template"]);
+  assert.match(downloadBox("open-house-sign-in-sheet-template"), /US Letter 8.5 &times; 11 in &middot; PDF, Word and Excel &middot; Free download, no sign-up/);
 });
 
 // ---------- seller report ----------

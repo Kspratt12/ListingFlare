@@ -1,4 +1,5 @@
 import { BlogPost } from "@/lib/blog";
+import { downloadBox } from "@/content/templates";
 
 export const article: BlogPost = {
   slug: "real-estate-lead-follow-up-sequence",
@@ -24,6 +25,10 @@ export const article: BlogPost = {
 <p>A real estate lead follow-up sequence is a planned set of short messages sent after someone inquires about a home: a fast, helpful first reply, then follow-ups on day 1, day 3 and day 7. The point is to stay in touch without being pushy, so that when the person is ready to talk, you are the agent they already know. This guide gives you a schedule and copy-and-paste templates for both a new inquiry and a buyer who has just seen the home.</p>
 
 <p><em>Disclosure: we make ListingFlare, which can send an AI-written first reply, described near the end. The sequence below works by hand or with any tool.</em></p>
+
+<p>To keep track of who got which message, download the free lead follow-up tracker below. It has a column for each step of this sequence.</p>
+
+${downloadBox("lead-follow-up-tracker")}
 
 <h2>The Sequence at a Glance</h2>
 
