@@ -4,7 +4,7 @@
 // placeholder <div data-template-customizer="id">; this component renders into each one. PDFs are built in the
 // visitor's browser with the same builders as the published files, so nothing typed here is sent anywhere.
 
-import { useEffect, useId, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import { createPortal } from "react-dom";
 import { ACCENT_COLORS, BAND_COLORS, PRINT_ONLY, brandingLine, cleanText, flyerColors, resolveTheme } from "@/lib/templateTheme.mjs";
 
@@ -27,9 +27,9 @@ const inputClass =
 const swatchClass =
   "h-7 w-7 rounded-full border border-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9a8866] focus-visible:ring-offset-2";
 
-type Props = { id: string; kind: "template" | "flyer"; title: string; subtitle: string };
+type Props = { id: string; kind: "template" | "flyer"; title: string; subtitle: string; panelTarget?: HTMLElement | null };
 
-function Customizer({ id, kind, title, subtitle }: Props) {
+function Customizer({ id, kind, title, subtitle, panelTarget }: Props) {
   const uid = useId();
   const flyer = kind === "flyer";
   const [open, setOpen] = useState(false);
@@ -124,6 +124,9 @@ function Customizer({ id, kind, title, subtitle }: Props) {
       setBusy(false);
     }
   };
+
+  // The panel opens full width under the preview and downloads when the box has a slot for it.
+  const wrapPanel = (node: React.ReactNode) => (panelTarget ? createPortal(node, panelTarget) : node);
 
   const swatches = (
     <>
@@ -229,7 +232,7 @@ function Customizer({ id, kind, title, subtitle }: Props) {
         {open ? "Hide customizer" : flyer ? "Customize a flyer: colors, headline and your details" : "Customize colors and details"}
       </button>
 
-      {open && (
+      {open && wrapPanel(
         <div id={`${uid}-panel`} className="mt-3 rounded-lg border border-[#ddd8c8] bg-white p-4 text-left">
           <div className={`grid gap-5 ${inlinePdf ? "md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]" : "md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]"}`}>
             <div>
@@ -324,6 +327,7 @@ function Customizer({ id, kind, title, subtitle }: Props) {
   );
 }
 
+
 /** Renders a customizer into every template placeholder on the page. */
 export default function TemplateCustomizerMount() {
   const [targets, setTargets] = useState<HTMLElement[]>([]);
@@ -335,6 +339,7 @@ export default function TemplateCustomizerMount() {
       {targets.map((el, i) =>
         createPortal(
           <Customizer
+            panelTarget={el.closest("[data-template-box]")?.querySelector<HTMLElement>("[data-customizer-panel]") ?? null}
             id={el.dataset.templateCustomizer || ""}
             kind={el.dataset.kind === "flyer" ? "flyer" : "template"}
             title={el.dataset.title || ""}

@@ -230,7 +230,7 @@ const FORMAT_BADGES: Record<string, { text: string; color: string }> = {
 
 function fileButton(f: TemplateFile, compact = false): string {
   const style = compact
-    ? "display:flex;align-items:center;gap:8px;margin:0 0 6px;padding:8px 10px;border-radius:8px;background:#9a8866;color:#ffffff;font-weight:600;font-size:13px;text-decoration:none;text-align:left;"
+    ? "display:flex;align-items:center;gap:10px;margin:0 0 8px;padding:10px 12px;border-radius:8px;background:#9a8866;color:#ffffff;font-weight:600;font-size:14px;text-decoration:none;text-align:left;"
     : "display:inline-flex;align-items:center;gap:10px;margin:0 4px 8px;padding:10px 16px;border-radius:8px;background:#9a8866;color:#ffffff;font-weight:600;font-size:14px;text-decoration:none;text-align:left;vertical-align:top;";
   const b = FORMAT_BADGES[f.label];
   const badge = b
@@ -258,6 +258,7 @@ function customizerSlot(id: string): string {
   if (!model) return "";
   return '<div data-template-customizer="' + id + '" data-title="' + esc(model.title) + '" data-subtitle="' + esc(model.subtitle) + '" style="min-height:48px;"></div>';
 }
+const customizerPanelSlot = (id: string) => '<div data-customizer-panel="' + id + '"></div>';
 
 const FILLABLE_NOTE =
   '<div style="margin-top:6px;font-size:12px;color:#6b7280;">Fillable PDF: open it in a PDF reader such as Adobe Acrobat Reader to type into the blanks. Some phone and browser previews cannot.</div>';
@@ -292,7 +293,7 @@ export function downloadBox(id: string): string {
     '<div style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#75634a;">Free download</div>' +
     '<div style="margin-top:4px;font-size:18px;font-weight:700;color:#111827;">' + t.title + "</div>" +
     '<div style="margin:4px 0 14px;font-size:14px;color:#4b5563;">' + t.description + "</div>";
-  const open = '<div style="margin:24px 0;padding:20px;border:1px solid #ddd8c8;border-radius:12px;background:#f8f7f4;">';
+  const open = '<div data-template-box style="margin:24px 0;padding:20px;border:1px solid #ddd8c8;border-radius:12px;background:#f8f7f4;">';
   if (t.designs) {
     return (
       open +
@@ -307,20 +308,24 @@ export function downloadBox(id: string): string {
       "</div>"
     );
   }
-  const buttons = '<div style="text-align:center;">' + t.files.map((f) => fileButton(f)).join("") + customizerSlot(t.id) + "</div>";
   const notes = (hasFillable ? FILLABLE_NOTE : "") + GENERAL_NOTE;
-  if (!t.preview) return open + header + detailsStrip(t.files) + buttons + notes + "</div>";
-  // Page-1 preview between the description and the downloads, large enough to read the layout.
+  if (!t.preview) {
+    return open + header + detailsStrip(t.files) + "<div>" + t.files.map((f) => fileButton(f)).join("") + customizerSlot(t.id) + "</div>" + customizerPanelSlot(t.id) + notes + "</div>";
+  }
+  // Desktop: a large page-1 preview with the downloads stacked beside it. Phones: the preview, then the downloads.
   const printable = t.files.find((f) => f.label === "PDF") || t.files[0];
   return (
     open + header + detailsStrip(t.files) +
-    '<div style="max-width:340px;margin:6px auto 16px;">' +
+    '<div style="display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px;margin-top:6px;">' +
+    '<div style="flex:1 1 320px;max-width:410px;margin:0 auto;">' +
     '<a href="' + printable.href + '" aria-label="' + esc(t.title + ": open the printable PDF") + '" style="display:block;">' +
     '<img src="' + t.preview.src + '" alt="' + esc(t.preview.alt) + '" width="' + t.preview.width + '" height="' + t.preview.height +
     '" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;aspect-ratio:' + t.preview.width + " / " + t.preview.height +
     ';border:1px solid #ddd8c8;border-radius:6px;background:#ffffff;box-shadow:0 6px 18px rgba(15,23,42,0.16);" /></a>' +
     '<div style="margin-top:8px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:999px;background:#eceae3;color:#374151;font-size:11px;font-weight:600;">Page 1 preview</span></div>' +
     "</div>" +
-    buttons + notes + "</div>"
+    '<div style="flex:1 1 230px;min-width:0;">' + t.files.map((f) => fileButton(f, true)).join("") + customizerSlot(t.id) + "</div>" +
+    "</div>" +
+    customizerPanelSlot(t.id) + notes + "</div>"
   );
 }
